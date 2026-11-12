@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED RLA — Full Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:rgba(15,23,42,.09);
+--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--radius:18px;--safe-top:env(safe-area-inset-top,0px);
+--safe-bottom:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+--shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);--ac:#3b82f6}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(700px 420px at 8% -8%,rgba(59,130,246,.10),transparent 65%),
+radial-gradient(700px 420px at 100% 4%,rgba(139,92,246,.08),transparent 65%)}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+.home-top{padding:calc(28px + var(--safe-top)) 20px 20px;max-width:1080px;margin:0 auto;text-align:center}
+.home-top .logo{width:64px;height:64px;border-radius:18px;margin:0 auto 16px;display:grid;place-items:center;
+font-size:15px;font-weight:800;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+box-shadow:0 12px 28px -10px rgba(59,130,246,.8)}
+.home-top h1{margin:0 0 6px;font-size:clamp(22px,5.5vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.home-top p{margin:0;color:var(--muted);font-size:clamp(13px,3.4vw,15px)}
+.overall{max-width:440px;margin:20px auto 0;background:var(--card);border:1px solid var(--border);
+border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.overall-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.overall-row b{font-size:22px;font-weight:800;color:var(--ac)}
+.overall-row span{font-size:12.5px;color:var(--muted);font-weight:600}
+.overall-bar{height:8px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+.overall-bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--ac),#8b5cf6);
+transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.grid{max-width:1080px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;display:flex;flex-direction:column;padding:20px;border-radius:var(--radius);
+background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);cursor:pointer;
+transition:transform .28s cubic-bezier(.22,.8,.28,1),box-shadow .28s,border-color .28s;overflow:hidden;isolation:isolate;
+font-family:inherit;text-align:left;color:inherit;animation:cardIn .5s cubic-bezier(.22,.8,.28,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;
+background:radial-gradient(130% 85% at 50% -25%,color-mix(in srgb,var(--c) 14%,transparent),transparent 62%);opacity:0;
+transition:opacity .3s;pointer-events:none}
+@media(hover:hover){.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);
+border-color:color-mix(in srgb,var(--c) 42%,var(--border))}
+.card:hover::after{opacity:1}
+.card:hover .c-icon{transform:scale(1.08) rotate(-5deg)}
+.card:hover .c-arrow{transform:translateX(4px);background:var(--c);color:#fff;border-color:transparent}}
+.card:active{transform:scale(.982)}
+.c-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.c-icon{width:52px;height:52px;flex:none;display:grid;place-items:center;font-size:26px;border-radius:16px;
+background:color-mix(in srgb,var(--c) 14%,transparent);transition:transform .3s cubic-bezier(.22,.8,.28,1)}
+.c-arrow{width:30px;height:30px;flex:none;display:grid;place-items:center;font-size:14px;border-radius:50%;
+border:1px solid var(--border);color:var(--muted);transition:transform .28s,background .28s,color .28s,border-color .28s}
+.card h3{margin:14px 0 0;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.card .c-desc{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7;flex:1}
+.c-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;
+border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted)}
+.c-meta b{color:var(--c);font-weight:800;font-size:13px}
+.c-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden;margin-top:8px}
+.c-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--c);
+transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.lesson-list{max-width:880px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:10px}
+.lesson-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card);
+border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);cursor:pointer;font-family:inherit;
+text-align:left;color:inherit;transition:transform .2s,box-shadow .25s,border-color .25s;
+animation:cardIn .4s cubic-bezier(.22,.8,.28,1) both}
+@media(hover:hover){.lesson-row:hover{transform:translateX(4px);box-shadow:var(--shadow-lg);
+border-color:color-mix(in srgb,var(--ac) 35%,var(--border))}}
+.lesson-row:active{transform:scale(.985)}
+.l-id{flex:none;font-size:12.5px;font-weight:800;color:#fff;padding:5px 10px;border-radius:10px;
+background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 60%,#000));
+font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+.l-body{flex:1;min-width:0}
+.l-body h4{margin:0;font-size:14.5px;font-weight:700;line-height:1.35;letter-spacing:-.01em}
+.l-body p{margin:3px 0 0;font-size:11.5px;color:var(--muted);font-weight:600}
+.l-prog{flex:none;width:60px;text-align:right}
+.l-prog b{display:block;font-size:12px;color:var(--ac);font-weight:800;font-variant-numeric:tabular-nums}
+.l-prog .bar{height:5px;border-radius:999px;background:rgba(15,23,42,.08);overflow:hidden;margin-top:5px}
+.l-prog .bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.gv-header{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 16px 12px}
+.gv-header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;font-size:13px;
+font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s}
+.back-btn:active{transform:scale(.95)}
+.gv-title{flex:1;min-width:0}
+.gv-title h2{margin:0;font-size:clamp(14px,3.8vw,17px);font-weight:800;letter-spacing:-.01em;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gv-title p{margin:2px 0 0;font-size:11.5px;color:var(--muted);font-weight:500}
+.prog-head{max-width:960px;margin:14px auto 0;padding:0 16px}
+.prog-head-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.prog-head-top b{font-size:15px;font-weight:800;color:var(--ac)}
+.prog-head-top span{font-size:11.5px;color:var(--muted);font-weight:600}
+.prog-head-bar{height:7px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+.prog-head-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.toolbar{max-width:960px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+font-size:12.5px;font-weight:600;cursor:pointer;box-shadow:0 1px 3px rgba(15,23,42,.04);
+transition:transform .18s,background .2s,color .2s}
+.btn:active{transform:scale(.96)}
+.btn.danger{color:var(--red);border-color:rgba(220,38,38,.3)}
+#exerciseList{max-width:960px;margin:0 auto;padding:16px}
+.exercise{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+padding:18px;margin-bottom:12px;box-shadow:var(--shadow);
+animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ex-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ex-num{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;
+font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 70%,#000));
+font-variant-numeric:tabular-nums}
+.ex-status{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;color:var(--muted);
+background:rgba(15,23,42,.06)}
+.ex-status.correct{color:#14532d;background:#bbf7d0}
+.ex-status.wrong{color:#7f1d1d;background:#fecaca}
+.ex-q{font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500}
+.ex-q b{font-weight:800}
+.passage{background:rgba(59,130,246,.05);border-left:3px solid #3b82f6;padding:12px 14px;
+border-radius:8px;margin:10px 0;font-size:13.5px;line-height:1.75;font-style:italic}
+.ex-opts{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:520px){.ex-opts{grid-template-columns:1fr 1fr}}
+.opt{text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);
+background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+cursor:pointer;transition:all .18s;line-height:1.5}
+.opt:active{transform:scale(.98)}
+.opt:not(:disabled):hover{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 4%,transparent)}
+.opt:disabled{cursor:default;opacity:.95}
+.opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700}
+.opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+.opt .ltr{font-weight:800;margin-right:6px;color:var(--muted)}
+.opt.correct .ltr{color:#14532d}
+.opt.wrong .ltr{color:#7f1d1d}
+.ex-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.show-sol{padding:8px 13px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+background:rgba(245,158,11,.08);color:#92400e;font-family:inherit;font-size:12.5px;
+font-weight:700;cursor:pointer;transition:all .18s}
+.show-sol:active{transform:scale(.97)}
+.show-sol.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent}
+.ex-sol{margin-top:12px;padding:16px;border-radius:12px;background:color-mix(in srgb,var(--ac) 5%,transparent);
+border-left:3px solid var(--ac);font-size:13.5px;line-height:1.8;animation:fadeUp .3s ease both}
+.ex-sol .sol-lbl{display:block;font-weight:800;font-size:11px;color:var(--ac);
+text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ex-sol .sol-why{margin-bottom:14px}
+.ex-sol ol{margin:6px 0 0;padding-left:20px}
+.ex-sol ol li{margin-bottom:5px;line-height:1.7}
+.ex-sol .sol-ans{display:inline-block;margin-top:12px;padding:5px 12px;border-radius:8px;
+background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="homeScreen" class="screen active">
+  <div class="home-top">
+    <div class="logo">RLA</div>
+    <h1>GED RLA — Full Course</h1>
+    <p>6 Groups · 60 Lessons · 1,800 Practice Questions</p>
+    <div class="overall">
+      <div class="overall-row"><b id="overallPct">0%</b><span id="overallCount">0 / 1,800 ပြီးစီး</span></div>
+      <div class="overall-bar"><i id="overallBar"></i></div>
+    </div>
+  </div>
+  <div class="grid" id="groupGrid"></div>
+</div>
+
+<div id="groupScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromGroup">← Back</button>
+      <div class="gv-title"><h2 id="gTitle"></h2><p id="gSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="gPct">0%</b><span id="gCount">0 / 300</span></div>
+    <div class="prog-head-bar"><i id="gBar"></i></div>
+  </div>
+  <div class="lesson-list" id="lessonList"></div>
+</div>
+
+<div id="lessonScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromLesson">← Back</button>
+      <div class="gv-title"><h2 id="lTitle"></h2><p id="lSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="lPct">0%</b><span id="lCount">0 / 30</span></div>
+    <div class="prog-head-bar"><i id="lBar"></i></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn" id="btnShowAll">💡 Show All Answers</button>
+    <button class="btn" id="btnHideAll">🙈 Hide All Answers</button>
+    <button class="btn danger" id="btnReset">🔄 Reset</button>
+  </div>
+  <div id="exerciseList"></div>
+</div>
+
+<script>
+/* ============ HELPERS ============ */
+const sr=s=>{const x=Math.sin(s*12.9898+78.233)*43758.5453;return x-Math.floor(x)};
+const pick=(s,arr)=>arr[Math.floor(sr(s)*arr.length)];
+const shuffle=(a,s)=>{const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(sr(s+i*13.37)*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r};
+function mcq(correct,distractors,seed){
+  const c=String(correct);const opts=[c];
+  for(const d of distractors){if(opts.length>=4)break;const s=String(d);if(s!==c&&!opts.includes(s))opts.push(s)}
+  let k=1;
+  while(opts.length<4){opts.push(c+' (variant '+k+')');k++;if(k>10)break}
+  const sh=shuffle(opts,seed);return{options:sh,correctIndex:sh.indexOf(c)};
+}
+function Q(q,correct,distractors,why,steps,seed){
+  const m=mcq(correct,distractors,seed);
+  return{q,options:m.options,correctIndex:m.correctIndex,why,steps,answer:String(correct)};
+}
+
+/* ============================================================
+   GROUP 1 — READING: INFORMATIONAL TEXT
+============================================================ */
+const G1 = [
+// 1.1 Main Idea
+s=>{
+  const P=[
+    ['Rainforests produce roughly 20% of the world\'s oxygen and are home to more than half of all plant and animal species. They also regulate global weather patterns.',
+     'Rainforests are vital to the planet\'s health',
+     ['Rainforests are located near the equator','Rainforests contain many trees','Rainforests are shrinking quickly']],
+    ['Regular exercise improves cardiovascular health, strengthens muscles, and boosts mental well-being. Even 30 minutes a day can significantly reduce the risk of chronic disease.',
+     'Regular exercise offers many health benefits',
+     ['Exercise should be done in the morning','Only athletes need to exercise','30 minutes is the only useful amount']],
+    ['The invention of the printing press in the 15th century made books affordable and widely available. This led to a rapid increase in literacy and the spread of new ideas across Europe.',
+     'The printing press greatly increased literacy and the spread of ideas',
+     ['The printing press was invented in Germany','Books are important for education','Europe had many inventors']],
+    ['Climate change is caused primarily by the burning of fossil fuels, which release carbon dioxide into the atmosphere. This traps heat and raises global temperatures.',
+     'Burning fossil fuels is the main cause of climate change',
+     ['Fossil fuels are expensive','Global temperatures change naturally','Carbon dioxide is harmless']],
+    ['Sleep plays a critical role in memory, learning, and emotional regulation. Adults who consistently get fewer than seven hours of sleep are at higher risk for several health problems.',
+     'Adequate sleep is essential for health and mental function',
+     ['Sleep should be eight hours','Children need more sleep than adults','Naps are unhealthy']],
+    ['Many cities are investing in public transportation to reduce traffic congestion and air pollution. Buses and trains can move far more people than private cars using the same road space.',
+     'Public transportation helps reduce traffic and pollution',
+     ['Cities are becoming overcrowded','Private cars are better than buses','Air pollution only affects cities']],
+    ['The internet has transformed how people access information, communicate, and conduct business. It has also created new challenges, including concerns about privacy and misinformation.',
+     'The internet has had both positive and negative effects',
+     ['The internet is only useful for business','Privacy is no longer a concern','Misinformation is rare online']],
+    ['Honeybees are essential pollinators for many crops, including fruits, vegetables, and nuts. Their decline threatens global food supplies and agricultural economies.',
+     'Honeybees are critical to food production',
+     ['Honeybees produce honey','Honeybees live in hives','All insects are declining']]
+  ];
+  const [text,correct,dist]=pick(s,P);
+  return Q(`Read the passage:<div class="passage">${text}</div>What is the main idea of the passage?`,
+    correct, dist,
+    'Main idea သည် passage တစ်ခုလုံး၏ အဓိကအကြောင်းအရာ ဖြစ်သည်။ Topic သာမက ဘာပြောချင်သည် ဆိုတာကိုပါ ဖမ်းရမည်။',
+    ['Passage တစ်ခုလုံး ဖတ်ပါ','ထပ်ခါထပ်ခါ ပြောထားသည့် အကြောင်းအရာကို ရှာပါ',
+     `အဖြေမှာ "${correct}" — passage တစ်ခုလုံး ဒီအချက်ကို အဓိကထား ဆွေးနွေးထားသည်`],
+    s+1);
+},
+// 1.2 Supporting Details
+s=>{
+  const P=[
+    ['The Eiffel Tower, built in 1889 for the World\'s Fair, stands 1,083 feet tall. It was the tallest structure in the world until 1930 and receives about 7 million visitors each year.',
+     'It was built in 1889','1889','Who built it','What color it is'],
+    ['Mount Everest is the tallest mountain on Earth, reaching 29,032 feet above sea level. It was first summited in 1953 by Edmund Hillary and Tenzing Norgay.',
+     '1953','1920','Every year','Never'],
+    ['The human heart beats about 100,000 times per day and pumps roughly 2,000 gallons of blood through the body. It has four chambers that work together.',
+     'About 100,000 times','About 500 times','About 1 million times','10 times'],
+    ['The Pacific Ocean is the largest and deepest ocean on Earth, covering about one-third of the planet. Its deepest point, the Mariana Trench, is nearly 36,000 feet deep.',
+     'One-third of the planet','Half of the planet','A quarter of the planet','A tenth of the planet'],
+    ['Photosynthesis is the process by which plants use sunlight, water, and carbon dioxide to produce glucose and oxygen. It takes place mainly in the leaves.',
+     'Sunlight, water, and carbon dioxide','Water and soil','Only sunlight','Sugar and water'],
+    ['The Great Wall of China was built over many centuries by several dynasties. Its total length is estimated at over 13,000 miles, including all branches.',
+     'Over 13,000 miles','About 500 miles','1,000 miles','100,000 miles']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Read the passage:<div class="passage">${text}</div>According to the passage, which of the following is correct?`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Supporting details သည် passage ထဲတွင် တိုက်ရိုက်ဖော်ပြထားသည့် အချက်အလက်များ ဖြစ်သည်။ ဖတ်ထားသည့်အတိုင်း ပြန်ရှာပါ။',
+    steps:['Passage ထဲရှိ ကိန်းဂဏန်း၊ ရက်စွဲ၊ အမည်များကို ဂရုပြုဖတ်ပါ',
+      `Passage တွင် "${correct}" ဟု ဖော်ပြထားသည်`,
+      'ကျန်ရွေးချယ်စရာများသည် passage တွင် မပါဝင်ပါ'],
+    answer:String(correct)};
+},
+// 1.3 Author's Purpose
+s=>{
+  const P=[
+    ['Buy now and save 30%! This limited-time offer ends Friday. Don\'t miss out on the deal of the season.','Persuade'],
+    ['First, preheat the oven to 350°F. Then, mix the flour and sugar in a large bowl.','Instruct'],
+    ['The American Civil War began in 1861 and lasted until 1865, resulting in over 600,000 casualties.','Inform'],
+    ['The wind howled through the trees, and the leaves danced wildly in the darkness.','Entertain'],
+    ['Studies show that 8 out of 10 dentists recommend brushing twice daily for optimal oral health.','Inform'],
+    ['Vote for change! Together, we can build a better future for our children and our communities.','Persuade'],
+    ['Ingredients: 2 cups flour, 1 cup sugar, 1/2 cup butter, 2 eggs, 1 teaspoon vanilla extract.','Instruct'],
+    ['Once upon a time, in a small village nestled between two mountains, lived a curious young girl.','Entertain'],
+    ['According to NASA, Mars has two moons named Phobos and Deimos, both discovered in 1877.','Inform'],
+    ['Subscribe today and get your first month free! Join millions of satisfied customers.','Persuade']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Inform','Persuade','Entertain','Instruct'];
+  const m=mcq(correct,opts.filter(o=>o!==correct),s+1);
+  return{q:`Read the passage and identify the author's purpose:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Author\'s purpose = စာရေးသူ ဘာလုပ်ဖို့ ရည်ရွယ်သလဲ — Inform (အသိပေး), Persuade (ဖျောင်းဖျ), Entertain (ဖျော်ဖြေ), Instruct (သင်ပေး)။',
+    steps:['စာသား၏ လေသံနှင့် ဝေါဟာရကို ကြည့်ပါ',
+      'ဖျောင်းဖျသော စကားလုံး (buy now, vote, save) ပါလျှင် = Persuade',
+      'အဆင့်ဆင့် ညွှန်ကြားချက် (First, then, next) ပါလျှင် = Instruct',
+      'ရိုးရိုးအချက်အလက် ပေးလျှင် = Inform၊ ဇာတ်လမ်းဆန်ဆန် ရေးလျှင် = Entertain',
+      `ဤ passage သည် "${correct}" ဖြစ်သည်`],
+    answer:correct};
+},
+// 1.4 Text Structure
+s=>{
+  const P=[
+    ['Because the factory closed, hundreds of workers lost their jobs, and the town\'s economy declined.','Cause and Effect'],
+    ['Both cats and dogs make excellent pets. Cats are independent, while dogs are more social.','Compare and Contrast'],
+    ['First, the colonists arrived. Next, they built settlements. Later, they declared independence.','Chronological'],
+    ['The problem is that many students lack internet access. One solution is to provide hotspots.','Problem and Solution'],
+    ['Unlike tropical rainforests, deserts receive very little rainfall and have sparse vegetation.','Compare and Contrast'],
+    ['As a result of the drought, crops failed, leading to food shortages and higher prices.','Cause and Effect'],
+    ['In 1492, Columbus sailed. In 1620, the Pilgrims arrived. In 1776, independence was declared.','Chronological'],
+    ['Cities face rising homelessness. To address this, some have built affordable housing.','Problem and Solution'],
+    ['Many people think bats are dangerous. However, most bats eat insects and help control pests.','Compare and Contrast'],
+    ['Due to heavy rains, the river overflowed, which flooded nearby homes.','Cause and Effect']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Cause and Effect','Compare and Contrast','Chronological','Problem and Solution'];
+  const m=mcq(correct,opts.filter(o=>o!==correct),s+1);
+  return{q:`Identify the text structure of this passage:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Text structure = စာသား စီစဉ်ပုံ။ Cause/Effect (အကြောင်း-အကျိုး), Compare/Contrast (နှိုင်းယှဉ်), Chronological (အချိန်အစဉ်), Problem/Solution (ပြဿနာ-အဖြေ)။',
+    steps:['Signal words များ ရှာပါ','"Because / As a result" → Cause/Effect',
+      '"Both / Unlike / While" → Compare/Contrast','"First / Next / In 1492" → Chronological',
+      '"The problem is / One solution" → Problem/Solution',
+      `ဤ passage = "${correct}"`],
+    answer:correct};
+},
+// 1.5 Summarizing
+s=>{
+  const P=[
+    [['The 1918 flu pandemic infected about 500 million people worldwide and killed an estimated 50 million.',
+      'It had a devastating global impact.','It started in Spain.','It affected only soldiers.','It lasted one year.'],
+     'A summary should capture the main idea in a concise way.'],
+    [['The Amazon rainforest produces about 20% of the world\'s oxygen and is home to 10% of all known species.',
+      'It is essential to global ecology.','It is located in Brazil.','It has many rivers.','It was named after a warrior.'],
+     'A summary should reflect the passage\'s overall point.'],
+    [['The invention of the lightbulb in 1879 by Edison transformed daily life and industry.',
+      'It was a transformative invention.','It was invented in America.','It used a filament.','Edison had many patents.'],
+     'Summary = main point + key supporting idea.'],
+    [['Recycling reduces landfill waste, conserves natural resources, and saves energy.',
+      'Recycling has multiple environmental benefits.','Recycling is free.','Recycling is required by law.','Recycling takes time.'],
+     'Summary should reflect all the main benefits described.'],
+    [['The internet has changed how people shop, learn, communicate, and work.',
+      'It has revolutionized many aspects of daily life.','It was invented in 1983.','It is run by one company.','It uses satellites.'],
+     'Summary captures the broad impact.']
+  ];
+  const [[text,correct,d1,d2,d3],reasoning]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Which option best summarizes this passage?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:reasoning,
+    steps:['Summary သည် အဓိကအချက်ကို ဆုပ်ကိုင်ရမည်',
+      'အသေးစိတ်များကို ဖယ်ထားရမည်',
+      'ကိုယ်ပိုင်ထင်မြင်ချက် ထည့်လို့မရ',
+      `Best summary: "${correct}"`],
+    answer:correct};
+},
+// 1.6 Inference
+s=>{
+  const P=[
+    ['Maria walked in with wet hair and an umbrella, shaking raindrops from her coat.','It is raining outside.','Maria forgot her coat.','Maria just went swimming.','The umbrella is broken.'],
+    ['The restaurant was packed, and a line stretched out the door.','The food is likely popular.','The restaurant just opened.','The chef is famous.','The prices are high.'],
+    ['Sam put on gloves, a heavy jacket, and a wool hat before stepping outside.','It is cold outside.','Sam is going to work.','Sam is on vacation.','It is snowing heavily.'],
+    ['The dog wagged its tail and jumped toward the door as soon as it heard the car.','The dog recognizes the car owner.','The dog is hungry.','The dog is afraid.','The dog needs exercise.'],
+    ['Tom checked his watch three times in five minutes and kept looking toward the door.','Tom is anxious about being late.','Tom is bored.','Tom lost his watch.','Tom is waiting for a friend.'],
+    ['The bakery\'s windows were dark, and a "CLOSED" sign hung on the door at 2 pm on Tuesday.','The bakery is not open right now.','The bakery has closed forever.','It is a holiday.','The baker is sick.']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`What can be inferred from the following passage?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Inference = passage ထဲ တိုက်ရိုက်မပြောထားသော်လည်း အချက်အလက်များမှ ကောက်ချက်ချနိုင်သည့် အရာ။',
+    steps:['Passage ထဲရှိ သဲလွန်စများ (clues) ကို ရှာပါ',
+      'ဖော်ပြထားသည် အချက်များမှ ဖြစ်နိုင်သည့်အရာကို ခန့်မှန်းပါ',
+      `ဖြစ်နိုင်ခြေအများဆုံး = "${correct}"`],
+    answer:correct};
+},
+// 1.7 Compare Two Texts
+s=>{
+  const P=[
+    ['Text 1: Owning a dog brings joy and daily exercise.\nText 2: Dogs require significant time and money.','Both discuss owning a dog but from different angles'],
+    ['Text 1: Electric cars help reduce pollution.\nText 2: Electric cars are expensive to maintain.','Both address electric cars with opposing views'],
+    ['Text 1: The moon affects ocean tides.\nText 2: The moon has no atmosphere.','Both describe the moon but with different facts'],
+    ['Text 1: School uniforms improve focus.\nText 2: School uniforms limit self-expression.','Both discuss school uniforms with contrasting opinions']
+  ];
+  const [text,correct]=pick(s,P);
+  const distractors=['Both agree on all points','Both texts are about unrelated topics','Both reject the topic entirely','Both present identical arguments'];
+  const m=mcq(correct,distractors,s+1);
+  return{q:`Compare the two texts:<div class="passage">${text.replace(/\n/g,'<br>')}</div>What best describes the relationship between the two texts?`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Compare/contrast မေးခွန်းတွင် text ၂ ခုသည် တူသည့်အချက် သို့မဟုတ် ကွဲပြားသည့်အချက်ကို ဖော်ပြသည်။',
+    steps:['Text 1 ၏ အဓိကအချက် ရှာပါ','Text 2 ၏ အဓိကအချက် ရှာပါ','နှစ်ခုလုံး ဆက်စပ်မှုကို နှိုင်းယှဉ်ပါ',`ဖော်ပြချက် = "${correct}"`],
+    answer:correct};
+},
+// 1.8 Identifying Claims
+s=>{
+  const P=[
+    ['Students should be allowed to use phones during lunch breaks.','Claim'],
+    ['The school lunch period is 30 minutes long.','Fact'],
+    ['Homework should be eliminated in elementary school.','Claim'],
+    ['The library has over 20,000 books.','Fact'],
+    ['Recess is more important than additional class time.','Claim'],
+    ['Our school was built in 1962.','Fact'],
+    ['Every student should learn a foreign language.','Claim'],
+    ['Water boils at 212°F at sea level.','Fact'],
+    ['Video games should be considered a sport.','Claim'],
+    ['The city has three public libraries.','Fact']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Claim','Fact'];
+  const m=mcq(correct,opts.filter(o=>o!==correct),s+1);
+  return{q:`Is the following statement a claim or a fact?<div class="passage">"${text}"</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Claim = ထင်မြင်ချက်၊ ငြင်းခုံနိုင်သည့်အချက် (should, must, better)။ Fact = စစ်ဆေးနိုင်သည့် အချက်အလက်။',
+    steps:['"Should", "must", "better", "important" စသည့် judgment စကားလုံး ပါလား စစ်ပါ',
+      'ပါလျှင် → Claim','မပါဘဲ စစ်ဆေးနိုင်လျှင် → Fact',
+      `ဤ statement = "${correct}"`],
+    answer:correct};
+},
+// 1.9 Evidence Evaluation
+s=>{
+  const P=[
+    ['"Our town should ban plastic bags."',
+     'A study shows plastic bags take 500 years to decompose.','My friend thinks plastic bags are bad.','I once saw a plastic bag on the street.','Some people like plastic bags.'],
+    ['"Exercise improves mental health."',
+     'Research shows 30 min of exercise reduces anxiety symptoms by 40%.','Athletes are often happy.','My coach says so.','Gyms are popular.'],
+    ['"Breakfast is the most important meal."',
+     'Studies show students who eat breakfast score 15% higher on tests.','Many hotels serve breakfast.','My mom always made breakfast.','Some restaurants open early.'],
+    ['"Reading improves vocabulary."',
+     'Students who read daily learn 1,000 more words per year than peers.','Books are sold in stores.','Libraries are quiet.','Authors write books.'],
+    ['"Electric cars reduce carbon emissions."',
+     'A 2023 study found EVs emit 60% less CO₂ over their lifetime.','Tesla is popular.','EVs look futuristic.','Chargers are everywhere.']
+  ];
+  const [claim,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Which piece of evidence BEST supports the following claim?<div class="passage">${claim}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Strong evidence = specific, factual, measurable, credible source။ ကိုယ်ပိုင်ထင်မြင်ချက် သို့မဟုတ် သူတစ်ပါး၏ ထင်မြင်ချက် = weak evidence။',
+    steps:['Claim ကို ပံ့ပိုးပေးသည့် evidence ကို ရှာပါ','Numbers/data ပါသည့် evidence သည် အားကောင်းသည်',
+      'Personal opinion သည် evidence အားနည်းသည်',`အားကောင်းဆုံး evidence = "${correct}"`],
+    answer:correct};
+},
+// 1.10 Fact vs Opinion
+s=>{
+  const P=[
+    ['The Earth orbits the Sun.','Fact'],
+    ['Chocolate is the best dessert.','Opinion'],
+    ['Water freezes at 32°F.','Fact'],
+    ['Summer is more fun than winter.','Opinion'],
+    ['Shakespeare wrote Romeo and Juliet.','Fact'],
+    ['Pizza is delicious.','Opinion'],
+    ['The human body has 206 bones.','Fact'],
+    ['Blue is the most beautiful color.','Opinion'],
+    ['Light travels faster than sound.','Fact'],
+    ['Cats make better pets than dogs.','Opinion']
+  ];
+  const [text,correct]=pick(s,P);
+  const m=mcq(correct,['Fact','Opinion'].filter(o=>o!==correct),s+1);
+  return{q:`Classify the following statement:<div class="passage">"${text}"</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Fact = စစ်ဆေးနိုင်သည်၊ သက်သေရှိသည်။ Opinion = ကိုယ်ပိုင်ထင်မြင်ချက်၊ တူညီချင်မှ တူညီမည်။',
+    steps:['စစ်ဆေး၍ ရ/မရ စစ်ပါ','"Best", "beautiful", "fun", "delicious" စသည့် judgment ပါလျှင် → Opinion',
+      `ဤ statement = "${correct}"`],
+    answer:correct}
+}
+];
+
+/* ============================================================
+   GROUP 2 — READING: LITERATURE
+============================================================ */
+const G2 = [
+// 2.1 Plot Elements
+s=>{
+  const P=[
+    ['A young boy finds a mysterious key in his attic. He unlocks a door to a magical world, defeats an evil king, and returns home changed forever.',
+     'The boy finds a key, has an adventure, and returns changed',
+     ['The boy plays in the attic','The boy loses the key','The boy stays in the magical world']],
+    ['A woman moves to a new city. She struggles to find work, makes a friend, and eventually opens her own bakery.',
+     'A woman overcomes challenges and achieves her dream',
+     ['A woman takes a vacation','A woman inherits a bakery','A woman returns home']],
+    ['A knight sets out on a quest to save a princess from a dragon. He fails three times before succeeding with the help of a wise wizard.',
+     'A knight succeeds after failures with help',
+     ['A knight defeats a dragon easily','A wizard saves the princess','A princess rescues herself']],
+    ['Two brothers argue over an inheritance. After their father\'s death, they reconcile and share the family business.',
+     'Two brothers overcome conflict through reconciliation',
+     ['Two brothers become enemies forever','The father leaves a will','The business fails']],
+    ['A scientist discovers a cure for a disease but faces opposition from her company. She risks her career to publish the findings.',
+     'A scientist risks her career to do the right thing',
+     ['A scientist becomes famous','A company profits from a cure','A disease spreads worldwide']]
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Summarize the plot of this story:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Plot = ဇာတ်လမ်းအစီအစဉ် — ဇာတ်ကောင်၊ ပြဿနာ၊ ဖြေရှင်းမှု၊ ရလဒ်။',
+    steps:['Main character ကို ရှာပါ','ပြဿနာ (conflict) ကို ရှာပါ','ဖြေရှင်းမှု (resolution) ကို ရှာပါ',
+      `Plot summary = "${correct}"`],
+    answer:correct};
+},
+// 2.2 Character Analysis
+s=>{
+  const P=[
+    ['Even when others mocked him, Tom kept practicing piano for three hours every day.','Tom is determined and disciplined',
+     'Tom is lazy','Tom is unkind','Tom is afraid'],
+    ['Sarah always stopped to help strangers, even when she was late for work.','Sarah is kind and selfless',
+     'Sarah is always late','Sarah is rude','Sarah dislikes her job'],
+    ['Marcus never told lies, even when the truth hurt.','Marcus is honest',
+     'Marcus is cruel','Marcus is quiet','Marcus is forgetful'],
+    ['Despite losing her job, Elena smiled and told her children everything would be okay.','Elena is resilient and protective',
+     'Elena is careless','Elena does not care about money','Elena is sad all the time'],
+    ['Ravi read every book in the school library before his 12th birthday.','Ravi is curious and dedicated',
+     'Ravi is bored','Ravi dislikes school','Ravi is lonely'],
+    ['Whenever the teacher asked a question, Anna looked down and stayed silent.','Anna is shy',
+     'Anna is confident','Anna is angry','Anna dislikes the teacher']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`What does this passage reveal about the character?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Character traits = ဇာတ်ကောင်၏ အပြုအမူ၊ စကားပြောပုံ၊ ဆုံးဖြတ်ချက်များမှ ကောက်ချက်ချသည်။',
+    steps:['ဇာတ်ကောင် ဘာလုပ်သလဲ ကြည့်ပါ','ဘာပြောသလဲ ကြည့်ပါ',
+      'သူများ သူ့အကြောင်း ဘာပြောသလဲ ကြည့်ပါ',`Trait = "${correct}"`],
+    answer:correct};
+},
+// 2.3 Theme
+s=>{
+  const P=[
+    ['A poor farmer gives his last seed to a hungry stranger. Years later, the stranger returns as a wealthy merchant and saves the farmer from ruin.',
+     'Kindness is rewarded','Wealth is everything','Strangers are dangerous','Farming is difficult'],
+    ['A king loses everything when he ignores his advisers. Only after listening to a poor shepherd does he regain his kingdom.',
+     'Humility and good counsel lead to success','Royalty is always right','Shepherds are wise','Kingdoms are hard to rule'],
+    ['A young artist is told her work is worthless. She keeps painting and eventually becomes famous.',
+     'Perseverance leads to success','Critics are always wrong','Fame is easy to achieve','Art is not valuable'],
+    ['Two friends face a difficult journey. One gives up, but the other continues and reaches the destination.',
+     'Determination brings achievement','Friendship is temporary','Journeys are difficult','Success is luck'],
+    ['A boy lies to his parents and later feels guilty. He confesses and learns the value of honesty.',
+     'Honesty is the best policy','Parents are strict','Lying always works','Guilt is useless']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`What is the theme of this passage?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Theme = ဇာတ်လမ်း၏ သင်ခန်းစာ သို့မဟုတ် အဓိကစိတ်ကူး (universal idea)။',
+    steps:['ဇာတ်လမ်းက ဘာသင်ပေးချင်သလဲ စဉ်းစားပါ','ဇာတ်ကောင် ဘာသင်ယူသလဲ ကြည့်ပါ',
+      `Theme = "${correct}"`],
+    answer:correct};
+},
+// 2.4 Point of View
+s=>{
+  const P=[
+    ['I walked into the room and saw my friends waiting. I could not believe they had planned a surprise.',
+     'First person','Second person','Third person limited','Third person omniscient'],
+    ['You open the door slowly, not knowing what you will find inside.',
+     'Second person','First person','Third person limited','Third person omniscient'],
+    ['Maria looked out the window. She wondered if her brother would come home. She felt nervous.',
+     'Third person limited','First person','Second person','Third person omniscient'],
+    ['The king did not know that his servant was secretly his long-lost son, but the queen knew everything.',
+     'Third person omniscient','First person','Second person','Third person limited'],
+    ['I never wanted to leave my hometown, but fate had other plans for me.',
+     'First person','Second person','Third person limited','Third person omniscient'],
+    ['He stared at the letter, and his heart raced with fear. She watched him from across the room, guessing his thoughts.',
+     'Third person omniscient','First person','Second person','Third person limited']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Identify the point of view:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'1st person = "I/we", 2nd = "you", 3rd limited = he/she (one mind), 3rd omniscient = "all-knowing" narrator။',
+    steps:['Pronouns ကို ကြည့်ပါ','"I" → First person','"You" → Second person',
+      'he/she + one mind → Third limited','he/she + multiple minds → Third omniscient',
+      `ဤ passage = "${correct}"`],
+    answer:correct};
+},
+// 2.5 Figurative Language
+s=>{
+  const P=[
+    ['The wind whispered through the trees.','Personification'],
+    ['Her smile was as bright as the sun.','Simile'],
+    ['Time is a thief.','Metaphor'],
+    ['The classroom was a zoo.','Metaphor'],
+    ['He runs like the wind.','Simile'],
+    ['The stars danced in the sky.','Personification'],
+    ['I am so hungry I could eat a horse.','Hyperbole'],
+    ['Break a leg!','Idiom'],
+    ['The thunder roared angrily.','Personification'],
+    ['Life is a journey.','Metaphor']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Simile','Metaphor','Personification','Hyperbole','Idiom'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Identify the figurative language used:<div class="passage">"${text}"</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Simile = "like/as", Metaphor = direct comparison, Personification = object to human, Hyperbole = exaggeration, Idiom = fixed expression။',
+    steps:['"like" သို့မဟုတ် "as" ပါလား → Simile','ရိုးရိုး နှိုင်းယှဉ်ချက် → Metaphor',
+      'အရာဝတ္ထုကို လူလို ပြုမူ → Personification',
+      'အလွန်အကျွံ ချဲ့ကားမှု → Hyperbole','စကားအသုံးအနှုန်း → Idiom',
+      `ဤ passage = "${correct}"`],
+    answer:correct};
+},
+// 2.6 Tone & Mood
+s=>{
+  const P=[
+    ['The abandoned house creaked in the wind, and shadows crept along the walls.','Eerie and unsettling','Cheerful','Calm','Humorous'],
+    ['The sun rose over the calm ocean as birds sang softly.','Peaceful and serene','Sad','Angry','Tense'],
+    ['She laughed until tears rolled down her cheeks.','Joyful','Bitter','Fearful','Melancholic'],
+    ['The soldier stood silently as the flag was lowered, remembering his fallen friends.','Solemn and sorrowful','Excited','Angry','Indifferent'],
+    ['The crowd erupted in cheers as the winning goal was scored.','Energetic and celebratory','Melancholic','Somber','Fearful'],
+    ['He stared at the letter, his hands trembling with rage.','Angry and tense','Calm','Humorous','Nostalgic']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`What is the tone/mood of the passage?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Tone = စာရေးသူ၏ သဘောထား။ Mood = ဖတ်သူ ခံစားရသည့် ခံစားချက်။',
+    steps:['စာသားထဲရှိ စကားလုံးများက ဘယ်လိုခံစားချက် ပေးသလဲ ကြည့်ပါ',
+      'Descriptive words များကို ဂရုပြုပါ',`ဖော်ပြချက် = "${correct}"`],
+    answer:correct};
+},
+// 2.7 Irony
+s=>{
+  const P=[
+    ['A fire station burns down.','Situational irony'],
+    ['A traffic cop is caught speeding.','Situational irony'],
+    ['A lifeguard drowns.','Situational irony'],
+    ['The Titanic was called "unsinkable" and sank on its first voyage.','Situational irony'],
+    ['A math teacher struggles with basic addition.','Situational irony'],
+    ['A dentist has bad teeth.','Situational irony'],
+    ['A weather forecaster gets caught in the rain without an umbrella.','Situational irony'],
+    ['The fire hydrant caught on fire.','Situational irony'],
+    ['A chef burns water.','Situational irony'],
+    ['A car salesman can\'t drive.','Situational irony']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Situational irony','Verbal irony','Dramatic irony','No irony'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Identify the type of irony:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Situational irony = မျှော်လင့်ချက်နှင့် ဆန့်ကျင်ဘက်ဖြစ်ခြင်း။ Verbal = ပြောင်းပြန်ပြောခြင်း။ Dramatic = ဖတ်သူသိ၊ ဇာတ်ကောင်မသိ။',
+    steps:['ဖြစ်ရပ်သည် မျှော်လင့်ထားသည့် ဆန့်ကျင်ဘက် ဖြစ်နေပါသလား?',
+      'ဖြစ်လျှင် → Situational','ပြောင်းပြန်စကား → Verbal','ဖတ်သူသိ၊ ဇာတ်ကောင်မသိ → Dramatic',
+      `ဤ passage = "${correct}"`],
+    answer:correct};
+},
+// 2.8 Conflict
+s=>{
+  const P=[
+    ['A girl argues with her mother about her future career.','Person vs Person'],
+    ['A hiker struggles against a violent storm in the mountains.','Person vs Nature'],
+    ['A boy battles his own fear of heights to save his sister.','Person vs Self'],
+    ['A community fights to save their homes from a large corporation.','Person vs Society'],
+    ['A soldier wrestles with guilt after a battle.','Person vs Self'],
+    ['A family tries to survive a hurricane.','Person vs Nature'],
+    ['A student stands up against a school policy she believes is unfair.','Person vs Society'],
+    ['A knight fights an evil wizard.','Person vs Person'],
+    ['A man fights his addiction to alcohol.','Person vs Self'],
+    ['Two siblings compete for the same scholarship.','Person vs Person']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Person vs Self','Person vs Person','Person vs Nature','Person vs Society'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Identify the type of conflict:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Conflict သည် ဇာတ်လမ်း၏ မောင်းနှင်အား။ Person vs Self/Person/Nature/Society ဖြစ်နိုင်သည်။',
+    steps:['ဇာတ်ကောင် ဘယ်နှင့် ရုန်းကန်နေသလဲ ကြည့်ပါ','ကိုယ်တိုင် → Self','အခြားလူ → Person',
+      'သဘာဝ → Nature','လူမှုအဖွဲ့ → Society',`ဤ passage = "${correct}"`],
+    answer:correct};
+},
+// 2.9 Dialogue Analysis
+s=>{
+  const P=[
+    ['"I never want to see you again!" Maria shouted, slamming the door.','Anger and betrayal',
+     'Joy','Boredom','Excitement'],
+    ['"Oh, please, it\'s not a big deal," he said, but his voice shook.','Hidden anxiety',
+     'Real calm','Happiness','Anger'],
+    ['"Fine. Everything is fine," she replied, staring out the window.','Hidden sadness',
+     'Genuine happiness','Confusion','Fear'],
+    ['"I can\'t wait!" he said, jumping up and down.','Excitement','Fear','Sadness','Anger'],
+    ['"Sure, whatever you say," he mumbled, rolling his eyes.','Sarcasm and resentment',
+     'Agreement','Enthusiasm','Joy'],
+    ['"I think we should go back," she whispered, glancing over her shoulder.','Fear',
+     'Confidence','Joy','Anger']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`What does the following dialogue suggest about the character's feelings?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Dialogue + body language + word choice များက ဇာတ်ကောင်၏ အပြင်၊ အတွင်းခံစားချက် နှစ်မျိုးလုံးကို ဖော်ပြသည်။',
+    steps:['ဇာတ်ကောင် ပြောသည့် စကားလုံးများ ကြည့်ပါ','Actions (slammed, whispered) ကြည့်ပါ',
+      'Tone ကို ခန့်မှန်းပါ',`ခံစားချက် = "${correct}"`],
+    answer:correct};
+},
+// 2.10 Context Clues in Literature
+s=>{
+  const P=[
+    ['She was filled with trepidation, her hands shaking as she approached the stage.','Fear','Joy','Anger','Confidence'],
+    ['He was a parsimonious man, always saving every penny and never buying anything unnecessary.','Frugal','Generous','Lazy','Honest'],
+    ['The smell was so noisome that everyone covered their noses.','Offensive','Pleasant','Sweet','Neutral'],
+    ['Her vivacious personality lit up the entire room.','Lively','Shy','Sad','Angry'],
+    ['The old man was quite loquacious, talking for hours without pause.','Talkative','Silent','Rude','Kind'],
+    ['He faced the challenge with equanimity, calm and composed.','Calmness','Anger','Fear','Confusion']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Use context clues to determine the meaning of the highlighted word:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Context clues = စာကြောင်းအတွင်းရှိ အခြားအချက်အလက်များမှ စကားလုံး၏ အဓိပ္ပာယ်ကို ခန့်မှန်းခြင်း။',
+    steps:['Highlighted word ကို ရှာပါ','ဝန်းကျင်ရှိ စကားလုံးများက clues ပေးသည်',
+      'Example: "hands shaking" → fear','Tone (positive/negative) ကို ကြည့်ပါ',
+      `အဓိပ္ပာယ် = "${correct}"`],
+    answer:correct}
+}
+];
+
+/* ============================================================
+   GROUP 3 — GRAMMAR & CONVENTIONS
+============================================================ */
+const G3 = [
+// 3.1 Subject-Verb Agreement
+s=>{
+  const P=[
+    ['The dog ___ loudly every night.','barks','bark','barking','barked'],
+    ['The students ___ in the library.','study','studies','studying','studied'],
+    ['Each of the boys ___ a new bag.','has','have','having','had'],
+    ['The news ___ surprising.','is','are','were','being'],
+    ['My family ___ going on vacation.','is','are','being','be'],
+    ['The team ___ playing well.','is','are','were being','be'],
+    ['Neither of the answers ___ correct.','is','are','were','be'],
+    ['Mathematics ___ my favorite subject.','is','are','were','be'],
+    ['The scissors ___ sharp.','are','is','was','be'],
+    ['A flock of birds ___ overhead.','flies','fly','flying','flown']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Choose the correct verb: <b>${q.replace('___','_____')}</b>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Subject-verb agreement = subject နှင့် verb က ကိန်း (singular/plural) တူညီရမည်။',
+    steps:['Subject ကို ရှာပါ','Subject ၏ ကိန်းကို ဆုံးဖြတ်ပါ',
+      'Singular subject → singular verb (adds -s)','Plural subject → plural verb',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 3.2 Verb Tense
+s=>{
+  const P=[
+    ['Yesterday, she ___ to the store.','went','goes','going','will go'],
+    ['Right now, he ___ a book.','is reading','reads','read','readed'],
+    ['By next year, they ___ the project.','will have finished','finish','finished','finishing'],
+    ['She ___ in Paris for three years before moving.','had lived','lives','living','will live'],
+    ['Tomorrow, we ___ a test.','will take','take','took','taking'],
+    ['I ___ here since 2010.','have worked','work','worked','working'],
+    ['By the time he arrived, we ___ dinner.','had finished','finish','finishing','will finish'],
+    ['She ___ to music when I called.','was listening','listens','listened','listening'],
+    ['They ___ married next month.','will get','get','got','getting'],
+    ['He ___ his homework already.','has finished','finish','finishing','finished']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Choose the correct verb tense: <b>${q.replace('___','_____')}</b>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Time markers (yesterday, tomorrow, since, by the time) သည် မည်သည့် tense သုံးရမည်ကို ညွှန်ပြသည်။',
+    steps:['Time marker ကို ရှာပါ','"Yesterday/ago" → past','"Tomorrow/next" → future',
+      '"Since/for" → present perfect','"By the time (past)" → past perfect',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 3.3 Pronoun Agreement
+s=>{
+  const P=[
+    ['Each student must bring ___ own pencil.','his or her','their','its','there'],
+    ['The committee made ___ decision.','its','their','there','they'],
+    ['Every dog loves ___ owner.','its','their','there','they\'re'],
+    ['Neither John nor Mark brought ___ book.','his','their','there','its'],
+    ['Anyone who wants to attend must sign ___ name.','his or her','their','there','its'],
+    ['The team celebrated ___ victory.','its','their','there','they\'re'],
+    ['Every child should have ___ own room.','his or her','their','there','its'],
+    ['The cat licked ___ paw.','its','it\'s','their','there'],
+    ['Each of the girls wore ___ favorite dress.','her','their','there','its'],
+    ['The company lost ___ reputation.','its','their','there','it\'s']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Choose the correct pronoun: <b>${q.replace('___','_____')}</b>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Pronoun သည် သူရည်ညွှန်းသည့် noun (antecedent) နှင့် ကိန်း၊ လိင် တူညီရမည်။',
+    steps:['Pronoun ရည်ညွှန်းသည့် noun ကို ရှာပါ','Singular/plural ဆုံးဖြတ်ပါ',
+      'Singular → his/her/its','Plural → their','Inanimate → its',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 3.4 Pronoun Case
+s=>{
+  const P=[
+    ['___ went to the party.','She','Her','Hers','Herself'],
+    ['Give the book to ___.','him','he','his','himself'],
+    ['It was ___ who called.','I','me','my','mine'],
+    ['Between you and ___, this is strange.','me','I','my','mine'],
+    ['___ and I are friends.','He','Him','His','Himself'],
+    ['This gift is for ___ and ___.','you, me','you, I','your, me','your, I'],
+    ['___ is the best student.','She','Her','Hers','Herself'],
+    ['The winner was ___.','he','him','his','himself'],
+    ['They gave the prize to ___ and ___.','her, me','her, I','she, me','she, I'],
+    ['It is ___ who must decide.','I','me','my','mine']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Choose the correct pronoun case: <b>${q.replace('___','_____')}</b>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Subject pronoun (I, he, she, we, they) → subject နေရာ။ Object pronoun (me, him, her, us, them) → object နေရာ။',
+    steps:['Pronoun သည် subject လား object လား ဆုံးဖြတ်ပါ','Verb ၏ subject → I/he/she',
+      'Preposition/verb ၏ object → me/him/her','"Between" ပြီးနောက် → object',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 3.5 Comma Rules
+s=>{
+  const P=[
+    ['My brother who lives in Boston is a doctor.','My brother, who lives in Boston, is a doctor.','My brother who lives in Boston, is a doctor.','My brother, who lives in Boston is a doctor.'],
+    ['I bought apples oranges and bananas.','I bought apples, oranges, and bananas.','I bought apples oranges, and bananas.','I bought, apples oranges and bananas.'],
+    ['After the storm we cleaned up the yard.','After the storm, we cleaned up the yard.','After the storm we, cleaned up the yard.','After, the storm we cleaned up the yard.'],
+    ['John my best friend arrived late.','John, my best friend, arrived late.','John my best friend, arrived late.','John, my best friend arrived late.'],
+    ['She said I will be there.','She said, "I will be there."','She said "I will be there".','She said I will be there.'],
+    ['It was a cold dark night.','It was a cold, dark night.','It was a cold dark, night.','It was, a cold dark night.']
+  ];
+  const [wrong,correct,d1,d2]=pick(s,P);
+  const m=mcq(correct,[wrong,d1,d2],s+1);
+  return{q:`Choose the sentence with CORRECT comma usage:`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Comma rules — items in a series, intro phrase, non-essential info, direct address, coordinate adjectives။',
+    steps:['Rule များကို စစ်ပါ','Series: A, B, and C','Intro phrase ပြီးနောက် comma',
+      'Non-essential clause ကို comma ၂ ခုဖြင့် ခွာ','မှန်ကန်သည့် = ရွေးချယ်ထားသည့် စာကြောင်း'],
+    answer:correct};
+},
+// 3.6 Semicolons & Colons
+s=>{
+  const P=[
+    ['I love pizza; my brother prefers burgers.','Correct use of semicolon'],
+    ['She brought three things: bread, milk, and eggs.','Correct use of colon'],
+    ['He was tired; however, he kept working.','Correct use of semicolon with conjunctive adverb'],
+    ['The recipe requires: flour, sugar, and butter.','INCORRECT — colon after verb'],
+    ['Bring these: a pencil, paper, and eraser.','Correct use of colon'],
+    ['I have one goal; to win.','INCORRECT — semicolon before fragment'],
+    ['We visited three cities: Paris, Rome, and Madrid.','Correct use of colon for list'],
+    ['She studied hard; she passed the exam.','Correct use of semicolon between clauses']
+  ];
+  const [text,correct]=pick(s,P);
+  const distractors=['INCORRECT — semicolon before fragment','INCORRECT — colon after verb','INCORRECT — comma splice','INCORRECT — colon misused'];
+  const m=mcq(correct,distractors.filter(d=>d!==correct).slice(0,3),s+1);
+  return{q:`Is the punctuation in the following sentence correct?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Semicolon = independent clauses ၂ ခု ဆက်ရန်။ Colon = list, explanation, quote စတာတွေ မိတ်ဆက်ရန်။ Verb ပြီးနောက် colon မထည့်ရ။',
+    steps:['Semicolon (;) — independent clause ၂ ခု ဆက်ရန်','Colon (:) — list/example မိတ်ဆက်ရန်',
+      'Colon ကို verb/object ပြီးနောက် မထည့်ရ','"Requires:" သည် verb ပြီးနောက်ဖြစ်သောကြောင့် မှားသည်'],
+    answer:correct};
+},
+// 3.7 Apostrophes
+s=>{
+  const P=[
+    ['The dog\'s bone is buried.','Correct — singular possessive'],
+    ['The dogs\' bones are buried.','Correct — plural possessive'],
+    ['Its raining outside.','INCORRECT — should be "It\'s"'],
+    ['It\'s tail is wagging.','INCORRECT — should be "Its"'],
+    ['The children\'s toys are here.','Correct — irregular plural possessive'],
+    ['The 1990\'s were great.','INCORRECT — should be "1990s"'],
+    ['Sarah and John\'s house.','Correct — joint possession'],
+    ['Sarah\'s and John\'s houses.','Correct — separate possession'],
+    ['The book is hers\'.','INCORRECT — possessive pronoun takes no apostrophe'],
+    ['The teachers\' lounge.','Correct — plural possessive']
+  ];
+  const [text,correct]=pick(s,P);
+  const ds=['INCORRECT — should be "It\'s"','INCORRECT — should be "Its"','INCORRECT — should be "1990s"','INCORRECT — possessive pronoun takes no apostrophe','Correct — singular possessive','Correct — plural possessive','Correct — joint possession','Correct — separate possession','Correct — irregular plural possessive'];
+  const m=mcq(correct,ds.filter(d=>d!==correct).slice(0,3),s+1);
+  return{q:`Is the apostrophe used correctly?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Apostrophe rules — singular possessive = noun+\'s၊ plural possessive = noun+\'၊ pronouns (its, hers, theirs) = apostrophe မပါ။',
+    steps:['Noun singular/plural စစ်ပါ','Singular → \'s','Plural ending in -s → \'',
+      'Irregular plural → \'s','Possessive pronouns → apostrophe မပါ',
+      `ဤအချက် = "${correct}"`],
+    answer:correct};
+},
+// 3.8 Parallel Structure
+s=>{
+  const P=[
+    ['She likes swimming, running, and biking.','Correct — all gerunds'],
+    ['She likes to swim, running, and bike.','INCORRECT — mixed forms'],
+    ['The job requires writing, editing, and proofreading.','Correct — all gerunds'],
+    ['He is smart, funny, and kind.','Correct — all adjectives'],
+    ['He is smart, has humor, and kind.','INCORRECT — mixed'],
+    ['I came, I saw, I conquered.','Correct — parallel clauses'],
+    ['We can hike, swim, or fishing.','INCORRECT — mixed'],
+    ['The teacher wanted us to read, write, and think.','Correct — all infinitives'],
+    ['She wanted to travel, to learn, and to grow.','Correct — parallel infinitives'],
+    ['She wanted to travel, learning, and growth.','INCORRECT — mixed']
+  ];
+  const [text,correct]=pick(s,P);
+  const ds=['Correct — all gerunds','Correct — all adjectives','Correct — parallel clauses','Correct — all infinitives','Correct — parallel infinitives','INCORRECT — mixed forms','INCORRECT — mixed'];
+  const m=mcq(correct,ds.filter(d=>d!==correct).slice(0,3),s+1);
+  return{q:`Is the following sentence parallel?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Parallel structure = list/ဆက်စပ်အရာများ grammatical form တူညီရမည်။ -ing, -ing, -ing သို့မဟုတ် to-, to-, to- စသဖြင့်။',
+    steps:['List ထဲရှိ item များ၏ form ကို ကြည့်ပါ','အားလုံး gerund (-ing) ဖြစ်လား?','အားလုံး infinitive (to-) ဖြစ်လား?',
+      'Form မတူလျှင် parallel မဖြစ်','ဤအချက် = '+correct],
+    answer:correct};
+},
+// 3.9 Modifier Placement
+s=>{
+  const P=[
+    ['Running down the street, I saw a dog.','Correct — modifier attaches to "I"'],
+    ['Running down the street, the dog was seen by me.','INCORRECT — dangling modifier'],
+    ['After eating dinner, we went for a walk.','Correct — modifier attaches to "we"'],
+    ['Having finished the test, the students left.','Correct'],
+    ['Having finished the test, the bell rang.','INCORRECT — dangling modifier'],
+    ['Walking to school, she saw a rainbow.','Correct'],
+    ['Walking to school, the rainbow appeared.','INCORRECT — dangling modifier'],
+    ['Exhausted from the trip, John went to bed.','Correct'],
+    ['Exhausted from the trip, the bed was welcome.','INCORRECT — dangling modifier'],
+    ['Covered in chocolate, the cake was delicious.','Correct']
+  ];
+  const [text,correct]=pick(s,P);
+  const ds=['Correct — modifier attaches to "I"','Correct — modifier attaches to "we"','Correct','INCORRECT — dangling modifier'];
+  const m=mcq(correct,ds.filter(d=>d!==correct).slice(0,3),s+1);
+  return{q:`Is the modifier placed correctly?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Modifier သည် သူရည်ညွှန်းသည့် word နှင့် နီးရမည်။ မဟုတ်လျှင် dangling modifier ဖြစ်သည်။',
+    steps:['Modifying phrase ကို ရှာပါ','သူ ရည်ညွှန်းသည့် word ကို ရှာပါ','နီးလား ဝေးလား စစ်ပါ',
+      'မှားယွင်းသည့် word နှင့် ချိတ်လျှင် → Dangling','ဤအချက် = '+correct],
+    answer:correct};
+},
+// 3.10 Fragments & Run-ons
+s=>{
+  const P=[
+    ['Because I was tired.','Fragment — dependent clause alone'],
+    ['I went home.','Complete sentence'],
+    ['I went to the store, and I bought milk.','Complete sentence'],
+    ['I went to the store I bought milk.','Run-on sentence'],
+    ['When the bell rang.','Fragment'],
+    ['The dog barked.','Complete sentence'],
+    ['She runs fast she wins races.','Run-on'],
+    ['Although it was raining.','Fragment'],
+    ['The movie was long, but it was good.','Complete sentence'],
+    ['He studied hard he passed.','Run-on']
+  ];
+  const [text,correct]=pick(s,P);
+  const ds=['Fragment','Complete sentence','Run-on sentence'];
+  const m=mcq(correct,ds.filter(d=>d!==correct),s+1);
+  return{q:`Classify the sentence:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Fragment = subject/verb ပြည့်စုံမှု မရှိ။ Run-on = independent clause ၂ ခု punctuation မပါဘဲ ဆက်ထားခြင်း။',
+    steps:['Subject ရှိလား?','Verb ရှိလား?','Complete thought ဖြစ်လား?','"Because/When/Although" ဖြင့် စထားလျှင် → Fragment',
+      'Clause ၂ ခု ဆက်ထားလျှင် → Run-on',`ဤအချက် = "${correct}"`],
+    answer:correct}
+}
+];
+
+/* ============================================================
+   GROUP 4 — WRITING
+============================================================ */
+const G4 = [
+// 4.1 Sentence Variety
+s=>{
+  const P=[
+    ['The dog barked. The cat ran. The bird flew away.','The dog barked, the cat ran, and the bird flew away.','Simple sentences repeated','The dog barked, the cat ran, the bird flew away.'],
+    ['It was raining. We stayed inside.','Because it was raining, we stayed inside.','Simple sentences repeated','Because it was raining we stayed inside.'],
+    ['She studied hard. She passed the test.','She studied hard, so she passed the test.','Simple sentences repeated','She studied hard she passed the test.']
+  ];
+  const [orig,correct,d1,d2]=pick(s,P);
+  const m=mcq(correct,[d1,d2],s+1);
+  return{q:`Which revision improves sentence variety?<div class="passage">${orig}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Sentence variety = short, medium, long sentences ရောပြီး စာဖတ်ရ ပိုစိတ်ဝင်စားစေသည်။',
+    steps:['Original မှာ short sentences များလား ကြည့်ပါ',
+      'Coordinating conjunction (and, but, so) ဖြင့် ဆက်ပါ',
+      'သို့မဟုတ် subordinating conjunction (because, although) ဖြင့် ဆက်ပါ',
+      `မွမ်းမံသည့် = "${correct}"`],
+    answer:correct};
+},
+// 4.2 Combining Sentences
+s=>{
+  const P=[
+    ['The boy is tall. The boy plays basketball.','The tall boy plays basketball.','The boy tall plays basketball.','The boy who is tall, plays basketball.'],
+    ['I like pizza. I like pasta.','I like pizza and pasta.','I like pizza, I like pasta.','I like pizza. I like pasta.'],
+    ['She is smart. She is kind.','She is smart and kind.','She is smart she is kind.','She is smart. And she is kind.'],
+    ['The car is red. The car is fast.','The red car is fast.','The car red is fast.','The car is red. It is fast.'],
+    ['He ran. He was tired.','He ran although he was tired.','He ran, he was tired.','He ran. He was tired.']
+  ];
+  const [a,b,correct,d1,d2]=pick(s,P);
+  const m=mcq(correct,[d1,d2],s+1);
+  return{q:`Choose the BEST way to combine these sentences:<div class="passage">${a}<br>${b}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Sentence များ ပေါင်းရာတွင် repetitive words ဖယ်ပြီး conjunction/relative clause ဖြင့် ဆက်ရသည်။',
+    steps:['နှစ်ကြောင်း ထပ်သည့်စကားလုံး ရှာပါ','Adjective ဖြစ်လျှင် noun ရှေ့ရွှေ့နိုင်',
+      'Same subject ဖြစ်လျှင် and/but/so ဖြင့် ဆက်',
+      'Cause/effect ဖြစ်လျှင် because/so ဖြင့် ဆက်',
+      `Best combination = "${correct}"`],
+    answer:correct};
+},
+// 4.3 Transitions
+s=>{
+  const P=[
+    ['I studied hard. ___, I passed the exam.','Therefore','However','Nevertheless','Otherwise'],
+    ['It was raining. ___, we went for a walk.','However','Therefore','Thus','So'],
+    ['First, mix the ingredients. ___, bake for 30 minutes.','Then','However','Although','Because'],
+    ['She was tired. ___, she kept working.','Nevertheless','Therefore','Thus','So'],
+    ['The car is old. ___, it still runs well.','However','Therefore','Thus','So'],
+    ['He missed the bus. ___, he was late.','As a result','However','Although','In contrast'],
+    ['Some prefer tea. ___, others prefer coffee.','In contrast','Therefore','As a result','Similarly'],
+    ['Both cats and dogs make good pets. ___, they require different care.','However','Thus','Therefore','So'],
+    ['She studied hard. ___, she earned an A.','Consequently','However','Nevertheless','Instead'],
+    ['It was late. ___, we went home.','Therefore','However','Although','Instead']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Choose the BEST transition word: <b>${q.replace('___','_____')}</b>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Transition words = idea များအကြား ဆက်စပ်မှုကို ညွှန်ပြသည်။ Addition / Contrast / Cause-Effect / Sequence။',
+    steps:['Sentence ၂ ခု၏ ဆက်စပ်မှုကို ဆုံးဖြတ်ပါ','Addition → also, moreover',
+      'Contrast → however, nevertheless','Cause-Effect → therefore, as a result',
+      'Sequence → first, then','မှန်ကန်သည် = "${correct}"'],
+    answer:correct};
+},
+// 4.4 Topic Sentences
+s=>{
+  const P=[
+    ['Regular exercise offers many benefits.','Exercise is important.','Many people exercise.','The gym is open.','Running is popular.'],
+    ['Recycling helps protect the environment.','Recycling is good.','Some people recycle.','Waste is a problem.','Bins are blue.'],
+    ['Reading improves vocabulary and empathy.','Reading is beneficial.','Books are heavy.','Libraries are quiet.','Authors write books.'],
+    ['Teamwork leads to better results.','Teams exist.','Sports require teamwork.','Two heads are better than one.','People work.'],
+    ['A balanced diet supports overall health.','Food is tasty.','Vegetables are green.','People eat food.','Restaurants serve food.']
+  ];
+  const [correct,d1,d2,d3,d4]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Which is the BEST topic sentence for a paragraph about this topic?`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Topic sentence = paragraph ၏ အဓိကအချက်ကို ဖော်ပြသည်။ ရှင်းလင်း၊ specific၊ ဆွေးနွေးနိုင်စရာ ရှိရမည်။',
+    steps:['Paragraph တစ်ခုလုံး ဘာအကြောင်း ဆွေးနွေးမည်လဲ စဉ်းစားပါ',
+      'Topic sentence သည် ထို idea ကို ဖော်ပြရမည်',
+      'Specific + arguable ဖြစ်ရမည်',`Best = "${correct}"`],
+    answer:correct};
+},
+// 4.5 Paragraph Coherence
+s=>{
+  const P=[
+    ['Cats are independent. They groom themselves. They can be left alone.','Cats are easy to care for.','Cats are fluffy.','Cats have whiskers.','Cats are animals.'],
+    ['Exercise strengthens the heart. It also improves mood. It increases energy.','Exercise has many benefits.','Exercise takes time.','Gyms cost money.','Sweat is salty.'],
+    ['Reading builds vocabulary. It improves focus. It develops empathy.','Reading has multiple benefits.','Books are heavy.','Paper comes from trees.','Reading is quiet.']
+  ];
+  const [body,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Which topic sentence BEST introduces this paragraph?<div class="passage">${body}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Coherence = paragraph ထဲရှိ စာကြောင်းအားလုံး main idea ကို ပံ့ပိုးရမည်။ Topic sentence သည် ထို main idea ကို ဖော်ပြရမည်။',
+    steps:['Body sentences တွေက ဘာပြောနေလဲ ဖတ်ပါ',
+      'Common idea ကို ရှာပါ',
+      'Topic sentence သည် ထို idea ကို summarize လုပ်ရမည်',
+      `Best = "${correct}"`],
+    answer:correct};
+},
+// 4.6 Word Choice
+s=>{
+  const P=[
+    ['The food was very good.','The food was delicious.','The food was very very good.','The food was good.','The food was food.'],
+    ['The dog ran quickly.','The dog sprinted.','The dog ran fast.','The dog went quickly.','The dog moved.'],
+    ['She was very sad.','She was devastated.','She was really sad.','She was sad.','She was unhappy.'],
+    ['The building was big.','The building was enormous.','The building was very big.','The building was large.','The building was huge.'],
+    ['He walked slowly.','He trudged.','He walked very slowly.','He walked at slow pace.','He went slowly.']
+  ];
+  const [weak,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Which is the STRONGEST word choice to replace the underlined/basic version?<div class="passage">"${weak}"</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Strong word choice = specific, vivid, precise words။ "Very + adjective" ကို တစ်လုံးတည်း powerful word ဖြင့် အစားထိုးနိုင်သည်။',
+    steps:['Basic/weak word ကို ရှာပါ','Stronger synonym ရှာပါ',
+      'Specific + vivid word ကို ရွေးပါ','"Very" ပါလျှင် တစ်လုံးတည်း ပိုကောင်းသည်',
+      `Strongest = "${correct}"`],
+    answer:correct};
+},
+// 4.7 Formal Tone
+s=>{
+  const P=[
+    ['I wanna go to the party.','I would like to attend the party.','I want to go to the party.','Me wanna go.','Party time!'],
+    ['This stuff is cool.','This material is impressive.','This thing is neat.','This is awesome.','Cool stuff.'],
+    ['Gonna be there soon.','I will arrive shortly.','I\'ll be there soon.','Almost there.','Coming!'],
+    ['Kids should eat healthy.','Children should maintain a balanced diet.','Children should eat right.','Kids should eat good food.','Children eat food.'],
+    ['It was a big deal.','It was a significant event.','It was a really big deal.','Big thing happened.','It mattered.']
+  ];
+  const [informal,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Which sentence uses the MOST formal tone?`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Formal tone = slang/contraction မပါ၊ ရိုးရိုးသော အသက်မွေးစကား မပါ၊ academic voice ပါ။',
+    steps:['Contraction (wanna, gonna, don\'t) ရှာပါ','Slang (cool, stuff) ရှာပါ',
+      'Formal = full words + academic vocabulary',
+      `Most formal = "${correct}"`],
+    answer:correct};
+},
+// 4.8 Active vs Passive Voice
+s=>{
+  const P=[
+    ['The ball was thrown by the boy.','The boy threw the ball.','The ball thrown by boy.','The ball was threw.'],
+    ['The cake was eaten by Maria.','Maria ate the cake.','The cake eaten.','The cake was ate.'],
+    ['The song was sung by the choir.','The choir sang the song.','The song sung.','The song was sang.'],
+    ['The letter was written by John.','John wrote the letter.','The letter wrote.','The letter was wrote.'],
+    ['The house was built by workers.','Workers built the house.','The house built.','The house was build.']
+  ];
+  const [passive,correct,d1,d2]=pick(s,P);
+  const m=mcq(correct,[d1,d2],s+1);
+  return{q:`Rewrite in ACTIVE voice:<div class="passage">${passive}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Active voice — subject က action ကို လုပ်သည်။ Passive — action ကို subject က ခံရသည်။',
+    steps:['Passive — subject + be + past participle + by + agent',
+      'Agent ကို subject နေရာသို့ ရွှေ့ပါ','Verb ကို active form ပြောင်းပါ',
+      `Active = "${correct}"`],
+    answer:correct};
+},
+// 4.9 Concise Writing
+s=>{
+  const P=[
+    ['At this point in time, we should begin.','Now we should begin.','At this point, we should begin.','In time, we should begin.'],
+    ['Due to the fact that it rained, we stayed home.','Because it rained, we stayed home.','Due to rain, we stayed.','It rained so we stayed home because of that.'],
+    ['In my personal opinion, I think we should go.','I think we should go.','In my opinion, I think we should go.','Personally, I think we should go.'],
+    ['The reason why is because she was late.','She was late.','The reason is she was late.','Because she was late.'],
+    ['Each and every student must attend.','Every student must attend.','Each student must attend.','All students must attend.'],
+    ['He made the decision to leave.','He decided to leave.','He made a decision.','He decided on leaving.']
+  ];
+  const [wordy,correct,d1,d2]=pick(s,P);
+  const m=mcq(correct,[d1,d2],s+1);
+  return{q:`Choose the MOST concise version:`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Concise writing = မလိုအပ်သည့် စကားလုံးများ ဖယ်။ အတိုဆုံး ဖော်ပြချက်က အသက်ဝင်ဆုံး။',
+    steps:['Redundant phrases ရှာပါ','"At this point in time" → "now"',
+      '"Due to the fact that" → "because"','"In my personal opinion" → "I think"',
+      `Most concise = "${correct}"`],
+    answer:correct};
+},
+// 4.10 Revising for Clarity
+s=>{
+  const P=[
+    ['The thing that I want to say is that we should leave now.','We should leave now.','The thing is, we should leave now.','I want to say we should leave now.'],
+    ['There are many reasons why exercise is important.','Exercise is important for many reasons.','Exercise is important.','Many reasons why exercise.'],
+    ['What I mean is that the plan will work.','The plan will work.','What I mean: the plan works.','I mean the plan.'],
+    ['It is important to note that water is wet.','Water is wet.','It is important water is wet.','Note: water is wet.'],
+    ['The fact of the matter is she is right.','She is right.','The fact is she right.','Actually, she is right.']
+  ];
+  const [unclear,correct,d1,d2]=pick(s,P);
+  const m=mcq(correct,[d1,d2],s+1);
+  return{q:`Which revision makes the sentence CLEAREST?`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Clarity = ဖတ်သူ တစ်ခါတည်း နားလည်နိုင်သည်။ Filler phrases ဖယ်၊ တိုက်ရိုက်ပြောပါ။',
+    steps:['Filler phrases ရှာပါ (What I mean, The thing is)','ရိုးရိုး၊ တိုတိုပြောပါ',
+      'Verb ကို အရှေ့ပို့ပါ','Clarity ရှိသည့် = "${correct}"'],
+    answer:correct}
+}
+];
+
+/* ============================================================
+   GROUP 5 — VOCABULARY
+============================================================ */
+const G5 = [
+// 5.1 Context Clues
+s=>{
+  const P=[
+    ['The benevolent king gave food to the poor.','kind','cruel','lazy','foolish'],
+    ['The arid desert had no water for miles.','dry','wet','green','cold'],
+    ['She was reluctant to leave, hesitant and unsure.','unwilling','eager','happy','quick'],
+    ['The cacophony of car horns was unbearable.','harsh noise','quiet music','soft rain','sweet smell'],
+    ['His candid remarks surprised everyone with their honesty.','honest','rude','silly','shy'],
+    ['The ephemeral rainbow disappeared in minutes.','short-lived','beautiful','colorful','bright'],
+    ['The ubiquitous smartphones are everywhere now.','present everywhere','rare','expensive','old'],
+    ['She was meticulous, checking every detail twice.','careful','careless','fast','sloppy'],
+    ['The tenacious lawyer refused to give up the case.','persistent','lazy','kind','foolish'],
+    ['His vociferous complaints could be heard across the building.','loud','quiet','polite','soft']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Use context clues to find the meaning:<div class="passage">"${text}"</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Context clues = စာကြောင်းထဲရှိ သဲလွန်စများမှ စကားလုံး၏ အဓိပ္ပာယ်ကို ခန့်မှန်းခြင်း။',
+    steps:['Sentence ထဲရှိ အခြားစကားလုံးများက အဓိပ္ပာယ် ဖော်ပြသည်',
+      'Example: "gave food to poor" → benevolent = kind',
+      `အဓိပ္ပာယ် = "${correct}"`],
+    answer:correct};
+},
+// 5.2 Prefixes
+s=>{
+  const P=[
+    ['The prefix "un-" in "unhappy" means:','not','again','before','after'],
+    ['The prefix "re-" in "rewrite" means:','again','not','before','with'],
+    ['The prefix "pre-" in "preview" means:','before','after','not','again'],
+    ['The prefix "post-" in "postpone" means:','after','before','not','with'],
+    ['The prefix "anti-" in "antibiotic" means:','against','for','with','near'],
+    ['The prefix "sub-" in "submarine" means:','under','over','near','with'],
+    ['The prefix "super-" in "supernatural" means:','above','under','with','not'],
+    ['The prefix "mis-" in "misunderstand" means:','wrongly','correctly','with','again'],
+    ['The prefix "inter-" in "international" means:','between','within','under','against'],
+    ['The prefix "bi-" in "bicycle" means:','two','three','one','many']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`${text}`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Prefix သည် စကားလုံး၏ ရှေ့တွင် ထည့်ပြီး အဓိပ္ပာယ် ပြောင်းလဲစေသည်။',
+    steps:['Prefix ကို ရှာပါ','Prefix ၏ အဓိပ္ပာယ် ကို မှတ်ပါ',
+      'Example: "un-" = not, "re-" = again',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 5.3 Suffixes
+s=>{
+  const P=[
+    ['The suffix "-less" in "hopeless" means:','without','full of','before','again'],
+    ['The suffix "-ful" in "hopeful" means:','full of','without','not','before'],
+    ['The suffix "-able" in "readable" means:','can be','cannot','before','with'],
+    ['The suffix "-ology" in "biology" means:','study of','fear of','love of','without'],
+    ['The suffix "-phobia" in "claustrophobia" means:','fear of','love of','study of','without'],
+    ['The suffix "-philia" in "bibliophilia" means:','love of','fear of','without','study of'],
+    ['The suffix "-ment" in "movement" means:','state/act of','without','before','not'],
+    ['The suffix "-ness" in "happiness" means:','state of being','without','fear of','love of'],
+    ['The suffix "-ist" in "artist" means:','one who','without','study of','before'],
+    ['The suffix "-ize" in "modernize" means:','to make','without','study of','fear of']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`${text}`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Suffix သည် စကားလုံး၏ နောက်တွင် ထည့်ပြီး အဓိပ္ပာယ် သို့မဟုတ် part of speech ပြောင်းလဲစေသည်။',
+    steps:['Suffix ကို ရှာပါ','"-less" = without, "-ful" = full of',
+      '"-ology" = study of, "-phobia" = fear of',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 5.4 Root Words
+s=>{
+  const P=[
+    ['The root "spec" in "spectator" means:','see/look','hear','speak','write'],
+    ['The root "aud" in "audience" means:','hear','see','speak','write'],
+    ['The root "dict" in "predict" means:','say/speak','write','hear','see'],
+    ['The root "scrib/script" in "describe" means:','write','read','speak','hear'],
+    ['The root "graph" in "autograph" means:','write/draw','hear','see','speak'],
+    ['The root "port" in "transport" means:','carry','see','speak','write'],
+    ['The root "bio" in "biology" means:','life','death','earth','water'],
+    ['The root "geo" in "geography" means:','earth','water','air','fire'],
+    ['The root "tele" in "telephone" means:','far','near','loud','soft'],
+    ['The root "phon" in "symphony" means:','sound','sight','touch','taste']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`${text}`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Root = စကားလုံး၏ အခြေခံ အဓိပ္ပာယ်။ လက်တင်/ဂရိ မှ ဆင်းသက်သည်။',
+    steps:['Root ကို ရှာပါ','Common roots: spec = see, aud = hear, dict = speak',
+      'bio = life, geo = earth, tele = far',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 5.5 Synonyms & Antonyms
+s=>{
+  const P=[
+    ['Synonym of "happy":','joyful','sad','angry','tired'],
+    ['Synonym of "big":','enormous','tiny','small','thin'],
+    ['Synonym of "quick":','rapid','slow','late','steady'],
+    ['Antonym of "generous":','stingy','kind','giving','wealthy'],
+    ['Antonym of "brave":','cowardly','bold','strong','fearless'],
+    ['Synonym of "smart":','intelligent','foolish','lazy','slow'],
+    ['Antonym of "ancient":','modern','old','past','antique'],
+    ['Synonym of "difficult":','challenging','easy','simple','plain'],
+    ['Antonym of "accept":','reject','take','receive','hold'],
+    ['Synonym of "essential":','necessary','optional','extra','useless']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`${text}`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Synonym = အဓိပ္ပာယ်တူ။ Antonym = အဓိပ္ပာယ်ဆန့်ကျင်ဘက်။',
+    steps:['မေးခွန်းက synonym လား antonym လား စစ်ပါ','Word ၏ အဓိပ္ပာယ် စဉ်းစားပါ',
+      'တူ/ဆန့်ကျင်သည့် စကားလုံး ရွေးပါ',
+      `အဖြေ = "${correct}"`],
+    answer:correct};
+},
+// 5.6 Homophones
+s=>{
+  const P=[
+    ['Choose the correct word: I want to go ___.','to','too','two','tow'],
+    ['Choose the correct word: ___ going to rain.','It\'s','Its','Its\'','Its\'s'],
+    ['Choose the correct word: The dog wagged ___ tail.','its','it\'s','its\'','its\'s'],
+    ['Choose the correct word: I have ___ apples.','two','to','too','tow'],
+    ['Choose the correct word: I want some ___!','too','to','two','tow'],
+    ['Choose the correct word: Please put it ___.','there','their','they\'re','theyre'],
+    ['Choose the correct word: ___ going to the store.','They\'re','Their','There','Theyre'],
+    ['Choose the correct word: ___ books are here.','Their','They\'re','There','Theyre'],
+    ['Choose the correct word: I ___ the answer.','know','no','now','knew'],
+    ['Choose the correct word: I have ___ money.','no','know','now','knew']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`${q}`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Homophones = အသံတူပြီး အဓိပ္ပာယ်/စာလုံးပေါင်း ကွဲသည်။ to/too/two, its/it\'s, their/there/they\'re စသည်။',
+    steps:['Verb လား noun လား စစ်ပါ','Possessive လား contraction လား',
+      'အဓိပ္ပာယ်နှင့် ကိုက်ညီသည့် စကားလုံး ရွေးပါ',
+      `မှန်ကန်သည် = "${correct}"`],
+    answer:correct};
+},
+// 5.7 Multiple-Meaning Words
+s=>{
+  const P=[
+    ['In "The bank was closed," "bank" means:','financial institution','river edge','storage','shelf'],
+    ['In "He sat on the bank of the river," "bank" means:','river edge','financial institution','storage','shelf'],
+    ['In "Turn on the light," "light" means:','illumination','not heavy','pale color','easy'],
+    ['In "The bag is light," "light" means:','not heavy','illumination','pale color','easy'],
+    ['In "He played a match," "match" means:','sports contest','stick for fire','to agree','to be equal'],
+    ['In "She lit the match," "match" means:','stick for fire','sports contest','to agree','to be equal'],
+    ['In "The key to success," "key" means:','crucial factor','metal object','island','musical tone'],
+    ['In "He lost his key," "key" means:','metal object','crucial factor','island','musical tone'],
+    ['In "It was a hard test," "hard" means:','difficult','solid','loud','cruel'],
+    ['In "The bread was hard," "hard" means:','solid/firm','difficult','loud','cruel']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`${q}`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Multiple-meaning words = စကားလုံးတစ်လုံး အဓိပ္ပာယ် အများအပြား ရှိနိုင်သည်။ Context က ဆုံးဖြတ်ပေးသည်။',
+    steps:['Sentence တစ်ခုလုံး ဖတ်ပါ','Context က ဘယ်အဓိပ္ပာယ်လဲ ညွှန်းသည်',
+      'မေးခွန်းထဲရှိ context clue ကို ကြည့်ပါ',
+      `အဓိပ္ပာယ် = "${correct}"`],
+    answer:correct};
+},
+// 5.8 Idioms
+s=>{
+  const P=[
+    ['"Break a leg" means:','good luck','be careful','run fast','fall down'],
+    ['"Piece of cake" means:','easy task','a dessert','hard work','small piece'],
+    ['"Bite the bullet" means:','face a difficult situation','eat quickly','be angry','run away'],
+    ['"Let the cat out of the bag" means:','reveal a secret','free a cat','make a mess','be silly'],
+    ['"Hit the books" means:','study hard','hit something','read casually','throw books'],
+    ['"Under the weather" means:','feeling sick','in the rain','outdoors','confused'],
+    ['"Once in a blue moon" means:','rarely','often','always','sometimes'],
+    ['"Cost an arm and a leg" means:','very expensive','free','cheap','medium price'],
+    ['"On the fence" means:','undecided','outside','angry','excited'],
+    ['"Burning the midnight oil" means:','working late','starting a fire','sleeping well','wasting time']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`What does this idiom mean?<div class="passage">${q}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Idiom = တိုက်ရိုက်အဓိပ္ပာယ် မဟုတ်ဘဲ အထူးအဓိပ္ပာယ် ရှိသည့် စကားအသုံးအနှုန်း။',
+    steps:['Idiom ကို တိုက်ရိုက် ဘာသာပြန်လျှင် အဓိပ္ပာယ် မထွက်ပါ',
+      'Cultural/fixed expression ဖြစ်သည်','မှန်ကန်သည့် အဓိပ္ပာယ် = ရွေးချယ်စရာများအနက်',
+      `အဓိပ္ပာယ် = "${correct}"`],
+    answer:correct};
+},
+// 5.9 Connotation
+s=>{
+  const P=[
+    ['Which word has a NEGATIVE connotation?','stubborn','determined','persistent','firm'],
+    ['Which word has a POSITIVE connotation?','thrifty','stingy','cheap','miserly'],
+    ['Which word has a NEGATIVE connotation?','skinny','slim','slender','lean'],
+    ['Which word has a POSITIVE connotation?','confident','arrogant','cocky','egotistical'],
+    ['Which word has a NEGATIVE connotation?','nosy','curious','inquisitive','interested'],
+    ['Which word has a POSITIVE connotation?','assertive','pushy','aggressive','rude'],
+    ['Which word has a NEGATIVE connotation?','childish','childlike','youthful','innocent'],
+    ['Which word has a POSITIVE connotation?','inexpensive','cheap','worthless','tacky'],
+    ['Which word has a NEGATIVE connotation?','lazy','relaxed','easygoing','calm'],
+    ['Which word has a POSITIVE connotation?','savory','greasy','oily','bland']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`${q}`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Connotation = စကားလုံး၏ ခံစားချက် (positive / negative / neutral)။ Denotation = အဘိဓာန် အဓိပ္ပာယ်။',
+    steps:['စကားလုံး၏ ခံစားချက်ကို စဉ်းစားပါ',
+      'Positive → ကောင်းသည့် ခံစားချက်','Negative → ဆိုးသည့် ခံစားချက်',
+      `အဖြေ = "${correct}"`],
+    answer:correct};
+},
+// 5.10 Analogies
+s=>{
+  const P=[
+    ['Doctor : Hospital :: Teacher : ___','School','Book','Student','Class'],
+    ['Pen : Write :: Knife : ___','Cut','Sharp','Metal','Kitchen'],
+    ['Bird : Fly :: Fish : ___','Swim','Water','Scale','Fin'],
+    ['Hot : Cold :: Day : ___','Night','Sun','Light','Warm'],
+    ['Book : Read :: Song : ___','Listen','Sing','Write','Hear'],
+    ['Happy : Sad :: Rich : ___','Poor','Wealthy','Money','Gold'],
+    ['Hand : Glove :: Foot : ___','Shoe','Sock','Toe','Leg'],
+    ['Teacher : Student :: Doctor : ___','Patient','Nurse','Medicine','Hospital'],
+    ['Tree : Forest :: Star : ___','Galaxy','Sky','Moon','Sun'],
+    ['Car : Drive :: Plane : ___','Fly','Wing','Sky','Pilot']
+  ];
+  const [q,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Complete the analogy: <b>${q}</b>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Analogy = ဆက်စပ်မှု ၂ ခု တူညီသည်။ ပထမ pair ၏ relationship ကို ရှာပြီး ဒုတိယ pair တွင် ထပ်တူ relationship ရှာပါ။',
+    steps:['ပထမ pair ၏ ဆက်စပ်မှုကို ရှာပါ','Example: Doctor works in Hospital',
+      'ဒုတိယ pair တွင် ထပ်တူ relationship ရှာပါ',
+      'Teacher works in School','မှန်ကန်သည် = "${correct}"'],
+    answer:correct}
+}
+];
+
+/* ============================================================
+   GROUP 6 — ARGUMENT & ESSAY
+============================================================ */
+const G6 = [
+// 6.1 Identifying Claims
+s=>{
+  const P=[
+    ['"Schools should start later in the morning."','Claim','Fact','Opinion','Question'],
+    ['"Water freezes at 32°F."','Fact','Claim','Opinion','Question'],
+    ['"Recycling should be mandatory."','Claim','Fact','Opinion','Question'],
+    ['"The Earth is round."','Fact','Claim','Opinion','Question'],
+    ['"Video games cause violence."','Claim','Fact','Opinion','Question'],
+    ['"Dogs are mammals."','Fact','Claim','Opinion','Question'],
+    ['"Homework should be abolished."','Claim','Fact','Opinion','Question'],
+    ['"The sun rises in the east."','Fact','Claim','Opinion','Question'],
+    ['"Everyone should vote."','Claim','Fact','Opinion','Question'],
+    ['"The president was elected in 2020."','Fact','Claim','Opinion','Question']
+  ];
+  const [text,correct,d1,d2,d3]=pick(s,P);
+  const m=mcq(correct,[d1,d2,d3],s+1);
+  return{q:`Classify the statement:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Claim = ငြင်းခုံနိုင်သည့် ထင်မြင်ချက် (should, must, better)။ Fact = စစ်ဆေးနိုင်သည်။',
+    steps:['"Should" / "Must" / "Better" ပါလား?','ပါလျှင် → Claim','မပါဘဲ စစ်ဆေးနိုင်လျှင် → Fact',
+      `ဤ statement = "${correct}"`],
+    answer:correct};
+},
+// 6.2 Types of Evidence
+s=>{
+  const P=[
+    ['"According to a 2023 Harvard study, 80% of students..."','Statistical / Research evidence'],
+    ['"I have personally experienced this problem."','Anecdotal evidence'],
+    ['"Dr. Smith, a leading cardiologist, states..."','Expert opinion'],
+    ['"History shows that in 1929..."','Historical evidence'],
+    ['"The data clearly shows a 15% increase..."','Statistical evidence'],
+    ['"My grandfather told me..."','Anecdotal evidence'],
+    ['"According to the CDC..."','Expert / Institutional evidence'],
+    ['"The official report from 2019..."','Documentary evidence']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Statistical / Research evidence','Anecdotal evidence','Expert opinion','Historical evidence'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Identify the type of evidence:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Strong evidence = Statistical, Expert, Research။ Weak = Anecdotal (ကိုယ်တွေ့ဇာတ်လမ်း)။',
+    steps:['Evidence ၏ source ကို ရှာပါ','Numbers/percentages → Statistical',
+      'ကိုယ်တွေ့ဇာတ်လမ်း → Anecdotal','ကျွမ်းကျင်သူ → Expert',
+      `ဤ evidence = "${correct}"`],
+    answer:correct};
+},
+// 6.3 Logical Fallacies
+s=>{
+  const P=[
+    ['"Everyone is doing it, so you should too."','Bandwagon fallacy'],
+    ['"Either you support this bill, or you hate America."','False dilemma'],
+    ['"You can\'t trust his argument about climate change because he failed math class."','Ad hominem'],
+    ['"If we allow A, then Z will surely happen."','Slippery slope'],
+    ['"My opponent is a liar, so his policy is wrong."','Ad hominem'],
+    ['"This happened after that, so this caused that."','Post hoc fallacy'],
+    ['"All birds can fly. Penguins are birds. So penguins can fly."','Hasty generalization'],
+    ['"You\'re either with us or against us."','False dilemma'],
+    ['"Nine out of ten celebrities use this product."','Appeal to authority'],
+    ['"I don\'t see why we should worry about the environment — it\'s always been fine."','Appeal to ignorance']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Ad hominem','Bandwagon fallacy','False dilemma','Slippery slope','Hasty generalization','Appeal to authority','Post hoc fallacy'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Identify the logical fallacy:<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Logical fallacy = မှားယွင်းသည့် logic အသုံးပြုခြင်း။ Ad hominem = လူကို တိုက်ခိုက်။ Bandwagon = အားလုံးလုပ်လို့။',
+    steps:['Argument ၏ logic ကို စစ်ပါ','လူကို တိုက်ခိုက်လား? → Ad hominem',
+      '"Everyone" လုပ်လို့ လား? → Bandwagon','"Either/or" လား? → False dilemma',
+      `ဤ fallacy = "${correct}"`],
+    answer:correct};
+},
+// 6.4 Counterarguments
+s=>{
+  const P=[
+    ['"Some may argue that uniforms limit freedom, but uniforms actually reduce bullying."','The writer acknowledges an opposing view and responds'],
+    ['"While critics say the plan is too expensive, the long-term savings are significant."','The writer concedes a point but refutes it'],
+    ['"It is true that technology can distract students, but it can also enhance learning."','The writer balances pros and cons'],
+    ['"Although some disagree, the evidence clearly supports this position."','The writer acknowledges opposition then restates the claim']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['The writer acknowledges an opposing view and responds','The writer ignores opposing views','The writer agrees with the opposition','The writer changes the topic'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`What does the writer do in this passage?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Counterargument = ဆန့်ကျင်ဘက်အမြင်ကို ဖော်ပြပြီး ပြန်လည်ချေပခြင်း။ Strong argument တွင် ပါလေ့ရှိသည်။',
+    steps:['"Some may argue" / "While critics say" / "Although" ရှာပါ',
+      'ထို phrase များသည် counterargument ဖော်ပြသည်',
+      'ထို့နောက် "but/however" ဖြင့် ပြန်ချေပသည်',
+      `ဤ passage = "${correct}"`],
+    answer:correct};
+},
+// 6.5 Essay Structure
+s=>{
+  const P=[
+    ['This paragraph introduces the topic and thesis statement.','Introduction'],
+    ['This paragraph provides evidence supporting the thesis.','Body paragraph'],
+    ['This paragraph restates the thesis and summarizes the main points.','Conclusion'],
+    ['This paragraph addresses a counterargument.','Body paragraph (rebuttal)'],
+    ['This paragraph starts with a hook to grab the reader\'s attention.','Introduction'],
+    ['This paragraph ends with a call to action.','Conclusion'],
+    ['This paragraph uses statistics as supporting evidence.','Body paragraph'],
+    ['This paragraph provides background information on the topic.','Introduction'],
+    ['This paragraph contains the topic sentence and evidence.','Body paragraph'],
+    ['This paragraph leaves the reader with a final thought.','Conclusion']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Introduction','Body paragraph','Conclusion'];
+  const m=mcq(correct,opts.filter(o=>o!==correct),s+1);
+  return{q:`Which part of an essay is this?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Essay structure — Introduction (hook + thesis), Body (topic sentence + evidence), Conclusion (restate + final thought)။',
+    steps:['Paragraph ၏ function ကို စဉ်းစားပါ','Hook/thesis → Introduction',
+      'Evidence/example → Body','Restate/call to action → Conclusion',
+      `ဤအပိုင်း = "${correct}"`],
+    answer:correct};
+},
+// 6.6 Thesis Statements
+s=>{
+  const P=[
+    ['"School uniforms should be required because they reduce bullying, improve focus, and build community."','Strong thesis — has claim + reasons'],
+    ['"School uniforms are interesting."','Weak thesis — vague, no claim'],
+    ['"Recycling is important because it reduces waste, conserves resources, and saves energy."','Strong thesis — clear claim + reasons'],
+    ['"Recycling is a topic many people discuss."','Weak thesis — no position'],
+    ['"Social media harms teenagers by increasing anxiety, reducing sleep, and damaging self-esteem."','Strong thesis — specific and arguable'],
+    ['"Social media is used by many people."','Weak thesis — factual, no argument'],
+    ['"The government should invest in public transit to reduce traffic, lower emissions, and improve access."','Strong thesis — clear and structured'],
+    ['"Public transit is something to think about."','Weak thesis — vague']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Strong thesis — has claim + reasons','Weak thesis — vague, no claim','Strong thesis — clear claim + reasons','Strong thesis — specific and arguable','Weak thesis — factual, no argument','Strong thesis — clear and structured','Weak thesis — vague'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Is this a strong or weak thesis statement?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Strong thesis = specific claim + reasons + arguable။ Weak thesis = vague, factual, no position။',
+    steps:['Claim ရှိလား? စစ်ပါ','Specific ဖြစ်လား?','Reasons ပါလား?','သုံးခုလုံး ရှိလျှင် → Strong',
+      `ဤ thesis = "${correct}"`],
+    answer:correct};
+},
+// 6.7 Citing Evidence
+s=>{
+  const P=[
+    ['"According to the National Sleep Foundation, teenagers need 8–10 hours of sleep."','Proper citation — source + fact'],
+    ['"I think teenagers need more sleep."','No citation — personal opinion'],
+    ['"A 2022 study in the Journal of Medicine found that exercise reduces depression by 30%."','Proper citation — study + statistic'],
+    ['"Everyone knows that exercise is good."','No citation — assumption'],
+    ['"The CDC reports that 1 in 5 adults experience mental illness."','Proper citation — institutional source'],
+    ['"My teacher says so."','Weak source — no authority'],
+    ['"Research from Harvard University shows a strong correlation between reading and vocabulary."','Proper citation — credible source'],
+    ['"My cousin says reading is good."','Weak source — anecdotal']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Proper citation — source + fact','No citation — personal opinion','Proper citation — study + statistic','No citation — assumption','Proper citation — institutional source','Weak source — no authority','Proper citation — credible source','Weak source — anecdotal'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Does this sentence properly cite evidence?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Proper citation = credible source + specific fact/data။ Weak citation = personal opinion, anecdote, no authority။',
+    steps:['Source ရှိလား?','Source credible ဖြစ်လား?','Specific data/statistic ပါလား?',
+      'အားလုံး ရှိလျှင် → Proper citation',`ဤ sentence = "${correct}"`],
+    answer:correct};
+},
+// 6.8 Analysis vs Summary
+s=>{
+  const P=[
+    ['"The author states that X is important."','Summary — restates without analysis'],
+    ['"The author\'s use of statistics strengthens her argument by providing objective evidence."','Analysis — explains how/why'],
+    ['"The passage discusses climate change and its effects."','Summary — restates content'],
+    ['"By comparing the two cases, the author reveals an inconsistency in the opposing view."','Analysis — interprets meaning'],
+    ['"The article describes three main causes of the problem."','Summary — describes content'],
+    ['"The emotional language appeals to the reader\'s sense of justice, making the argument more persuasive."','Analysis — examines technique']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Summary — restates without analysis','Analysis — explains how/why','Summary — restates content','Analysis — interprets meaning','Summary — describes content','Analysis — examines technique'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Is this sentence SUMMARY or ANALYSIS?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Summary = ဘာပြောထားလဲ ပြန်ပြောခြင်း။ Analysis = ဘယ်လိုပြောထားလဲ / ဘာကြောင့် ထိရောက်လဲ ရှင်းပြခြင်း။',
+    steps:['What the author says (Summary) လား?',
+      'How/why it works (Analysis) လား?',
+      '"The author states" → Summary','"The author\'s use of ___ strengthens" → Analysis',
+      `ဤ sentence = "${correct}"`],
+    answer:correct};
+},
+// 6.9 Paragraph Flow
+s=>{
+  const P=[
+    ['Topic sentence → Evidence → Explanation → Transition','Best structure'],
+    ['Evidence → Topic sentence → Transition → Explanation','Less effective'],
+    ['Explanation → Evidence → Topic sentence → Transition','Poor structure'],
+    ['Transition → Topic sentence → Evidence → Explanation','Also strong'],
+    ['Topic sentence → Explanation → Transition → Evidence','Weak flow']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Best structure','Less effective','Poor structure','Also strong','Weak flow'];
+  const m=mcq(correct,opts.filter(o=>o!==correct).slice(0,3),s+1);
+  return{q:`Which is the MOST effective paragraph structure?`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'Effective body paragraph = Topic sentence → Evidence → Analysis/Explanation → Transition။',
+    steps:['Topic sentence က claim ကို ဖော်ပြသည်','Evidence က support လုပ်သည်',
+      'Explanation က evidence ကို ရှင်းပြသည်','Transition က နောက် paragraph သို့ ချိတ်သည်',
+      `Best = "${correct}"`],
+    answer:correct};
+},
+// 6.10 Extended Response Strategy
+s=>{
+  const P=[
+    ['Read the prompt carefully, identify the task, plan, write, and revise.','Correct strategy for Extended Response'],
+    ['Write immediately without reading the prompt fully.','Poor strategy'],
+    ['Use evidence from BOTH passages to support your argument.','Correct strategy'],
+    ['Write about your personal opinion only, without evidence.','Poor strategy'],
+    ['Include a clear thesis statement in the introduction.','Correct strategy'],
+    ['Skip the introduction and just list ideas.','Poor strategy'],
+    ['Address a counterargument and refute it.','Correct strategy'],
+    ['Avoid citing specific passages.','Poor strategy'],
+    ['Organize ideas with clear paragraphs and transitions.','Correct strategy'],
+    ['Write one long paragraph with no structure.','Poor strategy']
+  ];
+  const [text,correct]=pick(s,P);
+  const opts=['Correct strategy for Extended Response','Poor strategy'];
+  const m=mcq(correct,opts.filter(o=>o!==correct),s+1);
+  return{q:`Is this a correct or poor strategy for the GED Extended Response?<div class="passage">${text}</div>`,
+    options:m.options,correctIndex:m.correctIndex,
+    why:'GED Extended Response (45 min) — Read prompt → Analyze BOTH passages → Write thesis + evidence + counterargument + conclusion။',
+    steps:['Prompt ကို သေချာဖတ်ပါ','Passages ၂ ခုလုံးမှ evidence ယူပါ',
+      'Thesis + reasons + counterargument ပါပါ','Structure ရှိရှိ ရေးပါ',
+      `ဤ strategy = "${correct}"`],
+    answer:correct}
+}
+];
+
+/* ============================================================
+   GROUPS DEFINITIONS
+============================================================ */
+const GROUPS=[
+  {title:'Reading: Informational Text',icon:'📄',ac:'#3b82f6',
+   desc:'Main idea, details, purpose, structure, inference, argument analysis.',
+   gens:G1,
+   lessons:['Main Idea & Central Theme','Supporting Details','Author\'s Purpose','Text Structure',
+     'Summarizing','Making Inferences','Compare Two Texts','Identifying Claims',
+     'Evaluating Evidence','Fact vs Opinion']},
+  {title:'Reading: Literature & Fiction',icon:'📖',ac:'#8b5cf6',
+   desc:'Plot, character, theme, POV, figurative language, tone, irony, conflict.',
+   gens:G2,
+   lessons:['Plot Elements','Character Analysis','Theme','Point of View',
+     'Figurative Language','Tone & Mood','Irony','Conflict',
+     'Dialogue Analysis','Context Clues in Literature']},
+  {title:'Grammar & Language Conventions',icon:'✏️',ac:'#ec4899',
+   desc:'Subject-verb agreement, tense, pronouns, punctuation, parallel structure.',
+   gens:G3,
+   lessons:['Subject-Verb Agreement','Verb Tense','Pronoun Agreement','Pronoun Case',
+     'Comma Rules','Semicolons & Colons','Apostrophes','Parallel Structure',
+     'Modifier Placement','Fragments & Run-ons']},
+  {title:'Writing: Sentences & Paragraphs',icon:'📝',ac:'#f59e0b',
+   desc:'Sentence variety, transitions, topic sentences, coherence, word choice, tone.',
+   gens:G4,
+   lessons:['Sentence Variety','Combining Sentences','Transitions','Topic Sentences',
+     'Paragraph Coherence','Word Choice','Formal Tone','Active vs Passive Voice',
+     'Concise Writing','Revising for Clarity']},
+  {title:'Vocabulary & Word Analysis',icon:'📚',ac:'#10b981',
+   desc:'Context clues, prefixes, suffixes, roots, synonyms, idioms, connotation.',
+   gens:G5,
+   lessons:['Context Clues','Prefixes','Suffixes','Root Words',
+     'Synonyms & Antonyms','Homophones','Multiple-Meaning Words','Idioms',
+     'Connotation & Denotation','Analogies']},
+  {title:'Argumentation & Essay Writing',icon:'🎯',ac:'#06b6d4',
+   desc:'Claims, evidence, fallacies, counterarguments, essay structure, thesis.',
+   gens:G6,
+   lessons:['Identifying Claims','Types of Evidence','Logical Fallacies','Counterarguments',
+     'Essay Structure','Thesis Statements','Citing Evidence','Analysis vs Summary',
+     'Paragraph Flow','Extended Response Strategy']}
+];
+
+const EX_PER_LESSON=30, EX_PER_GROUP=300, TOTAL_EX=1800;
+
+/* ============================================================
+   STATE
+============================================================ */
+const STORE='ged:rla:v1';
+let progress={};
+try{progress=JSON.parse(localStorage.getItem(STORE))||{}}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(progress))}catch(e){}}
+function lessonKey(gi,li){return `${gi}-${li}`}
+function lessonProg(gi,li){const k=lessonKey(gi,li);if(!progress[k])progress[k]={};return progress[k]}
+const cache={};
+
+/* ============================================================
+   SCREENS
+============================================================ */
+const homeScreen=document.getElementById('homeScreen');
+const groupScreen=document.getElementById('groupScreen');
+const lessonScreen=document.getElementById('lessonScreen');
+let currentGroup=-1,currentLesson=-1;
+
+function showOnly(screen){
+  [homeScreen,groupScreen,lessonScreen].forEach(s=>s.classList.remove('active'));
+  screen.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ============================================================
+   HOME
+============================================================ */
+const groupGrid=document.getElementById('groupGrid');
+function buildHome(){
+  groupGrid.innerHTML='';
+  GROUPS.forEach((g,gi)=>{
+    let done=0;
+    for(let li=0;li<10;li++){
+      const p=progress[lessonKey(gi,li)]||{};
+      done+=Object.values(p).filter(v=>v===true).length;
+    }
+    const pct=Math.round(done/EX_PER_GROUP*100);
+    const card=document.createElement('button');
+    card.className='card';
+    card.style.setProperty('--c',g.ac);
+    card.style.animationDelay=(gi*60)+'ms';
+    card.innerHTML=`
+      <div class="c-top">
+        <span class="c-icon">${g.icon}</span>
+        <span class="c-arrow">→</span>
+      </div>
+      <h3>Group ${gi+1} — ${g.title}</h3>
+      <p class="c-desc">${g.desc}</p>
+      <div class="c-meta"><span>10 lessons · 300 questions</span><b>${pct}%</b></div>
+      <div class="c-bar"><i style="width:${pct}%"></i></div>
+    `;
+    card.addEventListener('click',()=>openGroup(gi));
+    groupGrid.appendChild(card);
+  });
+  updateOverall();
+}
+function updateOverall(){
+  let total=0;
+  for(let gi=0;gi<6;gi++)
+    for(let li=0;li<10;li++)
+      total+=Object.values(progress[lessonKey(gi,li)]||{}).filter(v=>v===true).length;
+  const pct=Math.round(total/TOTAL_EX*100);
+  document.getElementById('overallPct').textContent=pct+'%';
+  document.getElementById('overallCount').textContent=`${total.toLocaleString()} / ${TOTAL_EX.toLocaleString()} ပြီးစီး`;
+  document.getElementById('overallBar').style.width=pct+'%';
+}
+
+/* ============================================================
+   GROUP VIEW
+============================================================ */
+const lessonListEl=document.getElementById('lessonList');
+const gTitleEl=document.getElementById('gTitle');
+const gSubEl=document.getElementById('gSub');
+const gPctEl=document.getElementById('gPct');
+const gCountEl=document.getElementById('gCount');
+const gBarEl=document.getElementById('gBar');
+
+function openGroup(gi){
+  currentGroup=gi;
+  const g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  gTitleEl.textContent=`Group ${gi+1} — ${g.title}`;
+  gSubEl.textContent=g.desc;
+  buildLessonList(gi);
+  refreshGroupStats(gi);
+  showOnly(groupScreen);
+}
+function buildLessonList(gi){
+  const g=GROUPS[gi];
+  lessonListEl.innerHTML='';
+  g.lessons.forEach((title,li)=>{
+    const p=progress[lessonKey(gi,li)]||{};
+    const done=Object.values(p).filter(v=>v===true).length;
+    const pct=Math.round(done/EX_PER_LESSON*100);
+    const row=document.createElement('button');
+    row.className='lesson-row';
+    row.style.animationDelay=(li*40)+'ms';
+    row.innerHTML=`
+      <span class="l-id">${gi+1}.${li+1}</span>
+      <div class="l-body">
+        <h4>${title}</h4>
+        <p>${EX_PER_LESSON} exercises</p>
+      </div>
+      <div class="l-prog">
+        <b>${done}/${EX_PER_LESSON}</b>
+        <div class="bar"><i style="width:${pct}%"></i></div>
+      </div>
+    `;
+    row.addEventListener('click',()=>openLesson(gi,li));
+    lessonListEl.appendChild(row);
+  });
+}
+function refreshGroupStats(gi){
+  if(gi!==currentGroup) return;
+  let done=0;
+  for(let li=0;li<10;li++){
+    const p=progress[lessonKey(gi,li)]||{};
+    done+=Object.values(p).filter(v=>v===true).length;
+  }
+  const pct=Math.round(done/EX_PER_GROUP*100);
+  gPctEl.textContent=pct+'%';
+  gCountEl.textContent=`${done} / ${EX_PER_GROUP}`;
+  gBarEl.style.width=pct+'%';
+}
+document.getElementById('backFromGroup').addEventListener('click',()=>{buildHome();showOnly(homeScreen)});
+
+/* ============================================================
+   LESSON VIEW
+============================================================ */
+const exerciseList=document.getElementById('exerciseList');
+const lTitleEl=document.getElementById('lTitle');
+const lSubEl=document.getElementById('lSub');
+const lPctEl=document.getElementById('lPct');
+const lCountEl=document.getElementById('lCount');
+const lBarEl=document.getElementById('lBar');
+
+function generateLesson(gi,li){
+  const key=lessonKey(gi,li);
+  if(cache[key]) return cache[key];
+  const gen=GROUPS[gi].gens[li];
+  const arr=[];
+  for(let i=0;i<EX_PER_LESSON;i++){
+    const seed=gi*1000000+li*1000+i*17+13;
+    arr.push(gen(seed));
+  }
+  cache[key]=arr;
+  return arr;
+}
+function openLesson(gi,li){
+  currentGroup=gi; currentLesson=li;
+  const g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  lTitleEl.textContent=`${gi+1}.${li+1} — ${g.lessons[li]}`;
+  lSubEl.textContent=`Group ${gi+1} · ${EX_PER_LESSON} exercises`;
+  const arr=generateLesson(gi,li);
+  renderExercises(arr,gi,li);
+  refreshLessonStats(gi,li);
+  showOnly(lessonScreen);
+}
+function refreshLessonStats(gi,li){
+  if(gi!==currentGroup||li!==currentLesson) return;
+  const p=progress[lessonKey(gi,li)]||{};
+  const done=Object.values(p).filter(v=>v===true).length;
+  const pct=Math.round(done/EX_PER_LESSON*100);
+  lPctEl.textContent=pct+'%';
+  lCountEl.textContent=`${done} / ${EX_PER_LESSON}`;
+  lBarEl.style.width=pct+'%';
+}
+
+const LTRS=['A','B','C','D'];
+function renderExercises(arr,gi,li){
+  const p=lessonProg(gi,li);
+  exerciseList.innerHTML='';
+  const frag=document.createDocumentFragment();
+  arr.forEach((e,idx)=>frag.appendChild(buildCard(e,idx,gi,li,p[idx])));
+  exerciseList.appendChild(frag);
+}
+function buildCard(e,idx,gi,li,saved){
+  const wrap=document.createElement('div');
+  wrap.className='exercise';
+  const status=saved===true?'<span class="ex-status correct">✔ Correct</span>'
+    :saved===false?'<span class="ex-status wrong">✘ Wrong</span>'
+    :'<span class="ex-status">— Not answered</span>';
+  wrap.innerHTML=`
+    <div class="ex-head">
+      <span class="ex-num">${idx+1}</span>
+      ${status}
+    </div>
+    <div class="ex-q">${e.q}</div>
+    <div class="ex-opts">
+      ${e.options.map((o,i)=>`<button class="opt" data-i="${i}"><span class="ltr">${LTRS[i]}.</span>${o}</button>`).join('')}
+    </div>
+    <div class="ex-actions">
+      <button class="show-sol">💡 Show Answer</button>
+    </div>
+    <div class="ex-sol hidden">
+      <div class="sol-why">
+        <span class="sol-lbl">အဘယ်ကြောင့်</span>
+        ${e.why}
+      </div>
+      <div>
+        <span class="sol-lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span>
+        <ol>${e.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+      </div>
+      <span class="sol-ans">✔ အဖြေ: ${e.answer}</span>
+    </div>
+  `;
+  const opts=wrap.querySelectorAll('.opt');
+  const solBox=wrap.querySelector('.ex-sol');
+  const solBtn=wrap.querySelector('.show-sol');
+  const statusEl=wrap.querySelector('.ex-status');
+
+  if(saved===true||saved===false){
+    opts.forEach((b,i)=>{b.disabled=true;if(i===e.correctIndex)b.classList.add('correct')});
+  }
+  opts.forEach((b,i)=>{
+    b.addEventListener('click',()=>{
+      if(b.disabled) return;
+      const ok=i===e.correctIndex;
+      opts.forEach(x=>x.disabled=true);
+      b.classList.add(ok?'correct':'wrong');
+      if(!ok) opts[e.correctIndex].classList.add('correct');
+      statusEl.className='ex-status '+(ok?'correct':'wrong');
+      statusEl.textContent=ok?'✔ Correct':'✘ Wrong';
+      lessonProg(gi,li)[idx]=ok;
+      save();
+      refreshLessonStats(gi,li);
+      if(!ok){
+        solBox.classList.remove('hidden');
+        solBtn.classList.add('open');
+        solBtn.textContent='🙈 Hide Answer';
+      }
+    });
+  });
+  solBtn.addEventListener('click',()=>{
+    solBox.classList.toggle('hidden');
+    const open=!solBox.classList.contains('hidden');
+    solBtn.classList.toggle('open',open);
+    solBtn.textContent=open?'🙈 Hide Answer':'💡 Show Answer';
+  });
+  return wrap;
+}
+document.getElementById('backFromLesson').addEventListener('click',()=>{
+  buildLessonList(currentGroup);
+  refreshGroupStats(currentGroup);
+  showOnly(groupScreen);
+});
+
+/* ============================================================
+   TOOLBAR
+============================================================ */
+document.getElementById('btnShowAll').addEventListener('click',()=>{
+  exerciseList.querySelectorAll('.ex-sol').forEach(b=>b.classList.remove('hidden'));
+  exerciseList.querySelectorAll('.show-sol').forEach(b=>{b.classList.add('open');b.textContent='🙈 Hide Answer'});
+});
+document.getElementById('btnHideAll').addEventListener('click',()=>{
+  exerciseList.querySelectorAll('.ex-sol').forEach(b=>b.classList.add('hidden'));
+  exerciseList.querySelectorAll('.show-sol').forEach(b=>{b.classList.remove('open');b.textContent='💡 Show Answer'});
+});
+document.getElementById('btnReset').addEventListener('click',()=>{
+  if(!confirm(`Lesson ${currentGroup+1}.${currentLesson+1} ၏ progress ကို reset လုပ်မလား။`)) return;
+  progress[lessonKey(currentGroup,currentLesson)]={};
+  save();
+  openLesson(currentGroup,currentLesson);
+});
+
+buildHome();
+</script>
+</body>
+</html>

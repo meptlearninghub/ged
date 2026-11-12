@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Science — Full Course (1,800 Exercises)</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:rgba(15,23,42,.09);
+--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--radius:18px;--safe-top:env(safe-area-inset-top,0px);
+--safe-bottom:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+--shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);--ac:#10b981}
+html[data-theme="dark"]{--bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;--border:rgba(255,255,255,.09);
+--shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);--shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(700px 420px at 8% -8%,rgba(16,185,129,.10),transparent 65%),
+radial-gradient(700px 420px at 100% 4%,rgba(59,130,246,.08),transparent 65%)}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+.home-top{padding:calc(28px + var(--safe-top)) 20px 20px;max-width:1080px;margin:0 auto;text-align:center}
+.home-top .logo{width:64px;height:64px;border-radius:18px;margin:0 auto 16px;display:grid;place-items:center;
+font-size:15px;font-weight:800;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#10b981,#06b6d4);
+box-shadow:0 12px 28px -10px rgba(16,185,129,.8)}
+.home-top h1{margin:0 0 6px;font-size:clamp(22px,5.5vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.home-top p{margin:0;color:var(--muted);font-size:clamp(13px,3.4vw,15px)}
+.overall{max-width:440px;margin:20px auto 0;background:var(--card);border:1px solid var(--border);
+border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.overall-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.overall-row b{font-size:22px;font-weight:800;color:var(--ac)}
+.overall-row span{font-size:12.5px;color:var(--muted);font-weight:600}
+.overall-bar{height:8px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .overall-bar{background:rgba(255,255,255,.09)}
+.overall-bar i{display:block;height:100%;width:0;border-radius:999px;
+background:linear-gradient(90deg,var(--ac),#06b6d4);transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.grid{max-width:1080px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;display:flex;flex-direction:column;padding:20px;border-radius:var(--radius);
+background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);cursor:pointer;
+transition:transform .28s cubic-bezier(.22,.8,.28,1),box-shadow .28s,border-color .28s;overflow:hidden;
+font-family:inherit;text-align:left;color:inherit;animation:cardIn .5s cubic-bezier(.22,.8,.28,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@media(hover:hover){
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--c)}
+.card:hover .c-icon{transform:scale(1.08) rotate(-5deg)}
+.card:hover .c-arrow{transform:translateX(4px);background:var(--c);color:#fff;border-color:transparent}}
+.card:active{transform:scale(.982)}
+.c-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.c-icon{width:52px;height:52px;flex:none;display:grid;place-items:center;font-size:26px;
+border-radius:16px;transition:transform .3s cubic-bezier(.22,.8,.28,1)}
+.c-arrow{width:30px;height:30px;flex:none;display:grid;place-items:center;font-size:14px;
+border-radius:50%;border:1px solid var(--border);color:var(--muted);
+transition:transform .28s,background .28s,color .28s,border-color .28s}
+.card h3{margin:14px 0 0;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.card .c-desc{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7;flex:1}
+.c-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;
+border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted)}
+.c-meta b{color:var(--c);font-weight:800;font-size:13px}
+.c-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden;margin-top:8px}
+html[data-theme="dark"] .c-bar{background:rgba(255,255,255,.09)}
+.c-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--c);
+transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.lesson-list{max-width:880px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:10px}
+.lesson-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card);
+border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);cursor:pointer;
+font-family:inherit;text-align:left;color:inherit;transition:transform .2s,box-shadow .25s,border-color .25s;
+animation:cardIn .4s cubic-bezier(.22,.8,.28,1) both}
+@media(hover:hover){.lesson-row:hover{transform:translateX(4px);box-shadow:var(--shadow-lg);border-color:var(--ac)}}
+.lesson-row:active{transform:scale(.985)}
+.l-id{flex:none;font-size:12.5px;font-weight:800;color:#fff;padding:5px 10px;border-radius:10px;
+background:linear-gradient(135deg,var(--ac),#06b6d4);font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+.l-body{flex:1;min-width:0}
+.l-body h4{margin:0;font-size:14.5px;font-weight:700;line-height:1.35;letter-spacing:-.01em}
+.l-body p{margin:3px 0 0;font-size:11.5px;color:var(--muted);font-weight:600}
+.l-prog{flex:none;width:60px;text-align:right}
+.l-prog b{display:block;font-size:12px;color:var(--ac);font-weight:800;font-variant-numeric:tabular-nums}
+.l-prog .bar{height:5px;border-radius:999px;background:rgba(15,23,42,.08);overflow:hidden;margin-top:5px}
+html[data-theme="dark"] .l-prog .bar{background:rgba(255,255,255,.08)}
+.l-prog .bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.gv-header{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 16px 12px}
+html[data-theme="dark"] .gv-header{background:rgba(11,18,32,.92)}
+.gv-header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;font-size:13px;
+font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.gv-title{flex:1;min-width:0}
+.gv-title h2{margin:0;font-size:clamp(14px,3.8vw,17px);font-weight:800;letter-spacing:-.01em;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gv-title p{margin:2px 0 0;font-size:11.5px;color:var(--muted);font-weight:500}
+.prog-head{max-width:960px;margin:14px auto 0;padding:0 16px}
+.prog-head-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.prog-head-top b{font-size:15px;font-weight:800;color:var(--ac)}
+.prog-head-top span{font-size:11.5px;color:var(--muted);font-weight:600}
+.prog-head-bar{height:7px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .prog-head-bar{background:rgba(255,255,255,.09)}
+.prog-head-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.toolbar{max-width:960px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+font-size:12.5px;font-weight:600;cursor:pointer;box-shadow:0 1px 3px rgba(15,23,42,.04);
+transition:transform .18s,background .2s,color .2s}
+.btn:active{transform:scale(.96)}
+.btn.danger{color:var(--red);border-color:rgba(220,38,38,.3)}
+#exerciseList{max-width:960px;margin:0 auto;padding:16px}
+.exercise{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+padding:18px;margin-bottom:12px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ex-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ex-num{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;
+font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--ac),#06b6d4);
+font-variant-numeric:tabular-nums}
+.ex-status{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;color:var(--muted);
+background:rgba(15,23,42,.06)}
+html[data-theme="dark"] .ex-status{background:rgba(255,255,255,.08)}
+.ex-status.correct{color:#14532d;background:#bbf7d0}
+.ex-status.wrong{color:#7f1d1d;background:#fecaca}
+.ex-q{font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500}
+.ex-q b{font-weight:800}
+.passage{background:rgba(16,185,129,.05);border-left:3px solid var(--ac);
+padding:12px 14px;border-radius:8px;margin:10px 0;font-size:13.5px;line-height:1.8}
+html[data-theme="dark"] .passage{background:rgba(16,185,129,.1)}
+.ex-opts{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:520px){.ex-opts{grid-template-columns:1fr 1fr}}
+.opt{text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);
+background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+cursor:pointer;transition:all .18s;line-height:1.5}
+.opt:active{transform:scale(.98)}
+.opt:not(:disabled):hover{border-color:var(--ac);background:rgba(16,185,129,.04)}
+.opt:disabled{cursor:default;opacity:.95}
+.opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt .ltr{font-weight:800;margin-right:6px;color:var(--muted)}
+.opt.correct .ltr{color:#14532d}
+.opt.wrong .ltr{color:#7f1d1d}
+.ex-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.show-sol{padding:8px 13px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+background:rgba(245,158,11,.08);color:#92400e;font-family:inherit;font-size:12.5px;
+font-weight:700;cursor:pointer;transition:all .18s}
+html[data-theme="dark"] .show-sol{background:rgba(245,158,11,.15);color:#fbbf24}
+.show-sol:active{transform:scale(.97)}
+.show-sol.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent}
+.ex-sol{margin-top:12px;padding:16px;border-radius:12px;background:rgba(16,185,129,.06);
+border-left:3px solid var(--ac);font-size:13.5px;line-height:1.8;animation:fadeUp .3s ease both}
+html[data-theme="dark"] .ex-sol{background:rgba(16,185,129,.12)}
+.ex-sol .sol-lbl{display:block;font-weight:800;font-size:11px;color:var(--ac);
+text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ex-sol .sol-why{margin-bottom:14px}
+.ex-sol ol{margin:6px 0 0;padding-left:20px}
+.ex-sol ol li{margin-bottom:5px;line-height:1.7}
+.ex-sol .sol-ans{display:inline-block;margin-top:12px;padding:5px 12px;border-radius:8px;
+background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="homeScreen" class="screen active">
+  <div class="home-top">
+    <div class="logo">GED</div>
+    <h1>GED Science — Full Course</h1>
+    <p>6 Groups · 60 Lessons · 1,800 Practice Questions</p>
+    <div class="overall">
+      <div class="overall-row"><b id="overallPct">0%</b><span id="overallCount">0 / 1,800 ပြီးစီး</span></div>
+      <div class="overall-bar"><i id="overallBar"></i></div>
+    </div>
+  </div>
+  <div class="grid" id="groupGrid"></div>
+</div>
+
+<div id="groupScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromGroup">← Back</button>
+      <div class="gv-title"><h2 id="gTitle"></h2><p id="gSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="gPct">0%</b><span id="gCount">0 / 300</span></div>
+    <div class="prog-head-bar"><i id="gBar"></i></div>
+  </div>
+  <div class="lesson-list" id="lessonList"></div>
+</div>
+
+<div id="lessonScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromLesson">← Back</button>
+      <div class="gv-title"><h2 id="lTitle"></h2><p id="lSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="lPct">0%</b><span id="lCount">0 / 30</span></div>
+    <div class="prog-head-bar"><i id="lBar"></i></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn" id="btnShowAll">💡 Show All Answers</button>
+    <button class="btn" id="btnHideAll">🙈 Hide All Answers</button>
+    <button class="btn danger" id="btnReset">🔄 Reset</button>
+  </div>
+  <div id="exerciseList"></div>
+</div>
+
+<script>
+/* HELPERS */
+var sr=function(s){var x=Math.sin(s*12.9898+78.233)*43758.5453;return x-Math.floor(x)};
+var ri=function(s,a,b){return Math.floor(sr(s)*(b-a+1))+a};
+var pick=function(s,arr){return arr[Math.floor(sr(s)*arr.length)]};
+var shuffle=function(a,s){var r=a.slice();for(var i=r.length-1;i>0;i--){var j=Math.floor(sr(s+i*13.37)*(i+1));var t=r[i];r[i]=r[j];r[j]=t}return r};
+function mcq(correct,distractors,seed){
+  var c=String(correct);var opts=[c];
+  for(var i=0;i<distractors.length;i++){if(opts.length>=4)break;var d=String(distractors[i]);if(d!==c&&opts.indexOf(d)===-1)opts.push(d)}
+  var k=1;
+  while(opts.length<4){opts.push(c+' (v'+k+')');k++;if(k>10)break}
+  var sh=shuffle(opts,seed);return{options:sh,correctIndex:sh.indexOf(c)};
+}
+function Q(q,correct,dist,why,steps,seed){
+  var m=mcq(correct,dist,seed);
+  return{q:q,options:m.options,correctIndex:m.correctIndex,why:why,steps:steps,answer:String(correct)};
+}
+
+/* ============================================================
+   GROUP 1 — LIFE SCIENCE: CELL BIOLOGY
+============================================================ */
+var G1 = [
+// 1.1 Cell Theory
+function(s){
+  var items=[
+    ['All living things are made of ____.','cells',['atoms','organs','tissues'],
+     'Cell Theory ၏ အခြေခံ — သက်ရှိအားလုံးသည် ဆဲလ်များဖြင့် ဖွဲ့စည်းထားသည်။',
+     ['သက်ရှိအားလုံး = cells','Cell = life ၏ အခြေခံယူနစ်','အဖြေ = cells']],
+    ['The basic unit of life is the ____.','cell',['atom','molecule','organ'],
+     'ဆဲလ်သည် သက်ရှိတို့၏ အသေးဆုံးယူနစ် ဖြစ်သည်။',
+     ['Cell = basic unit of life','→ cell']],
+    ['Which scientist first observed cells under a microscope?','Robert Hooke',['Charles Darwin','Gregor Mendel','Isaac Newton'],
+     'Robert Hooke သည် 1665 ခုနှစ်တွင် cork ကို ကြည့်ရင်း cell ဟူသော ဝေါဟာရကို စတင်သုံးခဲ့သည်။',
+     ['1665, Robert Hooke','Cork cells','→ Hooke']],
+    ['Which of these is NOT part of the cell theory?','Cells can arise from non-living matter',['All living things are made of cells','Cells are the basic unit of life','All cells come from existing cells'],
+     'Cell Theory: ဆဲလ်အားလုံးသည် ရှိပြီးသား ဆဲလ်များမှ ဆင်းသက်သည်။',
+     ['Cell theory ၃ ချက်','Spontaneous generation မဟုတ်','→ ရွေးချယ်စရာ ၁']],
+    ['Prokaryotic cells lack a ____.','nucleus',['cell membrane','cytoplasm','ribosome'],
+     'Prokaryotes တွင် nucleus မရှိ။ DNA သည် cytoplasm ထဲ လွတ်လပ်စွာ ရှိသည်။',
+     ['Prokaryote = no nucleus','Bacteria = example','→ nucleus']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.2 Cell Organelles
+function(s){
+  var items=[
+    ['Which organelle produces ATP (energy)?','Mitochondria',['Nucleus','Ribosome','Golgi apparatus'],
+     'Mitochondria သည် cellular respiration မှတစ်ဆင့် ATP ထုတ်လုပ်သည်။',
+     ['Cellular respiration = ATP','Mitochondria = powerhouse','→ Mitochondria']],
+    ['Which organelle controls cell activities and stores DNA?','Nucleus',['Mitochondria','Vacuole','Lysosome'],
+     'Nucleus သည် DNA သိမ်းဆည်းပြီး ဆဲလ်လုပ်ဆောင်ချက်များကို ထိန်းချုပ်သည်။',
+     ['Nucleus = control center','DNA storage','→ Nucleus']],
+    ['Which organelle builds proteins?','Ribosome',['Mitochondria','Vacuole','Chloroplast'],
+     'Ribosomes သည် amino acids များကို ပေါင်းစပ်ပြီး protein များ တည်ဆောက်သည်။',
+     ['Ribosome = protein synthesis','→ Ribosome']],
+    ['Which organelle is found in plant cells but not animal cells?','Chloroplast',['Mitochondria','Nucleus','Ribosome'],
+     'Chloroplast သည် photosynthesis အတွက် လိုအပ်သည်။ အပင်ဆဲလ်များတွင်သာ ရှိသည်။',
+     ['Photosynthesis = chloroplast','Plant only','→ Chloroplast']],
+    ['What is the function of the cell membrane?','Controls what enters and exits the cell',['Produces energy','Stores DNA','Builds proteins'],
+     'Cell membrane သည် semi-permeable ဖြစ်ပြီး ဆဲလ်ထဲဝင်/ထွက်သည့် အရာများကို ထိန်းချုပ်သည်။',
+     ['Semi-permeable barrier','Selective transport','→ Controls entry/exit']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.3 Photosynthesis
+function(s){
+  var items=[
+    ['Photosynthesis produces which gas?','Oxygen',['Carbon dioxide','Nitrogen','Methane'],
+     'Photosynthesis ၏ byproduct သည် oxygen ဖြစ်သည်။',
+     ['6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂','O₂ = byproduct','→ Oxygen']],
+    ['Where does photosynthesis occur?','Chloroplast',['Mitochondria','Nucleus','Ribosome'],
+     'Chloroplast ထဲရှိ chlorophyll သည် အလင်းစွမ်းအင်ကို ဖမ်းယူသည်။',
+     ['Chlorophyll = light absorber','Chloroplast = photosynthesis site','→ Chloroplast']],
+    ['What is the main product of photosynthesis?','Glucose',['ATP only','Water','CO₂'],
+     'Photosynthesis ၏ အဓိကထုတ်ကုန်သည် glucose (C₆H₁₂O₆) ဖြစ်သည်။',
+     ['Glucose = food','→ Glucose']],
+    ['Which color of light is least useful for photosynthesis?','Green',['Red','Blue','Violet'],
+     'Chlorophyll သည် green light ကို ရောင်ပြန်ဟပ်သည်၊ ထို့ကြောင့် အပင်များ အစိမ်းရောင် ဖြစ်သည်။',
+     ['Chlorophyll reflects green','Green least absorbed','→ Green']],
+    ['Photosynthesis equation: 6CO₂ + 6H₂O + ____ → C₆H₁₂O₆ + 6O₂','light energy',['heat','sound','ATP'],
+     'Photosynthesis တွင် အလင်းစွမ်းအင် လိုအပ်သည်။',
+     ['Light energy = input','→ light energy']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.4 Cellular Respiration
+function(s){
+  var items=[
+    ['Cellular respiration produces which molecule as the primary energy currency?','ATP',['DNA','Glucose','Chlorophyll'],
+     'ATP = adenosine triphosphate — ဆဲလ်လုပ်ဆောင်ချက်အားလုံးအတွက် စွမ်းအင်။',
+     ['ATP = energy currency','→ ATP']],
+    ['Which organelle performs cellular respiration?','Mitochondria',['Nucleus','Ribosome','Vacuole'],
+     'Mitochondria သည် glucose ကို ဖြိုခွဲပြီး ATP ထုတ်သည်။',
+     ['Mitochondria = respiration site','→ Mitochondria']],
+    ['The equation for cellular respiration is the reverse of ____.','photosynthesis',['digestion','mitosis','osmosis'],
+     'Cellular respiration: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP (Photosynthesis ၏ reverse)။',
+     ['Photosynthesis ↔ respiration','Reverse process','→ photosynthesis']],
+    ['Which is NOT a product of cellular respiration?','Glucose',['CO₂','H₂O','ATP'],
+     'Glucose သည် reactant ဖြစ်သည်၊ product မဟုတ်။',
+     ['Reactant: glucose + O₂','Products: CO₂, H₂O, ATP','→ Glucose']],
+    ['How many ATP are produced per glucose in aerobic respiration (approximate)?','~36',['2','6','100'],
+     'Aerobic respiration = ~36 ATP ။ Anaerobic = 2 ATP သာ။',
+     ['Aerobic: 36 ATP','Anaerobic: 2 ATP','→ 36']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.5 Cell Division
+function(s){
+  var items=[
+    ['What is the main purpose of mitosis?','Growth and repair',['Genetic diversity','Gamete formation','Protein synthesis'],
+     'Mitosis = growth, repair, asexual reproduction ။ Meiosis = gametes။',
+     ['Mitosis → identical cells','Growth/repair','→ Growth and repair']],
+    ['How many daughter cells does mitosis produce?','2',['1','4','8'],
+     'Mitosis → 2 identical diploid daughter cells။',
+     ['Mitosis = 2 cells','→ 2']],
+    ['Meiosis produces cells with how many chromosomes compared to parent?','Half',['Same','Double','Triple'],
+     'Meiosis ၏ result သည် haploid (n) — parent (2n) ၏ တစ်ဝက်။',
+     ['Meiosis = haploid','Reduces chromosome #','→ Half']],
+    ['Which process produces gametes (sperm and egg)?','Meiosis',['Mitosis','Binary fission','Fertilization'],
+     'Meiosis = sexual reproduction ၏ gamete production။',
+     ['Gametes = meiosis','→ Meiosis']],
+    ['In which phase of mitosis do chromosomes line up at the cell\'s equator?','Metaphase',['Prophase','Anaphase','Telophase'],
+     'Metaphase — chromosomes သည် cell equator တွင် စီတန်းသည်။',
+     ['Metaphase = middle','→ Metaphase']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.6 DNA & RNA
+function(s){
+  var items=[
+    ['What is the shape of DNA?','Double helix',['Single strand','Triple helix','Circular'],
+     'Watson နှင့် Crick သည် 1953 တွင် double helix ဖွဲ့စည်းပုံကို ရှာတွေ့ခဲ့သည်။',
+     ['DNA = double helix','→ Double helix']],
+    ['Which base pairs with adenine (A) in DNA?','Thymine (T)',['Guanine (G)','Cytosine (C)','Uracil (U)'],
+     'DNA base pairs: A-T, G-C။',
+     ['A pairs with T','G pairs with C','→ Thymine']],
+    ['In RNA, adenine pairs with ____.','Uracil',['Thymine','Guanine','Cytosine'],
+     'RNA တွင် thymine အစား uracil ပါသည်။',
+     ['RNA: A-U','DNA: A-T','→ Uracil']],
+    ['What sugar is found in DNA?','Deoxyribose',['Ribose','Glucose','Fructose'],
+     'DNA = deoxyribonucleic acid — deoxyribose sugar ပါ။',
+     ['DNA = deoxyribose','RNA = ribose','→ Deoxyribose']],
+    ['DNA carries ____ information.','genetic',['energy','structural only','random'],
+     'DNA သည် မျိုးရိုးဗီဇ အချက်အလက်များကို သိမ်းဆည်းသည်။',
+     ['DNA = genetic code','→ genetic']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.7 Protein Synthesis
+function(s){
+  var items=[
+    ['What is the first step of protein synthesis?','Transcription',['Translation','Replication','Mutation'],
+     'DNA → mRNA = transcription (nucleus တွင်)။',
+     ['DNA → mRNA = transcription','→ Transcription']],
+    ['Where does translation occur?','Ribosome',['Nucleus','Mitochondria','Golgi'],
+     'Translation (mRNA → protein) သည် ribosome တွင် ဖြစ်သည်။',
+     ['mRNA → protein = translation','Ribosome','→ Ribosome']],
+    ['What molecule carries amino acids to the ribosome?','tRNA',['mRNA','rRNA','DNA'],
+     'tRNA (transfer RNA) သည် amino acids များကို ribosome သို့ သယ်ဆောင်သည်။',
+     ['tRNA = amino acid carrier','→ tRNA']],
+    ['A codon consists of how many nucleotides?','3',['1','2','4'],
+     'Codon = 3 nucleotides = 1 amino acid။',
+     ['Codon = 3 bases','→ 3']],
+    ['Protein synthesis involves which two main steps?','Transcription and translation',['Replication and mutation','Mitosis and meiosis','Digestion and absorption'],
+     'Protein synthesis: DNA → mRNA (transcription) → protein (translation)။',
+     ['Transcription → translation','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.8 Genetics & Heredity
+function(s){
+  var items=[
+    ['An organism\'s observable traits are its ____.','phenotype',['genotype','allele','chromosome'],
+     'Phenotype = physical appearance ။ Genotype = genetic makeup။',
+     ['Phenotype = visible','Genotype = genetic','→ phenotype']],
+    ['In a Tt × Tt cross (T = tall, t = short), what fraction is short?','1/4',['1/2','3/4','0'],
+     'Punnett square: TT, Tt, Tt, tt → 1/4 = tt = short။',
+     ['Tt × Tt','TT:1, Tt:2, tt:1','→ 1/4 short']],
+    ['A recessive trait appears only when an organism is ____.','homozygous recessive',['heterozygous','homozygous dominant','mutated'],
+     'Recessive allele သည် ၂ ခုလုံး ရှိမှ ဖော်ပြသည်။',
+     ['Recessive = both copies','Homozygous recessive (tt)','→ ရွေးချယ်စရာ ၁']],
+    ['What is the difference between genotype and phenotype?','Genotype = genetic makeup; phenotype = physical traits',['They are the same','Genotype = physical; phenotype = genetic','Only phenotype is inherited'],
+     'Genotype = alleles (Tt, TT) ။ Phenotype = appearance (tall, short)။',
+     ['Genotype = letters','Phenotype = appearance','→ ရွေးချယ်စရာ ၁']],
+    ['A ____ allele is expressed even when only one copy is present.','dominant',['recessive','silent','mutated'],
+     'Dominant allele = T (one copy sufficient)။',
+     ['Dominant = T','Recessive = t','→ dominant']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.9 Evolution & Natural Selection
+function(s){
+  var items=[
+    ['Who proposed the theory of evolution by natural selection?','Charles Darwin',['Gregor Mendel','Louis Pasteur','Isaac Newton'],
+     'Darwin သည် "On the Origin of Species" (1859) တွင် ဤသီအိုရီကို တင်ပြခဲ့သည်။',
+     ['Darwin, 1859','Natural selection','→ Darwin']],
+    ['Which of the following is a key mechanism of evolution?','Natural selection',['Spontaneous generation','Cell division','Photosynthesis'],
+     'Natural selection = advantageous traits survive + reproduce။',
+     ['Selection = favorable traits','→ Natural selection']],
+    ['Organisms that are better adapted to their environment are more likely to ____.','survive and reproduce',['become extinct','mutate randomly','stay unchanged'],
+     'Fitness = survive + reproduce ။ ထို့ကြောင့် သူတို့၏ genes ဆက်လက်ရှင်သန်သည်။',
+     ['Adapted → survive/reproduce','→ ရွေးချယ်စရာ ၁']],
+    ['What is "fitness" in evolutionary terms?','Ability to survive and reproduce',['Physical strength','Intelligence','Speed'],
+     'Fitness = reproductive success, not physical strength။',
+     ['Fitness = reproduction','→ ရွေးချယ်စရာ ၁']],
+    ['Homologous structures provide evidence for ____.','common ancestry',['convergent evolution','spontaneous generation','mutation'],
+     'Homologous = same structure, different function → shared ancestry။',
+     ['Homologous = same origin','→ common ancestry']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.10 Classification
+function(s){
+  var items=[
+    ['What is the broadest level of biological classification?','Domain',['Kingdom','Phylum','Class'],
+     'Domain → Kingdom → Phylum → Class → Order → Family → Genus → Species။',
+     ['Domain = broadest','→ Domain']],
+    ['Which kingdom includes mushrooms and yeasts?','Fungi',['Plantae','Animalia','Protista'],
+     'Fungi = decomposers, cell walls with chitin ။ Mushrooms, yeasts ပါဝင်။',
+     ['Fungi = mushrooms','→ Fungi']],
+    ['Binomial nomenclature uses which two levels?','Genus and species',['Kingdom and phylum','Class and order','Domain and kingdom'],
+     'Species name = Genus + species (e.g., Homo sapiens)။',
+     ['Binomial = 2 names','Genus + species','→ Genus and species']],
+    ['How is a scientific name correctly written?','Genus capitalized, species lowercase, both italicized',['Both capitalized','Both lowercase','Species capitalized only'],
+     'ဥပမာ: Homo sapiens — Genus H, species s, italic။',
+     ['Homo sapiens format','Genus cap, species lower','→ ရွေးချယ်စရာ ၁']],
+    ['Which of these is NOT one of the three domains?','Animalia',['Bacteria','Archaea','Eukarya'],
+     'Domains = Bacteria, Archaea, Eukarya ။ Animalia = kingdom။',
+     ['3 domains','Animalia = kingdom','→ Animalia']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 2 — LIFE SCIENCE: HUMAN BODY & ECOSYSTEMS
+============================================================ */
+var G2 = [
+// 2.1 Circulatory System
+function(s){
+  var items=[
+    ['Which chamber of the heart pumps blood to the body?','Left ventricle',['Right atrium','Right ventricle','Left atrium'],
+     'Left ventricle သည် oxygenated blood ကို aorta မှတစ်ဆင့် ခန္ဓာကိုယ်သို့ ပေးပို့သည်။',
+     ['Left ventricle → body','→ Left ventricle']],
+    ['Which blood vessels carry blood away from the heart?','Arteries',['Veins','Capillaries','Lymph vessels'],
+     'Arteries = away from heart (high pressure) ။ Veins = back to heart။',
+     ['Arteries = away','→ Arteries']],
+    ['Where does gas exchange occur?','Capillaries',['Arteries','Veins','Heart'],
+     'Capillaries = tiny vessels where O₂/CO₂ ဖလှယ်သည်။',
+     ['Capillaries = exchange site','→ Capillaries']],
+    ['What does red blood cells carry?','Oxygen',['Carbon dioxide','Nutrients only','Hormones only'],
+     'RBC တွင် hemoglobin ပါပြီး O₂ သယ်ဆောင်သည်။',
+     ['Hemoglobin = O₂ carrier','→ Oxygen']],
+    ['Which is the largest artery?','Aorta',['Vena cava','Pulmonary artery','Carotid'],
+     'Aorta = heart မှ ခန္ဓာကိုယ်သို့ အဓိက artery။',
+     ['Aorta = largest artery','→ Aorta']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.2 Respiratory System
+function(s){
+  var items=[
+    ['Where does gas exchange occur in the lungs?','Alveoli',['Bronchi','Trachea','Larynx'],
+     'Alveoli = tiny air sacs where O₂ enters blood, CO₂ exits။',
+     ['Alveoli = exchange','→ Alveoli']],
+    ['What muscle controls breathing?','Diaphragm',['Biceps','Quadriceps','Heart'],
+     'Diaphragm သည် ရင်ခေါင်းအောက်တွင် ရှိပြီး အသက်ရှူခြင်းကို ထိန်းချုပ်သည်။',
+     ['Diaphragm = breathing muscle','→ Diaphragm']],
+    ['Which gas do we exhale in greater amount than we inhale?','Carbon dioxide',['Oxygen','Nitrogen','Helium'],
+     'Exhaled air တွင် CO₂ ပိုများသည် (metabolism ၏ ရလဒ်)။',
+     ['CO₂ = waste','→ Carbon dioxide']],
+    ['The trachea is also known as the ____.','windpipe',['throat','voice box','food pipe'],
+     'Trachea = windpipe — လေကို အဆုတ်သို့ ပို့သည်။',
+     ['Trachea = windpipe','→ windpipe']],
+    ['What is the main function of the respiratory system?','Exchange O₂ and CO₂',['Digest food','Pump blood','Filter waste'],
+     'Respiratory system = gas exchange။',
+     ['O₂ in, CO₂ out','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.3 Digestive System
+function(s){
+  var items=[
+    ['Where does most nutrient absorption occur?','Small intestine',['Stomach','Large intestine','Esophagus'],
+     'Small intestine တွင် villi များဖြင့် nutrient များ စုပ်ယူသည်။',
+     ['Small intestine = absorption','→ Small intestine']],
+    ['Which organ produces bile?','Liver',['Stomach','Pancreas','Kidney'],
+     'Liver သည် bile ထုတ်ပြီး fats ကို digest လုပ်ရာတွင် ကူညီသည်။',
+     ['Liver = bile','→ Liver']],
+    ['Which enzyme breaks down starch?','Amylase',['Pepsin','Lipase','Trypsin'],
+     'Amylase = starch → sugar ။ Saliva တွင် ပါဝင်သည်။',
+     ['Amylase = starch','→ Amylase']],
+    ['What is the main function of the large intestine?','Absorb water',['Digest protein','Produce enzymes','Store bile'],
+     'Large intestine သည် water နှင့် electrolytes ကို စုပ်ယူသည်။',
+     ['Large intestine = water','→ Absorb water']],
+    ['Where does digestion begin?','Mouth',['Stomach','Esophagus','Small intestine'],
+     'Digestion သည် mouth တွင် စတင်သည် (mechanical + chemical)။',
+     ['Digestion = mouth','→ Mouth']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.4 Nervous System
+function(s){
+  var items=[
+    ['What is the basic unit of the nervous system?','Neuron',['Cell','Axon','Synapse'],
+     'Neuron = nerve cell — electrical signals ပို့သည်။',
+     ['Neuron = nerve cell','→ Neuron']],
+    ['Which part of the brain controls balance and coordination?','Cerebellum',['Cerebrum','Brainstem','Hypothalamus'],
+     'Cerebellum = balance, coordination, posture။',
+     ['Cerebellum = balance','→ Cerebellum']],
+    ['What is the gap between two neurons called?','Synapse',['Axon','Dendrite','Myelin'],
+     'Synapse = neuron ၂ ခုအကြား gap — neurotransmitters ဖြင့် ဆက်သွယ်သည်။',
+     ['Synapse = gap','→ Synapse']],
+    ['Which division of the nervous system controls voluntary movement?','Somatic',['Autonomic','Sympathetic','Parasympathetic'],
+     'Somatic = voluntary ။ Autonomic = involuntary။',
+     ['Somatic = voluntary','→ Somatic']],
+    ['What is the "fight or flight" response controlled by?','Sympathetic nervous system',['Parasympathetic','Somatic','Central only'],
+     'Sympathetic = stress response → HR↑, adrenaline။',
+     ['Sympathetic = stress','→ Sympathetic nervous system']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.5 Immune System
+function(s){
+  var items=[
+    ['What is the body\'s first line of defense against pathogens?','Skin',['Antibodies','T cells','B cells'],
+     'Skin = physical barrier ။ Mucous membranes = chemical barrier။',
+     ['Skin = barrier','→ Skin']],
+    ['Which cells produce antibodies?','B cells',['T cells','Red blood cells','Platelets'],
+     'B cells → plasma cells → antibodies။',
+     ['B cells = antibodies','→ B cells']],
+    ['What is a vaccine?','A weakened or inactive pathogen that triggers immunity',['A cure for all diseases','A type of antibiotic','A painkiller'],
+     'Vaccine = antigen ကို ခန္ဓာကိုယ်ထဲ ထည့် → memory cells ဖန်တီး။',
+     ['Vaccine = weakened pathogen','Triggers memory','→ ရွေးချယ်စရာ ၁']],
+    ['What is herd immunity?','Community protection when most people are immune',['Individual immunity only','Immunity from animals','A type of vaccine'],
+     'Herd immunity = enough people immune → pathogen ပျံ့နှံ့မှု ရပ်။',
+     ['Herd = community','→ ရွေးချယ်စရာ ၁']],
+    ['Which cells destroy infected body cells?','T cells (cytotoxic)',['B cells','Red blood cells','Plasma cells'],
+     'Cytotoxic T cells → infected cells kill။',
+     ['Cytotoxic T = destroy','→ T cells']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.6 Ecosystems
+function(s){
+  var items=[
+    ['What is a producer in an ecosystem?','An organism that makes its own food',['An organism that eats others','A decomposer','A consumer'],
+     'Producers = autotrophs (plants, algae) → photosynthesis။',
+     ['Producer = makes own food','→ ရွေးချယ်စရာ ၁']],
+    ['What do decomposers do?','Break down dead organisms and return nutrients to the soil',['Produce food from sunlight','Eat producers only','Store water'],
+     'Decomposers = fungi, bacteria → nutrient recycling။',
+     ['Decomposers = break down','→ ရွေးချယ်စရာ ၁']],
+    ['How much energy is typically transferred from one trophic level to the next?','10%',['1%','50%','90%'],
+     '10% rule — 90% energy heat အဖြစ် ဆုံးရှုံးသည်။',
+     ['10% rule','→ 10%']],
+    ['What is a food web?','A network of interconnected food chains',['A single chain','A list of species','A type of habitat'],
+     'Food web = food chains များ ချိတ်ဆက်ထားခြင်း။',
+     ['Food web = network','→ ရွေးချယ်စရာ ၁']],
+    ['Which trophic level has the most energy?','Producers',['Primary consumers','Secondary consumers','Tertiary consumers'],
+     'Energy pyramid = producer level တွင် စွမ်းအင် အများဆုံး။',
+     ['Energy pyramid base','Producers = most','→ Producers']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.7 Biomes
+function(s){
+  var items=[
+    ['Which biome receives the least rainfall?','Desert',['Tropical rainforest','Grassland','Tundra'],
+     'Desert < 25 cm/year ။ Driest biome။',
+     ['Desert = driest','→ Desert']],
+    ['Where are tropical rainforests located?','Near the equator',['Near the poles','In mid-latitudes','In deserts'],
+     'Tropical rainforests = equator (0°-23.5°)။',
+     ['Rainforest = equator','→ Near the equator']],
+    ['Which biome is characterized by permafrost?','Tundra',['Desert','Grassland','Rainforest'],
+     'Tundra = frozen subsoil (permafrost) ။ Very cold, short growing season။',
+     ['Permafrost = tundra','→ Tundra']],
+    ['What biome has the greatest biodiversity?','Tropical rainforest',['Desert','Tundra','Grassland'],
+     'Rainforest = 50%+ species ။ Highest biodiversity။',
+     ['Rainforest = most species','→ Tropical rainforest']],
+    ['What is the dominant vegetation in a grassland?','Grasses',['Trees','Cacti','Moss'],
+     'Grassland = grasses (prairies, savannas, steppes)။',
+     ['Grassland = grass','→ Grasses']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.8 Population Dynamics
+function(s){
+  var items=[
+    ['What is carrying capacity?','The maximum population an ecosystem can support',['The maximum population ever recorded','A type of biome','A measure of biodiversity'],
+     'Carrying capacity = resources လုံလောက်သည့် အများဆုံး population။',
+     ['Carrying capacity = max sustainable','→ ရွေးချယ်စရာ ၁']],
+    ['What happens when a population exceeds carrying capacity?','Resources deplete and population declines',['Population grows faster','Population stays the same','Ecosystem expands'],
+     'Resources လျော့နည်း → death rate ↑, birth rate ↓ ။',
+     ['Exceed → decline','→ ရွေးချယ်စရာ ၁']],
+    ['Which type of population growth is J-shaped?','Exponential',['Logistic','Stable','Declining'],
+     'Exponential growth = unlimited resources (J-curve) ။ Logistic = S-curve။',
+     ['J-curve = exponential','→ Exponential']],
+    ['What is a limiting factor?','A resource that limits population growth',['A type of reproduction','A biome','A predator only'],
+     'Limiting factors = food, water, space, disease။',
+     ['Limiting = limits growth','→ ရွေးချယ်စရာ ၁']],
+    ['Which of these is a density-dependent limiting factor?','Disease',['Natural disaster','Climate change','Habitat destruction'],
+     'Density-dependent = population size နှင့် ဆက်စပ် (disease, food, competition)။',
+     ['Disease = density-dependent','→ Disease']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.9 Symbiosis
+function(s){
+  var items=[
+    ['What is mutualism?','A relationship where both species benefit',['One benefits, one harmed','One benefits, one unaffected','Both harmed'],
+     'Mutualism = +/+ ။ Example: bees + flowers။',
+     ['Mutualism = both benefit','→ ရွေးချယ်စရာ ၁']],
+    ['What is parasitism?','One organism benefits, the other is harmed',['Both benefit','Neither benefits','Both harmed'],
+     'Parasitism = +/− ။ Example: tapeworm + host။',
+     ['Parasitism = +/−','→ ရွေးချယ်စရာ ၁']],
+    ['What is commensalism?','One benefits, the other is unaffected',['Both benefit','Both harmed','One harmed, one unaffected'],
+     'Commensalism = +/0 ။ Example: barnacles on whale။',
+     ['Commensalism = +/0','→ ရွေးချယ်စရာ ၁']],
+    ['What is the relationship between a clownfish and a sea anemone?','Mutualism',['Parasitism','Commensalism','Predation'],
+     'Clownfish → protection; anemone → cleaner + food → +/+။',
+     ['Clownfish + anemone','+/+ = mutualism','→ Mutualism']],
+    ['Which of these is an example of predation?','Lion eating a zebra',['Bee pollinating a flower','Barnacles on a whale','Tapeworm in a human'],
+     'Predation = one organism kills another for food။',
+     ['Predator-prey','Lion + zebra','→ Lion eating zebra']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.10 Human Impact
+function(s){
+  var items=[
+    ['What is the main cause of recent climate change?','Burning fossil fuels',['Volcanic eruptions','Solar activity','Ocean currents'],
+     'Fossil fuel burning → CO₂ ထုတ်လွှတ် → greenhouse effect။',
+     ['Fossil fuels → CO₂','→ Burning fossil fuels']],
+    ['What is deforestation\'s effect on CO₂?','Increases atmospheric CO₂',['Decreases CO₂','No effect','Only affects O₂'],
+     'သစ်တောခုတ်လျှင် CO₂ စုပ်ယူမှု လျော့သွားပြီး CO₂ ပြန်ထွက်သည်။',
+     ['Fewer trees → more CO₂','→ Increases']],
+    ['What is biodiversity?','The variety of life in an ecosystem',['The number of trees','The size of an ecosystem','A single species'],
+     'Biodiversity = species diversity, genetic diversity, ecosystem diversity။',
+     ['Bio = life, diversity = variety','→ ရွေးချယ်စရာ ၁']],
+    ['Which human activity has the greatest impact on species extinction?','Habitat destruction',['Hunting','Pollution','Introduction of invasive species'],
+     'Habitat loss = #1 cause of extinction။',
+     ['Habitat loss = #1','→ Habitat destruction']],
+    ['What does "sustainable" mean?','Using resources without depleting them for future generations',['Using all resources now','Never using resources','Only using renewable energy'],
+     'Sustainability = future generations အတွက် resources ထိန်းသိမ်းခြင်း။',
+     ['Sustainable = long-term','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 3 — PHYSICAL SCIENCE: CHEMISTRY
+============================================================ */
+var G3 = [
+// 3.1 Atomic Structure
+function(s){
+  var items=[
+    ['What is the smallest unit of an element?','Atom',['Molecule','Compound','Cell'],
+     'Atom = element ၏ အသေးဆုံးယူနစ်။',
+     ['Atom = smallest','→ Atom']],
+    ['Which particle has a positive charge?','Proton',['Electron','Neutron','Ion'],
+     'Proton = +1 charge, nucleus တွင် ရှိသည်။',
+     ['Proton = +','→ Proton']],
+    ['Which particle has no charge?','Neutron',['Proton','Electron','Ion'],
+     'Neutron = 0 charge, nucleus တွင် ရှိသည်။',
+     ['Neutron = neutral','→ Neutron']],
+    ['Where are electrons located?','In orbitals/shells around the nucleus',['In the nucleus','In the center','With protons'],
+     'Electrons = nucleus ပတ်လည်ရှိ shells တွင်။',
+     ['Electrons = shells','→ ရွေးချယ်စရာ ၁']],
+    ['What is the atomic number?','Number of protons in an atom',['Number of neutrons','Mass of atom','Number of electrons only'],
+     'Atomic number = protons # (unique for each element)။',
+     ['Atomic # = protons','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.2 Periodic Table
+function(s){
+  var items=[
+    ['Elements in the same group have the same number of ____.','valence electrons',['protons','neutrons','atomic mass'],
+     'Group # = valence electrons # ။ ထို့ကြောင့် chemical properties တူ။',
+     ['Group = valence e-','→ valence electrons']],
+    ['Which group contains the noble gases?','Group 18',['Group 1','Group 2','Group 17'],
+     'Noble gases = Group 18 (He, Ne, Ar...) — full valence shell, unreactive။',
+     ['Noble gases = Group 18','→ Group 18']],
+    ['Which group contains the alkali metals?','Group 1',['Group 2','Group 17','Group 18'],
+     'Alkali metals = Group 1 (Li, Na, K...) — 1 valence e-, reactive။',
+     ['Alkali = Group 1','→ Group 1']],
+    ['What determines an element\'s identity?','Number of protons',['Number of electrons','Number of neutrons','Mass'],
+     'Protons # = atomic number = element identity။',
+     ['Protons = identity','→ Number of protons']],
+    ['Metals are typically found on which side of the periodic table?','Left side',['Right side','Middle only','Bottom only'],
+     'Metals = left/center ။ Nonmetals = right ။ Metalloids = staircase။',
+     ['Metals = left','→ Left side']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.3 Chemical Bonds
+function(s){
+  var items=[
+    ['What type of bond forms between a metal and a nonmetal?','Ionic',['Covalent','Metallic','Hydrogen'],
+     'Ionic = metal + nonmetal (electron transfer)။',
+     ['Metal + nonmetal = ionic','→ Ionic']],
+    ['What type of bond forms between two nonmetals?','Covalent',['Ionic','Metallic','Hydrogen'],
+     'Covalent = nonmetal + nonmetal (electron sharing)။',
+     ['Nonmetal + nonmetal = covalent','→ Covalent']],
+    ['In ionic bonds, the metal atom ____ electrons.','loses',['gains','shares','keeps'],
+     'Metal → loses e- → becomes positive ion (cation)။',
+     ['Metal = loses','→ loses']],
+    ['NaCl is an example of what type of bond?','Ionic',['Covalent','Metallic','Hydrogen'],
+     'Na (metal) + Cl (nonmetal) → ionic။',
+     ['Na + Cl = ionic','→ Ionic']],
+    ['Metallic bonds are characterized by ____.','freely moving electrons',['shared pairs','transferred electrons','no electrons'],
+     'Metallic = "sea of electrons" → conductivity။',
+     ['Sea of electrons','→ freely moving electrons']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.4 Chemical Reactions
+function(s){
+  var items=[
+    ['What is the Law of Conservation of Mass?','Mass is neither created nor destroyed in a chemical reaction',['Mass can be created','Mass disappears','Mass changes type'],
+     'Reactants mass = products mass ။ Atom အားလုံး conserved။',
+     ['Reactants = products (mass)','→ ရွေးချယ်စရာ ၁']],
+    ['In the equation 2H₂ + O₂ → 2H₂O, what is the reactant?','H₂ and O₂',['H₂O only','H₂ only','O₂ only'],
+     'Reactants = left side ။ Products = right side။',
+     ['Left = reactant','→ H₂ and O₂']],
+    ['What type of reaction is A + B → AB?','Synthesis',['Decomposition','Single replacement','Double replacement'],
+     'Synthesis = combine → 1 product။',
+     ['A+B → AB = synthesis','→ Synthesis']],
+    ['What type of reaction is AB → A + B?','Decomposition',['Synthesis','Single replacement','Combustion'],
+     'Decomposition = break down → 2+ products။',
+     ['AB → A+B = decomposition','→ Decomposition']],
+    ['A balanced equation has the same number of ____ on both sides.','atoms of each element',['molecules','compounds','charges only'],
+     'Balancing = atoms equal on both sides။',
+     ['Atoms equal','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.5 Acids & Bases
+function(s){
+  var items=[
+    ['What is the pH range of an acid?','0-6.9',['7.1-14','7 only','0-14'],
+     'Acid: pH < 7 ။ Base: pH > 7 ။ Neutral = 7။',
+     ['Acid = <7','→ 0-6.9']],
+    ['What is the pH of a neutral solution?','7',['0','14','1'],
+     'Neutral (pure water) = pH 7။',
+     ['Neutral = 7','→ 7']],
+    ['Which ion do acids release in water?','H⁺ (hydrogen ions)',['OH⁻','Na⁺','Cl⁻'],
+     'Acids → H⁺ in water ။ Bases → OH⁻။',
+     ['Acid = H⁺','→ H⁺']],
+    ['What is the pH of a strong base?','12-14',['0-2','6-7','5-6'],
+     'Strong base = high pH (12-14)။',
+     ['Base = high pH','→ 12-14']],
+    ['What happens when an acid reacts with a base?','Neutralization → salt + water',['Explosion','Precipitation only','No reaction'],
+     'Acid + Base → Salt + Water (neutralization)။',
+     ['Neutralization','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.6 States of Matter
+function(s){
+  var items=[
+    ['What is the process of a solid turning into a gas?','Sublimation',['Melting','Evaporation','Condensation'],
+     'Sublimation = solid → gas (dry ice ကဲ့သို့)။',
+     ['Solid → gas = sublimation','→ Sublimation']],
+    ['What is the process of a gas turning into a liquid?','Condensation',['Evaporation','Sublimation','Melting'],
+     'Condensation = gas → liquid (dew, rain formation)။',
+     ['Gas → liquid = condensation','→ Condensation']],
+    ['In which state do particles move fastest?','Gas',['Solid','Liquid','Plasma only'],
+     'Gas particles = most kinetic energy။',
+     ['Gas = fastest','→ Gas']],
+    ['What happens to temperature during a phase change?','It remains constant',['Increases','Decreases','Fluctuates'],
+     'Phase change တွင် latent heat သည် bonds ဖြိုရန် သုံးသည်၊ temperature မတိုး။',
+     ['Phase change = constant temp','→ ရွေးချယ်စရာ ၁']],
+    ['What is plasma?','An ionized gas with free electrons',['A solid','A liquid','A type of metal'],
+     'Plasma = ionized gas ။ Sun, lightning, fluorescent bulbs။',
+     ['Plasma = ionized gas','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.7 Solutions
+function(s){
+  var items=[
+    ['What is a solvent?','The substance that dissolves another',['The substance being dissolved','A solid only','A type of compound'],
+     'Solvent = dissolving medium ။ Solute = being dissolved။',
+     ['Solvent = dissolves','→ ရွေးချယ်စရာ ၁']],
+    ['In salt water, what is the solute?','Salt',['Water','Both','Neither'],
+     'Salt = solute ။ Water = solvent။',
+     ['Solute = salt','→ Salt']],
+    ['What does "saturated" mean?','No more solute can dissolve at that temperature',['Solution is very hot','More solute can dissolve','Solution is colorless'],
+     'Saturated = max solute dissolved ။ Undissolved solute will remain။',
+     ['Saturated = max','→ ရွေးချယ်စရာ ၁']],
+    ['What increases the rate of dissolving a solid?','Increasing temperature',['Decreasing temperature','Adding more solid','Decreasing stirring'],
+     'Higher temp → faster dissolving (kinetic energy ↑)။',
+     ['Temp ↑ = faster dissolve','→ Increasing temperature']],
+    ['What is a dilute solution?','A solution with a small amount of solute',['A concentrated solution','A saturated solution','A solid solution'],
+     'Dilute = low solute concentration ။ Concentrated = high။',
+     ['Dilute = little solute','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.8 Gas Laws
+function(s){
+  var items=[
+    ['Boyle\'s Law states that pressure and volume are ____ related.', 'inversely', ['directly','not','randomly'],
+     'Boyle: P₁V₁ = P₂V₂ (constant temp) — P ↑ → V ↓။',
+     ['P₁V₁ = P₂V₂','Inverse','→ inversely']],
+    ['Charles\'s Law states that volume and temperature are ____ related.', 'directly', ['inversely','not','randomly'],
+     'Charles: V₁/T₁ = V₂/T₂ (constant pressure) — V ↑ → T ↑။',
+     ['V₁/T₁ = V₂/T₂','Direct','→ directly']],
+    ['If temperature is constant and pressure increases, volume will ____.','decrease',['increase','stay same','become zero'],
+     'Boyle: P ↑ → V ↓ (inverse)။',
+     ['Boyle inverse','P ↑ → V ↓','→ decrease']],
+    ['What is the Kelvin scale starting point?','0 K = absolute zero',['0 K = freezing','0 K = boiling','0 K = room temp'],
+     'Absolute zero = -273.15°C = 0 K ။ Molecular motion stops။',
+     ['0 K = absolute zero','→ ရွေးချယ်စရာ ၁']],
+    ['Which gas law combines Boyle\'s and Charles\'s laws?','Combined gas law',['Ideal gas law','Avogadro\'s law','Dalton\'s law'],
+     'Combined gas law: P₁V₁/T₁ = P₂V₂/T₂။',
+     ['Combined = Boyle + Charles','→ Combined gas law']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.9 Chemical Equations
+function(s){
+  var items=[
+    ['In a chemical equation, what does the arrow (→) mean?','"Produces" or "yields"',['Equals','Plus','Minus'],
+     'Reactant → Product ။ Arrow = produces။',
+     ['Arrow = produces','→ "Produces"']],
+    ['What are the numbers in front of chemical formulas called?','Coefficients',['Subscripts','Superscripts','Ions'],
+     'Coefficients = # molecules ။ Subscripts = # atoms in molecule။',
+     ['Coefficients = front','→ Coefficients']],
+    ['Is 2H₂ + O₂ → 2H₂O balanced?','Yes',['No, needs more O₂','No, needs more H₂','Cannot tell'],
+     'H: 4=4 ။ O: 2=2 → balanced။',
+     ['H: 2×2=4 on both','O: 2 on both','Balanced','→ Yes']],
+    ['What is a catalyst?','A substance that speeds up a reaction without being consumed',['A reactant','A product','A type of energy'],
+     'Catalyst = reaction rate ↑, but not used up။',
+     ['Catalyst = speeds up','Not consumed','→ ရွေးချယ်စရာ ၁']],
+    ['What is an exothermic reaction?','A reaction that releases heat',['A reaction that absorbs heat','A reaction that has no heat change','A reaction in water'],
+     'Exothermic = energy out (e.g., combustion) ။ Endothermic = energy in။',
+     ['Exo = out','→ Releases heat']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.10 Organic Chemistry
+function(s){
+  var items=[
+    ['What element is the basis of all organic compounds?','Carbon',['Oxygen','Nitrogen','Hydrogen'],
+     'Organic = carbon-based ။ Carbon can form 4 bonds။',
+     ['Organic = carbon','→ Carbon']],
+    ['What is the chemical formula for methane?','CH₄',['CO₂','H₂O','C₂H₆'],
+     'Methane = simplest hydrocarbon = CH₄။',
+     ['Methane = CH₄','→ CH₄']],
+    ['What is a hydrocarbon?','A compound made of hydrogen and carbon only',['A compound with oxygen','A type of salt','A metal compound'],
+     'Hydrocarbon = H + C ။ Examples: methane, propane, octane။',
+     ['H + C only','→ ရွေးချယ်စရာ ၁']],
+    ['Which of these is an organic compound?','Glucose (C₆H₁₂O₆)',['NaCl','H₂O','CO₂'],
+     'Organic = contains carbon + typically C-H bonds ။ Glucose ။',
+     ['Organic = carbon-based','Glucose is organic','→ ရွေးချယ်စရာ ၁']],
+    ['What is a polymer?','A large molecule made of repeating smaller units',['A small molecule','A type of atom','An ionic compound'],
+     'Polymer = many monomers ။ Examples: proteins, plastics, DNA။',
+     ['Poly = many, mer = unit','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 4 — PHYSICAL SCIENCE: PHYSICS
+============================================================ */
+var G4 = [
+// 4.1 Motion
+function(s){
+  var items=[
+    ['What is speed?','Distance traveled per unit of time',['Change in velocity','Force per mass','Mass per volume'],
+     'Speed = d/t ။ Velocity = speed + direction။',
+     ['Speed = d/t','→ ရွေးချယ်စရာ ၁']],
+    ['What is velocity?','Speed with direction',['Speed only','Distance only','Time only'],
+     'Velocity = vector (magnitude + direction)။',
+     ['Velocity = speed + direction','→ ရွေးချယ်စရာ ၁']],
+    ['What is acceleration?','The rate of change of velocity',['Change in distance','Change in time','Change in mass'],
+     'Acceleration = Δv/Δt ။ Can be + or −။',
+     ['Accel = Δv/Δt','→ ရွေးချယ်စရာ ၁']],
+    ['If a car travels 100 m in 5 s, what is its speed?','20 m/s',['10 m/s','5 m/s','500 m/s'],
+     'Speed = d/t = 100/5 = 20 m/s။',
+     ['Speed = 100/5','= 20','→ 20 m/s']],
+    ['What is the unit of acceleration in SI?','m/s²',['m/s','m','N'],
+     'Acceleration = m/s² ။ (velocity change per second)။',
+     ['Acceleration unit','m/s²','→ m/s²']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.2 Forces & Newton's Laws
+function(s){
+  var items=[
+    ['Newton\'s First Law is also called the law of ____.','inertia',['motion','gravity','acceleration'],
+     '1st Law = inertia — object resists change in motion။',
+     ['1st law = inertia','→ inertia']],
+    ['Newton\'s Second Law is expressed as ____.','F = ma',['E = mc²','F = mv','a = v/t'],
+     'F = ma ။ Force = mass × acceleration။',
+     ['F = ma','→ F = ma']],
+    ['Newton\'s Third Law states that for every action, there is an equal and opposite ____.','reaction',['force only','motion','mass'],
+     'Action-reaction pairs ။ Rocket example။',
+     ['3rd law = reaction','→ reaction']],
+    ['What is the SI unit of force?','Newton (N)',['Joule','Watt','Pascal'],
+     'Force = Newton (N) = kg·m/s²။',
+     ['Force = Newton','→ Newton']],
+    ['If a 10 kg object accelerates at 2 m/s², what is the force?','20 N',['5 N','12 N','100 N'],
+     'F = ma = 10 × 2 = 20 N။',
+     ['F = 10 × 2','= 20 N','→ 20 N']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.3 Energy
+function(s){
+  var items=[
+    ['What is kinetic energy?','Energy of motion',['Stored energy','Chemical energy','Nuclear energy'],
+     'KE = ½mv² ။ Depends on mass + velocity။',
+     ['KE = ½mv²','Motion','→ Energy of motion']],
+    ['What is potential energy?','Stored energy based on position',['Energy of motion','Energy of light','Energy of sound'],
+     'PE = mgh ။ Depends on height + mass။',
+     ['PE = mgh','Stored','→ Stored energy']],
+    ['What is the Law of Conservation of Energy?','Energy cannot be created or destroyed, only converted',['Energy can be created','Energy can be destroyed','Energy is fixed'],
+     'Energy total = constant ။ Only form changes။',
+     ['Energy = conserved','→ ရွေးချယ်စရာ ၁']],
+    ['When an object falls, potential energy converts to ____.','kinetic energy',['thermal only','chemical energy','nuclear energy'],
+     'PE → KE as object falls။',
+     ['Falling: PE → KE','→ kinetic energy']],
+    ['What is the SI unit of energy?','Joule (J)',['Newton','Watt','Pascal'],
+     'Energy = Joule (J)။',
+     ['Energy = Joule','→ Joule']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.4 Waves
+function(s){
+  var items=[
+    ['What is wavelength?','The distance between two consecutive wave peaks',['The height of a wave','The number of waves per second','The speed of a wave'],
+     'Wavelength (λ) = peak-to-peak distance။',
+     ['Wavelength = distance between peaks','→ ရွေးချယ်စရာ ၁']],
+    ['What is frequency measured in?','Hertz (Hz)',['Meters','Seconds','Newtons'],
+     'Frequency = waves per second = Hz။',
+     ['Frequency = Hz','→ Hertz']],
+    ['Which has the highest energy?','Gamma rays',['Radio waves','Infrared','Visible light'],
+     'EM spectrum: gamma > X-ray > UV > visible > IR > microwave > radio။',
+     ['Gamma = highest energy','→ Gamma rays']],
+    ['What type of wave requires a medium?','Mechanical wave',['Electromagnetic wave','Light wave','Radio wave'],
+     'Mechanical (sound, water) = needs medium ။ EM = no medium။',
+     ['Sound = mechanical','→ Mechanical wave']],
+    ['What is amplitude?','The height of a wave from its resting position',['Distance between waves','Waves per second','Wave speed'],
+     'Amplitude = wave height ။ Related to energy။',
+     ['Amplitude = height','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.5 Electricity
+function(s){
+  var items=[
+    ['What is electric current?','Flow of electric charge',['Flow of water','Flow of heat','Flow of light'],
+     'Current = flow of electrons ။ Unit = Ampere (A)။',
+     ['Current = charge flow','→ Flow of electric charge']],
+    ['What is the unit of electric current?','Ampere (A)',['Volt','Ohm','Watt'],
+     'Current = Ampere (A)။',
+     ['Current = A','→ Ampere']],
+    ['What does Ohm\'s Law state?','V = IR',['F = ma','E = mc²','P = IV'],
+     'V = voltage, I = current, R = resistance။',
+     ['Ohm: V = IR','→ V = IR']],
+    ['What is voltage?','Electrical potential difference',['Flow of charge','Resistance','Power'],
+     'Voltage = potential energy per charge ။ Unit = Volt (V)။',
+     ['Voltage = potential difference','→ ရွေးချယ်စရာ ၁']],
+    ['Materials that allow current to flow easily are called ____.','conductors',['insulators','resistors','batteries'],
+     'Conductors = metals ။ Insulators = rubber, glass။',
+     ['Conductors = allow flow','→ conductors']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.6 Magnetism
+function(s){
+  var items=[
+    ['What are the two poles of a magnet?','North and South',['Positive and negative','East and West','Top and bottom'],
+     'Magnets have N pole and S pole။',
+     ['N and S poles','→ North and South']],
+    ['What happens when two like poles are brought together?','They repel',['They attract','Nothing','They combine'],
+     'Like poles repel ။ Opposite poles attract။',
+     ['Like repel','→ They repel']],
+    ['What creates a magnetic field around a wire?','Electric current',['Voltage only','Resistance','Light'],
+     'Current flowing → magnetic field (electromagnetism)။',
+     ['Current → magnetic field','→ Electric current']],
+    ['What is electromagnetism?','The relationship between electricity and magnetism',['A type of light','A kind of force','A chemical reaction'],
+     'Electromagnetism = moving charges → magnetic fields။',
+     ['Electricity + magnetism','→ ရွေးချယ်စရာ ၁']],
+    ['The Earth\'s magnetic field protects us from ____.','solar wind',['gravity','rain','moonlight'],
+     'Magnetic field deflects solar wind particles။',
+     ['Solar wind deflect','→ solar wind']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.7 Thermal Energy
+function(s){
+  var items=[
+    ['What is heat?','Transfer of thermal energy',['A type of temperature','A type of light','A type of sound'],
+     'Heat = thermal energy transfer from hot → cold။',
+     ['Heat = transfer','→ ရွေးချယ်စရာ ၁']],
+    ['How does heat transfer through direct contact?','Conduction',['Convection','Radiation','Evaporation'],
+     'Conduction = direct contact (metal spoon in hot water)။',
+     ['Conduction = contact','→ Conduction']],
+    ['How does heat transfer through fluids?','Convection',['Conduction','Radiation','Sublimation'],
+     'Convection = fluid movement (boiling water)။',
+     ['Convection = fluids','→ Convection']],
+    ['How does heat transfer through empty space?','Radiation',['Conduction','Convection','Sublimation'],
+     'Radiation = EM waves (sun → earth) ။ No medium needed။',
+     ['Radiation = no medium','→ Radiation']],
+    ['What is temperature?','A measure of average kinetic energy of particles',['Total heat','A type of energy','A type of force'],
+     'Temperature = avg KE ။ Heat = total energy။',
+     ['Temp = avg KE','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.8 Work & Power
+function(s){
+  var items=[
+    ['What is work in physics?','Force applied over a distance',['Any activity','Stored energy','A type of power'],
+     'W = F × d ။ Unit = Joule (J)။',
+     ['W = F × d','→ Force applied over distance']],
+    ['What is the unit of work?','Joule (J)',['Newton','Watt','Pascal'],
+     'Work = Joule (J) = N·m။',
+     ['Work = Joule','→ Joule']],
+    ['What is power?','The rate of doing work',['Amount of work','Stored energy','A type of force'],
+     'Power = W/t ။ Unit = Watt (W)။',
+     ['Power = W/t','→ Rate of work']],
+    ['What is the unit of power?','Watt (W)',['Joule','Newton','Ampere'],
+     'Power = Watt (W) = J/s။',
+     ['Power = Watt','→ Watt']],
+    ['A machine does 100 J of work in 5 seconds. What is its power?','20 W',['100 W','500 W','5 W'],
+     'P = W/t = 100/5 = 20 W။',
+     ['P = 100/5','= 20 W','→ 20 W']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.9 Simple Machines
+function(s){
+  var items=[
+    ['What is a lever?','A rigid bar that rotates around a fulcrum',['A wheel with a groove','An inclined plane','A type of gear'],
+     'Lever = bar + fulcrum ။ Examples: seesaw, crowbar။',
+     ['Lever = bar + fulcrum','→ ရွေးချယ်စရာ ၁']],
+    ['What is a pulley used for?','To change the direction of force and lift loads',['To cut objects','To cool things','To measure'],
+     'Pulley = wheel + rope → directional change + mechanical advantage။',
+     ['Pulley = lift/change direction','→ ရွေးချယ်စရာ ၁']],
+    ['What is an inclined plane?','A sloped surface that reduces the force needed to lift objects',['A type of lever','A wheel','A type of gear'],
+     'Inclined plane = ramp ။ Reduces force but increases distance။',
+     ['Inclined = ramp','→ ရွေးချယ်စရာ ၁']],
+    ['What is mechanical advantage?','The ratio of output force to input force',['Total work','Amount of energy','Speed increase'],
+     'MA = output force ÷ input force ။ Simple machines provide MA။',
+     ['MA = output/input','→ ရွေးချယ်စရာ ၁']],
+    ['Which of these is NOT a simple machine?','Engine',['Lever','Pulley','Wheel and axle'],
+     '6 simple machines: lever, pulley, wheel/axle, inclined plane, wedge, screw။',
+     ['Simple machines 6','Engine = not simple','→ Engine']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.10 Nuclear Physics
+function(s){
+  var items=[
+    ['What holds the nucleus together?','Strong nuclear force',['Gravity','Electromagnetism','Friction'],
+     'Strong force overcomes proton-proton repulsion။',
+     ['Strong force = nucleus','→ Strong nuclear force']],
+    ['What happens in nuclear fission?','A large nucleus splits into smaller nuclei',['Nuclei combine','Electrons transfer','Atoms evaporate'],
+     'Fission = split ။ Nuclear power plants, atomic bombs။',
+     ['Fission = split','→ ရွေးချယ်စရာ ၁']],
+    ['What happens in nuclear fusion?','Small nuclei combine to form a larger nucleus',['Nuclei split','Electrons transfer','Atoms bond'],
+     'Fusion = combine ။ Sun ၏ energy source။',
+     ['Fusion = combine','Sun uses fusion','→ ရွေးချယ်စရာ ၁']],
+    ['What is radioactivity?','Spontaneous emission of particles from unstable nuclei',['Burning of atoms','Melting of atoms','Freezing of atoms'],
+     'Radioactivity = unstable nucleus → emits α, β, γ rays။',
+     ['Radioactivity = emission','→ ရွေးချယ်စရာ ၁']],
+    ['Which particle is emitted in alpha decay?','Helium nucleus (2 protons + 2 neutrons)',['Electron','Proton only','Neutron only'],
+     'Alpha particle = 2p + 2n (He nucleus)။',
+     ['Alpha = He nucleus','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 5 — EARTH & SPACE SCIENCE
+============================================================ */
+var G5 = [
+// 5.1 Earth's Structure
+function(s){
+  var items=[
+    ['What is the outermost layer of Earth?','Crust',['Mantle','Outer core','Inner core'],
+     'Crust = thin, solid outer layer ။ Continental + oceanic။',
+     ['Crust = outermost','→ Crust']],
+    ['Which layer is the thickest?','Mantle',['Crust','Outer core','Inner core'],
+     'Mantle = thickest (~2,900 km)။ Semi-solid rock။',
+     ['Mantle = thickest','→ Mantle']],
+    ['What is the innermost layer of Earth?','Inner core',['Crust','Mantle','Outer core'],
+     'Inner core = solid iron/nickel ။ Extreme pressure။',
+     ['Inner core = center','→ Inner core']],
+    ['Which layer is liquid?','Outer core',['Inner core','Mantle only','Crust'],
+     'Outer core = liquid iron/nickel → Earth\'s magnetic field။',
+     ['Outer core = liquid','→ Outer core']],
+    ['What generates Earth\'s magnetic field?','Movement of liquid iron in the outer core',['The Moon','Solar wind','The crust'],
+     'Liquid iron flow → electric current → magnetic field။',
+     ['Outer core → magnetic field','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.2 Plate Tectonics
+function(s){
+  var items=[
+    ['What causes tectonic plates to move?','Convection currents in the mantle',['The Moon\'s gravity','Solar wind','Earth\'s rotation'],
+     'Convection currents from mantle heat → plate motion။',
+     ['Convection currents','→ ရွေးချယ်စရာ ၁']],
+    ['What type of boundary causes mountains?','Convergent',['Divergent','Transform','Subduction only'],
+     'Convergent = plates collide → mountains (Himalayas)။',
+     ['Convergent = collide','→ Convergent']],
+    ['What type of boundary causes earthquakes at the San Andreas Fault?','Transform',['Divergent','Convergent','Subduction'],
+     'Transform = plates slide past ။ Earthquakes။',
+     ['San Andreas = transform','→ Transform']],
+    ['Where does new oceanic crust form?','Divergent boundary',['Convergent','Transform','Subduction zone'],
+     'Divergent = new crust (Mid-Atlantic Ridge)။',
+     ['Divergent = new crust','→ Divergent boundary']],
+    ['What is subduction?','One plate sinks beneath another',['Two plates collide equally','Plates slide past','Plates split apart'],
+     'Subduction = denser plate sinks → volcanoes, earthquakes။',
+     ['Subduction = sink','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.3 Rocks & Minerals
+function(s){
+  var items=[
+    ['What type of rock forms from cooled magma or lava?','Igneous',['Sedimentary','Metamorphic','Fossil'],
+     'Igneous = fire-formed ။ Examples: granite, basalt။',
+     ['Igneous = magma/lava','→ Igneous']],
+    ['What type of rock forms from compressed sediment?','Sedimentary',['Igneous','Metamorphic','Fossil only'],
+     'Sedimentary = layers of sediment ။ Fossils found here။',
+     ['Sedimentary = layers','→ Sedimentary']],
+    ['What type of rock forms from heat and pressure?','Metamorphic',['Igneous','Sedimentary','Fossil'],
+     'Metamorphic = "changed form" ။ Examples: marble, slate။',
+     ['Metamorphic = heat/pressure','→ Metamorphic']],
+    ['What is the rock cycle?','The continuous transformation of rocks between the three types',['A single change','A type of erosion','A type of fossil'],
+     'Rock cycle = igneous ↔ sedimentary ↔ metamorphic။',
+     ['Rock cycle = 3 types','→ ရွေးချယ်စရာ ၁']],
+    ['Which rock is most likely to contain fossils?','Sedimentary',['Igneous','Metamorphic','Volcanic'],
+     'Fossils = sedimentary rocks တွင် ထိန်းသိမ်းထားသည်။',
+     ['Fossils = sedimentary','→ Sedimentary']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.4 Weather & Climate
+function(s){
+  var items=[
+    ['What causes wind?','Differences in air pressure',['The Moon','Rotation of Earth','Solar flares'],
+     'Air flows from high → low pressure။',
+     ['Wind = pressure difference','→ ရွေးချယ်စရာ ၁']],
+    ['What is the difference between weather and climate?','Weather is short-term; climate is long-term',['They are the same','Weather is long-term; climate is short-term','Only climate matters'],
+     'Weather = days/weeks ။ Climate = decades/centuries။',
+     ['Weather = short-term','Climate = long-term','→ ရွေးချယ်စရာ ၁']],
+    ['What is the greenhouse effect?','Trapping of heat by atmospheric gases',['Cooling of Earth','A type of wind','A cloud formation'],
+     'Greenhouse gases (CO₂, CH₄, H₂O) trap heat။',
+     ['Greenhouse = heat trapped','→ ရွေးချယ်စရာ ၁']],
+    ['Which is a greenhouse gas?','Carbon dioxide',['Nitrogen','Oxygen','Helium'],
+     'GHG: CO₂, CH₄, N₂O, H₂O ။ Nitrogen/Oxygen not GHG။',
+     ['CO₂ = GHG','→ Carbon dioxide']],
+    ['What causes seasons?','The tilt of Earth\'s axis',['Distance from Sun','Solar activity','Moon phases'],
+     '23.5° tilt → different sunlight angles → seasons။',
+     ['Earth tilt','→ The tilt of Earth\'s axis']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.5 Water Cycle
+function(s){
+  var items=[
+    ['What is evaporation?','Liquid water turning into water vapor',['Vapor to liquid','Solid to gas','Gas to solid'],
+     'Evaporation = liquid → gas (heat energy)။',
+     ['Evaporation = liquid → gas','→ ရွေးချယ်စရာ ၁']],
+    ['What is condensation?','Water vapor turning into liquid',['Liquid to gas','Solid to liquid','Liquid to solid'],
+     'Condensation = gas → liquid (clouds, dew)။',
+     ['Condensation = gas → liquid','→ ရွေးချယ်စရာ ၁']],
+    ['What is precipitation?','Water falling from clouds as rain, snow, etc.',['Evaporation','Condensation','Collection'],
+     'Precipitation = rain, snow, sleet, hail။',
+     ['Precipitation = rain/snow','→ ရွေးချယ်စရာ ၁']],
+    ['What drives the water cycle?','Energy from the Sun',['The Moon','Wind only','Earth\'s core'],
+     'Sun = heat → evaporation → water cycle။',
+     ['Sun = water cycle driver','→ Energy from the Sun']],
+    ['What is transpiration?','Water loss from plants through leaves',['Water falling','Water freezing','Water boiling'],
+     'Transpiration = plant water loss (like sweating)။',
+     ['Plants lose water','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.6 Solar System
+function(s){
+  var items=[
+    ['How many planets are in our solar system?','8',['7','9','10'],
+     '8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune။',
+     ['8 planets','→ 8']],
+    ['Which planet is closest to the Sun?','Mercury',['Venus','Earth','Mars'],
+     'Mercury = closest to Sun။',
+     ['Mercury = closest','→ Mercury']],
+    ['Which is the largest planet?','Jupiter',['Saturn','Earth','Neptune'],
+     'Jupiter = largest ။ Gas giant။',
+     ['Jupiter = largest','→ Jupiter']],
+    ['What separates inner rocky planets from outer gas giants?','The asteroid belt',['A comet','The Kuiper belt','A nebula'],
+     'Asteroid belt between Mars and Jupiter။',
+     ['Asteroid belt divides','→ The asteroid belt']],
+    ['Which planet is known as the "Red Planet"?','Mars',['Venus','Mercury','Jupiter'],
+     'Mars = iron oxide (rust) → red appearance။',
+     ['Mars = red planet','→ Mars']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.7 Stars & Galaxies
+function(s){
+  var items=[
+    ['What is the Sun?','A star',['A planet','A moon','A comet'],
+     'Sun = medium-sized star။',
+     ['Sun = star','→ A star']],
+    ['What is the Milky Way?','Our galaxy',['A star','A nebula','A planet'],
+     'Milky Way = our home galaxy (spiral)။',
+     ['Milky Way = galaxy','→ Our galaxy']],
+    ['What is a light-year?','The distance light travels in one year',['The time light takes','The speed of light','A unit of time'],
+     'Light-year = distance (~9.46 trillion km)။',
+     ['Light-year = distance','→ ရွေးချယ်စရာ ၁']],
+    ['How are stars classified?','By their temperature and luminosity',['By color only','By size only','By age only'],
+     'Hertzsprung-Russell diagram: temperature vs luminosity။',
+     ['Stars = temp + luminosity','→ ရွေးချယ်စရာ ၁']],
+    ['What is a supernova?','The explosive death of a massive star',['A new star','A type of galaxy','A comet'],
+     'Supernova = massive star explosion။',
+     ['Supernova = explosion','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.8 Universe & Big Bang
+function(s){
+  var items=[
+    ['What is the Big Bang theory?','The universe began from an extremely hot, dense point',['The universe is static','The universe was created recently','The universe is infinite'],
+     'Big Bang ~13.8 billion years ago။',
+     ['Big Bang = universe origin','→ ရွေးချယ်စရာ ၁']],
+    ['How old is the universe?','~13.8 billion years',['~1 million years','~100 million years','~1 trillion years'],
+     '13.8 billion years (Big Bang to present)။',
+     ['13.8 billion years','→ ~13.8 billion years']],
+    ['What evidence supports the Big Bang?','Cosmic microwave background radiation',['The Moon','Solar eclipses','Earthquakes'],
+     'CMB = leftover radiation from early universe။',
+     ['CMB = Big Bang evidence','→ ရွေးချယ်စရာ ၁']],
+    ['What is dark matter?','An invisible substance that affects gravity',['Black holes','A type of light','A type of gas'],
+     'Dark matter = ~27% of universe, invisible, detected by gravity effects။',
+     ['Dark matter = invisible','→ ရွေးချယ်စရာ ၁']],
+    ['How is the universe expanding?','Space itself is stretching',['Objects are moving through space','Stars are exploding','Nothing changes'],
+     'Expansion = space itself stretches ။ Galaxies move apart။',
+     ['Universe = expanding','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.9 Natural Disasters
+function(s){
+  var items=[
+    ['What causes earthquakes?','Sudden movement along fault lines',['Wind','Rain','Solar flares'],
+     'Earthquakes = plate movement along faults။',
+     ['Earthquake = plate movement','→ ရွေးချယ်စရာ ၁']],
+    ['What is the Richter scale used to measure?','Earthquake magnitude',['Wind speed','Rainfall','Temperature'],
+     'Richter = earthquake magnitude (though moment magnitude now used)။',
+     ['Richter = earthquake','→ Earthquake magnitude']],
+    ['What causes a tsunami?','Underwater earthquakes or volcanic eruptions',['Strong wind','Heavy rain','Tides'],
+     'Tsunami = underwater earthquakes → massive waves။',
+     ['Tsunami = underwater quake','→ ရွေးချယ်စရာ ၁']],
+    ['What is a volcano?','An opening in Earth\'s crust where magma erupts',['A mountain only','A valley','A fault line'],
+     'Volcano = magma/lava/ash eruption site။',
+     ['Volcano = magma eruption','→ ရွေးချယ်စရာ ၁']],
+    ['What causes hurricanes?','Warm ocean water and atmospheric conditions',['Cold air only','Mountains','Earthquakes'],
+     'Hurricane = warm ocean water → rotating storm။',
+     ['Hurricane = warm ocean','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.10 Earth's History
+function(s){
+  var items=[
+    ['How old is Earth?','~4.6 billion years',['~1 million years','~500 million years','~100 billion years'],
+     'Earth ~4.6 billion years (radiometric dating)။',
+     ['4.6 billion years','→ ~4.6 billion years']],
+    ['What is the geologic time scale?','A system for organizing Earth\'s history',['A type of rock','A type of fossil','A type of mineral'],
+     'Eons → Eras → Periods → Epochs။',
+     ['Geologic time = Earth history','→ ရွေးချယ်စရာ ၁']],
+    ['What is a fossil?','Preserved remains or traces of ancient organisms',['A type of rock','A mineral','A modern organism'],
+     'Fossils = ancient organisms preserved in rock။',
+     ['Fossils = ancient life','→ ရွေးချယ်စရာ ၁']],
+    ['Which era is known as the "Age of Dinosaurs"?','Mesozoic',['Paleozoic','Cenozoic','Precambrian'],
+     'Mesozoic (252-66 mya) = dinosaurs။',
+     ['Mesozoic = dinosaurs','→ Mesozoic']],
+    ['What caused the extinction of the dinosaurs?','Asteroid impact',['Volcanic eruption only','Climate change only','Disease'],
+     '~66 mya asteroid impact (Chicxulub) → mass extinction။',
+     ['Asteroid = dino extinction','→ Asteroid impact']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 6 — SCIENTIFIC REASONING & DATA
+============================================================ */
+var G6 = [
+// 6.1 Scientific Method
+function(s){
+  var items=[
+    ['What is the first step of the scientific method?','Ask a question / Make an observation',['Form a hypothesis','Conduct an experiment','Draw a conclusion'],
+     'Scientific method: observation → question → hypothesis → experiment → conclusion။',
+     ['Observation → question','First step','→ Ask a question']],
+    ['What is a hypothesis?','A testable prediction',['A proven fact','A conclusion','An observation'],
+     'Hypothesis = proposed explanation, testable။',
+     ['Hypothesis = prediction','→ ရွေးချယ်စရာ ၁']],
+    ['What is an independent variable?','The variable that is changed by the researcher',['The variable that is measured','The control','The result'],
+     'Independent = manipulated ။ Dependent = measured။',
+     ['Independent = changed','→ ရွေးချယ်စရာ ၁']],
+    ['What is a dependent variable?','The variable that is measured',['The variable that is changed','The control group','The hypothesis'],
+     'Dependent = result (changes in response to IV)။',
+     ['Dependent = measured','→ ရွေးချယ်စရာ ၁']],
+    ['Why is a control group important?','To provide a baseline for comparison',['To confuse the results','To reduce cost','To increase sample size'],
+     'Control = no treatment → compare with experimental group။',
+     ['Control = baseline','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.2 Data Interpretation
+function(s){
+  var items=[
+    ['What is the mean of 4, 8, 6, 10, 12?','8',['7','9','10'],
+     '(4+8+6+10+12)/5 = 40/5 = 8။',
+     ['Sum = 40','40/5 = 8','→ 8']],
+    ['What is the median of 5, 3, 8, 1, 9?','5',['3','8','9'],
+     'Sorted: 1, 3, 5, 8, 9 → middle = 5။',
+     ['Sort: 1,3,5,8,9','Middle = 5','→ 5']],
+    ['What is the mode of 2, 4, 4, 6, 8?','4',['2','6','8'],
+     'Mode = most frequent → 4 appears twice။',
+     ['4 = twice','→ 4']],
+    ['What is the range of 12, 5, 20, 8, 15?','15',['5','8','20'],
+     'Range = max − min = 20 − 5 = 15။',
+     ['Max=20, Min=5','20-5 = 15','→ 15']],
+    ['On a graph, what does a steep slope indicate?','A rapid change',['A slow change','No change','A decrease'],
+     'Steep slope = larger change per unit။',
+     ['Steep = rapid','→ A rapid change']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.3 Experimental Design
+function(s){
+  var items=[
+    ['Why is random sampling important?','To reduce bias',['To increase sample size','To slow the experiment','To save money'],
+     'Random sampling → representative → less bias။',
+     ['Random = no bias','→ To reduce bias']],
+    ['What is a controlled experiment?','One where only one variable is changed at a time',['Many variables change','No variables change','Random variables'],
+     'Controlled experiment → only IV changes ။ Others constant။',
+     ['One variable changes','→ ရွေးချယ်စရာ ၁']],
+    ['What is a placebo?','A treatment with no active ingredient',['A real medicine','A type of control','A hypothesis'],
+     'Placebo = inert treatment ။ Used in control groups။',
+     ['Placebo = inactive','→ ရွေးချယ်စရာ ၁']],
+    ['Why do scientists repeat experiments?','To verify results are reliable',['To waste time','To confuse others','To reduce cost'],
+     'Replication = reliability check။',
+     ['Repeat = verify','→ ရွေးချယ်စရာ ၁']],
+    ['What is a blind study?','A study where participants don\'t know which treatment they receive',['A study with no data','A study without controls','A type of hypothesis'],
+     'Blind = participants unaware ။ Double-blind = both unaware။',
+     ['Blind = unaware','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.4 Scientific Notation & Units
+function(s){
+  var items=[
+    ['What is 4,500 in scientific notation?','4.5 × 10³',['4.5 × 10²','45 × 10²','4.5 × 10⁴'],
+     'Move decimal 3 places left → 4.5 × 10³။',
+     ['4500 → 4.5','3 decimal places','→ 4.5 × 10³']],
+    ['What is 0.00062 in scientific notation?','6.2 × 10⁻⁴',['6.2 × 10⁻³','62 × 10⁻⁵','6.2 × 10⁴'],
+     'Move decimal 4 places right → 6.2 × 10⁻⁴။',
+     ['0.00062 → 6.2','4 places right','→ 6.2 × 10⁻⁴']],
+    ['How many meters are in 1 kilometer?','1,000',['100','10','10,000'],
+     '1 km = 1,000 m။',
+     ['Kilo = 1000','→ 1,000']],
+    ['What is the SI unit of mass?','Kilogram (kg)',['Gram','Pound','Newton'],
+     'SI base unit of mass = kilogram။',
+     ['SI mass = kg','→ Kilogram']],
+    ['Which is a derived SI unit?','Newton (N)',['Meter','Second','Kilogram'],
+     'Derived = combination of base units ။ N = kg·m/s²။',
+     ['Newton = derived','→ Newton']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.5 Graphs & Charts
+function(s){
+  var items=[
+    ['Which graph shows changes over time?','Line graph',['Pie chart','Bar graph','Scatter plot'],
+     'Line graph = trends over time။',
+     ['Time = line graph','→ Line graph']],
+    ['Which chart shows parts of a whole?','Pie chart',['Line graph','Bar graph','Scatter plot'],
+     'Pie chart = percentages of a whole။',
+     ['Parts of whole = pie','→ Pie chart']],
+    ['Which graph is best for comparing categories?','Bar graph',['Line graph','Pie chart','Scatter plot'],
+     'Bar graph = compare discrete categories။',
+     ['Compare categories = bar','→ Bar graph']],
+    ['What does the x-axis typically represent?','The independent variable',['The dependent variable','A title','The legend'],
+     'x-axis = independent ။ y-axis = dependent။',
+     ['x-axis = IV','→ The independent variable']],
+    ['What does a scatter plot show?','The relationship between two variables',['Parts of a whole','Change over time','Categories'],
+     'Scatter plot = two-variable relationship (correlation)။',
+     ['Scatter = 2 variables','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.6 Cause & Effect
+function(s){
+  var items=[
+    ['What is the difference between correlation and causation?','Correlation shows relationship; causation shows one causes the other',['They are the same','Correlation is stronger','Causation is weaker'],
+     'Correlation ≠ causation ။ နှစ်ခုတူညီစွာ ပြောင်းလဲသော်လည်း အကြောင်းရင်း မဟုတ်နိုင်။',
+     ['Correlation = together','Causation = one causes other','→ ရွေးချယ်စရာ ၁']],
+    ['If ice cream sales and drowning increase in summer, this is:',['A correlation, not causation','Proof that ice cream causes drowning','Random','A controlled experiment'],
+     'နှစ်ခုလုံး summer ကြောင့် → correlation only။',
+     ['Summer = common cause','→ Correlation']],
+    ['What is the best way to establish causation?','A controlled experiment',['An observation','A survey','A correlation study'],
+     'Controlled experiment = causation။',
+     ['Experiment = causation','→ A controlled experiment']],
+    ['If A happens before B, can we conclude A caused B?','No, correlation does not prove causation',['Yes, timing proves causation','Yes, always','Only in summer'],
+     'Post hoc fallacy — sequence ≠ causation။',
+     ['Sequence ≠ causation','→ No']],
+    ['Which statement shows causation?','Smoking causes lung cancer',['Smoking is associated with lung cancer','Smokers have more cancer','Both increase together'],
+     'Causation = direct cause-effect relationship။',
+     ['Direct cause','→ Smoking causes']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.7 Models & Theories
+function(s){
+  var items=[
+    ['What is a scientific theory?','A well-tested explanation supported by evidence',['A guess','A law','A hypothesis'],
+     'Theory = evidence-based explanation ။ Hypothesis = testable prediction။',
+     ['Theory = tested','→ ရွေးချယ်စရာ ၁']],
+    ['What is a scientific law?','A statement describing a consistent pattern',['A guess','A theory','A hypothesis'],
+     'Law = describes "what" ။ Theory = explains "why"။',
+     ['Law = pattern description','→ ရွေးချယ်စရာ ၁']],
+    ['What is a model in science?','A simplified representation of a system',['A real object','A hypothesis','A law'],
+     'Model = simplified representation ။ Helps understand complex systems။',
+     ['Model = simplified','→ ရွေးချယ်စရာ ၁']],
+    ['Can scientific theories change?','Yes, with new evidence',['No, they are final','Only in physics','Only if popular'],
+     'Science = self-correcting ။ Theories can be revised။',
+     ['Science updates','→ Yes']],
+    ['What is the difference between theory and hypothesis?','Theory is well-supported; hypothesis is a testable prediction',['They are the same','Theory is less established','Hypothesis is proven'],
+     'Hypothesis → tested → becomes theory if supported ။',
+     ['Hypothesis = tested','Theory = well-supported','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.8 Measurement & Accuracy
+function(s){
+  var items=[
+    ['What is accuracy?','How close a measurement is to the true value',['How repeatable a measurement is','A type of error','A unit'],
+     'Accuracy = closeness to true value ။ Precision = repeatability။',
+     ['Accuracy = true','→ ရွေးချယ်စရာ ၁']],
+    ['What is precision?','How close repeated measurements are to each other',['How close to true value','A type of instrument','A unit'],
+     'Precision = repeatable ။ Not necessarily accurate။',
+     ['Precision = repeatable','→ ရွေးချယ်စရာ ၁']],
+    ['What is systematic error?','An error that consistently occurs in the same direction',['Random error','A fluke','A measurement'],
+     'Systematic = consistent bias (e.g., broken scale)။',
+     ['Systematic = biased','→ ရွေးချယ်စရာ ၁']],
+    ['Why is repeated measurement important?','To reduce random error',['To increase error','To waste time','To slow the experiment'],
+     'More measurements → average → reduced random error။',
+     ['Repeat = reduce error','→ To reduce random error']],
+    ['What are significant figures?','Digits that carry meaningful information in a measurement',['Random numbers','Zeros only','Large numbers'],
+     'Sig figs = precision indication ။ 0.0250 = 3 sig figs။',
+     ['Sig figs = precision','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.9 Interpreting Tables
+function(s){
+  var items=[
+    ['If a table shows temperature increasing while solubility increases, the relationship is ____.','positive',['negative','random','none'],
+     'Both increase together → positive correlation။',
+     ['Temp ↑, Solubility ↑','→ positive']],
+    ['If a table shows pressure increasing while volume decreases, the relationship is ____.','negative (inverse)',['positive','random','no relationship'],
+     'Pressure ↑ → Volume ↓ = inverse (Boyle\'s Law)။',
+     ['P ↑, V ↓','→ inverse']],
+    ['What should you check first in a data table?','Column headers/units',['The numbers','The last row','The title'],
+     'Headers + units = data ကို နားလည်ရန် အရေးကြီး။',
+     ['Headers first','→ Column headers']],
+    ['In a table showing year and population, which is the independent variable?','Year',['Population','Both','Neither'],
+     'Year = IV (manipulated/observed) ။ Population = DV။',
+     ['Year = IV','→ Year']],
+    ['What can you conclude from a table where all values stay the same?','There is no relationship between the variables',['Positive correlation','Negative correlation','Causation'],
+     'No change in DV → no relationship။',
+     ['No change = no relation','→ No relationship']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.10 Bias & Ethics
+function(s){
+  var items=[
+    ['What is confirmation bias?','The tendency to favor information that confirms existing beliefs',['A type of error','A type of hypothesis','A unit'],
+     'Confirmation bias = seeks confirming evidence, ignores contrary။',
+     ['Bias = confirms beliefs','→ ရွေးချယ်စရာ ၁']],
+    ['Why do scientists peer-review each other\'s work?','To check for errors and ensure quality',['To slow progress','To increase cost','To make friends'],
+     'Peer review = quality control။',
+     ['Peer review = quality check','→ ရွေးချယ်စရာ ၁']],
+    ['What is informed consent in research?','Participants must be told about risks and agree to participate',['A form only','A type of experiment','A payment'],
+     'Ethical research requires informed consent။',
+     ['Informed = knowing','→ ရွေးချယ်စရာ ၁']],
+    ['What is a sample size problem?','A small sample may not be representative of the population',['Too many participants','A type of experiment','A type of unit'],
+     'Small sample → unreliable results ။ Larger = better။',
+     ['Small = unreliable','→ ရွေးချယ်စရာ ၁']],
+    ['Who pays for research can introduce ____.','conflict of interest',['new technology','more data','higher precision'],
+     'Funding sources may bias results ။ Conflict of interest။',
+     ['Funding = bias risk','→ conflict of interest']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* GROUP DEFINITIONS */
+var GROUPS=[
+  {title:'Life Science: Cell Biology',icon:'🧬',ac:'#10b981',
+   desc:'Cell structure, organelles, photosynthesis, respiration, division, DNA, genetics, evolution.',
+   gens:G1,
+   lessons:['Cell Theory','Cell Organelles','Photosynthesis','Cellular Respiration','Cell Division',
+     'DNA & RNA','Protein Synthesis','Genetics & Heredity','Evolution & Natural Selection','Classification']},
+  {title:'Life Science: Human Body & Ecosystems',icon:'🫀',ac:'#f43f5e',
+   desc:'Body systems, ecosystems, biomes, populations, symbiosis, human impact.',
+   gens:G2,
+   lessons:['Circulatory System','Respiratory System','Digestive System','Nervous System','Immune System',
+     'Ecosystems','Biomes','Population Dynamics','Symbiosis','Human Impact']},
+  {title:'Physical Science: Chemistry',icon:'⚗️',ac:'#8b5cf6',
+   desc:'Atoms, periodic table, bonds, reactions, acids/bases, states, solutions, gas laws.',
+   gens:G3,
+   lessons:['Atomic Structure','Periodic Table','Chemical Bonds','Chemical Reactions','Acids & Bases',
+     'States of Matter','Solutions','Gas Laws','Chemical Equations','Organic Chemistry']},
+  {title:'Physical Science: Physics',icon:'⚛️',ac:'#3b82f6',
+   desc:'Motion, forces, energy, waves, electricity, magnetism, thermal energy, work, machines, nuclear.',
+   gens:G4,
+   lessons:['Motion','Forces & Newton\'s Laws','Energy','Waves','Electricity',
+     'Magnetism','Thermal Energy','Work & Power','Simple Machines','Nuclear Physics']},
+  {title:'Earth & Space Science',icon:'🌍',ac:'#06b6d4',
+   desc:'Earth\'s structure, plate tectonics, rocks, weather, water cycle, solar system, stars, universe.',
+   gens:G5,
+   lessons:['Earth\'s Structure','Plate Tectonics','Rocks & Minerals','Weather & Climate','Water Cycle',
+     'Solar System','Stars & Galaxies','Universe & Big Bang','Natural Disasters','Earth\'s History']},
+  {title:'Scientific Reasoning & Data',icon:'🔬',ac:'#f59e0b',
+   desc:'Scientific method, data interpretation, experimental design, graphs, cause/effect, ethics.',
+   gens:G6,
+   lessons:['Scientific Method','Data Interpretation','Experimental Design','Sci Notation & Units','Graphs & Charts',
+     'Cause & Effect','Models & Theories','Measurement & Accuracy','Interpreting Tables','Bias & Ethics']}
+];
+
+var EX_PER_LESSON=30, EX_PER_GROUP=300, TOTAL_EX=1800;
+
+/* STATE */
+var STORE='ged:science:v1';
+var progress={};
+try{progress=JSON.parse(localStorage.getItem(STORE))||{}}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(progress))}catch(e){}}
+function lessonKey(gi,li){return gi+'-'+li}
+function lessonProg(gi,li){var k=lessonKey(gi,li);if(!progress[k])progress[k]={};return progress[k]}
+var cache={};
+
+/* SCREENS */
+var homeScreen=document.getElementById('homeScreen');
+var groupScreen=document.getElementById('groupScreen');
+var lessonScreen=document.getElementById('lessonScreen');
+var currentGroup=-1,currentLesson=-1;
+function showOnly(s){
+  [homeScreen,groupScreen,lessonScreen].forEach(function(x){x.classList.remove('active')});
+  s.classList.add('active');window.scrollTo(0,0);
+}
+
+/* HOME */
+var groupGrid=document.getElementById('groupGrid');
+function buildHome(){
+  groupGrid.innerHTML='';
+  GROUPS.forEach(function(g,gi){
+    var done=0;
+    for(var li=0;li<10;li++){var p=progress[lessonKey(gi,li)]||{};Object.keys(p).forEach(function(k){if(p[k]===true)done++})}
+    var pct=Math.round(done/EX_PER_GROUP*100);
+    var card=document.createElement('button');
+    card.className='card';card.style.setProperty('--c',g.ac);card.style.animationDelay=(gi*60)+'ms';
+    card.innerHTML=
+      '<div class="c-top"><span class="c-icon" style="background:'+g.ac+'1f">'+g.icon+'</span><span class="c-arrow">→</span></div>'+
+      '<h3>Group '+(gi+1)+' — '+g.title+'</h3>'+
+      '<p class="c-desc">'+g.desc+'</p>'+
+      '<div class="c-meta"><span>10 lessons · 300 questions</span><b>'+pct+'%</b></div>'+
+      '<div class="c-bar"><i style="width:'+pct+'%;background:'+g.ac+'"></i></div>';
+    card.addEventListener('click',(function(idx){return function(){openGroup(idx)}})(gi));
+    groupGrid.appendChild(card);
+  });
+  updateOverall();
+}
+function updateOverall(){
+  var total=0;
+  for(var gi=0;gi<6;gi++)for(var li=0;li<10;li++){var p=progress[lessonKey(gi,li)]||{};Object.keys(p).forEach(function(k){if(p[k]===true)total++})}
+  var pct=Math.round(total/TOTAL_EX*100);
+  document.getElementById('overallPct').textContent=pct+'%';
+  document.getElementById('overallCount').textContent=total.toLocaleString()+' / '+TOTAL_EX.toLocaleString()+' ပြီးစီး';
+  document.getElementById('overallBar').style.width=pct+'%';
+}
+
+/* GROUP VIEW */
+var lessonListEl=document.getElementById('lessonList');
+function openGroup(gi){
+  currentGroup=gi;var g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  document.getElementById('gTitle').textContent='Group '+(gi+1)+' — '+g.title;
+  document.getElementById('gSub').textContent=g.desc;
+  buildLessonList(gi);refreshGroupStats(gi);showOnly(groupScreen);
+}
+function buildLessonList(gi){
+  var g=GROUPS[gi];lessonListEl.innerHTML='';
+  g.lessons.forEach(function(title,li){
+    var p=progress[lessonKey(gi,li)]||{};var done=0;
+    Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+    var pct=Math.round(done/EX_PER_LESSON*100);
+    var row=document.createElement('button');
+    row.className='lesson-row';row.style.animationDelay=(li*40)+'ms';
+    row.innerHTML=
+      '<span class="l-id">'+(gi+1)+'.'+(li+1)+'</span>'+
+      '<div class="l-body"><h4>'+title+'</h4><p>'+EX_PER_LESSON+' exercises</p></div>'+
+      '<div class="l-prog"><b>'+done+'/'+EX_PER_LESSON+'</b><div class="bar"><i style="width:'+pct+'%;background:'+g.ac+'"></i></div></div>';
+    row.addEventListener('click',(function(g2,l2){return function(){openLesson(g2,l2)}})(gi,li));
+    lessonListEl.appendChild(row);
+  });
+}
+function refreshGroupStats(gi){
+  if(gi!==currentGroup)return;
+  var done=0;
+  for(var li=0;li<10;li++){var p=progress[lessonKey(gi,li)]||{};Object.keys(p).forEach(function(k){if(p[k]===true)done++})}
+  var pct=Math.round(done/EX_PER_GROUP*100);
+  document.getElementById('gPct').textContent=pct+'%';
+  document.getElementById('gCount').textContent=done+' / '+EX_PER_GROUP;
+  document.getElementById('gBar').style.width=pct+'%';
+}
+document.getElementById('backFromGroup').addEventListener('click',function(){buildHome();showOnly(homeScreen)});
+
+/* LESSON VIEW */
+var exerciseList=document.getElementById('exerciseList');
+function generateLesson(gi,li){
+  var key=lessonKey(gi,li);if(cache[key])return cache[key];
+  var gen=GROUPS[gi].gens[li];var arr=[];
+  for(var i=0;i<EX_PER_LESSON;i++){var seed=gi*1000000+li*1000+i*17+13;arr.push(gen(seed))}
+  cache[key]=arr;return arr;
+}
+function openLesson(gi,li){
+  currentGroup=gi;currentLesson=li;var g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  document.getElementById('lTitle').textContent=(gi+1)+'.'+(li+1)+' — '+g.lessons[li];
+  document.getElementById('lSub').textContent='Group '+(gi+1)+' · '+EX_PER_LESSON+' exercises';
+  var arr=generateLesson(gi,li);
+  renderExercises(arr,gi,li);refreshLessonStats(gi,li);showOnly(lessonScreen);
+}
+function refreshLessonStats(gi,li){
+  if(gi!==currentGroup||li!==currentLesson)return;
+  var p=progress[lessonKey(gi,li)]||{};var done=0;
+  Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+  var pct=Math.round(done/EX_PER_LESSON*100);
+  document.getElementById('lPct').textContent=pct+'%';
+  document.getElementById('lCount').textContent=done+' / '+EX_PER_LESSON;
+  document.getElementById('lBar').style.width=pct+'%';
+}
+
+var LTRS=['A','B','C','D'];
+function renderExercises(arr,gi,li){
+  var p=lessonProg(gi,li);exerciseList.innerHTML='';
+  var frag=document.createDocumentFragment();
+  arr.forEach(function(e,idx){frag.appendChild(buildCard(e,idx,gi,li,p[idx]))});
+  exerciseList.appendChild(frag);
+}
+function buildCard(e,idx,gi,li,saved){
+  var wrap=document.createElement('div');wrap.className='exercise';
+  var status=saved===true?'<span class="ex-status correct">✔ Correct</span>'
+    :saved===false?'<span class="ex-status wrong">✘ Wrong</span>'
+    :'<span class="ex-status">— Not answered</span>';
+  wrap.innerHTML=
+    '<div class="ex-head"><span class="ex-num">'+(idx+1)+'</span>'+status+'</div>'+
+    '<div class="ex-q">'+e.q+'</div>'+
+    '<div class="ex-opts">'+e.options.map(function(o,i){
+      return '<button class="opt" data-i="'+i+'"><span class="ltr">'+LTRS[i]+'.</span>'+o+'</button>';
+    }).join('')+'</div>'+
+    '<div class="ex-actions"><button class="show-sol">💡 Show Answer</button></div>'+
+    '<div class="ex-sol hidden">'+
+      '<div class="sol-why"><span class="sol-lbl">အဘယ်ကြောင့်</span>'+e.why+'</div>'+
+      '<div><span class="sol-lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span><ol>'+
+        e.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+      '</ol></div>'+
+      '<span class="sol-ans">✔ အဖြေ: '+e.answer+'</span>'+
+    '</div>';
+  var opts=wrap.querySelectorAll('.opt');
+  var solBox=wrap.querySelector('.ex-sol');
+  var solBtn=wrap.querySelector('.show-sol');
+  var statusEl=wrap.querySelector('.ex-status');
+  if(saved===true||saved===false){
+    opts.forEach(function(b,i){b.disabled=true;if(i===e.correctIndex)b.classList.add('correct')});
+  }
+  opts.forEach(function(b,i){
+    b.addEventListener('click',function(){
+      if(b.disabled)return;
+      var ok=i===e.correctIndex;
+      opts.forEach(function(x){x.disabled=true});
+      b.classList.add(ok?'correct':'wrong');
+      if(!ok)opts[e.correctIndex].classList.add('correct');
+      statusEl.className='ex-status '+(ok?'correct':'wrong');
+      statusEl.textContent=ok?'✔ Correct':'✘ Wrong';
+      lessonProg(gi,li)[idx]=ok;save();refreshLessonStats(gi,li);
+      if(!ok){solBox.classList.remove('hidden');solBtn.classList.add('open');solBtn.textContent='🙈 Hide Answer'}
+    });
+  });
+  solBtn.addEventListener('click',function(){
+    solBox.classList.toggle('hidden');
+    var open=!solBox.classList.contains('hidden');
+    solBtn.classList.toggle('open',open);
+    solBtn.textContent=open?'🙈 Hide Answer':'💡 Show Answer';
+  });
+  return wrap;
+}
+document.getElementById('backFromLesson').addEventListener('click',function(){
+  buildLessonList(currentGroup);refreshGroupStats(currentGroup);showOnly(groupScreen);
+});
+
+/* TOOLBAR */
+document.getElementById('btnShowAll').addEventListener('click',function(){
+  exerciseList.querySelectorAll('.ex-sol').forEach(function(b){b.classList.remove('hidden')});
+  exerciseList.querySelectorAll('.show-sol').forEach(function(b){b.classList.add('open');b.textContent='🙈 Hide Answer'});
+});
+document.getElementById('btnHideAll').addEventListener('click',function(){
+  exerciseList.querySelectorAll('.ex-sol').forEach(function(b){b.classList.add('hidden')});
+  exerciseList.querySelectorAll('.show-sol').forEach(function(b){b.classList.remove('open');b.textContent='💡 Show Answer'});
+});
+document.getElementById('btnReset').addEventListener('click',function(){
+  if(!confirm('Lesson '+(currentGroup+1)+'.'+(currentLesson+1)+' ၏ progress ကို reset လုပ်မလား။'))return;
+  progress[lessonKey(currentGroup,currentLesson)]={};save();openLesson(currentGroup,currentLesson);
+});
+
+buildHome();
+</script>
+</body>
+</html>

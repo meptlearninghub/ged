@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Social Studies — Reference Sheet</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:rgba(15,23,42,.09);
+--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--radius:18px;--safe-top:env(safe-area-inset-top,0px);
+--safe-bottom:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+--shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);--ac:#f59e0b;
+--nav-bg:rgba(248,250,252,.92);--hover-soft:rgba(15,23,42,.03);--passage-bg:rgba(245,158,11,.05)}
+html[data-theme="dark"]{--bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;--border:rgba(255,255,255,.09);
+--shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);--shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+--nav-bg:rgba(11,18,32,.92);--hover-soft:rgba(255,255,255,.05);--passage-bg:rgba(245,158,11,.1)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(700px 420px at 8% -8%,rgba(245,158,11,.10),transparent 65%),
+radial-gradient(700px 420px at 100% 4%,rgba(236,72,153,.08),transparent 65%)}
+html[data-theme="dark"] body::before{opacity:.55}
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 0 10px}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#f59e0b,#f97316);
+box-shadow:0 8px 18px -8px rgba(245,158,11,.7)}
+.nav-logo b{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:8px 13px;border-radius:11px;
+border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;
+font-size:12.5px;font-weight:700;transition:transform .18s,background .2s}
+.back-btn:hover{background:var(--hover-soft)}
+.back-btn:active{transform:scale(.95)}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-size:16px;cursor:pointer;
+padding:0;font-family:inherit;transition:transform .18s,background .18s}
+.icon-btn:hover{background:var(--hover-soft)}
+.icon-btn:active{transform:scale(.9)}
+@media(max-width:520px){.nav-title{display:none}}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom))}
+.hero{padding:28px 0 20px;text-align:center}
+.hero .badge-icon{width:72px;height:72px;border-radius:22px;margin:0 auto 16px;display:grid;place-items:center;
+font-size:34px;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;
+box-shadow:0 20px 40px -16px rgba(245,158,11,.7)}
+.hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,32px);font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.hero p{margin:0 auto;max-width:560px;font-size:clamp(13px,3.4vw,15px);color:var(--muted);line-height:1.75}
+.search-wrap{max-width:1140px;margin:0 auto;padding:0 18px 14px;position:relative}
+.search-wrap input{width:100%;padding:14px 44px 14px 46px;border-radius:14px;border:1.5px solid var(--border);
+background:var(--card);color:var(--text);font-family:inherit;font-size:14.5px;font-weight:500;
+transition:border-color .18s,background .2s;box-shadow:var(--shadow)}
+.search-wrap input:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 4px rgba(245,158,11,.12),var(--shadow)}
+.search-wrap .search-ico{position:absolute;left:34px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none}
+.search-wrap .clear-btn{position:absolute;right:34px;top:50%;transform:translateY(-50%);width:26px;height:26px;
+border:none;border-radius:50%;background:var(--hover-soft);color:var(--muted);display:none;place-items:center;
+cursor:pointer;font-family:inherit;font-size:12px;padding:0}
+.search-wrap .clear-btn.show{display:grid}
+.filters{max-width:1140px;margin:0 auto;padding:0 18px 20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter{flex:none;padding:8px 15px;border-radius:999px;border:1px solid var(--border);background:var(--card);
+color:var(--text);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s}
+.filter:hover{background:var(--hover-soft)}
+.filter.active{background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;border-color:transparent;
+box-shadow:0 8px 18px -8px rgba(245,158,11,.7)}
+.cat{margin-bottom:32px;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cat-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.cat-ico{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;font-size:20px;
+color:#fff;background:var(--cat-color,var(--ac));box-shadow:0 8px 18px -8px var(--cat-color,var(--ac))}
+.cat-head h2{margin:0;flex:1;font-size:clamp(16px,4.2vw,19px);font-weight:800;letter-spacing:-.02em}
+.cat-head .count{font-size:11.5px;color:var(--muted);font-weight:700;padding:3px 10px;border-radius:999px;background:var(--hover-soft)}
+.formulas{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.formulas{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.formulas{grid-template-columns:repeat(3,1fr)}}
+.f-card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+padding:18px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
+@media(hover:hover){.f-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cat-color,var(--ac))}}
+.f-card .name{margin:0 0 12px;font-size:14.5px;font-weight:800;letter-spacing:-.01em;line-height:1.4;color:var(--text)}
+.f-card .formula{padding:14px 16px;background:var(--passage-bg);border-left:3px solid var(--cat-color,var(--ac));
+border-radius:10px;font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:14px;font-weight:600;line-height:1.9;
+color:var(--text);word-break:break-word;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.f-card .formula em{font-style:italic;color:#b45309;font-weight:700}
+html[data-theme="dark"] .f-card .formula em{color:#fbbf24}
+.f-card .formula code{background:var(--hover-soft);padding:2px 6px;border-radius:5px;font-size:13px}
+.f-card .note{margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7}
+.f-card .note b{color:var(--text);font-weight:700}
+.copy-btn{position:absolute;top:12px;right:12px;width:30px;height:30px;padding:0;border-radius:9px;
+border:1px solid var(--border);background:var(--card);color:var(--muted);display:grid;place-items:center;
+cursor:pointer;font-family:inherit;font-size:12px;transition:all .18s;opacity:.7}
+.copy-btn:hover{opacity:1;color:var(--ac);border-color:var(--ac);background:rgba(245,158,11,.06)}
+.copy-btn.done{background:#16a34a;color:#fff;border-color:transparent}
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty .ico{font-size:48px;margin-bottom:14px;opacity:.6}
+.empty h3{margin:0 0 6px;font-size:16px;color:var(--text);font-weight:800}
+.empty p{margin:0;font-size:13px}
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(100px);
+background:#0f172a;color:#fff;padding:13px 20px;border-radius:12px;font-size:13.5px;font-weight:600;
+box-shadow:0 20px 40px -12px rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;
+transition:opacity .3s,transform .35s cubic-bezier(.22,.8,.28,1);max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:linear-gradient(135deg,#16a34a,#15803d)}
+footer{padding:34px 18px;text-align:center;font-size:12px;color:var(--muted);line-height:2}
+footer .brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:800;color:var(--text);font-size:13px}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:9px;
+font-weight:900;color:#fff;background:linear-gradient(135deg,#f59e0b,#f97316)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="main.html"><span class="mark">GED</span><b>GED Myanmar</b></a>
+    <div class="nav-title">Social Studies Reference Sheet</div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button>
+    <a class="back-btn" href="main.html">← Back</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge-icon">🌍</div>
+  <h1>Social Studies Reference Sheet</h1>
+  <p>Bill of Rights · Amendments · US Timeline · Economics · Geography · Civics Key Facts</p>
+</section>
+
+<div class="search-wrap">
+  <span class="search-ico">🔍</span>
+  <input type="text" id="searchInput" placeholder="ရှာရန်... (ဥပမာ: 1st Amendment, GDP, 1776)" autocomplete="off">
+  <button class="clear-btn" id="clearBtn" type="button" aria-label="Clear">✕</button>
+</div>
+
+<div class="filters" id="filters"></div>
+<div class="wrap" id="wrap"></div>
+
+<footer>
+  <div class="brand"><span class="mark">GED</span><span>GED Myanmar</span></div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var THEME_KEY='ged:theme';
+  var root=document.documentElement;
+  function applyTheme(t){root.setAttribute('data-theme',t);$('themeIcon').textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem(THEME_KEY,t)}catch(e){}}
+  applyTheme(root.getAttribute('data-theme')||'light');
+  $('themeBtn').addEventListener('click',function(){applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+
+  var CATEGORIES=[
+    {
+      id:'billrights',name:'Bill of Rights',icon:'📜',color:'#3b82f6',
+      formulas:[
+        {name:'1st Amendment',formula:'Speech · Religion · Press · Assembly · Petition',note:'စကားပြောခွင့်၊ ဘာသာရေးလွတ်လပ်ခွင့်၊ သတင်းစာ၊ စုဝေးခွင့်၊ အသနားခံခွင့်။',keywords:'first amendment speech religion press'},
+        {name:'2nd Amendment',formula:'Right to bear arms',note:'လက်နက်ကိုင် ခွင့်ပြုချက်။',keywords:'second amendment bear arms'},
+        {name:'3rd Amendment',formula:'No quartering soldiers',note:'စစ်သားများကို အိမ်တွင် မထားရ။',keywords:'third amendment quartering'},
+        {name:'4th Amendment',formula:'No unreasonable searches/seizures',note:'Warrant မပါဘဲ ရှာဖွေခြင်း မပြုရ။',keywords:'fourth amendment search warrant'},
+        {name:'5th Amendment',formula:'Due process · No self-incrimination · No double jeopardy',note:'Due process၊ ကိုယ့်ကိုယ်ကို အပြစ်မဖော်ရ၊ double jeopardy မရ။',keywords:'fifth amendment due process'},
+        {name:'6th Amendment',formula:'Speedy & public trial · Impartial jury · Lawyer',note:'အမြန်၊ လူသိရှင်ကြား ရုံးတင်၊ ဘက်မလိုက်သော jury၊ ရှေ့နေ။',keywords:'sixth amendment speedy trial'},
+        {name:'7th Amendment',formula:'Jury trial in civil cases',note:'Civil case များတွင် jury စစ်ခွင့်။',keywords:'seventh amendment civil jury'},
+        {name:'8th Amendment',formula:'No cruel/unusual punishment · No excessive bail',note:'ရက်စက်သော ပြစ်ဒဏ် မပေးရ။',keywords:'eighth amendment cruel punishment'},
+        {name:'9th Amendment',formula:'Rights not listed are retained by people',note:'ဖော်ပြမထားသော အခွင့်အရေးများလည်း ပြည်သူများတွင် ရှိသည်။',keywords:'ninth amendment retained rights'},
+        {name:'10th Amendment',formula:'Powers reserved to states',note:'Federal မဟုတ်သော အာဏာများ → ပြည်နယ်များ။',keywords:'tenth amendment reserved powers'}
+      ]
+    },
+    {
+      id:'amendments',name:'Key Amendments',icon:'⚖️',color:'#8b5cf6',
+      formulas:[
+        {name:'13th Amendment (1865)',formula:'Abolished slavery',note:'ကျွန်စနစ် ဖျက်သိမ်းခြင်း။',keywords:'13th amendment slavery abolished'},
+        {name:'14th Amendment (1868)',formula:'Citizenship · Equal protection · Due process (states)',note:'Incorporation — Bill of Rights ကို ပြည်နယ်များသို့ ချဲ့။',keywords:'14th amendment citizenship equal protection'},
+        {name:'15th Amendment (1870)',formula:'Voting rights regardless of race',note:'လူမျိုးမရွေး မဲပေးခွင့်။',keywords:'15th amendment vote race'},
+        {name:'18th Amendment (1919)',formula:'Prohibition of alcohol',note:'အရက် တားမြစ်ချက်။',keywords:'18th amendment prohibition'},
+        {name:'19th Amendment (1920)',formula:'Women\'s right to vote',note:'အမျိုးသမီး မဲပေးခွင့်။',keywords:'19th amendment women vote suffrage'},
+        {name:'21st Amendment (1933)',formula:'Repealed 18th (Prohibition ends)',note:'အရက် တားမြစ်ချက် ပြန်ဖျက်။',keywords:'21st amendment repeal prohibition'},
+        {name:'26th Amendment (1971)',formula:'Voting age 21 → 18',note:'မဲပေးအသက် ၁၈ နှစ်။',keywords:'26th amendment voting age 18'}
+      ]
+    },
+    {
+      id:'gov',name:'US Government',icon:'🏛️',color:'#ec4899',
+      formulas:[
+        {name:'3 Branches',formula:'Legislative (make) · Executive (enforce) · Judicial (interpret)',note:'Congress · President · Courts ။',keywords:'three branches legislative executive judicial'},
+        {name:'Checks — Congress on President',formula:'Override veto (2/3) · Impeach · Approve appointments',note:'Congress ၏ ထိန်းချုပ်မှုများ။',keywords:'checks balances override veto impeach'},
+        {name:'Checks — President on Congress',formula:'Veto · Call special session',note:'President ၏ ထိန်းချုပ်မှု။',keywords:'president veto check'},
+        {name:'Judicial Review',formula:'Marbury v. Madison (1803)',note:'Court က laws ကို unconstitutional ကြေညာနိုင်ခွင့်။',keywords:'judicial review marbury madison'},
+        {name:'Federalism',formula:'Federal + State share power',note:'Enumerated (federal) · Reserved (state) · Concurrent (both)။',keywords:'federalism enumerated reserved concurrent'},
+        {name:'Enumerated Powers',formula:'Coin money · Declare war · Treaties · Interstate commerce',note:'Federal သီးသန့် အာဏာ။',keywords:'enumerated powers federal'},
+        {name:'Reserved Powers',formula:'Education · Marriage · Police · Local roads',note:'ပြည်နယ်များ၏ အာဏာ။',keywords:'reserved powers state'},
+        {name:'Concurrent Powers',formula:'Tax · Build roads · Establish courts',note:'Federal + State နှစ်ခုလုံး ရှိသည်။',keywords:'concurrent powers shared'},
+        {name:'Constitution Timeline',formula:'Written 1787 · Ratified 1788 · Bill of Rights 1791',note:'US Constitution သမိုင်း။',keywords:'constitution 1787 ratification'}
+      ]
+    },
+    {
+      id:'timeline',name:'US History Timeline',icon:'📅',color:'#ef4444',
+      formulas:[
+        {name:'1492',formula:'Columbus reaches Americas',note:'European exploration စတင်။',keywords:'1492 columbus americas'},
+        {name:'1607',formula:'Jamestown founded',note:'ပထမဆုံး English colony။',keywords:'1607 jamestown virginia'},
+        {name:'1620',formula:'Plymouth (Mayflower)',note:'Pilgrims ရောက်။',keywords:'1620 plymouth pilgrims mayflower'},
+        {name:'1776',formula:'Declaration of Independence',note:'July 4 ။ Jefferson ။',keywords:'1776 declaration independence'},
+        {name:'1787',formula:'Constitution written',note:'Philadelphia Convention ။',keywords:'1787 constitution philadelphia'},
+        {name:'1791',formula:'Bill of Rights ratified',note:'Amendments 1-10။',keywords:'1791 bill of rights'},
+        {name:'1861-1865',formula:'Civil War',note:'Lincoln ။ Slavery ။',keywords:'1861 1865 civil war'},
+        {name:'1863',formula:'Emancipation Proclamation',note:'Confederate slaves freed။',keywords:'1863 emancipation lincoln'},
+        {name:'1929',formula:'Stock Market Crash',note:'Great Depression စတင်။',keywords:'1929 crash depression'},
+        {name:'1933-1938',formula:'New Deal (FDR)',note:'Social Security, CCC, FDIC။',keywords:'new deal fdr 1933'},
+        {name:'1941-1945',formula:'US in WWII',note:'Pearl Harbor → Victory။',keywords:'wwii 1941 1945 pearl harbor'},
+        {name:'1954',formula:'Brown v. Board',note:'School segregation unconstitutional။',keywords:'1954 brown board segregation'},
+        {name:'1963',formula:'MLK "I Have a Dream"',note:'March on Washington။',keywords:'1963 mlk dream march'},
+        {name:'1964',formula:'Civil Rights Act',note:'Discrimination outlawed။',keywords:'1964 civil rights act'},
+        {name:'1965',formula:'Voting Rights Act',note:'Poll taxes/literacy tests banned။',keywords:'1965 voting rights act'},
+        {name:'1991',formula:'USSR dissolves',note:'Cold War ပြီးဆုံး။',keywords:'1991 ussr cold war end'}
+      ]
+    },
+    {
+      id:'economics',name:'Economics',icon:'💰',color:'#10b981',
+      formulas:[
+        {name:'Scarcity',formula:'Unlimited wants + Limited resources',note:'စီးပွားရေး အခြေခံပြဿနာ။',keywords:'scarcity economics limited'},
+        {name:'Opportunity Cost',formula:'Value of next best alternative',note:'ရွေးချယ်မှု၏ ကုန်ကျစရိတ်။',keywords:'opportunity cost trade-off'},
+        {name:'Law of Demand',formula:'P ↑ → Qd ↓',note:'ဈေးတက် → ဝယ်လိုအား ကျ။',keywords:'demand law price quantity'},
+        {name:'Law of Supply',formula:'P ↑ → Qs ↑',note:'ဈေးတက် → ရောင်းလိုအား တက်။',keywords:'supply law price quantity'},
+        {name:'Equilibrium',formula:'Qs = Qd',note:'ရောင်းလိုအား = ဝယ်လိုအား။',keywords:'equilibrium market price'},
+        {name:'Shortage',formula:'Qd > Qs → Prices ↑',note:'ဝယ်လိုအား > ရောင်းလိုအား။',keywords:'shortage demand supply'},
+        {name:'Surplus',formula:'Qs > Qd → Prices ↓',note:'ရောင်းလိုအား > ဝယ်လိုအား။',keywords:'surplus supply demand'},
+        {name:'GDP',formula:'Gross Domestic Product = total value of goods/services',note:'တိုင်းပြည်၏ စီးပွားရေးထွက်ကုန် တန်ဖိုး။',keywords:'GDP gross domestic product'},
+        {name:'CPI',formula:'Consumer Price Index = inflation measure',note:'ငွေကြေးဖောင်းပွမှု တိုင်းတာခြင်း။',keywords:'CPI inflation consumer price'},
+        {name:'Inflation',formula:'Prices ↑ → Purchasing power ↓',note:'ဈေးနှုန်းများ တက်၊ ဝယ်နိုင်စွမ်း ကျ။',keywords:'inflation purchasing power'},
+        {name:'Recession',formula:'2+ quarters negative GDP growth',note:'စီးပွားရေး ကျဆင်းမှု။',keywords:'recession negative growth'},
+        {name:'Unemployment Rate',formula:'(Unemployed ÷ Labor force) × 100',note:'အလုပ်လက်မဲ့ ရာခိုင်နှုန်း။',keywords:'unemployment rate labor'},
+        {name:'Monetary Policy',formula:'Fed controls money supply + interest rates',note:'Federal Reserve ၏ ဆောင်ရွက်ချက်။',keywords:'monetary policy federal reserve'},
+        {name:'Fiscal Policy',formula:'Government spending + taxation',note:'Congress + President ၏ ဘဏ္ဍာရေး မူဝါဒ။',keywords:'fiscal policy spending tax'},
+        {name:'Comparative Advantage',formula:'Lower opportunity cost → specialize',note:'နိုင်ငံများ ကုန်ထုတ်လုပ်မှု ခွဲဝေမှု။',keywords:'comparative advantage trade'}
+      ]
+    },
+    {
+      id:'geography',name:'Geography',icon:'🗺️',color:'#06b6d4',
+      formulas:[
+        {name:'5 Themes of Geography',formula:'Location · Place · Human-Environment · Movement · Region',note:'ပထဝီဝင် အခြေခံသဘောတရား ၅ ခု။',keywords:'five themes geography location place'},
+        {name:'7 Continents',formula:'Asia (largest) · Africa · N America · S America · Antarctica · Europe · Australia (smallest)',note:'တိုက်ကြီး ၇ ခု။',keywords:'continents asia africa america'},
+        {name:'5 Oceans',formula:'Pacific (largest) · Atlantic · Indian · Southern · Arctic (smallest)',note:'သမုဒ္ဒရာ ၅ ခု။',keywords:'oceans pacific atlantic'},
+        {name:'Latitude',formula:'Distance N/S of equator (0°)',note:'အီကွေတာမှ မြောက်/တောင်။',keywords:'latitude equator north south'},
+        {name:'Longitude',formula:'Distance E/W of prime meridian (0°)',note:'Greenwich မှ အရှေ့/အနောက်။',keywords:'longitude prime meridian greenwich'},
+        {name:'Climate Zones (5)',formula:'Tropical · Dry · Temperate · Continental · Polar',note:'လတ္တီကျု့အလိုက် climate။',keywords:'climate zone tropical dry temperate'},
+        {name:'Map Elements',formula:'Title · Legend/Key · Scale · Compass Rose',note:'မြေပုံ အစိတ်အပိုင်း ၄ ခု။',keywords:'map title legend scale compass'},
+        {name:'Population Density',formula:'People ÷ Area',note:'တစ်ယူနစ်ဧရိယာတွင် လူဦးရေ။',keywords:'population density people area'}
+      ]
+    },
+    {
+      id:'worldhist',name:'World History',icon:'🌏',color:'#a855f7',
+      formulas:[
+        {name:'WWI (1914-1918)',formula:'Trigger: Assassination of Archduke Franz Ferdinand',note:'Ended by Treaty of Versailles (1919)။',keywords:'wwi 1914 versailles'},
+        {name:'WWII (1939-1945)',formula:'Start: German invasion of Poland',note:'Ended: 1945 (Germany/Japan surrender)။',keywords:'wwii 1939 poland invasion'},
+        {name:'Holocaust',formula:'6 million Jews killed by Nazi Germany',note:'Systematic genocide ။',keywords:'holocaust genocide jews'},
+        {name:'Cold War (1947-1991)',formula:'US vs USSR · Containment policy',note:'No direct fighting ။ Ended 1991။',keywords:'cold war us ussr containment'},
+        {name:'Cuban Missile Crisis (1962)',formula:'Closest to nuclear war',note:'US vs USSR over missiles in Cuba။',keywords:'cuban missile crisis 1962'},
+        {name:'Berlin Wall Falls (1989)',formula:'German reunification',note:'Cold War ၏ အဆုံးသတ် အစ။',keywords:'berlin wall 1989 reunification'},
+        {name:'UN Founded (1945)',formula:'United Nations · 193 member states',note:'ကမ္ဘာ့ငြိမ်းချမ်းရေး အဖွဲ့။',keywords:'un united nations 1945'},
+        {name:'UDHR (1948)',formula:'Universal Declaration of Human Rights',note:'လူ့အခွင့်အရေး ကြေညာစာတမ်း။',keywords:'udhr 1948 human rights'}
+      ]
+    }
+  ];
+
+  var currentFilter='all',searchQuery='';
+  var filtersEl=$('filters'),wrapEl=$('wrap'),searchInput=$('searchInput'),clearBtn=$('clearBtn');
+
+  function renderFilters(){
+    filtersEl.innerHTML='';
+    var allBtn=document.createElement('button');
+    allBtn.className='filter active';allBtn.textContent='📋 အားလုံး';allBtn.dataset.id='all';
+    allBtn.addEventListener('click',function(){setFilter('all')});
+    filtersEl.appendChild(allBtn);
+    CATEGORIES.forEach(function(c){
+      var b=document.createElement('button');
+      b.className='filter';b.textContent=c.icon+' '+c.name;b.dataset.id=c.id;
+      b.addEventListener('click',function(){setFilter(c.id)});
+      filtersEl.appendChild(b);
+    });
+  }
+  function setFilter(id){
+    currentFilter=id;
+    filtersEl.querySelectorAll('.filter').forEach(function(f){f.classList.toggle('active',f.dataset.id===id)});
+    render();
+  }
+  function matches(f,q){
+    if(!q)return true;
+    var h=(f.name+' '+f.formula+' '+(f.note||'')+' '+(f.keywords||'')).toLowerCase();
+    return h.indexOf(q)!==-1;
+  }
+  function stripHtml(s){var d=document.createElement('div');d.innerHTML=s;return (d.textContent||'').replace(/\s+/g,' ').trim();}
+  function escapeAttr(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/\n/g,'&#10;');}
+
+  function render(){
+    var q=searchQuery.toLowerCase().trim();
+    var html='',total=0;
+    CATEGORIES.forEach(function(cat){
+      if(currentFilter!=='all' && currentFilter!==cat.id) return;
+      var filtered=cat.formulas.filter(function(f){return matches(f,q)});
+      if(filtered.length===0) return;
+      total+=filtered.length;
+      html+='<div class="cat" style="--cat-color:'+cat.color+'">'+
+        '<div class="cat-head"><span class="cat-ico">'+cat.icon+'</span><h2>'+cat.name+'</h2><span class="count">'+filtered.length+'</span></div>'+
+        '<div class="formulas">'+
+        filtered.map(function(f){
+          return '<div class="f-card" style="--cat-color:'+cat.color+'">'+
+            '<button class="copy-btn" data-formula="'+escapeAttr(f.name+'\\n'+stripHtml(f.formula)+(f.note?'\\n'+stripHtml(f.note):''))+'" title="Copy">📋</button>'+
+            '<h3 class="name">'+f.name+'</h3>'+
+            '<div class="formula">'+f.formula+'</div>'+
+            (f.note?'<p class="note">'+f.note+'</p>':'')+
+          '</div>';
+        }).join('')+
+        '</div></div>';
+    });
+    if(total===0){html='<div class="empty"><div class="ico">🔍</div><h3>ရှာဖွေမှု ရလဒ် မတွေ့ပါ</h3><p>အခြားစကားလုံးဖြင့် ထပ်မံ ရှာကြည့်ပါ</p></div>';}
+    wrapEl.innerHTML=html;
+    wrapEl.querySelectorAll('.copy-btn').forEach(function(b){b.addEventListener('click',handleCopy)});
+  }
+
+  function handleCopy(e){
+    var btn=e.currentTarget,text=btn.getAttribute('data-formula'),done=false;
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text);done=true;}}catch(e){}
+    if(!done){try{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done=true;}catch(e){}}
+    if(done){btn.classList.add('done');btn.textContent='✓';toast('📋 Reference ကူးယူပြီးပါပြီ');
+      setTimeout(function(){btn.classList.remove('done');btn.textContent='📋';},1600);}
+  }
+
+  var searchTimer;
+  searchInput.addEventListener('input',function(){
+    clearTimeout(searchTimer);
+    var v=searchInput.value;
+    clearBtn.classList.toggle('show',v.length>0);
+    searchTimer=setTimeout(function(){searchQuery=v;render();},180);
+  });
+  clearBtn.addEventListener('click',function(){
+    searchInput.value='';searchQuery='';clearBtn.classList.remove('show');searchInput.focus();render();
+  });
+
+  var toastTimer;
+  function toast(msg){var t=$('toast');t.textContent=msg;t.className='toast show ok';
+    clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show');},2000);}
+
+  renderFilters();render();
+})();
+</script>
+</body>
+</html>

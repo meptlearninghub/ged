@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED RLA — New Sets 4–6</title>
+
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#3b82f6;--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--violet:#8b5cf6;
+  --radius:18px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --nav-bg:rgba(248,250,252,.92);
+  --passage-bg:rgba(59,130,246,.04);
+  --passage-border:rgba(59,130,246,.2);
+  --highlight-bg:rgba(245,158,11,.25);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --nav-bg:rgba(11,18,32,.92);
+  --passage-bg:rgba(59,130,246,.1);
+  --passage-border:rgba(59,130,246,.3);
+  --highlight-bg:rgba(245,158,11,.35);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 420px at 8% -8%,rgba(59,130,246,.10),transparent 65%),
+             radial-gradient(700px 420px at 100% 4%,rgba(139,92,246,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+
+.header{position:sticky;top:0;z-index:30;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 14px 10px}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.back-btn{display:inline-flex;align-items:center;gap:5px;flex:none;padding:8px 12px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+  font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.h-title{flex:1;min-width:0}
+.h-title h1{margin:0;font-size:clamp(12px,3.4vw,15px);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-title p{margin:1px 0 0;font-size:10.5px;color:var(--muted);font-weight:600}
+.part-badge{flex:none;display:inline-flex;align-items:center;gap:4px;padding:6px 9px;border-radius:9px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;
+  background:rgba(59,130,246,.12);color:#1d4ed8;border:1px solid rgba(59,130,246,.25);white-space:nowrap}
+.part-badge.p2{background:rgba(139,92,246,.12);color:#6d28d9;border-color:rgba(139,92,246,.25)}
+.part-badge.new{background:rgba(236,72,153,.12);color:#be185d;border-color:rgba(236,72,153,.25)}
+html[data-theme="dark"] .part-badge{background:rgba(59,130,246,.2);color:#93c5fd}
+html[data-theme="dark"] .part-badge.p2{background:rgba(139,92,246,.2);color:#c4b5fd}
+html[data-theme="dark"] .part-badge.new{background:rgba(236,72,153,.25);color:#f9a8d4}
+.timer{flex:none;display:inline-flex;align-items:center;gap:4px;padding:8px 10px;border-radius:11px;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;font-size:12px;font-weight:800;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -8px rgba(59,130,246,.8)}
+.timer.warn{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.timer.break{background:linear-gradient(135deg,#f59e0b,#f97316)}
+@media(max-width:520px){.h-title h1{font-size:11.5px}.part-badge{display:none}}
+
+.progress-wrap{max-width:900px;margin:10px auto 0;padding:0 14px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.progress-top b{font-size:12px;font-weight:800;color:var(--primary)}
+.progress-top span{font-size:11px;color:var(--muted);font-weight:600}
+.progress-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .progress-bar{background:rgba(255,255,255,.09)}
+.progress-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#3b82f6,#6366f1);transition:width .4s cubic-bezier(.22,.8,.28,1)}
+
+.dot-map{max-width:900px;margin:10px auto 0;padding:0 14px;display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);
+  cursor:pointer;border:none;font-family:inherit;position:relative;
+  transition:transform .15s,background .2s,color .2s;}
+html[data-theme="dark"] .dot{background:rgba(255,255,255,.06)}
+.dot:active{transform:scale(.9)}
+.dot.answered{background:rgba(59,130,246,.2);color:#1d4ed8}
+html[data-theme="dark"] .dot.answered{background:rgba(59,130,246,.3);color:#93c5fd}
+.dot.current{background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;
+  box-shadow:0 4px 12px -4px rgba(59,130,246,.9)}
+.dot.p2.answered{background:rgba(139,92,246,.2);color:#6d28d9}
+.dot.p2.current{background:linear-gradient(135deg,#8b5cf6,#6366f1)}
+.dot.essay::after{content:"✎";position:absolute;top:-2px;right:-2px;font-size:8px}
+
+.passage-indicator{max-width:900px;margin:14px auto 0;padding:0 14px;
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--muted);flex-wrap:wrap;}
+.passage-indicator .badge{padding:4px 10px;border-radius:999px;
+  background:var(--passage-bg);color:var(--primary);border:1px solid var(--passage-border);}
+.passage-indicator .bar{flex:1;height:1px;background:var(--border);min-width:20px;}
+
+.passage-box{max-width:900px;margin:10px auto 0;padding:0 14px;}
+.passage-pair{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:780px){.passage-pair{grid-template-columns:1fr 1fr}}
+.passage-inner{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:18px;font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+  font-size:15px;line-height:1.9;color:var(--text);max-height:55svh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;}
+.passage-inner.collapsed{max-height:200px;overflow:hidden;position:relative}
+.passage-inner.collapsed::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent, var(--passage-bg));pointer-events:none;}
+.passage-title{font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:11.5px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--primary);margin:0 0 8px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.passage-title .src{font-size:10px;padding:2px 8px;border-radius:999px;
+  background:rgba(245,158,11,.15);color:#b45309;letter-spacing:.03em;}
+html[data-theme="dark"] .passage-title .src{background:rgba(245,158,11,.25);color:#fbbf24}
+.passage-text{white-space:pre-wrap;margin:0;position:relative}
+.passage-text p{margin:0 0 12px;position:relative}
+.passage-text p:last-child{margin-bottom:0}
+.passage-toggle{display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:8px auto 0;padding:7px 14px;border-radius:10px;
+  border:1px solid var(--passage-border);background:var(--card);
+  color:var(--primary);font-family:inherit;font-size:11.5px;font-weight:800;
+  cursor:pointer;transition:all .18s;}
+.passage-toggle:hover{background:var(--passage-bg)}
+.passage-toggle:active{transform:scale(.97)}
+
+.q-wrap{max-width:900px;margin:0 auto;padding:14px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-num{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:rgba(59,130,246,.12);color:#1d4ed8;font-size:11px;font-weight:800;margin-bottom:6px;}
+html[data-theme="dark"] .q-num{background:rgba(59,130,246,.2);color:#93c5fd}
+.q-type{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;margin-left:6px;
+  background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3);}
+html[data-theme="dark"] .q-type{background:rgba(245,158,11,.25);color:#fbbf24}
+.q-type.tech{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+html[data-theme="dark"] .q-type.tech{background:rgba(139,92,246,.25);color:#c4b5fd}
+.q-type.rhet{background:rgba(236,72,153,.15);color:#be185d;border-color:rgba(236,72,153,.3)}
+html[data-theme="dark"] .q-type.rhet{background:rgba(236,72,153,.25);color:#f9a8d4}
+.q-text{font-size:14.5px;line-height:1.75;margin:8px 0 14px;font-weight:500}
+.q-text b{font-weight:800}
+.q-hint{font-size:11.5px;color:var(--muted);font-weight:700;margin:-6px 0 12px;
+  padding:8px 12px;background:rgba(139,92,246,.06);border-radius:8px;border-left:3px solid var(--violet)}
+html[data-theme="dark"] .q-hint{background:rgba(139,92,246,.12)}
+
+.opts{display:grid;grid-template-columns:1fr;gap:8px}
+.opt{text-align:left;padding:12px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:all .18s;line-height:1.55;display:flex;align-items:flex-start;gap:10px;}
+.opt:active{transform:scale(.985)}
+.opt:not(:disabled):hover{border-color:var(--primary);background:rgba(59,130,246,.04)}
+.opt .ltr{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);transition:all .18s;}
+html[data-theme="dark"] .opt .ltr{background:rgba(255,255,255,.08)}
+.opt.selected{border-color:var(--primary);background:rgba(59,130,246,.06)}
+.opt.selected .ltr{background:var(--primary);color:#fff}
+.opt.correct{border-color:var(--green);background:#dcfce7;color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.correct .ltr{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#fee2e2;color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt.wrong .ltr{background:var(--red);color:#fff}
+.opt.multi .ltr{border-radius:5px}
+.opt .body{flex:1;padding-top:1px}
+.opt:disabled{cursor:default}
+.opt.multi-opt{padding-left:16px}
+
+.order-pool{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.order-item{padding:11px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);font-family:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px;
+  text-align:left;max-width:100%;color:var(--text)}
+.order-item:hover{border-color:var(--violet);background:rgba(139,92,246,.05)}
+.order-item.used{opacity:.35;pointer-events:none}
+.order-slots{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;
+  background:rgba(139,92,246,.04);border:1.5px dashed var(--passage-border);min-height:52px}
+html[data-theme="dark"] .order-slots{background:rgba(139,92,246,.08)}
+.order-slot{padding:10px 12px;border-radius:9px;background:var(--violet);color:#fff;
+  font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px;
+  animation:popIn .25s cubic-bezier(.22,.8,.28,1)}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.order-slot .num{background:rgba(255,255,255,.25);border-radius:50%;
+  width:20px;height:20px;display:grid;place-items:center;font-size:10px;font-weight:800}
+.order-slot .rm{margin-left:auto;opacity:.7;font-size:13px;cursor:pointer;padding:0 4px}
+.order-empty{color:var(--muted);font-size:12.5px;font-style:italic;padding:6px;text-align:center}
+
+.dropdown-line{font-size:14.5px;line-height:2.1;font-weight:500;padding:14px 16px;border-radius:12px;
+  background:rgba(139,92,246,.05);border:1px solid var(--border)}
+html[data-theme="dark"] .dropdown-line{background:rgba(139,92,246,.1)}
+.dd-select{padding:7px 9px;border-radius:8px;border:1.5px solid var(--violet);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:700;
+  cursor:pointer;margin:0 3px}
+.dd-select.ok{background:#dcfce7;border-color:var(--green);color:#14532d}
+.dd-select.bad{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+
+.table-wrap{overflow-x:auto;margin-bottom:12px;border-radius:12px;border:1px solid var(--border)}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;min-width:320px}
+.data-table th,.data-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{background:rgba(139,92,246,.06);font-weight:800;color:#6d28d9;font-size:11.5px;
+  text-transform:uppercase;letter-spacing:.04em}
+html[data-theme="dark"] .data-table th{background:rgba(139,92,246,.12);color:#c4b5fd}
+.data-table td{font-weight:600}
+.data-table select{width:100%;padding:6px 8px;border-radius:7px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:12.5px;font-weight:700}
+.data-table select:focus{outline:none;border-color:var(--primary)}
+.data-table select.ok{background:#dcfce7;border-color:var(--green)}
+.data-table select.bad{background:#fee2e2;border-color:var(--red)}
+
+.q-nav{max-width:900px;margin:14px auto 0;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;
+  border-radius:11px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s,background .2s,color .2s;min-height:42px;text-decoration:none;}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(59,130,246,.7)}
+.btn.ghost{background:transparent;box-shadow:none}
+.btn.grow{flex:1;min-width:110px}
+.btn.submit{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(34,197,94,.7)}
+
+.start-hero,.break-hero,.result-hero{max-width:680px;margin:0 auto;
+  padding:calc(28px + var(--safe-top)) 20px 20px;text-align:center}
+.start-hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(236,72,153,.8);}
+.start-hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,30px);font-weight:800;letter-spacing:-.03em}
+.start-hero .subtitle{margin:0 0 4px;font-size:clamp(13px,3.4vw,15px);color:var(--muted)}
+.start-info{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin:24px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.start-info-item{text-align:left}
+.start-info-item b{display:block;font-size:20px;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.start-info-item span{font-size:12px;color:var(--muted);font-weight:600}
+.start-tips{text-align:left;font-size:12.5px;color:var(--muted);line-height:1.85;
+  background:rgba(236,72,153,.08);border-radius:12px;padding:14px 16px;border-left:3px solid #ec4899;}
+.start-tips b{color:var(--text)}
+.start-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;
+  padding:16px 22px;border-radius:16px;font-size:16px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#ec4899,#8b5cf6);border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 12px 26px -10px rgba(236,72,153,.8);transition:transform .2s,filter .2s;}
+.start-btn:active{transform:scale(.98)}
+
+.break-hero .icon{width:100px;height:100px;border-radius:26px;margin:0 auto 22px;
+  display:grid;place-items:center;font-size:48px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;
+  box-shadow:0 22px 46px -18px rgba(245,158,11,.8);}
+.break-hero h1{margin:0 0 10px;font-size:clamp(24px,6vw,32px);font-weight:800;letter-spacing:-.03em}
+.break-hero p{margin:0 0 22px;font-size:14px;color:var(--muted);line-height:1.75}
+.break-count{font-size:72px;font-weight:800;color:var(--amber);letter-spacing:-.04em;
+  line-height:1;font-variant-numeric:tabular-nums;margin:6px 0 22px}
+.break-info{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;
+  box-shadow:var(--shadow);font-size:12.5px;color:var(--muted);line-height:1.85;
+  text-align:left;margin-bottom:20px;}
+.break-info b{color:var(--text)}
+
+.essay-wrap{max-width:900px;margin:0 auto;padding:16px}
+.essay-prompt{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:18px;margin-bottom:14px;}
+.essay-prompt h3{margin:0 0 10px;font-size:14px;font-weight:800;color:var(--primary);
+  letter-spacing:.03em;text-transform:uppercase;}
+.essay-prompt p{margin:0 0 10px;font-size:13.5px;line-height:1.75}
+.essay-sources{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:640px){.essay-sources{grid-template-columns:1fr 1fr}}
+.essay-source{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;
+  font-family:'Source Serif 4',Georgia,serif;font-size:13px;line-height:1.75;max-height:280px;overflow-y:auto}
+.essay-source b{font-family:'Inter',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.05em;color:var(--primary);text-transform:uppercase;display:block;margin-bottom:6px}
+.essay-input-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:16px;box-shadow:var(--shadow)}
+.essay-input-wrap label{display:block;font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.essay-input{width:100%;min-height:280px;padding:14px;border-radius:10px;
+  border:1.5px solid var(--border);background:var(--bg);color:var(--text);
+  font-family:inherit;font-size:14px;line-height:1.7;resize:vertical;}
+.essay-input:focus{outline:none;border-color:var(--primary);background:var(--card)}
+.essay-meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;
+  font-size:11.5px;color:var(--muted);font-weight:600;}
+.essay-meta b{color:var(--primary);font-weight:800}
+
+.score-ring{width:170px;height:170px;margin:0 auto 22px;position:relative;display:grid;place-items:center}
+.score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.score-ring .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:12}
+html[data-theme="dark"] .score-ring .bgc{stroke:rgba(255,255,255,.08)}
+.score-ring .fgc{fill:none;stroke:url(#grad);stroke-width:12;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.8,.28,1)}
+.score-ring .pct{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-ring .lbl{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.ged-score{background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;border-radius:16px;
+  padding:18px;margin-bottom:18px;text-align:center;box-shadow:0 12px 30px -12px rgba(236,72,153,.8)}
+.ged-score b{display:block;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ged-score span{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.05em;
+  text-transform:uppercase;margin-top:4px;display:block}
+.ged-score small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:8px}
+.result-msg{font-size:17px;font-weight:700;margin:0 0 8px}
+.result-sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.75}
+.result-stats{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;text-align:center;}
+.result-stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.result-stats span{font-size:11px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.rs-correct b{color:var(--green)}
+.rs-wrong b{color:var(--red)}
+.rs-time b{color:var(--primary)}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.result-actions .btn{flex:1;min-width:130px}
+.review-wrap{max-width:900px;margin:22px auto 0;padding:0 16px}
+.review-title{font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin:8px 0 12px;text-align:center}
+.sol{margin-top:14px;padding:14px;border-radius:14px;
+  background:rgba(59,130,246,.06);border-left:3px solid var(--primary);
+  font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .sol{background:rgba(59,130,246,.12)}
+.sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--primary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.sol ol{margin:6px 0 0;padding-left:20px}
+.sol ol li{margin-bottom:4px;line-height:1.7}
+.sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="startScreen" class="screen active">
+  <div class="start-hero">
+    <div class="big-icon">🆕</div>
+    <h1>GED RLA — New Sets</h1>
+    <p class="subtitle">Sets 4 · 5 · 6 &nbsp;·&nbsp; Brand New Questions</p>
+
+    <div class="start-info">
+      <div class="start-info-item"><b>46</b><span>Questions</span></div>
+      <div class="start-info-item"><b>1</b><span>Extended Response</span></div>
+      <div class="start-info-item"><b>150</b><span>Minutes</span></div>
+      <div class="start-info-item"><b>3</b><span>New Sets</span></div>
+    </div>
+
+    <div class="start-tips">
+      <b>🆕 New Sets Overview (4 · 5 · 6)</b><br>
+      • <b>Set 4</b> — Women's Suffrage · Microbiome · Homework Debate · Origins of English · Autumn Poems<br>
+      • <b>Set 5</b> — Immigration Debate · Science of Sleep · Voting Age · Internet Evolution · Dickinson<br>
+      • <b>Set 6</b> — Declaration + Douglass · Ocean Acidification · School Uniforms · Printing Press · War Poems<br>
+      • <b>Random Set</b> — Sets 4/5/6 မှ ကျပန်းရွေး (URL <code>?set=4|5|6</code> ဖြင့်လည်း ရနိုင်)
+    </div>
+
+    <button class="start-btn" id="startBtn">▶ Exam စတင်ရန်</button>
+    <a class="back-btn" href="pretest.html" style="margin-top:14px;display:inline-flex">← Pretest Hub</a>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="examScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="pretest.html" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>GED RLA Exam</h1>
+        <p id="qCounter">Question 1 of 46</p>
+      </div>
+      <span class="part-badge" id="partBadge">Part 1</span>
+      <div class="timer" id="timer">40:00</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-top"><b id="pLabel">Progress</b><span id="pCount">0 / 47</span></div>
+    <div class="progress-bar"><i id="pBar"></i></div>
+  </div>
+
+  <div class="dot-map" id="dotMap"></div>
+
+  <div class="passage-indicator" id="passageIndicator">
+    <span class="badge" id="passageBadge">Passage 1</span>
+    <span class="bar"></span>
+    <span id="passageInfo">Informational Text</span>
+  </div>
+
+  <div class="passage-box" id="passageBox"></div>
+
+  <div class="q-wrap">
+    <div class="q-card" id="qCard"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="prevBtn">← Previous</button>
+      <button class="btn primary grow" id="nextBtn">Next →</button>
+    </div>
+    <div class="q-nav" style="margin-top:10px">
+      <button class="btn submit grow" id="submitBtn">✓ Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- BREAK -->
+<div id="breakScreen" class="screen">
+  <div class="break-hero">
+    <div class="icon">☕</div>
+    <h1>3-Minute Break</h1>
+    <p>Part 1 ပြီးဆုံးပါပြီ။ Part 2 — Language + Essay။</p>
+    <div class="break-count" id="breakCount">3:00</div>
+    <div class="break-info">
+      <b>⏸ လုပ်ဆောင်ရမည့်အရာများ</b><br>
+      • မျက်စိအနားပေးပါ · ရေသောက်ပါ<br>
+      • Part 2 — Rhetorical Analysis + Grammar · 65 min<br>
+      • Essay — Paired sources analyze · 45 min
+    </div>
+    <button class="btn primary grow" id="skipBreakBtn" style="width:100%">▶ Part 2 ချက်ချင်းစတင်ရန်</button>
+  </div>
+</div>
+
+<!-- ESSAY -->
+<div id="essayScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="#" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>Extended Response</h1>
+        <p>Essay · 45 minutes</p>
+      </div>
+      <span class="part-badge p2">Essay</span>
+      <div class="timer" id="essayTimer">45:00</div>
+    </div>
+  </div>
+
+  <div class="essay-wrap">
+    <div class="essay-prompt">
+      <h3 id="essayPromptTitle">📝 Writing Prompt</h3>
+      <p id="essayPromptText"></p>
+      <ol id="essayPromptList" style="margin:8px 0 12px 20px;padding:0;font-size:13.5px;line-height:1.8"></ol>
+      <p style="font-size:12.5px;color:var(--muted);font-style:italic">
+        Your response should be approximately 400-600 words. Type your essay in the box below.
+      </p>
+      <div class="essay-sources" id="essaySources"></div>
+    </div>
+
+    <div class="essay-input-wrap">
+      <label for="essayInput">Your Extended Response</label>
+      <textarea class="essay-input" id="essayInput" placeholder="Write your essay here..."></textarea>
+      <div class="essay-meta">
+        <span><b id="essayWords">0</b> words</span>
+        <span>Target: 400-600 words</span>
+      </div>
+    </div>
+
+    <div class="q-nav" style="max-width:100%;padding:0;margin-top:14px">
+      <button class="btn submit grow" id="essaySubmitBtn">✓ Finish & See Results</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160">
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#8b5cf6"/>
+        </linearGradient></defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="scoreRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div style="text-align:center">
+        <div class="pct" id="scorePct">0%</div>
+        <div class="lbl">Raw Score</div>
+      </div>
+    </div>
+    <div class="ged-score">
+      <b id="gedScore">0</b>
+      <span>Estimated GED Score</span>
+      <small id="gedMsg">Passing = 145 · College Ready = 165 · +Credit = 175</small>
+    </div>
+    <p class="result-msg" id="resultMsg"></p>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="result-stats">
+      <div class="rs-correct"><b id="rCorrect">0</b><span>Correct</span></div>
+      <div class="rs-wrong"><b id="rWrong">0</b><span>Wrong</span></div>
+      <div class="rs-time"><b id="rTime">00:00</b><span>Time</span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="reviewBtn">📖 Review</button>
+      <button class="btn primary" id="retryBtn">🔄 New Set</button>
+      <a class="btn" href="pretest.html" style="text-decoration:none">← Hub</a>
+    </div>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var $=function(id){return document.getElementById(id)};
+  var showOnly=function(s){
+    document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+    s.classList.add('active');
+    window.scrollTo(0,0);
+  };
+
+  /* ============================================================
+     SET D (Set 4) — WOMEN'S SUFFRAGE · MICROBIOME · HOMEWORK ·
+     ORIGINS OF ENGLISH · AUTUMN POEMS
+  ============================================================ */
+  var PASSAGES_D = [
+    {
+      id: 'd1', title: 'Women\'s Suffrage — Two Voices', type: 'Paired Historical Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — Declaration of Sentiments, Seneca Falls (1848)',
+          src: 'Historical Document',
+          text: 'When, in the course of human events, it becomes necessary for one portion of the family of man to assume among the people of the earth a position different from that which they have hitherto occupied, a decent respect to the opinions of mankind requires that they should declare the causes that impel them to such a course.\n\nWe hold these truths to be self-evident: that all men and women are created equal; that they are endowed by their Creator with certain inalienable rights; that among these are life, liberty, and the pursuit of happiness.\n\nThe history of mankind is a history of repeated injuries and usurpations on the part of man toward woman, having in direct object the establishment of an absolute tyranny over her. He has never permitted her to exercise her inalienable right to the elective franchise. He has compelled her to submit to laws, in the formation of which she had no voice.'
+        },
+        {
+          title: 'Source B — Susan B. Anthony, "Is It a Crime...?" (1873)',
+          src: 'Historical Speech',
+          text: 'Friends and fellow citizens: I stand before you tonight under indictment for the alleged crime of having voted at the last presidential election, without having a lawful right to vote. It shall be my work this evening to prove to you that in thus voting, I not only committed no crime, but, instead, simply exercised my citizen\'s rights, guaranteed to me and all United States citizens by the National Constitution, beyond the power of any State to deny.\n\nThe preamble of the Federal Constitution says: "We, the people of the United States... do ordain and establish this Constitution." It was we, the people; not we, the white male citizens; nor yet we, the male citizens; but we, the whole people, who formed the Union. And we formed it, not to give the blessings of liberty, but to secure them; not to the half of ourselves and the half of our posterity, but to the whole people — women as well as men.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'Both texts draw upon the language of which foundational American document?',
+         o:['The Bill of Rights','The Declaration of Independence','The Federalist Papers','The Emancipation Proclamation'],
+         c:1,
+         why:'Seneca Falls paraphrases "We hold these truths to be self-evident" from the Declaration of Independence (1776).',
+         steps:['Seneca Falls: "We hold these truths..."','Declaration of Independence: same phrase','→ Declaration of Independence']},
+        {type:'mcq',q:'How does Anthony justify her act of voting?',
+         o:['She argues that state laws override the Constitution','She claims she was unaware of the law','She argues the Constitution grants all citizens the right to vote','She says the election was invalid'],
+         c:2,
+         why:'Anthony argues the Constitution guarantees rights to "we, the whole people" — including women.',
+         steps:['Anthony: "simply exercised my citizen\'s rights"','Preamble: "We, the people"','→ Constitutional rights']},
+        {type:'mcq',q:'The phrase "family of man" in Source A most nearly means:',
+         o:['A biblical genealogy','The entire human community','A single household','Political leaders'],
+         c:1,
+         why:'"Family of man" = all of humanity, in the context of universal rights.',
+         steps:['Context: universal rights','"Family of man" = all humans','→ Human community']},
+        {type:'mcq',q:'Which rhetorical device does the Declaration of Sentiments use in "He has never permitted her..."?',
+         o:['Hyperbole','Anaphora (repetition of "He has")','Personification','Understatement'],
+         c:1,
+         why:'Repeated "He has..." = anaphora, listing grievances.',
+         steps:['Repeated "He has"','Anaphora device','→ B']},
+        {type:'mcq',q:'What does Anthony\'s phrase "alleged crime" suggest about her view of the accusation?',
+         o:['She accepts it as true','She believes the accusation is unjust or unfounded','She is unsure','She committed a real crime'],
+         c:1,
+         why:'"Alleged" signals she rejects the accusation as unjust.',
+         steps:['"Alleged" = claimed but not proven','Anthony argues innocence','→ Unjust accusation']},
+        {type:'multi',q:'Select ALL arguments that appear in BOTH texts.',
+         o:['Women are entitled to equal rights under the nation\'s founding principles','Women have been unfairly denied the right to vote','Women should serve in the military','Women are subject to laws they did not help create'],
+         c:[0,1,3],
+         why:'Both texts emphasize founding principles, denial of suffrage, and laws without voice. Military service is not mentioned.',
+         steps:['Shared: founding principles','Shared: denial of vote','Shared: laws without voice','→ A, B, D']},
+        {type:'mcq',q:'How does Anthony use the Constitution\'s preamble?',
+         o:['To argue the Union was formed by all citizens, including women','To criticize the Founding Fathers','To argue that states should decide voting laws','To introduce a new amendment'],
+         c:0,
+         why:'"We, the whole people... women as well as men" — Anthony reads the preamble inclusively.',
+         steps:['Preamble: "We, the people"','"Whole people" includes women','→ Constitutional argument']},
+        {type:'mcq',q:'Which statement best describes the relationship between the two texts?',
+         o:['Both invoke founding principles but use different rhetorical forms','Both are speeches delivered at the same event','Both reject the Constitution','Both argue against voting'],
+         c:0,
+         why:'Both cite founding ideals, but Stanton\'s is a declaration of grievances while Anthony\'s is a legal defense.',
+         steps:['Shared: founding principles','Different forms: declaration vs legal speech','→ A']}
+      ]
+    },
+    {
+      id: 'd2', title: 'The Human Microbiome', type: 'Technical / Scientific Text',
+      text: 'The human body is home to trillions of microorganisms — bacteria, viruses, fungi, and archaea — that together make up what scientists call the human microbiome. These microbes live on our skin, in our mouths, and most abundantly in our intestines. In fact, the number of microbial cells in the human body roughly equals the number of human cells, and the collective genetic material of the microbiome is hundreds of times larger than the human genome.\n\nFor most of medical history, bacteria were viewed only as pathogens — disease-causing invaders to be eliminated. This view changed dramatically in the early 2000s with the Human Microbiome Project, a massive research effort to catalog the microbial communities living in and on the human body. What scientists found was surprising: most of these microbes are not harmful. Many are essential to human health.\n\nGut bacteria, for example, help break down complex carbohydrates that human enzymes cannot digest. They produce vitamins, including vitamin K and several B vitamins. They train the immune system, teaching immune cells to distinguish between harmless microbes and dangerous pathogens. Studies suggest that disruptions in the microbiome are linked to conditions as diverse as allergies, obesity, depression, and autoimmune diseases.\n\nThe microbiome also influences the brain through what scientists call the "gut-brain axis." The gut contains roughly 500 million neurons, and gut bacteria produce neurotransmitters, including serotonin and dopamine, that influence mood and cognition. Animal studies have shown that transferring gut bacteria from anxious mice to calm mice can make the calm mice anxious — evidence that the microbiome affects behavior.\n\nAntibiotics are a double-edged sword for the microbiome. They are essential for treating bacterial infections, but they also kill beneficial bacteria. A single course of antibiotics can reduce gut microbial diversity for months or even years. This has raised concerns among doctors, who now emphasize using antibiotics only when truly necessary.',
+      questions: [
+        {type:'mcq',q:'What is the main idea of the passage?',
+         o:['Bacteria are dangerous and should be eliminated','The human microbiome consists of trillions of microbes that play essential roles in health','The microbiome is not important for medical research','Antibiotics are always harmful'],
+         c:1,
+         why:'The passage explains what the microbiome is and its role in health.',
+         steps:['Introduction: definition','Body: functions and influence','→ Essential role']},
+        {type:'mcq',q:'According to the passage, the number of microbial cells in the human body is roughly:',
+         o:['A thousand times larger than human cells','Equal to the number of human cells','Much smaller than human cells','Impossible to estimate'],
+         c:1,
+         why:'Paragraph 1: "roughly equals the number of human cells."',
+         steps:['Paragraph 1','"roughly equals"','→ Equal']},
+        {type:'mcq',q:'What did the Human Microbiome Project discover?',
+         o:['All microbes are dangerous','Most microbes are harmless or beneficial','Microbes do not exist in the gut','Bacteria are not alive'],
+         c:1,
+         why:'Paragraph 2: "most of these microbes are not harmful. Many are essential to human health."',
+         steps:['Paragraph 2','"most... not harmful"','"essential to human health"','→ B']},
+        {type:'mcq',q:'The "gut-brain axis" refers to:',
+         o:['A surgical procedure','The connection between gut bacteria and mood/cognition','A type of antibiotic','A brain disease'],
+         c:1,
+         why:'Paragraph 4: gut bacteria produce neurotransmitters influencing mood and cognition.',
+         steps:['Paragraph 4','Gut bacteria → neurotransmitters','→ Connection to brain']},
+        {type:'multi',q:'Select ALL functions of gut bacteria mentioned in the passage.',
+         o:['Breaking down complex carbohydrates','Producing vitamins','Training the immune system','Producing neurotransmitters'],
+         c:[0,1,2,3],
+         why:'Paragraph 3: carbohydrates, vitamins, immune training. Paragraph 4: neurotransmitters.',
+         steps:['Para 3: carbohydrates, vitamins, immune','Para 4: neurotransmitters','→ A, B, C, D']},
+        {type:'mcq',q:'Why does the author describe antibiotics as a "double-edged sword"?',
+         o:['They treat infections but also harm beneficial bacteria','They are expensive','They cannot be manufactured easily','They are only effective against viruses'],
+         c:0,
+         why:'Paragraph 5: antibiotics help treat infections but reduce gut microbial diversity.',
+         steps:['Para 5: "essential... but they also kill beneficial"','→ Both good and bad']},
+        {type:'dropdown',q:'Complete the sentence with the correct terms:',
+         text:'A {0} course of antibiotics can reduce gut microbial diversity for months. This has led doctors to emphasize using antibiotics only when {1}.',
+         blanks:[
+           {options:['single','decade-long','rare'],correct:0},
+           {options:['truly necessary','optional','expensive'],correct:0}
+         ],
+         why:'Paragraph 5: "A single course... reduce diversity for months." "using antibiotics only when truly necessary."',
+         steps:['Para 5','"single course"','"truly necessary"','→ A / A']},
+        {type:'mcq',q:'Which statement would the author most likely agree with?',
+         o:['Probiotics and fiber can support a healthy microbiome','Antibiotics should never be used','The microbiome has no effect on mood','Personalized medicine will never involve the microbiome'],
+         c:0,
+         why:'Final paragraph: "Probiotic foods and fiber-rich diets can support a healthy microbiome."',
+         steps:['Final para','"probiotics... fiber-rich"','→ A']}
+      ]
+    },
+    {
+      id: 'd3', title: 'Should Homework Be Eliminated?', type: 'Argumentative Text',
+      text: 'Homework is one of the most debated practices in education. For generations, teachers have assigned work to be completed outside class, believing it reinforces learning and builds discipline. But a growing body of research suggests that homework — especially for younger students — may do more harm than good. After reviewing the evidence, I believe that elementary schools should eliminate homework entirely and that middle and high schools should significantly reduce it.\n\nThe strongest evidence comes from studies of young children. A landmark review of 180 research studies found essentially no correlation between homework and academic achievement in elementary school. For students under the age of ten, homework consumes time that could be spent on sports, music, play, and family — activities that also contribute to healthy development.\n\nEven for older students, the benefits of homework are less clear than commonly assumed. A widely cited study by Harris Cooper found that the correlation between homework and achievement in middle school is positive but modest, and it becomes stronger in high school. Yet even this correlation does not prove that homework causes achievement — it may simply be that more motivated students complete more homework.\n\nCritics of homework reform worry that eliminating assignments would lower academic standards. But this concern is not supported by international comparisons. Finland, one of the highest-performing education systems in the world, assigns very little homework and has shorter school days than most developed countries. Finnish students also report higher well-being than American students.\n\nA balanced approach might look like this: no homework before fifth grade; limited, purposeful homework in middle school (no more than 30 minutes per night); and moderate homework in high school (no more than 90 minutes per night), with a focus on meaningful projects rather than rote repetition. This approach respects both the research and the reality that older students need to practice skills.',
+      questions: [
+        {type:'rhet',q:'Which rhetorical strategy does the author use in the opening paragraph?',
+         o:['Emotional appeal only','Acknowledging both sides before stating a position','Threatening the audience','Humor'],
+         c:1,
+         why:'The author acknowledges the traditional view before stating a position.',
+         steps:['Traditional view: "reinforces learning"','Critic view: "may do more harm"','"I believe" — thesis','→ Acknowledges both sides']},
+        {type:'mcq',q:'What is the author\'s main claim?',
+         o:['Homework is always good','Elementary schools should eliminate homework and middle/high schools should reduce it','All students should receive more homework','Finland should adopt American homework practices'],
+         c:1,
+         why:'Thesis: elementary schools should eliminate homework and older grades should reduce it.',
+         steps:['Paragraph 1 thesis','"eliminate homework entirely"','"significantly reduce it"','→ B']},
+        {type:'mcq',q:'What did the landmark review of 180 studies find?',
+         o:['No correlation between homework and achievement in elementary school','Strong correlation between homework and achievement in elementary school','Homework improves well-being','Homework has no effect at any age'],
+         c:0,
+         why:'Paragraph 2: "essentially no correlation between homework and academic achievement in elementary school."',
+         steps:['Para 2','"no correlation... in elementary school"','→ A']},
+        {type:'mcq',q:'How does the author address the concern about lowering academic standards?',
+         o:['By ignoring it','By citing Finland as evidence that less homework does not lower achievement','By denying that standards matter','By agreeing standards would drop'],
+         c:1,
+         why:'Paragraph 4: Finland — high-performing, little homework.',
+         steps:['Critic concern: "lower academic standards"','Counter: Finland','→ Finland example']},
+        {type:'multi',q:'Select ALL concerns the author addresses about eliminating homework.',
+         o:['Lowering academic standards','Losing self-discipline benefits','Wasting money','Hurting time management skills'],
+         c:[0,1,3],
+         why:'Standards (para 4), self-discipline (para 5), time management (para 5). "Wasting money" is not addressed.',
+         steps:['Para 4: standards','Para 5: self-discipline, time management','→ A, B, D']},
+        {type:'mcq',q:'What balanced approach does the author propose?',
+         o:['No homework at any grade','No homework before 5th grade; limited in middle; moderate in high','Homework doubled at all grades','Only weekend homework'],
+         c:1,
+         why:'Paragraph 5: no homework before 5th, limited in middle, moderate in high school.',
+         steps:['Para 5','"no homework before fifth grade"','"limited... middle school"','"moderate... high school"','→ B']},
+        {type:'mcq',q:'The word "modest" in paragraph 3 most nearly means:',
+         o:['Large','Small or moderate','Irrelevant','Negative'],
+         c:1,
+         why:'"Positive but modest" = small in size.',
+         steps:['Para 3','"positive but modest"','→ Small']},
+        {type:'mcq',q:'Which sentence best represents the author\'s conclusion?',
+         o:['"Homework is always beneficial."','"A thoughtful reduction would benefit students\' learning, health, and well-being."','"Finland is the best education system."','"Teachers should be fired."'],
+         c:1,
+         why:'Final sentence is the conclusion.',
+         steps:['Final sentence','"thoughtful reduction"','→ B']}
+      ]
+    },
+    {
+      id: 'd4', title: 'The Origins of the English Language', type: 'Language Conventions',
+      text: 'English is a Germanic language, but its vocabulary is heavily influenced by French, Latin, and Greek. [1] This combination has made English one of the most widely spoken languages in the world.\n\nThe story begins with the Anglo-Saxons, Germanic tribes [2] who invaded Britain in the fifth century. Their language, Old English, was very different from the English we speak today. [3] In 1066, the Norman Conquest brought French-speaking rulers to England, and for nearly three centuries, French was the language of government and law. [4] During this period, thousands of French words entered English, including "justice," "parliament," and "government."\n\nBy the fourteenth century, English had reemerged as the dominant language. [5] The poet Geoffrey Chaucer wrote The Canterbury Tales in Middle English, demonstrating that English could be a literary language. [6] Later, the invention of the printing press by William Caxton in 1476 helped standardize spelling and grammar.\n\nThe Renaissance brought another wave of borrowing. [7] Scholars introduced thousands of Latin and Greek words into English, [8] such as "philosophy," "democracy," and "astronomy." [9] English has continued to evolve ever since, borrowing words from languages around the world.\n\nToday, English is the language of international business, science, and diplomacy. [10] Its remarkable flexibility — its willingness to borrow and adapt — [11] has been a key factor in its global spread. [12] Whether this will continue in the future remains to be seen.',
+      questions: [
+        {type:'mcq',q:'Sentence [1] — What does this sentence suggest about English vocabulary?',
+         o:['English has only Germanic words','English has borrowed heavily from multiple languages','English is not widely spoken','English has no Latin influence'],
+         c:1,
+         why:'"heavily influenced by French, Latin, and Greek" — multiple borrowings.',
+         steps:['Sentence [1]','"French, Latin, Greek"','→ Multiple influences']},
+        {type:'mcq',q:'Sentence [2] — What is the function of "who invaded Britain in the fifth century"?',
+         o:['To provide background information','To introduce a new character','To criticize invaders','To conclude the paragraph'],
+         c:0,
+         why:'Relative clause providing historical background.',
+         steps:['Relative clause','Provides context','→ Background']},
+        {type:'mcq',q:'Sentence [3] — What event does the sentence describe?',
+         o:['The invention of printing','The Norman Conquest of 1066','The Anglo-Saxon invasion','The Renaissance'],
+         c:1,
+         why:'"Norman Conquest brought French-speaking rulers to England" in 1066.',
+         steps:['Sentence [3]','"Norman Conquest"','"1066"','→ B']},
+        {type:'mcq',q:'Sentence [4] — What does "this period" refer to?',
+         o:['The Anglo-Saxon period','The period of French rule after 1066','The Renaissance','The twentieth century'],
+         c:1,
+         why:'"This period" = period of French rule from 1066 to roughly the fourteenth century.',
+         steps:['Sentence [4]','"During this period"','Refers to: Norman period','→ B']},
+        {type:'multi',q:'Select ALL languages that contributed words to English according to the passage.',
+         o:['French','Latin','Greek','Germanic (Anglo-Saxon)'],
+         c:[0,1,2,3],
+         why:'The passage mentions French, Latin, Greek, and Germanic (Anglo-Saxon).',
+         steps:['Para 1: "French, Latin, Greek"','Para 2: "Germanic tribes"','→ A, B, C, D']},
+        {type:'mcq',q:'Sentence [5] & [6] — What is the function of the Chaucer example?',
+         o:['To criticize English','To demonstrate that English could be a literary language','To introduce French influence','To discuss modern literature'],
+         c:1,
+         why:'"demonstrating that English could be a literary language."',
+         steps:['Sentence [6]','"demonstrating"','→ Evidence of literary status']},
+        {type:'dropdown',q:'Complete the sentence with the correct transitions:',
+         text:'English has borrowed from many languages; {0}, this has made it flexible. {1}, this flexibility has been a key factor in its global spread.',
+         blanks:[
+           {options:['however','therefore','although'],correct:1},
+           {options:['As a result','However','In contrast'],correct:0}
+         ],
+         why:'Cause → result logic: therefore, As a result.',
+         steps:['Cause: borrowing','Effect: flexibility','"Therefore"','"As a result"','→ B / A']},
+        {type:'mcq',q:'Sentence [10] — What does the sentence reveal about English today?',
+         o:['It is only spoken in England','It is a global language of business, science, and diplomacy','It is dying','It is limited to literature'],
+         c:1,
+         why:'"language of international business, science, and diplomacy."',
+         steps:['Sentence [10]','Global role','→ B']}
+      ]
+    },
+    {
+      id: 'd5', title: 'Two Views of Autumn', type: 'Paired Literary Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — "Autumn Evening" (Original Poem)',
+          src: 'Poem',
+          text: 'The leaves let go — they do not fall,\nThey drift, they wander, calm and slow,\nLike letters sent to no address,\nFrom trees that only write to show\n\nThe gold they gathered all the year —\nThe amber, copper, rust, and wine —\nA letter written to the light,\nBefore the cold and silent line\n\nOf winter comes to close the book.\nThe trees are not afraid to shed\nTheir season\'s work. They know the earth\nWill keep each word they\'ve written, spread\n\nAcross the sleeping, patient ground,\nUntil the spring, with patient hand,\nWill gather all the faded pages\nAnd read them to the waking land.'
+        },
+        {
+          title: 'Source B — "Autumn Thought" (Original Poem)',
+          src: 'Poem',
+          text: 'October takes the green away —\nNot gently, but with sudden grey\nThat swallows afternoons and leaves\nThe branches bare. And no one grieves\nFor what the summer failed to keep.\n\nThe wind is not a friend. The sky\nIs not a promise. Those who try\nTo hold the light will find it thin\nAnd failing. Let the winter in —\n\nThe dead leaves heap against the wall,\nAnd I have learned that there is all\nThe lesson autumn has to give:\nWe do not lose our lives — we live\nBy giving them away.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'What do both poems share in common?',
+         o:['Both celebrate summer','Both reflect on autumn as a season of loss and renewal','Both reject nature','Both are comic'],
+         c:1,
+         why:'Both poems use autumn as a metaphor for loss, change, and renewal.',
+         steps:['Source A: leaves let go, renewal','Source B: "we live by giving them away"','→ Shared theme']},
+        {type:'mcq',q:'The phrase "like letters sent to no address" in Source A is an example of:',
+         o:['Simile','Metaphor','Personification','Alliteration'],
+         c:0,
+         why:'"like" is a simile comparison.',
+         steps:['"like letters"','Simile','→ A']},
+        {type:'mcq',q:'The word "renewal" at the end of Source A suggests:',
+         o:['The trees are dying','Spring will bring new life','The poem has no hope','Winter is permanent'],
+         c:1,
+         why:'"Until the spring... will read them to the waking land" — spring as renewal.',
+         steps:['Last stanza','"spring... waking land"','→ Renewal']},
+        {type:'mcq',q:'How do the two poems differ in tone?',
+         o:['Source A: gentle and contemplative; Source B: sharper and more direct','Both are joyful','Both are angry','Source A: angry; Source B: gentle'],
+         c:0,
+         why:'Source A uses gentle imagery ("calm and slow"); Source B is blunter ("The wind is not a friend").',
+         steps:['A: "calm and slow"','B: "The wind is not a friend"','→ Different tones']},
+        {type:'mcq',q:'What does Source B\'s final stanza suggest about the speaker\'s view of autumn?',
+         o:['Autumn is only about loss','Autumn teaches that giving is a way of living','Autumn is meaningless','Autumn should be avoided'],
+         c:1,
+         why:'"We do not lose our lives — we live by giving them away."',
+         steps:['Final stanza','"live by giving them away"','→ Teaching about giving']},
+        {type:'multi',q:'Select ALL shared themes in BOTH poems.',
+         o:['Nature as a source of reflection','The value of letting go','Fear of winter','Renewal after loss'],
+         c:[0,1,3],
+         why:'Reflection, letting go, renewal — shared. Fear of winter: not in both.',
+         steps:['A: "leaves let go"','B: "giving them away"','Both: renewal','→ A, B, D']},
+        {type:'mcq',q:'Which literary device is most prominent in Source B\'s "October takes the green away"?',
+         o:['Onomatopoeia','Personification','Simile','Hyperbole'],
+         c:1,
+         why:'October is personified as taking green away.',
+         steps:['October acts like a person','Personification','→ B']},
+        {type:'mcq',q:'Which statement best captures the relationship between the two poems?',
+         o:['Both celebrate autumn but emphasize different aspects','Source B criticizes Source A','Source A rejects nature','Both reject autumn'],
+         c:0,
+         why:'Both celebrate autumn but Source A focuses on renewal, Source B on giving.',
+         steps:['Shared: autumn celebration','Different: renewal vs giving','→ Different aspects']}
+      ]
+    }
+  ];
+
+  var STANDALONE_D = [
+    {q:'Which sentence has correct comma usage?',o:['Although it rained, we went outside.','Although, it rained we went outside.','Although it rained we, went outside.','Although it rained we went outside.'],c:0,why:'Comma after introductory dependent clause.',steps:['Introductory clause','Comma before main clause','→ A']},
+    {q:'Which sentence uses "affect" correctly?',o:['The weather will affect our plans.','The weather will effect our plans.','The weather will affects our plans.','The weather will afffect our plans.'],c:0,why:'"Affect" (verb) = to influence. "Effect" is usually a noun.',steps:['Affect = verb','Effect = noun','→ A']},
+    {q:'Which is the best transition? "She practiced daily. ___, she won the competition."',o:['However','Therefore','Although','Nevertheless'],c:1,why:'Cause → effect → "therefore" fits.',steps:['Practice → success','Cause-effect','→ B']},
+    {q:'Which sentence is grammatically correct?',o:['Neither of the students were ready.','Neither of the students was ready.','Neither of the students are ready.','Neither of the student were ready.'],c:1,why:'"Neither" is singular → "was."',steps:['"Neither" singular','Verb "was"','→ B']},
+    {q:'Which revision is most concise?',o:['Due to the fact that the store was closed, we left.','Because the store was closed, we left.','In light of the fact that the store was closed, we left.','The store was closed so we left because of that.'],c:1,why:'"Due to the fact that" → "Because" is more concise.',steps:['Redundant phrase','→ "Because"','→ B']},
+    {q:'Which sentence is a run-on?',o:['I went home.','I went to the store I bought milk.','She runs.','They eat.'],c:1,why:'Two independent clauses joined without punctuation.',steps:['Two clauses','No punctuation','→ B']}
+  ];
+
+  /* ============================================================
+     SET E (Set 5) — IMMIGRATION · SLEEP · VOTING AGE ·
+     INTERNET · DICKINSON
+  ============================================================ */
+  var PASSAGES_E = [
+    {
+      id: 'e1', title: 'The Immigration Debate — Two Views', type: 'Paired Historical Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — Emma Lazarus, "The New Colossus" (1883)',
+          src: 'Poem',
+          text: 'Not like the brazen giant of Greek fame,\nWith conquering limbs astride from land to land;\nHere at our sea-washed, sunset gates shall stand\nA mighty woman with a torch, whose flame\nIs the imprisoned lightning, and her name\nMother of Exiles. From her beacon-hand\nGlows world-wide welcome; her mild eyes command\nThe air-bridged harbor that twin cities frame.\n"Keep, ancient lands, your storied pomp!" cries she\nWith silent lips. "Give me your tired, your poor,\nYour huddled masses yearning to breathe free,\nThe wretched refuse of your teeming shore.\nSend these, the homeless, tempest-tost to me,\nI lift my lamp beside the golden door!"'
+        },
+        {
+          title: 'Source B — From the Chinese Exclusion Act Debates (1882, adapted)',
+          src: 'Historical Debate',
+          text: 'Mr. Chairman, the question before us is whether we shall preserve the character of this Republic or permit it to be transformed beyond recognition. The Chinese laborer, brought here in great numbers, cannot be assimilated into our body politic. His customs, his language, and his manner of life are so alien to our own that no amalgamation is possible.\n\nIt is not hatred of the foreigner which moves us, but love of our country. We cannot build a nation of many peoples. Our institutions were framed for a homogeneous people. If we admit the Chinese, we must admit all others — and then, in the course of time, our Anglo-Saxon civilization will be overwhelmed.\n\nLet us close our gates while we still may. Let us say clearly: this nation is a nation of one people, one tongue, one destiny. Any other policy is a policy of national suicide.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'How do the two sources differ in their view of immigration?',
+         o:['Both welcome all immigrants','Source A welcomes immigrants; Source B wants to restrict them','Source A restricts; Source B welcomes','Both want to restrict immigration'],
+         c:1,
+         why:'Source A welcomes "huddled masses"; Source B wants to "close our gates."',
+         steps:['Source A: "Give me your tired, your poor"','Source B: "close our gates"','→ Contrasting views']},
+        {type:'mcq',q:'The phrase "Mother of Exiles" in Source A refers to:',
+         o:['A statue of a Greek god','The Statue of Liberty','The American flag','The poet\'s mother'],
+         c:1,
+         why:'The "mighty woman with a torch" = Statue of Liberty.',
+         steps:['"Mighty woman with a torch"','"Mother of Exiles"','→ Statue of Liberty']},
+        {type:'mcq',q:'The main argument of Source B is that immigrants:',
+         o:['Bring valuable skills','Cannot be assimilated and threaten national identity','Should be welcomed for cheap labor','Should be given full citizenship'],
+         c:1,
+         why:'"cannot be assimilated" + "our Anglo-Saxon civilization will be overwhelmed."',
+         steps:['Para 1: "cannot be assimilated"','Para 3: "overwhelmed"','→ Threat to national identity']},
+        {type:'mcq',q:'Which rhetorical device does Source A use in "Give me your tired, your poor"?',
+         o:['Personification','Direct address and repetition','Understatement','Irony'],
+         c:1,
+         why:'The statue "speaks" — direct quotation + repetition of "your."',
+         steps:['Direct quotation','Repetition of "your"','→ Direct address']},
+        {type:'mcq',q:'What does Source B\'s phrase "policy of national suicide" reveal?',
+         o:['The speaker fears immigration will destroy the nation','The speaker wants more immigration','The speaker is indifferent','The speaker is joking'],
+         c:0,
+         why:'"National suicide" = destruction of the nation. The speaker sees immigration as catastrophic.',
+         steps:['Metaphor: "national suicide"','Immigration = destruction','→ Fear of destruction']},
+        {type:'multi',q:'Select ALL claims made by Source B.',
+         o:['Immigrants cannot be assimilated','Immigrants threaten American civilization','Immigrants bring valuable skills','Admitting Chinese means admitting all others'],
+         c:[0,1,3],
+         why:'Source B claims assimilation is impossible, civilization is threatened, and admission is a slippery slope.',
+         steps:['Para 1: cannot assimilate','Para 3: nation overwhelmed','Para 2: "admit all others"','"Valuable skills": not claimed','→ A, B, D']},
+        {type:'mcq',q:'Which American value does Source A emphasize?',
+         o:['National purity','Hospitality and welcome to the oppressed','Economic growth','Military strength'],
+         c:1,
+         why:'"world-wide welcome" — hospitality and refuge for the oppressed.',
+         steps:['"world-wide welcome"','"homeless, tempest-tost"','→ Welcome to the oppressed']},
+        {type:'mcq',q:'Which statement best captures the relationship between the two sources?',
+         o:['Both are anti-immigration','Both offer contrasting visions of American national identity','Source A criticizes Source B','Both are pro-immigration'],
+         c:1,
+         why:'Source A: welcome. Source B: exclusion. Both frame American identity differently.',
+         steps:['Source A: "Mother of Exiles"','Source B: "one people, one tongue"','→ Contrasting visions']}
+      ]
+    },
+    {
+      id: 'e2', title: 'The Science of Sleep', type: 'Technical / Scientific Text',
+      text: 'Sleep is one of the most important biological processes in the human body, yet its purpose remained mysterious for most of human history. For decades, scientists assumed that sleep was simply a period of rest during which the body recovered from the day\'s activity. But modern neuroscience has revealed that sleep is an active, complex process essential to memory, mood, immunity, and physical health.\n\nThe brain cycles through two main types of sleep: rapid eye movement (REM) sleep and non-REM sleep. Non-REM sleep has three stages, each of which becomes progressively deeper. During slow-wave sleep (the deepest stage), the brain consolidates memories — strengthening important neural connections and discarding irrelevant ones. REM sleep, which occurs mostly in the second half of the night, is associated with dreaming and emotional processing.\n\nSleep deprivation is a serious public health concern. The Centers for Disease Control and Prevention reports that one in three American adults does not get enough sleep. Chronic sleep deprivation is linked to obesity, diabetes, cardiovascular disease, depression, and weakened immune function. It also impairs cognitive performance, increasing the risk of car accidents and workplace errors.\n\nTeenagers face a particularly difficult challenge. Biological changes during puberty shift the circadian rhythm — the internal clock — so that teens naturally fall asleep later and wake up later. Yet most high schools start classes before 8:00 a.m. The American Academy of Pediatrics recommends that middle and high schools start no earlier than 8:30 a.m. to allow students to get the 8-10 hours of sleep they need.\n\nImproving sleep requires changes in both individual behavior and public policy. Individuals can benefit from consistent sleep schedules, limiting screen time before bed, avoiding caffeine late in the day, and creating a cool, dark sleep environment. Schools, employers, and policymakers can support these efforts by respecting the biology of sleep.',
+      questions: [
+        {type:'mcq',q:'What is the main idea of the passage?',
+         o:['Sleep is not important for health','Sleep is essential to health, and most people do not get enough of it','Dreams have no meaning','Sleeping pills are the best solution'],
+         c:1,
+         why:'The passage explains the importance of sleep and the problem of sleep deprivation.',
+         steps:['Intro: essential process','Body: functions and deprivation','→ Essential + widespread problem']},
+        {type:'mcq',q:'According to the passage, what are the two main types of sleep?',
+         o:['REM and non-REM','Light and dark sleep','Morning and evening sleep','Deep and shallow sleep'],
+         c:0,
+         why:'Paragraph 2: "two main types: rapid eye movement (REM) sleep and non-REM sleep."',
+         steps:['Paragraph 2','"REM... and non-REM"','→ A']},
+        {type:'mcq',q:'What function is associated with slow-wave sleep?',
+         o:['Dreaming','Emotional processing','Memory consolidation','Muscle growth'],
+         c:2,
+         why:'Paragraph 2: "During slow-wave sleep... the brain consolidates memories."',
+         steps:['Paragraph 2','"slow-wave sleep... consolidates memories"','→ Memory consolidation']},
+        {type:'mcq',q:'The word "circadian" in paragraph 4 most nearly means:',
+         o:['Relating to daily cycles','Relating to the heart','Relating to dreams','Relating to diet'],
+         c:0,
+         why:'"Circadian rhythm" = the body\'s internal 24-hour clock.',
+         steps:['Context: "internal clock"','24-hour cycle','→ Daily cycles']},
+        {type:'multi',q:'Select ALL health problems the passage links to chronic sleep deprivation.',
+         o:['Obesity','Diabetes','Cardiovascular disease','Depression','Hair loss'],
+         c:[0,1,2,3],
+         why:'Paragraph 3 lists obesity, diabetes, cardiovascular disease, depression, and weakened immunity. Hair loss is not mentioned.',
+         steps:['Para 3: obesity, diabetes, cardiovascular, depression','Hair loss: not mentioned','→ A, B, C, D']},
+        {type:'mcq',q:'What recommendation does the American Academy of Pediatrics make?',
+         o:['Students should sleep less','Middle and high schools should start no earlier than 8:30 a.m.','All schools should start at 7:00 a.m.','Teenagers do not need much sleep'],
+         c:1,
+         why:'Paragraph 4: "middle and high schools start no earlier than 8:30 a.m."',
+         steps:['Paragraph 4','"no earlier than 8:30 a.m."','→ B']},
+        {type:'dropdown',q:'Complete the sentence with the correct terms:',
+         text:'One in {0} American adults does not get enough sleep, and teenagers need {1} hours of sleep per night.',
+         blanks:[
+           {options:['three','ten','hundred'],correct:0},
+           {options:['8-10','4-5','12-14'],correct:0}
+         ],
+         why:'Paragraph 3: "one in three American adults." Paragraph 4: "8-10 hours of sleep."',
+         steps:['Para 3: "one in three"','Para 4: "8-10 hours"','→ A / A']},
+        {type:'mcq',q:'Which statement would the author most likely agree with?',
+         o:['Sleep is a waste of time','Sleep should be respected as a biological need','All sleep problems require medication','School start times have no effect on students'],
+         c:1,
+         why:'Final paragraph: "respecting the biology of sleep."',
+         steps:['Final paragraph','"respecting the biology of sleep"','→ B']}
+      ]
+    },
+    {
+      id: 'e3', title: 'Should the Voting Age Be Lowered to 16?', type: 'Argumentative Text',
+      text: 'In most democracies, the voting age is 18. But a growing movement argues that it should be lowered to 16. Supporters point out that 16-year-olds can work, pay taxes, drive, and — in some places — consent to medical treatment. If they can do all of these things, why can\'t they vote? After considering the evidence, I believe that lowering the voting age to 16 is a reasonable reform that would strengthen democracy.\n\nThe most common objection is that 16-year-olds are not mature enough to vote. But research does not support this claim. Studies of "cold cognition" — decision-making under calm, unhurried conditions — show that 16-year-olds perform as well as adults. The differences between adolescent and adult decision-making appear mainly in "hot cognition" — impulsive situations involving peer pressure or strong emotion. Voting is a cold-cognition task: voters can take their time, gather information, and reflect. By this measure, 16-year-olds are ready.\n\nAnother objection is that 16-year-olds lack the life experience to understand political issues. Yet many adults also lack deep political knowledge, and we do not strip them of the vote. If anything, allowing 16-year-olds to vote may increase their long-term civic engagement. Studies show that people who vote in their first eligible election are more likely to become lifelong voters. Lowering the voting age would establish this habit early.\n\nIn practice, several countries and cities have lowered their voting age with positive results. Austria lowered the voting age to 16 in 2007. Scotland allowed 16- and 17-year-olds to vote in the 2014 independence referendum. In both cases, young voters turned out in reasonable numbers and demonstrated thoughtful participation.\n\nOf course, lowering the voting age is not a cure-all for youth disengagement. It would need to be paired with civic education and outreach. But the question is not whether 16-year-olds are perfect voters — no voter is perfect. The question is whether they deserve a voice in decisions that will affect them for decades. They do.',
+      questions: [
+        {type:'rhet',q:'Which rhetorical strategy does the author use in the opening paragraph?',
+         o:['A list of statistics only','A rhetorical question that frames the debate','Personal anecdote','Appeal to fear'],
+         c:1,
+         why:'"If they can do all of these things, why can\'t they vote?" — a rhetorical question.',
+         steps:['"Why can\'t they vote?"','Rhetorical question','→ Frames the debate']},
+        {type:'mcq',q:'What is the author\'s main claim?',
+         o:['The voting age should be raised','The voting age should be lowered to 16','The voting age is unimportant','Only adults should vote'],
+         c:1,
+         why:'Thesis: lowering the voting age to 16 is a reasonable reform.',
+         steps:['Paragraph 1 thesis','"lowering the voting age to 16"','→ B']},
+        {type:'mcq',q:'What does the "cold cognition" research show?',
+         o:['16-year-olds are less capable than adults','16-year-olds perform as well as adults in calm decision-making','16-year-olds cannot vote','Only adults can make cold decisions'],
+         c:1,
+         why:'Paragraph 2: "16-year-olds perform as well as adults" in cold cognition.',
+         steps:['Paragraph 2','"perform as well as adults"','→ B']},
+        {type:'mcq',q:'Which countries/cities does the author cite as examples?',
+         o:['France and Germany','Austria and Scotland','Japan and Korea','Brazil and Mexico'],
+         c:1,
+         why:'Paragraph 4: Austria (2007) and Scotland (2014).',
+         steps:['Paragraph 4','Austria 2007','Scotland 2014','→ B']},
+        {type:'multi',q:'Select ALL arguments the author makes in favor of lowering the voting age.',
+         o:['16-year-olds are capable of calm, reasoned decisions','It may increase long-term civic engagement','16-year-olds already pay taxes and work','Young voters have been shown to participate thoughtfully'],
+         c:[0,1,2,3],
+         why:'All four are made in the passage.',
+         steps:['Para 2: cold cognition','Para 3: habit formation','Para 1: taxes/work','Para 4: thoughtful participation','→ All four']},
+        {type:'mcq',q:'What does the author acknowledge is needed alongside lowering the voting age?',
+         o:['Nothing — it is a cure-all','Civic education and outreach','Raising taxes','Reducing the number of voters'],
+         c:1,
+         why:'Final paragraph: "It would need to be paired with civic education and outreach."',
+         steps:['Final paragraph','"civic education and outreach"','→ B']},
+        {type:'mcq',q:'The word "cold cognition" refers to:',
+         o:['Decision-making under calm conditions','Emotional decision-making','Physical reflexes','Memory'],
+         c:0,
+         why:'Paragraph 2: "decision-making under calm, unhurried conditions."',
+         steps:['Paragraph 2','"calm, unhurried conditions"','→ A']},
+        {type:'mcq',q:'Which sentence best represents the author\'s conclusion?',
+         o:['"The voting age is 18."','"The question is whether they deserve a voice in decisions that will affect them for decades. They do."','"Austria lowered the voting age in 2007."','"Voting is a cold-cognition task."'],
+         c:1,
+         why:'Final sentence is the conclusion.',
+         steps:['Final sentences','"They do"','→ B']}
+      ]
+    },
+    {
+      id: 'e4', title: 'The Evolution of the Internet', type: 'Language Conventions',
+      text: 'The Internet has transformed nearly every aspect of modern life. [1] Yet its origins are surprisingly humble — a network built by researchers, for researchers, in the late 1960s.\n\nARPANET, the first packet-switching network, went online in 1969. [2] It connected four university computers and allowed scientists to share data. At the time, few imagined that this small network [3] would someday support billions of users worldwide.\n\nThe invention of the World Wide Web in 1989 by Tim Berners-Lee was a turning point. [4] Berners-Lee, a British computer scientist, created the first web browser and the first web page. [5] He chose to release the web freely, without patents, [6] which allowed it to spread rapidly.\n\nBy the mid-1990s, the Internet had become publicly accessible. [7] Dial-up connections made home Internet use possible, although speeds were slow and connections often failed. [8] The rise of broadband in the 2000s made the Internet faster and more reliable.\n\nThe mobile revolution arrived in 2007. [9] The first iPhone, released that year, made the Internet accessible from a device that fit in a pocket. [10] Today, more than half of all web traffic comes from mobile devices.\n\nThe Internet has changed how we work, learn, communicate, and even think. [11] Whether these changes are ultimately good or bad remains a subject of debate. [12] What is certain is that the Internet will continue to evolve in ways we cannot yet predict.',
+      questions: [
+        {type:'mcq',q:'Sentence [1] — What does "humble" suggest about the Internet\'s origins?',
+         o:['The Internet was always enormous','The Internet began small and modestly','The Internet was expensive','The Internet failed'],
+         c:1,
+         why:'"humble" = modest, small beginnings.',
+         steps:['Sentence [1]','"humble"','"small network"','→ Small beginnings']},
+        {type:'mcq',q:'Sentence [2] — What is ARPANET?',
+         o:['A modern social media platform','The first packet-switching network','A type of smartphone','A web browser'],
+         c:1,
+         why:'Paragraph 2: "ARPANET, the first packet-switching network."',
+         steps:['Paragraph 2','"first packet-switching network"','→ B']},
+        {type:'mcq',q:'Sentence [4] & [5] — What was Tim Berners-Lee\'s contribution?',
+         o:['He invented the iPhone','He created the first web browser and web page','He founded Facebook','He built ARPANET'],
+         c:1,
+         why:'Paragraph 3: "created the first web browser and the first web page."',
+         steps:['Paragraph 3','"first web browser... first web page"','→ B']},
+        {type:'mcq',q:'Sentence [6] — Why does the author mention Berners-Lee released the web without patents?',
+         o:['To criticize Berners-Lee','To explain why the web spread rapidly','To describe his salary','To introduce a new topic'],
+         c:1,
+         why:'Paragraph 3: "which allowed it to spread rapidly."',
+         steps:['Paragraph 3','"allowed it to spread rapidly"','→ Explains growth']},
+        {type:'multi',q:'Select ALL the technological developments mentioned in the passage.',
+         o:['ARPANET','World Wide Web','Dial-up connections','Broadband','Social media'],
+         c:[0,1,2,3],
+         why:'ARPANET, WWW, dial-up, broadband are mentioned. Social media is not specifically discussed.',
+         steps:['Para 2: ARPANET','Para 3: WWW','Para 4: dial-up, broadband','Social media: not mentioned','→ A, B, C, D']},
+        {type:'mcq',q:'Sentence [9] & [10] — What is the significance of 2007?',
+         o:['The year of the first email','The year of the first iPhone','The year the Internet began','The year social media was invented'],
+         c:1,
+         why:'Paragraph 5: "The mobile revolution arrived in 2007. The first iPhone..."',
+         steps:['Paragraph 5','"2007... first iPhone"','→ B']},
+        {type:'dropdown',q:'Complete the sentence with the correct transitions:',
+         text:'Dial-up was slow; {0}, broadband made the Internet faster. {1}, mobile devices transformed access again.',
+         blanks:[
+           {options:['however','therefore','although'],correct:0},
+           {options:['Later','However','Similarly'],correct:0}
+         ],
+         why:'Contrast for the first; sequence for the second.',
+         steps:['Contrast: slow vs faster','→ however','Sequence: later','→ Later / however']},
+        {type:'mcq',q:'Sentence [11] & [12] — What is the author\'s final point?',
+         o:['The Internet is obsolete','The Internet\'s future is uncertain','The Internet is bad','The Internet has stopped evolving'],
+         c:1,
+         why:'"will continue to evolve in ways we cannot yet predict."',
+         steps:['Final sentences','"continue to evolve"','"cannot yet predict"','→ Uncertain future']}
+      ]
+    },
+    {
+      id: 'e5', title: 'Death and Reflection — Two Texts', type: 'Paired Literary Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — Emily Dickinson, "Because I could not stop for Death" (1890)',
+          src: 'Poem',
+          text: 'Because I could not stop for Death –\nHe kindly stopped for me –\nThe Carriage held but just Ourselves –\nAnd Immortality.\n\nWe slowly drove – He knew no haste\nAnd I had put away\nMy labor and my leisure too,\nFor His Civility –\n\nWe passed the School, where Children strove\nAt Recess – in the Ring –\nWe passed the Fields of Gazing Grain –\nWe passed the Setting Sun –\n\nSince then – \'tis Centuries – and yet\nFeels shorter than the Day\nI first surmised the Horses\' Heads\nWere toward Eternity –'
+        },
+        {
+          title: 'Source B — Reflection on Mortality (Original Prose)',
+          src: 'Literary Essay',
+          text: 'We do not often think about death, but death is always thinking about us. It sits quietly in the corner of every room, waiting with the patience of stone. Some of us try to forget it. We fill our days with work, entertainment, and noise, hoping that if we stay busy enough, we will not hear its footsteps.\n\nBut there is another way. We can look at death directly, without flinching. When we do, we find that death is not simply an ending. It is a teacher. It shows us what matters, and what does not. It strips away the trivial and leaves only the essential.\n\nThe ancient philosophers understood this. "Memento mori" — remember that you must die — was not a gloomy slogan but a call to live fully. If we truly understood the brevity of life, we would not waste our hours on resentment, greed, or vanity.\n\nDickinson\'s poem captures this wisdom beautifully. Death in her poem is not a monster but a courteous gentleman who arrives to carry us to our destination. The journey is slow, and it passes the ordinary scenes of life — school, fields, sunset — as if to remind us that life itself is the journey. We need not fear the carriage. It is carrying us home.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'How does Dickinson personify Death in Source A?',
+         o:['As a violent enemy','As a kind, courteous gentleman','As an animal','As a natural disaster'],
+         c:1,
+         why:'"He kindly stopped for me" — Death is courteous and gentle.',
+         steps:['"He kindly stopped"','"His Civility"','→ Kind, courteous']},
+        {type:'mcq',q:'The "Carriage" in Dickinson\'s poem contains:',
+         o:['Only the speaker','The speaker, Death, and Immortality','A crowd of people','Animals'],
+         c:1,
+         why:'"The Carriage held but just Ourselves – And Immortality."',
+         steps:['"The Carriage held but just Ourselves"','"And Immortality"','→ Speaker, Death, Immortality']},
+        {type:'mcq',q:'What is the main point of Source B?',
+         o:['Death should be feared','Reflecting on death can teach us to live more fully','Death is not real','Life is meaningless'],
+         c:1,
+         why:'Source B: "memento mori" = reflection leads to fuller living.',
+         steps:['Para 2: "death is a teacher"','Para 3: "memento mori"','→ Reflection teaches living']},
+        {type:'mcq',q:'The phrase "memento mori" in Source B means:',
+         o:['Remember that you must die','Live for today','Forget the past','Seize the day'],
+         c:0,
+         why:'Source B explicitly defines it: "remember that you must die."',
+         steps:['Para 3','"remember that you must die"','→ A']},
+        {type:'multi',q:'Select ALL ways the two texts treat death similarly.',
+         o:['Death is not portrayed as purely frightening','Reflection on death teaches us about life','Death is personified as an enemy','The brevity of life is acknowledged'],
+         c:[0,1,3],
+         why:'Both texts: death not purely frightening, reflection teaches, life is brief. Neither personifies death as an enemy (Dickinson: gentleman).',
+         steps:['Dickinson: courteous Death','Prose: teacher','Both: brief life','Enemy: neither','→ A, B, D']},
+        {type:'mcq',q:'Which literary device is most prominent in Dickinson\'s opening lines?',
+         o:['Personification','Simile','Onomatopoeia','Hyperbole'],
+         c:0,
+         why:'Death is personified — he "kindly stopped" and has "Civility."',
+         steps:['Death acts as a person','"kindly stopped"','→ Personification']},
+        {type:'order',q:'Order the stages of Dickinson\'s journey in the poem:',
+         items:['Death stops for the speaker','They drive slowly past life scenes','They pass school, fields, and sun','The speaker realizes they face eternity'],
+         correctOrder:['Death stops for the speaker','They drive slowly past life scenes','They pass school, fields, and sun','The speaker realizes they face eternity'],
+         why:'Poem sequence: Death stops → slow drive → scenes of life → eternity.',
+         steps:['Stanza 1: Death stops','Stanza 2: slow drive','Stanza 3: scenes','Stanza 4: eternity']},
+        {type:'mcq',q:'Which statement best captures the relationship between the two texts?',
+         o:['Both treat death with fear and dread','Both treat death thoughtfully and philosophically','Source A criticizes Source B','Source B rejects Dickinson\'s view'],
+         c:1,
+         why:'Both treat death as something to reflect on, not fear.',
+         steps:['Shared: thoughtful tone','→ Philosophical treatment']}
+      ]
+    }
+  ];
+
+  var STANDALONE_E = [
+    {q:'Which sentence uses the semicolon correctly?',o:['I like coffee; my brother prefers tea.','I like coffee; and my brother prefers tea.','I like coffee; however my brother prefers tea.','I like coffee; my brother, prefers tea.'],c:0,why:'Semicolon joins two independent clauses.',steps:['Two independent clauses','Semicolon only','→ A']},
+    {q:'Which sentence has correct subject-verb agreement?',o:['The team are playing well.','The team is playing well.','The team were playing well.','The team be playing well.'],c:1,why:'"Team" is a collective singular → "is."',steps:['"Team" singular','Verb: is','→ B']},
+    {q:'Which is the best transition? "The test was difficult. ___, many students passed."',o:['However','Therefore','Nevertheless','Because'],c:0,why:'Contrast between difficulty and success → "However."',steps:['Difficult vs passed','Contrast','→ However']},
+    {q:'Which sentence contains an error?',o:['She and I went to the store.','She and me went to the store.','She went with me.','I went with her.'],c:1,why:'Subject form needed: "She and I" not "She and me."',steps:['Subject pronoun','"She and I"','→ B']},
+    {q:'Which revision is most concise?',o:['In my personal opinion, I think we should go.','I think we should go.','I think that in my opinion we should go.','Personally, in my opinion, I think we should go.'],c:1,why:'Redundant qualifiers removed.',steps:['Redundant phrases','→ Simplest','→ B']},
+    {q:'Which sentence uses correct parallelism?',o:['She likes reading, writing, and to hike.','She likes reading, writing, and hiking.','She likes to read, writing, and hikes.','She likes read, write, and hike.'],c:1,why:'All gerunds — parallel structure.',steps:['All gerunds','"reading, writing, hiking"','→ B']}
+  ];
+
+  /* ============================================================
+     SET F (Set 6) — DECLARATION + DOUGLASS · OCEAN ACIDIFICATION ·
+     SCHOOL UNIFORMS · PRINTING PRESS · WAR POEMS
+  ============================================================ */
+  var PASSAGES_F = [
+    {
+      id: 'f1', title: 'Freedom and Hypocrisy — Two Voices', type: 'Paired Historical Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — Declaration of Independence (1776)',
+          src: 'Historical Document',
+          text: 'We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.\n\nThat to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed. That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government.\n\nThe history of the present King of Great Britain is a history of repeated injuries and usurpations, all having in direct object the establishment of an absolute Tyranny over these States.'
+        },
+        {
+          title: 'Source B — Frederick Douglass, "What to the Slave is the Fourth of July?" (1852)',
+          src: 'Historical Speech',
+          text: 'Fellow-citizens, pardon me, allow me to ask, why am I called upon to speak here to-day? What have I, or those I represent, to do with your national independence? Are the great principles of political freedom and of natural justice, embodied in that Declaration of Independence, extended to us?\n\nI am not included within the pale of glorious anniversary! Your high independence only reveals the immeasurable distance between us. The blessings in which you, this day, rejoice, are not enjoyed in common. The rich inheritance of justice, liberty, prosperity and independence, bequeathed by your fathers, is shared by you, not by me.\n\nThe sunlight that brought life and healing to you, has brought stripes and death to me. This Fourth July is yours, not mine. You may rejoice, I must mourn.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'What does Douglass suggest about the Fourth of July in Source B?',
+         o:['It celebrates freedom for all Americans equally','Its freedoms do not extend to enslaved people','It should be abolished','It is a religious holiday'],
+         c:1,
+         why:'"This Fourth July is yours, not mine" — Douglass highlights the hypocrisy.',
+         steps:['"This Fourth July is yours, not mine"','"not enjoyed in common"','→ Freedoms not extended']},
+        {type:'mcq',q:'The phrase "all men are created equal" appears in Source A. How does Douglass use this phrase?',
+         o:['To praise America\'s founders','To expose the contradiction between the ideal and slavery','To support the King of England','To argue against independence'],
+         c:1,
+         why:'Douglass uses the founding ideal to expose slavery as hypocrisy.',
+         steps:['Source A: "all men are created equal"','Source B: "extended to us?"','→ Exposes contradiction']},
+        {type:'mcq',q:'The word "pale" in "within the pale of glorious anniversary" most nearly means:',
+         o:['A color','The boundary of inclusion','A type of fence','A light'],
+         c:1,
+         why:'"Pale" = boundary/scope of inclusion.',
+         steps:['"within the pale"','= within the boundary','→ Boundary of inclusion']},
+        {type:'mcq',q:'Which rhetorical device does Douglass use in "The sunlight... has brought stripes and death to me"?',
+         o:['Simile','Contrast / antithesis','Understatement','Personification'],
+         c:1,
+         why:'Sunlight to you = life; to me = stripes and death. Sharp contrast.',
+         steps:['Sunlight: you vs me','Life vs death','→ Contrast/antithesis']},
+        {type:'multi',q:'Select ALL grievances listed in Source A.',
+         o:['Repeated injuries and usurpations','Establishment of absolute tyranny','Denial of the right to vote for women','Destruction of the ends of government'],
+         c:[0,1,3],
+         why:'Source A lists injuries, tyranny, and destruction of government ends. Women\'s suffrage is not in the Declaration.',
+         steps:['"repeated injuries"','"absolute Tyranny"','"destructive of these ends"','Women\'s vote: not in Declaration','→ A, B, D']},
+        {type:'mcq',q:'What is Douglass\'s overall tone in the excerpt?',
+         o:['Joyful','Ironic and critical','Indifferent','Confused'],
+         c:1,
+         why:'Douglass celebrates the ideal but mourns its failure — ironic and critical tone.',
+         steps:['"You may rejoice, I must mourn"','Ironic contrast','→ Ironic and critical']},
+        {type:'mcq',q:'How does Source B relate to Source A?',
+         o:['Douglass rejects the Declaration','Douglass holds America to the Declaration\'s own ideals','Douglass ignores the Declaration','Douglass rewrites the Declaration'],
+         c:1,
+         why:'Douglass uses the Declaration\'s ideals to critique American slavery.',
+         steps:['Uses "all men are created equal"','Points to hypocrisy','→ Holds America to its ideals']},
+        {type:'mcq',q:'Which statement best captures the relationship between the two texts?',
+         o:['Both celebrate American freedom without qualification','Both engage with founding ideals — one as promise, one as unfulfilled','Both reject American independence','Both defend slavery'],
+         c:1,
+         why:'Source A states the ideal. Source B points out the failure to fulfill it.',
+         steps:['Source A: promise','Source B: unfulfilled promise','→ Both engage with ideals']}
+      ]
+    },
+    {
+      id: 'f2', title: 'Ocean Acidification', type: 'Technical / Scientific Text',
+      text: 'When we think about climate change, we usually think about the atmosphere — rising temperatures, melting ice, and extreme weather. But the ocean absorbs about a quarter of the carbon dioxide that humans release into the air, and this absorption is changing the chemistry of seawater in a process called ocean acidification.\n\nCarbon dioxide dissolves in seawater to form carbonic acid, which releases hydrogen ions. As hydrogen ion concentration increases, the water becomes more acidic — meaning its pH decreases. Since the Industrial Revolution, the pH of surface ocean water has dropped from about 8.2 to 8.1. This may sound like a small change, but the pH scale is logarithmic: a drop of 0.1 represents roughly a 30% increase in acidity.\n\nOcean acidification poses serious threats to marine life. Many marine organisms — including corals, oysters, clams, and some plankton — build shells or skeletons from calcium carbonate. More acidic water makes it harder for these organisms to form and maintain their shells. In some cases, existing shells can even begin to dissolve.\n\nCoral reefs are particularly vulnerable. Reefs support about 25% of all marine species, protect coastlines from storms, and provide food and income for millions of people. Acidification, combined with warming and pollution, threatens the survival of many reef ecosystems.\n\nThe effects of acidification are not limited to marine life. Coastal communities that depend on fishing and tourism face economic losses. The fishing industry alone employs millions of people worldwide. Reduced shellfish harvests and declining reef health translate directly into lost jobs and food insecurity.\n\nReducing carbon dioxide emissions is the only long-term solution to ocean acidification. Local actions — such as protecting seagrass beds and reducing nutrient runoff — can help marine ecosystems become more resilient, but they cannot reverse the underlying chemistry. Without significant emission reductions, ocean acidification will continue to intensify.',
+      questions: [
+        {type:'mcq',q:'What is the main idea of the passage?',
+         o:['The ocean is not affected by climate change','Ocean acidification is a serious threat caused by carbon dioxide absorption','The ocean is becoming less acidic','Coral reefs are not important'],
+         c:1,
+         why:'The passage explains ocean acidification and its consequences.',
+         steps:['Intro: ocean absorbs CO2','Body: chemical changes + impacts','→ Serious threat']},
+        {type:'mcq',q:'Why does the author say a pH drop of 0.1 is significant?',
+         o:['Because it is a large number','Because the pH scale is logarithmic','Because ocean life is not affected','Because it happens quickly'],
+         c:1,
+         why:'Paragraph 2: "the pH scale is logarithmic: a drop of 0.1 represents roughly a 30% increase in acidity."',
+         steps:['Paragraph 2','"pH scale is logarithmic"','30% increase','→ B']},
+        {type:'mcq',q:'Which organisms are most directly threatened by acidification?',
+         o:['Fish that swim in the deep ocean','Organisms that build shells from calcium carbonate','Birds that live near the coast','Mammals that swim at the surface'],
+         c:1,
+         why:'Paragraph 3: "corals, oysters, clams, and some plankton — build shells... from calcium carbonate."',
+         steps:['Paragraph 3','"build shells... from calcium carbonate"','→ B']},
+        {type:'multi',q:'Select ALL consequences of ocean acidification mentioned in the passage.',
+         o:['Threats to coral reef ecosystems','Economic losses for coastal communities','Reduced shellfish harvests','Increased fish populations'],
+         c:[0,1,2],
+         why:'Paragraphs 4-5: reef threats, economic losses, reduced shellfish. Increased fish populations is not stated.',
+         steps:['Para 4: reef threats','Para 5: economic losses','Para 5: shellfish','Fish increase: not stated','→ A, B, C']},
+        {type:'mcq',q:'What is the only long-term solution to ocean acidification according to the author?',
+         o:['Local cleanup efforts','Reducing carbon dioxide emissions','Adding chemicals to seawater','Protecting seagrass only'],
+         c:1,
+         why:'Paragraph 6: "Reducing carbon dioxide emissions is the only long-term solution."',
+         steps:['Paragraph 6','"only long-term solution"','→ B']},
+        {type:'mcq',q:'The word "resilient" in the final paragraph most nearly means:',
+         o:['Fragile','Able to recover','Dangerous','Expensive'],
+         c:1,
+         why:'"Resilient" = able to recover from or withstand difficulty.',
+         steps:['Context: "become more resilient"','= able to recover','→ B']},
+        {type:'dropdown',q:'Complete the sentence with the correct terms:',
+         text:'Since the Industrial Revolution, ocean pH has dropped from {0} to about {1}.',
+         blanks:[
+           {options:['8.2','7.0','9.0'],correct:0},
+           {options:['8.1','7.9','6.5'],correct:0}
+         ],
+         why:'Paragraph 2: "from about 8.2 to 8.1."',
+         steps:['Paragraph 2','"8.2 to 8.1"','→ A / A']},
+        {type:'mcq',q:'The author\'s tone toward ocean acidification is best described as:',
+         o:['Indifferent','Concerned and informative','Humorous','Uncertain'],
+         c:1,
+         why:'The passage conveys concern while presenting scientific facts.',
+         steps:['Scientific + concerned','→ B']}
+      ]
+    },
+    {
+      id: 'f3', title: 'Should School Uniforms Be Required?', type: 'Argumentative Text',
+      text: 'Few education policies provoke as much debate as school uniforms. For decades, private schools have required uniforms, and in recent years more public schools have adopted them. Supporters argue that uniforms improve discipline, reduce bullying, and create a sense of community. Critics contend that uniforms suppress individuality and waste money. After reviewing the evidence, I believe that uniforms are a reasonable policy — but only when they are affordable, flexible, and paired with other efforts to improve school climate.\n\nThe strongest argument for uniforms is that they reduce visible economic inequality. In schools without uniforms, students who cannot afford brand-name clothing may feel excluded or ashamed. Uniforms create a more level playing field — at least on the surface. Studies suggest that uniforms may modestly reduce bullying based on clothing and appearance.\n\nCritics point out that uniforms do not eliminate inequality. Students can still be judged by their shoes, backpacks, and phones. This is true, but it does not follow that uniforms are useless. Reducing one dimension of status competition is still valuable, even if others remain.\n\nAnother common objection is that uniforms suppress individuality. But schools already limit student expression in many ways — through dress codes, curfews, and required courses. The question is not whether schools limit expression, but which limits are reasonable. Uniforms may reasonably be one of them, as long as students have opportunities for self-expression elsewhere — through clubs, arts, sports, and electives.\n\nThe financial burden of uniforms is a legitimate concern. Families with multiple children may struggle to afford multiple sets of uniforms. For this reason, any uniform policy should include financial assistance, allow flexibility in where uniforms can be purchased, and avoid requiring expensive branded items.\n\nIn conclusion, school uniforms are neither a panacea nor a disaster. When designed thoughtfully, they can modestly improve school climate and reduce visible inequality. But they work best alongside other policies that address the deeper causes of bullying, inequality, and disengagement.',
+      questions: [
+        {type:'rhet',q:'Which rhetorical strategy does the author use in the opening paragraph?',
+         o:['Personal anecdote','Balanced presentation of both sides before taking a position','Appeal to fear','Statistical evidence only'],
+         c:1,
+         why:'The author presents both sides and then states a qualified position.',
+         steps:['Supporters\' view listed','Critics\' view listed','"I believe" — qualified position','→ Balanced opening']},
+        {type:'mcq',q:'What is the author\'s main claim?',
+         o:['Uniforms should be required in every school','Uniforms are a reasonable policy when affordable and flexible','Uniforms are always harmful','Uniforms should be banned'],
+         c:1,
+         why:'Thesis: uniforms are reasonable "but only when they are affordable, flexible, and paired with other efforts."',
+         steps:['Paragraph 1 thesis','"only when they are affordable"','→ B']},
+        {type:'mcq',q:'What is the strongest argument FOR uniforms according to the passage?',
+         o:['They make students smarter','They reduce visible economic inequality','They eliminate all bullying','They save parents money'],
+         c:1,
+         why:'Paragraph 2: "reduce visible economic inequality."',
+         steps:['Paragraph 2','"reduce visible economic inequality"','→ B']},
+        {type:'mcq',q:'How does the author respond to the argument that uniforms suppress individuality?',
+         o:['By ignoring it','By pointing out that schools already limit expression in many ways','By agreeing it is a fatal flaw','By denying that individuality matters'],
+         c:1,
+         why:'Paragraph 4: schools already have dress codes, curfews, etc.',
+         steps:['Paragraph 4','"schools already limit... in many ways"','→ B']},
+        {type:'multi',q:'Select ALL the qualifications the author adds to their support for uniforms.',
+         o:['Uniforms should be affordable','Families should have financial assistance','Uniforms should be flexible','Uniforms must be brand-name','Uniforms should be paired with other efforts'],
+         c:[0,1,2,4],
+         why:'Affordable, financial assistance, flexible, paired with other efforts. Brand-name uniforms are explicitly discouraged.',
+         steps:['Para 5: affordable, assistance, flexibility','Para 1: paired with other efforts','"Brand-name": discouraged','→ A, B, C, E']},
+        {type:'mcq',q:'The word "panacea" in the final paragraph most nearly means:',
+         o:['A disaster','A cure-all','A type of uniform','A punishment'],
+         c:1,
+         why:'"panacea" = cure-all. The author says uniforms are "neither a panacea nor a disaster."',
+         steps:['"neither a panacea nor a disaster"','= cure-all vs disaster','→ Cure-all']},
+        {type:'mcq',q:'The author\'s overall tone toward uniforms is best described as:',
+         o:['Hostile','Cautiously supportive','Indifferent','Enthusiastic'],
+         c:1,
+         why:'The author supports uniforms with qualifications — cautiously supportive.',
+         steps:['Supports with conditions','Balanced tone','→ Cautiously supportive']},
+        {type:'mcq',q:'Which sentence best represents the author\'s conclusion?',
+         o:['"Uniforms should be mandatory."','"When designed thoughtfully, they can modestly improve school climate and reduce visible inequality."','"Uniforms are always harmful."','"Families should not pay for uniforms."'],
+         c:1,
+         why:'Final paragraph has the conclusion.',
+         steps:['Final paragraph','"when designed thoughtfully"','→ B']}
+      ]
+    },
+    {
+      id: 'f4', title: 'The Printing Press Revolution', type: 'Language Conventions',
+      text: 'The printing press, invented by Johannes Gutenberg around 1440, is often considered one of the most important inventions in human history. [1] Before the printing press, books were copied by hand, a process that could take months or years for a single volume.\n\nGutenberg\'s key innovation was the movable type system. [2] Each letter was cast on a separate metal block, [3] which could be arranged and rearranged to form any page of text. This made printing fast and economical. [4] By 1500, an estimated twenty million books had been printed in Europe.\n\nThe effects of the printing press were profound. [5] Books became cheaper and more widely available, [6] which increased literacy rates across Europe. [7] Ideas could spread faster than ever before. The Protestant Reformation, the Scientific Revolution, and the Enlightenment were all made possible, in part, by the printing press.\n\nThe printing press also standardized languages. [8] Before printing, spelling and grammar varied widely from region to region. [9] Printers chose particular spellings and conventions, [10] which gradually became standard. Modern English spelling, for example, largely reflects the choices of early printers.\n\nSome scholars argue that the printing press was a revolution comparable to the Internet. [11] Both technologies dramatically increased access to information. [12] Both disrupted established institutions and empowered new voices.',
+      questions: [
+        {type:'mcq',q:'Sentence [1] — What does "important" suggest about the printing press?',
+         o:['It had little effect','It had a major impact on history','It was invented recently','It was cheap to build'],
+         c:1,
+         why:'"One of the most important inventions" — major impact.',
+         steps:['Sentence [1]','"most important inventions"','→ Major impact']},
+        {type:'mcq',q:'Sentence [2] — What was Gutenberg\'s key innovation?',
+         o:['The first book','The movable type system','The first printing press','The first paper'],
+         c:1,
+         why:'Paragraph 2: "Gutenberg\'s key innovation was the movable type system."',
+         steps:['Paragraph 2','"key innovation was the movable type system"','→ B']},
+        {type:'mcq',q:'Sentence [3] — What does "arranged and rearranged" suggest?',
+         o:['Type was fixed','Type could be reused flexibly','Type was expensive','Type was permanent'],
+         c:1,
+         why:'"which could be arranged and rearranged" — flexible reuse.',
+         steps:['Sentence [3]','"arranged and rearranged"','→ Reusable']},
+        {type:'mcq',q:'Sentence [5] & [6] — What effect did the printing press have?',
+         o:['Books became rarer','Books became cheaper and literacy increased','Books were burned','Books became longer'],
+         c:1,
+         why:'Paragraph 3: "Books became cheaper... increased literacy rates."',
+         steps:['Paragraph 3','"cheaper... increased literacy"','→ B']},
+        {type:'multi',q:'Select ALL historical movements that the passage links to the printing press.',
+         o:['The Protestant Reformation','The Scientific Revolution','The Enlightenment','The French Revolution'],
+         c:[0,1,2],
+         why:'Paragraph 3: Reformation, Scientific Revolution, Enlightenment. French Revolution is not mentioned.',
+         steps:['Para 3: Reformation, Scientific Revolution, Enlightenment','French Revolution: not mentioned','→ A, B, C']},
+        {type:'mcq',q:'Sentence [8] & [9] — What was one effect on language?',
+         o:['Languages disappeared','Spelling and grammar became standardized','Languages became more varied','Only Latin was printed'],
+         c:1,
+         why:'Paragraph 4: "standardized languages" — "spelling and grammar."',
+         steps:['Paragraph 4','"standardized languages"','→ B']},
+        {type:'dropdown',q:'Complete the sentence with the correct transitions:',
+         text:'Books became cheaper; {0}, literacy rates increased. {1}, ideas spread more quickly.',
+         blanks:[
+           {options:['however','as a result','although'],correct:1},
+           {options:['Consequently','However','In contrast'],correct:0}
+         ],
+         why:'Cause → effect: "as a result" and "Consequently."',
+         steps:['Cause: cheaper books','Effect: literacy, ideas','"as a result"','"Consequently"','→ B / A']},
+        {type:'mcq',q:'Sentence [11] & [12] — What comparison does the author make?',
+         o:['The printing press and the Internet','Books and newspapers','Reformation and Enlightenment','Gutenberg and Caxton'],
+         c:0,
+         why:'Paragraph 5: "the printing press was a revolution comparable to the Internet."',
+         steps:['Paragraph 5','"comparable to the Internet"','→ A']}
+      ]
+    },
+    {
+      id: 'f5', title: 'Two Views of War', type: 'Paired Literary Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — "The Soldier" (Original Poem)',
+          src: 'Poem',
+          text: 'He marched at dawn through fields of frost,\nA boy who did not count the cost,\nWho left a mother\'s quiet prayer\nAnd carried it through foreign air.\n\nHe did not know the reason why\nThe flags were raised, the cannons cry.\nHe only knew the earth was torn\nAnd he was there, and he was born\n\nFor something more than this. The guns\nBroke open mornings, one by one.\nHe learned to live with what he saw —\nThe empty space of what was, before.\n\nAnd when at last the war was done,\nHe came back home — but not as one\nWho left. For he had seen the cost\nThat only those who fight have lost.'
+        },
+        {
+          title: 'Source B — "Peace" (Original Poem)',
+          src: 'Poem',
+          text: 'They signed the paper. Cannons ceased.\nThe generals shook hands and peace\nWas called upon the fields to stay.\nBut peace, they found, had lost its way.\n\nFor what is peace to one who bore\nThe winter of a different war —\nThe war that raged inside his head\nLong after all the guns were dead?\n\nPeace is not a treaty signed,\nNor flags at half-mast, nor the blind\nForgiveness of an ancient wrong.\nPeace is a slow and quiet song\n\nThat someone, somewhere, learns to sing\nWhile mending what the years have torn —\nA small and ordinary thing,\nRebuilt, retaught, and newly born.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'What do both poems explore?',
+         o:['The glory of war','The lasting psychological effects of war','Military strategy','The causes of war'],
+         c:1,
+         why:'Both poems address the emotional and psychological aftermath of war.',
+         steps:['Source A: soldier returns changed','Source B: internal war continues','→ Psychological aftermath']},
+        {type:'mcq',q:'In Source A, what does the soldier carry with him?',
+         o:['A weapon','His mother\'s prayer','A letter','A flag'],
+         c:1,
+         why:'"Who left a mother\'s quiet prayer / And carried it through foreign air."',
+         steps:['Stanza 1','"mother\'s quiet prayer"','→ B']},
+        {type:'mcq',q:'The phrase "not as one / Who left" in Source A suggests the soldier:',
+         o:['Returned unchanged','Returned fundamentally changed','Did not return','Was forgotten'],
+         c:1,
+         why:'"He came back home — but not as one / Who left" — the soldier has been transformed.',
+         steps:['Final stanza','"not as one who left"','→ Changed']},
+        {type:'mcq',q:'What does Source B suggest about peace?',
+         o:['Peace is simply the end of war','Peace is easy to achieve','Peace is more than the end of war — it requires healing','Peace is impossible'],
+         c:2,
+         why:'Source B: "Peace is not a treaty signed... Peace is a slow and quiet song."',
+         steps:['Para 2: "not a treaty signed"','"slow and quiet song"','→ More than end of war']},
+        {type:'multi',q:'Select ALL ideas shared in BOTH poems.',
+         o:['War leaves lasting internal scars','Peace requires more than ending conflict','Soldiers are permanently affected by their experiences','War is glorious'],
+         c:[0,1,2],
+         why:'Both poems: scars last, peace requires more, soldiers are affected. "War is glorious" is not claimed.',
+         steps:['A: "seen the cost"','B: "war inside his head"','Both: peace needs healing','→ A, B, C']},
+        {type:'mcq',q:'Which literary device is most prominent in Source B\'s "war that raged inside his head"?',
+         o:['Simile','Metaphor','Understatement','Onomatopoeia'],
+         c:1,
+         why:'The internal struggle is called a "war" — metaphor.',
+         steps:['Internal war = metaphor','→ B']},
+        {type:'order',q:'Order the stages described in Source A:',
+         items:['The soldier marches at dawn','He does not understand the reasons for war','He witnesses destruction','He returns home transformed'],
+         correctOrder:['The soldier marches at dawn','He does not understand the reasons for war','He witnesses destruction','He returns home transformed'],
+         why:'Poem sequence follows this progression.',
+         steps:['Stanza 1: marches','Stanza 2: doesn\'t know why','Stanza 3: witnesses','Stanza 4: returns']},
+        {type:'mcq',q:'Which statement best captures the relationship between the two poems?',
+         o:['Source A criticizes Source B','Both explore the lasting effects of war but emphasize different aspects','Source B rejects Source A','Both celebrate war'],
+         c:1,
+         why:'Both explore aftermath, but Source A focuses on the individual soldier; Source B on the nature of peace.',
+         steps:['Shared: aftermath','Different: soldier vs peace','→ Different aspects']}
+      ]
+    }
+  ];
+
+  var STANDALONE_F = [
+    {q:'Which sentence uses "their," "there," or "they\'re" correctly?',o:['Their going to the store.','There going to the store.','They\'re going to the store.','Theyre going to the store.'],c:2,why:'"They\'re" = "they are."',steps:['Contraction: they are','→ They\'re','→ C']},
+    {q:'Which sentence has correct capitalization?',o:['i went to paris last summer.','I went to Paris last summer.','I went to paris last Summer.','i went to Paris last Summer.'],c:1,why:'"I" is always capitalized; "Paris" is a proper noun.',steps:['Capitalize "I"','Capitalize "Paris"','→ B']},
+    {q:'Which is the best transition? "He was tired. ___, he finished the race."',o:['However','Therefore','Nevertheless','Because'],c:2,why:'Contrast: tired vs finished → "Nevertheless."',steps:['Contrast','→ Nevertheless','→ C']},
+    {q:'Which sentence is grammatically correct?',o:['The committee have made its decision.','The committee has made its decision.','The committee have made their decision.','The committee has made their decision.'],c:1,why:'"Committee" = collective singular → "has" + "its."',steps:['Collective noun','Singular verb + its','→ B']},
+    {q:'Which revision is most concise?',o:['At this point in time, we should leave.','Now, we should leave.','At the present time, we should leave.','At this moment in time, we should leave.'],c:1,why:'"At this point in time" → "Now" is more concise.',steps:['Redundant phrase','→ "Now"','→ B']},
+    {q:'Which sentence has correct pronoun agreement?',o:['Everyone should bring their book.','Everyone should bring his or her book.','Everyone should bring its book.','Everyone should bring they book.'],c:1,why:'"Everyone" is singular; formal agreement uses "his or her."',steps:['"Everyone" singular','"his or her"','→ B']}
+  ];
+
+  /* ============================================================
+     ESSAYS
+  ============================================================ */
+  var ESSAYS = {
+    D: {
+      title: 'Two Views on School Start Times',
+      prompt: 'Below are two passages about whether high schools should start later in the morning. Read both passages carefully. Then write a well-organized essay that:',
+      tasks: ['Analyzes the arguments in both passages','Explains which argument is better supported','Uses evidence from the passages to support your position'],
+      s1title: 'Source 1 — Start Later',
+      s1: 'Teenagers\' biological clocks shift during puberty, making it difficult for them to fall asleep before 11 p.m. Yet most high schools start before 8 a.m., forcing students to wake up before their bodies are ready. The American Academy of Pediatrics recommends that high schools start no earlier than 8:30 a.m. Studies show that later start times improve attendance, grades, and mental health, and reduce car accidents among teen drivers. The evidence is clear: schools should start later.',
+      s2title: 'Source 2 — Keep Current Times',
+      s2: 'Later school start times create significant logistical problems. Bus schedules must be reorganized, after-school activities and sports must be shifted, and parents\' work schedules may be disrupted. Some districts that have tried later start times have reported increased transportation costs and scheduling conflicts. Furthermore, students who need to work or care for siblings after school would be disadvantaged. Before making such a major change, we should consider the practical costs.'
+    },
+    E: {
+      title: 'Two Views on College Sports Funding',
+      prompt: 'Below are two passages about whether universities should continue to spend heavily on athletic programs. Read both passages carefully. Then write a well-organized essay that:',
+      tasks: ['Analyzes the arguments in both passages','Explains which argument is better supported','Uses evidence from the passages to support your position'],
+      s1title: 'Source 1 — Sports Funding Matters',
+      s1: 'Athletic programs generate significant revenue for universities. Major college football and basketball programs bring in millions of dollars through ticket sales, television contracts, and merchandise. These funds support scholarships and other academic programs. Sports also build community, foster school spirit, and provide opportunities for student-athletes who might not otherwise afford college. Cutting athletic funding would harm these benefits.',
+      s2title: 'Source 2 — Prioritize Academics',
+      s2: 'Universities exist to educate, not to entertain. Yet many institutions spend more on coaches\' salaries than on professors\' salaries. When athletic budgets are cut, students face fewer academic resources, larger class sizes, and higher tuition. The evidence suggests that athletic spending rarely generates the economic benefits it promises. Universities should redirect resources toward their primary mission: teaching and research.'
+    },
+    F: {
+      title: 'Two Views on Social Media Age Limits',
+      prompt: 'Below are two passages about whether the government should set a minimum age for social media use. Read both passages carefully. Then write a well-organized essay that:',
+      tasks: ['Analyzes the arguments in both passages','Explains which argument is better supported','Uses evidence from the passages to support your position'],
+      s1title: 'Source 1 — Set Age Limits',
+      s1: 'Social media platforms are designed to be addictive, and their effects on developing brains are harmful. Studies have linked heavy social media use to depression, anxiety, and body image issues in adolescents. Many countries have proposed minimum ages of 13 or 16. Setting age limits would protect young people during a vulnerable period of development, similar to laws that regulate alcohol, tobacco, and driving. The risks to youth are severe enough to justify regulation.',
+      s2title: 'Source 2 — Education, Not Bans',
+      s2: 'Age limits are difficult to enforce and may push young people to use social media secretly, without guidance. A better approach is digital literacy education combined with platform responsibility. Schools can teach students to recognize manipulation, manage their time, and think critically about online content. Parents and platforms share responsibility for safety. Bans give a false sense of security and ignore the reality that social media is now a central part of young people\'s lives.'
+    }
+  };
+
+  /* ============================================================
+     BUILD QUESTIONS
+  ============================================================ */
+  function buildQuestions(passages, standalone){
+    var allQ = [];
+    var passForQ = [];
+    passages.forEach(function(pass){
+      pass.questions.forEach(function(q){
+        var item = { type:q.type || 'mcq', q:q.q, passageId:pass.id, passage:pass };
+        if(item.type === 'mcq' || item.type === 'rhet'){
+          item.options = q.o; item.correctIndex = q.c; item.why = q.why; item.steps = q.steps; item.answer = q.o[q.c];
+        } else if(item.type === 'multi'){
+          item.options = q.o; item.correctIndex = q.c; item.need = q.need; item.why = q.why; item.steps = q.steps;
+          item.answer = q.c.map(function(i){return 'ABCD'[i]}).join(' · ');
+        } else if(item.type === 'order'){
+          item.items = q.items; item.correctOrder = q.correctOrder; item.why = q.why; item.steps = q.steps;
+          item.answer = q.correctOrder.join(' → ');
+        } else if(item.type === 'dropdown'){
+          item.text = q.text; item.blanks = q.blanks; item.why = q.why; item.steps = q.steps;
+          item.answer = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        } else if(item.type === 'table'){
+          item.headers = q.headers; item.rows = q.rows; item.why = q.why; item.steps = q.steps;
+          item.answer = q.rows.map(function(r){return r.answers.filter(function(a){return a!==null}).join('/')}).join(' · ');
+        }
+        allQ.push(item);
+        passForQ.push(pass);
+      });
+    });
+    standalone.forEach(function(q){
+      allQ.push({ type:'mcq', q:q.q, options:q.o, correctIndex:q.c, why:q.why, steps:q.steps, answer:q.o[q.c], passageId:null });
+      passForQ.push(null);
+    });
+    allQ.push({type:'essay'});
+    passForQ.push(null);
+    return { questions: allQ, passForQ: passForQ };
+  }
+
+  var SETS = {
+    D: { name:'Set 4', built: buildQuestions(PASSAGES_D, STANDALONE_D), essay: ESSAYS.D },
+    E: { name:'Set 5', built: buildQuestions(PASSAGES_E, STANDALONE_E), essay: ESSAYS.E },
+    F: { name:'Set 6', built: buildQuestions(PASSAGES_F, STANDALONE_F), essay: ESSAYS.F }
+  };
+
+  var SET_NUMBERS = { D:4, E:5, F:6 };
+  var URL_MAP = { '4':'D', '5':'E', '6':'F' };
+
+  /* ============================================================
+     TIME
+  ============================================================ */
+  var T_PART1 = 40 * 60;
+  var T_BREAK = 3 * 60;
+  var T_PART2 = 65 * 60;
+  var T_ESSAY = 45 * 60;
+  var PART1_END = 24;
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var currentSetKey = null, currentSet = null;
+  var allQuestions = [], passageForQ = [];
+  var userAnswers = [], currentQ = 0;
+  var phase = 'p1', timerLeft = T_PART1, timerId = null;
+  var timeUsedTotal = 0, submitted = false, essayText = '';
+  var initialSetKey = null;
+
+  function initState(fromUrl){
+    var keys = Object.keys(SETS);
+    if(fromUrl && !initialSetKey){
+      var params = new URLSearchParams(window.location.search);
+      var urlSet = params.get('set');
+      if(urlSet && URL_MAP[urlSet] && SETS[URL_MAP[urlSet]]){
+        initialSetKey = URL_MAP[urlSet];
+      }
+    }
+    if(initialSetKey){
+      currentSetKey = initialSetKey;
+      initialSetKey = null;
+    } else {
+      currentSetKey = keys[Math.floor(Math.random() * keys.length)];
+    }
+    currentSet = SETS[currentSetKey];
+    allQuestions = currentSet.built.questions.slice();
+    passageForQ = currentSet.built.passForQ.slice();
+    userAnswers = new Array(allQuestions.length).fill(null);
+    currentQ = 0; phase = 'p1'; timerLeft = T_PART1; timeUsedTotal = 0;
+    submitted = false; essayText = '';
+  }
+
+  $('startBtn').addEventListener('click', function(){
+    initState(true);
+    console.log('[RLA New Sets] Starting:', currentSetKey, '(Set ' + SET_NUMBERS[currentSetKey] + ')');
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  });
+
+  /* TIMER */
+  function startTimer(){
+    clearInterval(timerId);
+    updateTimerDisplay();
+    timerId = setInterval(function(){
+      timerLeft--; timeUsedTotal++;
+      if(phase === 'break') updateBreakDisplay();
+      else if(phase === 'essay') updateEssayTimer();
+      else updateTimerDisplay();
+      if(timerLeft <= 0){
+        clearInterval(timerId);
+        if(phase === 'p1') goToBreak();
+        else if(phase === 'break') skipBreak();
+        else if(phase === 'p2') goToEssay();
+        else if(phase === 'essay') finishExam();
+      }
+    }, 1000);
+  }
+  function fmtTime(sec){
+    var m = Math.floor(Math.max(sec, 0)/60);
+    var s = Math.max(sec, 0)%60;
+    return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  function updateTimerDisplay(){
+    var t = $('timer');
+    t.textContent = fmtTime(timerLeft);
+    if(phase === 'p1') t.classList.toggle('warn', timerLeft <= 180);
+    if(phase === 'p2') t.classList.toggle('warn', timerLeft <= 300);
+  }
+  function updateBreakDisplay(){
+    var str = Math.floor(timerLeft/60)+':'+((timerLeft%60)<10?'0':'')+(timerLeft%60);
+    $('breakCount').textContent = str; $('timer').textContent = str;
+  }
+  function updateEssayTimer(){
+    $('essayTimer').textContent = fmtTime(timerLeft);
+    $('essayTimer').classList.toggle('warn', timerLeft <= 300);
+  }
+
+  function goToBreak(){
+    phase = 'break'; timerLeft = T_BREAK;
+    $('timer').classList.add('break'); showOnly($('breakScreen')); startTimer();
+  }
+  function skipBreak(){
+    clearInterval(timerId);
+    phase = 'p2'; timerLeft = T_PART2;
+    $('timer').classList.remove('break');
+    currentQ = PART1_END;
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  }
+  $('skipBreakBtn').addEventListener('click', skipBreak);
+
+  /* RENDER QUESTION */
+  var TYPE_LABELS = {
+    mcq:'Multiple Choice', multi:'Multi-Select', order:'Ordering',
+    dropdown:'Dropdown', table:'Table', rhet:'Rhetorical Analysis'
+  };
+
+  function renderQuestion(){
+    var q = allQuestions[currentQ];
+    if(q.type === 'essay'){ goToEssay(); return; }
+    var card = $('qCard');
+    var badge = $('partBadge');
+    if(currentQ < PART1_END){ badge.textContent = 'Part 1 · Reading'; badge.classList.remove('p2','new'); }
+    else { badge.textContent = 'Part 2 · Language'; badge.classList.add('p2'); badge.classList.remove('new'); }
+
+    var typeTag = '<span class="q-type '+(q.type === 'rhet'?'rhet':(q.type === 'multi' || q.type === 'order' || q.type === 'dropdown' || q.type === 'table'?'tech':''))+'">'+(TYPE_LABELS[q.type] || 'MCQ')+'</span>';
+
+    card.innerHTML =
+      '<div class="q-num">Question '+(currentQ+1)+' of 46 '+typeTag+'</div>'+
+      '<div id="qHintWrap"></div>'+
+      '<div class="q-text">'+q.q+'</div>'+
+      '<div id="interactive"></div>';
+
+    var inter = card.querySelector('#interactive');
+    var hintWrap = card.querySelector('#qHintWrap');
+    if(q.type === 'multi') hintWrap.innerHTML = '<div class="q-hint">Select '+q.need+' answers</div>';
+    else if(q.type === 'order') hintWrap.innerHTML = '<div class="q-hint">Tap items in the correct order</div>';
+
+    if(q.type === 'mcq' || q.type === 'rhet') renderMCQ(q, inter);
+    else if(q.type === 'multi') renderMulti(q, inter);
+    else if(q.type === 'order') renderOrder(q, inter);
+    else if(q.type === 'dropdown') renderDropdown(q, inter);
+    else if(q.type === 'table') renderTable(q, inter);
+
+    renderPassage(currentQ);
+    $('qCounter').textContent = 'Question '+(currentQ+1)+' of 46';
+    $('prevBtn').disabled = (currentQ === 0) || (phase === 'p2' && currentQ === PART1_END);
+    var isLast = currentQ === 45;
+    $('nextBtn').textContent = isLast ? 'Begin Essay →' : 'Next →';
+    if(phase === 'p1' && currentQ === PART1_END - 1) $('nextBtn').textContent = '☕ Begin Break';
+  }
+
+  function commitAnswer(val){
+    userAnswers[currentQ] = val;
+    updateProgress(); renderDotMap();
+  }
+
+  function renderMCQ(q, container){
+    var chosen = userAnswers[currentQ];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+'ABCD'[i]+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if(phase === 'p1' && currentQ >= PART1_END) return;
+        if(phase === 'p2' && currentQ < PART1_END) return;
+        var i = +btn.dataset.i;
+        commitAnswer(i);
+        container.querySelectorAll('.opt').forEach(function(b){b.classList.remove('selected')});
+        btn.classList.add('selected');
+        autoAdvance();
+      });
+    });
+  }
+
+  function renderMulti(q, container){
+    var sel = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt multi multi-opt '+(sel.indexOf(i)!==-1?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+(sel.indexOf(i)!==-1?'✓':'')+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div><button class="btn primary" id="multiSubmit" style="margin-top:12px;width:100%">Confirm Selection</button>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+        var k = arr.indexOf(i);
+        if(k>=0) arr.splice(k,1); else if(arr.length < q.need) arr.push(i);
+        userAnswers[currentQ] = arr;
+        btn.classList.toggle('selected', arr.indexOf(i)!==-1);
+        btn.querySelector('.ltr').textContent = arr.indexOf(i)!==-1 ? '✓' : '';
+        var h = document.querySelector('.q-hint');
+        if(h) h.textContent = 'Select '+q.need+' answers ('+arr.length+' selected)';
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#multiSubmit').addEventListener('click', function(){
+      if((userAnswers[currentQ]||[]).length < q.need) return;
+      autoAdvance();
+    });
+  }
+
+  function renderOrder(q, container){
+    var pool = q.items.slice();
+    var seq = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+    container.innerHTML = '<div class="order-pool" id="orderPool"></div><div class="order-slots" id="orderSlots"></div>';
+    var poolEl = container.querySelector('#orderPool');
+    var slotsEl = container.querySelector('#orderSlots');
+    function paint(){
+      poolEl.innerHTML='';
+      pool.forEach(function(item){
+        var b = document.createElement('button');
+        b.className = 'order-item'+(seq.indexOf(item)!==-1?' used':'');
+        b.textContent = item;
+        b.addEventListener('click', function(){
+          if(seq.indexOf(item)!==-1) return;
+          seq.push(item);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots();
+          var h = document.querySelector('.q-hint');
+          if(h) h.textContent = 'Tap items in the correct order ('+seq.length+' / '+pool.length+')';
+          updateProgress(); renderDotMap();
+          if(seq.length===pool.length) setTimeout(autoAdvance,400);
+        });
+        poolEl.appendChild(b);
+      });
+    }
+    function paintSlots(){
+      slotsEl.innerHTML='';
+      if(seq.length===0){ slotsEl.innerHTML='<div class="order-empty">ဤနေရာတွင် အစဉ်လိုက် ပြသပါမည်</div>'; return; }
+      seq.forEach(function(it,i){
+        var d = document.createElement('div');
+        d.className = 'order-slot';
+        var sp = document.createElement('span'); sp.className='num'; sp.textContent=(i+1); d.appendChild(sp);
+        var txt = document.createElement('span'); txt.style.flex='1'; txt.textContent=it; d.appendChild(txt);
+        var rm = document.createElement('span'); rm.className='rm'; rm.textContent='✕';
+        rm.addEventListener('click', function(){
+          seq.splice(i,1);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots(); updateProgress(); renderDotMap();
+        });
+        d.appendChild(rm);
+        slotsEl.appendChild(d);
+      });
+    }
+    paint(); paintSlots();
+  }
+
+  function renderDropdown(q, container){
+    var vals = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : new Array(q.blanks.length).fill(null);
+    var html = '<div class="dropdown-line">';
+    var parts = q.text.split(/(\{\d+\})/);
+    parts.forEach(function(p){
+      var m = p.match(/^\{(\d+)\}$/);
+      if(m){
+        var idx = +m[1]; var b = q.blanks[idx];
+        html += '<select class="dd-select" data-idx="'+idx+'"><option value="">--</option>';
+        b.options.forEach(function(o,i){
+          html += '<option value="'+i+'"'+(vals[idx]===i?' selected':'')+'>'+o+'</option>';
+        });
+        html += '</select>';
+      } else html += p;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    container.querySelectorAll('.dd-select').forEach(function(sel){
+      sel.addEventListener('change', function(){
+        var idx = +sel.dataset.idx;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : new Array(q.blanks.length).fill(null);
+        arr[idx] = +sel.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+        if(arr.every(function(v){return v != null})) setTimeout(autoAdvance, 300);
+      });
+    });
+  }
+
+  function renderTable(q, container){
+    var answers = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : null;
+    var html = '<div class="table-wrap"><table class="data-table"><thead><tr>';
+    q.headers.forEach(function(h){html += '<th>'+h+'</th>'});
+    html += '</tr></thead><tbody>';
+    q.rows.forEach(function(r, ri){
+      html += '<tr>';
+      r.cells.forEach(function(c, ci){
+        if(r.answers[ci] === null){
+          html += '<td>'+c+'</td>';
+        } else {
+          var cur = (answers && answers[ri] && answers[ri][ci]) || '';
+          html += '<td><input type="text" data-r="'+ri+'" data-c="'+ci+'" value="'+cur+'" placeholder="..." style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;font-weight:700;font-size:13px"></td>';
+        }
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    html += '<button class="btn primary" id="tableSubmit" style="width:100%">Confirm Table</button>';
+    container.innerHTML = html;
+    container.querySelectorAll('input').forEach(function(inp){
+      inp.addEventListener('input', function(){
+        var r = +inp.dataset.r, c = +inp.dataset.c;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].map(function(x){return x ? x.slice() : []}) : q.rows.map(function(){return []});
+        if(!arr[r]) arr[r] = [];
+        arr[r][c] = inp.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#tableSubmit').addEventListener('click', function(){
+      setTimeout(autoAdvance, 200);
+    });
+  }
+
+  function autoAdvance(){
+    if(currentQ >= PART1_END - 1 && phase === 'p1') return;
+    if(currentQ >= 45) return;
+    setTimeout(function(){
+      if(isAnswered(userAnswers[currentQ])){
+        currentQ++; renderQuestion(); renderDotMap();
+      }
+    }, 280);
+  }
+
+  /* RENDER PASSAGE */
+  function renderPassage(qIndex){
+    var pass = passageForQ[qIndex];
+    var box = $('passageBox');
+    var indicator = $('passageIndicator');
+    if(!pass){ box.style.display='none'; indicator.style.display='none'; return; }
+    box.style.display='block'; indicator.style.display='flex';
+    $('passageInfo').textContent = pass.type;
+
+    var pIdx = 0, seen = {};
+    for(var i=0; i<passageForQ.length; i++){
+      var p = passageForQ[i];
+      if(p && !seen[p.id]){ seen[p.id] = ++pIdx; if(p.id === pass.id) break; }
+    }
+    $('passageBadge').textContent = 'Passage '+pIdx+' of 5';
+
+    if(pass.isPaired){
+      box.innerHTML =
+        '<div class="passage-pair">'+
+          pass.sources.map(function(src, si){
+            return '<div class="passage-inner collapsed" data-src="'+si+'">'+
+              '<div class="passage-title">'+src.title+' <span class="src">'+src.src+'</span></div>'+
+              '<div class="passage-text">'+src.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+            '</div>';
+          }).join('')+
+        '</div>'+
+        '<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">'+
+          '<button class="passage-toggle" data-act="expand-all" style="flex:1">📖 Expand Both</button>'+
+          '<button class="passage-toggle" data-act="collapse-all" style="flex:1">📕 Collapse Both</button>'+
+        '</div>';
+      box.querySelectorAll('.passage-toggle').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var act = btn.dataset.act;
+          box.querySelectorAll('.passage-inner').forEach(function(inner){
+            if(act === 'expand-all') inner.classList.remove('collapsed');
+            else inner.classList.add('collapsed');
+          });
+        });
+      });
+    } else {
+      box.innerHTML =
+        '<div class="passage-inner collapsed">'+
+          '<div class="passage-title">'+pass.title+' <span class="src">'+pass.type+'</span></div>'+
+          '<div class="passage-text">'+pass.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+        '</div>'+
+        '<button class="passage-toggle" id="passageToggleBtn">📖 Show Full Passage</button>';
+      var btn = box.querySelector('#passageToggleBtn');
+      var inner = box.querySelector('.passage-inner');
+      btn.addEventListener('click', function(){
+        if(inner.classList.contains('collapsed')){
+          inner.classList.remove('collapsed');
+          btn.textContent = '📕 Collapse Passage';
+        } else {
+          inner.classList.add('collapsed');
+          btn.textContent = '📖 Show Full Passage';
+        }
+      });
+    }
+  }
+
+  $('prevBtn').addEventListener('click', function(){
+    if(phase === 'p2' && currentQ === PART1_END) return;
+    if(currentQ > 0){ currentQ--; renderQuestion(); renderDotMap(); }
+  });
+  $('nextBtn').addEventListener('click', function(){
+    if(phase === 'p1' && currentQ === PART1_END - 1){ goToBreak(); return; }
+    if(currentQ === 45){ goToEssay(); return; }
+    currentQ++; renderQuestion(); renderDotMap();
+  });
+
+  /* ESSAY */
+  function goToEssay(){
+    clearInterval(timerId);
+    phase = 'essay'; timerLeft = T_ESSAY;
+    startTimer();
+    var essay = currentSet.essay;
+    $('essayPromptTitle').textContent = '📝 ' + essay.title;
+    $('essayPromptText').textContent = essay.prompt;
+    $('essayPromptList').innerHTML = essay.tasks.map(function(t){return '<li>'+t+'</li>'}).join('');
+    $('essaySources').innerHTML =
+      '<div class="essay-source"><b>'+essay.s1title+'</b>'+essay.s1+'</div>'+
+      '<div class="essay-source"><b>'+essay.s2title+'</b>'+essay.s2+'</div>';
+    showOnly($('essayScreen'));
+    if(essayText){ $('essayInput').value = essayText; updateEssayWords(); }
+  }
+  function updateEssayWords(){
+    var txt = $('essayInput').value.trim();
+    essayText = $('essayInput').value;
+    var words = txt ? txt.split(/\s+/).length : 0;
+    $('essayWords').textContent = words;
+  }
+  $('essayInput').addEventListener('input', updateEssayWords);
+  $('essaySubmitBtn').addEventListener('click', function(){
+    if(!confirm('Essay ကို အတည်ပြုပြီး Result ကြည့်မလား။')) return;
+    finishExam();
+  });
+  function finishExam(){
+    if(submitted) return;
+    submitted = true; clearInterval(timerId); submitExam();
+  }
+
+  /* SCORING */
+  function isAnswered(a){
+    if(a === null || a === undefined) return false;
+    if(Array.isArray(a)) return a.length > 0;
+    if(typeof a === 'string') return a.trim() !== '';
+    if(typeof a === 'object') return true;
+    return true;
+  }
+
+  function scoreQ(q, ua){
+    if(q.type === 'essay') return false;
+    if(!isAnswered(ua)) return false;
+    if(q.type === 'mcq' || q.type === 'rhet') return ua === q.correctIndex;
+    if(q.type === 'multi'){
+      if(!Array.isArray(ua)) return false;
+      var a = ua.slice().sort(function(x,y){return x-y});
+      var c = q.correctIndex.slice().sort(function(x,y){return x-y});
+      return a.length === c.length && a.every(function(v,i){return v === c[i]});
+    }
+    if(q.type === 'order'){
+      if(!Array.isArray(ua)) return false;
+      return ua.length === q.correctOrder.length && ua.every(function(v,i){return v === q.correctOrder[i]});
+    }
+    if(q.type === 'dropdown'){
+      if(!Array.isArray(ua)) return false;
+      return q.blanks.every(function(b,i){return ua[i] === b.correct});
+    }
+    if(q.type === 'table'){
+      if(!Array.isArray(ua)) return false;
+      return q.rows.every(function(r, ri){
+        return r.answers.every(function(a, ci){
+          if(a === null) return true;
+          var u = ua[ri] && ua[ri][ci];
+          if(u == null || u === '') return false;
+          return String(u).trim().toLowerCase() === String(a).trim().toLowerCase();
+        });
+      });
+    }
+    return false;
+  }
+
+  /* SUBMIT */
+  $('submitBtn').addEventListener('click', function(){
+    var un = 0;
+    for(var i=0; i<46; i++) if(!isAnswered(userAnswers[i])) un++;
+    var msg = '';
+    if(un > 0) msg += un + ' multiple choice မဖြေရသေးပါ။ ';
+    if(essayText.trim().length === 0) msg += 'Essay မရေးရသေးပါ။ ';
+    msg += 'Exam ကို တင်မလား။';
+    if(!confirm(msg)) return;
+    finishExam();
+  });
+
+  function submitExam(){
+    var correct = 0, wrong = 0;
+    for(var i=0; i<46; i++){
+      if(scoreQ(allQuestions[i], userAnswers[i])) correct++; else wrong++;
+    }
+    var pct = Math.round(correct / 46 * 100);
+    var setNum = SET_NUMBERS[currentSetKey];
+    try {
+      var s = JSON.parse(localStorage.getItem('ged:pretest:scores')) || {};
+      var rec = {
+        score: correct, total: 46, pct: pct,
+        date: new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}),
+        set: setNum, hasEssay: essayText.trim().length > 0
+      };
+      var key = 'rla:s' + setNum;
+      var prev = s[key];
+      if(!prev || rec.pct > prev.pct) s[key] = rec;
+      localStorage.setItem('ged:pretest:scores', JSON.stringify(s));
+    } catch(e){}
+    renderResult(correct, wrong, pct);
+    showOnly($('resultScreen'));
+  }
+
+  /* RESULT */
+  function renderResult(correct, wrong, pct){
+    $('scorePct').textContent = pct + '%';
+    $('rCorrect').textContent = correct;
+    $('rWrong').textContent = wrong;
+    var m = Math.floor(timeUsedTotal/60), s = timeUsedTotal%60;
+    $('rTime').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    var gedScore = Math.round(100 + (pct/100)*100);
+    $('gedScore').textContent = gedScore;
+    var gs = $('gedMsg');
+    if(gedScore >= 175) gs.textContent = '🏆 College Ready + Credit (175+)';
+    else if(gedScore >= 165) gs.textContent = '🎓 College Ready (165+)';
+    else if(gedScore >= 145) gs.textContent = '✅ Passed GED (145+)';
+    else gs.textContent = '📚 အောင်မှတ် 145 ရရန် လိုသေးသည်';
+    var ring = $('scoreRing');
+    var C = 2 * Math.PI * 70;
+    ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C;
+    setTimeout(function(){ ring.style.strokeDashoffset = C * (1 - pct/100); }, 100);
+    var setLabel = 'Set ' + SET_NUMBERS[currentSetKey];
+    var msg, sub;
+    if(gedScore >= 165){ msg = '🌟 College Ready!'; sub = 'GED RLA အတွက် ထူးချွန်စွာ အသင့်ဖြစ်နေပါပြီ။ (' + setLabel + ')'; }
+    else if(gedScore >= 145){ msg = '✅ Passed!'; sub = 'GED RLA အောင်မှတ် ရပါပြီ။ (' + setLabel + ')'; }
+    else if(gedScore >= 130){ msg = '📚 Near Passing'; sub = 'အောင်မှတ်နှင့် နီးကပ်နေသည်။ စာဖတ်ခြင်း ပြန်လေ့ကျင့်ပါ။ (' + setLabel + ')'; }
+    else { msg = '💪 လေ့ကျင့်ဖို့ လိုသေးသည်'; sub = 'RLA Lessons များ ပြန်လေ့လာပါ။ (' + setLabel + ')'; }
+    $('resultMsg').textContent = msg;
+    $('resultSub').textContent = sub;
+    renderReview();
+  }
+
+  /* REVIEW */
+  function renderReview(){
+    var el = $('reviewWrap');
+    el.innerHTML = '<div class="review-title">Answer Key & Explanations — Set ' + SET_NUMBERS[currentSetKey] + '</div>';
+    for(var i=0; i<46; i++){
+      var q = allQuestions[i];
+      var ua = userAnswers[i];
+      var ok = scoreQ(q, ua);
+      var pass = passageForQ[i];
+      var partTag = i < PART1_END
+        ? '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,.12);color:#1d4ed8">PART 1</span>'
+        : '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(139,92,246,.12);color:#6d28d9">PART 2</span>';
+      var passTag = pass
+        ? '<span style="font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(245,158,11,.12);color:#b45309">'+pass.title+'</span>'
+        : '';
+      var typeTag = '<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(236,72,153,.12);color:#be185d">'+(TYPE_LABELS[q.type]||'MCQ')+'</span>';
+
+      var answerHtml = '';
+      if(q.type === 'mcq' || q.type === 'rhet'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var cls = 'opt';
+            if(j === q.correctIndex) cls += ' correct';
+            else if(j === ua) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default;opacity:.98"><span class="ltr">'+'ABCD'[j]+'</span><span class="body">'+o+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'multi'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var isC = q.correctIndex.indexOf(j) !== -1;
+            var isU = Array.isArray(ua) && ua.indexOf(j) !== -1;
+            var cls = 'opt multi';
+            if(isC) cls += ' correct'; else if(isU) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default"><span class="ltr">'+(isU?'✓':'')+'</span><span class="body">'+o+(isC?' ✓ correct':'')+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'order'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your order: <b>'+(Array.isArray(ua) ? ua.join(' → ') : '(blank)')+'</b><br>'+
+          'Correct: <b style="color:#14532d">'+q.correctOrder.join(' → ')+'</b></div>';
+      } else if(q.type === 'dropdown'){
+        var correctChoices = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Correct choices: <b style="color:#14532d">'+correctChoices+'</b></div>';
+      } else if(q.type === 'table'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Correct values: <b style="color:#14532d">'+q.answer+'</b></div>';
+      }
+
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+      card.innerHTML =
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+          '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#ec4899,#8b5cf6)">'+(i+1)+'</span>'+
+          partTag + passTag + typeTag +
+          '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+(ok?'color:#14532d;background:#bbf7d0':'color:#7f1d1d;background:#fecaca')+'">'+(ok?'✔ Correct':'✘ Wrong')+'</span>'+
+        '</div>'+
+        '<div style="font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500">'+q.q+'</div>'+
+        answerHtml+
+        '<div class="sol">'+
+          '<span class="lbl">အဘယ်ကြောင့်</span>'+q.why+
+          '<div style="margin-top:10px"><span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span><ol>'+
+            q.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+          '</ol></div>'+
+          '<span class="ans">✔ အဖြေ: '+q.answer+'</span>'+
+        '</div>';
+      el.appendChild(card);
+    }
+
+    /* Essay card */
+    var eCard = document.createElement('div');
+    eCard.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+    var essayStatus = essayText.trim().length > 0
+      ? '✔ Submitted ('+essayText.trim().split(/\s+/).length+' words)'
+      : '✘ Not submitted';
+    var essayColor = essayText.trim().length > 0 ? 'color:#14532d;background:#bbf7d0' : 'color:#7f1d1d;background:#fecaca';
+    eCard.innerHTML =
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+        '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#22c55e,#16a34a)">✎</span>'+
+        '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(22,163,74,.12);color:#15803d">EXTENDED RESPONSE</span>'+
+        '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+essayColor+'">'+essayStatus+'</span>'+
+      '</div>'+
+      '<div style="font-size:14px;line-height:1.7;margin:6px 0 12px;font-weight:500">Essay: '+currentSet.essay.title+'</div>'+
+      (essayText.trim().length > 0 ? '<div style="padding:14px;border-radius:12px;background:rgba(15,23,42,.03);font-size:13px;line-height:1.75;max-height:200px;overflow-y:auto;white-space:pre-wrap;font-style:italic">'+essayText.substring(0,500)+(essayText.length>500?'...':'')+'</div>' : '')+
+      '<div class="sol">'+
+        '<span class="lbl">အဘယ်ကြောင့်</span>Extended Response ကို 3-point rubric ဖြင့် စစ်ဆေးပါမည် — Analysis, Development, Clarity။'+
+        '<div style="margin-top:10px"><span class="lbl">အောင်မြင်ရန် လိုအပ်ချက်</span><ol>'+
+          '<li>Thesis statement (clear position)</li>'+
+          '<li>Evidence from BOTH sources (specific quotes/details)</li>'+
+          '<li>Address counterargument</li>'+
+          '<li>Clear organization (intro, body, conclusion)</li>'+
+          '<li>400-600 words</li>'+
+        '</ol></div>'+
+      '</div>';
+    el.appendChild(eCard);
+  }
+
+  /* BUTTONS */
+  $('reviewBtn').addEventListener('click', function(){
+    $('reviewWrap').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  $('retryBtn').addEventListener('click', function(){
+    if(!confirm('Exam အသစ် (ကျပန်း set) စတင်မလား။')) return;
+    initState(false);
+    showOnly($('startScreen'));
+  });
+  window.confirmExit = function(){
+    if(submitted) return true;
+    return confirm('Exam မှ ထွက်မလား။ ဖြေထားသည်များ ဆုံးရှုံးမည်။');
+  };
+
+  /* DOT MAP */
+  function renderDotMap(){
+    var el = $('dotMap'); el.innerHTML = '';
+    for(var i=0; i<47; i++){
+      var d = document.createElement('button');
+      d.className = 'dot' + (i >= PART1_END ? ' p2' : '');
+      if(i === 46) d.classList.add('essay');
+      d.textContent = i === 46 ? '✎' : (i+1);
+      if(i < 46 && isAnswered(userAnswers[i])) d.classList.add('answered');
+      if(i === 46 && essayText.trim().length > 0) d.classList.add('answered');
+      if(i === currentQ) d.classList.add('current');
+      (function(idx){
+        d.addEventListener('click', function(){
+          if(idx === 46){ if(phase === 'p1') return; goToEssay(); return; }
+          if(phase === 'essay') return;
+          if(phase === 'p1' && idx >= PART1_END) return;
+          if(phase === 'p2' && idx < PART1_END) return;
+          currentQ = idx; renderQuestion(); renderDotMap();
+        });
+      })(i);
+      el.appendChild(d);
+    }
+  }
+  function updateProgress(){
+    var answered = 0;
+    for(var i=0; i<46; i++) if(isAnswered(userAnswers[i])) answered++;
+    if(essayText.trim().length > 0) answered++;
+    $('pCount').textContent = answered + ' / 47';
+    $('pBar').style.width = (answered / 47 * 100) + '%';
+  }
+
+})();
+</script>
+</body>
+</html>

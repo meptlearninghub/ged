@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>Free Social Studies Learning — GED Myanmar</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1;--primary-d:#4f46e5;
+  --green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --blue:#3b82f6;--violet:#8b5cf6;--cyan:#06b6d4;--fc:#f59e0b;
+  --radius:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.85);
+  --hover-soft:rgba(15,23,42,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.85);
+  --hover-soft:rgba(255,255,255,.05);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;
+  font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%,rgba(245,158,11,.12),transparent 65%),
+    radial-gradient(720px 480px at 100% 4%,rgba(236,72,153,.10),transparent 65%),
+    radial-gradient(620px 420px at 50% 105%,rgba(239,68,68,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:calc(10px + var(--safe-top)) 0 10px;}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:12px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none;}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(135deg,var(--fc),#f97316);
+  box-shadow:0 8px 18px -8px var(--fc);}
+.nav-logo b{font-size:15px;font-weight:800;}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);}
+.nav-actions{display:flex;gap:8px;align-items:center;flex:none;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  text-decoration:none;font-size:12.5px;font-weight:700;
+  transition:transform .18s,background .2s;}
+.back-btn:hover{background:var(--hover-soft);}
+.back-btn:active{transform:scale(.95);}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;
+  border-radius:11px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font-size:16px;cursor:pointer;padding:0;
+  font-family:inherit;transition:transform .18s,background .18s;}
+.icon-btn:hover{background:var(--hover-soft);}
+.icon-btn:active{transform:scale(.9);}
+@media(max-width:520px){.nav-title{display:none;}}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom));}
+
+/* HERO */
+.hero{padding:36px 0 24px;text-align:center;}
+.hero .free-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  font-size:12.5px;font-weight:800;letter-spacing:.04em;margin-bottom:16px;
+  box-shadow:0 8px 18px -8px rgba(22,163,74,.7);}
+.hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 18px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,var(--fc),#f97316);color:#fff;
+  box-shadow:0 20px 40px -16px var(--fc);}
+.hero h1{margin:0 0 10px;font-size:clamp(24px,5.5vw,36px);font-weight:900;
+  letter-spacing:-.03em;line-height:1.15;}
+.hero p{margin:0 auto;max-width:560px;font-size:14.5px;color:var(--muted);line-height:1.75;}
+.hero p b{color:var(--text);font-weight:800;}
+
+/* FREE COUNT BANNER */
+.free-count{
+  max-width:520px;margin:20px auto 0;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:16px;padding:16px 20px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:14px;
+}
+.free-count .num{
+  width:56px;height:56px;flex:none;border-radius:16px;
+  display:grid;place-items:center;font-size:22px;font-weight:900;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  box-shadow:0 10px 22px -10px rgba(22,163,74,.8);
+}
+.free-count .info{flex:1;text-align:left;}
+.free-count .info b{display:block;font-size:15px;font-weight:800;margin-bottom:3px;}
+.free-count .info span{font-size:12.5px;color:var(--muted);font-weight:600;}
+
+/* SECTIONS */
+.section{padding:32px 0 0;}
+.section-head{text-align:center;margin-bottom:22px;}
+.section-head h2{margin:0 0 8px;font-size:clamp(20px,4.5vw,26px);font-weight:800;letter-spacing:-.02em;}
+.section-head p{margin:0 auto;max-width:520px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+/* LESSON LIST — LOCKED */
+.lesson-list{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:640px){.lesson-list{grid-template-columns:repeat(2,1fr);}}
+
+.lesson-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:18px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s;}
+@media(hover:hover){
+  .lesson-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--fc);}
+}
+.lesson-card:active{transform:scale(.985);}
+.lesson-num{width:40px;height:40px;flex:none;border-radius:12px;
+  display:grid;place-items:center;font-size:15px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),#f97316);
+  box-shadow:0 8px 18px -8px var(--fc);}
+.lesson-body{flex:1;min-width:0;}
+.lesson-body h3{margin:0 0 4px;font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.35;}
+.lesson-body p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.65;}
+.lesson-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:3px 9px;border-radius:999px;
+  font-size:10.5px;font-weight:800;letter-spacing:.03em;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);}
+html[data-theme="dark"] .lesson-badge{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.lesson-lock{position:absolute;top:14px;right:14px;
+  width:28px;height:28px;border-radius:9px;
+  display:grid;place-items:center;font-size:13px;
+  background:rgba(15,23,42,.06);color:var(--muted);}
+html[data-theme="dark"] .lesson-lock{background:rgba(255,255,255,.08);}
+
+/* PRACTICE QUESTIONS */
+.q-block{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:20px;box-shadow:var(--shadow);margin-bottom:12px;}
+.q-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.q-num{width:32px;height:32px;flex:none;border-radius:10px;
+  display:grid;place-items:center;font-size:13px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),#f97316);}
+.q-tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);
+  letter-spacing:.03em;}
+html[data-theme="dark"] .q-tag{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.q-text{font-size:14.5px;line-height:1.75;margin:0 0 14px;font-weight:500;color:var(--text);}
+.q-text b{font-weight:800;}
+
+/* DATA TABLE */
+.data-table-wrap{
+  overflow-x:auto;margin:0 0 14px;border-radius:12px;
+  border:1.5px solid var(--border);
+  background:color-mix(in srgb,var(--fc) 5%,transparent);
+}
+html[data-theme="dark"] .data-table-wrap{
+  background:color-mix(in srgb,var(--fc) 12%,transparent);
+}
+.data-table{
+  width:100%;border-collapse:collapse;font-size:13px;min-width:340px;
+}
+.data-table th,.data-table td{
+  padding:10px 14px;text-align:left;
+  border-bottom:1px solid var(--border);
+  font-family:'Inter','Noto Sans Myanmar',sans-serif;
+}
+.data-table th{
+  background:color-mix(in srgb,var(--fc) 12%,transparent);
+  font-weight:800;color:var(--fc);font-size:11.5px;
+  text-transform:uppercase;letter-spacing:.04em;
+}
+html[data-theme="dark"] .data-table th{
+  background:color-mix(in srgb,var(--fc) 22%,transparent);
+}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table td{font-weight:600;color:var(--text);}
+
+/* PASSAGE */
+.passage{
+  background:color-mix(in srgb,var(--fc) 6%,transparent);
+  border-left:3px solid var(--fc);
+  border-radius:10px;padding:14px 16px;margin:0 0 14px;
+  font-size:14px;line-height:1.85;color:var(--text);
+  font-style:italic;
+}
+html[data-theme="dark"] .passage{background:color-mix(in srgb,var(--fc) 12%,transparent);}
+
+.q-opts{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:520px){.q-opts{grid-template-columns:1fr 1fr;}}
+.q-opt{text-align:left;padding:11px 14px;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;
+  transition:all .18s;line-height:1.5;}
+.q-opt:hover{border-color:var(--fc);background:color-mix(in srgb,var(--fc) 4%,transparent);}
+.q-opt:active{transform:scale(.985);}
+.q-opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700;}
+html[data-theme="dark"] .q-opt.correct{background:rgba(22,163,74,.2);color:#86efac;}
+.q-opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d;}
+html[data-theme="dark"] .q-opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5;}
+.q-opt:disabled{cursor:default;}
+.q-opt .ltr{font-weight:800;margin-right:6px;color:var(--muted);}
+.q-opt.correct .ltr{color:#14532d;}
+.q-opt.wrong .ltr{color:#7f1d1d;}
+
+.show-ans{padding:8px 14px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+  background:rgba(245,158,11,.08);color:#92400e;
+  font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
+  transition:all .18s;}
+html[data-theme="dark"] .show-ans{background:rgba(245,158,11,.15);color:#fbbf24;}
+.show-ans:hover{background:rgba(245,158,11,.15);}
+.show-ans.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent;}
+.q-sol{margin-top:12px;padding:14px;border-radius:12px;
+  background:color-mix(in srgb,var(--fc) 6%,transparent);
+  border-left:3px solid var(--fc);font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .q-sol{background:color-mix(in srgb,var(--fc) 12%,transparent);}
+.q-sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--fc);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
+.q-sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px;}
+
+/* LOCKED CARD */
+.locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06));
+  border:2px dashed rgba(99,102,241,.4);
+  border-radius:20px;padding:32px 24px;text-align:center;
+  box-shadow:var(--shadow);margin-top:8px;}
+html[data-theme="dark"] .locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.12));
+  border-color:rgba(99,102,241,.5);}
+.locked-card .lock-icon{width:64px;height:64px;border-radius:20px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:30px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 16px 32px -12px rgba(99,102,241,.8);}
+.locked-card h3{margin:0 0 10px;font-size:20px;font-weight:900;letter-spacing:-.02em;}
+.locked-card p{margin:0 auto 20px;max-width:420px;font-size:13.5px;
+  color:var(--muted);line-height:1.75;}
+.locked-card .stats{display:flex;gap:14px;justify-content:center;
+  flex-wrap:wrap;margin-bottom:20px;}
+.locked-card .stat{padding:10px 16px;border-radius:12px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:12.5px;font-weight:700;}
+.locked-card .stat b{color:var(--primary);font-weight:900;font-size:14px;}
+.locked-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 24px;border-radius:14px;border:1px solid transparent;
+  font-family:inherit;font-size:14.5px;font-weight:800;cursor:pointer;
+  text-decoration:none;transition:transform .18s,filter .2s;}
+.btn:active{transform:scale(.96);}
+.btn.primary{background:linear-gradient(135deg,var(--primary),var(--violet));color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.8);}
+.btn.primary:hover{filter:brightness(1.08);}
+.btn.tg{background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(34,158,217,.8);}
+.btn.tg:hover{filter:brightness(1.08);}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.6);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .25s ease both;}
+.modal-bg.show{display:flex;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(10px);}to{opacity:1;transform:none;}}
+.modal{background:var(--card);border-radius:22px;width:100%;max-width:420px;
+  padding:26px;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+  animation:popIn .3s cubic-bezier(.22,.8,.28,1) both;position:relative;text-align:center;}
+.modal .x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;background:var(--hover-soft);color:var(--muted);
+  border:none;font-family:inherit;font-size:16px;cursor:pointer;}
+.modal .lock-icon{width:56px;height:56px;border-radius:18px;margin:0 auto 14px;
+  display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.7);}
+.modal h2{margin:0 0 8px;font-size:19px;font-weight:900;letter-spacing:-.02em;}
+.modal p{margin:0 0 20px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.modal p b{color:var(--text);font-weight:800;}
+.modal .modal-actions{display:flex;gap:10px;flex-direction:column;}
+.modal .modal-actions .btn{width:100%;}
+
+/* PREMIUM BANNER */
+.premium-banner{margin-top:30px;padding:26px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(236,72,153,.08));
+  border:1.5px solid rgba(245,158,11,.3);text-align:center;box-shadow:var(--shadow);}
+html[data-theme="dark"] .premium-banner{
+  background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(236,72,153,.15));
+  border-color:rgba(245,158,11,.4);}
+.premium-banner h3{margin:0 0 8px;font-size:18px;font-weight:900;letter-spacing:-.02em;}
+.premium-banner p{margin:0 auto 18px;max-width:480px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.premium-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{padding:34px 0 calc(46px + var(--safe-bottom));text-align:center;
+  font-size:12px;color:var(--muted);line-height:2;}
+footer .brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:6px;
+  font-weight:800;color:var(--text);font-size:13px;}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:9px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),#f97316);}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="mark">GED</span>
+      <b>GED Myanmar</b>
+    </a>
+    <div class="nav-title">Free Social Studies Learning</div>
+    <div class="nav-actions">
+      <a class="back-btn" href="index.html">← Back</a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="free-badge">🆓 100% FREE</span>
+    <div class="big-icon">🌍</div>
+    <h1>Free Social Studies Learning</h1>
+    <p>GED Social Studies အတွက် <b>Practice Questions ၅၀ ခု</b>ကို အခမဲ့ လေ့လာပါ။ Lesson Preview ၅ ခုကို ကြည့်ရှုနိုင်ပါသည် (Login မလိုပါ)။</p>
+
+    <div class="free-count">
+      <div class="num">50</div>
+      <div class="info">
+        <b>Free Practice Questions</b>
+        <span>Login မလိုဘဲ ဖြေဆိုနိုင်သည်</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE LESSONS (LOCKED) -->
+  <section class="section">
+    <div class="section-head">
+      <h2>📚 Sample Lesson Previews</h2>
+      <p>Lesson Title နှင့် အနှစ်ချုပ်သာ ကြည့်ရှုနိုင်သည် — Full Lesson အတွက် Login ဝင်ပါ</p>
+    </div>
+    <div class="lesson-list" id="lessonList"></div>
+  </section>
+
+  <!-- PRACTICE QUESTIONS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>✏️ Practice Questions (50)</h2>
+      <p>မေးခွန်း ၅၀ ခုကို အခမဲ့ ဖြေဆိုပါ — အဖြေနှင့် ရှင်းလင်းချက် ပါဝင်သည်</p>
+    </div>
+
+    <div id="practiceList"></div>
+
+    <!-- LOCKED CARD -->
+    <div class="locked-card" id="lockedCard" style="display:none;">
+      <div class="lock-icon">🔒</div>
+      <h3>Free 50 Questions ပြီးဆုံးပါပြီ!</h3>
+      <p>ကျန်သော <b>1,750 မေးခွန်း</b>နှင့် Official Format Pretest ၃ ခုကို ဆက်လေ့လာရန် Login ဝင်ပါ။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+      <div class="stats">
+        <div class="stat">✅ Free <b>50</b></div>
+        <div class="stat">🔒 Locked <b>1,750</b></div>
+      </div>
+      <div class="locked-actions">
+        <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+        <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM CTA -->
+  <div class="premium-banner">
+    <h3>🔐 Full Access — 1,800 Exercises + 3 Pretests</h3>
+    <p>Login ဝင်ပြီး Social Studies Exercise ၁,၈၀၀+၊ Official Format Pretest ၃ ခုနှင့် Reference Sheet အားလုံးကို အပြည့်အဝ အသုံးပြုပါ။</p>
+    <div class="premium-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="brand"><span class="mark">GED</span><span>GED Myanmar</span></div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<!-- LOCKED PREVIEW MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="x" id="closeModal" type="button">✕</button>
+    <div class="lock-icon">🔒</div>
+    <h2 id="modalTitle">Login လိုအပ်ပါသည်</h2>
+    <p id="modalMsg">ဤ Lesson ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* THEME */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☀️' : '🌙';
+    try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ============================================================
+     LESSON PREVIEWS — LOCKED
+     ============================================================ */
+  var LESSONS = [
+    { num: 1, title: 'Bill of Rights', desc: 'အမေရိကန် ဖွဲ့စည်းပုံအခြေခံဥပဒေ ပြင်ဆင်ချက် ၁၀ ချက် (Amendment 1–10)' },
+    { num: 2, title: 'Three Branches of Government', desc: 'Legislative · Executive · Judicial အာဏာခွဲဝေမှုနှင့် Checks & Balances' },
+    { num: 3, title: 'US Civil War & Reconstruction', desc: '1861–1877 ကာလ သမိုင်းဝင် အဖြစ်အပျက်များ — 13th, 14th, 15th Amendments' },
+    { num: 4, title: 'Supply & Demand', desc: 'စီးပွားရေး အခြေခံသဘောတရား — equilibrium, shortage, surplus' },
+    { num: 5, title: 'Reading Maps & Data Tables', desc: 'Latitude · Longitude · Population Data · Climate Zones' }
+  ];
+
+  var lessonListEl = document.getElementById('lessonList');
+  LESSONS.forEach(function(lesson){
+    var card = document.createElement('div');
+    card.className = 'lesson-card';
+    card.innerHTML =
+      '<span class="lesson-lock">🔒</span>' +
+      '<span class="lesson-num">' + lesson.num + '</span>' +
+      '<div class="lesson-body">' +
+        '<h3>' + lesson.title + '</h3>' +
+        '<p>' + lesson.desc + '</p>' +
+        '<span class="lesson-badge">🔐 Login Required</span>' +
+      '</div>';
+    card.addEventListener('click', function(){
+      openModal(lesson.title);
+    });
+    lessonListEl.appendChild(card);
+  });
+
+  /* ============================================================
+     MODAL
+     ============================================================ */
+  var modal = document.getElementById('modal');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalMsg = document.getElementById('modalMsg');
+  function openModal(lessonName){
+    modalTitle.textContent = '🔒 Login လိုအပ်ပါသည်';
+    modalMsg.innerHTML = 'Lesson <b>"' + lessonName + '"</b> ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။<br><br>Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။';
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  /* ============================================================
+     PRACTICE QUESTIONS — 30 Sample Social Studies Qs
+     ============================================================ */
+  var QUESTIONS = [
+    // === Civics & Government ===
+    { q: 'Which amendment to the US Constitution guarantees freedom of speech, religion, and the press?',
+      options: ['1st Amendment','2nd Amendment','4th Amendment','5th Amendment'],
+      correctIndex: 0,
+      why: '1st Amendment တွင် စကားပြောခွင့်၊ ဘာသာရေးလွတ်လပ်ခွင့်၊ သတင်းစာလွတ်လပ်ခွင့်၊ စုဝေးခွင့်နှင့် အသနားခံခွင့် ၅ မျိုး ပါဝင်သည်။',
+      steps: ['Bill of Rights = Amendments 1–10','1st Amendment = 5 fundamental freedoms','Speech · Religion · Press · Assembly · Petition','အဖြေ = 1st Amendment'],
+      answer: '1st Amendment', tag: 'Civics' },
+
+    { q: 'Which branch of the US government has the power to declare war?',
+      options: ['Executive Branch','Judicial Branch','Legislative Branch','All three branches'],
+      correctIndex: 2,
+      why: 'Congress (Legislative Branch) သည် စစ်ကြေညာခွင့် အာဏာ ရှိသည်။',
+      steps: ['US Government = 3 branches','Legislative = Congress','Congress သည် စစ်ကြေညာခွင့် ရှိသည်','အဖြေ = Legislative Branch'],
+      answer: 'Legislative Branch', tag: 'Government' },
+
+    { q: 'Which amendment granted women the right to vote?',
+      options: ['15th Amendment','19th Amendment','21st Amendment','26th Amendment'],
+      correctIndex: 1,
+      why: '19th Amendment (1920) = အမျိုးသမီး မဲပေးခွင့်။ 15th = လူမျိုး၊ 21st = Prohibition ဖျက်၊ 26th = အသက် 18။',
+      steps: ['15th (1870) = race','19th (1920) = women','21st (1933) = repeal Prohibition','26th (1971) = age 18','အဖြေ = 19th Amendment'],
+      answer: '19th Amendment', tag: 'US History' },
+
+    { q: 'What is federalism?',
+      options: ['Rule by a single central government','Rule by a king','Power divided between national and state governments','Rule by the people directly'],
+      correctIndex: 2,
+      why: 'Federalism = အာဏာကို အမျိုးသားအစိုးရနှင့် ပြည်နယ်အစိုးရများအကြား ခွဲဝေသော စနစ်။',
+      steps: ['Federalism = shared power','National + State governments','Enumerated powers = federal','Reserved powers = state','အဖြေ = "Power divided between national and state governments"'],
+      answer: 'Power divided between national and state governments', tag: 'Government' },
+
+    { q: 'Which of the following is an example of a civic responsibility (not a right)?',
+      options: ['Freedom of speech','Voting in elections','Freedom of religion','Right to a fair trial'],
+      correctIndex: 1,
+      why: 'မဲပေးခြင်း (Voting) = civic responsibility ။ Speech, religion, trial တို့က rights။',
+      steps: ['Right = government အာမခံ','Responsibility = နိုင်ငံသား၏ တာဝန်','Voting = civic responsibility','အဖြေ = Voting in elections'],
+      answer: 'Voting in elections', tag: 'Civics' },
+
+    { q: 'What is the main purpose of the Bill of Rights?',
+      options: ['To establish the President','To protect individual freedoms from government power','To create the Supreme Court','To regulate trade'],
+      correctIndex: 1,
+      why: 'Bill of Rights (Amendments 1–10) = နိုင်ငံသားများ၏ အခွင့်အရေးကို အစိုးရ အာဏာမှ ကာကွယ်ရန်။',
+      steps: ['Bill of Rights = Amendments 1–10','Purpose = protect freedoms','အဖြေ = "To protect individual freedoms from government power"'],
+      answer: 'To protect individual freedoms from government power', tag: 'Civics' },
+
+    // === US History ===
+    { q: 'What was the main cause of the American Civil War (1861–1865)?',
+      options: ['Disagreement over taxation','Conflict over slavery','Territorial dispute with Mexico','Religious differences'],
+      correctIndex: 1,
+      why: 'Civil War ၏ အဓိကအကြောင်းရင်း = ကျွန်စနစ် (Slavery)။',
+      steps: ['Civil War = 1861–1865','North vs South','North = anti-slavery','South = pro-slavery','အဓိကအကြောင်းရင်း = Slavery'],
+      answer: 'Conflict over slavery', tag: 'US History' },
+
+    { q: 'What event brought the US into World War II?',
+      options: ['Sinking of Lusitania','Attack on Pearl Harbor','Fall of France','Russian Revolution'],
+      correctIndex: 1,
+      why: 'Pearl Harbor (December 7, 1941) = US က WWII ထဲ ဝင်ရသည်။',
+      steps: ['Dec 7, 1941 = Pearl Harbor attack','Japan attacked US base','US declares war on Japan','အဖြေ = Attack on Pearl Harbor'],
+      answer: 'Attack on Pearl Harbor', tag: 'US History' },
+
+    { q: 'What was the Great Depression?',
+      options: ['A war in Europe','A severe worldwide economic downturn in the 1930s','A US political movement','A religious revival'],
+      correctIndex: 1,
+      why: 'Great Depression = 1929 stock market crash ပြီးနောက် 1930s အတွင်း ကမ္ဘာတစ်ဝှမ်း ဖြစ်ပွားသော ကြီးမားသည့် စီးပွားရေးကျဆင်းမှု။',
+      steps: ['1929 = Stock Market Crash','1930s = 25% unemployment','Global impact','FDR = New Deal','အဖြေ = "A severe worldwide economic downturn in the 1930s"'],
+      answer: 'A severe worldwide economic downturn in the 1930s', tag: 'World History' },
+
+    { q: 'Which US President was in office during the Great Depression and led the New Deal?',
+      options: ['Herbert Hoover','Franklin D. Roosevelt','Harry Truman','Woodrow Wilson'],
+      correctIndex: 1,
+      why: 'Franklin D. Roosevelt (FDR) = 1933–1945 President ။ New Deal ကို စတင်။',
+      steps: ['Hoover = 1929–1933','FDR = 1933–1945','FDR = New Deal','အဖြေ = Franklin D. Roosevelt'],
+      answer: 'Franklin D. Roosevelt', tag: 'US History' },
+
+    { q: 'What did the 15th Amendment (1870) guarantee?',
+      options: ['Freedom of speech','Women\'s right to vote','Voting rights regardless of race','Abolition of slavery'],
+      correctIndex: 2,
+      why: '15th Amendment = လူမျိုးမရွေး မဲပေးခွင့်။',
+      steps: ['13th = slavery abolished','14th = citizenship','15th = voting (race)','အဖြေ = Voting rights regardless of race'],
+      answer: 'Voting rights regardless of race', tag: 'US History' },
+
+    // === Economics ===
+    { q: 'According to the law of demand, when the price of a product increases:',
+      options: ['Quantity demanded increases','Quantity demanded decreases','Quantity supplied decreases','Nothing changes'],
+      correctIndex: 1,
+      why: 'Law of Demand = P ↑ → Qd ↓ (inverse relationship)။',
+      steps: ['Law of Demand = inverse','Price ↑ → consumers buy less','Qd ↓','အဖြေ = "Quantity demanded decreases"'],
+      answer: 'Quantity demanded decreases', tag: 'Economics' },
+
+    { q: 'What is opportunity cost?',
+      options: ['The price of a product','The value of the next best alternative given up','The cost of labor','The total money spent'],
+      correctIndex: 1,
+      why: 'Opportunity cost = ရွေးချယ်မှုတစ်ခုလုပ်လျှင် ဆုံးရှုံးသွားသည့် ဒုတိယအကောင်းဆုံး ရွေးချယ်မှု၏ တန်ဖိုး။',
+      steps: ['Choice → trade-off','Opportunity cost = next best option value','အဖြေ = "The value of the next best alternative given up"'],
+      answer: 'The value of the next best alternative given up', tag: 'Economics' },
+
+    { q: 'What is GDP?',
+      options: ['Government Direct Policy','Gross Domestic Product','General Data Program','Gross Development Product'],
+      correctIndex: 1,
+      why: 'GDP = Gross Domestic Product = တိုင်းပြည်တစ်ခုတွင် တစ်နှစ်အတွင်း ထုတ်လုပ်သည့် ကုန်ပစ္စည်းနှင့် ဝန်ဆောင်မှု စုစုပေါင်းတန်ဖိုး။',
+      steps: ['GDP = Gross Domestic Product','Total goods + services','အဖြေ = Gross Domestic Product'],
+      answer: 'Gross Domestic Product', tag: 'Economics' },
+
+    { q: 'When supply exceeds demand, what usually happens to prices?',
+      options: ['Prices rise','Prices fall','Prices stay same','Prices double'],
+      correctIndex: 1,
+      why: 'Supply > Demand → surplus → ရောင်းသူများ ဈေးလျှော့ရ → Prices fall။',
+      steps: ['Supply > Demand = surplus','To sell surplus → lower prices','Prices fall','အဖြေ = Prices fall'],
+      answer: 'Prices fall', tag: 'Economics' },
+
+    { q: 'What is a tariff?',
+      options: ['A tax on exports','A tax on imports','A type of subsidy','A trade agreement'],
+      correctIndex: 1,
+      why: 'Tariff = နိုင်ငံခြားမှ တင်သွင်းသော ကုန်ပစ္စည်းအပေါ် ကောက်ခံသည့် အခွန် (tax on imports)။',
+      steps: ['Tariff = import tax','Purpose = protect domestic industries','အဖြေ = "A tax on imports"'],
+      answer: 'A tax on imports', tag: 'Economics' },
+
+    // === Geography ===
+    { q: 'What is the main difference between weather and climate?',
+      options: ['They are the same thing','Weather is short-term; climate is long-term','Weather is long-term; climate is short-term','Only climate matters for geography'],
+      correctIndex: 1,
+      why: 'Weather = ရက်/ပတ် အတွင်း အခြေအနေ ။ Climate = နှစ်များစွာ၏ ပျမ်းမျှ။',
+      steps: ['Weather = days, weeks','Climate = years, decades','အဖြေ = "Weather is short-term; climate is long-term"'],
+      answer: 'Weather is short-term; climate is long-term', tag: 'Geography' },
+
+    { q: 'Which line of latitude divides the Earth into Northern and Southern hemispheres?',
+      options: ['Prime Meridian','Equator','Tropic of Cancer','Arctic Circle'],
+      correctIndex: 1,
+      why: 'Equator = 0° latitude = မြောက်ကမ္ဘာခြမ်းနှင့် တောင်ကမ္ဘာခြမ်းကို ခွဲသည်။',
+      steps: ['Equator = 0° latitude','Divides N/S hemispheres','အဖြေ = Equator'],
+      answer: 'Equator', tag: 'Geography' },
+
+    { q: 'Which type of map shows the boundaries of countries, states, and cities?',
+      options: ['Topographic map','Political map','Climate map','Resource map'],
+      correctIndex: 1,
+      why: 'Political map = နိုင်ငံ၊ ပြည်နယ်၊ မြို့များ၏ နယ်နိမိတ်များကို ပြသည်။',
+      steps: ['Political = borders/government','Topographic = elevation','Climate = weather patterns','အဖြေ = Political map'],
+      answer: 'Political map', tag: 'Geography' },
+
+    { q: 'What is the largest ocean on Earth?',
+      options: ['Atlantic','Indian','Pacific','Arctic'],
+      correctIndex: 2,
+      why: 'Pacific Ocean = ကမ္ဘာ့ အကြီးဆုံးနှင့် အနက်ဆုံး သမုဒ္ဒရာ။',
+      steps: ['Oceans: Pacific, Atlantic, Indian, Arctic','Pacific = largest','အဖြေ = Pacific'],
+      answer: 'Pacific', tag: 'Geography' },
+
+    { q: 'What is a peninsula?',
+      options: ['Land surrounded by water on all sides','Land surrounded by water on three sides','A type of mountain','A river delta'],
+      correctIndex: 1,
+      why: 'Peninsula = ကုန်းမြေသည် ရေဖြင့် သုံးဖက်သုံးတန် ဝိုင်းရံခံထားရသည်။',
+      steps: ['Peninsula = 3 sides water','Island = all sides water','အဖြေ = "Land surrounded by water on three sides"'],
+      answer: 'Land surrounded by water on three sides', tag: 'Geography' },
+
+    // === Data Table ===
+    { q: 'Read the data table and answer the question below.',
+      dataTable: {
+        headers: ['Region','Population (millions)','% of World'],
+        rows: [
+          ['Asia','4,600','59%'],
+          ['Africa','1,340','17%'],
+          ['Europe','750','10%'],
+          ['North America','590','8%'],
+          ['South America','430','6%']
+        ]
+      },
+      q2: 'Based on the table, which region has the largest population?',
+      options: ['Africa','Asia','Europe','North America'],
+      correctIndex: 1,
+      why: 'Table အရ Asia တွင် 4,600 million (59%) ရှိပြီး အကြီးဆုံး။',
+      steps: ['Asia = 4,600 million (59%)','Africa = 1,340 million (17%)','Europe = 750 million (10%)','အဖြေ = Asia'],
+      answer: 'Asia', tag: 'Data Analysis' },
+
+    // === Historical Analysis ===
+    { q: 'What was the Cold War?',
+      options: ['A military conflict','Geopolitical tension between US and Soviet Union (1947–1991)','A trade war','A religious conflict'],
+      correctIndex: 1,
+      why: 'Cold War = US နှင့် Soviet Union အကြား 1947–1991 တွင် ဖြစ်ပွားသော နိုင်ငံရေးတင်းမာမှု (direct fighting မရှိ)။',
+      steps: ['Cold War = 1947–1991','US vs USSR','No direct fighting','Ended = USSR dissolved 1991','အဖြေ = "Geopolitical tension between US and Soviet Union (1947–1991)"'],
+      answer: 'Geopolitical tension between US and Soviet Union (1947–1991)', tag: 'World History' },
+
+    { q: 'What did the Voting Rights Act of 1965 accomplish?',
+      options: ['Gave women the right to vote','Ended discriminatory voting practices','Lowered voting age to 18','Created the Electoral College'],
+      correctIndex: 1,
+      why: 'Voting Rights Act (1965) = poll taxes, literacy tests စသည့် ခွဲခြားဆက်ဆံသည့် မဲပေးစနစ်များကို ဖျက်သိမ်း။',
+      steps: ['15th Amendment (1870) = voting race','But discrimination continued','VRA (1965) = ended discrimination','အဖြေ = "Ended discriminatory voting practices"'],
+      answer: 'Ended discriminatory voting practices', tag: 'US History' },
+
+    // === Geography / Civics Advanced ===
+    { q: 'What is the primary role of the Federal Reserve in the US?',
+      options: ['Declare war','Set monetary policy and regulate banks','Make laws','Elect the President'],
+      correctIndex: 1,
+      why: 'Federal Reserve (Fed) = US ၏ Central Bank ။ Money supply နှင့် interest rates ကို ထိန်းချုပ်သည်။',
+      steps: ['Fed = Central Bank','Monetary policy','Regulate banks','အဖြေ = "Set monetary policy and regulate banks"'],
+      answer: 'Set monetary policy and regulate banks', tag: 'Economics' },
+
+    { q: 'Which amendment abolished slavery in the United States?',
+      options: ['13th Amendment','14th Amendment','15th Amendment','19th Amendment'],
+      correctIndex: 0,
+      why: '13th Amendment (1865) = ကျွန်စနစ် ဖျက်သိမ်း။',
+      steps: ['13th (1865) = abolished slavery','14th (1868) = citizenship','15th (1870) = voting rights','အဖြေ = 13th Amendment'],
+      answer: '13th Amendment', tag: 'US History' },
+
+    { q: 'What is the significance of Brown v. Board of Education (1954)?',
+      options: ['Legalized segregation','Ended racial segregation in public schools','Gave women the right to vote','Created Social Security'],
+      correctIndex: 1,
+      why: 'Brown v. Board (1954) = "Separate but equal" ကို ပယ်ချပြီး ကျောင်းများတွင် လူမျိုးခွဲခြားမှု မဖြစ်ရဟု ဆုံးဖြတ်။',
+      steps: ['Plessy v. Ferguson (1896) = separate but equal','Brown v. Board (1954) = overturned','School segregation ended','အဖြေ = "Ended racial segregation in public schools"'],
+      answer: 'Ended racial segregation in public schools', tag: 'US History' },
+
+    { q: 'What is the primary function of the United Nations?',
+      options: ['Regulate world trade','Maintain international peace and security','Enforce international laws','Elect world leaders'],
+      correctIndex: 1,
+      why: 'UN (1945) = ကမ္ဘာ့ငြိမ်းချမ်းရေးနှင့် လုံခြုံရေးကို ထိန်းသိမ်းရန် ဖွဲ့စည်း။',
+      steps: ['UN founded 1945','After WWII','Main purpose = peace + security','အဖြေ = "Maintain international peace and security"'],
+      answer: 'Maintain international peace and security', tag: 'World History' },
+
+    { q: 'What is the main idea of the passage?',
+      passage: 'The United States Constitution establishes three branches of government: legislative, executive, and judicial. Each branch has distinct powers and can check the others to prevent any one branch from becoming too powerful.',
+      options: ['The President has all power','The three branches of government have separate powers with checks and balances','Congress is the most powerful branch','The Supreme Court makes laws'],
+      correctIndex: 1,
+      why: 'Passage တစ်ခုလုံးသည် 3 branches ခွဲထားသည့်အကြောင်းနှင့် checks and balances ကို ဆွေးနွေးထားသည်။',
+      steps: ['3 branches mentioned','Each has distinct powers','Check each other','Main idea = "The three branches of government have separate powers with checks and balances"'],
+      answer: 'The three branches of government have separate powers with checks and balances', tag: 'Civics' },
+
+    { q: 'During which era did the American Civil Rights Movement take place?',
+      options: ['1770s–1790s','1850s–1860s','1950s–1960s','1990s–2000s'],
+      correctIndex: 2,
+      why: 'Civil Rights Movement = 1950s–1960s ။ Brown v. Board (1954), MLK, Voting Rights Act (1965)။',
+      steps: ['Brown v. Board (1954)','MLK "I Have a Dream" (1963)','Voting Rights Act (1965)','အဖြေ = 1950s–1960s'],
+      answer: '1950s–1960s', tag: 'US History' },
+
+    { q: 'What is the purpose of the Preamble to the US Constitution?',
+      options: ['To list individual rights','To state the goals and purposes of the government','To create the Supreme Court','To establish taxes'],
+      correctIndex: 1,
+      why: 'Preamble = "We the People..." — အစိုးရ၏ ရည်မှန်းချက်များကို ဖော်ပြသည်။',
+      steps: ['Preamble starts with "We the People"','States goals of government','Form a more perfect Union, establish Justice, etc.','အဖြေ = "To state the goals and purposes of the government"'],
+      answer: 'To state the goals and purposes of the government', tag: 'Civics' }
+  ];
+
+  /* ============================================================
+     RENDER PRACTICE QUESTIONS
+     ============================================================ */
+  var LTRS = ['A','B','C','D'];
+  var container = document.getElementById('practiceList');
+
+  QUESTIONS.forEach(function(item, idx){
+    var card = document.createElement('div');
+    card.className = 'q-block';
+
+    var dataTableHtml = '';
+    if(item.dataTable){
+      dataTableHtml = '<div class="data-table-wrap"><table class="data-table"><thead><tr>';
+      item.dataTable.headers.forEach(function(h){
+        dataTableHtml += '<th>' + h + '</th>';
+      });
+      dataTableHtml += '</tr></thead><tbody>';
+      item.dataTable.rows.forEach(function(row){
+        dataTableHtml += '<tr>';
+        row.forEach(function(cell){
+          dataTableHtml += '<td>' + cell + '</td>';
+        });
+        dataTableHtml += '</tr>';
+      });
+      dataTableHtml += '</tbody></table></div>';
+    }
+
+    var passageHtml = item.passage
+      ? '<div class="passage">' + item.passage.replace(/\n/g, '<br>') + '</div>'
+      : '';
+
+    card.innerHTML =
+      '<div class="q-head">' +
+        '<span class="q-num">' + (idx + 1) + '</span>' +
+        '<span class="q-tag">' + item.tag + '</span>' +
+      '</div>' +
+      '<p class="q-text">' + item.q + '</p>' +
+      dataTableHtml +
+      (item.q2 ? '<p class="q-text">' + item.q2 + '</p>' : '') +
+      passageHtml +
+      '<div class="q-opts">' +
+        item.options.map(function(o, i){
+          return '<button class="q-opt" data-i="' + i + '"><span class="ltr">' + LTRS[i] + '.</span>' + o + '</button>';
+        }).join('') +
+      '</div>' +
+      '<button class="show-ans">💡 အဖြေကြည့်ရန်</button>' +
+      '<div class="q-sol" hidden>' +
+        '<div style="margin-bottom:12px;">' +
+          '<span class="lbl">အဘယ်ကြောင့်</span>' +
+          item.why +
+        '</div>' +
+        '<div>' +
+          '<span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span>' +
+          '<ol style="margin:6px 0 0;padding-left:20px;">' +
+            item.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('') +
+          '</ol>' +
+        '</div>' +
+        '<span class="ans">✔ အဖြေ: ' + item.answer + '</span>' +
+      '</div>';
+
+    var opts = card.querySelectorAll('.q-opt');
+    var solBox = card.querySelector('.q-sol');
+    var solBtn = card.querySelector('.show-ans');
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(btn.disabled) return;
+        opts.forEach(function(b){ b.disabled = true; });
+        var ok = i === item.correctIndex;
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        if(!ok) opts[item.correctIndex].classList.add('correct');
+        solBox.hidden = false;
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      });
+    });
+
+    solBtn.addEventListener('click', function(){
+      solBox.hidden = !solBox.hidden;
+      if(solBox.hidden){
+        solBtn.classList.remove('open');
+        solBtn.textContent = '💡 အဖြေကြည့်ရန်';
+      } else {
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      }
+    });
+
+    container.appendChild(card);
+  });
+
+  /* Show locked card */
+  setTimeout(function(){
+    document.getElementById('lockedCard').style.display = 'block';
+  }, 800);
+
+})();
+</script>
+</body>
+</html>

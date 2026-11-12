@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Myanmar — Study Planner</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1;--primary-d:#4f46e5;
+  --green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --blue:#3b82f6;--violet:#8b5cf6;--cyan:#06b6d4;--emerald:#10b981;
+  --radius:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.92);
+  --chip-bg:rgba(99,102,241,.08);
+  --chip-border:rgba(99,102,241,.2);
+  --hover-soft:rgba(15,23,42,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.92);
+  --chip-bg:rgba(99,102,241,.14);
+  --chip-border:rgba(99,102,241,.3);
+  --hover-soft:rgba(255,255,255,.05);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%, rgba(99,102,241,.10), transparent 65%),
+    radial-gradient(720px 480px at 100% 4%, rgba(16,185,129,.08), transparent 65%),
+    radial-gradient(620px 420px at 50% 105%, rgba(245,158,11,.08), transparent 65%)}
+html[data-theme="dark"] body::before{opacity:.55}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 0 10px}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;
+  display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--violet));
+  box-shadow:0 8px 18px -8px rgba(99,102,241,.7)}
+.nav-logo b{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.nav-actions{display:flex;gap:8px;align-items:center;flex:none}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  text-decoration:none;font-size:12.5px;font-weight:700;transition:transform .18s,background .2s}
+.back-btn:hover{background:var(--hover-soft)}
+.back-btn:active{transform:scale(.95)}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-size:16px;cursor:pointer;padding:0;font-family:inherit;transition:transform .18s,background .18s}
+.icon-btn:hover{background:var(--hover-soft)}
+.icon-btn:active{transform:scale(.9)}
+@media(max-width:520px){.nav-title{display:none}}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom))}
+
+/* HERO */
+.hero{padding:32px 0 24px;text-align:center}
+.hero .badge-icon{width:72px;height:72px;border-radius:22px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:34px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(245,158,11,.7)}
+.hero h1{margin:0 0 8px;font-size:clamp(24px,5.5vw,34px);
+  font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.hero p{margin:0 auto;max-width:560px;font-size:clamp(13px,3.4vw,15px);
+  color:var(--muted);line-height:1.75}
+
+/* COUNTDOWN */
+.countdown-wrap{background:linear-gradient(135deg,var(--primary),var(--violet));
+  border-radius:22px;padding:26px 22px;color:#fff;margin-bottom:20px;
+  position:relative;overflow:hidden;
+  box-shadow:0 24px 48px -20px rgba(99,102,241,.6)}
+.countdown-wrap::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(600px 320px at 85% 20%,rgba(255,255,255,.18),transparent 65%)}
+.countdown-wrap .cd-label{font-size:12.5px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;opacity:.85;margin-bottom:8px;position:relative}
+.countdown-wrap .cd-num{font-size:clamp(40px,9vw,64px);font-weight:900;
+  letter-spacing:-.04em;line-height:1;margin-bottom:6px;position:relative;
+  font-variant-numeric:tabular-nums}
+.countdown-wrap .cd-sub{font-size:13px;opacity:.9;line-height:1.7;
+  max-width:520px;position:relative}
+.countdown-wrap .cd-actions{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.cd-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:11px;
+  border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);
+  color:#fff;font-family:inherit;font-size:12.5px;font-weight:700;
+  cursor:pointer;transition:background .2s,transform .18s;backdrop-filter:blur(6px)}
+.cd-btn:hover{background:rgba(255,255,255,.25)}
+.cd-btn:active{transform:scale(.97)}
+.cd-btn.solid{background:#fff;color:var(--primary-d);border-color:transparent}
+.cd-btn.solid:hover{filter:brightness(.95);background:#fff}
+.countdown-wrap.no-date{background:linear-gradient(135deg,#64748b,#475569)}
+
+/* OVERALL */
+.overall-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
+@media(min-width:640px){.overall-strip{grid-template-columns:repeat(4,1fr)}}
+.ov-stat{background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:16px 14px;box-shadow:var(--shadow);text-align:center}
+.ov-stat b{display:block;font-size:26px;font-weight:900;letter-spacing:-.03em;
+  line-height:1.1;margin-bottom:4px;color:var(--ac,var(--primary));font-variant-numeric:tabular-nums}
+.ov-stat span{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em}
+
+/* SECTION */
+.section{padding:22px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;
+  gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.section-head h2{margin:0;font-size:clamp(18px,4.4vw,22px);
+  font-weight:800;letter-spacing:-.02em}
+.section-head .hint{font-size:12px;color:var(--muted);font-weight:600}
+
+/* TODAY CARD */
+.today-card{background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(6,182,212,.06));
+  border:1px solid rgba(16,185,129,.3);border-radius:20px;padding:22px;
+  box-shadow:var(--shadow);position:relative;overflow:hidden}
+html[data-theme="dark"] .today-card{
+  background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(6,182,212,.12));
+  border-color:rgba(16,185,129,.45)}
+.today-head{display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.today-head h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.02em;
+  display:flex;align-items:center;gap:8px}
+.today-date{font-size:12.5px;color:var(--muted);font-weight:600}
+.today-tasks{display:flex;flex-direction:column;gap:10px}
+.task-item{display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;transition:background .2s,border-color .2s}
+.task-item.done{opacity:.6;text-decoration:line-through}
+.task-check{width:22px;height:22px;flex:none;border-radius:6px;
+  border:2px solid var(--border);background:var(--card);
+  display:grid;place-items:center;cursor:pointer;
+  transition:all .18s;font-size:12px;color:transparent;
+  font-family:inherit;padding:0;margin-top:1px}
+.task-check:hover{border-color:var(--primary)}
+.task-check.checked{background:var(--primary);border-color:var(--primary);color:#fff}
+.task-body{flex:1;min-width:0}
+.task-body b{display:block;font-size:14px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px}
+.task-body span{font-size:12px;color:var(--muted);font-weight:600}
+.task-tag{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;
+  letter-spacing:.03em;flex:none;align-self:flex-start}
+.tag-math{background:rgba(139,92,246,.15);color:#6d28d9}
+.tag-rla{background:rgba(59,130,246,.15);color:#1d4ed8}
+.tag-sci{background:rgba(16,185,129,.15);color:#047857}
+.tag-soc{background:rgba(245,158,11,.15);color:#b45309}
+.tag-review{background:rgba(236,72,153,.15);color:#be185d}
+.tag-exam{background:rgba(220,38,38,.15);color:#b91c1c}
+html[data-theme="dark"] .tag-math{background:rgba(139,92,246,.25);color:#c4b5fd}
+html[data-theme="dark"] .tag-rla{background:rgba(59,130,246,.25);color:#93c5fd}
+html[data-theme="dark"] .tag-sci{background:rgba(16,185,129,.25);color:#6ee7b7}
+html[data-theme="dark"] .tag-soc{background:rgba(245,158,11,.25);color:#fbbf24}
+html[data-theme="dark"] .tag-review{background:rgba(236,72,153,.25);color:#f9a8d4}
+html[data-theme="dark"] .tag-exam{background:rgba(220,38,38,.25);color:#fca5a5}
+
+/* WEEK TABS */
+.week-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+  padding-bottom:8px;margin-bottom:16px}
+.week-tabs::-webkit-scrollbar{display:none}
+.week-tab{flex:none;padding:10px 16px;border-radius:12px;
+  border:1px solid var(--border);background:var(--card);
+  color:var(--text);font-family:inherit;font-size:12.5px;
+  font-weight:700;cursor:pointer;white-space:nowrap;
+  transition:all .18s;display:flex;align-items:center;gap:8px}
+.week-tab:hover{background:var(--hover-soft)}
+.week-tab.active{background:linear-gradient(135deg,var(--primary),var(--violet));
+  color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(99,102,241,.7)}
+.week-tab .badge{background:rgba(0,0,0,.1);border-radius:999px;
+  padding:1px 7px;font-size:10.5px;font-weight:800}
+.week-tab.active .badge{background:rgba(255,255,255,.25)}
+.week-tab .badge.done{background:rgba(22,163,74,.2);color:#15803d}
+.week-tab.active .badge.done{background:rgba(255,255,255,.9);color:#15803d}
+
+/* WEEK CONTENT */
+.week-content{background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:22px;box-shadow:var(--shadow);margin-bottom:16px}
+.week-header{display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.week-header h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.week-header .week-meta{font-size:12.5px;color:var(--muted);font-weight:600}
+.week-progress{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.week-progress .bar{flex:1;height:8px;border-radius:999px;
+  background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .week-progress .bar{background:rgba(255,255,255,.09)}
+.week-progress .bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,var(--primary),var(--violet));
+  transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.week-progress .pct{font-size:14px;font-weight:800;
+  color:var(--primary);font-variant-numeric:tabular-nums;min-width:44px;text-align:right}
+
+/* DAY GRID */
+.day-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.day-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.day-grid{grid-template-columns:repeat(3,1fr)}}
+.day-card{background:var(--hover-soft);border-radius:14px;padding:14px;
+  border:1px solid transparent;transition:border-color .2s,background .2s}
+.day-card:hover{border-color:var(--border)}
+.day-card.today{border-color:var(--primary);background:rgba(99,102,241,.06)}
+.day-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.day-num{width:28px;height:28px;flex:none;border-radius:9px;
+  display:grid;place-items:center;font-size:12.5px;font-weight:800;
+  background:var(--card);color:var(--text);border:1px solid var(--border);
+  font-variant-numeric:tabular-nums}
+.day-card.today .day-num{background:var(--primary);color:#fff;border-color:transparent}
+.day-name{font-size:13.5px;font-weight:800;letter-spacing:-.01em;flex:1}
+.day-count{font-size:11px;color:var(--muted);font-weight:700;
+  background:var(--card);padding:2px 8px;border-radius:999px;border:1px solid var(--border)}
+.day-tasks{display:flex;flex-direction:column;gap:8px}
+.day-task{display:flex;align-items:flex-start;gap:10px;
+  padding:10px 12px;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;transition:background .2s,opacity .2s}
+.day-task.done{opacity:.55}
+.day-task.done .dt-body b{text-decoration:line-through}
+.dt-check{width:18px;height:18px;flex:none;border-radius:5px;
+  border:2px solid var(--border);background:var(--card);
+  display:grid;place-items:center;cursor:pointer;
+  transition:all .18s;font-size:10.5px;color:transparent;
+  font-family:inherit;padding:0;margin-top:1px}
+.dt-check:hover{border-color:var(--primary)}
+.dt-check.checked{background:var(--primary);border-color:var(--primary);color:#fff}
+.dt-body{flex:1;min-width:0}
+.dt-body b{display:block;font-size:13px;font-weight:700;
+  letter-spacing:-.01em;line-height:1.4;margin-bottom:2px}
+.dt-body span{font-size:11px;color:var(--muted);font-weight:600}
+
+/* MILESTONES */
+.milestones{display:flex;flex-direction:column;gap:12px}
+.milestone{display:flex;align-items:flex-start;gap:14px;padding:16px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;box-shadow:var(--shadow);
+  transition:transform .25s,box-shadow .25s}
+.milestone:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.milestone .m-icon{width:44px;height:44px;flex:none;border-radius:12px;
+  display:grid;place-items:center;font-size:22px;
+  background:var(--hover-soft)}
+.milestone.unlocked .m-icon{background:linear-gradient(135deg,var(--ac,#f59e0b),var(--ac2,#f97316))}
+.milestone .m-body{flex:1;min-width:0}
+.milestone .m-body b{display:block;font-size:15px;font-weight:800;
+  letter-spacing:-.01em;margin-bottom:4px}
+.milestone .m-body p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.7}
+.milestone .m-week{font-size:11px;font-weight:800;color:var(--primary);
+  background:var(--chip-bg);border:1px solid var(--chip-border);
+  padding:3px 10px;border-radius:999px;align-self:flex-start;flex:none}
+.milestone.unlocked .m-week{background:rgba(22,163,74,.12);
+  color:#15803d;border-color:rgba(22,163,74,.3)}
+
+/* SETTINGS */
+.settings-card{background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.setting-row{display:flex;align-items:center;gap:14px;
+  padding:14px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.setting-row:last-child{border-bottom:none;padding-bottom:0}
+.setting-row:first-child{padding-top:0}
+.setting-info{flex:1;min-width:200px}
+.setting-info b{display:block;font-size:14px;font-weight:800;
+  letter-spacing:-.01em;margin-bottom:3px}
+.setting-info span{font-size:12px;color:var(--muted);font-weight:600}
+.setting-input{padding:10px 14px;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--bg);
+  color:var(--text);font-family:inherit;font-size:13.5px;
+  font-weight:600;transition:border-color .18s}
+.setting-input:focus{outline:none;border-color:var(--primary);background:var(--card)}
+.setting-btn{padding:10px 16px;border-radius:11px;border:none;
+  background:linear-gradient(135deg,var(--primary),var(--violet));
+  color:#fff;font-family:inherit;font-size:12.5px;font-weight:700;
+  cursor:pointer;transition:transform .18s,filter .2s;
+  box-shadow:0 8px 18px -8px rgba(99,102,241,.7)}
+.setting-btn:hover{filter:brightness(1.08)}
+.setting-btn:active{transform:scale(.97)}
+.setting-btn.ghost{background:transparent;color:var(--text);
+  border:1px solid var(--border);box-shadow:none}
+.setting-btn.ghost:hover{background:var(--hover-soft)}
+.setting-btn.danger{background:transparent;color:var(--red);
+  border:1px solid rgba(220,38,38,.3);box-shadow:none}
+.setting-btn.danger:hover{background:rgba(220,38,38,.06)}
+
+/* TIPS */
+.tips-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.tips-grid{grid-template-columns:repeat(2,1fr)}}
+.tip{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:16px;box-shadow:var(--shadow);
+  display:flex;gap:12px;align-items:flex-start}
+.tip .t-icon{width:38px;height:38px;flex:none;border-radius:11px;
+  display:grid;place-items:center;font-size:18px;
+  background:var(--hover-soft)}
+.tip b{display:block;font-size:13.5px;font-weight:800;
+  letter-spacing:-.01em;margin-bottom:4px}
+.tip p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.75}
+
+/* FOOTER */
+footer{padding:34px 18px;text-align:center;font-size:12px;
+  color:var(--muted);line-height:2}
+footer .brand{display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:6px;font-weight:800;color:var(--text);font-size:13px}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;
+  display:grid;place-items:center;font-size:9px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--violet))}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:#0f172a;color:#fff;padding:13px 20px;
+  border-radius:12px;font-size:13.5px;font-weight:600;
+  box-shadow:0 20px 40px -12px rgba(0,0,0,.5);
+  z-index:200;opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .35s cubic-bezier(.22,.8,.28,1);
+  max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:linear-gradient(135deg,#16a34a,#15803d)}
+.toast.err{background:linear-gradient(135deg,#dc2626,#b91c1c)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="main.html">
+      <span class="mark">GED</span>
+      <b>GED Myanmar</b>
+    </a>
+    <div class="nav-title">Study Planner</div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+      </button>
+      <a class="back-btn" href="main.html">← Back</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="badge-icon">📅</div>
+    <h1>8-Week Study Planner</h1>
+    <p>GED အောင်မြင်ရန် ၈ ပတ်တာ စနစ်တကျ လေ့လာမယ်။ နေ့စဉ် Task များကို ဖြေဆိုပြီး progress ကို ချိန်ဆနိုင်ပါသည်။</p>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-wrap" id="countdown">
+    <div class="cd-label">Exam Countdown</div>
+    <div class="cd-num" id="cdNum">—</div>
+    <div class="cd-sub" id="cdSub">သင့် GED စာမေးပွဲရက်ကို သတ်မှတ်ပါ။ ကျန်ရှိသော ရက်၊ နာရီများကို ပြပါမည်။</div>
+    <div class="cd-actions">
+      <button class="cd-btn solid" id="setDateBtn">📅 ရက်သတ်မှတ်ရန်</button>
+      <button class="cd-btn" id="clearDateBtn" style="display:none">🗑️ ဖျက်ရန်</button>
+    </div>
+  </div>
+
+  <!-- OVERALL STATS -->
+  <div class="overall-strip">
+    <div class="ov-stat" style="--ac:#6366f1">
+      <b id="statTasks">0/0</b>
+      <span>Tasks Done</span>
+    </div>
+    <div class="ov-stat" style="--ac:#10b981">
+      <b id="statPct">0%</b>
+      <span>Complete</span>
+    </div>
+    <div class="ov-stat" style="--ac:#f59e0b">
+      <b id="statStreak">0</b>
+      <span>Day Streak</span>
+    </div>
+    <div class="ov-stat" style="--ac:#ef4444">
+      <b id="statWeek">W1</b>
+      <span>Current Week</span>
+    </div>
+  </div>
+
+  <!-- TODAY -->
+  <section class="section">
+    <div class="section-head">
+      <h2>☀️ ယနေ့ Task များ</h2>
+      <span class="hint" id="todayDateStr"></span>
+    </div>
+    <div class="today-card">
+      <div class="today-head">
+        <h3>
+          <span id="todayEmoji">🎯</span>
+          <span id="todayTitle">ယနေ့ လေ့လာရမည့်အရာ</span>
+        </h3>
+        <span class="today-date" id="todayMeta">Today</span>
+      </div>
+      <div class="today-tasks" id="todayTasks"></div>
+    </div>
+  </section>
+
+  <!-- WEEK TABS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>📚 8-Week Plan</h2>
+      <span class="hint">တစ်ပတ်စီ လေ့လာမည့်အစီအစဉ်</span>
+    </div>
+    <div class="week-tabs" id="weekTabs"></div>
+    <div id="weekContent"></div>
+  </section>
+
+  <!-- MILESTONES -->
+  <section class="section">
+    <div class="section-head">
+      <h2>🏁 Milestones</h2>
+      <span class="hint">လမ်းစဉ် မှတ်တိုင်များ</span>
+    </div>
+    <div class="milestones" id="milestones"></div>
+  </section>
+
+  <!-- TIPS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>💡 လေ့လာနည်း အကြံပြုချက်များ</h2>
+    </div>
+    <div class="tips-grid" id="tipsGrid"></div>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>⚙️ Settings</h2>
+    </div>
+    <div class="settings-card">
+      <div class="setting-row">
+        <div class="setting-info">
+          <b>Exam Date</b>
+          <span>သင့် GED စာမေးပွဲရက်</span>
+        </div>
+        <input type="date" class="setting-input" id="examDateInput">
+        <button class="setting-btn" id="saveExamDate">Save</button>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <b>Daily Study Hours</b>
+          <span>တစ်ရက်လျှင် လေ့လာမည့် နာရီ (planning purpose)</span>
+        </div>
+        <input type="number" class="setting-input" id="dailyHours" min="1" max="12" value="2" style="width:100px">
+        <button class="setting-btn" id="saveHours">Save</button>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <b>Reset Planner</b>
+          <span>Task အားလုံးကို ပြန်စရန် (progress အားလုံး ဖျက်)</span>
+        </div>
+        <button class="setting-btn danger" id="resetPlanner">🗑️ Reset All</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="brand">
+    <span class="mark">GED</span>
+    <span>GED Myanmar</span>
+  </div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){return document.getElementById(id)};
+
+  /* ============================================================
+     THEME
+  ============================================================ */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    $('themeIcon').textContent = t === 'dark' ? '☀️' : '🌙';
+    try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  $('themeBtn').addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ============================================================
+     STORAGE KEYS
+  ============================================================ */
+  var KEY = 'ged:planner:v1';
+
+  function load(){
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY)) || {};
+      if(!d.tasks) d.tasks = {};
+      if(!d.startDate) d.startDate = new Date().toISOString().split('T')[0];
+      if(!d.examDate) d.examDate = '';
+      if(!d.dailyHours) d.dailyHours = 2;
+      return d;
+    } catch(e){
+      return {
+        tasks:{},
+        startDate:new Date().toISOString().split('T')[0],
+        examDate:'',
+        dailyHours:2
+      };
+    }
+  }
+  function save(d){
+    try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
+  }
+
+  var state = load();
+
+  /* ============================================================
+     PLAN DEFINITION — 8 Weeks
+     Each week: 6 days × 2 tasks (subject + review)
+  ============================================================ */
+  var PLAN = [
+    // WEEK 1 — Math + RLA Foundations
+    {
+      title:'Week 1 — Foundations',
+      focus:'Math နှင့် RLA အခြေခံများ',
+      days:[
+        {subject:'math', tasks:['Math G1.1: Fractions from Word Problems','Math G1.2: Order of Operations (PEMDAS)']},
+        {subject:'rla',  tasks:['RLA G1.1: Main Idea & Theme','RLA G3.1: Subject-Verb Agreement']},
+        {subject:'math', tasks:['Math G1.3: Fraction → Decimal','Math G1.4: Percent of a Number']},
+        {subject:'rla',  tasks:['RLA G2.1: Plot Elements','RLA G3.2: Verb Tense']},
+        {subject:'math', tasks:['Math G1.5: Rounding','Math G1.6: GCD & Grouping']},
+        {subject:'review', tasks:['Review: Math G1 (30 questions)','Review: RLA G1-G3 basics']}
+      ]
+    },
+    // WEEK 2 — Math Fractions/Percents + RLA Grammar
+    {
+      title:'Week 2 — Number Sense + Grammar',
+      focus:'Math ကိန်းဂဏန်း + RLA သဒ္ဒါ',
+      days:[
+        {subject:'math', tasks:['Math G1.7: Scientific Notation','Math G1.8: Exponent Rules']},
+        {subject:'rla',  tasks:['RLA G3.3: Pronoun Agreement','RLA G3.4: Pronoun Case']},
+        {subject:'math', tasks:['Math G1.9: Comparing Fractions','Math G1.10: Integer Operations']},
+        {subject:'rla',  tasks:['RLA G3.5: Comma Rules','RLA G3.6: Semicolons & Colons']},
+        {subject:'math', tasks:['Math G2.1: Unit Rate (Speed)','Math G2.2: Proportions']},
+        {subject:'review', tasks:['Review: Math G1 (all lessons)','Review: RLA G3 grammar']}
+      ]
+    },
+    // WEEK 3 — Math Problem Solving + RLA Reading
+    {
+      title:'Week 3 — Problem Solving + Reading',
+      focus:'Math ပြဿနာဖြေရှင်း + RLA စာဖတ်ခြင်း',
+      days:[
+        {subject:'math', tasks:['Math G2.3: Scale Factor','Math G2.4: Compound %']},
+        {subject:'rla',  tasks:['RLA G1.2: Supporting Details','RLA G1.3: Author\'s Purpose']},
+        {subject:'math', tasks:['Math G2.5: Simple Interest','Math G2.6: Discount + Tax']},
+        {subject:'rla',  tasks:['RLA G1.4: Text Structure','RLA G1.5: Summarizing']},
+        {subject:'math', tasks:['Math G2.7: Commission','Math G2.8: Distance-Rate-Time']},
+        {subject:'review', tasks:['Review: Math G2 word problems','Review: RLA G1 informational']}
+      ]
+    },
+    // WEEK 4 — Mid-Point + Exam
+    {
+      title:'Week 4 — Mid-Review + First Exam',
+      focus:'ပထမဆုံး Pretest ဖြေရန် အချိန်',
+      days:[
+        {subject:'math', tasks:['Math G2.9: Work Rate','Math G2.10: Currency Conversion']},
+        {subject:'rla',  tasks:['RLA G4.1: Sentence Variety','RLA G4.2: Combining Sentences']},
+        {subject:'math', tasks:['Review: Math G1+G2 all lessons','Practice 50 mixed questions']},
+        {subject:'rla',  tasks:['Review: RLA G1-G3 basics','Practice 50 mixed questions']},
+        {subject:'exam', tasks:['📝 Take Math Pretest (mathexam.html)','📝 Take RLA Pretest (rlaexam.html)']},
+        {subject:'review', tasks:['Analyze exam results','Weak areas ပြန်လေ့လာ']}
+      ]
+    },
+    // WEEK 5 — Algebra + Science
+    {
+      title:'Week 5 — Algebra + Science',
+      focus:'Algebra + သိပ္ပံ အခြေခံ',
+      days:[
+        {subject:'math', tasks:['Math G3.1: Simplify Like Terms','Math G3.2: Two-Step Equations']},
+        {subject:'sci',  tasks:['Science G1.1: Cell Theory','Science G1.2: Cell Organelles']},
+        {subject:'math', tasks:['Math G3.3: Variables Both Sides','Math G3.4: Inequalities']},
+        {subject:'sci',  tasks:['Science G1.3: Photosynthesis','Science G1.4: Cellular Respiration']},
+        {subject:'math', tasks:['Math G3.5: Word Problems','Math G3.6: Evaluate Expressions']},
+        {subject:'review', tasks:['Review: Algebra basics','Review: Cell biology']}
+      ]
+    },
+    // WEEK 6 — Algebra Advance + Physics
+    {
+      title:'Week 6 — Algebra Advance + Physics',
+      focus:'Algebra ခက်များ + Physics အခြေခံ',
+      days:[
+        {subject:'math', tasks:['Math G3.7: Consecutive Integers','Math G3.8: Age Problems']},
+        {subject:'sci',  tasks:['Science G4.1: Motion','Science G4.2: Forces & Newton\'s Laws']},
+        {subject:'math', tasks:['Math G3.9: Distributive Property','Math G3.10: Solve for Variable']},
+        {subject:'sci',  tasks:['Science G4.3: Energy','Science G4.4: Waves']},
+        {subject:'math', tasks:['Math G4.1: Slope from 2 Points','Math G4.2: Slope from Equation']},
+        {subject:'review', tasks:['Review: Algebra + Graph basics','Review: Physics basics']}
+      ]
+    },
+    // WEEK 7 — Geometry + Social Studies
+    {
+      title:'Week 7 — Geometry + Social Studies',
+      focus:'ဂျီဩမေတြီ + လူမှုရေး',
+      days:[
+        {subject:'math', tasks:['Math G6.1: Rectangle Area','Math G6.2: Triangle Area']},
+        {subject:'soc',  tasks:['Social G1.1: Foundations of Democracy','Social G1.2: The Constitution']},
+        {subject:'math', tasks:['Math G6.3: Circle Area','Math G6.4: Circumference']},
+        {subject:'soc',  tasks:['Social G1.3: Bill of Rights','Social G1.4: Three Branches']},
+        {subject:'math', tasks:['Math G6.7: Pythagorean Theorem','Math G6.10: Composite Figures']},
+        {subject:'review', tasks:['Review: Geometry all','Review: Civics basics']}
+      ]
+    },
+    // WEEK 8 — Final Review + All Exams
+    {
+      title:'Week 8 — Final Review + All Exams',
+      focus:'အားလုံး ပြန်လည်သုံးသပ် + Exam ဖြေ',
+      days:[
+        {subject:'review', tasks:['Review: Math weak areas','Review: RLA weak areas']},
+        {subject:'exam', tasks:['📝 Math Pretest (retake)','📝 RLA Pretest (retake)']},
+        {subject:'exam', tasks:['📝 Science Pretest','📝 Social Pretest']},
+        {subject:'review', tasks:['Review: All mistakes','Formula Sheet ပြန်ကြည့်']},
+        {subject:'review', tasks:['Official GED Ready™ Practice Test (optional)','Finalize exam date']},
+        {subject:'exam', tasks:['🎓 Ready for real GED!','Rest + prepare']}
+      ]
+    }
+  ];
+
+  var DAY_NAMES = ['Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  /* ============================================================
+     HELPERS
+  ============================================================ */
+  function todayStr(){ return new Date().toISOString().split('T')[0]; }
+
+  function daysBetween(a, b){
+    var A = new Date(a + 'T00:00:00');
+    var B = new Date(b + 'T00:00:00');
+    return Math.floor((B - A) / 86400000);
+  }
+
+  function getCurrentDayIndex(){
+    var start = new Date(state.startDate + 'T00:00:00');
+    var today = new Date(todayStr() + 'T00:00:00');
+    var diff = Math.floor((today - start) / 86400000);
+    if(diff < 0) diff = 0;
+    return diff; // Day 0 = Mon W1, Day 41 = Sat W7, etc.
+  }
+
+  function getCurrentWeek(){
+    var d = getCurrentDayIndex();
+    var w = Math.floor(d / 6);
+    if(w < 0) w = 0;
+    if(w > 7) w = 7;
+    return w;
+  }
+
+  function taskId(week, day, ti){
+    return 'w' + week + 'd' + day + 't' + ti;
+  }
+
+  function countAllTasks(){
+    var total = 0;
+    PLAN.forEach(function(w){ w.days.forEach(function(d){ total += d.tasks.length; }); });
+    return total;
+  }
+
+  function countDoneTasks(){
+    var done = 0;
+    Object.keys(state.tasks).forEach(function(k){ if(state.tasks[k]) done++; });
+    return done;
+  }
+
+  function countWeekDone(week){
+    var done = 0, total = 0;
+    if(!PLAN[week]) return {done:0, total:0, pct:0};
+    PLAN[week].days.forEach(function(d, di){
+      d.tasks.forEach(function(_, ti){
+        total++;
+        if(state.tasks[taskId(week, di, ti)]) done++;
+      });
+    });
+    var pct = total ? Math.round(done / total * 100) : 0;
+    return {done:done, total:total, pct:pct};
+  }
+
+  /* ============================================================
+     COUNTDOWN
+  ============================================================ */
+  function renderCountdown(){
+    var el = $('countdown');
+    var num = $('cdNum');
+    var sub = $('cdSub');
+    var clearBtn = $('clearDateBtn');
+
+    if(!state.examDate){
+      el.classList.add('no-date');
+      num.textContent = '—';
+      sub.textContent = 'သင့် GED စာမေးပွဲရက်ကို သတ်မှတ်ပါ။ ကျန်ရှိသော ရက်၊ နာရီများကို ပြပါမည်။';
+      clearBtn.style.display = 'none';
+      return;
+    }
+    el.classList.remove('no-date');
+    clearBtn.style.display = 'inline-flex';
+
+    var now = new Date();
+    var target = new Date(state.examDate + 'T00:00:00');
+    var diffMs = target - now;
+
+    if(diffMs < 0){
+      num.textContent = 'Past';
+      sub.textContent = 'သတ်မှတ်ထားသော ရက် ကျော်သွားပါပြီ။ ရက်အသစ် သတ်မှတ်ပါ။';
+      return;
+    }
+
+    var days = Math.floor(diffMs / 86400000);
+    var hours = Math.floor((diffMs % 86400000) / 3600000);
+
+    if(days >= 1){
+      num.textContent = days + (hours > 0 ? 'd ' + hours + 'h' : ' days');
+    } else {
+      num.textContent = hours + ' hours';
+    }
+
+    var msg;
+    if(days > 60) msg = 'အချိန် လုံလောက်ပါသည်။ Plan အတိုင်း လိုက်ပါ။';
+    else if(days > 30) msg = 'အချိန် အလယ်အလတ်။ Week ' + (getCurrentWeek()+1) + ' ကို အာရုံစိုက်ပါ။';
+    else if(days > 14) msg = '⚠️ အချိန် နီးလာပြီ။ Daily Study Hours တိုးပါ။';
+    else if(days > 7) msg = '⚡ ၁ ပတ်အတွင်း စာမေးပွဲ။ Final Review လုပ်ပါ။';
+    else if(days > 0) msg = '🔥 သတိပေးချက်! နောက်ဆုံး ပြင်ဆင်မှု လုပ်ပါ။';
+    else msg = '🎯 ယနေ့ စာမေးပွဲ! အောင်မြင်ပါစေ!';
+    sub.textContent = msg;
+  }
+
+  /* ============================================================
+     RENDER TODAY
+  ============================================================ */
+  function renderToday(){
+    var dayIdx = getCurrentDayIndex();
+    var week = Math.floor(dayIdx / 6);
+    var dayInWeek = dayIdx % 6;
+
+    var today = new Date();
+    var dateStr = today.toLocaleDateString('en-GB', { weekday:'long', day:'2-digit', month:'short', year:'numeric' });
+    $('todayDateStr').textContent = dateStr;
+
+    var container = $('todayTasks');
+    container.innerHTML = '';
+
+    if(week > 7 || !PLAN[week]){
+      container.innerHTML =
+        '<div style="text-align:center;padding:20px;color:var(--muted);font-weight:600">' +
+          '🎉 ၈ ပတ် ပြီးဆုံးပါပြီ! Final Review လုပ်ပါ။' +
+        '</div>';
+      $('todayEmoji').textContent = '🎓';
+      $('todayTitle').textContent = 'Review + Exam Ready';
+      $('todayMeta').textContent = 'Week 8+';
+      return;
+    }
+
+    var w = PLAN[week];
+    var d = w.days[dayInWeek];
+
+    $('todayEmoji').textContent = '☀️';
+    $('todayTitle').textContent = w.title;
+    $('todayMeta').textContent = 'Day ' + (dayIdx+1) + ' · ' + DAY_NAMES[dayInWeek] + ' · ' + d.subject.toUpperCase();
+
+    d.tasks.forEach(function(t, ti){
+      var id = taskId(week, dayInWeek, ti);
+      var checked = !!state.tasks[id];
+      var tagCls = 'tag-' + d.subject;
+      var tagLabel = {
+        math:'Math', rla:'RLA', sci:'Science', soc:'Social',
+        review:'Review', exam:'Exam'
+      }[d.subject] || 'Study';
+
+      var el = document.createElement('div');
+      el.className = 'task-item' + (checked ? ' done' : '');
+      el.innerHTML =
+        '<button class="task-check' + (checked ? ' checked' : '') + '" data-id="' + id + '">✓</button>' +
+        '<div class="task-body">' +
+          '<b>' + t + '</b>' +
+          '<span>Week ' + (week+1) + ' · Day ' + (dayInWeek+1) + '</span>' +
+        '</div>' +
+        '<span class="task-tag ' + tagCls + '">' + tagLabel + '</span>';
+
+      el.querySelector('.task-check').addEventListener('click', function(){
+        toggleTask(id);
+        renderAll();
+      });
+      container.appendChild(el);
+    });
+  }
+
+  function toggleTask(id){
+    state.tasks[id] = !state.tasks[id];
+    save(state);
+  }
+
+  /* ============================================================
+     RENDER WEEK TABS + CONTENT
+  ============================================================ */
+  var activeWeek = null;
+
+  function renderWeekTabs(){
+    var tabs = $('weekTabs');
+    tabs.innerHTML = '';
+    var current = getCurrentWeek();
+    if(activeWeek === null) activeWeek = current;
+
+    PLAN.forEach(function(w, i){
+      var s = countWeekDone(i);
+      var isCurrent = (i === current);
+      var btn = document.createElement('button');
+      btn.className = 'week-tab' + (i === activeWeek ? ' active' : '');
+      var badgeCls = s.done === s.total ? 'badge done' : 'badge';
+      btn.innerHTML =
+        'W' + (i+1) +
+        '<span class="' + badgeCls + '">' + s.done + '/' + s.total + '</span>' +
+        (isCurrent ? ' <span style="opacity:.8;font-size:10.5px">●</span>' : '');
+      btn.addEventListener('click', function(){
+        activeWeek = i;
+        renderWeekTabs();
+        renderWeekContent();
+      });
+      tabs.appendChild(btn);
+    });
+  }
+
+  function renderWeekContent(){
+    var container = $('weekContent');
+    if(activeWeek === null) activeWeek = getCurrentWeek();
+    var w = PLAN[activeWeek];
+    if(!w){ container.innerHTML = ''; return; }
+
+    var s = countWeekDone(activeWeek);
+    var current = getCurrentWeek();
+    var isCurrent = (activeWeek === current);
+
+    var html =
+      '<div class="week-content">' +
+        '<div class="week-header">' +
+          '<div>' +
+            '<h3>' + w.title + '</h3>' +
+            '<p style="margin:6px 0 0;font-size:13px;color:var(--muted);font-weight:600">' + w.focus + '</p>' +
+          '</div>' +
+          '<div class="week-meta">' +
+            (isCurrent ? '🎯 လက်ရှိပတ် · ' : '') +
+            s.done + '/' + s.total + ' tasks · ' + s.pct + '%' +
+          '</div>' +
+        '</div>' +
+        '<div class="week-progress">' +
+          '<span class="bar"><i style="width:' + s.pct + '%"></i></span>' +
+          '<span class="pct">' + s.pct + '%</span>' +
+        '</div>' +
+        '<div class="day-grid">';
+
+    w.days.forEach(function(d, di){
+      var dayDone = 0;
+      d.tasks.forEach(function(_, ti){
+        if(state.tasks[taskId(activeWeek, di, ti)]) dayDone++;
+      });
+      var dayIdxGlobal = activeWeek * 6 + di;
+      var isToday = (dayIdxGlobal === getCurrentDayIndex());
+
+      html +=
+        '<div class="day-card' + (isToday ? ' today' : '') + '">' +
+          '<div class="day-head">' +
+            '<div class="day-num">D' + (di+1) + '</div>' +
+            '<div class="day-name">' + DAY_NAMES[di] + (isToday ? ' · Today' : '') + '</div>' +
+            '<div class="day-count">' + dayDone + '/' + d.tasks.length + '</div>' +
+          '</div>' +
+          '<div class="day-tasks">';
+
+      d.tasks.forEach(function(t, ti){
+        var id = taskId(activeWeek, di, ti);
+        var checked = !!state.tasks[id];
+        html +=
+          '<div class="day-task' + (checked ? ' done' : '') + '">' +
+            '<button class="dt-check' + (checked ? ' checked' : '') + '" data-id="' + id + '">✓</button>' +
+            '<div class="dt-body">' +
+              '<b>' + t + '</b>' +
+              '<span>' + (d.subject === 'review' ? 'Review session' : (d.subject === 'exam' ? 'Exam practice' : 'Lesson practice')) + '</span>' +
+            '</div>' +
+          '</div>';
+      });
+
+      html += '</div></div>';
+    });
+
+    html += '</div></div>';
+    container.innerHTML = html;
+
+    // Bind check buttons
+    container.querySelectorAll('.dt-check').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        toggleTask(btn.getAttribute('data-id'));
+        renderAll();
+      });
+    });
+  }
+
+  /* ============================================================
+     MILESTONES
+  ============================================================ */
+  function renderMilestones(){
+    var el = $('milestones');
+    var totalDone = countDoneTasks();
+
+    var milestones = [
+      {week:1, icon:'🌱', title:'Start Strong', desc:'Week 1 ပြီးဆုံး — Math + RLA အခြေခံ ခိုင်မာ', unlocked: countWeekDone(0).pct >= 80},
+      {week:2, icon:'📚', title:'Building Blocks', desc:'Week 2 ပြီးဆုံး — ကိန်းဂဏန်း + သဒ္ဒါ ကျွမ်းကျင်', unlocked: countWeekDone(1).pct >= 80},
+      {week:3, icon:'🎯', title:'Problem Solver', desc:'Week 3 ပြီးဆုံး — ပြဿနာဖြေရှင်း ကျွမ်းကျင်', unlocked: countWeekDone(2).pct >= 80},
+      {week:4, icon:'📝', title:'First Exam', desc:'Week 4 — ပထမဆုံး Pretest ဖြေပြီး', unlocked: countWeekDone(3).pct >= 80},
+      {week:5, icon:'🧮', title:'Algebra Ready', desc:'Week 5 ပြီးဆုံး — Algebra + Science', unlocked: countWeekDone(4).pct >= 80},
+      {week:6, icon:'⚛️', title:'Physics Master', desc:'Week 6 ပြီးဆုံး — Algebra + Physics', unlocked: countWeekDone(5).pct >= 80},
+      {week:7, icon:'📐', title:'Geometry Done', desc:'Week 7 ပြီးဆုံး — Geometry + Social', unlocked: countWeekDone(6).pct >= 80},
+      {week:8, icon:'🏆', title:'GED Ready', desc:'Week 8 — အားလုံး ပြီးဆုံး! စာမေးပွဲ အသင့်', unlocked: countWeekDone(7).pct >= 80}
+    ];
+
+    el.innerHTML = '';
+    milestones.forEach(function(m, i){
+      var div = document.createElement('div');
+      div.className = 'milestone' + (m.unlocked ? ' unlocked' : '');
+      div.style.setProperty('--ac', '#f59e0b');
+      div.style.setProperty('--ac2', '#f97316');
+      div.innerHTML =
+        '<div class="m-icon">' + m.icon + '</div>' +
+        '<div class="m-body">' +
+          '<b>' + m.title + '</b>' +
+          '<p>' + m.desc + '</p>' +
+        '</div>' +
+        '<span class="m-week">W' + m.week + (m.unlocked ? ' ✓' : '') + '</span>';
+      el.appendChild(div);
+    });
+  }
+
+  /* ============================================================
+     TIPS
+  ============================================================ */
+  function renderTips(){
+    var tips = [
+      {icon:'⏰', title:'တစ်ရက်လျှင် ၂ နာရီ', desc:'နေ့စဉ် ၂ နာရီ လေ့လာခြင်းသည် တစ်ပတ်လျှင် ၁၄ နာရီ ဖြစ်သည်။ ၈ ပတ်ဆိုလျှင် ၁၁၂ နာရီ — GED အတွက် လုံလောက်သည်။'},
+      {icon:'🎯', title:'Weak Areas ကို ဦးစားပေး', desc:'Exam ဖြေပြီး အားနည်းသည့် ဘာသာရပ်ကို ရှာပါ။ ထိုဘာသာရပ်၏ Lesson များကို နှစ်ခါ လေ့လာပါ။'},
+      {icon:'🔁', title:'တစ်ပတ်တစ်ခါ Review', desc:'တစ်ပတ်လျှင် တစ်ခါ မှားခဲ့သော မေးခွန်းများကို ပြန်ဖြေပါ။ Spaced repetition က မှတ်ဉာဏ်ကို ခိုင်မာစေသည်။'},
+      {icon:'📱', title:'Mobile + Desktop ရော', desc:'အချိန်ရှိသည့်အခါ ဖုန်းဖြင့် Lesson လေ့လာ။ အချိန်ရှည်ရှိသည့်အခါ Computer ဖြင့် Exam ဖြေ။'},
+      {icon:'💪', title:'Consistency > Intensity', desc:'တစ်ရက် ၅ နာရီ လေ့လာပြီး ၃ ရက်နားခြင်းထက် တစ်ရက် ၂ နာရီ ဆက်တိုက်လေ့လာခြင်းက ပိုကောင်း။'},
+      {icon:'🧠', title:'Formula Sheet ကို သုံး', desc:'Math အတွက် formula.html ကို ဖွင့်ထားပါ။ GED Exam တွင် Formula Sheet ပေးထားသည်။ အလွတ်ကျက်ရန် မလိုပါ။'},
+      {icon:'✅', title:'85%+ ရမှ ရှေ့ဆက်', desc:'Lesson တစ်ခုစီ ၈၅%+ ရမှ နောက်တစ်ခုသို့ သွားပါ။ နည်းလျှင် ပြန်လေ့လာပါ။'},
+      {icon:'🎓', title:'Official GED Ready™ ဖြေ', desc:'Week 7-8 တွင် ged.com မှ GED Ready™ Practice Test (~$6) ဖြေပါ။ 145+ ရမှ စာမေးပွဲဝင်ပါ။'}
+    ];
+    var grid = $('tipsGrid');
+    grid.innerHTML = '';
+    tips.forEach(function(t){
+      var div = document.createElement('div');
+      div.className = 'tip';
+      div.innerHTML =
+        '<div class="t-icon">' + t.icon + '</div>' +
+        '<div>' +
+          '<b>' + t.title + '</b>' +
+          '<p>' + t.desc + '</p>' +
+        '</div>';
+      grid.appendChild(div);
+    });
+  }
+
+  /* ============================================================
+     STATS
+  ============================================================ */
+  function renderStats(){
+    var totalTasks = countAllTasks();
+    var doneTasks = countDoneTasks();
+    var pct = totalTasks ? Math.round(doneTasks / totalTasks * 100) : 0;
+
+    $('statTasks').textContent = doneTasks + '/' + totalTasks;
+    $('statPct').textContent = pct + '%';
+    $('statWeek').textContent = 'W' + Math.min(8, getCurrentWeek() + 1);
+
+    var streak = 0;
+    try { streak = parseInt(localStorage.getItem('ged:streak') || '0', 10) || 0; } catch(e){}
+    $('statStreak').textContent = streak;
+  }
+
+  /* ============================================================
+     SETTINGS
+  ============================================================ */
+  $('examDateInput').value = state.examDate || '';
+  $('dailyHours').value = state.dailyHours || 2;
+
+  $('saveExamDate').addEventListener('click', function(){
+    var v = $('examDateInput').value;
+    state.examDate = v;
+    save(state);
+    renderCountdown();
+    toast('📅 Exam ရက် သိမ်းပြီးပါပြီ', 'ok');
+  });
+
+  $('saveHours').addEventListener('click', function(){
+    var v = parseInt($('dailyHours').value, 10) || 2;
+    state.dailyHours = Math.max(1, Math.min(12, v));
+    $('dailyHours').value = state.dailyHours;
+    save(state);
+    toast('⏰ နာရီ သိမ်းပြီးပါပြီ', 'ok');
+  });
+
+  $('setDateBtn').addEventListener('click', function(){
+    $('examDateInput').focus();
+    $('examDateInput').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  $('clearDateBtn').addEventListener('click', function(){
+    if(!confirm('Exam ရက် ဖျက်မလား?')) return;
+    state.examDate = '';
+    $('examDateInput').value = '';
+    save(state);
+    renderCountdown();
+    toast('🗑️ ရက် ဖျက်ပြီးပါပြီ', 'ok');
+  });
+
+  $('resetPlanner').addEventListener('click', function(){
+    if(!confirm('⚠️ Task အားလုံး ဖျက်မလား? Progress အားလုံး ဆုံးရှုံးမည်။')) return;
+    if(!confirm('နောက်ဆုံး အတည်ပြုချက်: Reset လုပ်ရန် OK နှိပ်ပါ။')) return;
+    state.tasks = {};
+    save(state);
+    renderAll();
+    toast('🗑️ Planner Reset ပြီးပါပြီ', 'ok');
+  });
+
+  /* ============================================================
+     TOAST
+  ============================================================ */
+  var toastTimer;
+  function toast(msg, type){
+    var t = $('toast');
+    t.textContent = msg;
+    t.className = 'toast show ' + (type || 'ok');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2400);
+  }
+
+  /* ============================================================
+     RENDER ALL
+  ============================================================ */
+  function renderAll(){
+    renderCountdown();
+    renderStats();
+    renderToday();
+    renderWeekTabs();
+    renderWeekContent();
+    renderMilestones();
+  }
+
+  renderTips();
+  renderAll();
+
+  // Update countdown every minute
+  setInterval(function(){ renderCountdown(); }, 60000);
+
+  // Update on visibility change
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) renderAll();
+  });
+
+})();
+</script>
+</body>
+</html>

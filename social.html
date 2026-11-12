@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Social Studies — Full Course (1,800 Exercises)</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:rgba(15,23,42,.09);
+--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--radius:18px;--safe-top:env(safe-area-inset-top,0px);
+--safe-bottom:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+--shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);--ac:#f59e0b}
+html[data-theme="dark"]{--bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;--border:rgba(255,255,255,.09);
+--shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);--shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(700px 420px at 8% -8%,rgba(245,158,11,.10),transparent 65%),
+radial-gradient(700px 420px at 100% 4%,rgba(236,72,153,.08),transparent 65%)}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+.home-top{padding:calc(28px + var(--safe-top)) 20px 20px;max-width:1080px;margin:0 auto;text-align:center}
+.home-top .logo{width:64px;height:64px;border-radius:18px;margin:0 auto 16px;display:grid;place-items:center;
+font-size:15px;font-weight:800;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#f59e0b,#f97316);
+box-shadow:0 12px 28px -10px rgba(245,158,11,.8)}
+.home-top h1{margin:0 0 6px;font-size:clamp(22px,5.5vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.home-top p{margin:0;color:var(--muted);font-size:clamp(13px,3.4vw,15px)}
+.overall{max-width:440px;margin:20px auto 0;background:var(--card);border:1px solid var(--border);
+border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.overall-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.overall-row b{font-size:22px;font-weight:800;color:var(--ac)}
+.overall-row span{font-size:12.5px;color:var(--muted);font-weight:600}
+.overall-bar{height:8px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .overall-bar{background:rgba(255,255,255,.09)}
+.overall-bar i{display:block;height:100%;width:0;border-radius:999px;
+background:linear-gradient(90deg,var(--ac),#f97316);transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.grid{max-width:1080px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;display:flex;flex-direction:column;padding:20px;border-radius:var(--radius);
+background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);cursor:pointer;
+transition:transform .28s cubic-bezier(.22,.8,.28,1),box-shadow .28s,border-color .28s;overflow:hidden;
+font-family:inherit;text-align:left;color:inherit;animation:cardIn .5s cubic-bezier(.22,.8,.28,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@media(hover:hover){
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--c)}
+.card:hover .c-icon{transform:scale(1.08) rotate(-5deg)}
+.card:hover .c-arrow{transform:translateX(4px);background:var(--c);color:#fff;border-color:transparent}}
+.card:active{transform:scale(.982)}
+.c-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.c-icon{width:52px;height:52px;flex:none;display:grid;place-items:center;font-size:26px;
+border-radius:16px;transition:transform .3s cubic-bezier(.22,.8,.28,1)}
+.c-arrow{width:30px;height:30px;flex:none;display:grid;place-items:center;font-size:14px;
+border-radius:50%;border:1px solid var(--border);color:var(--muted);
+transition:transform .28s,background .28s,color .28s,border-color .28s}
+.card h3{margin:14px 0 0;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.card .c-desc{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7;flex:1}
+.c-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;
+border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted)}
+.c-meta b{color:var(--c);font-weight:800;font-size:13px}
+.c-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden;margin-top:8px}
+html[data-theme="dark"] .c-bar{background:rgba(255,255,255,.09)}
+.c-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--c);
+transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.lesson-list{max-width:880px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:10px}
+.lesson-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card);
+border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);cursor:pointer;
+font-family:inherit;text-align:left;color:inherit;transition:transform .2s,box-shadow .25s,border-color .25s;
+animation:cardIn .4s cubic-bezier(.22,.8,.28,1) both}
+@media(hover:hover){.lesson-row:hover{transform:translateX(4px);box-shadow:var(--shadow-lg);border-color:var(--ac)}}
+.lesson-row:active{transform:scale(.985)}
+.l-id{flex:none;font-size:12.5px;font-weight:800;color:#fff;padding:5px 10px;border-radius:10px;
+background:linear-gradient(135deg,var(--ac),#f97316);font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+.l-body{flex:1;min-width:0}
+.l-body h4{margin:0;font-size:14.5px;font-weight:700;line-height:1.35;letter-spacing:-.01em}
+.l-body p{margin:3px 0 0;font-size:11.5px;color:var(--muted);font-weight:600}
+.l-prog{flex:none;width:60px;text-align:right}
+.l-prog b{display:block;font-size:12px;color:var(--ac);font-weight:800;font-variant-numeric:tabular-nums}
+.l-prog .bar{height:5px;border-radius:999px;background:rgba(15,23,42,.08);overflow:hidden;margin-top:5px}
+html[data-theme="dark"] .l-prog .bar{background:rgba(255,255,255,.08)}
+.l-prog .bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.gv-header{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 16px 12px}
+html[data-theme="dark"] .gv-header{background:rgba(11,18,32,.92)}
+.gv-header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;font-size:13px;
+font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.gv-title{flex:1;min-width:0}
+.gv-title h2{margin:0;font-size:clamp(14px,3.8vw,17px);font-weight:800;letter-spacing:-.01em;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gv-title p{margin:2px 0 0;font-size:11.5px;color:var(--muted);font-weight:500}
+.prog-head{max-width:960px;margin:14px auto 0;padding:0 16px}
+.prog-head-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.prog-head-top b{font-size:15px;font-weight:800;color:var(--ac)}
+.prog-head-top span{font-size:11.5px;color:var(--muted);font-weight:600}
+.prog-head-bar{height:7px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .prog-head-bar{background:rgba(255,255,255,.09)}
+.prog-head-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.toolbar{max-width:960px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+font-size:12.5px;font-weight:600;cursor:pointer;box-shadow:0 1px 3px rgba(15,23,42,.04);
+transition:transform .18s,background .2s,color .2s}
+.btn:active{transform:scale(.96)}
+.btn.danger{color:var(--red);border-color:rgba(220,38,38,.3)}
+#exerciseList{max-width:960px;margin:0 auto;padding:16px}
+.exercise{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+padding:18px;margin-bottom:12px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ex-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ex-num{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;
+font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--ac),#f97316);
+font-variant-numeric:tabular-nums}
+.ex-status{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;color:var(--muted);
+background:rgba(15,23,42,.06)}
+html[data-theme="dark"] .ex-status{background:rgba(255,255,255,.08)}
+.ex-status.correct{color:#14532d;background:#bbf7d0}
+.ex-status.wrong{color:#7f1d1d;background:#fecaca}
+.ex-q{font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500}
+.ex-q b{font-weight:800}
+.ex-opts{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:520px){.ex-opts{grid-template-columns:1fr 1fr}}
+.opt{text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);
+background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+cursor:pointer;transition:all .18s;line-height:1.5}
+.opt:active{transform:scale(.98)}
+.opt:not(:disabled):hover{border-color:var(--ac);background:rgba(245,158,11,.04)}
+.opt:disabled{cursor:default;opacity:.95}
+.opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt .ltr{font-weight:800;margin-right:6px;color:var(--muted)}
+.opt.correct .ltr{color:#14532d}
+.opt.wrong .ltr{color:#7f1d1d}
+.ex-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.show-sol{padding:8px 13px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+background:rgba(245,158,11,.08);color:#92400e;font-family:inherit;font-size:12.5px;
+font-weight:700;cursor:pointer;transition:all .18s}
+html[data-theme="dark"] .show-sol{background:rgba(245,158,11,.15);color:#fbbf24}
+.show-sol:active{transform:scale(.97)}
+.show-sol.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent}
+.ex-sol{margin-top:12px;padding:16px;border-radius:12px;background:rgba(245,158,11,.06);
+border-left:3px solid var(--ac);font-size:13.5px;line-height:1.8;animation:fadeUp .3s ease both}
+html[data-theme="dark"] .ex-sol{background:rgba(245,158,11,.12)}
+.ex-sol .sol-lbl{display:block;font-weight:800;font-size:11px;color:var(--ac);
+text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ex-sol .sol-why{margin-bottom:14px}
+.ex-sol ol{margin:6px 0 0;padding-left:20px}
+.ex-sol ol li{margin-bottom:5px;line-height:1.7}
+.ex-sol .sol-ans{display:inline-block;margin-top:12px;padding:5px 12px;border-radius:8px;
+background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="homeScreen" class="screen active">
+  <div class="home-top">
+    <div class="logo">GED</div>
+    <h1>GED Social Studies — Full Course</h1>
+    <p>6 Groups · 60 Lessons · 1,800 Practice Questions</p>
+    <div class="overall">
+      <div class="overall-row"><b id="overallPct">0%</b><span id="overallCount">0 / 1,800 ပြီးစီး</span></div>
+      <div class="overall-bar"><i id="overallBar"></i></div>
+    </div>
+  </div>
+  <div class="grid" id="groupGrid"></div>
+</div>
+
+<div id="groupScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromGroup">← Back</button>
+      <div class="gv-title"><h2 id="gTitle"></h2><p id="gSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="gPct">0%</b><span id="gCount">0 / 300</span></div>
+    <div class="prog-head-bar"><i id="gBar"></i></div>
+  </div>
+  <div class="lesson-list" id="lessonList"></div>
+</div>
+
+<div id="lessonScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromLesson">← Back</button>
+      <div class="gv-title"><h2 id="lTitle"></h2><p id="lSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="lPct">0%</b><span id="lCount">0 / 30</span></div>
+    <div class="prog-head-bar"><i id="lBar"></i></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn" id="btnShowAll">💡 Show All Answers</button>
+    <button class="btn" id="btnHideAll">🙈 Hide All Answers</button>
+    <button class="btn danger" id="btnReset">🔄 Reset</button>
+  </div>
+  <div id="exerciseList"></div>
+</div>
+
+<script>
+/* HELPERS */
+var sr=function(s){var x=Math.sin(s*12.9898+78.233)*43758.5453;return x-Math.floor(x)};
+var ri=function(s,a,b){return Math.floor(sr(s)*(b-a+1))+a};
+var pick=function(s,arr){return arr[Math.floor(sr(s)*arr.length)]};
+var shuffle=function(a,s){var r=a.slice();for(var i=r.length-1;i>0;i--){var j=Math.floor(sr(s+i*13.37)*(i+1));var t=r[i];r[i]=r[j];r[j]=t}return r};
+function mcq(correct,distractors,seed){
+  var c=String(correct);var opts=[c];
+  for(var i=0;i<distractors.length;i++){if(opts.length>=4)break;var d=String(distractors[i]);if(d!==c&&opts.indexOf(d)===-1)opts.push(d)}
+  var k=1;
+  while(opts.length<4){opts.push(c+' (v'+k+')');k++;if(k>10)break}
+  var sh=shuffle(opts,seed);return{options:sh,correctIndex:sh.indexOf(c)};
+}
+function Q(q,correct,dist,why,steps,seed){
+  var m=mcq(correct,dist,seed);
+  return{q:q,options:m.options,correctIndex:m.correctIndex,why:why,steps:steps,answer:String(correct)};
+}
+
+/* ============================================================
+   GROUP 1 — CIVICS & GOVERNMENT
+============================================================ */
+var G1 = [
+// 1.1 Foundations of Democracy
+function(s){
+  var items=[
+    ['What is a democracy?','A government ruled by the people',['Rule by a king','Rule by the wealthy','Rule by the military'],
+     'Democracy = people ၏ အာဏာ ။ Direct သို့မဟုတ် representative။',
+     ['Demos = people','→ Rule by the people']],
+    ['What is a republic?','A government where citizens elect representatives',['Direct rule by all citizens','Rule by monarch','Rule by aristocracy'],
+     'Republic = elected representatives rule။',
+     ['Republic = representatives','→ ရွေးချယ်စရာ ၁']],
+    ['What is popular sovereignty?','Government power comes from the people',['Government power from God','Power from military','Power from wealth'],
+     'Popular sovereignty = people = source of authority။',
+     ['Popular = people','Sovereignty = authority','→ ရွေးချယ်စရာ ၁']],
+    ['Which Enlightenment thinker argued for separation of powers?','Montesquieu',['Locke','Rousseau','Hobbes'],
+     'Montesquieu = separation of powers (3 branches)။',
+     ['Montesquieu = 3 branches','→ Montesquieu']],
+    ['Who argued for "natural rights" of life, liberty, and property?','John Locke',['Hobbes','Montesquieu','Rousseau'],
+     'Locke = natural rights ။ Jefferson က Locke ၏ အတွေးကို သုံးသည်။',
+     ['Locke = life, liberty, property','→ John Locke']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.2 The Constitution
+function(s){
+  var items=[
+    ['When was the US Constitution written?','1787',['1776','1791','1800'],
+     'Constitution = 1787 (Philadelphia Convention) ။ Ratified 1788။',
+     ['1787 = Philadelphia','→ 1787']],
+    ['What is the Preamble?','The introduction stating the goals of the Constitution',['The first law','A list of rights','An amendment'],
+     'Preamble = "We the People..." — goals ဖော်ပြချက်။',
+     ['Preamble = intro','→ ရွေးချယ်စရာ ၁']],
+    ['How many amendments are in the Constitution?','27',['10','13','50'],
+     '27 amendments စုစုပေါင်း ။ ပထမ ၁၀ = Bill of Rights။',
+     ['Total amendments = 27','First 10 = Bill of Rights','→ 27']],
+    ['What does "We the People" establish?','Popular sovereignty',['Federalism only','Separation of powers','Judicial review'],
+     'Preamble ၏ "We the People" = power comes from people။',
+     ['"We the People" = people power','→ Popular sovereignty']],
+    ['Who is known as the "Father of the Constitution"?','James Madison',['George Washington','Thomas Jefferson','Alexander Hamilton'],
+     'Madison = primary author, Virginia Plan architect။',
+     ['Madison = Father','→ James Madison']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.3 Bill of Rights
+function(s){
+  var items=[
+    ['Which amendment protects freedom of speech, religion, and the press?','1st',['2nd','4th','5th'],
+     '1st Amendment = freedom of speech, religion, press, assembly, petition။',
+     ['1st = 5 freedoms','→ 1st']],
+    ['Which amendment protects against unreasonable searches?','4th',['1st','5th','6th'],
+     '4th Amendment = no unreasonable searches/seizures ။ Warrant လိုသည်။',
+     ['4th = searches','→ 4th']],
+    ['Which amendment guarantees a speedy and public trial?','6th',['4th','5th','8th'],
+     '6th Amendment = speedy/public trial + impartial jury။',
+     ['6th = trial rights','→ 6th']],
+    ['Which amendment protects against cruel and unusual punishment?','8th',['5th','6th','14th'],
+     '8th Amendment = no cruel/unusual punishment။',
+     ['8th = punishment','→ 8th']],
+    ['Which amendment extended most rights to state governments?','14th',['10th','13th','15th'],
+     '14th Amendment (1868) = due process + equal protection ။ Incorporation။',
+     ['14th = incorporation','→ 14th']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.4 Three Branches
+function(s){
+  var items=[
+    ['What is the main role of the Legislative branch?','Make laws',['Enforce laws','Interpret laws','Declare war only'],
+     'Legislative = Congress ။ Laws ရေးဆွဲသည်။',
+     ['Legislative = make laws','→ Make laws']],
+    ['What is the main role of the Executive branch?','Enforce laws',['Make laws','Interpret laws','Amend Constitution'],
+     'Executive = President ။ Laws ကို အကောင်အထည်ဖော်။',
+     ['Executive = enforce','→ Enforce laws']],
+    ['What is the main role of the Judicial branch?','Interpret laws',['Make laws','Enforce laws','Collect taxes'],
+     'Judicial = courts ။ Laws ကို interpret။',
+     ['Judicial = interpret','→ Interpret laws']],
+    ['Who is the head of the Executive branch?','The President',['Chief Justice','Speaker','Senator'],
+     'President = Executive branch ၏ အကြီးအကဲ။',
+     ['President = executive head','→ The President']],
+    ['What is the highest court in the US?','Supreme Court',['Circuit Court','District Court','Court of Appeals'],
+     'Supreme Court = highest court ။ 9 justices။',
+     ['Supreme Court = highest','→ Supreme Court']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.5 Checks and Balances
+function(s){
+  var items=[
+    ['How can Congress check the President?','Override a veto with 2/3 vote',['Declare laws unconstitutional','Pardon criminals','Appoint ambassadors'],
+     'Congress can override veto with 2/3 in both houses။',
+     ['Override veto = 2/3','→ Override a veto']],
+    ['How can the President check Congress?','Veto legislation',['Declare laws unconstitutional','Override veto','Impeach senators'],
+     'President can veto bills passed by Congress။',
+     ['President vetoes','→ Veto legislation']],
+    ['What is judicial review?','The power of courts to declare laws unconstitutional',['Veto power','Power to make laws','Power to tax'],
+     'Judicial review = Marbury v. Madison (1803) တွင် တည်ထောင်။',
+     ['Judicial review','→ ရွေးချယ်စရာ ၁']],
+    ['How can Congress check the Supreme Court?','Confirm or reject judicial appointments',['Veto decisions','Pardon justices','Declare laws constitutional'],
+     'Senate = confirm/reject judges ။ Impeach judges။',
+     ['Congress checks courts','→ Confirm/reject appointments']],
+    ['Which branch has the power to declare war?','Legislative',['Executive','Judicial','All three'],
+     'Congress = declare war (Article I)။',
+     ['Congress declares war','→ Legislative']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.6 Federalism
+function(s){
+  var items=[
+    ['What is federalism?','Division of power between national and state governments',['One central government only','State power only','No government'],
+     'Federalism = shared power between federal + state။',
+     ['Federal + State','→ ရွေးချယ်စရာ ၁']],
+    ['What are enumerated powers?','Powers specifically listed for the federal government',['Powers for states only','Shared powers','Powers from the people'],
+     'Enumerated = listed ။ Examples: coin money, declare war။',
+     ['Enumerated = listed','→ ရွေးချယ်စရာ ၁']],
+    ['What are reserved powers?','Powers kept by the states',['Powers for federal only','Shared powers','Not allowed'],
+     'Reserved = state powers (10th Amendment) ။ Education, marriage။',
+     ['Reserved = state','→ ရွေးချယ်စရာ ၁']],
+    ['Which amendment reserves powers to the states?','10th',['1st','5th','14th'],
+     '10th Amendment = state powers။',
+     ['10th = reserved','→ 10th']],
+    ['Which is an example of a concurrent power?','Taxation',['Declaring war','Coining money','Treaties'],
+     'Concurrent = both federal + state ။ Taxes, roads, courts။',
+     ['Concurrent = shared','Taxes shared','→ Taxation']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.7 Voting & Elections
+function(s){
+  var items=[
+    ['Which amendment granted voting rights regardless of race?','15th',['13th','14th','19th'],
+     '15th Amendment (1870) = race/citizenship voting။',
+     ['15th = race','→ 15th']],
+    ['Which amendment granted women the right to vote?','19th',['15th','21st','26th'],
+     '19th Amendment (1920) = women\'s suffrage။',
+     ['19th = women','→ 19th']],
+    ['Which amendment lowered voting age to 18?','26th',['19th','21st','25th'],
+     '26th Amendment (1971) = voting age 21 → 18။',
+     ['26th = age 18','→ 26th']],
+    ['What is the Electoral College?','A group of electors who formally elect the President',['A university','A type of primary','A court'],
+     'Electoral College = 538 electors ။ President ကို formal ရွေး။',
+     ['Electoral College = 538','→ ရွေးချယ်စရာ ၁']],
+    ['What is a primary election?','An election to choose party candidates',['General election','A type of recall','A referendum'],
+     'Primary = party nominee ရွေး ။ Then general election။',
+     ['Primary = party candidate','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.8 Civil Liberties vs Rights
+function(s){
+  var items=[
+    ['What is the difference between civil liberties and civil rights?','Liberties protect from government; rights guarantee equal treatment',['They are the same','Rights protect from government; liberties guarantee equality','Neither matters'],
+     'Liberties = freedoms from govt ။ Rights = equal treatment။',
+     ['Liberties = protection','Rights = equality','→ ရွေးချယ်စရာ ၁']],
+    ['Which is a civil liberty?','Freedom of speech',['Voting rights','Equal employment','Fair housing'],
+     'Speech = liberty (protection from govt)။',
+     ['Liberty = freedom from govt','Speech = liberty','→ Freedom of speech']],
+    ['Which is a civil right?','Voting',['Free speech','Freedom of religion','Right to bear arms'],
+     'Voting = civil right (equal participation)။',
+     ['Rights = equality','Voting = civil right','→ Voting']],
+    ['What did the Civil Rights Act of 1964 do?','Outlawed discrimination based on race, color, religion, sex, national origin',['Gave women the vote','Ended slavery','Created Social Security'],
+     'Civil Rights Act 1964 = discrimination အဆုံးသတ်။',
+     ['1964 = discrimination','→ ရွေးချယ်စရာ ၁']],
+    ['What did the Voting Rights Act of 1965 do?','Ended discriminatory voting practices',['Gave women vote','Lowered voting age','Created Electoral College'],
+     'VRA 1965 = poll taxes/literacy tests အဆုံးသတ်။',
+     ['1965 = voting protection','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.9 Political Parties & Interest Groups
+function(s){
+  var items=[
+    ['What is a political party?','A group that seeks to influence government by winning elections',['A type of interest group','A government agency','A court'],
+     'Party = elections ဖြင့် power ရယူ။',
+     ['Party → elections','→ ရွေးချယ်စရာ ၁']],
+    ['What is an interest group?','A group that seeks to influence policy without running candidates',['A political party','A government body','An election'],
+     'Interest group = lobbying, not candidates။',
+     ['Interest group = lobby','→ ရွေးချယ်စရာ ၁']],
+    ['What are the two major US political parties?','Democrats and Republicans',['Federalists and Whigs','Green and Libertarian','Tories and Labour'],
+     'Democrats + Republicans = major parties။',
+     ['Dem + Rep','→ Democrats and Republicans']],
+    ['What is lobbying?','Attempting to influence legislators',['Voting','Running for office','Filibustering'],
+     'Lobbying = legislators ကို ဖိအားပေး။',
+     ['Lobby = influence','→ Attempting to influence legislators']],
+    ['What is a third party?','A party other than the two major parties',['A minor committee','A foreign party','A type of primary'],
+     'Third party = alternative to Dems/Reps။',
+     ['Third = other','→ A party other than major']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 1.10 State & Local Government
+function(s){
+  var items=[
+    ['Who is the head of a state government?','Governor',['President','Mayor','Senator'],
+     'Governor = state executive။',
+     ['State head = Governor','→ Governor']],
+    ['What is the main lawmaking body of a state?','State legislature',['Congress','City council','Supreme Court'],
+     'State legislature = state laws။',
+     ['State laws = legislature','→ State legislature']],
+    ['Who leads a city government?','Mayor',['Governor','President','Senator'],
+     'Mayor = city executive။',
+     ['City head = Mayor','→ Mayor']],
+    ['What is a county?','An administrative division of a state',['A city','A state','A country'],
+     'County = state ၏ subdivision ။ Local govt။',
+     ['County = state division','→ ရွေးချယ်စရာ ၁']],
+    ['What is home rule?','The ability of local governments to govern themselves',['Federal rule','State rule','Foreign rule'],
+     'Home rule = local self-government။',
+     ['Home rule = local power','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 2 — US HISTORY
+============================================================ */
+var G2 = [
+// 2.1 Colonial Era
+function(s){
+  var items=[
+    ['When did Columbus arrive in the Americas?','1492',['1620','1776','1787'],
+     'Columbus = 1492 ။ European colonization စတင်။',
+     ['Columbus = 1492','→ 1492']],
+    ['Which colony was founded by the Pilgrims in 1620?','Plymouth',['Jamestown','Massachusetts Bay','Roanoke'],
+     'Plymouth = 1620 ။ Mayflower + Pilgrims။',
+     ['1620 = Plymouth','→ Plymouth']],
+    ['What was the first permanent English colony?','Jamestown',['Plymouth','Boston','Roanoke'],
+     'Jamestown = 1607 (Virginia)။',
+     ['1607 = Jamestown','→ Jamestown']],
+    ['What was the "middle passage"?','The sea route carrying enslaved Africans to the Americas',['A trade route to Asia','A European tour','A religious journey'],
+     'Middle Passage = transatlantic slave trade။',
+     ['Slave trade route','→ ရွေးချယ်စရာ ၁']],
+    ['What was the main cash crop of colonial Virginia?','Tobacco',['Cotton','Rice','Indigo'],
+     'Virginia = tobacco (John Rolfe)။',
+     ['Virginia = tobacco','→ Tobacco']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.2 American Revolution
+function(s){
+  var items=[
+    ['What was the main cause of the American Revolution?','Taxation without representation',['Territorial disputes with France','Religious conflict','Economic depression'],
+     'Taxation without representation = အဓိကအကြောင်းရင်း။',
+     ['Taxation + no representation','→ ရွေးချယ်စရာ ၁']],
+    ['When was the Declaration of Independence signed?','1776',['1774','1775','1781'],
+     'Declaration = July 4, 1776 ။ Thomas Jefferson။',
+     ['1776 = Declaration','→ 1776']],
+    ['Who wrote the Declaration of Independence?','Thomas Jefferson',['George Washington','Benjamin Franklin','John Adams'],
+     'Jefferson = primary author။',
+     ['Jefferson = author','→ Thomas Jefferson']],
+    ['What was the last major battle of the Revolution?','Yorktown',['Saratoga','Bunker Hill','Trenton'],
+     'Yorktown (1781) = Cornwallis surrendered။',
+     ['1781 = Yorktown','→ Yorktown']],
+    ['Which treaty ended the Revolution?','Treaty of Paris (1783)',['Treaty of Versailles','Treaty of Ghent','Treaty of Paris (1898)'],
+     'Treaty of Paris 1783 = independence recognized။',
+     ['1783 = Treaty of Paris','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.3 Civil War
+function(s){
+  var items=[
+    ['What was the main cause of the Civil War?','Slavery',['States\' rights only','Taxes','Territorial expansion only'],
+     'Civil War ၏ အဓိကအကြောင်းရင်း = slavery။',
+     ['Slavery = main cause','→ Slavery']],
+    ['When did the Civil War begin?','1861',['1850','1860','1865'],
+     'Civil War = 1861 (Fort Sumter) - 1865။',
+     ['1861 = start','→ 1861']],
+    ['Who was President during the Civil War?','Abraham Lincoln',['George Washington','Andrew Jackson','Ulysses Grant'],
+     'Lincoln = President 1861-1865။',
+     ['Lincoln = war president','→ Abraham Lincoln']],
+    ['What did the Emancipation Proclamation do?','Freed slaves in Confederate states',['Ended all slavery','Gave women vote','Gave land to freed slaves'],
+     'Emancipation Proclamation (1863) = Confederate slaves freed။',
+     ['1863 = Emancipation','→ ရွေးချယ်စရာ ၁']],
+    ['Which amendment abolished slavery?','13th',['14th','15th','19th'],
+     '13th Amendment (1865) = slavery abolished။',
+     ['13th = abolition','→ 13th']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.4 Reconstruction
+function(s){
+  var items=[
+    ['What was Reconstruction?','The period after the Civil War rebuilding the South and integrating freed slaves',['A building project','A type of law','A military campaign'],
+     'Reconstruction = 1865-1877 ။ South rebuild။',
+     ['Reconstruction = rebuild','→ ရွေးချယ်စရာ ၁']],
+    ['Which amendments were passed during Reconstruction?','13th, 14th, 15th',['1st, 2nd, 3rd','19th, 20th, 21st','4th, 5th, 6th'],
+     'Reconstruction Amendments: 13th (slavery), 14th (citizenship), 15th (voting)။',
+     ['13th, 14th, 15th','→ 13th, 14th, 15th']],
+    ['What were "Jim Crow" laws?','State laws enforcing racial segregation',['Federal tax laws','Trade laws','Voting laws'],
+     'Jim Crow = racial segregation (1877-1965)။',
+     ['Jim Crow = segregation','→ ရွေးချယ်စရာ ၁']],
+    ['What was the "separate but equal" doctrine?','Racial segregation allowed if facilities were equal',['Integration','Equal rights','Slavery'],
+     'Plessy v. Ferguson (1896) = separate but equal။',
+     ['Plessy 1896','Separate but equal','→ ရွေးချယ်စရာ ၁']],
+    ['Which Supreme Court case overturned "separate but equal"?','Brown v. Board of Education',['Plessy v. Ferguson','Marbury v. Madison','Dred Scott'],
+     'Brown v. Board (1954) = school segregation unconstitutional။',
+     ['1954 = Brown','→ Brown v. Board']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.5 Industrialization & Progressive Era
+function(s){
+  var items=[
+    ['What was the Industrial Revolution?','The shift from hand production to machine manufacturing',['An agricultural revolution','A political revolution','A religious movement'],
+     'Industrial Revolution = 18th-19th century ။ Machine production။',
+     ['Industrial = machines','→ ရွေးချယ်စရာ ၁']],
+    ['Who was Andrew Carnegie?','A steel industry magnate',['An oil magnate','A railroad builder','A banker'],
+     'Carnegie = steel (Carnegie Steel)။',
+     ['Carnegie = steel','→ A steel industry magnate']],
+    ['Who was John D. Rockefeller?','An oil industry magnate',['A steel magnate','A railroad magnate','A banker'],
+     'Rockefeller = oil (Standard Oil)။',
+     ['Rockefeller = oil','→ An oil industry magnate']],
+    ['What was the Progressive Era?','A period of social and political reform (1890s-1920s)',['A war period','An economic boom','A religious movement'],
+     'Progressive Era = reform ။ Trust busting, women\'s suffrage။',
+     ['Progressive = reform','→ ရွေးချယ်စရာ ၁']],
+    ['What did the Sherman Antitrust Act do?','Outlawed monopolies',['Created Social Security','Gave women vote','Ended slavery'],
+     'Sherman Act (1890) = monopolies အဆုံးသတ်။',
+     ['1890 = Sherman','Monopolies banned','→ Outlawed monopolies']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.6 World Wars
+function(s){
+  var items=[
+    ['When did World War I occur?','1914-1918',['1939-1945','1900-1910','1920-1930'],
+     'WWI = 1914-1918 ။ US joined 1917။',
+     ['WWI = 1914-1918','→ 1914-1918']],
+    ['When did World War II occur?','1939-1945',['1914-1918','1929-1939','1946-1950'],
+     'WWII = 1939-1945 ။ US joined 1941 (Pearl Harbor)။',
+     ['WWII = 1939-1945','→ 1939-1945']],
+    ['What event brought the US into WWII?','Attack on Pearl Harbor',['Sinking of Lusitania','Fall of France','Russian Revolution'],
+     'Pearl Harbor (Dec 7, 1941) = US enters WWII။',
+     ['Dec 7, 1941 = Pearl Harbor','→ ရွေးချယ်စရာ ၁']],
+    ['Who was President during most of WWII?','Franklin D. Roosevelt',['Harry Truman','Woodrow Wilson','Dwight Eisenhower'],
+     'FDR = President 1933-1945။ Truman = war ပြီးဆုံး။',
+     ['FDR = WWII president','→ Franklin D. Roosevelt']],
+    ['What was D-Day?','The Allied invasion of Normandy (June 6, 1944)',['A treaty','A battle in Pacific','A bomb'],
+     'D-Day = June 6, 1944 ။ Allied invasion of Europe။',
+     ['June 6, 1944','Normandy','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.7 Great Depression & New Deal
+function(s){
+  var items=[
+    ['What event marked the beginning of the Great Depression?','Stock market crash of 1929',['WWI','The New Deal','Pearl Harbor'],
+     'Oct 1929 = stock market crash။',
+     ['1929 = crash','→ Stock market crash']],
+    ['Who was President when the Depression began?','Herbert Hoover',['FDR','Truman','Wilson'],
+     'Hoover = President 1929-1933 ။ Depression စတင်။',
+     ['Hoover = 1929','→ Herbert Hoover']],
+    ['What was the New Deal?','FDR\'s programs to provide relief, recovery, and reform',['A tax cut','A military plan','A foreign policy'],
+     'New Deal = FDR\'s economic recovery programs။',
+     ['New Deal = FDR','→ ရွေးချယ်စရာ ၁']],
+    ['Which New Deal program created a pension for the elderly?','Social Security Act',['CCC','FDIC','TVA'],
+     'Social Security Act (1935) = pensions for elderly။',
+     ['1935 = Social Security','→ Social Security Act']],
+    ['What was the role of the FDIC?','Insured bank deposits',['Built dams','Employed youth','Regulated railroads'],
+     'FDIC = bank deposits insured။',
+     ['FDIC = bank insurance','→ Insured bank deposits']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.8 Cold War
+function(s){
+  var items=[
+    ['What was the Cold War?','Geopolitical tension between the US and Soviet Union (1947-1991)',['A military conflict','A trade war','A religious war'],
+     'Cold War = US vs USSR ။ No direct fighting။',
+     ['US vs USSR','No direct fighting','→ ရွေးချယ်စရာ ၁']],
+    ['What was the US policy of containment?','Preventing the spread of communism',['Spreading democracy by force','Isolating the US','Withdrawing from world affairs'],
+     'Containment = communism ပြန့်ပွားမှု ရပ်။',
+     ['Containment = stop communism','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Cuban Missile Crisis?','A 1962 confrontation over Soviet missiles in Cuba',['A space mission','A trade agreement','A treaty'],
+     '1962 = closest to nuclear war။',
+     ['1962 = Cuba','→ ရွေးချယ်စရာ ၁']],
+    ['What event marked the end of the Cold War?','Collapse of the Soviet Union (1991)',['Fall of Berlin Wall only','Korean War end','Vietnam War end'],
+     'USSR dissolved in 1991 ။ Berlin Wall fell 1989။',
+     ['1991 = USSR end','→ Collapse of Soviet Union']],
+    ['What was the Korean War outcome?','Korea remained divided at the 38th parallel',['Korea unified','US won','USSR won'],
+     'Korean War (1950-1953) = stalemate ။ Korea divided။',
+     ['38th parallel','→ Korea remained divided']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.9 Civil Rights Movement
+function(s){
+  var items=[
+    ['Who was the leader of the nonviolent civil rights movement?','Martin Luther King Jr.',['Malcolm X','Rosa Parks','Thurgood Marshall'],
+     'MLK = nonviolent protest ။ "I Have a Dream"။',
+     ['MLK = nonviolent','→ Martin Luther King Jr.']],
+    ['What did Rosa Parks refuse to do in 1955?','Give up her bus seat to a white passenger',['Go to school','Vote','Pay taxes'],
+     'Rosa Parks = Montgomery Bus Boycott စတင်။',
+     ['1955 = Montgomery','→ ရွေးချယ်စရာ ၁']],
+    ['What was the March on Washington (1963)?','A massive demonstration for civil rights',['A military parade','A political convention','A religious event'],
+     'March on Washington = MLK "I Have a Dream" speech။',
+     ['1963 = March','MLK speech','→ ရွေးချယ်စရာ ၁']],
+    ['What did the Civil Rights Act of 1964 outlaw?','Discrimination based on race, color, religion, sex, national origin',['Slavery','Poll taxes only','Segregated schools only'],
+     'Civil Rights Act = broad anti-discrimination။',
+     ['1964 = discrimination ban','→ ရွေးချယ်စရာ ၁']],
+    ['What did the Voting Rights Act of 1965 do?','Ended discriminatory voting practices',['Gave women vote','Lowered voting age','Created Electoral College'],
+     'VRA 1965 = poll taxes/literacy tests အဆုံးသတ်။',
+     ['1965 = voting protection','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 2.10 Modern America
+function(s){
+  var items=[
+    ['What was the significance of the 2008 election?','Barack Obama became the first African American President',['First woman president','First Hispanic president','First independent president'],
+     'Obama = first African American President။',
+     ['2008 = Obama','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Civil Rights Movement\'s main goal?','End racial segregation and discrimination',['Increase taxes','End immigration','Start a war'],
+     'Civil Rights = racial equality။',
+     ['Civil Rights = equality','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Watergate scandal?','A political scandal leading to Nixon\'s resignation',['A sports scandal','A financial scandal','An international incident'],
+     'Watergate (1972-1974) = Nixon resigned။',
+     ['Watergate = Nixon','→ ရွေးချယ်စရာ ၁']],
+    ['What is the significance of the 19th Amendment?','Women gained the right to vote',['Ended slavery','Granted citizenship','Lowered voting age'],
+     '19th Amendment (1920) = women suffrage။',
+     ['1920 = women vote','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Apollo 11 mission?','The first moon landing (1969)',['A satellite launch','A space station','A Mars mission'],
+     'Apollo 11 = July 1969 ။ Neil Armstrong = first on moon။',
+     ['1969 = moon','→ The first moon landing']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 3 — WORLD HISTORY
+============================================================ */
+var G3 = [
+// 3.1 Ancient Civilizations
+function(s){
+  var items=[
+    ['Which ancient civilization built the pyramids?','Egyptians',['Greeks','Romans','Persians'],
+     'Pyramids = Ancient Egypt ။ Giza။',
+     ['Pyramids = Egypt','→ Egyptians']],
+    ['Where did civilization first develop?','Mesopotamia',['Egypt','Greece','Rome'],
+     'Mesopotamia = "Fertile Crescent" ။ Tigris + Euphrates။',
+     ['Mesopotamia = first','→ Mesopotamia']],
+    ['What was Hammurabi\'s Code?','One of the earliest written legal codes',['A type of pyramid','A religious text','A military strategy'],
+     'Hammurabi = Babylonian king ။ Written laws။',
+     ['Hammurabi = laws','→ ရွေးချယ်စရာ ၁']],
+    ['Which civilization developed democracy?','Ancient Greece',['Egypt','Persia','Rome'],
+     'Greece = democracy origin (Athens)။',
+     ['Greece = democracy','→ Ancient Greece']],
+    ['What was the Silk Road?','A trade route connecting East and West',['A road in Rome','A river','A military path'],
+     'Silk Road = China ↔ Europe trade။',
+     ['Silk Road = trade','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.2 Middle Ages
+function(s){
+  var items=[
+    ['What was feudalism?','A system where lords granted land to vassals in exchange for loyalty',['A type of democracy','An economic system','A religion'],
+     'Feudalism = lords + vassals + serfs။',
+     ['Feudalism = land for loyalty','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Black Death?','A devastating plague in the 14th century',['A war','A famine','A flood'],
+     'Black Death (1347-1351) = ~1/3 of Europe died။',
+     ['1347-1351 = plague','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Magna Carta?','A 1215 document limiting the king\'s power',['A treaty','A religious text','A trade agreement'],
+     'Magna Carta (1215) = king\'s power limited။',
+     ['1215 = Magna Carta','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Crusades?','Religious military campaigns (11th-13th centuries)',['Trade missions','Pilgrimages','Colonization'],
+     'Crusades = Christian vs Muslim ။ Holy Land။',
+     ['Crusades = religious wars','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Renaissance?','A period of cultural and intellectual rebirth (14th-17th c.)',['A war','A religion','A famine'],
+     'Renaissance = rebirth ။ Art, science, humanism။',
+     ['Renaissance = rebirth','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.3 Age of Exploration
+function(s){
+  var items=[
+    ['Who first sailed around the world (expedition)?','Magellan',['Columbus','Vespucci','Drake'],
+     'Magellan\'s expedition (1519-1522) = first circumnavigation။',
+     ['Magellan = circumnavigate','→ Magellan']],
+    ['What was the Columbian Exchange?','The transfer of goods, ideas, and diseases between hemispheres',['A trade route','A treaty','A war'],
+     'Columbian Exchange = Old World ↔ New World။',
+     ['Columbian = exchange','→ ရွေးချယ်စရာ ၁']],
+    ['Which European country first reached India by sea?','Portugal',['Spain','England','France'],
+     'Vasco da Gama (Portugal) = 1498 India။',
+     ['Portugal = India sea route','→ Portugal']],
+    ['What was the main goal of European exploration?','God, Gold, and Glory',['Science only','Peace only','Environment'],
+     '3 G\'s: God, Gold, Glory။',
+     ['3 G\'s','→ God, Gold, and Glory']],
+    ['What was the impact of European colonization on indigenous peoples?','Disease, displacement, and death',['Increased population','Improved health','No change'],
+     'Colonization = devastating for indigenous။',
+     ['Disease + displacement','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.4 Revolutions
+function(s){
+  var items=[
+    ['When did the French Revolution begin?','1789',['1776','1800','1815'],
+     'French Revolution = 1789 ။ Bastille။',
+     ['1789 = French Rev','→ 1789']],
+    ['What was the Industrial Revolution?','Transition to machine manufacturing',['A political revolution','A religious reform','An agricultural reform'],
+     'Industrial Revolution = 18th-19th c. ။ Machines။',
+     ['Industrial = machines','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Russian Revolution?','The overthrow of the Tsar and rise of communism (1917)',['A trade war','A religious reform','A colonial war'],
+     'Russian Revolution = 1917 ။ Lenin + Bolsheviks။',
+     ['1917 = Russia','→ ရွေးချယ်စရာ ၁']],
+    ['Who led the Cuban Revolution?','Fidel Castro',['Che Guevara only','Batista','Mao'],
+     'Castro = 1959 Cuban Revolution။',
+     ['Castro = Cuba','→ Fidel Castro']],
+    ['What was the Haitian Revolution?','A successful slave revolt (1791-1804)',['A French revolt','An American revolt','A British revolt'],
+     'Haiti = first successful slave revolution။',
+     ['Haiti = slave revolt','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.5 Imperialism & Colonialism
+function(s){
+  var items=[
+    ['What was the "Scramble for Africa"?','European colonization of Africa (1880s-1914)',['A trade fair','A sports event','A migration'],
+     'Scramble for Africa = European partition။',
+     ['Scramble = partition','→ ရွေးချယ်စရာ ၁']],
+    ['What was the British Empire?','The largest empire in history',['A small kingdom','A trade company','A religion'],
+     'British Empire = "sun never sets"။',
+     ['British Empire = largest','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Opium War?','A conflict between Britain and China (1839-1842)',['A drug ban','A trade deal','A religious war'],
+     'Opium War = Britain forced China to trade opium။',
+     ['Opium War = Britain vs China','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Berlin Conference (1884-85)?','A meeting to divide Africa among European powers',['A peace treaty','A trade fair','A religious council'],
+     'Berlin Conference = Africa partition။',
+     ['1884-85 = Africa split','→ ရွေးချယ်စရာ ၁']],
+    ['What was the effect of colonialism on colonized nations?','Economic exploitation and cultural disruption',['Economic growth only','Cultural preservation','No effect'],
+     'Colonialism = exploitation ။ Long-term effects။',
+     ['Colonialism = exploitation','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.6 World War I
+function(s){
+  var items=[
+    ['What event sparked WWI?','Assassination of Archduke Franz Ferdinand',['Pearl Harbor','Invasion of Poland','Russian Revolution'],
+     'June 28, 1914 = Sarajevo assassination။',
+     ['1914 = assassination','→ ရွေးချယ်စရာ ၁']],
+    ['Which countries were the Central Powers?','Germany, Austria-Hungary, Ottoman Empire',['Britain, France, Russia','US, Britain, France','Japan, Italy, Russia'],
+     'Central Powers = Germany + Austria-Hungary + Ottoman။',
+     ['Central = Germany led','→ ရွေးချယ်စရာ ၁']],
+    ['Which treaty ended WWI?','Treaty of Versailles',['Treaty of Paris','Treaty of Ghent','Treaty of Berlin'],
+     'Treaty of Versailles (1919) = WWI ပြီးဆုံး။',
+     ['1919 = Versailles','→ Treaty of Versailles']],
+    ['What was the League of Nations?','An international organization to prevent future wars',['A military alliance','A trade bloc','A court'],
+     'League of Nations = WWI ပြီးနောက် ။ UN ၏ အရှေ့ပြေး။',
+     ['League = peace','→ ရွေးချယ်စရာ ၁']],
+    ['What was trench warfare?','Combat from defensive ditches along the front line',['Naval warfare','Air warfare','Guerrilla warfare'],
+     'Trench warfare = WWI ၏ အဓိကစစ်ပွဲပုံစံ။',
+     ['Trench = WWI','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.7 World War II
+function(s){
+  var items=[
+    ['What event started WWII in Europe?','German invasion of Poland (1939)',['Pearl Harbor','Munich Agreement','Treaty of Versailles'],
+     'Sept 1, 1939 = invasion of Poland။',
+     ['1939 = Poland','→ German invasion of Poland']],
+    ['Who was the leader of Nazi Germany?','Adolf Hitler',['Mussolini','Stalin','Tojo'],
+     'Hitler = Nazi leader။',
+     ['Hitler = Nazi','→ Adolf Hitler']],
+    ['What was the Holocaust?','The systematic genocide of 6 million Jews by Nazi Germany',['A battle','A treaty','A famine'],
+     'Holocaust = genocide of Jews + others။',
+     ['Holocaust = genocide','→ ရွေးချယ်စရာ ၁']],
+    ['What was the D-Day invasion?','Allied invasion of Normandy (June 6, 1944)',['A bombing','A treaty','A naval battle'],
+     'D-Day = June 6, 1944 ။ Allied invasion။',
+     ['June 6, 1944','→ Allied invasion of Normandy']],
+    ['What was the Manhattan Project?','The US program to develop the atomic bomb',['A building project','A trade deal','A space program'],
+     'Manhattan Project = atomic bomb ။ Hiroshima/Nagasaki။',
+     ['Manhattan = atomic bomb','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.8 Cold War & Decolonization
+function(s){
+  var items=[
+    ['What was the United Nations?','An international organization founded in 1945 to maintain peace',['A military alliance','A trade bloc','A court only'],
+     'UN = 1945 ။ Peace + cooperation။',
+     ['UN = 1945','→ ရွေးချယ်စရာ ၁']],
+    ['What was NATO?','A military alliance of Western nations (1949)',['A trade bloc','A court','A UN agency'],
+     'NATO = 1949 ။ Western military alliance။',
+     ['NATO = 1949','→ ရွေးချယ်စရာ ၁']],
+    ['What was the Warsaw Pact?','A Soviet-led military alliance (1955)',['A trade deal','A UN agency','A court'],
+     'Warsaw Pact = 1955 ။ Soviet response to NATO။',
+     ['1955 = Warsaw','→ ရွေးချယ်စရာ ၁']],
+    ['What was decolonization?','The process by which colonies gained independence',['Recolonization','A type of war','A trade policy'],
+     'Decolonization = post-WWII independence movements။',
+     ['Decolonization = independence','→ ရွေးချယ်စရာ ၁']],
+    ['Which country gained independence from Britain in 1947?','India',['China','Egypt','Kenya'],
+     'India = 1947 ။ Gandhi + independence။',
+     ['1947 = India','→ India']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.9 Modern World
+function(s){
+  var items=[
+    ['What was the European Union?','A political and economic union of European nations',['A military alliance','A court','A religion'],
+     'EU = economic + political union ။ Euro currency။',
+     ['EU = union','→ ရွေးချယ်စရာ ၁']],
+    ['When did the Berlin Wall fall?','1989',['1961','1991','2001'],
+     'Berlin Wall = 1989 ။ German reunification။',
+     ['1989 = Wall falls','→ 1989']],
+    ['What was the significance of 9/11?','Terrorist attacks in the US that started the War on Terror',['A natural disaster','An economic crash','A political scandal'],
+     'Sept 11, 2001 = terrorist attacks။',
+     ['Sept 11, 2001','→ ရွေးချယ်စရာ ၁']],
+    ['What is globalization?','The increasing interconnection of world economies and cultures',['Isolation','A trade barrier','A religion'],
+     'Globalization = global integration။',
+     ['Globalization = integration','→ ရွေးချယ်စရာ ၁']],
+    ['What is the Arab Spring?','A wave of protests in the Middle East (2010-2012)',['A weather event','A trade deal','A religion'],
+     'Arab Spring = 2010-2012 protests။',
+     ['2010-2012 = Arab Spring','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 3.10 Human Rights
+function(s){
+  var items=[
+    ['What is the Universal Declaration of Human Rights?','A 1948 UN document listing basic rights for all humans',['A treaty','A constitution','A religious text'],
+     'UDHR = 1948 ။ 30 articles။',
+     ['1948 = UDHR','→ ရွေးချယ်စရာ ၁']],
+    ['Which organization monitors human rights globally?','United Nations',['NATO','WTO','OPEC'],
+     'UN = human rights monitoring။',
+     ['UN = human rights','→ United Nations']],
+    ['What is genocide?','The deliberate killing of a large group of people based on ethnicity, religion, etc.',['A war','A crime','A famine'],
+     'Genocide = intentional group destruction။',
+     ['Genocide = group killing','→ ရွေးချယ်စရာ ၁']],
+    ['What is the International Criminal Court?','A court that prosecutes genocide, war crimes, and crimes against humanity',['A national court','A trade court','A UN agency only'],
+     'ICC = international justice ။ 2002။',
+     ['ICC = war crimes','→ ရွေးချယ်စရာ ၁']],
+    ['What are refugee rights?','Protections for people fleeing persecution',['Tourist rights','Trade rights','Property rights only'],
+     'Refugee rights = protection from persecution။',
+     ['Refugee = persecution','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 4 — ECONOMICS
+============================================================ */
+var G4 = [
+// 4.1 Basic Economic Concepts
+function(s){
+  var items=[
+    ['What is scarcity?','Unlimited wants with limited resources',['Plenty of resources','A type of money','A trade policy'],
+     'Scarcity = resources လုံလောက်မှုမရှိ။',
+     ['Scarcity = limited resources','→ ရွေးချယ်စရာ ၁']],
+    ['What is opportunity cost?','The value of the next best alternative given up',['The price of a good','The cost of labor','The cost of transport'],
+     'Opportunity cost = trade-off ၏ တန်ဖိုး။',
+     ['Opportunity = next best','→ ရွေးချယ်စရာ ၁']],
+    ['What are the three basic economic questions?','What to produce, how to produce, for whom to produce',['When, where, why','Who, what, when','Where, how, why'],
+     '3 economic questions: what, how, for whom။',
+     ['3 questions','→ ရွေးချယ်စရာ ၁']],
+    ['What is a traditional economy?','An economy based on customs and rituals',['A market economy','A command economy','A mixed economy'],
+     'Traditional = customs/heritage based။',
+     ['Traditional = customs','→ ရွေးချယ်စရာ ၁']],
+    ['What is a command economy?','An economy where the government controls production',['A market economy','A traditional economy','A mixed economy'],
+     'Command = government controlled။',
+     ['Command = govt','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.2 Supply & Demand
+function(s){
+  var items=[
+    ['According to the law of demand, when price rises, quantity demanded ____.','falls',['rises','stays same','doubles'],
+     'Law of demand: P ↑ → Qd ↓ (inverse)။',
+     ['P ↑ → Qd ↓','→ falls']],
+    ['According to the law of supply, when price rises, quantity supplied ____.','rises',['falls','stays same','halves'],
+     'Law of supply: P ↑ → Qs ↑ (direct)။',
+     ['P ↑ → Qs ↑','→ rises']],
+    ['What is equilibrium?','The point where supply equals demand',['A shortage','A surplus','A tax'],
+     'Equilibrium = Qs = Qd ။ Market clearing price။',
+     ['Qs = Qd','→ ရွေးချယ်စရာ ၁']],
+    ['What happens when demand exceeds supply?','Shortage',['Surplus','Equilibrium','No change'],
+     'Demand > Supply → shortage → prices rise။',
+     ['D > S = shortage','→ Shortage']],
+    ['What happens when supply exceeds demand?','Surplus',['Shortage','Equilibrium','Higher demand'],
+     'Supply > Demand → surplus → prices fall။',
+     ['S > D = surplus','→ Surplus']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.3 Market Structures
+function(s){
+  var items=[
+    ['What is perfect competition?','A market with many buyers and sellers of identical products',['One seller only','Few sellers','Government controls'],
+     'Perfect competition = many firms, identical products။',
+     ['Perfect = many','→ ရွေးချယ်စရာ ၁']],
+    ['What is a monopoly?','A market with one seller',['Many sellers','Few sellers','No sellers'],
+     'Monopoly = single seller, no competition။',
+     ['Monopoly = one','→ A market with one seller']],
+    ['What is an oligopoly?','A market with a few large sellers',['One seller','Many small sellers','No sellers'],
+     'Oligopoly = few firms dominate။',
+     ['Oligopoly = few','→ ရွေးချယ်စရာ ၁']],
+    ['What is a monopoly\'s main advantage for the seller?','Ability to set prices',['Low profits','Many competitors','Government control'],
+     'Monopoly = price setter ။ No competition။',
+     ['Monopoly = price setter','→ Ability to set prices']],
+    ['Which market structure has the most competition?','Perfect competition',['Monopoly','Oligopoly','Monopolistic competition'],
+     'Perfect competition = most competition။',
+     ['Perfect = most','→ Perfect competition']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.4 Money & Banking
+function(s){
+  var items=[
+    ['What are the three functions of money?','Medium of exchange, store of value, unit of account',['Print, save, spend','Buy, sell, trade','Borrow, lend, invest'],
+     '3 functions: exchange, storage, measure။',
+     ['3 functions','→ ရွေးချယ်စရာ ၁']],
+    ['What is the Federal Reserve?','The central bank of the United States',['A private bank','A commercial bank','A state bank'],
+     'Fed = US central bank ။ Monetary policy။',
+     ['Fed = central bank','→ ရွေးချယ်စရာ ၁']],
+    ['What is monetary policy?','The Fed\'s control of money supply and interest rates',['Tax policy','Trade policy','Wage policy'],
+     'Monetary = Fed ။ Interest rates။',
+     ['Monetary = Fed','→ ရွေးချယ်စရာ ၁']],
+    ['What is fiscal policy?','Government spending and taxation decisions',['Interest rates','Money supply','Trade policy'],
+     'Fiscal = govt spending + taxes ။ Congress + President။',
+     ['Fiscal = spending/taxes','→ ရွေးချယ်စရာ ၁']],
+    ['What is inflation?','A general rise in prices over time',['A decrease in prices','A type of tax','A trade policy'],
+     'Inflation = prices ↑ → purchasing power ↓။',
+     ['Inflation = prices up','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.5 GDP & Economic Indicators
+function(s){
+  var items=[
+    ['What does GDP stand for?','Gross Domestic Product',['General Domestic Policy','Government Data Program','Gross Development Product'],
+     'GDP = total value of goods/services produced။',
+     ['GDP = Gross Domestic Product','→ Gross Domestic Product']],
+    ['What does GDP measure?','The total value of goods and services produced in a country',['Population','Unemployment','Inflation only'],
+     'GDP = economic output measure။',
+     ['GDP = output','→ ရွေးချယ်စရာ ၁']],
+    ['What is unemployment rate?','The percentage of the labor force without jobs',['The number of jobs','Inflation','GDP'],
+     'Unemployment = jobless % of labor force။',
+     ['Unemployment = jobless %','→ ရွေးချယ်စရာ ၁']],
+    ['What is the Consumer Price Index (CPI)?','A measure of inflation tracking a basket of goods',['A stock index','A trade index','An unemployment measure'],
+     'CPI = inflation measure။',
+     ['CPI = inflation','→ ရွေးချယ်စရာ ၁']],
+    ['What is a recession?','A period of economic decline (2+ quarters of negative GDP growth)',['Economic boom','Stable economy','Inflation'],
+     'Recession = 2+ quarters negative growth။',
+     ['Recession = decline','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.6 Trade & Globalization
+function(s){
+  var items=[
+    ['What is comparative advantage?','Producing a good at a lower opportunity cost',['Producing more','Having more resources','Cheaper labor only'],
+     'Comparative advantage = lower opportunity cost။',
+     ['Comparative = opp cost','→ ရွေးချယ်စရာ ၁']],
+    ['What is a tariff?','A tax on imports',['A tax on exports','A subsidy','A trade agreement'],
+     'Tariff = import tax ။ Protectionism tool။',
+     ['Tariff = import tax','→ A tax on imports']],
+    ['What is free trade?','Trade without tariffs or restrictions',['Trade with taxes','Trade with quotas','Trade with bans'],
+     'Free trade = no barriers။',
+     ['Free = no barriers','→ ရွေးချယ်စရာ ၁']],
+    ['What is NAFTA/USMCA?','A trade agreement between US, Mexico, and Canada',['A military alliance','A court','A UN agency'],
+     'NAFTA → USMCA = North American trade။',
+     ['NAFTA = trade','→ ရွေးချယ်စရာ ၁']],
+    ['What is globalization?','The increasing interconnection of world economies',['Isolationism','Protectionism','Nationalism'],
+     'Globalization = global integration။',
+     ['Globalization = integration','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.7 Personal Finance
+function(s){
+  var items=[
+    ['What is a budget?','A plan for income and expenses',['A loan','A tax','A bank account'],
+     'Budget = income/expense plan။',
+     ['Budget = plan','→ ရွေးချယ်စရာ ၁']],
+    ['What is interest?','The cost of borrowing money',['A tax','A fee only','A discount'],
+     'Interest = borrowing cost (or earned on savings)။',
+     ['Interest = cost','→ ရွေးချယ်စရာ ၁']],
+    ['What is a credit score?','A number representing creditworthiness',['A bank balance','An account number','A tax rate'],
+     'Credit score = credit risk measure။',
+     ['Credit score = rating','→ ရွေးချယ်စရာ ၁']],
+    ['What is a savings account?','A bank account for saving money with interest',['A checking account','A loan','A credit card'],
+     'Savings = interest-bearing account။',
+     ['Savings = interest','→ ရွေးချယ်စရာ ၁']],
+    ['What is compound interest?','Interest earned on both principal and previously earned interest',['Simple interest','A tax','A fee'],
+     'Compound = interest on interest။',
+     ['Compound = interest on interest','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.8 Government & Economy
+function(s){
+  var items=[
+    ['What is a public good?','A good provided by government for everyone\'s benefit',['A private good','A luxury item','An export'],
+     'Public good = roads, parks, defense ။ Non-excludable။',
+     ['Public = shared','→ ရွေးချယ်စရာ ၁']],
+    ['What is a market failure?','When markets don\'t allocate resources efficiently',['A market success','A trade deal','A stock exchange'],
+     'Market failure = inefficiency (externalities, monopoly)။',
+     ['Market failure = inefficiency','→ ရွေးချယ်စရာ ၁']],
+    ['What is an externality?','A cost or benefit not reflected in market prices',['A tax','A subsidy','A trade deal'],
+     'Externality = third-party effect (pollution)။',
+     ['Externality = side effect','→ ရွေးချယ်စရာ ၁']],
+    ['What is redistribution?','Government policies to reduce income inequality',['Increasing profits','Reducing government','Trade policy'],
+     'Redistribution = progressive taxes + welfare။',
+     ['Redistribution = inequality ↓','→ ရွေးချယ်စရာ ၁']],
+    ['What is Social Security?','A government pension program for retirees',['A private pension','A bank account','A tax cut'],
+     'Social Security = 1935 New Deal pension။',
+     ['Social Security = pension','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.9 Labor & Employment
+function(s){
+  var items=[
+    ['What is a labor union?','An organization of workers seeking better wages and conditions',['A business','A government agency','A bank'],
+     'Union = collective bargaining။',
+     ['Union = workers','→ ရွေးချယ်စရာ ၁']],
+    ['What is minimum wage?','The lowest legal wage an employer can pay',['Average wage','Maximum wage','Market wage'],
+     'Minimum wage = legal floor။',
+     ['Minimum = lowest legal','→ ရွေးချယ်စရာ ၁']],
+    ['What is outsourcing?','Hiring outside workers or companies to do work',['Hiring in-house','Reducing staff','Automation'],
+     'Outsourcing = external hiring။',
+     ['Outsourcing = external','→ ရွေးချယ်စရာ ၁']],
+    ['What is automation?','Using machines to perform tasks previously done by humans',['Manual labor','Hiring more workers','Trade policy'],
+     'Automation = machine replacement။',
+     ['Automation = machines','→ ရွေးချယ်စရာ ၁']],
+    ['What is the labor force?','All people who are employed or actively seeking work',['All citizens','All adults','All students'],
+     'Labor force = employed + unemployed (seeking)။',
+     ['Labor force = workers','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 4.10 Economic Systems
+function(s){
+  var items=[
+    ['What is capitalism?','An economic system based on private ownership and free markets',['Government ownership','Traditional economy','Socialism'],
+     'Capitalism = private ownership + markets။',
+     ['Capitalism = private','→ ရွေးချယ်စရာ ၁']],
+    ['What is socialism?','An economic system where the community owns production',['Private ownership only','Free markets only','No government'],
+     'Socialism = community/social ownership။',
+     ['Socialism = social ownership','→ ရွေးချယ်စရာ ၁']],
+    ['What is communism?','An economic system where the state owns all property',['Private ownership','Free markets','No state'],
+     'Communism = state ownership။',
+     ['Communism = state','→ ရွေးချယ်စရာ ၁']],
+    ['What is a mixed economy?','An economy combining market and command elements',['Pure market','Pure command','Traditional'],
+     'Mixed = market + govt ။ US ။',
+     ['Mixed = both','→ ရွေးချယ်စရာ ၁']],
+    ['What is the "invisible hand"?','Adam Smith\'s idea that self-interest guides markets',['Government control','A monopoly','A trade policy'],
+     'Smith = self-interest → market efficiency။',
+     ['Smith = invisible hand','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 5 — GEOGRAPHY
+============================================================ */
+var G5 = [
+// 5.1 World Regions
+function(s){
+  var items=[
+    ['Which continent is the largest by population?','Asia',['Africa','Europe','North America'],
+     'Asia = 60% of world population။',
+     ['Asia = largest pop','→ Asia']],
+    ['Which continent is the largest by area?','Asia',['Africa','North America','Antarctica'],
+     'Asia = largest area + population။',
+     ['Asia = largest area','→ Asia']],
+    ['Which is the smallest continent?','Australia',['Europe','Antarctica','South America'],
+     'Australia = smallest continent။',
+     ['Australia = smallest','→ Australia']],
+    ['Which continent has the most countries?','Africa',['Asia','Europe','South America'],
+     'Africa = 54 countries။',
+     ['Africa = 54 countries','→ Africa']],
+    ['Where is the Sahara Desert located?','North Africa',['Middle East','Australia','Central Asia'],
+     'Sahara = North Africa ။ Largest hot desert။',
+     ['Sahara = North Africa','→ North Africa']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.2 Physical Geography
+function(s){
+  var items=[
+    ['What is the longest river in the world?','Nile (or Amazon, disputed)',['Mississippi','Yangtze','Congo'],
+     'Nile = traditionally considered longest ။ Amazon = largest by volume။',
+     ['Nile = longest','→ Nile']],
+    ['What is the highest mountain in the world?','Mount Everest',['K2','Kilimanjaro','Denali'],
+     'Everest = 8,849 m ။ Himalayas။',
+     ['Everest = 8849m','→ Mount Everest']],
+    ['What is the largest ocean?','Pacific',['Atlantic','Indian','Arctic'],
+     'Pacific = largest + deepest ocean။',
+     ['Pacific = largest','→ Pacific']],
+    ['What is the largest desert?','Antarctic (cold desert)',['Sahara','Gobi','Arabian'],
+     'Antarctic = largest desert (cold) ။ Sahara = largest hot။',
+     ['Antarctic = largest','→ Antarctic']],
+    ['What is a peninsula?','Land surrounded by water on three sides',['Island','Isthmus','Bay'],
+     'Peninsula = 3 sides water။',
+     ['Peninsula = 3 sides','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.3 Climate & Environment
+function(s){
+  var items=[
+    ['What are the main climate zones?','Tropical, dry, temperate, continental, polar',['Hot, cold, wet','East, west, north','Blue, green, red'],
+     '5 climate zones။',
+     ['5 climate zones','→ ရွေးချယ်စရာ ၁']],
+    ['What is the greenhouse effect?','Trapping of heat by atmospheric gases',['Cooling of Earth','A type of wind','Cloud formation'],
+     'GHG trap heat ။ CO₂, CH₄, H₂O။',
+     ['Greenhouse = heat trapped','→ ရွေးချယ်စရာ ၁']],
+    ['Which is a greenhouse gas?','Carbon dioxide',['Nitrogen','Oxygen','Helium'],
+     'CO₂ = main GHG ။ CH₄ ဒုတိယ။',
+     ['CO₂ = GHG','→ Carbon dioxide']],
+    ['What is climate change?','Long-term shifts in temperature and weather patterns',['Daily weather','A single storm','Seasonal change'],
+     'Climate change = long-term ။ Mainly human-caused။',
+     ['Climate = long-term','→ ရွေးချယ်စရာ ၁']],
+    ['What is sustainability?','Using resources without depleting them for the future',['Using all now','Never using','Conservation only'],
+     'Sustainability = future-friendly။',
+     ['Sustainable = future','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.4 Population
+function(s){
+  var items=[
+    ['What is population density?','The number of people per unit area',['Total population','Birth rate','Death rate'],
+     'Density = people/area။',
+     ['Density = people/area','→ ရွေးချယ်စရာ ၁']],
+    ['Which country has the largest population?','India',['China','USA','Indonesia'],
+     'India = largest (2023+) ။ China ဒုတိယ။',
+     ['India = largest 2023','→ India']],
+    ['What is a population pyramid?','A graph showing age and sex distribution',['A map','A trade chart','A climate chart'],
+     'Population pyramid = age/sex structure။',
+     ['Pyramid = age/sex','→ ရွေးချယ်စရာ ၁']],
+    ['What is urbanization?','The movement of people from rural to urban areas',['Rural migration','Population decline','Industrial decline'],
+     'Urbanization = city growth။',
+     ['Urbanization = cities','→ ရွေးချယ်စရာ ၁']],
+    ['What is a refugee?','A person forced to flee their country due to persecution or disaster',['A tourist','A migrant worker','A student'],
+     'Refugee = forced displacement။',
+     ['Refugee = forced','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.5 Maps & Cartography
+function(s){
+  var items=[
+    ['What is latitude?','Distance north or south of the equator',['East-west position','Altitude','Depth'],
+     'Latitude = N/S of equator (0° at equator)။',
+     ['Latitude = N/S','→ ရွေးချယ်စရာ ၁']],
+    ['What is longitude?','Distance east or west of the prime meridian',['North-south position','Altitude','Depth'],
+     'Longitude = E/W of prime meridian (0° Greenwich)။',
+     ['Longitude = E/W','→ ရွေးချယ်စရာ ၁']],
+    ['What is the prime meridian?','0° longitude passing through Greenwich, England',['Equator','Tropic of Cancer','Arctic Circle'],
+     'Prime meridian = 0° longitude ။ Greenwich။',
+     ['Prime Meridian = 0°','→ ရွေးချယ်စရာ ၁']],
+    ['What is the equator?','0° latitude dividing Earth into N/S hemispheres',['Prime meridian','Tropic of Cancer','Arctic Circle'],
+     'Equator = 0° latitude။',
+     ['Equator = 0°','→ ရွေးချယ်စရာ ၁']],
+    ['What is a map scale?','The ratio of distance on a map to distance on Earth',['A map title','A legend','A compass'],
+     'Scale = map distance : real distance။',
+     ['Scale = ratio','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.6 Natural Resources
+function(s){
+  var items=[
+    ['What is a renewable resource?','A resource that can be replenished naturally',['Finite resource','A metal','A fossil fuel'],
+     'Renewable = naturally replenished (solar, wind, water)။',
+     ['Renewable = replenish','→ ရွေးချယ်စရာ ၁']],
+    ['What is a non-renewable resource?','A resource that cannot be easily replaced',['A renewable resource','Solar energy','Wind energy'],
+     'Non-renewable = finite (coal, oil, gas)။',
+     ['Non-renewable = finite','→ ရွေးချယ်စရာ ၁']],
+    ['Which is a renewable energy source?','Solar',['Coal','Natural gas','Petroleum'],
+     'Solar = renewable ။ Coal/oil/gas = fossil fuels။',
+     ['Solar = renewable','→ Solar']],
+    ['Which is a fossil fuel?','Coal',['Wind','Solar','Hydro'],
+     'Fossil fuels = coal, oil, natural gas။',
+     ['Coal = fossil fuel','→ Coal']],
+    ['What is sustainable development?','Development that meets present needs without compromising the future',['Rapid growth','Resource depletion','Industrialization'],
+     'Sustainable = future-friendly။',
+     ['Sustainable = future','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.7 Economic Geography
+function(s){
+  var items=[
+    ['What is a developing country?','A country with lower income and industrialization',['A rich country','A post-industrial country','A service economy'],
+     'Developing = low income/industry။',
+     ['Developing = lower income','→ ရွေးချယ်စရာ ၁']],
+    ['What is a developed country?','A country with high income and industrialization',['A poor country','An agricultural economy','An emerging economy'],
+     'Developed = high income/industry။',
+     ['Developed = high income','→ ရွေးချယ်စရာ ၁']],
+    ['What is a service economy?','An economy based on providing services rather than goods',['Agricultural economy','Industrial economy','Traditional economy'],
+     'Service = tertiary sector။',
+     ['Service = tertiary','→ ရွေးချယ်စရာ ၁']],
+    ['What are the three economic sectors?','Primary, secondary, tertiary',['North, south, east','City, town, village','Rich, middle, poor'],
+     'Primary (raw), secondary (manufacturing), tertiary (services)။',
+     ['3 sectors','→ ရွေးချယ်စရာ ၁']],
+    ['What is the primary sector?','Extraction of raw materials',['Manufacturing','Services','Technology'],
+     'Primary = agriculture, mining, fishing။',
+     ['Primary = extraction','→ Extraction of raw materials']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.8 Cultural Geography
+function(s){
+  var items=[
+    ['What is culture?','The beliefs, customs, and practices of a group',['A government','A landform','A climate'],
+     'Culture = shared practices/beliefs။',
+     ['Culture = beliefs/customs','→ ရွေးချယ်စရာ ၁']],
+    ['What is cultural diffusion?','The spread of cultural traits between societies',['Cultural isolation','Cultural decline','Language barrier'],
+     'Diffusion = spread of culture။',
+     ['Diffusion = spread','→ ရွေးချယ်စရာ ၁']],
+    ['What is a language family?','A group of related languages',['A single language','A dialect only','A writing system'],
+     'Language family = related languages။',
+     ['Family = related','→ ရွေးချယ်စရာ ၁']],
+    ['Which is the most widely spoken language family?','Indo-European',['Sino-Tibetan','Afro-Asiatic','Niger-Congo'],
+     'Indo-European = largest language family။',
+     ['Indo-European = largest','→ Indo-European']],
+    ['What is a major world religion with the most followers?','Christianity',['Islam','Hinduism','Buddhism'],
+     'Christianity ~2.4 billion ။ Islam ~1.9 billion။',
+     ['Christianity = largest','→ Christianity']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.9 Political Geography
+function(s){
+  var items=[
+    ['What is a nation-state?','A political unit where people share common identity',['A colony','A city','An empire'],
+     'Nation-state = nation + state ။ Japan ။',
+     ['Nation-state = shared ID','→ ရွေးချယ်စရာ ၁']],
+    ['What is a sovereign state?','A state with full self-governance',['A colony','A territory','A province'],
+     'Sovereign = independent။',
+     ['Sovereign = independent','→ ရွေးချယ်စရာ ၁']],
+    ['How many countries are in the United Nations?','193',['150','200','250'],
+     'UN = 193 member states။',
+     ['193 = UN members','→ 193']],
+    ['What is a border?','A boundary between political entities',['A river','A mountain','An ocean'],
+     'Border = political boundary။',
+     ['Border = boundary','→ ရွေးချယ်စရာ ၁']],
+    ['What is a capital city?','The seat of government',['The largest city','An industrial city','A port city'],
+     'Capital = government seat။',
+     ['Capital = government','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 5.10 Human-Environment Interaction
+function(s){
+  var items=[
+    ['What is deforestation?','The clearing of forests',['Planting trees','Forest protection','Reforestation'],
+     'Deforestation = forest loss။',
+     ['Deforestation = clearing','→ The clearing of forests']],
+    ['What is desertification?','The process by which fertile land becomes desert',['Reforestation','Irrigation','Urbanization'],
+     'Desertification = land degradation။',
+     ['Desertification = desert expansion','→ ရွေးချယ်စရာ ၁']],
+    ['What is pollution?','Contamination of the environment by harmful substances',['Cleaning','Conservation','Recycling'],
+     'Pollution = contamination။',
+     ['Pollution = contamination','→ ရွေးချယ်စရာ ၁']],
+    ['What is conservation?','The protection and preservation of natural resources',['Exploitation','Waste','Consumption'],
+     'Conservation = protection။',
+     ['Conservation = protection','→ ရွေးချယ်စရာ ၁']],
+    ['What is the tragedy of the commons?','Depletion of shared resources by individual self-interest',['Cooperation','Sharing','Conservation'],
+     'Tragedy of commons = shared resource depletion။',
+     ['Commons = shared resources','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* ============================================================
+   GROUP 6 — SOCIAL STUDIES SKILLS
+============================================================ */
+var G6 = [
+// 6.1 Analyzing Primary Sources
+function(s){
+  var items=[
+    ['What is a primary source?','A first-hand account from the time period',['A textbook','An encyclopedia','A modern analysis'],
+     'Primary = original document from the time။',
+     ['Primary = original','→ First-hand account']],
+    ['Which is a primary source?','A diary from 1850',['A modern history book','An encyclopedia','A documentary'],
+     'Diary = primary ။ Modern book = secondary။',
+     ['Diary = original','→ A diary from 1850']],
+    ['What is a secondary source?','An interpretation of primary sources',['Original document','First-hand account','A letter'],
+     'Secondary = analysis of primary sources။',
+     ['Secondary = interpretation','→ ရွေးချယ်စရာ ၁']],
+    ['Which is a secondary source?','A history textbook',['A diary','A letter','A photograph from the era'],
+     'Textbook = secondary ။ Interprets primary။',
+     ['Textbook = secondary','→ A history textbook']],
+    ['Why are primary sources valuable?','They provide direct evidence from the time period',['They are always accurate','They are easy to read','They are short'],
+     'Primary = direct evidence ။ But can be biased။',
+     ['Primary = evidence','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.2 Interpreting Charts
+function(s){
+  var items=[
+    ['What does a line graph best show?','Change over time',['Parts of a whole','Categories','Relationship between variables'],
+     'Line = trends over time။',
+     ['Line = time trend','→ Change over time']],
+    ['What does a pie chart best show?','Percentages of a whole',['Change over time','Categories','Two variables'],
+     'Pie = parts of whole။',
+     ['Pie = parts','→ Percentages of a whole']],
+    ['What does a bar graph best show?','Comparison of categories',['Time trends','Parts of whole','Correlation'],
+     'Bar = category comparison။',
+     ['Bar = compare categories','→ Comparison of categories']],
+    ['What does a scatter plot show?','Relationship between two variables',['Parts of a whole','Time trends only','Categories only'],
+     'Scatter = two-variable relationship။',
+     ['Scatter = 2 vars','→ Relationship between variables']],
+    ['What does the x-axis typically represent?','The independent variable',['The dependent variable','A title','The legend'],
+     'x-axis = independent ။ y-axis = dependent။',
+     ['x = independent','→ The independent variable']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.3 Fact vs Opinion
+function(s){
+  var items=[
+    ['Which is a fact?','Water boils at 100°C at sea level',['Chocolate is the best dessert','Summer is more fun than winter','Blue is the prettiest color'],
+     'Fact = verifiable။',
+     ['Verifiable = fact','→ Water boils']],
+    ['Which is an opinion?','Pizza is delicious',['The Earth orbits the Sun','Water freezes at 0°C','2+2=4'],
+     'Opinion = judgment။',
+     ['Judgment = opinion','→ Pizza is delicious']],
+    ['Which word signals an opinion?','Best',['Is','Was','Has'],
+     'Value words (best, worst) = opinion။',
+     ['"Best" = value word','→ Best']],
+    ['Which statement is a claim?','The government should increase education funding',['The capital of France is Paris','Water is H₂O','2+2=4'],
+     'Claim = arguable position ("should")။',
+     ['Should = claim','→ ရွေးချယ်စရာ ၁']],
+    ['What makes a statement a fact?','It can be verified with evidence',['It is popular','It is written','It is old'],
+     'Fact = verifiable ။ Evidence-based။',
+     ['Fact = verifiable','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.4 Cause & Effect
+function(s){
+  var items=[
+    ['What is the difference between correlation and causation?','Correlation shows relationship; causation shows one causes the other',['They are the same','Correlation is stronger','Causation is weaker'],
+     'Correlation ≠ causation။',
+     ['Correlation = together','Causation = cause','→ ရွေးချယ်စရာ ၁']],
+    ['If A happens before B, can we conclude A caused B?','No, sequence does not prove causation',['Yes, timing proves causation','Yes, always','Only in winter'],
+     'Post hoc fallacy ။ Sequence ≠ causation။',
+     ['Sequence ≠ causation','→ No']],
+    ['Which statement shows causation?','Smoking causes lung cancer',['Smoking is associated with lung cancer','Smokers get cancer','Both increase'],
+     'Causation = direct cause-effect။',
+     ['Direct cause','→ Smoking causes']],
+    ['What is the best way to establish causation?','A controlled experiment',['An observation','A survey','A correlation study'],
+     'Controlled experiment = causation။',
+     ['Experiment = causation','→ A controlled experiment']],
+    ['What is a confounding variable?','A variable that affects both cause and effect',['A single cause','A type of experiment','A result'],
+     'Confounding = third variable affecting both။',
+     ['Confounding = third var','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.5 Bias & Point of View
+function(s){
+  var items=[
+    ['What is bias?','A preference that affects judgment',['Objectivity','Neutrality','Fairness'],
+     'Bias = prejudice/lean။',
+     ['Bias = preference','→ ရွေးချယ်စရာ ၁']],
+    ['What is propaganda?','Information used to promote a particular cause or view',['Neutral news','Scientific research','Historical fact'],
+     'Propaganda = biased promotion။',
+     ['Propaganda = promote view','→ ရွေးချယ်စရာ ၁']],
+    ['What is a "loaded" word?','A word with strong emotional meaning',['A neutral word','A long word','A foreign word'],
+     'Loaded = emotional weight။',
+     ['Loaded = emotional','→ ရွေးချယ်စရာ ၁']],
+    ['What does "objectivity" mean?','Being free from bias',['Being biased','Being emotional','Being loud'],
+     'Objective = unbiased။',
+     ['Objective = no bias','→ Being free from bias']],
+    ['Why is it important to identify bias in sources?','To evaluate credibility',['To be mean','To ignore the source','To make it longer'],
+     'Bias identification = source evaluation။',
+     ['Bias = credibility','→ To evaluate credibility']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.6 Timelines & Chronology
+function(s){
+  var items=[
+    ['Which came first: American Revolution or French Revolution?','American Revolution',['French Revolution','Same year','Cannot tell'],
+     'American: 1776 ။ French: 1789။',
+     ['American = 1776','French = 1789','→ American']],
+    ['Which came first: WWI or WWII?','WWI',['WWII','Same time','Neither'],
+     'WWI 1914-1918 ။ WWII 1939-1945။',
+     ['WWI = 1914','WWII = 1939','→ WWI']],
+    ['Which came first: Declaration of Independence or Constitution?','Declaration',['Constitution','Same year','Cannot tell'],
+     'Declaration 1776 ။ Constitution 1787။',
+     ['Declaration 1776','Constitution 1787','→ Declaration']],
+    ['Which came first: Civil War or Civil Rights Movement?','Civil War',['Civil Rights','Same time','Neither'],
+     'Civil War 1861-1865 ။ Civil Rights 1950s-60s။',
+     ['Civil War = 1861','Civil Rights = 1950s','→ Civil War']],
+    ['Which came first: Great Depression or WWII?','Great Depression',['WWII','Same time','Neither'],
+     'Depression 1929 ။ WWII 1939။',
+     ['Depression 1929','WWII 1939','→ Great Depression']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.7 Argument Analysis
+function(s){
+  var items=[
+    ['What is a thesis statement?','The main argument of an essay',['A conclusion','An example','A counterargument'],
+     'Thesis = main claim။',
+     ['Thesis = main arg','→ The main argument of an essay']],
+    ['What is evidence?','Facts or data that support a claim',['A counterargument','An opinion','A summary'],
+     'Evidence = supporting facts။',
+     ['Evidence = supports','→ Facts or data']],
+    ['What is a counterargument?','An opposing view to your argument',['A supporting point','An example','A fact'],
+     'Counterargument = opposing view။',
+     ['Counter = opposing','→ An opposing view']],
+    ['What is a fallacy?','A flaw in logic',['A strong argument','A fact','A thesis'],
+     'Fallacy = logical error။',
+     ['Fallacy = logic flaw','→ A flaw in logic']],
+    ['What is a rebuttal?','A response that refutes a counterargument',['A supporting fact','A thesis','An example'],
+     'Rebuttal = refutes counterargument။',
+     ['Rebuttal = refutes','→ A response that refutes']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.8 Map Skills
+function(s){
+  var items=[
+    ['What does a compass rose show on a map?','Directions (N, S, E, W)',['Distance','Population','Elevation'],
+     'Compass rose = directions။',
+     ['Compass = directions','→ Directions']],
+    ['What is a map legend?','A key explaining symbols on the map',['A title','A scale','A compass'],
+     'Legend/key = symbol explanations။',
+     ['Legend = key','→ A key explaining symbols']],
+    ['What is a thematic map?','A map showing a specific theme (population, climate, etc.)',['A physical map','A road map','A political map'],
+     'Thematic = specific data theme။',
+     ['Thematic = theme','→ ရွေးချယ်စရာ ၁']],
+    ['What is a political map?','A map showing boundaries and borders',['A physical map','A climate map','A resource map'],
+     'Political = borders/government။',
+     ['Political = borders','→ ရွေးချယ်စရာ ၁']],
+    ['What is a topographic map?','A map showing elevation with contour lines',['A political map','A climate map','A road map'],
+     'Topographic = elevation (contour lines)။',
+     ['Topo = elevation','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.9 Data Analysis
+function(s){
+  var items=[
+    ['What is the mean of 5, 10, 15, 20, 25?','15',['12','18','20'],
+     '(5+10+15+20+25)/5 = 75/5 = 15။',
+     ['Sum = 75','75/5 = 15','→ 15']],
+    ['What is the median of 3, 7, 2, 9, 5?','5',['7','3','2'],
+     'Sorted: 2, 3, 5, 7, 9 → middle = 5။',
+     ['Sort: 2,3,5,7,9','Middle = 5','→ 5']],
+    ['What is the mode of 2, 4, 4, 6, 8?','4',['2','6','8'],
+     '4 appears twice — most frequent။',
+     ['4 = twice','→ 4']],
+    ['What is the range of 10, 3, 8, 15, 7?','12',['5','8','15'],
+     'Range = 15 − 3 = 12။',
+     ['Max=15, Min=3','15-3 = 12','→ 12']],
+    ['What is the trend if a line graph goes up over time?','Increasing',['Decreasing','Flat','Random'],
+     'Upward slope = increasing trend။',
+     ['Up = increasing','→ Increasing']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+},
+// 6.10 Extended Response Skills
+function(s){
+  var items=[
+    ['What is the best structure for a GED essay?','Introduction, body, conclusion',['Just conclusion','Random ideas','A list'],
+     'Essay structure: intro → body → conclusion။',
+     ['Structure = IBC','→ Introduction, body, conclusion']],
+    ['How many sources does the GED RLA essay use?','2',['1','3','4'],
+     'GED Extended Response = 2 sources ။ Analyze both။',
+     ['2 sources','→ 2']],
+    ['What is the most important part of an essay thesis?','Clear position',['Long words','Many commas','Personal story'],
+     'Thesis = clear position + reasons။',
+     ['Thesis = position','→ Clear position']],
+    ['How should you handle a counterargument in an essay?','Acknowledge and refute it',['Ignore it','Agree with it','Change topic'],
+     'Counterargument = acknowledge + rebut။',
+     ['Acknowledge + refute','→ ရွေးချယ်စရာ ၁']],
+    ['What should the conclusion do?','Restate the thesis and summarize main points',['Introduce new evidence','Change the topic','Add jokes'],
+     'Conclusion = restate + summarize။',
+     ['Restate thesis','→ ရွေးချယ်စရာ ၁']]
+  ];
+  var it=pick(s,items);
+  return Q(it[0],it[1],it[2],it[3],it[4],s+1);
+}
+];
+
+/* GROUP DEFINITIONS */
+var GROUPS=[
+  {title:'Civics & Government',icon:'🏛️',ac:'#3b82f6',
+   desc:'Democracy, Constitution, Bill of Rights, three branches, federalism, voting, civil rights.',
+   gens:G1,
+   lessons:['Foundations of Democracy','The Constitution','Bill of Rights','Three Branches','Checks & Balances',
+     'Federalism','Voting & Elections','Civil Liberties vs Rights','Political Parties & Interest Groups','State & Local Government']},
+  {title:'US History',icon:'🇺🇸',ac:'#ef4444',
+   desc:'Colonial era, Revolution, Civil War, Reconstruction, Industrialization, World Wars, Civil Rights.',
+   gens:G2,
+   lessons:['Colonial Era','American Revolution','Civil War','Reconstruction','Industrialization & Progressive Era',
+     'World Wars','Great Depression & New Deal','Cold War','Civil Rights Movement','Modern America']},
+  {title:'World History',icon:'🌏',ac:'#8b5cf6',
+   desc:'Ancient civilizations, Middle Ages, exploration, revolutions, WWI/WWII, modern world.',
+   gens:G3,
+   lessons:['Ancient Civilizations','Middle Ages','Age of Exploration','Revolutions','Imperialism & Colonialism',
+     'World War I','World War II','Cold War & Decolonization','Modern World','Human Rights']},
+  {title:'Economics',icon:'💰',ac:'#10b981',
+   desc:'Scarcity, supply/demand, market structures, money, GDP, trade, personal finance.',
+   gens:G4,
+   lessons:['Basic Economic Concepts','Supply & Demand','Market Structures','Money & Banking','GDP & Economic Indicators',
+     'Trade & Globalization','Personal Finance','Government & Economy','Labor & Employment','Economic Systems']},
+  {title:'Geography',icon:'🗺️',ac:'#06b6d4',
+   desc:'World regions, physical geography, climate, population, maps, resources, culture.',
+   gens:G5,
+   lessons:['World Regions','Physical Geography','Climate & Environment','Population','Maps & Cartography',
+     'Natural Resources','Economic Geography','Cultural Geography','Political Geography','Human-Environment Interaction']},
+  {title:'Social Studies Skills',icon:'🔍',ac:'#f59e0b',
+   desc:'Primary sources, charts, fact vs opinion, cause/effect, bias, timelines, arguments, data.',
+   gens:G6,
+   lessons:['Analyzing Primary Sources','Interpreting Charts','Fact vs Opinion','Cause & Effect','Bias & Point of View',
+     'Timelines & Chronology','Argument Analysis','Map Skills','Data Analysis','Extended Response Skills']}
+];
+
+var EX_PER_LESSON=30, EX_PER_GROUP=300, TOTAL_EX=1800;
+
+/* STATE */
+var STORE='ged:social:v1';
+var progress={};
+try{progress=JSON.parse(localStorage.getItem(STORE))||{}}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(progress))}catch(e){}}
+function lessonKey(gi,li){return gi+'-'+li}
+function lessonProg(gi,li){var k=lessonKey(gi,li);if(!progress[k])progress[k]={};return progress[k]}
+var cache={};
+
+/* SCREENS */
+var homeScreen=document.getElementById('homeScreen');
+var groupScreen=document.getElementById('groupScreen');
+var lessonScreen=document.getElementById('lessonScreen');
+var currentGroup=-1,currentLesson=-1;
+function showOnly(s){
+  [homeScreen,groupScreen,lessonScreen].forEach(function(x){x.classList.remove('active')});
+  s.classList.add('active');window.scrollTo(0,0);
+}
+
+/* HOME */
+var groupGrid=document.getElementById('groupGrid');
+function buildHome(){
+  groupGrid.innerHTML='';
+  GROUPS.forEach(function(g,gi){
+    var done=0;
+    for(var li=0;li<10;li++){var p=progress[lessonKey(gi,li)]||{};Object.keys(p).forEach(function(k){if(p[k]===true)done++})}
+    var pct=Math.round(done/EX_PER_GROUP*100);
+    var card=document.createElement('button');
+    card.className='card';card.style.setProperty('--c',g.ac);card.style.animationDelay=(gi*60)+'ms';
+    card.innerHTML=
+      '<div class="c-top"><span class="c-icon" style="background:'+g.ac+'1f">'+g.icon+'</span><span class="c-arrow">→</span></div>'+
+      '<h3>Group '+(gi+1)+' — '+g.title+'</h3>'+
+      '<p class="c-desc">'+g.desc+'</p>'+
+      '<div class="c-meta"><span>10 lessons · 300 questions</span><b>'+pct+'%</b></div>'+
+      '<div class="c-bar"><i style="width:'+pct+'%;background:'+g.ac+'"></i></div>';
+    card.addEventListener('click',(function(idx){return function(){openGroup(idx)}})(gi));
+    groupGrid.appendChild(card);
+  });
+  updateOverall();
+}
+function updateOverall(){
+  var total=0;
+  for(var gi=0;gi<6;gi++)for(var li=0;li<10;li++){var p=progress[lessonKey(gi,li)]||{};Object.keys(p).forEach(function(k){if(p[k]===true)total++})}
+  var pct=Math.round(total/TOTAL_EX*100);
+  document.getElementById('overallPct').textContent=pct+'%';
+  document.getElementById('overallCount').textContent=total.toLocaleString()+' / '+TOTAL_EX.toLocaleString()+' ပြီးစီး';
+  document.getElementById('overallBar').style.width=pct+'%';
+}
+
+/* GROUP VIEW */
+var lessonListEl=document.getElementById('lessonList');
+function openGroup(gi){
+  currentGroup=gi;var g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  document.getElementById('gTitle').textContent='Group '+(gi+1)+' — '+g.title;
+  document.getElementById('gSub').textContent=g.desc;
+  buildLessonList(gi);refreshGroupStats(gi);showOnly(groupScreen);
+}
+function buildLessonList(gi){
+  var g=GROUPS[gi];lessonListEl.innerHTML='';
+  g.lessons.forEach(function(title,li){
+    var p=progress[lessonKey(gi,li)]||{};var done=0;
+    Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+    var pct=Math.round(done/EX_PER_LESSON*100);
+    var row=document.createElement('button');
+    row.className='lesson-row';row.style.animationDelay=(li*40)+'ms';
+    row.innerHTML=
+      '<span class="l-id">'+(gi+1)+'.'+(li+1)+'</span>'+
+      '<div class="l-body"><h4>'+title+'</h4><p>'+EX_PER_LESSON+' exercises</p></div>'+
+      '<div class="l-prog"><b>'+done+'/'+EX_PER_LESSON+'</b><div class="bar"><i style="width:'+pct+'%;background:'+g.ac+'"></i></div></div>';
+    row.addEventListener('click',(function(g2,l2){return function(){openLesson(g2,l2)}})(gi,li));
+    lessonListEl.appendChild(row);
+  });
+}
+function refreshGroupStats(gi){
+  if(gi!==currentGroup)return;
+  var done=0;
+  for(var li=0;li<10;li++){var p=progress[lessonKey(gi,li)]||{};Object.keys(p).forEach(function(k){if(p[k]===true)done++})}
+  var pct=Math.round(done/EX_PER_GROUP*100);
+  document.getElementById('gPct').textContent=pct+'%';
+  document.getElementById('gCount').textContent=done+' / '+EX_PER_GROUP;
+  document.getElementById('gBar').style.width=pct+'%';
+}
+document.getElementById('backFromGroup').addEventListener('click',function(){buildHome();showOnly(homeScreen)});
+
+/* LESSON VIEW */
+var exerciseList=document.getElementById('exerciseList');
+function generateLesson(gi,li){
+  var key=lessonKey(gi,li);if(cache[key])return cache[key];
+  var gen=GROUPS[gi].gens[li];var arr=[];
+  for(var i=0;i<EX_PER_LESSON;i++){var seed=gi*1000000+li*1000+i*17+13;arr.push(gen(seed))}
+  cache[key]=arr;return arr;
+}
+function openLesson(gi,li){
+  currentGroup=gi;currentLesson=li;var g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  document.getElementById('lTitle').textContent=(gi+1)+'.'+(li+1)+' — '+g.lessons[li];
+  document.getElementById('lSub').textContent='Group '+(gi+1)+' · '+EX_PER_LESSON+' exercises';
+  var arr=generateLesson(gi,li);
+  renderExercises(arr,gi,li);refreshLessonStats(gi,li);showOnly(lessonScreen);
+}
+function refreshLessonStats(gi,li){
+  if(gi!==currentGroup||li!==currentLesson)return;
+  var p=progress[lessonKey(gi,li)]||{};var done=0;
+  Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+  var pct=Math.round(done/EX_PER_LESSON*100);
+  document.getElementById('lPct').textContent=pct+'%';
+  document.getElementById('lCount').textContent=done+' / '+EX_PER_LESSON;
+  document.getElementById('lBar').style.width=pct+'%';
+}
+
+var LTRS=['A','B','C','D'];
+function renderExercises(arr,gi,li){
+  var p=lessonProg(gi,li);exerciseList.innerHTML='';
+  var frag=document.createDocumentFragment();
+  arr.forEach(function(e,idx){frag.appendChild(buildCard(e,idx,gi,li,p[idx]))});
+  exerciseList.appendChild(frag);
+}
+function buildCard(e,idx,gi,li,saved){
+  var wrap=document.createElement('div');wrap.className='exercise';
+  var status=saved===true?'<span class="ex-status correct">✔ Correct</span>'
+    :saved===false?'<span class="ex-status wrong">✘ Wrong</span>'
+    :'<span class="ex-status">— Not answered</span>';
+  wrap.innerHTML=
+    '<div class="ex-head"><span class="ex-num">'+(idx+1)+'</span>'+status+'</div>'+
+    '<div class="ex-q">'+e.q+'</div>'+
+    '<div class="ex-opts">'+e.options.map(function(o,i){
+      return '<button class="opt" data-i="'+i+'"><span class="ltr">'+LTRS[i]+'.</span>'+o+'</button>';
+    }).join('')+'</div>'+
+    '<div class="ex-actions"><button class="show-sol">💡 Show Answer</button></div>'+
+    '<div class="ex-sol hidden">'+
+      '<div class="sol-why"><span class="sol-lbl">အဘယ်ကြောင့်</span>'+e.why+'</div>'+
+      '<div><span class="sol-lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span><ol>'+
+        e.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+      '</ol></div>'+
+      '<span class="sol-ans">✔ အဖြေ: '+e.answer+'</span>'+
+    '</div>';
+  var opts=wrap.querySelectorAll('.opt');
+  var solBox=wrap.querySelector('.ex-sol');
+  var solBtn=wrap.querySelector('.show-sol');
+  var statusEl=wrap.querySelector('.ex-status');
+  if(saved===true||saved===false){
+    opts.forEach(function(b,i){b.disabled=true;if(i===e.correctIndex)b.classList.add('correct')});
+  }
+  opts.forEach(function(b,i){
+    b.addEventListener('click',function(){
+      if(b.disabled)return;
+      var ok=i===e.correctIndex;
+      opts.forEach(function(x){x.disabled=true});
+      b.classList.add(ok?'correct':'wrong');
+      if(!ok)opts[e.correctIndex].classList.add('correct');
+      statusEl.className='ex-status '+(ok?'correct':'wrong');
+      statusEl.textContent=ok?'✔ Correct':'✘ Wrong';
+      lessonProg(gi,li)[idx]=ok;save();refreshLessonStats(gi,li);
+      if(!ok){solBox.classList.remove('hidden');solBtn.classList.add('open');solBtn.textContent='🙈 Hide Answer'}
+    });
+  });
+  solBtn.addEventListener('click',function(){
+    solBox.classList.toggle('hidden');
+    var open=!solBox.classList.contains('hidden');
+    solBtn.classList.toggle('open',open);
+    solBtn.textContent=open?'🙈 Hide Answer':'💡 Show Answer';
+  });
+  return wrap;
+}
+document.getElementById('backFromLesson').addEventListener('click',function(){
+  buildLessonList(currentGroup);refreshGroupStats(currentGroup);showOnly(groupScreen);
+});
+
+/* TOOLBAR */
+document.getElementById('btnShowAll').addEventListener('click',function(){
+  exerciseList.querySelectorAll('.ex-sol').forEach(function(b){b.classList.remove('hidden')});
+  exerciseList.querySelectorAll('.show-sol').forEach(function(b){b.classList.add('open');b.textContent='🙈 Hide Answer'});
+});
+document.getElementById('btnHideAll').addEventListener('click',function(){
+  exerciseList.querySelectorAll('.ex-sol').forEach(function(b){b.classList.add('hidden')});
+  exerciseList.querySelectorAll('.show-sol').forEach(function(b){b.classList.remove('open');b.textContent='💡 Show Answer'});
+});
+document.getElementById('btnReset').addEventListener('click',function(){
+  if(!confirm('Lesson '+(currentGroup+1)+'.'+(currentLesson+1)+' ၏ progress ကို reset လုပ်မလား။'))return;
+  progress[lessonKey(currentGroup,currentLesson)]={};save();openLesson(currentGroup,currentLesson);
+});
+
+buildHome();
+</script>
+</body>
+</html>

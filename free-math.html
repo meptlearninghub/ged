@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>Free Math Learning — GED Myanmar</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1;--primary-d:#4f46e5;
+  --green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --blue:#3b82f6;--violet:#8b5cf6;--cyan:#06b6d4;--fc:#8b5cf6;
+  --radius:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.85);
+  --hover-soft:rgba(15,23,42,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.85);
+  --hover-soft:rgba(255,255,255,.05);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;
+  font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%,rgba(139,92,246,.12),transparent 65%),
+    radial-gradient(720px 480px at 100% 4%,rgba(99,102,241,.10),transparent 65%),
+    radial-gradient(620px 420px at 50% 105%,rgba(59,130,246,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:calc(10px + var(--safe-top)) 0 10px;}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:12px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none;}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));
+  box-shadow:0 8px 18px -8px var(--fc);}
+.nav-logo b{font-size:15px;font-weight:800;}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);}
+.nav-actions{display:flex;gap:8px;align-items:center;flex:none;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  text-decoration:none;font-size:12.5px;font-weight:700;
+  transition:transform .18s,background .2s;}
+.back-btn:hover{background:var(--hover-soft);}
+.back-btn:active{transform:scale(.95);}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;
+  border-radius:11px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font-size:16px;cursor:pointer;padding:0;
+  font-family:inherit;transition:transform .18s,background .18s;}
+.icon-btn:hover{background:var(--hover-soft);}
+.icon-btn:active{transform:scale(.9);}
+@media(max-width:520px){.nav-title{display:none;}}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom));}
+
+/* HERO */
+.hero{padding:36px 0 24px;text-align:center;}
+.hero .free-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  font-size:12.5px;font-weight:800;letter-spacing:.04em;margin-bottom:16px;
+  box-shadow:0 8px 18px -8px rgba(22,163,74,.7);}
+.hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 18px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,var(--fc),var(--primary));color:#fff;
+  box-shadow:0 20px 40px -16px var(--fc);}
+.hero h1{margin:0 0 10px;font-size:clamp(24px,5.5vw,36px);font-weight:900;
+  letter-spacing:-.03em;line-height:1.15;}
+.hero p{margin:0 auto;max-width:560px;font-size:14.5px;color:var(--muted);line-height:1.75;}
+
+/* FREE COUNT BANNER */
+.free-count{
+  max-width:520px;margin:20px auto 0;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:16px;padding:16px 20px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:14px;
+}
+.free-count .num{
+  width:56px;height:56px;flex:none;border-radius:16px;
+  display:grid;place-items:center;font-size:22px;font-weight:900;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  box-shadow:0 10px 22px -10px rgba(22,163,74,.8);
+}
+.free-count .info{flex:1;text-align:left;}
+.free-count .info b{display:block;font-size:15px;font-weight:800;margin-bottom:3px;}
+.free-count .info span{font-size:12.5px;color:var(--muted);font-weight:600;}
+
+/* SECTIONS */
+.section{padding:32px 0 0;}
+.section-head{text-align:center;margin-bottom:22px;}
+.section-head h2{margin:0 0 8px;font-size:clamp(20px,4.5vw,26px);font-weight:800;letter-spacing:-.02em;}
+.section-head p{margin:0 auto;max-width:520px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+/* LESSON LIST — LOCKED PREVIEW */
+.lesson-list{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:640px){.lesson-list{grid-template-columns:repeat(2,1fr);}}
+
+.lesson-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:18px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s;}
+@media(hover:hover){
+  .lesson-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--fc);}
+}
+.lesson-card:active{transform:scale(.985);}
+.lesson-num{width:40px;height:40px;flex:none;border-radius:12px;
+  display:grid;place-items:center;font-size:15px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));
+  box-shadow:0 8px 18px -8px var(--fc);}
+.lesson-body{flex:1;min-width:0;}
+.lesson-body h3{margin:0 0 4px;font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.35;}
+.lesson-body p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.65;}
+.lesson-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:3px 9px;border-radius:999px;
+  font-size:10.5px;font-weight:800;letter-spacing:.03em;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);}
+html[data-theme="dark"] .lesson-badge{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.lesson-lock{position:absolute;top:14px;right:14px;
+  width:28px;height:28px;border-radius:9px;
+  display:grid;place-items:center;font-size:13px;
+  background:rgba(15,23,42,.06);color:var(--muted);}
+html[data-theme="dark"] .lesson-lock{background:rgba(255,255,255,.08);}
+
+/* PRACTICE QUESTIONS */
+.q-block{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:20px;box-shadow:var(--shadow);margin-bottom:12px;}
+.q-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.q-num{width:32px;height:32px;flex:none;border-radius:10px;
+  display:grid;place-items:center;font-size:13px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));}
+.q-tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);
+  letter-spacing:.03em;}
+html[data-theme="dark"] .q-tag{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.q-text{font-size:14.5px;line-height:1.75;margin:0 0 14px;font-weight:500;color:var(--text);}
+.q-text b{font-weight:800;}
+.q-opts{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:520px){.q-opts{grid-template-columns:1fr 1fr;}}
+.q-opt{text-align:left;padding:11px 14px;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;
+  transition:all .18s;line-height:1.5;}
+.q-opt:hover{border-color:var(--fc);background:color-mix(in srgb,var(--fc) 4%,transparent);}
+.q-opt:active{transform:scale(.985);}
+.q-opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700;}
+html[data-theme="dark"] .q-opt.correct{background:rgba(22,163,74,.2);color:#86efac;}
+.q-opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d;}
+html[data-theme="dark"] .q-opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5;}
+.q-opt:disabled{cursor:default;}
+.q-opt .ltr{font-weight:800;margin-right:6px;color:var(--muted);}
+.q-opt.correct .ltr{color:#14532d;}
+.q-opt.wrong .ltr{color:#7f1d1d;}
+
+.show-ans{padding:8px 14px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+  background:rgba(245,158,11,.08);color:#92400e;
+  font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
+  transition:all .18s;}
+html[data-theme="dark"] .show-ans{background:rgba(245,158,11,.15);color:#fbbf24;}
+.show-ans:hover{background:rgba(245,158,11,.15);}
+.show-ans.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent;}
+.q-sol{margin-top:12px;padding:14px;border-radius:12px;
+  background:color-mix(in srgb,var(--fc) 6%,transparent);
+  border-left:3px solid var(--fc);font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .q-sol{background:color-mix(in srgb,var(--fc) 12%,transparent);}
+.q-sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--fc);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
+.q-sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px;}
+
+/* ============ LOCKED CARD (50 Qs ပြီးရင် ပြတဲ့ Card) ============ */
+.locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06));
+  border:2px dashed rgba(99,102,241,.4);
+  border-radius:20px;padding:32px 24px;text-align:center;
+  box-shadow:var(--shadow);margin-top:8px;
+}
+html[data-theme="dark"] .locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.12));
+  border-color:rgba(99,102,241,.5);
+}
+.locked-card .lock-icon{
+  width:64px;height:64px;border-radius:20px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:30px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 16px 32px -12px rgba(99,102,241,.8);
+}
+.locked-card h3{margin:0 0 10px;font-size:20px;font-weight:900;letter-spacing:-.02em;}
+.locked-card p{margin:0 auto 20px;max-width:420px;font-size:13.5px;
+  color:var(--muted);line-height:1.75;}
+.locked-card .stats{display:flex;gap:14px;justify-content:center;
+  flex-wrap:wrap;margin-bottom:20px;}
+.locked-card .stat{
+  padding:10px 16px;border-radius:12px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:12.5px;font-weight:700;
+}
+.locked-card .stat b{color:var(--primary);font-weight:900;font-size:14px;}
+.locked-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 24px;border-radius:14px;border:1px solid transparent;
+  font-family:inherit;font-size:14.5px;font-weight:800;cursor:pointer;
+  text-decoration:none;transition:transform .18s,filter .2s;}
+.btn:active{transform:scale(.96);}
+.btn.primary{background:linear-gradient(135deg,var(--primary),var(--violet));color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.8);}
+.btn.primary:hover{filter:brightness(1.08);}
+.btn.tg{background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(34,158,217,.8);}
+.btn.tg:hover{filter:brightness(1.08);}
+
+/* MODAL (Locked Preview Alert) */
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.6);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .25s ease both;}
+.modal-bg.show{display:flex;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(10px);}to{opacity:1;transform:none;}}
+.modal{background:var(--card);border-radius:22px;width:100%;max-width:420px;
+  padding:26px;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+  animation:popIn .3s cubic-bezier(.22,.8,.28,1) both;position:relative;text-align:center;}
+.modal .x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;background:var(--hover-soft);color:var(--muted);
+  border:none;font-family:inherit;font-size:16px;cursor:pointer;}
+.modal .lock-icon{width:56px;height:56px;border-radius:18px;margin:0 auto 14px;
+  display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.7);}
+.modal h2{margin:0 0 8px;font-size:19px;font-weight:900;letter-spacing:-.02em;}
+.modal p{margin:0 0 20px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.modal .modal-actions{display:flex;gap:10px;flex-direction:column;}
+.modal .modal-actions .btn{width:100%;}
+
+/* PREMIUM BANNER */
+.premium-banner{margin-top:30px;padding:26px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(139,92,246,.08));
+  border:1.5px solid rgba(99,102,241,.3);text-align:center;box-shadow:var(--shadow);}
+html[data-theme="dark"] .premium-banner{
+  background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(139,92,246,.15));
+  border-color:rgba(99,102,241,.4);}
+.premium-banner h3{margin:0 0 8px;font-size:18px;font-weight:900;letter-spacing:-.02em;}
+.premium-banner p{margin:0 auto 18px;max-width:480px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.premium-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{padding:34px 0 calc(46px + var(--safe-bottom));text-align:center;
+  font-size:12px;color:var(--muted);line-height:2;}
+footer .brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:6px;
+  font-weight:800;color:var(--text);font-size:13px;}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:9px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:#0f172a;color:#fff;padding:13px 20px;border-radius:12px;
+  font-size:13.5px;font-weight:600;box-shadow:0 20px 40px -12px rgba(0,0,0,.5);
+  z-index:200;opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .35s cubic-bezier(.22,.8,.28,1);
+  max-width:90vw;text-align:center;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.ok{background:linear-gradient(135deg,#16a34a,#15803d);}
+.toast.err{background:linear-gradient(135deg,#dc2626,#b91c1c);}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="mark">GED</span>
+      <b>GED Myanmar</b>
+    </a>
+    <div class="nav-title">Free Math Learning</div>
+    <div class="nav-actions">
+      <a class="back-btn" href="index.html">← Back</a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="free-badge">🆓 100% FREE</span>
+    <div class="big-icon">📐</div>
+    <h1>Free Math Learning</h1>
+    <p>GED Mathematical Reasoning အတွက် <b>Practice Questions ၅၀ ခု</b>ကို အခမဲ့ လေ့လာပါ။ Lesson Preview ၅ ခုကို ကြည့်ရှုနိုင်ပါသည် (Login မလိုပါ)။</p>
+
+    <div class="free-count">
+      <div class="num">50</div>
+      <div class="info">
+        <b>Free Practice Questions</b>
+        <span>Login မလိုဘဲ ဖြေဆိုနိုင်သည်</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE LESSONS (LOCKED PREVIEW) -->
+  <section class="section">
+    <div class="section-head">
+      <h2>📚 Sample Lesson Previews</h2>
+      <p>Lesson Title နှင့် အနှစ်ချုပ်သာ ကြည့်ရှုနိုင်သည် — Full Lesson အတွက် Login ဝင်ပါ</p>
+    </div>
+    <div class="lesson-list" id="lessonList"></div>
+  </section>
+
+  <!-- PRACTICE QUESTIONS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>✏️ Practice Questions (50)</h2>
+      <p>မေးခွန်း ၅၀ ခုကို အခမဲ့ ဖြေဆိုပါ — အဖြေနှင့် ရှင်းလင်းချက် ပါဝင်သည်</p>
+    </div>
+
+    <div id="practiceList"></div>
+
+    <!-- LOCKED CARD -->
+    <div class="locked-card" id="lockedCard" style="display:none;">
+      <div class="lock-icon">🔒</div>
+      <h3>Free 50 Questions ပြီးဆုံးပါပြီ!</h3>
+      <p>ကျန်သော <b>1,750 မေးခွန်း</b>ကို ဆက်လေ့လာရန် Login ဝင်ပါ။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+      <div class="stats">
+        <div class="stat">✅ Free <b>50</b></div>
+        <div class="stat">🔒 Locked <b>1,750</b></div>
+      </div>
+      <div class="locked-actions">
+        <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+        <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM CTA -->
+  <div class="premium-banner">
+    <h3>🔐 Full Access — 1,800 Exercises</h3>
+    <p>Login ဝင်ပြီး Exercise ၁,၈၀၀+၊ Official Format Pretest ၃ ခုနှင့် Formula Sheet အားလုံးကို အပြည့်အဝ အသုံးပြုပါ။</p>
+    <div class="premium-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="brand"><span class="mark">GED</span><span>GED Myanmar</span></div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<!-- LOCKED PREVIEW MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="x" id="closeModal" type="button">✕</button>
+    <div class="lock-icon">🔒</div>
+    <h2 id="modalTitle">Login လိုအပ်ပါသည်</h2>
+    <p id="modalMsg">ဤ Lesson ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* THEME */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☀️' : '🌙';
+    try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ============================================================
+     LESSON PREVIEWS — LOCKED (click → Modal)
+     ============================================================ */
+  var LESSONS = [
+    { num: 1, title: 'Fractions from Word Problems', desc: 'အပိုင်းကိန်းများကို စကားလုံးပြဿနာများမှ တွက်ချက်ခြင်း' },
+    { num: 2, title: 'Order of Operations (PEMDAS)', desc: 'ကွင်း၊ ထပ်ကိန်း၊ မြှောက်၊ စား၊ ပေါင်း၊ နုတ် — အစီအစဉ်အတိုင်း' },
+    { num: 3, title: 'Percent of a Number', desc: 'ရာခိုင်နှုန်းတွက်ချက်ခြင်း — နေ့စဉ်ဘဝ အသုံးချမှုများ' },
+    { num: 4, title: 'Two-Step Equations', desc: 'Linear equation များကို အဆင့် ၂ ဆင့်ဖြင့် ဖြေရှင်းခြင်း' },
+    { num: 5, title: 'Area of Rectangle & Triangle', desc: 'စတုဂံနှင့် တြိဂံဧရိယာ တွက်ချက်ခြင်း' }
+  ];
+
+  var lessonListEl = document.getElementById('lessonList');
+  LESSONS.forEach(function(lesson){
+    var card = document.createElement('div');
+    card.className = 'lesson-card';
+    card.innerHTML =
+      '<span class="lesson-lock">🔒</span>' +
+      '<span class="lesson-num">' + lesson.num + '</span>' +
+      '<div class="lesson-body">' +
+        '<h3>' + lesson.title + '</h3>' +
+        '<p>' + lesson.desc + '</p>' +
+        '<span class="lesson-badge">🔐 Login Required</span>' +
+      '</div>';
+    card.addEventListener('click', function(){
+      openModal(lesson.title);
+    });
+    lessonListEl.appendChild(card);
+  });
+
+  /* ============================================================
+     MODAL
+     ============================================================ */
+  var modal = document.getElementById('modal');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalMsg = document.getElementById('modalMsg');
+  function openModal(lessonName){
+    modalTitle.textContent = '🔒 Login လိုအပ်ပါသည်';
+    modalMsg.innerHTML = 'Lesson <b>"' + lessonName + '"</b> ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။<br><br>Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။';
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  /* ============================================================
+     PRACTICE QUESTIONS — 50 Free Qs
+     (Sample 20 ခု ပေးထားသည် — format ကို ကြည့်ပြီး ကျန် 30 ခု ထပ်ဖြည့်နိုင်သည်)
+     ============================================================ */
+  var QUESTIONS = [
+    // === Group 1: Percent & Fractions ===
+    { q: 'What is the value of <b>25%</b> of <b>80</b>?',
+      options: ['15','20','25','30'], correctIndex: 1,
+      why: 'ရာခိုင်နှုန်းကို ဒသမကိန်းအဖြစ် ပြောင်းပြီး (25% = 0.25) ကိန်းနှင့် မြှောက်ရသည်။',
+      steps: ['25% = 0.25','0.25 × 80 = 20','အဖြေ = 20'],
+      answer: '20', tag: 'Percent' },
+
+    { q: 'What is the decimal equivalent of <b>3/4</b>?',
+      options: ['0.25','0.5','0.75','0.80'], correctIndex: 2,
+      why: 'ပိုင်းဝေကို ပိုင်းခြေဖြင့် စားရသည်။',
+      steps: ['3/4 = 3 ÷ 4','3 ÷ 4 = 0.75'],
+      answer: '0.75', tag: 'Fractions' },
+
+    { q: 'What is the sum of <b>1/4 + 1/2</b>?',
+      options: ['1/6','2/6','3/4','2/4'], correctIndex: 2,
+      why: 'ဘုံပိုင်းခြေ = 4 ။ 1/4 + 2/4 = 3/4။',
+      steps: ['1/4 + 1/2 = 1/4 + 2/4','= 3/4'],
+      answer: '3/4', tag: 'Fractions' },
+
+    { q: 'What is <b>40%</b> of <b>150</b>?',
+      options: ['45','50','60','75'], correctIndex: 2,
+      why: '40% = 0.4 ။ 0.4 × 150 = 60။',
+      steps: ['40% = 0.4','0.4 × 150 = 60'],
+      answer: '60', tag: 'Percent' },
+
+    { q: 'Which is larger: <b>2/3</b> or <b>3/5</b>?',
+      options: ['2/3','3/5','Equal','Cannot tell'], correctIndex: 0,
+      why: 'ဒသမပြောင်း: 2/3 ≈ 0.667 ။ 3/5 = 0.6 ။ 0.667 > 0.6။',
+      steps: ['2/3 ≈ 0.667','3/5 = 0.6','0.667 > 0.6','အဖြေ = 2/3'],
+      answer: '2/3', tag: 'Fractions' },
+
+    // === Group 2: PEMDAS ===
+    { q: 'Simplify: <b>8 + 2 × (5 − 3)²</b>',
+      options: ['16','24','40','12'], correctIndex: 0,
+      why: 'PEMDAS: ကွင်း → ထပ်ကိန်း → မြှောက် → ပေါင်း။',
+      steps: ['ကွင်း: 5 − 3 = 2','ထပ်ကိန်း: 2² = 4','မြှောက်: 2 × 4 = 8','ပေါင်း: 8 + 8 = 16'],
+      answer: '16', tag: 'PEMDAS' },
+
+    { q: 'Simplify: <b>20 ÷ 4 + 3 × 2</b>',
+      options: ['11','16','13','40'], correctIndex: 0,
+      why: 'မြှောက်/စား ကို ဘယ်မှညာ အရင်လုပ်၊ ထို့နောက် ပေါင်း။',
+      steps: ['20 ÷ 4 = 5','3 × 2 = 6','5 + 6 = 11'],
+      answer: '11', tag: 'PEMDAS' },
+
+    { q: 'Simplify: <b>3 + 4 × 2 − 6</b>',
+      options: ['5','8','14','2'], correctIndex: 0,
+      why: 'မြှောက်ကို အရင်လုပ်။',
+      steps: ['4 × 2 = 8','3 + 8 − 6 = 5'],
+      answer: '5', tag: 'PEMDAS' },
+
+    { q: 'Simplify: <b>(2 + 3)² − 4</b>',
+      options: ['21','17','5','12'], correctIndex: 0,
+      why: 'ကွင်းအရင် → ထပ်ကိန်း → နုတ်။',
+      steps: ['2 + 3 = 5','5² = 25','25 − 4 = 21'],
+      answer: '21', tag: 'PEMDAS' },
+
+    { q: 'Simplify: <b>10 − 2 × 3 + 4</b>',
+      options: ['8','10','12','4'], correctIndex: 0,
+      why: 'မြှောက်အရင် → ဘယ်မှညာ ပေါင်း/နုတ်။',
+      steps: ['2 × 3 = 6','10 − 6 = 4','4 + 4 = 8'],
+      answer: '8', tag: 'PEMDAS' },
+
+    // === Group 3: Algebra ===
+    { q: 'Solve for x: <b>3x + 7 = 22</b>',
+      options: ['3','5','7','9'], correctIndex: 1,
+      why: 'နှစ်ဖက်လုံးမှ 7 နုတ်ပြီး 3 ဖြင့် စား။',
+      steps: ['3x = 22 − 7','3x = 15','x = 5'],
+      answer: 'x = 5', tag: 'Algebra' },
+
+    { q: 'Solve: <b>5x + 3 = 2x + 15</b>',
+      options: ['x = 2','x = 3','x = 4','x = 6'], correctIndex: 2,
+      why: 'x terms ဘယ်၊ ကိန်း ညာ။',
+      steps: ['5x − 2x = 15 − 3','3x = 12','x = 4'],
+      answer: 'x = 4', tag: 'Algebra' },
+
+    { q: 'Solve: <b>2x − 4 = 10</b>',
+      options: ['5','6','7','8'], correctIndex: 2,
+      why: '2x = 14 → x = 7။',
+      steps: ['2x = 10 + 4','2x = 14','x = 7'],
+      answer: 'x = 7', tag: 'Algebra' },
+
+    { q: 'Simplify: <b>4x + 3y − 2x + 5y</b>',
+      options: ['6x + 8y','2x + 8y','2x + 2y','6x + 2y'], correctIndex: 1,
+      why: 'Like terms ပေါင်း။',
+      steps: ['4x − 2x = 2x','3y + 5y = 8y','ရလဒ် = 2x + 8y'],
+      answer: '2x + 8y', tag: 'Algebra' },
+
+    { q: 'If <b>x = 4</b>, what is <b>3x + 5</b>?',
+      options: ['12','17','20','24'], correctIndex: 1,
+      why: 'x နေရာတွင် 4 အစားထိုး။',
+      steps: ['3(4) + 5','= 12 + 5','= 17'],
+      answer: '17', tag: 'Algebra' },
+
+    // === Group 4: Geometry ===
+    { q: 'What is the area of a rectangle with length <b>12</b> and width <b>8</b>?',
+      options: ['40','96','20','86'], correctIndex: 1,
+      why: 'စတုဂံဧရိယာ = အလျား × အနံ။',
+      steps: ['A = 12 × 8','A = 96'],
+      answer: '96', tag: 'Geometry' },
+
+    { q: 'A right triangle has legs of length <b>3</b> and <b>4</b>. What is the hypotenuse?',
+      options: ['5','6','7','12'], correctIndex: 0,
+      why: 'Pythagorean Theorem: a² + b² = c²။',
+      steps: ['c² = 3² + 4²','c² = 9 + 16 = 25','c = √25 = 5'],
+      answer: '5', tag: 'Geometry' },
+
+    { q: 'What is the area of a triangle with base <b>10</b> and height <b>6</b>?',
+      options: ['16','30','60','80'], correctIndex: 1,
+      why: 'တြိဂံဧရိယာ = ½ × base × height။',
+      steps: ['A = ½ × 10 × 6','A = 30'],
+      answer: '30', tag: 'Geometry' },
+
+    { q: 'Circle radius <b>7</b>. What is the area? (π ≈ 3.14)',
+      options: ['21.98','43.96','153.86','615.44'], correctIndex: 2,
+      why: 'A = πr²။',
+      steps: ['A = 3.14 × 7²','A = 3.14 × 49','A = 153.86'],
+      answer: '153.86', tag: 'Geometry' },
+
+    { q: 'What is the slope of the line through <b>(2, 3)</b> and <b>(4, 7)</b>?',
+      options: ['1','2','3','4'], correctIndex: 1,
+      why: 'Slope = (y₂ − y₁) ÷ (x₂ − x₁)။',
+      steps: ['m = (7 − 3) ÷ (4 − 2)','m = 4 ÷ 2','m = 2'],
+      answer: '2', tag: 'Slope' },
+
+    // === Group 5: Statistics ===
+    { q: 'What is the mean of <b>4, 8, 6, 8, 10</b>?',
+      options: ['7','7.2','8','9'], correctIndex: 1,
+      why: 'Mean = စုစုပေါင်း ÷ အရေအတွက်။',
+      steps: ['ပေါင်းလဒ် = 36','Mean = 36 ÷ 5','Mean = 7.2'],
+      answer: '7.2', tag: 'Statistics' },
+
+    { q: 'What is the median of <b>3, 7, 5, 9, 11</b>?',
+      options: ['5','7','9','11'], correctIndex: 1,
+      why: 'အစဉ်လိုက်စီပြီး အလယ်တန်ဖိုး။',
+      steps: ['စီပါ: 3, 5, 7, 9, 11','အလယ် = 7'],
+      answer: '7', tag: 'Statistics' },
+
+    { q: 'What is the range of <b>12, 5, 20, 8, 15</b>?',
+      options: ['15','12','8','20'], correctIndex: 0,
+      why: 'Range = max − min။',
+      steps: ['Max = 20','Min = 5','Range = 20 − 5 = 15'],
+      answer: '15', tag: 'Statistics' },
+
+    { q: 'A bag has 5 red and 3 blue marbles. What is P(red)?',
+      options: ['3/8','5/8','5/3','1/2'], correctIndex: 1,
+      why: 'Probability = လိုချင်သည် ÷ စုစုပေါင်း။',
+      steps: ['Red = 5','Total = 8','P(red) = 5/8'],
+      answer: '5/8', tag: 'Probability' },
+
+    { q: 'What is the mode of <b>2, 4, 4, 6, 8</b>?',
+      options: ['2','4','6','8'], correctIndex: 1,
+      why: 'Mode = အကြိမ်အများဆုံး ပေါ်သော တန်ဖိုး။',
+      steps: ['4 သည် 2 ကြိမ် ပေါ်သည်','Mode = 4'],
+      answer: '4', tag: 'Statistics' },
+
+    // === Word Problems ===
+    { q: 'A car travels <b>240 miles</b> in <b>4 hours</b>. Average speed?',
+      options: ['40 mph','50 mph','60 mph','80 mph'], correctIndex: 2,
+      why: 'Speed = d ÷ t။',
+      steps: ['Speed = 240 ÷ 4','Speed = 60 mph'],
+      answer: '60 mph', tag: 'Rate' },
+
+    { q: 'If 3 cups of flour make 24 cookies, how many cups for 60 cookies?',
+      options: ['5','6','7.5','8'], correctIndex: 2,
+      why: 'အချိုးကျ: 3/24 = x/60။',
+      steps: ['3/24 = x/60','24x = 180','x = 7.5'],
+      answer: '7.5 cups', tag: 'Proportion' },
+
+    { q: 'A shirt costs $40. Price increases by 25%. New price?',
+      options: ['$45','$50','$55','$65'], correctIndex: 1,
+      why: '$40 + 25% = $40 + $10 = $50။',
+      steps: ['25% of 40 = 10','New price = $50'],
+      answer: '$50', tag: 'Percent' },
+
+    { q: 'Simple interest on <b>$1,000</b> at <b>5%</b> for <b>3 years</b>?',
+      options: ['$50','$100','$150','$1,150'], correctIndex: 2,
+      why: 'I = P × r × t = 1000 × 0.05 × 3။',
+      steps: ['I = 1000 × 0.05 × 3','I = $150'],
+      answer: '$150', tag: 'Interest' },
+
+    { q: 'A 5 kg object accelerates at 2 m/s². What is the force?',
+      options: ['2.5 N','7 N','10 N','15 N'], correctIndex: 2,
+      why: 'F = ma = 5 × 2။',
+      steps: ['F = 5 × 2','F = 10 N'],
+      answer: '10 N', tag: 'Physics' }
+  ];
+
+  /* ============================================================
+     RENDER PRACTICE QUESTIONS
+     ============================================================ */
+  var LTRS = ['A','B','C','D'];
+  var container = document.getElementById('practiceList');
+
+  QUESTIONS.forEach(function(item, idx){
+    var card = document.createElement('div');
+    card.className = 'q-block';
+
+    card.innerHTML =
+      '<div class="q-head">' +
+        '<span class="q-num">' + (idx + 1) + '</span>' +
+        '<span class="q-tag">' + item.tag + '</span>' +
+      '</div>' +
+      '<p class="q-text">' + item.q + '</p>' +
+      '<div class="q-opts">' +
+        item.options.map(function(o, i){
+          return '<button class="q-opt" data-i="' + i + '"><span class="ltr">' + LTRS[i] + '.</span>' + o + '</button>';
+        }).join('') +
+      '</div>' +
+      '<button class="show-ans">💡 အဖြေကြည့်ရန်</button>' +
+      '<div class="q-sol" hidden>' +
+        '<div style="margin-bottom:12px;">' +
+          '<span class="lbl">အဘယ်ကြောင့်</span>' +
+          item.why +
+        '</div>' +
+        '<div>' +
+          '<span class="lbl">တွက်နည်း အဆင့်ဆင့်</span>' +
+          '<ol style="margin:6px 0 0;padding-left:20px;">' +
+            item.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('') +
+          '</ol>' +
+        '</div>' +
+        '<span class="ans">✔ အဖြေ: ' + item.answer + '</span>' +
+      '</div>';
+
+    var opts = card.querySelectorAll('.q-opt');
+    var solBox = card.querySelector('.q-sol');
+    var solBtn = card.querySelector('.show-ans');
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(btn.disabled) return;
+        opts.forEach(function(b){ b.disabled = true; });
+        var ok = i === item.correctIndex;
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        if(!ok) opts[item.correctIndex].classList.add('correct');
+        solBox.hidden = false;
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      });
+    });
+
+    solBtn.addEventListener('click', function(){
+      solBox.hidden = !solBox.hidden;
+      if(solBox.hidden){
+        solBtn.classList.remove('open');
+        solBtn.textContent = '💡 အဖြေကြည့်ရန်';
+      } else {
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      }
+    });
+
+    container.appendChild(card);
+  });
+
+  /* Show locked card (always — after 50 questions) */
+  setTimeout(function(){
+    document.getElementById('lockedCard').style.display = 'block';
+  }, 800);
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Social Studies — Real Exam</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#f59e0b;--green:#16a34a;--red:#dc2626;--violet:#8b5cf6;--blue:#3b82f6;
+  --radius:18px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --nav-bg:rgba(248,250,252,.92);
+  --passage-bg:rgba(245,158,11,.05);
+  --passage-border:rgba(245,158,11,.25);
+  --table-bg:rgba(245,158,11,.04);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --nav-bg:rgba(11,18,32,.92);
+  --passage-bg:rgba(245,158,11,.12);
+  --passage-border:rgba(245,158,11,.35);
+  --table-bg:rgba(245,158,11,.08);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 420px at 8% -8%,rgba(245,158,11,.12),transparent 65%),
+             radial-gradient(700px 420px at 100% 4%,rgba(236,72,153,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+
+.header{position:sticky;top:0;z-index:30;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 14px 10px}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.back-btn{display:inline-flex;align-items:center;gap:5px;flex:none;padding:8px 12px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+  font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.h-title{flex:1;min-width:0}
+.h-title h1{margin:0;font-size:clamp(12px,3.4vw,15px);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-title p{margin:1px 0 0;font-size:10.5px;color:var(--muted);font-weight:600}
+.part-badge{flex:none;display:inline-flex;align-items:center;gap:4px;padding:6px 9px;border-radius:9px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;
+  background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3);white-space:nowrap}
+.part-badge.p2{background:rgba(59,130,246,.15);color:#1d4ed8;border-color:rgba(59,130,246,.3)}
+.part-badge.p3{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+.part-badge.p4{background:rgba(16,185,129,.15);color:#047857;border-color:rgba(16,185,129,.3)}
+html[data-theme="dark"] .part-badge{background:rgba(245,158,11,.25);color:#fbbf24}
+html[data-theme="dark"] .part-badge.p2{background:rgba(59,130,246,.25);color:#93c5fd}
+html[data-theme="dark"] .part-badge.p3{background:rgba(139,92,246,.25);color:#c4b5fd}
+html[data-theme="dark"] .part-badge.p4{background:rgba(16,185,129,.25);color:#6ee7b7}
+.timer{flex:none;display:inline-flex;align-items:center;gap:4px;padding:8px 10px;border-radius:11px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;font-size:12px;font-weight:800;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -8px rgba(245,158,11,.8)}
+.timer.warn{background:linear-gradient(135deg,#dc2626,#ef4444)}
+@media(max-width:520px){.h-title h1{font-size:11.5px}.part-badge{display:none}}
+
+.progress-wrap{max-width:900px;margin:10px auto 0;padding:0 14px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.progress-top b{font-size:12px;font-weight:800;color:var(--primary)}
+.progress-top span{font-size:11px;color:var(--muted);font-weight:600}
+.progress-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .progress-bar{background:rgba(255,255,255,.09)}
+.progress-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#f59e0b,#f97316);transition:width .4s cubic-bezier(.22,.8,.28,1)}
+
+.dot-map{max-width:900px;margin:10px auto 0;padding:0 14px;display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);
+  cursor:pointer;border:none;font-family:inherit;position:relative;
+  transition:transform .15s,background .2s,color .2s}
+html[data-theme="dark"] .dot{background:rgba(255,255,255,.06)}
+.dot:active{transform:scale(.9)}
+.dot.answered{background:rgba(245,158,11,.2);color:#b45309}
+html[data-theme="dark"] .dot.answered{background:rgba(245,158,11,.3);color:#fbbf24}
+.dot.current{background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;
+  box-shadow:0 4px 12px -4px rgba(245,158,11,.9)}
+.dot.p2.answered{background:rgba(59,130,246,.2);color:#1d4ed8}
+.dot.p2.current{background:linear-gradient(135deg,#3b82f6,#6366f1)}
+.dot.p3.answered{background:rgba(139,92,246,.2);color:#6d28d9}
+.dot.p3.current{background:linear-gradient(135deg,#8b5cf6,#6366f1)}
+.dot.p4.answered{background:rgba(16,185,129,.2);color:#047857}
+.dot.p4.current{background:linear-gradient(135deg,#10b981,#06b6d4)}
+
+.passage-indicator{max-width:900px;margin:14px auto 0;padding:0 14px;
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--muted);flex-wrap:wrap;}
+.passage-indicator .badge{padding:4px 10px;border-radius:999px;
+  background:var(--passage-bg);color:var(--primary);border:1px solid var(--passage-border);}
+.passage-indicator .bar{flex:1;height:1px;background:var(--border);min-width:20px;}
+
+.passage-box{max-width:900px;margin:10px auto 0;padding:0 14px;}
+.passage-inner{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:18px;font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+  font-size:14.5px;line-height:1.85;color:var(--text);max-height:55svh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;}
+.passage-inner.collapsed{max-height:200px;overflow:hidden;position:relative}
+.passage-inner.collapsed::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent, var(--passage-bg));pointer-events:none;}
+.passage-title{font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:11.5px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--primary);margin:0 0 8px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.passage-title .src{font-size:10px;padding:2px 8px;border-radius:999px;
+  background:rgba(59,130,246,.15);color:#1d4ed8;letter-spacing:.03em}
+html[data-theme="dark"] .passage-title .src{background:rgba(59,130,246,.25);color:#93c5fd}
+.passage-text{white-space:pre-wrap;margin:0}
+.passage-text p{margin:0 0 12px}
+.passage-text p:last-child{margin-bottom:0}
+.passage-toggle{display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:8px auto 0;padding:7px 14px;border-radius:10px;
+  border:1px solid var(--passage-border);background:var(--card);
+  color:var(--primary);font-family:inherit;font-size:11.5px;font-weight:800;
+  cursor:pointer;transition:all .18s;}
+.passage-toggle:hover{background:var(--passage-bg)}
+.passage-toggle:active{transform:scale(.97)}
+
+.data-table-wrap{overflow-x:auto;margin:10px 0;border-radius:10px;border:1px solid var(--border);background:var(--table-bg)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:340px}
+.data-table th,.data-table td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--border);font-family:'Inter',sans-serif}
+.data-table th{background:rgba(245,158,11,.08);font-weight:800;color:#b45309;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+html[data-theme="dark"] .data-table th{background:rgba(245,158,11,.15);color:#fbbf24}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td{font-weight:600}
+
+.q-wrap{max-width:900px;margin:0 auto;padding:14px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-num{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:rgba(245,158,11,.12);color:#b45309;font-size:11px;font-weight:800;margin-bottom:6px;}
+html[data-theme="dark"] .q-num{background:rgba(245,158,11,.2);color:#fbbf24}
+.q-type{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;margin-left:6px;
+  background:rgba(59,130,246,.15);color:#1d4ed8;border:1px solid rgba(59,130,246,.3);}
+html[data-theme="dark"] .q-type{background:rgba(59,130,246,.25);color:#93c5fd}
+.q-type.tech{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+html[data-theme="dark"] .q-type.tech{background:rgba(139,92,246,.25);color:#c4b5fd}
+.q-text{font-size:14.5px;line-height:1.75;margin:8px 0 14px;font-weight:500}
+.q-hint{font-size:11.5px;color:var(--muted);font-weight:700;margin:-6px 0 12px;
+  padding:8px 12px;background:rgba(139,92,246,.06);border-radius:8px;border-left:3px solid var(--violet)}
+html[data-theme="dark"] .q-hint{background:rgba(139,92,246,.12)}
+
+.opts{display:grid;grid-template-columns:1fr;gap:8px}
+.opt{text-align:left;padding:12px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:all .18s;line-height:1.55;display:flex;align-items:flex-start;gap:10px;}
+.opt:active{transform:scale(.985)}
+.opt:not(:disabled):hover{border-color:var(--primary);background:rgba(245,158,11,.04)}
+.opt .ltr{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);transition:all .18s;}
+html[data-theme="dark"] .opt .ltr{background:rgba(255,255,255,.08)}
+.opt.selected{border-color:var(--primary);background:rgba(245,158,11,.06)}
+.opt.selected .ltr{background:var(--primary);color:#fff}
+.opt.correct{border-color:var(--green);background:#dcfce7;color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.correct .ltr{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#fee2e2;color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt.wrong .ltr{background:var(--red);color:#fff}
+.opt.multi .ltr{border-radius:5px}
+.opt.multi.selected .ltr::after{content:"✓"}
+.opt .body{flex:1;padding-top:1px}
+.opt:disabled{cursor:default}
+
+.order-pool{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.order-item{padding:11px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);font-family:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px;
+  text-align:left;max-width:100%;color:var(--text)}
+.order-item:hover{border-color:var(--violet);background:rgba(139,92,246,.05)}
+.order-item.used{opacity:.35;pointer-events:none}
+.order-slots{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;
+  background:rgba(139,92,246,.04);border:1.5px dashed var(--passage-border);min-height:52px}
+html[data-theme="dark"] .order-slots{background:rgba(139,92,246,.08)}
+.order-slot{padding:10px 12px;border-radius:9px;background:var(--violet);color:#fff;
+  font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px;
+  animation:popIn .25s cubic-bezier(.22,.8,.28,1)}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.order-slot .num{background:rgba(255,255,255,.25);border-radius:50%;
+  width:20px;height:20px;display:grid;place-items:center;font-size:10px;font-weight:800}
+.order-slot .rm{margin-left:auto;opacity:.7;font-size:13px;cursor:pointer;padding:0 4px}
+.order-empty{color:var(--muted);font-size:12.5px;font-style:italic;padding:6px;text-align:center}
+
+.dropdown-line{font-size:14.5px;line-height:2.1;font-weight:500;padding:14px 16px;border-radius:12px;
+  background:rgba(139,92,246,.05);border:1px solid var(--border)}
+html[data-theme="dark"] .dropdown-line{background:rgba(139,92,246,.1)}
+.dd-select{padding:7px 9px;border-radius:8px;border:1.5px solid var(--violet);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:700;
+  cursor:pointer;margin:0 3px}
+.dd-select.ok{background:#dcfce7;border-color:var(--green);color:#14532d}
+.dd-select.bad{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+
+.q-nav{max-width:900px;margin:14px auto 0;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;
+  border-radius:11px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s,background .2s,color .2s;min-height:42px;text-decoration:none;}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(245,158,11,.7)}
+.btn.ghost{background:transparent;box-shadow:none}
+.btn.grow{flex:1;min-width:110px}
+.btn.submit{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(34,197,94,.7)}
+
+.start-hero,.result-hero{max-width:680px;margin:0 auto;
+  padding:calc(28px + var(--safe-top)) 20px 20px;text-align:center}
+.start-hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(245,158,11,.8);}
+.start-hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,30px);font-weight:800;letter-spacing:-.03em}
+.start-hero .subtitle{margin:0 0 4px;font-size:clamp(13px,3.4vw,15px);color:var(--muted)}
+.start-info{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin:24px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.start-info-item{text-align:left}
+.start-info-item b{display:block;font-size:20px;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.start-info-item span{font-size:12px;color:var(--muted);font-weight:600}
+.start-tips{text-align:left;font-size:12.5px;color:var(--muted);line-height:1.85;
+  background:rgba(245,158,11,.08);border-radius:12px;padding:14px 16px;border-left:3px solid var(--primary);}
+.start-tips b{color:var(--text)}
+.start-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;
+  padding:16px 22px;border-radius:16px;font-size:16px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#f59e0b,#f97316);border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 12px 26px -10px rgba(245,158,11,.8);transition:transform .2s,filter .2s;}
+.start-btn:active{transform:scale(.98)}
+
+.score-ring{width:170px;height:170px;margin:0 auto 22px;position:relative;display:grid;place-items:center}
+.score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.score-ring .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:12}
+html[data-theme="dark"] .score-ring .bgc{stroke:rgba(255,255,255,.08)}
+.score-ring .fgc{fill:none;stroke:url(#grad);stroke-width:12;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.8,.28,1)}
+.score-ring .pct{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-ring .lbl{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.ged-score{background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;border-radius:16px;
+  padding:18px;margin-bottom:18px;text-align:center;box-shadow:0 12px 30px -12px rgba(245,158,11,.8)}
+.ged-score b{display:block;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ged-score span{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.05em;
+  text-transform:uppercase;margin-top:4px;display:block}
+.ged-score small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:8px}
+.result-msg{font-size:17px;font-weight:700;margin:0 0 8px}
+.result-sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.75}
+.result-stats{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;text-align:center;}
+.result-stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.result-stats span{font-size:11px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.rs-correct b{color:var(--green)}
+.rs-wrong b{color:var(--red)}
+.rs-time b{color:var(--primary)}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.result-actions .btn{flex:1;min-width:130px}
+.review-wrap{max-width:900px;margin:22px auto 0;padding:0 16px}
+.review-title{font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin:8px 0 12px;text-align:center}
+.sol{margin-top:14px;padding:14px;border-radius:14px;
+  background:rgba(245,158,11,.06);border-left:3px solid var(--primary);
+  font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .sol{background:rgba(245,158,11,.12)}
+.sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--primary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.sol ol{margin:6px 0 0;padding-left:20px}
+.sol ol li{margin-bottom:4px;line-height:1.7}
+.sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="startScreen" class="screen active">
+  <div class="start-hero">
+    <div class="big-icon">🌍</div>
+    <h1>GED Social Studies — Real Exam</h1>
+    <p class="subtitle">Civics · US History · Economics · Geography · 3 Sets Random</p>
+    <div class="start-info">
+      <div class="start-info-item"><b>40</b><span>Questions</span></div>
+      <div class="start-info-item"><b>70 min</b><span>Total time</span></div>
+      <div class="start-info-item"><b>5 + 6</b><span>Passages + Qs</span></div>
+      <div class="start-info-item"><b>3 Sets</b><span>Random</span></div>
+    </div>
+    <div class="start-tips">
+      <b>📌 Real GED Social Studies Format</b><br>
+      • <b>Civics & Government</b> — Constitution, rights, branches · ~50%<br>
+      • <b>US History</b> — Revolution, Civil War, 20th century · ~20%<br>
+      • <b>Economics</b> — Supply/demand, trade, GDP · ~15%<br>
+      • <b>Geography</b> — Regions, migration, climate · ~15%<br>
+      • <b>Data Analysis</b> — Tables, charts, primary sources<br>
+      • <b>Random Set</b> — Sets A/B/C မှ ကျပန်းရွေး
+    </div>
+    <button class="start-btn" id="startBtn">▶ Exam စတင်ရန်</button>
+    <a class="back-btn" href="pretest.html" style="margin-top:14px;display:inline-flex">← Pretest Hub</a>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="examScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="pretest.html" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>GED Social Studies Exam</h1>
+        <p id="qCounter">Question 1 of 36</p>
+      </div>
+      <span class="part-badge" id="partBadge">Civics</span>
+      <div class="timer" id="timer">70:00</div>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-top"><b id="pLabel">Progress</b><span id="pCount">0 / 36</span></div>
+    <div class="progress-bar"><i id="pBar"></i></div>
+  </div>
+  <div class="dot-map" id="dotMap"></div>
+  <div class="passage-indicator" id="passageIndicator">
+    <span class="badge" id="passageBadge">Passage 1</span>
+    <span class="bar"></span>
+    <span id="passageInfo">Civics & Government</span>
+  </div>
+  <div class="passage-box" id="passageBox"></div>
+  <div class="q-wrap">
+    <div class="q-card" id="qCard"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="prevBtn">← Previous</button>
+      <button class="btn primary grow" id="nextBtn">Next →</button>
+    </div>
+    <div class="q-nav" style="margin-top:10px">
+      <button class="btn submit grow" id="submitBtn">✓ Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160">
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#f97316"/>
+        </linearGradient></defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="scoreRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div style="text-align:center">
+        <div class="pct" id="scorePct">0%</div>
+        <div class="lbl">Raw Score</div>
+      </div>
+    </div>
+    <div class="ged-score">
+      <b id="gedScore">0</b>
+      <span>Estimated GED Score</span>
+      <small id="gedMsg">Passing = 145 · College Ready = 165 · +Credit = 175</small>
+    </div>
+    <p class="result-msg" id="resultMsg"></p>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="result-stats">
+      <div class="rs-correct"><b id="rCorrect">0</b><span>Correct</span></div>
+      <div class="rs-wrong"><b id="rWrong">0</b><span>Wrong</span></div>
+      <div class="rs-time"><b id="rTime">00:00</b><span>Time</span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="reviewBtn">📖 Review</button>
+      <button class="btn primary" id="retryBtn">🔄 New Set</button>
+      <a class="btn" href="pretest.html" style="text-decoration:none">← Hub</a>
+    </div>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var showOnly=function(s){
+    document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+    s.classList.add('active');window.scrollTo(0,0);
+  };
+
+  /* ============================================================
+     SET A
+  ============================================================ */
+  var SET_A = {
+    passages:[
+      /* A1: CIVICS - Bill of Rights */
+      {
+        id:'a1',title:'The Bill of Rights',type:'Civics & Government',
+        text:'The Bill of Rights consists of the first ten amendments to the United States Constitution, ratified in 1791. These amendments guarantee essential freedoms and limit the power of the federal government.\n\nThe First Amendment protects freedom of religion, speech, press, assembly, and petition. The Second Amendment protects the right to bear arms. The Fourth Amendment protects against unreasonable searches and seizures without a warrant. The Fifth Amendment guarantees due process, protection against self-incrimination, and protection against double jeopardy. The Sixth Amendment guarantees the right to a speedy and public trial by an impartial jury.\n\nOriginally, the Bill of Rights applied only to the federal government. After the Civil War, the Fourteenth Amendment (1868) extended most of these protections to state governments through a process called "incorporation."\n\nThe table shows key amendments and their core protections.',
+        dataTable:{
+          headers:['Amendment','Ratified','Core Protection'],
+          rows:[
+            ['1st','1791','Speech, religion, press, assembly'],
+            ['4th','1791','No unreasonable searches'],
+            ['5th','1791','Due process, no self-incrimination'],
+            ['6th','1791','Speedy and public trial'],
+            ['14th','1868','Equal protection, due process (states)']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the passage and table, which amendment extended most Bill of Rights protections to state governments?',
+           o:['First Amendment','Fifth Amendment','Fourteenth Amendment','Sixth Amendment'],
+           c:2,
+           why:'Para 3: "Fourteenth Amendment (1868) extended most of these protections to state governments."',
+           steps:['Para 3','14th Amendment','→ C']},
+          {type:'mcq',q:'Which amendment protects against self-incrimination?',
+           o:['1st','4th','5th','6th'],
+           c:2,
+           why:'Para 2: "Fifth Amendment guarantees... protection against self-incrimination."',
+           steps:['Para 2','5th Amendment','→ C']},
+          {type:'multi',q:'Select ALL freedoms protected by the First Amendment.',
+           o:['Speech','Religion','Press','Right to bear arms','Assembly'],
+           c:[0,1,2,4],need:4,
+           why:'Right to bear arms = 2nd Amendment ။ ကျန် ၄ ခု = 1st Amendment။',
+           steps:['1st: speech, religion, press, assembly, petition','2nd: arms','→ A, B, C, E']},
+          {type:'mcq',q:'The passage suggests that before the 14th Amendment, the Bill of Rights:',
+           o:['Applied to all governments','Applied only to the federal government','Did not exist','Applied only to states'],
+           c:1,
+           why:'Para 3: "Originally, the Bill of Rights applied only to the federal government."',
+           steps:['Para 3','Federal only initially','→ B']},
+          {type:'dropdown',q:'Complete the sentence:',
+           text:'The {0} Amendment protects against unreasonable searches, while the {1} Amendment guarantees a speedy trial.',
+           blanks:[
+             {options:['First','Fourth','Fifth'],correct:1},
+             {options:['Second','Fifth','Sixth'],correct:2}
+           ],
+           why:'4th = searches ။ 6th = speedy trial။',
+           steps:['Para 2','4th: searches','6th: trial']},
+          {type:'mcq',q:'What is the main idea of the passage?',
+           o:['The Bill of Rights was written by George Washington','The Bill of Rights guarantees essential freedoms and limits government power','Only the First Amendment matters','The Bill of Rights is outdated'],
+           c:1,
+           why:'Paragraph 1: "guarantee essential freedoms and limit the power of the federal government."',
+           steps:['Para 1 thesis','→ B']}
+        ]
+      },
+      /* A2: US HISTORY - American Revolution */
+      {
+        id:'a2',title:'Causes of the American Revolution',type:'US History',
+        text:'The American Revolution (1775–1783) resulted from growing tensions between the thirteen American colonies and Great Britain. While the war itself lasted eight years, the underlying causes developed over decades.\n\nOne major cause was taxation without representation. After the expensive French and Indian War (1754–1763), Britain needed revenue. Parliament passed the Stamp Act (1765), requiring colonists to pay a tax on printed materials. Colonists protested because they had no representatives in Parliament. Other taxes followed, including the Townshend Acts (1767) and the Tea Act (1773), which led to the Boston Tea Party.\n\nA second cause was the restriction of colonial self-government. Colonists had become accustomed to making their own laws through colonial assemblies. When Britain dissolved these assemblies and imposed direct rule, tensions escalated.\n\nA third cause was the influence of Enlightenment ideas. Thinkers like John Locke argued that government derives its power from the consent of the governed, and that people have the right to overthrow a tyrannical government. These ideas shaped the Declaration of Independence (1776).\n\nThe table shows key events leading to the Revolution.',
+        dataTable:{
+          headers:['Year','Event','Significance'],
+          rows:[
+            ['1765','Stamp Act','First direct tax on colonists'],
+            ['1773','Boston Tea Party','Colonists protest Tea Act'],
+            ['1774','First Continental Congress','Colonial unity forms'],
+            ['1775','Lexington & Concord','First battles of the war'],
+            ['1776','Declaration of Independence','Formal break from Britain']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, how many years passed between the Stamp Act and the Declaration of Independence?',
+           o:['5 years','9 years','11 years','20 years'],
+           c:2,
+           why:'1765 → 1776 = 11 years။',
+           steps:['Stamp Act: 1765','Declaration: 1776','1776 - 1765 = 11','→ C']},
+          {type:'mcq',q:'Why did colonists object to the Stamp Act?',
+           o:['It was too expensive','They had no representatives in Parliament','It only taxed tea','It banned printing'],
+           c:1,
+           why:'Para 2: "they had no representatives in Parliament."',
+           steps:['Para 2','"taxation without representation"','→ B']},
+          {type:'multi',q:'Select ALL causes of the American Revolution mentioned in the passage.',
+           o:['Taxation without representation','Restriction of self-government','Enlightenment ideas','French military support','Direct British rule'],
+           c:[0,1,2,4],need:4,
+           why:'Para 2-4: taxes, self-government, Enlightenment, direct rule။ French support = not a cause, they helped later။',
+           steps:['Para 2: taxes','Para 3: self-government','Para 4: Enlightenment','Para 3: direct rule','→ A, B, C, E']},
+          {type:'mcq',q:'The Enlightenment thinker John Locke argued that:',
+           o:['Kings rule by divine right','Government derives power from consent of the governed','Colonies should remain loyal','Taxation is always fair'],
+           c:1,
+           why:'Para 4: "government derives its power from the consent of the governed."',
+           steps:['Para 4','Locke\'s ideas','→ B']},
+          {type:'order',q:'Order these events chronologically:',
+           items:['Stamp Act (1765)','Boston Tea Party (1773)','Lexington & Concord (1775)','Declaration of Independence (1776)'],
+           correctOrder:['Stamp Act (1765)','Boston Tea Party (1773)','Lexington & Concord (1775)','Declaration of Independence (1776)'],
+           why:'Chronological order from the table။',
+           steps:['1765 → 1773 → 1775 → 1776']},
+          {type:'mcq',q:'Which event marked the formal break between the colonies and Britain?',
+           o:['Boston Tea Party','First Continental Congress','Lexington & Concord','Declaration of Independence'],
+           c:3,
+           why:'Table: "Declaration of Independence (1776) — Formal break from Britain."',
+           steps:['Table last row','"Formal break"','→ D']}
+        ]
+      },
+      /* A3: ECONOMICS - Supply and Demand */
+      {
+        id:'a3',title:'Supply and Demand',type:'Economics',
+        text:'Supply and demand are the two fundamental forces that determine prices in a market economy. Demand refers to how much of a product consumers are willing and able to buy at various prices. Supply refers to how much producers are willing to sell at various prices.\n\nThe law of demand states that as price increases, quantity demanded decreases (all else being equal). The law of supply states that as price increases, quantity supplied increases. The point where supply and demand meet is called equilibrium — the market price where the quantity supplied equals the quantity demanded.\n\nWhen demand exceeds supply, a shortage occurs, and prices tend to rise. When supply exceeds demand, a surplus occurs, and prices tend to fall. These forces naturally push markets toward equilibrium.\n\nThe table shows the supply and demand schedule for a hypothetical product.',
+        dataTable:{
+          headers:['Price ($)','Quantity Demanded','Quantity Supplied'],
+          rows:[
+            ['2','100','20'],
+            ['4','80','40'],
+            ['6','60','60'],
+            ['8','40','80'],
+            ['10','20','100']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, what is the equilibrium price?',
+           o:['$2','$4','$6','$8'],
+           c:2,
+           why:'Table: at $6, quantity demanded (60) = quantity supplied (60) → equilibrium။',
+           steps:['Find equal row','$6: 60 = 60','→ C']},
+          {type:'mcq',q:'If the price is set at $8, what happens in the market?',
+           o:['Shortage','Surplus','Equilibrium','No change'],
+           c:1,
+           why:'Table: at $8, supply (80) > demand (40) → surplus။',
+           steps:['Table row: $8','Supply 80 > Demand 40','→ Surplus']},
+          {type:'mcq',q:'According to the law of demand, when price increases:',
+           o:['Demand increases','Quantity demanded decreases','Supply decreases','Equilibrium changes'],
+           c:1,
+           why:'Para 2: "as price increases, quantity demanded decreases."',
+           steps:['Para 2','Law of demand','→ B']},
+          {type:'multi',q:'Select ALL true statements about market forces.',
+           o:['Shortages cause prices to rise','Surpluses cause prices to fall','Equilibrium is where supply equals demand','Prices always stay the same','Shortages cause prices to fall'],
+           c:[0,1,2],need:3,
+           why:'Shortages → prices rise (not fall)။',
+           steps:['Para 3: shortage → rise','Para 3: surplus → fall','Para 2: equilibrium','→ A, B, C']},
+          {type:'fill',q:'Based on the table, at what price is the quantity demanded 80? (Enter number only)',
+           answer:'4',tolerance:0.1,
+           why:'Table: $4 → quantity demanded = 80။',
+           steps:['Table row 2','$4 → 80','→ 4']},
+          {type:'mcq',q:'What is equilibrium in a market?',
+           o:['When demand exceeds supply','When supply exceeds demand','When quantity supplied equals quantity demanded','When prices are lowest'],
+           c:2,
+           why:'Para 2: "equilibrium — the market price where the quantity supplied equals the quantity demanded."',
+           steps:['Para 2','Equilibrium definition','→ C']}
+        ]
+      },
+      /* A4: GEOGRAPHY - Climate Zones */
+      {
+        id:'a4',title:'World Climate Zones',type:'Geography',
+        text:'Earth\'s climate varies significantly across different regions due to latitude, altitude, ocean currents, and other factors. Geographers classify climates into five major zones: tropical, dry, temperate, continental, and polar.\n\nTropical climates occur near the equator (0°–23.5° latitude). They are characterized by high temperatures year-round and abundant rainfall. Rainforests and savannas are found in these regions.\n\nDry climates include deserts and steppes. They receive very little rainfall (usually less than 25 cm per year) and experience extreme temperature variations between day and night.\n\nTemperate climates have moderate temperatures and rainfall. They occur in mid-latitude regions (30°–60°) and are often found near coastlines. Mediterranean, humid subtropical, and marine west coast climates are examples.\n\nContinental climates occur in the interior of continents. They experience large seasonal temperature variations — hot summers and cold winters — because they are far from the moderating influence of oceans.\n\nPolar climates are found near the poles. They are extremely cold, with temperatures rarely rising above freezing. Tundra and ice cap climates are polar.\n\nThe table shows key characteristics of climate zones.',
+        dataTable:{
+          headers:['Zone','Latitude','Temperature Range','Precipitation'],
+          rows:[
+            ['Tropical','0–23.5°','Warm year-round','Very high'],
+            ['Dry','15–35°','Hot days, cool nights','Very low'],
+            ['Temperate','30–60°','Moderate','Moderate'],
+            ['Continental','40–70° (interior)','Extreme seasons','Moderate'],
+            ['Polar','60–90°','Very cold','Low']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which zone has the greatest seasonal temperature variation?',
+           o:['Tropical','Dry','Temperate','Continental'],
+           c:3,
+           why:'Table: Continental has "Extreme seasons."',
+           steps:['Table row: Continental','"Extreme seasons"','→ D']},
+          {type:'mcq',q:'Why are coastal areas usually more moderate in temperature than inland areas?',
+           o:['They receive more sunlight','Oceans moderate temperature','They have more rain','They are closer to the equator'],
+           c:1,
+           why:'Para 5: "Continental climates... far from the moderating influence of oceans."',
+           steps:['Para 5','Oceans moderate temperature','→ B']},
+          {type:'multi',q:'Select ALL factors that influence climate, according to the passage.',
+           o:['Latitude','Altitude','Ocean currents','Population density','Distance from oceans'],
+           c:[0,1,2,4],need:4,
+           why:'Population density မပါ။ ကျန် ၄ ခု ပါ။',
+           steps:['Para 1: latitude, altitude, ocean currents','Para 5: distance from oceans','Population: not mentioned']},
+          {type:'mcq',q:'A region receiving less than 25 cm of rainfall per year would most likely be classified as:',
+           o:['Tropical','Dry','Temperate','Polar'],
+           c:1,
+           why:'Para 3: dry climates "usually less than 25 cm per year."',
+           steps:['Para 3','< 25 cm = dry','→ B']},
+          {type:'fill',q:'Based on the table, what is the highest latitude for the Temperate zone? (Enter number only)',
+           answer:'60',tolerance:0.5,
+           why:'Table: Temperate = 30–60°။ Highest = 60။',
+           steps:['Table row 3','30–60°','→ 60']},
+          {type:'mcq',q:'Which statement best describes polar climates?',
+           o:['Warm year-round','Moderate with seasons','Very cold, rarely above freezing','Hot days, cool nights'],
+           c:2,
+           why:'Para 6: "extremely cold, with temperatures rarely rising above freezing."',
+           steps:['Para 6','→ C']}
+        ]
+      },
+      /* A5: GOVERNMENT - Three Branches */
+      {
+        id:'a5',title:'The Three Branches of US Government',type:'Civics & Government',
+        text:'The United States Constitution establishes three branches of government: legislative, executive, and judicial. Each branch has distinct powers, and each can check the others — a system known as separation of powers with checks and balances.\n\nThe legislative branch is Congress, which consists of the Senate and the House of Representatives. Congress makes laws, controls federal spending (the "power of the purse"), and can declare war. Congress can also override a presidential veto with a two-thirds vote in each chamber.\n\nThe executive branch is led by the President, who enforces laws, serves as Commander-in-Chief of the armed forces, and conducts foreign policy. The President can veto legislation passed by Congress and appoint federal judges (with Senate confirmation).\n\nThe judicial branch is the federal court system, headed by the Supreme Court. Its role is to interpret laws and the Constitution. The Supreme Court can declare laws or executive actions unconstitutional — a power called judicial review, established in Marbury v. Madison (1803).\n\nThe table shows the powers of each branch.',
+        dataTable:{
+          headers:['Branch','Main Role','Check on Other Branches'],
+          rows:[
+            ['Legislative','Makes laws','Override veto; approve appointments'],
+            ['Executive','Enforces laws','Veto legislation; appoint judges'],
+            ['Judicial','Interprets laws','Declare laws unconstitutional']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which branch has the power to declare laws unconstitutional?',
+           o:['Legislative','Executive','Judicial','All three'],
+           c:2,
+           why:'Para 4: "Supreme Court can declare laws... unconstitutional."',
+           steps:['Para 4','Judicial review','→ C']},
+          {type:'mcq',q:'Based on the table, how can Congress check the President\'s veto?',
+           o:['By appointing judges','By overriding with two-thirds vote','By declaring war','By electing a new President'],
+           c:1,
+           why:'Para 3: "override a presidential veto with a two-thirds vote."',
+           steps:['Para 3','2/3 vote to override','→ B']},
+          {type:'multi',q:'Select ALL powers of the executive branch.',
+           o:['Enforcing laws','Vetoing legislation','Appointing federal judges','Declaring war','Conducting foreign policy'],
+           c:[0,1,2,4],need:4,
+           why:'Declaring war = Congress ။ ကျန် ၄ ခု = executive။',
+           steps:['Para 3: enforce, veto, appoint, foreign policy','Para 2: declare war = Congress']},
+          {type:'mcq',q:'The system of checks and balances is designed to:',
+           o:['Give one branch more power','Prevent any branch from becoming too powerful','Speed up legislation','Eliminate the Supreme Court'],
+           c:1,
+           why:'Para 1: "each can check the others."',
+           steps:['Para 1','Prevent concentration of power','→ B']},
+          {type:'dropdown',q:'Complete the sentence:',
+           text:'The {0} branch makes laws, the {1} branch enforces laws, and the {2} branch interprets laws.',
+           blanks:[
+             {options:['Legislative','Executive','Judicial'],correct:0},
+             {options:['Legislative','Executive','Judicial'],correct:1},
+             {options:['Legislative','Executive','Judicial'],correct:2}
+           ],
+           why:'Three branches: make, enforce, interpret။',
+           steps:['Para 2: Legislative = make','Para 3: Executive = enforce','Para 4: Judicial = interpret']},
+          {type:'mcq',q:'Which case established judicial review?',
+           o:['Brown v. Board of Education','Marbury v. Madison','Roe v. Wade','Dred Scott v. Sandford'],
+           c:1,
+           why:'Para 4: "Marbury v. Madison (1803)."',
+           steps:['Para 4','→ B']}
+        ]
+      }
+    ],
+    standalone:[
+      {q:'What is the primary role of the Federal Reserve?',o:['Declare war','Regulate the money supply','Make federal laws','Interpret the Constitution'],c:1,
+       why:'The Federal Reserve (Fed) manages US monetary policy ။',
+       steps:['Fed = central bank','Controls money supply & interest rates','→ B']},
+      {q:'Which of the following is a civic responsibility (not a right)?',o:['Freedom of speech','Voting in elections','Freedom of religion','Right to a fair trial'],c:1,
+       why:'Voting is a civic responsibility — it is expected but not legally required။',
+       steps:['Right = protected by law','Responsibility = expected duty','Voting = responsibility','→ B']},
+      {q:'What does the term "opportunity cost" mean in economics?',o:['The cost of goods','The value of the next best alternative','The price of labor','The cost of imports'],c:1,
+       why:'Opportunity cost = what you give up when you make a choice။',
+       steps:['Choice → trade-off','Opportunity cost = next best option','→ B']},
+      {q:'Which document begins with "We the People"?',o:['Declaration of Independence','US Constitution','Bill of Rights','Emancipation Proclamation'],c:1,
+       why:'US Constitution Preamble: "We the People of the United States..."',
+       steps:['Preamble','→ B']},
+      {q:'The 19th Amendment (1920) granted:',
+       o:['Freedom of speech','Women the right to vote','Abolition of slavery','Right to bear arms'],c:1,
+       why:'19th Amendment = women\'s suffrage (right to vote)။',
+       steps:['1920 = women vote','→ B']},
+      {q:'What is GDP?',
+       o:['Government Direct Policy','Gross Domestic Product','General Data Protection','Gross Development Program'],c:1,
+       why:'GDP = total value of goods and services produced in a country။',
+       steps:['GDP = Gross Domestic Product','→ B']}
+    ]
+  };
+
+  /* ============================================================
+     SET B
+  ============================================================ */
+  var SET_B = {
+    passages:[
+      /* B1: CIVICS - Voting Rights */
+      {
+        id:'b1',title:'Voting Rights in America',type:'Civics & Government',
+        text:'The right to vote has expanded dramatically throughout American history. At the founding, voting was generally restricted to white male property owners. Over nearly two centuries, constitutional amendments and legislation extended this right to all adult citizens.\n\nThe Fifteenth Amendment (1870) granted voting rights regardless of race. However, many Southern states used poll taxes, literacy tests, and other tactics to prevent African Americans from voting. The Voting Rights Act of 1965 finally outlawed these discriminatory practices.\n\nThe Nineteenth Amendment (1920) granted women the right to vote after decades of activism by suffragists.\n\nThe Twenty-Sixth Amendment (1971) lowered the voting age from 21 to 18. This change was influenced by the fact that 18-year-olds could be drafted to fight in the Vietnam War but could not vote.\n\nThe table shows key voting rights milestones.',
+        dataTable:{
+          headers:['Year','Amendment/Law','Expansion'],
+          rows:[
+            ['1870','15th Amendment','Race'],
+            ['1920','19th Amendment','Women'],
+            ['1965','Voting Rights Act','Ended discriminatory practices'],
+            ['1971','26th Amendment','Age 18+']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which amendment granted women the right to vote?',
+           o:['15th','19th','26th','Voting Rights Act'],c:1,
+           why:'Table: 1920 → 19th Amendment → Women။',
+           steps:['Table row 2','19th Amendment','→ B']},
+          {type:'mcq',q:'Why was the 26th Amendment passed?',
+           o:['To lower the voting age from 21 to 18','To grant women voting rights','To end poll taxes','To expand voting to non-citizens'],c:0,
+           why:'Para 4: "lowered the voting age from 21 to 18... influenced by the Vietnam War draft."',
+           steps:['Para 4','Age 21 → 18','→ A']},
+          {type:'multi',q:'Select ALL tactics used by Southern states to prevent African Americans from voting, according to the passage.',
+           o:['Poll taxes','Literacy tests','Intimidation','Photo ID laws','Residency requirements'],
+           c:[0,1,2],need:3,
+           why:'Para 2: poll taxes, literacy tests, "other tactics" (includes intimidation)။ Photo ID/residency = not mentioned။',
+           steps:['Para 2: "poll taxes, literacy tests, and other tactics"','→ A, B, C']},
+          {type:'mcq',q:'Which legislation ended discriminatory voting practices like poll taxes?',
+           o:['15th Amendment','19th Amendment','Voting Rights Act of 1965','26th Amendment'],c:2,
+           why:'Para 2: "Voting Rights Act of 1965 finally outlawed these discriminatory practices."',
+           steps:['Para 2','Voting Rights Act 1965','→ C']},
+          {type:'order',q:'Order these voting rights milestones chronologically:',
+           items:['15th Amendment (1870)','19th Amendment (1920)','Voting Rights Act (1965)','26th Amendment (1971)'],
+           correctOrder:['15th Amendment (1870)','19th Amendment (1920)','Voting Rights Act (1965)','26th Amendment (1971)'],
+           why:'Chronological from the table။',
+           steps:['1870 → 1920 → 1965 → 1971']},
+          {type:'mcq',q:'What is the main idea of the passage?',
+           o:['Voting rights have expanded over time through amendments and legislation','Voting was always open to all','Only white men should vote','Voting is not important'],c:0,
+           why:'Passage တစ်ခုလုံးသည် voting rights ၏ expansion ကို ဆွေးနွေးသည်။',
+           steps:['Intro: voting has expanded','→ A']}
+        ]
+      },
+      /* B2: US HISTORY - Great Depression & New Deal */
+      {
+        id:'b2',title:'The Great Depression and the New Deal',type:'US History',
+        text:'The Great Depression was the most severe economic downturn in American history. It began with the stock market crash of October 1929 and lasted through the 1930s. By 1933, unemployment had reached 25%, banks had failed, and millions of Americans had lost their homes and savings.\n\nPresident Herbert Hoover initially believed the economy would recover on its own and that government should not intervene directly. However, his approach proved insufficient.\n\nWhen Franklin D. Roosevelt (FDR) became President in 1933, he launched the New Deal — a series of programs designed to provide relief, recovery, and reform. Key programs included the Civilian Conservation Corps (CCC), which employed young men in conservation projects; the Social Security Act (1935), which created a pension system for the elderly; and the Federal Deposit Insurance Corporation (FDIC), which insured bank deposits.\n\nThe New Deal did not end the Depression — that required the massive industrial production of World War II — but it fundamentally changed the relationship between the federal government and the American people.\n\nThe table shows major New Deal programs.',
+        dataTable:{
+          headers:['Year','Program','Purpose'],
+          rows:[
+            ['1933','CCC','Jobs for young men'],
+            ['1933','FDIC','Insure bank deposits'],
+            ['1935','Social Security Act','Pensions for elderly'],
+            ['1938','Fair Labor Standards Act','Minimum wage, 40-hour week']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the passage, what event marked the beginning of the Great Depression?',
+           o:['World War I','Stock market crash of 1929','Election of FDR','Creation of the CCC'],c:1,
+           why:'Para 1: "began with the stock market crash of October 1929."',
+           steps:['Para 1','1929 crash','→ B']},
+          {type:'mcq',q:'Which New Deal program created a pension system for the elderly?',
+           o:['CCC','FDIC','Social Security Act','Fair Labor Standards Act'],c:2,
+           why:'Para 3 & Table: Social Security Act (1935) — pensions for elderly။',
+           steps:['Para 3','Social Security Act','→ C']},
+          {type:'multi',q:'Select ALL New Deal programs mentioned in the passage.',
+           o:['CCC','FDIC','Social Security Act','Medicare','Fair Labor Standards Act'],
+           c:[0,1,2,4],need:4,
+           why:'Medicare = 1965 (not New Deal)။',
+           steps:['Table: CCC, FDIC, Social Security, FLSA','Medicare: not New Deal']},
+          {type:'mcq',q:'According to the passage, what finally ended the Great Depression?',
+           o:['The New Deal','World War II industrial production','The FDIC','Hoover\'s policies'],c:1,
+           why:'Para 4: "that required the massive industrial production of World War II."',
+           steps:['Para 4','WWII ended Depression','→ B']},
+          {type:'fill',q:'Based on the passage, what was the unemployment rate in 1933? (Enter number only)',
+           answer:'25',tolerance:0.5,
+           why:'Para 1: "unemployment had reached 25%."',
+           steps:['Para 1','25%','→ 25']},
+          {type:'mcq',q:'How did Hoover\'s approach to the Depression differ from FDR\'s?',
+           o:['Both used direct government intervention','Hoover avoided intervention; FDR launched programs','Hoover created more programs','FDR did nothing'],c:1,
+           why:'Para 2: Hoover believed economy would recover on its own။ Para 3: FDR launched New Deal။',
+           steps:['Para 2: Hoover = limited','Para 3: FDR = intervention','→ B']}
+        ]
+      },
+      /* B3: ECONOMICS - Inflation */
+      {
+        id:'b3',title:'Inflation and Its Effects',type:'Economics',
+        text:'Inflation is the general rise in the price level of goods and services over time. When inflation occurs, each dollar buys less than it did before, reducing purchasing power.\n\nEconomists typically measure inflation using the Consumer Price Index (CPI), which tracks the prices of a "basket" of common goods and services. A moderate inflation rate — around 2% per year — is considered healthy for an economy, but high inflation or deflation (falling prices) can be damaging.\n\nCauses of inflation include demand-pull (when demand exceeds supply) and cost-push (when production costs rise). Central banks like the Federal Reserve raise interest rates to control inflation, which slows borrowing and spending.\n\nInflation affects different groups differently. People on fixed incomes (like retirees) are hurt most, because their income does not rise with prices. Borrowers benefit (their debt becomes cheaper in real terms), while lenders are hurt. Savers are hurt if interest rates do not keep pace with inflation.\n\nThe table shows a hypothetical inflation scenario.',
+        dataTable:{
+          headers:['Year','CPI','Inflation Rate','$100 Buying Power'],
+          rows:[
+            ['2020','100','—','$100'],
+            ['2021','103','3%','$97'],
+            ['2022','110','7%','$91'],
+            ['2023','113','3%','$88']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, what was the inflation rate in 2022?',
+           o:['3%','7%','10%','13%'],c:1,
+           why:'Table row 2022: Inflation Rate = 7%။',
+           steps:['Table 2022 row','7%','→ B']},
+          {type:'mcq',q:'Which group is hurt most by inflation?',
+           o:['Borrowers','Lenders','People on fixed incomes','Business owners'],c:2,
+           why:'Para 4: "People on fixed incomes are hurt most."',
+           steps:['Para 4','Fixed income = hurt','→ C']},
+          {type:'multi',q:'Select ALL true statements about inflation.',
+           o:['It reduces purchasing power','Moderate inflation (~2%) is considered healthy','The Fed raises interest rates to control it','It helps people on fixed incomes','It can be caused by demand-pull or cost-push'],
+           c:[0,1,2,4],need:4,
+           why:'Inflation သည် fixed income လူများကို ထိခိုက်စေသည်၊ မကူညီ။',
+           steps:['Para 1: reduces purchasing power','Para 2: ~2% healthy','Para 3: Fed raises rates','Para 4: hurts fixed income','Para 3: demand-pull/cost-push']},
+          {type:'mcq',q:'Why do borrowers benefit from inflation?',
+           o:['They pay less interest','Their debt becomes cheaper in real terms','Banks forgive loans','Prices go down'],c:1,
+           why:'Para 4: "Borrowers benefit (their debt becomes cheaper in real terms)."',
+           steps:['Para 4','Debt cheaper','→ B']},
+          {type:'fill',q:'Based on the table, what is the CPI value in 2023? (Enter number only)',
+           answer:'113',tolerance:0.5,
+           why:'Table: 2023 → CPI = 113။',
+           steps:['Table last row','113','→ 113']},
+          {type:'dropdown',q:'Complete the sentence:',
+           text:'Inflation is typically measured using the {0}. When inflation rises, purchasing power {1}.',
+           blanks:[
+             {options:['GDP','CPI','FDIC'],correct:1},
+             {options:['increases','decreases','stays the same'],correct:1}
+           ],
+           why:'CPI measures inflation ။ Inflation ↑ → purchasing power ↓။',
+           steps:['Para 2: CPI','Para 1: purchasing power falls']}
+        ]
+      },
+      /* B4: GEOGRAPHY - Population */
+      {
+        id:'b4',title:'Global Population Distribution',type:'Geography',
+        text:'Earth\'s population is unevenly distributed. About 90% of the world\'s people live in the Northern Hemisphere, and more than half live in Asia. Population density varies enormously — from over 20,000 people per square kilometer in some urban areas to fewer than 1 person per square kilometer in remote regions.\n\nSeveral factors influence where people live. Climate plays a major role: people generally avoid extreme cold, extreme heat, and areas with too little water. Fertile soil for agriculture, access to fresh water, and natural resources also attract settlement. Coastal regions are often densely populated due to trade and fishing.\n\nUrbanization has accelerated in recent decades. In 1950, only 30% of the world\'s population lived in cities. By 2020, that figure had risen to 56%. The United Nations projects that by 2050, 68% of people will live in urban areas.\n\nThe table shows population data for major world regions.',
+        dataTable:{
+          headers:['Region','Population (millions, 2020)','% of World'],
+          rows:[
+            ['Asia','4,600','59%'],
+            ['Africa','1,340','17%'],
+            ['Europe','750','10%'],
+            ['North America','590','8%'],
+            ['South America','430','6%']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which region has the largest population?',
+           o:['Africa','Asia','Europe','North America'],c:1,
+           why:'Table: Asia = 4,600 million (59%)။',
+           steps:['Table row 1','Asia largest','→ B']},
+          {type:'mcq',q:'By 2050, the UN projects that what percentage will live in cities?',
+           o:['30%','56%','68%','90%'],c:2,
+           why:'Para 3: "by 2050, 68% of people will live in urban areas."',
+           steps:['Para 3','68%','→ C']},
+          {type:'multi',q:'Select ALL factors that attract human settlement, according to the passage.',
+           o:['Fertile soil','Access to fresh water','Natural resources','Extreme climate','Coastal trade access'],
+           c:[0,1,2,4],need:4,
+           why:'Extreme climate = avoids settlement။',
+           steps:['Para 2: soil, water, resources, coast','Extreme climate = avoid']},
+          {type:'mcq',q:'In 1950, what percentage of the world lived in cities?',
+           o:['10%','30%','56%','68%'],c:1,
+           why:'Para 3: "In 1950, only 30%."',
+           steps:['Para 3','1950 → 30%','→ B']},
+          {type:'fill',q:'Based on the table, what percentage of the world population lives in Europe? (Enter number only)',
+           answer:'10',tolerance:0.5,
+           why:'Table: Europe = 10%။',
+           steps:['Table row 3','10%','→ 10']},
+          {type:'mcq',q:'What is the main idea of the passage?',
+           o:['Earth\'s population is evenly distributed','Earth\'s population distribution is uneven and influenced by many factors','Only Asia matters','Cities are shrinking'],c:1,
+           why:'Para 1-2: uneven distribution + factors။',
+           steps:['Para 1: uneven','Para 2: factors','→ B']}
+        ]
+      },
+      /* B5: GOVERNMENT - Federalism */
+      {
+        id:'b5',title:'Federalism in the United States',type:'Civics & Government',
+        text:'Federalism is a system of government in which power is divided between a central (national) government and regional (state) governments. The United States is a federal system, established by the Constitution.\n\nThe Constitution grants certain powers to the federal government, including the power to coin money, regulate interstate commerce, declare war, and conduct foreign policy. These are called enumerated (or delegated) powers because they are specifically listed.\n\nState governments retain powers not given to the federal government. These are called reserved powers. States have authority over education, marriage laws, police protection, and local infrastructure. The Tenth Amendment explicitly reserves these powers to the states or the people.\n\nSome powers are shared by both levels of government — these are called concurrent powers. Both federal and state governments can levy taxes, build roads, and establish courts.\n\nThe table shows the division of powers in the US federal system.',
+        dataTable:{
+          headers:['Type','Examples','Source'],
+          rows:[
+            ['Enumerated (Federal)','Coin money, declare war','Constitution'],
+            ['Reserved (State)','Education, marriage','10th Amendment'],
+            ['Concurrent (Both)','Taxes, roads, courts','Shared']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which power is reserved for the states?',
+           o:['Coin money','Declare war','Education','Conduct foreign policy'],c:2,
+           why:'Table: Reserved (State) = education, marriage။',
+           steps:['Table row 2','Education = reserved','→ C']},
+          {type:'mcq',q:'What are "enumerated powers"?',
+           o:['Powers given to states','Powers specifically listed in the Constitution for the federal government','Powers shared by both','Powers held by the President only'],c:1,
+           why:'Para 2: "enumerated (or delegated) powers because they are specifically listed."',
+           steps:['Para 2','Enumerated = listed','→ B']},
+          {type:'multi',q:'Select ALL examples of concurrent powers shared by federal and state governments.',
+           o:['Levying taxes','Building roads','Establishing courts','Declaring war','Coining money'],
+           c:[0,1,2],need:3,
+           why:'War declaration & coining money = federal only။',
+           steps:['Para 4: taxes, roads, courts','War & money = federal','→ A, B, C']},
+          {type:'mcq',q:'Which amendment reserves powers to the states?',
+           o:['1st','5th','10th','14th'],c:2,
+           why:'Para 3: "The Tenth Amendment explicitly reserves these powers to the states."',
+           steps:['Para 3','10th Amendment','→ C']},
+          {type:'dropdown',q:'Complete the sentence:',
+           text:'Powers specifically listed for the federal government are called {0} powers, while powers shared by both levels are called {1} powers.',
+           blanks:[
+             {options:['enumerated','reserved','concurrent'],correct:0},
+             {options:['enumerated','reserved','concurrent'],correct:2}
+           ],
+           why:'Enumerated = federal ။ Concurrent = shared။',
+           steps:['Para 2: enumerated','Para 4: concurrent']},
+          {type:'mcq',q:'What is the main purpose of federalism?',
+           o:['To give all power to the federal government','To divide power between national and state governments','To abolish state governments','To give all power to states'],c:1,
+           why:'Para 1: "power is divided between a central government and regional governments."',
+           steps:['Para 1','Division of power','→ B']}
+        ]
+      }
+    ],
+    standalone:[
+      {q:'What is the purpose of the Preamble to the Constitution?',o:['To list rights','To state the goals of government','To create the Supreme Court','To declare war'],c:1,
+       why:'Preamble states goals: "form a more perfect Union, establish Justice..."',
+       steps:['Preamble = goals','→ B']},
+      {q:'Which amendment abolished slavery?',o:['13th','14th','15th','19th'],c:0,
+       why:'13th Amendment (1865) abolished slavery။',
+       steps:['13th = abolition','→ A']},
+      {q:'In economics, what does "scarcity" mean?',o:['Lots of resources','Limited resources relative to wants','High prices','Government control'],c:1,
+       why:'Scarcity = unlimited wants, limited resources။',
+       steps:['Scarcity: resources limited','→ B']},
+      {q:'Which ocean is the largest?',o:['Atlantic','Indian','Pacific','Arctic'],c:2,
+       why:'Pacific Ocean is the largest and deepest။',
+       steps:['Pacific largest','→ C']},
+      {q:'What is the role of the Supreme Court in the US government?',o:['Make laws','Enforce laws','Interpret laws','Declare war'],c:2,
+       why:'Supreme Court = judicial branch, interprets laws။',
+       steps:['Judicial = interpret','→ C']},
+      {q:'What is a tariff?',o:['A tax on imports','A type of vote','A government program','A court decision'],c:0,
+       why:'Tariff = tax on imported goods။',
+       steps:['Tariff = import tax','→ A']}
+    ]
+  };
+
+  /* ============================================================
+     SET C
+  ============================================================ */
+  var SET_C = {
+    passages:[
+      /* C1: CIVICS - Civil Rights Movement */
+      {
+        id:'c1',title:'The Civil Rights Movement',type:'Civics & Government',
+        text:'The Civil Rights Movement of the 1950s and 1960s was a decades-long struggle by African Americans and their allies to end racial segregation and discrimination in the United States.\n\nKey legal victories included Brown v. Board of Education (1954), in which the Supreme Court ruled that racial segregation in public schools was unconstitutional, overturning the earlier Plessy v. Ferguson (1896) decision that had allowed "separate but equal" facilities.\n\nThe movement used a variety of tactics. Nonviolent protest was central, inspired by Mahatma Gandhi and led by figures like Dr. Martin Luther King Jr. Sit-ins, freedom rides, and marches brought national attention to racial injustice. The Montgomery Bus Boycott (1955–1956) lasted 381 days and ended segregation on public buses.\n\nMajor legislative achievements included the Civil Rights Act of 1964, which outlawed discrimination based on race, color, religion, sex, or national origin, and the Voting Rights Act of 1965, which ended discriminatory voting practices.\n\nThe table shows key events of the Civil Rights Movement.',
+        dataTable:{
+          headers:['Year','Event','Impact'],
+          rows:[
+            ['1954','Brown v. Board','Ended school segregation'],
+            ['1955','Montgomery Bus Boycott','Ended bus segregation'],
+            ['1963','March on Washington','"I Have a Dream" speech'],
+            ['1964','Civil Rights Act','Outlawed discrimination'],
+            ['1965','Voting Rights Act','Protected voting rights']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which Supreme Court case ended racial segregation in public schools?',
+           o:['Plessy v. Ferguson','Brown v. Board of Education','Dred Scott v. Sandford','Marbury v. Madison'],c:1,
+           why:'Para 2: "Brown v. Board of Education (1954)... segregation in public schools was unconstitutional."',
+           steps:['Para 2','Brown v. Board','→ B']},
+          {type:'mcq',q:'How long did the Montgomery Bus Boycott last?',
+           o:['100 days','200 days','381 days','500 days'],c:2,
+           why:'Para 3: "lasted 381 days."',
+           steps:['Para 3','381 days','→ C']},
+          {type:'multi',q:'Select ALL tactics used by the Civil Rights Movement, according to the passage.',
+           o:['Nonviolent protest','Sit-ins','Freedom rides','Armed rebellion','Marches'],
+           c:[0,1,2,4],need:4,
+           why:'Armed rebellion = not mentioned။ Movement was nonviolent။',
+           steps:['Para 3: nonviolent, sit-ins, freedom rides, marches','Armed rebellion: not used']},
+          {type:'mcq',q:'The Civil Rights Act of 1964 outlawed discrimination based on:',
+           o:['Race only','Race, color, religion, sex, or national origin','Race and gender only','Age only'],c:1,
+           why:'Para 4: "discrimination based on race, color, religion, sex, or national origin."',
+           steps:['Para 4','5 categories','→ B']},
+          {type:'mcq',q:'Which earlier decision did Brown v. Board overturn?',
+           o:['Marbury v. Madison','Plessy v. Ferguson','Dred Scott v. Sandford','Roe v. Wade'],c:1,
+           why:'Para 2: "overturning the earlier Plessy v. Ferguson (1896)."',
+           steps:['Para 2','Plessy overturned','→ B']},
+          {type:'fill',q:'In what year was the Voting Rights Act passed? (Enter number only)',
+           answer:'1965',tolerance:0.5,
+           why:'Table: Voting Rights Act = 1965။',
+           steps:['Table last row','1965','→ 1965']}
+        ]
+      },
+      /* C2: US HISTORY - Cold War */
+      {
+        id:'c2',title:'The Cold War',type:'US History',
+        text:'The Cold War was a period of geopolitical tension between the United States and the Soviet Union that lasted from roughly 1947 to 1991. It was called "cold" because the two superpowers never fought each other directly, though they supported opposing sides in conflicts around the world.\n\nAfter World War II, the United States and Soviet Union emerged as rival superpowers with opposing ideologies: capitalism and democracy versus communism and authoritarian rule. The US pursued a policy of "containment" to prevent the spread of communism.\n\nKey events of the Cold War included the Berlin Blockade (1948–1949), the Korean War (1950–1953), the Cuban Missile Crisis (1962), and the Vietnam War (1955–1975). The space race was another dimension, with the Soviet Union launching Sputnik (1957) and the US landing on the Moon (1969).\n\nThe Cold War ended with the collapse of the Soviet Union in 1991, following reforms by Soviet leader Mikhail Gorbachev and the fall of the Berlin Wall in 1989.\n\nThe table shows key Cold War events.',
+        dataTable:{
+          headers:['Year','Event','Significance'],
+          rows:[
+            ['1948','Berlin Blockade','First major crisis'],
+            ['1957','Sputnik','USSR leads space race'],
+            ['1962','Cuban Missile Crisis','Closest to nuclear war'],
+            ['1969','Moon Landing','US wins space race'],
+            ['1991','USSR dissolves','Cold War ends']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Why was the conflict called the "Cold War"?',
+           o:['It was fought in cold climates','The superpowers never fought each other directly','Only winter battles','It involved only cold weapons'],c:1,
+           why:'Para 1: "called cold because the two superpowers never fought each other directly."',
+           steps:['Para 1','No direct fighting','→ B']},
+          {type:'mcq',q:'Which event brought the world closest to nuclear war?',
+           o:['Berlin Blockade','Korean War','Cuban Missile Crisis','Vietnam War'],c:2,
+           why:'Table: Cuban Missile Crisis = "Closest to nuclear war."',
+           steps:['Table row 3','Cuban Missile Crisis','→ C']},
+          {type:'mcq',q:'What was the US policy of "containment"?',
+           o:['To spread democracy by force','To prevent the spread of communism','To isolate the Soviet Union completely','To build more nuclear weapons'],c:1,
+           why:'Para 2: "containment to prevent the spread of communism."',
+           steps:['Para 2','Prevent communism spread','→ B']},
+          {type:'multi',q:'Select ALL Cold War events mentioned in the passage.',
+           o:['Berlin Blockade','Korean War','Cuban Missile Crisis','Vietnam War','World War I'],
+           c:[0,1,2,3],need:4,
+           why:'World War I = before Cold War။ ကျန် ၄ ခု ပါ။',
+           steps:['Para 3: Berlin, Korea, Cuba, Vietnam','WWI: before Cold War']},
+          {type:'order',q:'Order these Cold War events chronologically:',
+           items:['Berlin Blockade (1948)','Sputnik (1957)','Cuban Missile Crisis (1962)','Moon Landing (1969)','USSR dissolves (1991)'],
+           correctOrder:['Berlin Blockade (1948)','Sputnik (1957)','Cuban Missile Crisis (1962)','Moon Landing (1969)','USSR dissolves (1991)'],
+           why:'Chronological from the table။',
+           steps:['1948 → 1957 → 1962 → 1969 → 1991']},
+          {type:'mcq',q:'What event marked the end of the Cold War?',
+           o:['Vietnam War ended','Berlin Wall built','USSR dissolved in 1991','Cuban Missile Crisis resolved'],c:2,
+           why:'Para 4 & table: "USSR dissolves (1991) — Cold War ends."',
+           steps:['Para 4','1991','→ C']}
+        ]
+      },
+      /* C3: ECONOMICS - International Trade */
+      {
+        id:'c3',title:'International Trade and Comparative Advantage',type:'Economics',
+        text:'International trade allows countries to specialize in producing goods and services where they have a comparative advantage — meaning they can produce more efficiently relative to other goods. This specialization increases global efficiency and raises overall living standards.\n\nComparative advantage, developed by economist David Ricardo in 1817, differs from absolute advantage. A country has absolute advantage if it can produce a good using fewer resources. Comparative advantage means producing a good at a lower opportunity cost than another country, even if the other country is more productive overall.\n\nCountries trade to obtain goods they cannot produce efficiently, to access larger markets, and to benefit from lower prices. Trade can also lower costs for consumers by increasing competition.\n\nHowever, trade can create challenges for domestic industries. When imports are cheaper than domestic products, domestic producers may lose business and workers may lose jobs. This is why some governments impose tariffs (taxes on imports) or subsidies to protect domestic industries — a practice known as protectionism.\n\nThe table shows a simplified comparative advantage example.',
+        dataTable:{
+          headers:['Country','Wheat (bushels/hr)','Cloth (yards/hr)'],
+          rows:[
+            ['Country A','10','5'],
+            ['Country B','6','4']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which country has an absolute advantage in wheat?',
+           o:['Country A','Country B','Both','Neither'],c:0,
+           why:'Table: Country A = 10 bushels/hr vs Country B = 6 → A has absolute advantage။',
+           steps:['Table: A = 10, B = 6','A produces more','→ A']},
+          {type:'mcq',q:'What is comparative advantage?',
+           o:['Producing all goods more efficiently','Producing a good at a lower opportunity cost','Having more natural resources','Producing the most goods overall'],c:1,
+           why:'Para 2: "producing a good at a lower opportunity cost."',
+           steps:['Para 2','Lower opportunity cost','→ B']},
+          {type:'multi',q:'Select ALL reasons countries engage in trade.',
+           o:['Obtain goods they cannot produce efficiently','Access larger markets','Benefit from lower prices','Eliminate all domestic industries','Increase competition'],
+           c:[0,1,2,4],need:4,
+           why:'Eliminating domestic industries = not a goal of trade။',
+           steps:['Para 3: obtain, markets, prices, competition','Elimination: not a goal']},
+          {type:'mcq',q:'What is a tariff?',
+           o:['A subsidy for exports','A tax on imports','A type of trade agreement','A currency exchange rate'],c:1,
+           why:'Para 4: "tariffs (taxes on imports)."',
+           steps:['Para 4','Import tax','→ B']},
+          {type:'dropdown',q:'Complete the sentence:',
+           text:'When a country can produce a good at a lower {0} cost than another country, it has a {1} advantage.',
+           blanks:[
+             {options:['absolute','opportunity','exchange'],correct:1},
+             {options:['absolute','comparative','external'],correct:1}
+           ],
+           why:'Opportunity cost + comparative advantage။',
+           steps:['Para 2: lower opportunity cost','Comparative advantage']},
+          {type:'mcq',q:'What is protectionism?',
+           o:['Removing all tariffs','Government policies to shield domestic industries from foreign competition','Increasing imports','Free trade agreements'],c:1,
+           why:'Para 4: "tariffs or subsidies to protect domestic industries — protectionism."',
+           steps:['Para 4','Protectionism definition','→ B']}
+        ]
+      },
+      /* C4: GEOGRAPHY - Migration */
+      {
+        id:'c4',title:'Human Migration Patterns',type:'Geography',
+        text:'Human migration is the movement of people from one place to another, often across borders or long distances. Migration can be voluntary (chosen by the migrant) or forced (caused by conflict, persecution, or disaster).\n\nPush factors are conditions that drive people away from their home — such as war, poverty, political oppression, or natural disasters. Pull factors are conditions that attract people to a new location — such as job opportunities, political freedom, better education, or family connections.\n\nMigration has shaped the modern world. Between 1840 and 1920, more than 30 million Europeans emigrated to the United States. In the 20th century, wars, decolonization, and economic change triggered massive population movements across Asia, Africa, and the Middle East.\n\nToday, approximately 280 million people (about 3.6% of the world population) live outside their country of birth. Migration can bring economic benefits — migrants often fill labor shortages and start businesses — but can also create social and political tensions.\n\nThe table shows major migration flows by destination region.',
+        dataTable:{
+          headers:['Destination','Migrants (millions, 2020)','Main Origins'],
+          rows:[
+            ['Europe','87','Africa, Middle East, Asia'],
+            ['North America','59','Latin America, Asia'],
+            ['Asia','86','Other Asian countries'],
+            ['Middle East','50','South Asia, Africa']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which region has the largest number of migrants?',
+           o:['Europe','North America','Asia','Middle East'],c:0,
+           why:'Table: Europe = 87 million (largest)။',
+           steps:['Table row 1','Europe = 87','→ A']},
+          {type:'mcq',q:'What is the difference between push and pull factors?',
+           o:['Push factors attract; pull factors repel','Push factors drive away; pull factors attract','Both attract','Both repel'],c:1,
+           why:'Para 2: push drives away, pull attracts။',
+           steps:['Para 2 definitions','→ B']},
+          {type:'multi',q:'Select ALL examples of push factors mentioned in the passage.',
+           o:['War','Poverty','Political oppression','Job opportunities','Natural disasters'],
+           c:[0,1,2,4],need:4,
+           why:'Job opportunities = pull factor။',
+           steps:['Para 2: war, poverty, oppression, disaster','Job opps = pull']},
+          {type:'mcq',q:'Approximately what percentage of the world population lives outside their country of birth?',
+           o:['1.5%','3.6%','10%','20%'],c:1,
+           why:'Para 4: "approximately 280 million people (about 3.6%)."',
+           steps:['Para 4','3.6%','→ B']},
+          {type:'fill',q:'Between 1840 and 1920, how many million Europeans emigrated to the US? (Enter number only)',
+           answer:'30',tolerance:0.5,
+           why:'Para 3: "more than 30 million Europeans emigrated to the United States."',
+           steps:['Para 3','30 million','→ 30']},
+          {type:'mcq',q:'Which is an economic benefit of migration mentioned in the passage?',
+           o:['Increased tariffs','Migrants fill labor shortages and start businesses','Reduced population','Elimination of cultural diversity'],c:1,
+           why:'Para 4: "migrants often fill labor shortages and start businesses."',
+           steps:['Para 4','Labor + business','→ B']}
+        ]
+      },
+      /* C5: GOVERNMENT - Checks and Balances */
+      {
+        id:'c5',title:'Checks and Balances in Action',type:'Civics & Government',
+        text:'The US Constitution creates a system of checks and balances to prevent any one branch of government from becoming too powerful. Each branch can limit the powers of the others.\n\nThe legislative branch (Congress) can check the executive by overriding a presidential veto with a two-thirds vote, refusing to confirm presidential appointments, and controlling federal spending. Congress can also impeach and remove the President for "high crimes and misdemeanors."\n\nCongress checks the judicial branch by confirming or rejecting federal judges, impeaching judges, and proposing constitutional amendments that can overturn court decisions.\n\nThe executive branch (President) checks Congress by vetoing legislation and calling special sessions. The President checks the judiciary by appointing federal judges (with Senate confirmation) and granting pardons.\n\nThe judicial branch checks the other branches through judicial review — the power to declare laws or executive actions unconstitutional. This power was established in Marbury v. Madison (1803) and has been used in landmark cases such as Brown v. Board of Education (1954).\n\nThe table summarizes the checks each branch has over the others.',
+        dataTable:{
+          headers:['Branch','Checks on Legislature','Checks on Executive','Checks on Judiciary'],
+          rows:[
+            ['Legislative','—','Override veto, impeach','Confirm/reject judges'],
+            ['Executive','Veto laws, call sessions','—','Appoint judges, pardon'],
+            ['Judicial','Declare laws unconstitutional','Declare actions unconstitutional','—']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, how can the judicial branch check the legislative branch?',
+           o:['By vetoing laws','By declaring laws unconstitutional','By impeaching Congress','By appointing judges'],c:1,
+           why:'Table: Judicial checks Legislature by "Declare laws unconstitutional."',
+           steps:['Table row 3','Declare unconstitutional','→ B']},
+          {type:'mcq',q:'Which case established judicial review?',
+           o:['Brown v. Board','Marbury v. Madison','Plessy v. Ferguson','Roe v. Wade'],c:1,
+           why:'Para 5: "established in Marbury v. Madison (1803)."',
+           steps:['Para 5','Marbury v. Madison','→ B']},
+          {type:'multi',q:'Select ALL powers of Congress over the President.',
+           o:['Override veto','Refuse to confirm appointments','Impeach','Declare presidential actions unconstitutional','Control federal spending'],
+           c:[0,1,2,4],need:4,
+           why:'Declaring actions unconstitutional = judicial power။',
+           steps:['Para 2: override, confirm, impeach, spending','Para 5: judicial review']},
+          {type:'mcq',q:'Why did the framers create checks and balances?',
+           o:['To speed up government','To prevent any branch from becoming too powerful','To give power to one branch','To eliminate the judicial branch'],c:1,
+           why:'Para 1: "prevent any one branch from becoming too powerful."',
+           steps:['Para 1','Prevent concentration of power','→ B']},
+          {type:'mcq',q:'How can Congress check the judicial branch?',
+           o:['Veto court decisions','Confirm or reject federal judges','Pardon judges','Call special sessions'],c:1,
+           why:'Para 3: "Congress checks the judicial branch by confirming or rejecting federal judges."',
+           steps:['Para 3','Confirm/reject judges','→ B']},
+          {type:'dropdown',q:'Complete the sentence:',
+           text:'The President can {0} legislation, but Congress can {1} the veto with a two-thirds vote.',
+           blanks:[
+             {options:['pardon','veto','amend'],correct:1},
+             {options:['override','confirm','reject'],correct:0}
+           ],
+           why:'President vetoes ။ Congress overrides with 2/3 vote။',
+           steps:['President veto','Congress overrides']}
+        ]
+      }
+    ],
+    standalone:[
+      {q:'Which amendment guarantees equal protection under the law?',o:['1st','5th','14th','21st'],c:2,
+       why:'14th Amendment (1868) guarantees equal protection။',
+       steps:['14th = equal protection','→ C']},
+      {q:'In economics, what is a "market"?',o:['A physical building','Any arrangement where buyers and sellers exchange goods','A government agency','A type of tax'],c:1,
+       why:'Market = any setting where exchange happens (physical or virtual)။',
+       steps:['Market = exchange','→ B']},
+      {q:'What was the significance of the Louisiana Purchase (1803)?',o:['It ended the Civil War','It doubled the size of the United States','It created the Constitution','It began the Revolution'],c:1,
+       why:'Louisiana Purchase doubled US territory (Jefferson)။',
+       steps:['1803, Napoleon','Doubled US','→ B']},
+      {q:'Which type of government gives citizens the most direct voice?',o:['Monarchy','Direct democracy','Oligarchy','Dictatorship'],c:1,
+       why:'Direct democracy = citizens vote on issues directly။',
+       steps:['Direct = people vote','→ B']},
+      {q:'What is the primary function of the Federal Reserve?',o:['Declare war','Set monetary policy','Make laws','Elect the President'],c:1,
+       why:'Fed sets monetary policy — money supply, interest rates။',
+       steps:['Fed = monetary policy','→ B']},
+      {q:'What is a "right" in civics?',o:['A duty required by law','A freedom or entitlement protected by law','A tax obligation','A government program'],c:1,
+       why:'Right = legally protected freedom or entitlement။',
+       steps:['Right = protected freedom','→ B']}
+    ]
+  };
+
+  /* ============================================================
+     BUILD QUESTIONS
+  ============================================================ */
+  function buildQuestions(setData){
+    var allQ = [], passForQ = [], partForQ = [];
+    var partCounter = 0;
+    setData.passages.forEach(function(pass){
+      pass.questions.forEach(function(q){
+        var item = {type: q.type || 'mcq', q: q.q, passageId: pass.id, passage: pass, part: partCounter};
+        if(item.type === 'mcq'){ item.options = q.o; item.correctIndex = q.c; item.why = q.why; item.steps = q.steps; item.answer = q.o[q.c]; }
+        else if(item.type === 'multi'){ item.options = q.o; item.correctIndex = q.c; item.need = q.need; item.why = q.why; item.steps = q.steps; item.answer = q.c.map(function(i){return 'ABCD'[i]}).join(' · '); }
+        else if(item.type === 'order'){ item.items = q.items; item.correctOrder = q.correctOrder; item.why = q.why; item.steps = q.steps; item.answer = q.correctOrder.join(' → '); }
+        else if(item.type === 'dropdown'){ item.text = q.text; item.blanks = q.blanks; item.why = q.why; item.steps = q.steps; item.answer = q.blanks.map(function(b){return b.options[b.correct]}).join(' / '); }
+        else if(item.type === 'fill'){ item.answer = q.answer; item.tolerance = q.tolerance || 0.1; item.why = q.why; item.steps = q.steps; }
+        allQ.push(item); passForQ.push(pass); partForQ.push(partCounter);
+      });
+    });
+    setData.standalone.forEach(function(q){
+      allQ.push({type:'mcq', q:q.q, options:q.o, correctIndex:q.c, why:q.why, steps:q.steps, answer:q.o[q.c], passageId:null, part:99});
+      passForQ.push(null); partForQ.push(99);
+    });
+    return { questions: allQ, passForQ: passForQ, partForQ: partForQ };
+  }
+
+  var SETS = {
+    A: { name:'Set A', built: buildQuestions(SET_A) },
+    B: { name:'Set B', built: buildQuestions(SET_B) },
+    C: { name:'Set C', built: buildQuestions(SET_C) }
+  };
+
+  /* ============================================================
+     TIME
+  ============================================================ */
+  var TOTAL_TIME = 70 * 60;
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var currentSetKey = null, currentSet = null;
+  var allQuestions = [], passageForQ = [], partForQ = [];
+  var userAnswers = [], currentQ = 0;
+  var timerLeft = TOTAL_TIME, timerId = null;
+  var timeUsedTotal = 0, submitted = false;
+
+  function initState(){
+    var keys = Object.keys(SETS);
+    currentSetKey = keys[Math.floor(Math.random() * keys.length)];
+    currentSet = SETS[currentSetKey];
+    allQuestions = currentSet.built.questions.slice();
+    passageForQ = currentSet.built.passForQ.slice();
+    partForQ = currentSet.built.partForQ.slice();
+    userAnswers = new Array(allQuestions.length).fill(null);
+    currentQ = 0; timerLeft = TOTAL_TIME; timeUsedTotal = 0; submitted = false;
+  }
+
+  $('startBtn').addEventListener('click', function(){
+    initState();
+    console.log('[Social Exam] Random Set:', currentSetKey, '| Total Qs:', allQuestions.length);
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  });
+
+  /* TIMER */
+  function startTimer(){
+    clearInterval(timerId); updateTimerDisplay();
+    timerId = setInterval(function(){
+      timerLeft--; timeUsedTotal++;
+      updateTimerDisplay();
+      if(timerLeft <= 0){ clearInterval(timerId); finishExam(); }
+    }, 1000);
+  }
+  function fmtTime(sec){
+    var m = Math.floor(Math.max(sec, 0)/60), s = Math.max(sec, 0)%60;
+    return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  function updateTimerDisplay(){
+    var t = $('timer');
+    t.textContent = fmtTime(timerLeft);
+    t.classList.toggle('warn', timerLeft <= 300);
+  }
+
+  /* RENDER QUESTION */
+  var TYPE_LABELS = {mcq:'Multiple Choice', multi:'Multi-Select', order:'Ordering', dropdown:'Dropdown', fill:'Fill-in-Blank'};
+  var PART_NAMES = ['Civics & Government','US History','Economics','Geography','Mixed'];
+  function partClass(p){ return p===1?' p2':(p===2?' p3':(p===3?' p4':'')); }
+
+  function renderQuestion(){
+    var q = allQuestions[currentQ];
+    var card = $('qCard');
+    var badge = $('partBadge');
+    var part = q.part;
+    badge.textContent = PART_NAMES[part] || 'Mixed';
+    badge.className = 'part-badge' + partClass(part);
+    var typeTag = '<span class="q-type '+(q.type !== 'mcq' ? 'tech' : '')+'">'+(TYPE_LABELS[q.type] || 'MCQ')+'</span>';
+    card.innerHTML =
+      '<div class="q-num">Question '+(currentQ+1)+' of '+allQuestions.length+' '+typeTag+'</div>'+
+      '<div id="qHintWrap"></div>'+
+      '<div class="q-text">'+q.q+'</div>'+
+      '<div id="interactive"></div>';
+    var inter = card.querySelector('#interactive');
+    var hintWrap = card.querySelector('#qHintWrap');
+    if(q.type === 'multi') hintWrap.innerHTML = '<div class="q-hint">Select '+q.need+' answers</div>';
+    else if(q.type === 'order') hintWrap.innerHTML = '<div class="q-hint">Tap items in the correct order</div>';
+    else if(q.type === 'fill') hintWrap.innerHTML = '<div class="q-hint">Type your answer as a number or short text</div>';
+    if(q.type === 'mcq') renderMCQ(q, inter);
+    else if(q.type === 'multi') renderMulti(q, inter);
+    else if(q.type === 'order') renderOrder(q, inter);
+    else if(q.type === 'dropdown') renderDropdown(q, inter);
+    else if(q.type === 'fill') renderFill(q, inter);
+    renderPassage(currentQ);
+    $('qCounter').textContent = 'Question '+(currentQ+1)+' of '+allQuestions.length;
+    $('prevBtn').disabled = currentQ === 0;
+    $('nextBtn').textContent = (currentQ === allQuestions.length-1) ? 'Finish' : 'Next →';
+  }
+
+  function renderMCQ(q, container){
+    var chosen = userAnswers[currentQ];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+'ABCD'[i]+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        userAnswers[currentQ] = i;
+        container.querySelectorAll('.opt').forEach(function(b){b.classList.remove('selected')});
+        btn.classList.add('selected');
+        updateProgress(); renderDotMap(); autoAdvance();
+      });
+    });
+  }
+
+  function renderMulti(q, container){
+    var sel = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt multi '+(sel.indexOf(i)!==-1?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+(sel.indexOf(i)!==-1?'✓':'')+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div><button class="btn primary" id="multiSubmit" style="margin-top:12px;width:100%">Confirm Selection</button>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+        var k = arr.indexOf(i);
+        if(k>=0) arr.splice(k,1); else if(arr.length < q.need) arr.push(i);
+        userAnswers[currentQ] = arr;
+        btn.classList.toggle('selected', arr.indexOf(i)!==-1);
+        btn.querySelector('.ltr').textContent = arr.indexOf(i)!==-1 ? '✓' : '';
+        var h = document.querySelector('.q-hint');
+        if(h) h.textContent = 'Select '+q.need+' answers ('+arr.length+' selected)';
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#multiSubmit').addEventListener('click', function(){
+      if((userAnswers[currentQ]||[]).length < q.need) return;
+      autoAdvance();
+    });
+  }
+
+  function renderOrder(q, container){
+    var pool = q.items.slice();
+    var seq = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+    container.innerHTML = '<div class="order-pool" id="orderPool"></div><div class="order-slots" id="orderSlots"></div>';
+    var poolEl = container.querySelector('#orderPool');
+    var slotsEl = container.querySelector('#orderSlots');
+    function paint(){
+      poolEl.innerHTML='';
+      pool.forEach(function(item){
+        var b = document.createElement('button');
+        b.className = 'order-item'+(seq.indexOf(item)!==-1?' used':'');
+        b.textContent = item;
+        b.addEventListener('click', function(){
+          if(seq.indexOf(item)!==-1) return;
+          seq.push(item); userAnswers[currentQ] = seq.slice(); paint(); paintSlots();
+          var h = document.querySelector('.q-hint');
+          if(h) h.textContent = 'Tap items in the correct order ('+seq.length+' / '+pool.length+')';
+          updateProgress(); renderDotMap();
+          if(seq.length===pool.length) setTimeout(autoAdvance,400);
+        });
+        poolEl.appendChild(b);
+      });
+    }
+    function paintSlots(){
+      slotsEl.innerHTML='';
+      if(seq.length===0){ slotsEl.innerHTML='<div class="order-empty">ဤနေရာတွင် အစဉ်လိုက် ပြသပါမည်</div>'; return; }
+      seq.forEach(function(it,i){
+        var d = document.createElement('div'); d.className = 'order-slot';
+        var sp = document.createElement('span'); sp.className='num'; sp.textContent=(i+1); d.appendChild(sp);
+        var txt = document.createElement('span'); txt.style.flex='1'; txt.textContent=it; d.appendChild(txt);
+        var rm = document.createElement('span'); rm.className='rm'; rm.textContent='✕';
+        rm.addEventListener('click', function(){
+          seq.splice(i,1); userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots(); updateProgress(); renderDotMap();
+        });
+        d.appendChild(rm); slotsEl.appendChild(d);
+      });
+    }
+    paint(); paintSlots();
+  }
+
+  function renderDropdown(q, container){
+    var vals = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : new Array(q.blanks.length).fill(null);
+    var html = '<div class="dropdown-line">';
+    q.text.split(/(\{\d+\})/).forEach(function(p){
+      var m = p.match(/^\{(\d+)\}$/);
+      if(m){
+        var idx = +m[1], b = q.blanks[idx];
+        html += '<select class="dd-select" data-idx="'+idx+'"><option value="">--</option>';
+        b.options.forEach(function(o,i){ html += '<option value="'+i+'"'+(vals[idx]===i?' selected':'')+'>'+o+'</option>'; });
+        html += '</select>';
+      } else html += p;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    container.querySelectorAll('.dd-select').forEach(function(sel){
+      sel.addEventListener('change', function(){
+        var idx = +sel.dataset.idx;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : new Array(q.blanks.length).fill(null);
+        arr[idx] = +sel.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+        if(arr.every(function(v){return v != null})) setTimeout(autoAdvance, 300);
+      });
+    });
+  }
+
+  function renderFill(q, container){
+    var val = userAnswers[currentQ] != null ? String(userAnswers[currentQ]) : '';
+    container.innerHTML =
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">'+
+        '<input id="fillIn" type="text" inputmode="decimal" placeholder="Answer..." value="'+val+'" '+
+        'style="flex:1;min-width:160px;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;font-size:16px;font-weight:700">'+
+        '<button class="btn primary" id="fillSubmit">Confirm</button>'+
+      '</div>'+
+      '<div style="font-size:11.5px;color:var(--muted);margin-top:8px;font-weight:600">Numeric answer · Tolerance: ±'+(q.tolerance || 0.1)+'</div>';
+    var inp = container.querySelector('#fillIn');
+    container.querySelector('#fillSubmit').addEventListener('click', function(){
+      var v = inp.value.trim();
+      if(v === '') return;
+      userAnswers[currentQ] = v;
+      updateProgress(); renderDotMap();
+      inp.style.borderColor = '#16a34a';
+      setTimeout(autoAdvance, 200);
+    });
+    inp.addEventListener('keydown', function(e){ if(e.key === 'Enter') container.querySelector('#fillSubmit').click(); });
+  }
+
+  function autoAdvance(){
+    if(currentQ >= allQuestions.length - 1) return;
+    setTimeout(function(){
+      if(isAnswered(userAnswers[currentQ])){ currentQ++; renderQuestion(); renderDotMap(); }
+    }, 280);
+  }
+
+  function renderPassage(qIndex){
+    var pass = passageForQ[qIndex];
+    var box = $('passageBox');
+    var indicator = $('passageIndicator');
+    if(!pass){ box.style.display='none'; indicator.style.display='none'; return; }
+    box.style.display='block'; indicator.style.display='flex';
+    $('passageInfo').textContent = pass.type;
+    var pIdx = 0, seen = {};
+    for(var i=0; i<passageForQ.length; i++){
+      var p = passageForQ[i];
+      if(p && !seen[p.id]){ seen[p.id] = ++pIdx; if(p.id === pass.id) break; }
+    }
+    $('passageBadge').textContent = 'Passage '+pIdx+' of 5';
+    var tableHtml = '';
+    if(pass.dataTable){
+      tableHtml = '<div class="data-table-wrap"><table class="data-table"><thead><tr>';
+      pass.dataTable.headers.forEach(function(h){ tableHtml += '<th>'+h+'</th>'; });
+      tableHtml += '</tr></thead><tbody>';
+      pass.dataTable.rows.forEach(function(row){
+        tableHtml += '<tr>';
+        row.forEach(function(cell){ tableHtml += '<td>'+cell+'</td>'; });
+        tableHtml += '</tr>';
+      });
+      tableHtml += '</tbody></table></div>';
+    }
+    box.innerHTML =
+      '<div class="passage-inner collapsed">'+
+        '<div class="passage-title">'+pass.title+' <span class="src">'+pass.type+'</span></div>'+
+        '<div class="passage-text">'+pass.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+        tableHtml+
+      '</div>'+
+      '<button class="passage-toggle" id="passageToggleBtn">📖 Show Full Passage</button>';
+    var btn = box.querySelector('#passageToggleBtn');
+    var inner = box.querySelector('.passage-inner');
+    btn.addEventListener('click', function(){
+      if(inner.classList.contains('collapsed')){ inner.classList.remove('collapsed'); btn.textContent = '📕 Collapse Passage'; }
+      else { inner.classList.add('collapsed'); btn.textContent = '📖 Show Full Passage'; }
+    });
+  }
+
+  $('prevBtn').addEventListener('click', function(){ if(currentQ > 0){ currentQ--; renderQuestion(); renderDotMap(); } });
+  $('nextBtn').addEventListener('click', function(){
+    if(currentQ === allQuestions.length - 1){ $('submitBtn').scrollIntoView({behavior:'smooth', block:'center'}); return; }
+    currentQ++; renderQuestion(); renderDotMap();
+  });
+
+  /* SCORING */
+  function isAnswered(a){
+    if(a === null || a === undefined) return false;
+    if(Array.isArray(a)) return a.length > 0;
+    if(typeof a === 'string') return a.trim() !== '';
+    if(typeof a === 'object') return true;
+    return true;
+  }
+  function scoreQ(q, ua){
+    if(!isAnswered(ua)) return false;
+    if(q.type === 'mcq') return ua === q.correctIndex;
+    if(q.type === 'multi'){
+      if(!Array.isArray(ua)) return false;
+      var a = ua.slice().sort(function(x,y){return x-y});
+      var c = q.correctIndex.slice().sort(function(x,y){return x-y});
+      return a.length === c.length && a.every(function(v,i){return v === c[i]});
+    }
+    if(q.type === 'order'){
+      if(!Array.isArray(ua)) return false;
+      return ua.length === q.correctOrder.length && ua.every(function(v,i){return v === q.correctOrder[i]});
+    }
+    if(q.type === 'dropdown'){
+      if(!Array.isArray(ua)) return false;
+      return q.blanks.every(function(b,i){return ua[i] === b.correct});
+    }
+    if(q.type === 'fill'){
+      var n = parseFloat(ua);
+      if(!isFinite(n)) return false;
+      return Math.abs(n - parseFloat(q.answer)) <= (q.tolerance || 0.1);
+    }
+    return false;
+  }
+
+  $('submitBtn').addEventListener('click', function(){
+    var un = 0;
+    for(var i=0; i<allQuestions.length; i++) if(!isAnswered(userAnswers[i])) un++;
+    var msg = un > 0 ? un + ' ခု မဖြေရသေးပါ။ တင်မလား။' : 'Exam ကို တင်မလား။';
+    if(!confirm(msg)) return;
+    finishExam();
+  });
+  function finishExam(){ if(submitted) return; submitted = true; clearInterval(timerId); submitExam(); }
+
+  function submitExam(){
+    var total = allQuestions.length, correct = 0;
+    for(var i=0; i<total; i++) if(scoreQ(allQuestions[i], userAnswers[i])) correct++;
+    var wrong = total - correct;
+    var pct = Math.round(correct / total * 100);
+    try {
+      var s = JSON.parse(localStorage.getItem('ged:pretest:scores')) || {};
+      var rec = {score: correct, total: total, pct: pct, date: new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}), set: currentSetKey};
+      var prev = s['social'];
+      if(!prev || rec.pct > prev.pct) s['social'] = rec;
+      localStorage.setItem('ged:pretest:scores', JSON.stringify(s));
+    } catch(e){}
+    renderResult(correct, wrong, pct);
+    showOnly($('resultScreen'));
+  }
+
+  function renderResult(correct, wrong, pct){
+    $('scorePct').textContent = pct + '%';
+    $('rCorrect').textContent = correct;
+    $('rWrong').textContent = wrong;
+    var m = Math.floor(timeUsedTotal/60), s = timeUsedTotal%60;
+    $('rTime').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    var gedScore = Math.round(100 + (pct/100)*100);
+    $('gedScore').textContent = gedScore;
+    var gs = $('gedMsg');
+    if(gedScore >= 175) gs.textContent = '🏆 College Ready + Credit (175+)';
+    else if(gedScore >= 165) gs.textContent = '🎓 College Ready (165+)';
+    else if(gedScore >= 145) gs.textContent = '✅ Passed GED (145+)';
+    else gs.textContent = '📚 အောင်မှတ် 145 ရရန် လိုသေးသည်';
+    var ring = $('scoreRing'), C = 2 * Math.PI * 70;
+    ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C;
+    setTimeout(function(){ ring.style.strokeDashoffset = C * (1 - pct/100); }, 100);
+    var msg, sub;
+    if(gedScore >= 165){ msg = '🌟 College Ready!'; sub = 'GED Social Studies အတွက် ထူးချွန်စွာ အသင့်ဖြစ်နေပါပြီ။ ('+currentSetKey+' Set)'; }
+    else if(gedScore >= 145){ msg = '✅ Passed!'; sub = 'GED Social Studies အောင်မှတ် ရပါပြီ။ ('+currentSetKey+' Set)'; }
+    else if(gedScore >= 130){ msg = '📚 Near Passing'; sub = 'အောင်မှတ်နှင့် နီးကပ်နေသည်။ ခေါင်းစဉ်များ ပြန်လေ့လာပါ။ ('+currentSetKey+' Set)'; }
+    else { msg = '💪 လေ့ကျင့်ဖို့ လိုသေးသည်'; sub = 'Social Studies Lessons များ ပြန်လေ့လာပါ။ ('+currentSetKey+' Set)'; }
+    $('resultMsg').textContent = msg; $('resultSub').textContent = sub;
+    renderReview();
+  }
+
+  function renderReview(){
+    var el = $('reviewWrap');
+    el.innerHTML = '<div class="review-title">Answer Key & Explanations — Set '+currentSetKey+'</div>';
+    allQuestions.forEach(function(q, i){
+      var ua = userAnswers[i];
+      var ok = scoreQ(q, ua);
+      var pass = passageForQ[i];
+      var part = partForQ[i];
+      var partTag = '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(245,158,11,.12);color:#b45309">'+(PART_NAMES[part] || 'Mixed')+'</span>';
+      var passTag = pass ? '<span style="font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,.12);color:#1d4ed8">'+pass.title+'</span>' : '';
+      var typeTag = '<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(236,72,153,.12);color:#be185d">'+(TYPE_LABELS[q.type]||'MCQ')+'</span>';
+      var answerHtml = '';
+      if(q.type === 'mcq'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+q.options.map(function(o, j){
+          var cls = 'opt';
+          if(j === q.correctIndex) cls += ' correct'; else if(j === ua) cls += ' wrong';
+          return '<div class="'+cls+'" style="cursor:default;opacity:.98"><span class="ltr">'+'ABCD'[j]+'</span><span class="body">'+o+'</span></div>';
+        }).join('')+'</div>';
+      } else if(q.type === 'multi'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+q.options.map(function(o, j){
+          var isC = q.correctIndex.indexOf(j) !== -1, isU = Array.isArray(ua) && ua.indexOf(j) !== -1;
+          var cls = 'opt multi'; if(isC) cls += ' correct'; else if(isU) cls += ' wrong';
+          return '<div class="'+cls+'" style="cursor:default"><span class="ltr">'+(isU?'✓':'')+'</span><span class="body">'+o+(isC?' ✓ correct':'')+'</span></div>';
+        }).join('')+'</div>';
+      } else if(q.type === 'order'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">Your order: <b>'+(Array.isArray(ua) ? ua.join(' → ') : '(blank)')+'</b><br>Correct: <b style="color:#14532d">'+q.correctOrder.join(' → ')+'</b></div>';
+      } else if(q.type === 'dropdown'){
+        var cc = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">Correct choices: <b style="color:#14532d">'+cc+'</b></div>';
+      } else if(q.type === 'fill'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">Your answer: <b>'+(ua != null ? ua : '(blank)')+'</b><br>Correct answer: <b style="color:#14532d">'+q.answer+'</b></div>';
+      }
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+      card.innerHTML =
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+          '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f59e0b,#f97316)">'+(i+1)+'</span>'+
+          partTag + passTag + typeTag +
+          '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+(ok?'color:#14532d;background:#bbf7d0':'color:#7f1d1d;background:#fecaca')+'">'+(ok?'✔ Correct':'✘ Wrong')+'</span>'+
+        '</div>'+
+        '<div style="font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500">'+q.q+'</div>'+
+        answerHtml+
+        '<div class="sol"><span class="lbl">အဘယ်ကြောင့်</span>'+q.why+
+          '<div style="margin-top:10px"><span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span><ol>'+
+            q.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+          '</ol></div>'+
+          '<span class="ans">✔ အဖြေ: '+q.answer+'</span></div>';
+      el.appendChild(card);
+    });
+  }
+
+  $('reviewBtn').addEventListener('click', function(){ $('reviewWrap').scrollIntoView({behavior:'smooth', block:'start'}); });
+  $('retryBtn').addEventListener('click', function(){
+    if(!confirm('Exam အသစ် (ကျပန်း set) စတင်မလား။')) return;
+    initState(); showOnly($('startScreen'));
+  });
+  window.confirmExit = function(){ if(submitted) return true; return confirm('Exam မှ ထွက်မလား။ ဖြေထားသည်များ ဆုံးရှုံးမည်။'); };
+
+  function renderDotMap(){
+    var el = $('dotMap'); el.innerHTML = '';
+    for(var i=0; i<allQuestions.length; i++){
+      var d = document.createElement('button');
+      var part = partForQ[i];
+      d.className = 'dot' + partClass(part);
+      d.textContent = i+1;
+      if(isAnswered(userAnswers[i])) d.classList.add('answered');
+      if(i === currentQ) d.classList.add('current');
+      (function(idx){ d.addEventListener('click', function(){ currentQ = idx; renderQuestion(); renderDotMap(); }); })(i);
+      el.appendChild(d);
+    }
+  }
+  function updateProgress(){
+    var answered = 0;
+    for(var i=0; i<allQuestions.length; i++) if(isAnswered(userAnswers[i])) answered++;
+    $('pCount').textContent = answered + ' / ' + allQuestions.length;
+    $('pBar').style.width = (answered / allQuestions.length * 100) + '%';
+  }
+
+})();
+</script>
+</body>
+</html>

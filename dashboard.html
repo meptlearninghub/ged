@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Myanmar — Progress Dashboard</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1;--primary-d:#4f46e5;
+  --green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --blue:#3b82f6;--violet:#8b5cf6;--cyan:#06b6d4;--pink:#ec4899;--emerald:#10b981;
+  --radius:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.92);
+  --chip-bg:rgba(99,102,241,.08);
+  --chip-border:rgba(99,102,241,.2);
+  --hover-soft:rgba(15,23,42,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.92);
+  --chip-bg:rgba(99,102,241,.14);
+  --chip-border:rgba(99,102,241,.3);
+  --hover-soft:rgba(255,255,255,.05);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%, rgba(99,102,241,.10), transparent 65%),
+    radial-gradient(720px 480px at 100% 4%, rgba(16,185,129,.08), transparent 65%),
+    radial-gradient(620px 420px at 50% 105%, rgba(245,158,11,.08), transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:calc(10px + var(--safe-top)) 0 10px}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;
+  display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--violet));
+  box-shadow:0 8px 18px -8px rgba(99,102,241,.7);}
+.nav-logo b{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.nav-actions{display:flex;gap:8px;align-items:center;flex:none}
+.back-btn{display:inline-flex;align-items:center;gap:6px;
+  padding:8px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);
+  color:var(--text);text-decoration:none;
+  font-size:12.5px;font-weight:700;
+  transition:transform .18s,background .2s;}
+.back-btn:hover{background:var(--hover-soft)}
+.back-btn:active{transform:scale(.95)}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;
+  border-radius:11px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);
+  font-size:16px;cursor:pointer;padding:0;font-family:inherit;
+  transition:transform .18s,background .18s;}
+.icon-btn:hover{background:var(--hover-soft)}
+.icon-btn:active{transform:scale(.9)}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom))}
+
+/* HERO */
+.hero{padding:32px 0 26px;text-align:center}
+.hero .badge-icon{width:72px;height:72px;border-radius:22px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:34px;
+  background:linear-gradient(135deg,var(--primary),var(--violet));color:#fff;
+  box-shadow:0 20px 40px -16px rgba(99,102,241,.7);}
+.hero h1{margin:0 0 8px;font-size:clamp(24px,5.5vw,34px);
+  font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.hero p{margin:0 auto;max-width:560px;
+  font-size:clamp(13px,3.4vw,15px);color:var(--muted);line-height:1.75}
+
+/* OVERALL RING */
+.overall-wrap{
+  background:var(--card);border:1px solid var(--border);border-radius:24px;
+  padding:28px 24px;box-shadow:var(--shadow);margin-bottom:18px;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  justify-content:center;
+}
+.ring-box{position:relative;width:160px;height:160px;flex:none}
+.ring-box svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-box .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:14}
+html[data-theme="dark"] .ring-box .bgc{stroke:rgba(255,255,255,.08)}
+.ring-box .fgc{fill:none;stroke:url(#mainGrad);stroke-width:14;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;
+  transition:stroke-dashoffset 1.4s cubic-bezier(.22,.8,.28,1)}
+.ring-box .center{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring-box .pct{font-size:42px;font-weight:900;letter-spacing:-.04em;line-height:1;
+  background:linear-gradient(135deg,var(--primary),var(--violet));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;}
+.ring-box .lbl{font-size:10.5px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.overall-info{flex:1;min-width:240px}
+.overall-info h2{margin:0 0 6px;font-size:20px;font-weight:800;letter-spacing:-.02em}
+.overall-info p{margin:0 0 16px;font-size:13.5px;color:var(--muted);line-height:1.7}
+.overall-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ov-stat{background:var(--hover-soft);border-radius:12px;padding:12px;text-align:center}
+.ov-stat b{display:block;font-size:20px;font-weight:900;letter-spacing:-.02em;line-height:1.1;color:var(--primary);margin-bottom:3px}
+.ov-stat span{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+/* SECTION */
+.section{padding:22px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;
+  gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.section-head h2{margin:0;font-size:clamp(18px,4.4vw,22px);
+  font-weight:800;letter-spacing:-.02em}
+.section-head .hint{font-size:12px;color:var(--muted);font-weight:600}
+
+/* SUBJECT CARDS */
+.subject-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.subject-grid{grid-template-columns:repeat(2,1fr)}}
+
+.subject-card{background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:20px;box-shadow:var(--shadow);
+  transition:transform .25s,box-shadow .25s,border-color .25s}
+@media(hover:hover){
+  .subject-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);
+    border-color:var(--ac)}
+}
+.subject-card .sc-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.sc-icon{width:48px;height:48px;flex:none;display:grid;place-items:center;
+  font-size:24px;border-radius:14px}
+.sc-badge{font-size:11px;font-weight:800;padding:4px 11px;border-radius:999px;
+  letter-spacing:.03em;text-transform:uppercase}
+.sc-badge.done{background:rgba(22,163,74,.12);color:#15803d}
+html[data-theme="dark"] .sc-badge.done{background:rgba(22,163,74,.25);color:#4ade80}
+.sc-badge.mid{background:rgba(245,158,11,.15);color:#b45309}
+html[data-theme="dark"] .sc-badge.mid{background:rgba(245,158,11,.25);color:#fbbf24}
+.sc-badge.early{background:rgba(59,130,246,.12);color:#1d4ed8}
+html[data-theme="dark"] .sc-badge.early{background:rgba(59,130,246,.25);color:#93c5fd}
+.sc-badge.empty{background:var(--hover-soft);color:var(--muted)}
+.subject-card h3{margin:0 0 4px;font-size:16.5px;font-weight:800;
+  letter-spacing:-.01em;line-height:1.3}
+.subject-card .sub{margin:0 0 14px;font-size:12px;color:var(--muted);font-weight:600}
+
+.sc-progress{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sc-bar{flex:1;height:8px;border-radius:999px;
+  background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .sc-bar{background:rgba(255,255,255,.09)}
+.sc-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:var(--ac);transition:width 1s cubic-bezier(.22,.8,.28,1)}
+.sc-pct{min-width:44px;text-align:right;font-size:15px;
+  font-weight:900;letter-spacing:-.02em;color:var(--ac);
+  font-variant-numeric:tabular-nums}
+
+.sc-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  padding-top:12px;border-top:1px solid var(--border)}
+.sc-meta-item{text-align:center}
+.sc-meta-item b{display:block;font-size:15px;font-weight:800;
+  color:var(--text);font-variant-numeric:tabular-nums}
+.sc-meta-item span{font-size:10px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.04em;margin-top:2px;display:block}
+
+.sc-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  width:100%;margin-top:14px;padding:11px;border-radius:12px;
+  background:var(--ac);color:#fff;text-decoration:none;
+  font-size:13px;font-weight:700;
+  transition:filter .2s,transform .18s;}
+.sc-link:hover{filter:brightness(1.08)}
+.sc-link:active{transform:scale(.97)}
+
+/* EXAM SCORES */
+.exam-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:600px){.exam-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.exam-grid{grid-template-columns:repeat(4,1fr)}}
+
+.exam-card{background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:18px;box-shadow:var(--shadow);
+  position:relative;overflow:hidden}
+.exam-card::before{content:"";position:absolute;top:0;left:0;right:0;
+  height:3px;background:var(--ac)}
+.exam-card .ec-icon{width:40px;height:40px;border-radius:12px;margin-bottom:12px;
+  display:grid;place-items:center;font-size:20px;
+  background:color-mix(in srgb,var(--ac) 15%,transparent)}
+html[data-theme="dark"] .exam-card .ec-icon{background:color-mix(in srgb,var(--ac) 25%,transparent)}
+.exam-card h4{margin:0 0 4px;font-size:14px;font-weight:800;
+  letter-spacing:-.01em;line-height:1.3}
+.exam-card .ec-sub{font-size:11.5px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.ec-score{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.ec-score b{font-size:32px;font-weight:900;letter-spacing:-.03em;
+  line-height:1;color:var(--ac);
+  font-variant-numeric:tabular-nums}
+.ec-score span{font-size:12px;font-weight:700;color:var(--muted)}
+.ec-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden;margin-bottom:8px}
+html[data-theme="dark"] .ec-bar{background:rgba(255,255,255,.09)}
+.ec-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:var(--ac);transition:width 1s cubic-bezier(.22,.8,.28,1)}
+.ec-meta{font-size:11px;color:var(--muted);font-weight:600}
+.ec-notyet{font-size:12.5px;color:var(--muted);font-weight:600;
+  padding:14px 0;text-align:center}
+.ec-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  width:100%;margin-top:14px;padding:10px;border-radius:11px;
+  background:var(--hover-soft);color:var(--text);text-decoration:none;
+  font-size:12.5px;font-weight:700;border:1px solid var(--border);
+  transition:background .2s,transform .18s;}
+.ec-link:hover{background:var(--ac);color:#fff;border-color:transparent}
+.ec-link:active{transform:scale(.97)}
+
+/* RECENT ACTIVITY */
+.activity-list{display:flex;flex-direction:column;gap:10px}
+.act-item{display:flex;align-items:center;gap:14px;
+  padding:14px 16px;background:var(--card);
+  border:1px solid var(--border);border-radius:14px;
+  box-shadow:var(--shadow);animation:cardIn .4s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.act-icon{width:42px;height:42px;flex:none;border-radius:12px;
+  display:grid;place-items:center;font-size:19px;
+  background:color-mix(in srgb,var(--ac) 15%,transparent)}
+html[data-theme="dark"] .act-icon{background:color-mix(in srgb,var(--ac) 25%,transparent)}
+.act-body{flex:1;min-width:0}
+.act-body b{display:block;font-size:14px;font-weight:800;
+  letter-spacing:-.01em;margin-bottom:3px}
+.act-body span{font-size:12px;color:var(--muted);font-weight:600}
+.act-score{font-size:16px;font-weight:900;color:var(--ac);
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+
+/* STREAK */
+.streak-banner{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(249,115,22,.06));
+  border:1px solid rgba(245,158,11,.3);
+  border-radius:18px;padding:20px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+html[data-theme="dark"] .streak-banner{
+  background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(249,115,22,.15));
+  border-color:rgba(245,158,11,.4);
+}
+.streak-icon{width:56px;height:56px;flex:none;border-radius:16px;
+  display:grid;place-items:center;font-size:28px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);
+  box-shadow:0 12px 24px -10px rgba(245,158,11,.7)}
+.streak-body{flex:1;min-width:200px}
+.streak-body h3{margin:0 0 4px;font-size:16px;font-weight:800;letter-spacing:-.01em}
+.streak-body p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.7}
+.streak-days{font-size:38px;font-weight:900;letter-spacing:-.04em;
+  color:#f59e0b;line-height:1;text-align:center}
+.streak-days small{display:block;font-size:10px;font-weight:800;
+  color:var(--muted);text-transform:uppercase;
+  letter-spacing:.06em;margin-top:4px}
+
+/* ACHIEVEMENTS */
+.achievements{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:640px){.achievements{grid-template-columns:repeat(4,1fr)}}
+.ach{background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:14px;text-align:center;
+  box-shadow:var(--shadow);opacity:.4;transition:opacity .3s,transform .25s}
+.ach.unlocked{opacity:1}
+.ach.unlocked:hover{transform:translateY(-3px)}
+.ach-icon{width:44px;height:44px;margin:0 auto 8px;
+  border-radius:12px;display:grid;place-items:center;
+  font-size:22px;background:var(--hover-soft)}
+.ach.unlocked .ach-icon{background:linear-gradient(135deg,var(--ac,#f59e0b),var(--ac2,#f97316))}
+.ach h4{margin:0 0 2px;font-size:12px;font-weight:800;letter-spacing:-.01em}
+.ach p{margin:0;font-size:10px;color:var(--muted);font-weight:600;line-height:1.5}
+
+/* RESET */
+.reset-btn{display:inline-flex;align-items:center;gap:6px;
+  padding:10px 16px;border-radius:11px;
+  background:transparent;color:var(--red);
+  border:1px solid rgba(220,38,38,.3);
+  font-family:inherit;font-size:12.5px;font-weight:700;
+  cursor:pointer;transition:background .2s,transform .18s;}
+.reset-btn:hover{background:rgba(220,38,38,.06)}
+.reset-btn:active{transform:scale(.97)}
+
+.footer{padding:34px 18px;text-align:center;font-size:12px;
+  color:var(--muted);line-height:2}
+.footer .brand{display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:6px;font-weight:800;color:var(--text);font-size:13px}
+.footer .brand .mark{width:24px;height:24px;border-radius:7px;
+  display:grid;place-items:center;font-size:9px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--violet))}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:#0f172a;color:#fff;padding:13px 20px;
+  border-radius:12px;font-size:13.5px;font-weight:600;
+  box-shadow:0 20px 40px -12px rgba(0,0,0,.5);
+  z-index:200;opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .35s cubic-bezier(.22,.8,.28,1);
+  max-width:90vw;text-align:center;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:linear-gradient(135deg,#16a34a,#15803d)}
+.toast.err{background:linear-gradient(135deg,#dc2626,#b91c1c)}
+
+/* EMPTY STATE */
+.empty-state{background:var(--card);border:1px dashed var(--border);
+  border-radius:16px;padding:36px 20px;text-align:center;
+  color:var(--muted);grid-column:1/-1}
+.empty-state .es-ico{font-size:40px;opacity:.5;margin-bottom:10px}
+.empty-state h3{margin:0 0 6px;font-size:15px;font-weight:800;color:var(--text)}
+.empty-state p{margin:0;font-size:12.5px}
+
+@media(max-width:520px){
+  .nav-title{display:none}
+  .overall-stats{grid-template-columns:repeat(3,1fr)}
+  .sc-meta{grid-template-columns:repeat(3,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="main.html">
+      <span class="mark">GED</span>
+      <b>GED Myanmar</b>
+    </a>
+    <div class="nav-title">Progress Dashboard</div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+      </button>
+      <a class="back-btn" href="main.html">← Back</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge-icon">📊</div>
+    <h1>သင့် Progress Dashboard</h1>
+    <p>ဘာသာရပ် ၄ ခုလုံး၏ လေ့လာမှုအခြေအနေ၊ Exam ရမှတ်များနှင့် Achievements များ တစ်နေရာတည်းတွင် ကြည့်ပါ။</p>
+  </section>
+
+  <!-- OVERALL RING -->
+  <div class="overall-wrap">
+    <div class="ring-box">
+      <svg viewBox="0 0 160 160">
+        <defs>
+          <linearGradient id="mainGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
+          </linearGradient>
+        </defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="mainRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div class="center">
+        <div>
+          <div class="pct" id="overallPct">0%</div>
+          <div class="lbl">Complete</div>
+        </div>
+      </div>
+    </div>
+    <div class="overall-info">
+      <h2 id="welcomeName">Overall Progress</h2>
+      <p id="overallMsg">ဘာသာရပ် ၄ ခုလုံးအတွက် စုစုပေါင်း လေ့ကျင့်ခန်း ၇,၂၀၀ ရှိပါသည်။</p>
+      <div class="overall-stats">
+        <div class="ov-stat">
+          <b id="statDone">0</b>
+          <span>Exercises Done</span>
+        </div>
+        <div class="ov-stat">
+          <b id="statSubjects">0/4</b>
+          <span>Subjects</span>
+        </div>
+        <div class="ov-stat">
+          <b id="statExams">0/4</b>
+          <span>Exams Taken</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAK -->
+  <section class="section" id="streakSection" style="display:none">
+    <div class="streak-banner">
+      <div class="streak-icon">🔥</div>
+      <div class="streak-body">
+        <h3>Day Streak!</h3>
+        <p id="streakMsg">ယနေ့ လေ့လာမှု ဆက်လုပ်ခြင်းဖြင့် သင့်အကျင့်ကောင်းကို ထိန်းထားလိုက်ပါ။</p>
+      </div>
+      <div class="streak-days">
+        <span id="streakNum">0</span>
+        <small>DAYS</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBJECTS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>📚 ဘာသာရပ် Progress</h2>
+      <span class="hint">Lesson / Exercise အလိုက်</span>
+    </div>
+    <div class="subject-grid" id="subjectGrid"></div>
+  </section>
+
+  <!-- EXAM SCORES -->
+  <section class="section">
+    <div class="section-head">
+      <h2>✍️ Exam Scores</h2>
+      <span class="hint">Best Scores</span>
+    </div>
+    <div class="exam-grid" id="examGrid"></div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>🏆 Achievements</h2>
+      <span class="hint">Unlock as you learn</span>
+    </div>
+    <div class="achievements" id="achievements"></div>
+  </section>
+
+  <!-- RECENT ACTIVITY -->
+  <section class="section" id="activitySection" style="display:none">
+    <div class="section-head">
+      <h2>📅 Recent Activity</h2>
+      <span class="hint">သင့် မှတ်တမ်း</span>
+    </div>
+    <div class="activity-list" id="activityList"></div>
+  </section>
+
+  <!-- RESET -->
+  <section class="section">
+    <div class="section-head">
+      <h2>⚙️ Actions</h2>
+    </div>
+    <button class="reset-btn" id="resetBtn">
+      🗑️ Progress အားလုံး Reset လုပ်ရန်
+    </button>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="brand">
+    <span class="mark">GED</span>
+    <span>GED Myanmar</span>
+  </div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){return document.getElementById(id)};
+
+  /* THEME */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  var themeBtn = $('themeBtn'), themeIcon = $('themeIcon');
+  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    themeIcon.textContent = t === 'dark' ? '☀️' : '🌙';
+    if(themeColorMeta) themeColorMeta.setAttribute('content', t === 'dark' ? '#0b1220' : '#f8fafc');
+    try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  themeBtn.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* CONFIG */
+  var SUBJECTS = [
+    { id:'math', name:'Mathematical Reasoning', short:'Math', icon:'📐', href:'math.html',
+      storeKey:'ged:math:v3', examKey:'math', total: 1800, color:'#8b5cf6' },
+    { id:'rla', name:'Reasoning Through Language Arts', short:'RLA', icon:'📖', href:'rla.html',
+      storeKey:'ged:rla:v1', examKey:'rla', total: 1800, color:'#3b82f6' },
+    { id:'science', name:'Science', short:'Science', icon:'🔬', href:'science.html',
+      storeKey:'ged:science:v1', examKey:'science', total: 1800, color:'#10b981' },
+    { id:'social', name:'Social Studies', short:'Social', icon:'🌍', href:'social.html',
+      storeKey:'ged:social:v1', examKey:'social', total: 1800, color:'#f59e0b' }
+  ];
+
+  var EXAM_INFO = [
+    { key:'math', name:'Math Exam', icon:'📐', href:'mathexam.html', color:'#8b5cf6' },
+    { key:'rla', name:'RLA Exam', icon:'📖', href:'rlaexam.html', color:'#3b82f6' },
+    { key:'science', name:'Science Exam', icon:'🔬', href:'scienceexam.html', color:'#10b981' },
+    { key:'social', name:'Social Exam', icon:'🌍', href:'socialexam.html', color:'#f59e0b' }
+  ];
+
+  /* READ PROGRESS */
+  function readProgress(storeKey){
+    if(!storeKey) return {done:0, pct:0};
+    try {
+      var data = JSON.parse(localStorage.getItem(storeKey)) || {};
+      var done = 0;
+      Object.keys(data).forEach(function(gk){
+        var g = data[gk];
+        if(g && typeof g === 'object'){
+          Object.keys(g).forEach(function(k){ if(g[k] === true) done++; });
+        }
+      });
+      var pct = Math.min(100, Math.round(done / 1800 * 100));
+      return {done:done, pct:pct};
+    } catch(e){ return {done:0, pct:0}; }
+  }
+
+  function readScores(){
+    try { return JSON.parse(localStorage.getItem('ged:pretest:scores')) || {}; }
+    catch(e){ return {}; }
+  }
+
+  function readSession(){
+    try { return JSON.parse(localStorage.getItem('ged:session')); }
+    catch(e){ return null; }
+  }
+
+  /* RENDER OVERALL */
+  function renderOverall(subjects, scores){
+    var totalDone = 0;
+    var activeSubjects = 0;
+    subjects.forEach(function(s){
+      totalDone += s.progress.done;
+      if(s.progress.done > 0) activeSubjects++;
+    });
+    var totalExercises = 1800 * 4;
+    var overallPct = Math.min(100, Math.round(totalDone / totalExercises * 100));
+
+    $('overallPct').textContent = overallPct + '%';
+    $('statDone').textContent = totalDone.toLocaleString();
+    $('statSubjects').textContent = activeSubjects + '/4';
+
+    var examsTaken = 0;
+    EXAM_INFO.forEach(function(e){ if(scores[e.key]) examsTaken++; });
+    $('statExams').textContent = examsTaken + '/4';
+
+    var ring = $('mainRing');
+    var C = 2 * Math.PI * 70;
+    ring.style.strokeDasharray = C;
+    ring.style.strokeDashoffset = C;
+    setTimeout(function(){
+      ring.style.strokeDashoffset = C * (1 - overallPct / 100);
+    }, 200);
+
+    var session = readSession();
+    if(session && session.name){
+      $('welcomeName').textContent = '👋 ' + session.name + ' ၏ Progress';
+    }
+
+    var msg;
+    if(overallPct === 0) msg = 'ဘာသာရပ်တစ်ခုကို စတင်လေ့လာပါ။ သင်စတင်လိုက်သည်နှင့် progress ကို ဒီနေရာမှာ ပြပါမည်။';
+    else if(overallPct < 20) msg = 'ကောင်းသော အစပြုမှု! ဆက်လက်လေ့ကျင့်ရန် လိုအပ်သည်။';
+    else if(overallPct < 50) msg = 'သင် တစ်ဝက်နီးပါး တိုးတက်နေပါပြီ။ ဆက်လုပ်ပါ။';
+    else if(overallPct < 80) msg = 'အလွန်ကောင်း! သင်သည် သင့်ပန်းတိုင်နှင့် နီးကပ်နေပြီ။';
+    else msg = '🌟 ထူးချွန်သော တိုးတက်မှု! သင်သည် GED အတွက် အသင့်နီးပါးဖြစ်နေပြီ။';
+    $('overallMsg').textContent = msg;
+  }
+
+  /* RENDER SUBJECTS */
+  function renderSubjects(subjects){
+    var grid = $('subjectGrid');
+    grid.innerHTML = '';
+    subjects.forEach(function(s, i){
+      var p = s.progress;
+      var badgeCls = 'empty';
+      var badgeText = '— မစသေး';
+      if(p.pct >= 80){ badgeCls = 'done'; badgeText = '✓ ပြီးဆုံး'; }
+      else if(p.pct >= 40){ badgeCls = 'mid'; badgeText = '⚡ တိုးတက်နေ'; }
+      else if(p.pct > 0){ badgeCls = 'early'; badgeText = '🚀 စတင်'; }
+
+      var hex = s.color + '1f';
+      var card = document.createElement('div');
+      card.className = 'subject-card';
+      card.style.setProperty('--ac', s.color);
+      card.style.animationDelay = (i * 70) + 'ms';
+      card.innerHTML =
+        '<div class="sc-head">'+
+          '<span class="sc-icon" style="background:'+hex+';">'+s.icon+'</span>'+
+          '<span class="sc-badge '+badgeCls+'">'+badgeText+'</span>'+
+        '</div>'+
+        '<h3>'+s.name+'</h3>'+
+        '<p class="sub">'+s.short+' · '+s.total.toLocaleString()+' exercises</p>'+
+        '<div class="sc-progress">'+
+          '<span class="sc-bar"><i style="width:0%;background:'+s.color+'" data-target="'+p.pct+'"></i></span>'+
+          '<span class="sc-pct" style="color:'+s.color+'">'+p.pct+'%</span>'+
+        '</div>'+
+        '<div class="sc-meta">'+
+          '<div class="sc-meta-item"><b>'+p.done.toLocaleString()+'</b><span>Done</span></div>'+
+          '<div class="sc-meta-item"><b>'+(1800-p.done).toLocaleString()+'</b><span>Left</span></div>'+
+          '<div class="sc-meta-item"><b>'+p.pct+'%</b><span>Progress</span></div>'+
+        '</div>'+
+        '<a class="sc-link" href="'+s.href+'" style="background:'+s.color+'">▶ ဆက်လေ့လာရန်</a>';
+      grid.appendChild(card);
+    });
+
+    requestAnimationFrame(function(){
+      setTimeout(function(){
+        grid.querySelectorAll('.sc-bar i').forEach(function(bar){
+          bar.style.width = bar.getAttribute('data-target') + '%';
+        });
+      }, 250);
+    });
+  }
+
+  /* RENDER EXAMS */
+  function renderExams(scores){
+    var grid = $('examGrid');
+    grid.innerHTML = '';
+    var anyTaken = false;
+
+    EXAM_INFO.forEach(function(e, i){
+      var rec = scores[e.key];
+      var card = document.createElement('div');
+      card.className = 'exam-card';
+      card.style.setProperty('--ac', e.color);
+      card.style.animationDelay = (i * 60) + 'ms';
+
+      var bodyHtml;
+      if(rec && rec.pct != null){
+        anyTaken = true;
+        var pct = rec.pct;
+        var scoreColor = pct >= 75 ? '#16a34a' : (pct >= 50 ? '#f59e0b' : '#dc2626');
+        var rank = pct >= 85 ? '🌟 College Ready' :
+                   pct >= 70 ? '✅ Passed' :
+                   pct >= 50 ? '📚 Near Passing' : '💪 Needs Work';
+        bodyHtml =
+          '<div class="ec-score">'+
+            '<b style="color:'+scoreColor+'">'+pct+'%</b>'+
+            '<span>'+rec.score+'/'+rec.total+'</span>'+
+          '</div>'+
+          '<div class="ec-bar"><i style="width:0%;background:'+scoreColor+'" data-target="'+pct+'"></i></div>'+
+          '<div class="ec-meta">'+rank+(rec.date ? ' · '+rec.date : '')+'</div>';
+      } else {
+        bodyHtml = '<div class="ec-notyet">📝 Not attempted yet</div>';
+      }
+
+      card.innerHTML =
+        '<span class="ec-icon">'+e.icon+'</span>'+
+        '<h4>'+e.name+'</h4>'+
+        '<p class="ec-sub">Official Format · 46 Qs</p>'+
+        bodyHtml+
+        '<a class="ec-link" href="'+e.href+'">'+(rec ? '🔁 Retake' : '▶ Start')+'</a>';
+      grid.appendChild(card);
+    });
+
+    requestAnimationFrame(function(){
+      setTimeout(function(){
+        grid.querySelectorAll('.ec-bar i').forEach(function(bar){
+          bar.style.width = bar.getAttribute('data-target') + '%';
+        });
+      }, 300);
+    });
+  }
+
+  /* RENDER ACHIEVEMENTS */
+  function renderAchievements(subjects, scores){
+    var totalDone = subjects.reduce(function(a,s){return a + s.progress.done}, 0);
+    var examCount = 0;
+    var highScore = 0;
+    var passed = 0;
+    EXAM_INFO.forEach(function(e){
+      var r = scores[e.key];
+      if(r && r.pct != null){
+        examCount++;
+        if(r.pct > highScore) highScore = r.pct;
+        if(r.pct >= 70) passed++;
+      }
+    });
+
+    var streak = 0;
+    try { streak = parseInt(localStorage.getItem('ged:streak') || '0', 10) || 0; } catch(e){}
+
+    var list = [
+      { id:'first', icon:'🌱', title:'First Steps', desc:'Exercise ၅၀ ပြီး', unlocked: totalDone >= 50 },
+      { id:'century', icon:'💯', title:'Century', desc:'Exercise ၅၀၀ ပြီး', unlocked: totalDone >= 500 },
+      { id:'thousand', icon:'🏅', title:'Marathoner', desc:'Exercise ၁,၀၀၀ ပြီး', unlocked: totalDone >= 1000 },
+      { id:'exam1', icon:'📝', title:'Exam Starter', desc:'Exam ၁ ခု ဖြေ', unlocked: examCount >= 1 },
+      { id:'examall', icon:'🎯', title:'All-Rounder', desc:'Exam ၄ ခုလုံး ဖြေ', unlocked: examCount >= 4 },
+      { id:'pass', icon:'✅', title:'Passing', desc:'Exam ၁ ခု အောင် (70%+)', unlocked: passed >= 1 },
+      { id:'high', icon:'🌟', title:'High Scorer', desc:'Exam တွင် 85%+', unlocked: highScore >= 85 },
+      { id:'streak7', icon:'🔥', title:'Consistent', desc:'Day ၇ ရက် Streak', unlocked: streak >= 7 }
+    ];
+
+    var grid = $('achievements');
+    grid.innerHTML = '';
+    list.forEach(function(a){
+      var el = document.createElement('div');
+      el.className = 'ach' + (a.unlocked ? ' unlocked' : '');
+      el.innerHTML =
+        '<div class="ach-icon">'+a.icon+'</div>'+
+        '<h4>'+a.title+'</h4>'+
+        '<p>'+a.desc+'</p>';
+      grid.appendChild(el);
+    });
+  }
+
+  /* RENDER STREAK */
+  function renderStreak(){
+    var streak = 0;
+    var lastVisit = null;
+    try { streak = parseInt(localStorage.getItem('ged:streak') || '0', 10) || 0; } catch(e){}
+    try { lastVisit = localStorage.getItem('ged:lastVisit'); } catch(e){}
+
+    if(streak > 0){
+      $('streakSection').style.display = 'block';
+      $('streakNum').textContent = streak;
+      var msg;
+      if(streak === 1) msg = 'ကောင်းသော အစ! မနက်ဖန်လည်း ပြန်လာခဲ့ပါ။';
+      else if(streak < 7) msg = 'သင်သည် '+streak+' ရက် ဆက်တိုက် လေ့လာနေသည်။ ဆက်လုပ်ပါ!';
+      else if(streak < 30) msg = '🔥 '+streak+' ရက် Streak! အလွန်ကောင်းသော အကျင့်။';
+      else msg = '🌟 '+streak+' ရက် Streak — သင် ထူးချွန်သူတစ်ယောက် ဖြစ်သည်!';
+      $('streakMsg').textContent = msg;
+    } else {
+      $('streakSection').style.display = 'none';
+    }
+  }
+
+  /* RENDER ACTIVITY */
+  function renderActivity(subjects, scores){
+    var activities = [];
+    subjects.forEach(function(s){
+      if(s.progress.done > 0){
+        activities.push({
+          icon: s.icon,
+          name: s.name,
+          desc: s.progress.done.toLocaleString() + ' exercises completed',
+          score: s.progress.pct + '%',
+          color: s.color,
+          weight: 1
+        });
+      }
+    });
+    EXAM_INFO.forEach(function(e){
+      var r = scores[e.key];
+      if(r && r.pct != null){
+        activities.push({
+          icon: e.icon,
+          name: e.name,
+          desc: r.score + '/' + r.total + ' correct' + (r.set ? ' · Set ' + r.set : ''),
+          score: r.pct + '%',
+          color: e.color,
+          weight: 2,
+          date: r.date
+        });
+      }
+    });
+
+    if(activities.length === 0){
+      $('activitySection').style.display = 'none';
+      return;
+    }
+    $('activitySection').style.display = 'block';
+
+    var list = $('activityList');
+    list.innerHTML = '';
+    activities.forEach(function(a, i){
+      var el = document.createElement('div');
+      el.className = 'act-item';
+      el.style.setProperty('--ac', a.color);
+      el.style.animationDelay = (i * 50) + 'ms';
+      el.innerHTML =
+        '<span class="act-icon">'+a.icon+'</span>'+
+        '<div class="act-body">'+
+          '<b>'+a.name+'</b>'+
+          '<span>'+a.desc+(a.date ? ' · '+a.date : '')+'</span>'+
+        '</div>'+
+        '<span class="act-score" style="color:'+a.color+'">'+a.score+'</span>';
+      list.appendChild(el);
+    });
+  }
+
+  /* RESET */
+  $('resetBtn').addEventListener('click', function(){
+    if(!confirm('⚠️ သတိပေးချက်!\n\nProgress အားလုံး (Math, RLA, Science, Social, Exam scores) ကို ဖျက်ပစ်မည်။\n\nဆက်လုပ်မလား?')) return;
+    if(!confirm('နောက်ဆုံး အတည်ပြုချက်: Reset လုပ်ရန် OK ကို နှိပ်ပါ။')) return;
+    try {
+      localStorage.removeItem('ged:math:v3');
+      localStorage.removeItem('ged:rla:v1');
+      localStorage.removeItem('ged:science:v1');
+      localStorage.removeItem('ged:social:v1');
+      localStorage.removeItem('ged:pretest:scores');
+      localStorage.removeItem('ged:streak');
+      localStorage.removeItem('ged:lastVisit');
+      toast('🗑️ Progress အားလုံး Reset ပြီးပါပြီ', 'ok');
+      setTimeout(function(){ location.reload(); }, 900);
+    } catch(e){
+      toast('Error: Reset မအောင်မြင်ပါ', 'err');
+    }
+  });
+
+  /* TOAST */
+  var toastTimer;
+  function toast(msg, type){
+    var t = $('toast');
+    t.textContent = msg;
+    t.className = 'toast show ' + (type || 'ok');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2400);
+  }
+
+  /* INIT */
+  function init(){
+    var subjects = SUBJECTS.map(function(s){
+      return Object.assign({}, s, { progress: readProgress(s.storeKey) });
+    });
+    var scores = readScores();
+
+    renderOverall(subjects, scores);
+    renderSubjects(subjects);
+    renderExams(scores);
+    renderAchievements(subjects, scores);
+    renderStreak();
+    renderActivity(subjects, scores);
+  }
+
+  init();
+
+  /* Refresh when page becomes visible (returning from exam) */
+  window.addEventListener('pageshow', function(e){
+    if(e.persisted) init();
+  });
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) init();
+  });
+
+})();
+</script>
+</body>
+</html>

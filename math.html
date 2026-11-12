@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Math — Full Course (1,800 Exercises)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:rgba(15,23,42,.09);
+--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--radius:18px;--safe-top:env(safe-area-inset-top,0px);
+--safe-bottom:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+--shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);--ac:#4f46e5}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(700px 420px at 8% -8%,rgba(79,70,229,.10),transparent 65%),
+radial-gradient(700px 420px at 100% 4%,rgba(16,185,129,.08),transparent 65%)}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+.home-top{padding:calc(28px + var(--safe-top)) 20px 20px;max-width:1080px;margin:0 auto;text-align:center}
+.home-top .logo{width:64px;height:64px;border-radius:18px;margin:0 auto 16px;display:grid;place-items:center;
+font-size:15px;font-weight:800;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#4f46e5,#8b5cf6);
+box-shadow:0 12px 28px -10px rgba(79,70,229,.8)}
+.home-top h1{margin:0 0 6px;font-size:clamp(22px,5.5vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.home-top p{margin:0;color:var(--muted);font-size:clamp(13px,3.4vw,15px)}
+.overall{max-width:440px;margin:20px auto 0;background:var(--card);border:1px solid var(--border);
+border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.overall-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.overall-row b{font-size:22px;font-weight:800;color:var(--ac)}
+.overall-row span{font-size:12.5px;color:var(--muted);font-weight:600}
+.overall-bar{height:8px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+.overall-bar i{display:block;height:100%;width:0;border-radius:999px;
+background:linear-gradient(90deg,var(--ac),#8b5cf6);transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.grid{max-width:1080px;margin:0 auto;padding:0 16px;display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;display:flex;flex-direction:column;padding:20px;border-radius:var(--radius);
+background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);cursor:pointer;
+transition:transform .28s cubic-bezier(.22,.8,.28,1),box-shadow .28s,border-color .28s;overflow:hidden;isolation:isolate;
+font-family:inherit;text-align:left;color:inherit;animation:cardIn .5s cubic-bezier(.22,.8,.28,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;
+background:radial-gradient(130% 85% at 50% -25%,color-mix(in srgb,var(--c) 14%,transparent),transparent 62%);
+opacity:0;transition:opacity .3s;pointer-events:none}
+@media(hover:hover){
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--c) 42%,var(--border))}
+.card:hover::after{opacity:1}
+.card:hover .c-icon{transform:scale(1.08) rotate(-5deg)}
+.card:hover .c-arrow{transform:translateX(4px);background:var(--c);color:#fff;border-color:transparent}}
+.card:active{transform:scale(.982)}
+.c-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.c-icon{width:52px;height:52px;flex:none;display:grid;place-items:center;font-size:26px;
+border-radius:16px;background:color-mix(in srgb,var(--c) 14%,transparent);
+transition:transform .3s cubic-bezier(.22,.8,.28,1)}
+.c-arrow{width:30px;height:30px;flex:none;display:grid;place-items:center;font-size:14px;
+border-radius:50%;border:1px solid var(--border);color:var(--muted);
+transition:transform .28s,background .28s,color .28s,border-color .28s}
+.card h3{margin:14px 0 0;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.card .c-desc{margin:5px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7;flex:1}
+.c-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;
+border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--muted)}
+.c-meta b{color:var(--c);font-weight:800;font-size:13px}
+.c-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden;margin-top:8px}
+.c-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--c);
+transition:width .6s cubic-bezier(.22,.8,.28,1)}
+.lesson-list{max-width:880px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;gap:10px}
+.lesson-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card);
+border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);cursor:pointer;
+font-family:inherit;text-align:left;color:inherit;transition:transform .2s,box-shadow .25s,border-color .25s;
+animation:cardIn .4s cubic-bezier(.22,.8,.28,1) both}
+@media(hover:hover){.lesson-row:hover{transform:translateX(4px);box-shadow:var(--shadow-lg);
+border-color:color-mix(in srgb,var(--ac) 35%,var(--border))}}
+.lesson-row:active{transform:scale(.985)}
+.l-id{flex:none;font-size:12.5px;font-weight:800;color:#fff;padding:5px 10px;border-radius:10px;
+background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 60%,#000));
+font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+.l-body{flex:1;min-width:0}
+.l-body h4{margin:0;font-size:14.5px;font-weight:700;line-height:1.35;letter-spacing:-.01em}
+.l-body p{margin:3px 0 0;font-size:11.5px;color:var(--muted);font-weight:600}
+.l-prog{flex:none;width:60px;text-align:right}
+.l-prog b{display:block;font-size:12px;color:var(--ac);font-weight:800;font-variant-numeric:tabular-nums}
+.l-prog .bar{height:5px;border-radius:999px;background:rgba(15,23,42,.08);overflow:hidden;margin-top:5px}
+.l-prog .bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.gv-header{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 16px 12px}
+.gv-header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;font-size:13px;
+font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s}
+.back-btn:active{transform:scale(.95)}
+.gv-title{flex:1;min-width:0}
+.gv-title h2{margin:0;font-size:clamp(14px,3.8vw,17px);font-weight:800;letter-spacing:-.01em;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gv-title p{margin:2px 0 0;font-size:11.5px;color:var(--muted);font-weight:500}
+.prog-head{max-width:960px;margin:14px auto 0;padding:0 16px}
+.prog-head-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.prog-head-top b{font-size:15px;font-weight:800;color:var(--ac)}
+.prog-head-top span{font-size:11.5px;color:var(--muted);font-weight:600}
+.prog-head-bar{height:7px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+.prog-head-bar i{display:block;height:100%;width:0;border-radius:999px;background:var(--ac);
+transition:width .5s cubic-bezier(.22,.8,.28,1)}
+.toolbar{max-width:960px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+font-size:12.5px;font-weight:600;cursor:pointer;box-shadow:0 1px 3px rgba(15,23,42,.04);
+transition:transform .18s,background .2s,color .2s}
+.btn:active{transform:scale(.96)}
+.btn.danger{color:var(--red);border-color:rgba(220,38,38,.3)}
+#exerciseList{max-width:960px;margin:0 auto;padding:16px}
+.exercise{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+padding:18px;margin-bottom:12px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ex-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ex-num{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;
+font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 70%,#000));
+font-variant-numeric:tabular-nums}
+.ex-status{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;color:var(--muted);
+background:rgba(15,23,42,.06)}
+.ex-status.correct{color:#14532d;background:#bbf7d0}
+.ex-status.wrong{color:#7f1d1d;background:#fecaca}
+.ex-q{font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500}
+.ex-q b{font-weight:800}
+.ex-opts{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:520px){.ex-opts{grid-template-columns:1fr 1fr}}
+.opt{text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);
+background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+cursor:pointer;transition:all .18s;line-height:1.5}
+.opt:active{transform:scale(.98)}
+.opt:not(:disabled):hover{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 4%,transparent)}
+.opt:disabled{cursor:default;opacity:.95}
+.opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700}
+.opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+.opt .ltr{font-weight:800;margin-right:6px;color:var(--muted)}
+.opt.correct .ltr{color:#14532d}
+.opt.wrong .ltr{color:#7f1d1d}
+.ex-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.show-sol{padding:8px 13px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+background:rgba(245,158,11,.08);color:#92400e;font-family:inherit;font-size:12.5px;
+font-weight:700;cursor:pointer;transition:all .18s}
+.show-sol:active{transform:scale(.97)}
+.show-sol.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent}
+.ex-sol{margin-top:12px;padding:16px;border-radius:12px;background:color-mix(in srgb,var(--ac) 5%,transparent);
+border-left:3px solid var(--ac);font-size:13.5px;line-height:1.8;animation:fadeUp .3s ease both}
+.ex-sol .sol-lbl{display:block;font-weight:800;font-size:11px;color:var(--ac);
+text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ex-sol .sol-why{margin-bottom:14px}
+.ex-sol ol{margin:6px 0 0;padding-left:20px}
+.ex-sol ol li{margin-bottom:5px;line-height:1.7}
+.ex-sol .sol-ans{display:inline-block;margin-top:12px;padding:5px 12px;border-radius:8px;
+background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="homeScreen" class="screen active">
+  <div class="home-top">
+    <div class="logo">GED</div>
+    <h1>GED Math — Full Course</h1>
+    <p>6 Groups · 60 Lessons · 1,800 Practice Questions</p>
+    <div class="overall">
+      <div class="overall-row"><b id="overallPct">0%</b><span id="overallCount">0 / 1,800 ပြီးစီး</span></div>
+      <div class="overall-bar"><i id="overallBar"></i></div>
+    </div>
+  </div>
+  <div class="grid" id="groupGrid"></div>
+</div>
+
+<div id="groupScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromGroup">← Back</button>
+      <div class="gv-title"><h2 id="gTitle"></h2><p id="gSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="gPct">0%</b><span id="gCount">0 / 300</span></div>
+    <div class="prog-head-bar"><i id="gBar"></i></div>
+  </div>
+  <div class="lesson-list" id="lessonList"></div>
+</div>
+
+<div id="lessonScreen" class="screen">
+  <div class="gv-header">
+    <div class="gv-header-inner">
+      <button class="back-btn" id="backFromLesson">← Back</button>
+      <div class="gv-title"><h2 id="lTitle"></h2><p id="lSub"></p></div>
+    </div>
+  </div>
+  <div class="prog-head">
+    <div class="prog-head-top"><b id="lPct">0%</b><span id="lCount">0 / 30</span></div>
+    <div class="prog-head-bar"><i id="lBar"></i></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn" id="btnShowAll">💡 Show All Answers</button>
+    <button class="btn" id="btnHideAll">🙈 Hide All Answers</button>
+    <button class="btn danger" id="btnReset">🔄 Reset</button>
+  </div>
+  <div id="exerciseList"></div>
+</div>
+
+<script>
+/* ============================================================
+   HELPERS
+============================================================ */
+var sr=function(s){var x=Math.sin(s*12.9898+78.233)*43758.5453;return x-Math.floor(x)};
+var ri=function(s,a,b){return Math.floor(sr(s)*(b-a+1))+a};
+var rf=function(s,a,b){var v=sr(s)*(b-a)+a;return Math.round(v*100)/100};
+var pick=function(s,arr){return arr[Math.floor(sr(s)*arr.length)]};
+var shuffle=function(a,s){var r=a.slice();for(var i=r.length-1;i>0;i--){var j=Math.floor(sr(s+i*13.37)*(i+1));var tmp=r[i];r[i]=r[j];r[j]=tmp}return r};
+var gcd=function(a,b){return b?gcd(b,a%b):a};
+var fmt=function(n){return Number(n).toLocaleString('en-US')};
+var r2=function(n){return Math.round(n*100)/100};
+
+function mcq(correct,distractors,seed){
+  var c=String(correct);var opts=[c];
+  for(var i=0;i<distractors.length;i++){if(opts.length>=4)break;var d=String(distractors[i]);if(d!==c&&opts.indexOf(d)===-1)opts.push(d)}
+  var k=1;
+  while(opts.length<4){var n=Number(c);var alt=isFinite(n)?String(r2(n+k*3)):c+' #'+k;
+    if(opts.indexOf(alt)===-1)opts.push(alt);k++;if(k>40)break}
+  var sh=shuffle(opts,seed);return{options:sh,correctIndex:sh.indexOf(c)};
+}
+
+/* ============================================================
+   GROUP 1 — NUMBER SENSE & OPERATIONS (10 lessons)
+============================================================ */
+var G1 = [
+  function(s){ // 1.1 Fractions from word problems
+    var total=ri(s,20,80)*500,n=ri(s+1,5,35)*50,g=gcd(n,total),c=(n/g)+'/'+(total/g);
+    var m=mcq(c,[n+'/'+total,(total-n)+'/'+total,(n/g+1)+'/'+(total/g),(n/g)+'/'+(total/g+1)],s+2);
+    return{q:'Out of <b>'+fmt(total)+'</b> voters in a city, <b>'+fmt(n)+'</b> voted for a particular candidate. What fraction of voters voted for this candidate?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'မဲဆန္ဒရှင်စုစုပေါင်း '+fmt(total)+' အနက် '+fmt(n)+' ဦးက မဲပေးခဲ့သည်။ အပိုင်းကိန်းမှာ '+n+'/'+total+' ဖြစ်ပြီး ၎င်းကို simplest form သို့ ရိုးရှင်းရမည်။',
+      steps:['အပိုင်းကိန်း = '+n+'/'+total,'GCD('+n+', '+total+') = '+g,'('+n+'÷'+g+') / ('+total+'÷'+g+') = '+c],
+      answer:c};
+  },
+  function(s){ // 1.2 PEMDAS
+    var a=ri(s,3,15),b=ri(s+1,2,8),c=ri(s+2,5,15),d=ri(s+3,1,5),e=c-d,correct=a+b*e;
+    var m=mcq(correct,[(a+b)*e,a+b*c-d,correct+ri(s+4,1,6),correct-ri(s+5,1,5)],s+6);
+    return{q:'Simplify: <b>'+a+' + '+b+' × ('+c+' − '+d+')</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'PEMDAS အရ ကွင်းအတွင်း → ထပ်ကိန်း → မြှောက်/စား → ပေါင်း/နုတ် အစီအစဉ်အတိုင်း တွက်ရသည်။',
+      steps:['ကွင်းအတွင်း: '+c+' − '+d+' = '+e,'မြှောက်: '+b+' × '+e+' = '+(b*e),'ပေါင်း: '+a+' + '+(b*e)+' = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 1.3 Fraction → Decimal
+    var fr=[['1/2','0.5'],['1/4','0.25'],['3/4','0.75'],['1/5','0.2'],['2/5','0.4'],['3/5','0.6'],['4/5','0.8'],
+      ['1/8','0.125'],['3/8','0.375'],['5/8','0.625'],['7/8','0.875'],['1/10','0.1'],['3/10','0.3'],['7/10','0.7'],
+      ['9/10','0.9'],['1/16','0.0625'],['3/16','0.1875'],['5/16','0.3125'],['7/16','0.4375'],['1/25','0.04'],
+      ['3/25','0.12'],['1/20','0.05'],['7/20','0.35'],['9/20','0.45'],['13/20','0.65'],['1/40','0.025']];
+    var p=pick(s,fr),f=p[0],d=p[1];
+    var ds=fr.filter(function(x){return x[1]!==d}).map(function(x){return x[1]});
+    var m=mcq(d,shuffle(ds,s+1).slice(0,3),s+2);
+    return{q:'What is the decimal equivalent of <b>'+f+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'အပိုင်းကိန်းကို ဒသမကိန်းအဖြစ် ပြောင်းရန် ပိုင်းဝေကို ပိုင်းခြေဖြင့် စားရသည်။',
+      steps:[f+' = '+f.split('/')[0]+' ÷ '+f.split('/')[1],f.split('/')[0]+' ÷ '+f.split('/')[1]+' = '+d,'အဖြေ = '+d],
+      answer:d};
+  },
+  function(s){ // 1.4 Percent of a number
+    var pct=pick(s,[5,10,12,15,20,25,30,35,40,45,50,60,75]),num=ri(s+1,4,40)*20,correct=r2(pct/100*num);
+    var m=mcq(correct,[pct*num,r2(correct+ri(s+2,1,8)),r2(correct-ri(s+3,1,8)),r2(num/pct)],s+4);
+    return{q:'What is <b>'+pct+'%</b> of <b>'+fmt(num)+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ရာခိုင်နှုန်းကို ဒသမပြောင်း ('+pct+'% = '+(pct/100)+') ပြီး ကိန်းနှင့် မြှောက်ရသည်။',
+      steps:[pct+'% = '+(pct/100),(pct/100)+' × '+fmt(num)+' = '+correct,'အဖြေ = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 1.5 Rounding
+    var val=ri(s,12345,98765);
+    var places=[{p:10,n:'ten'},{p:100,n:'hundred'},{p:1000,n:'thousand'},{p:10000,n:'ten-thousand'}];
+    var pl=pick(s+1,places),p=pl.p,n=pl.n;
+    var correct=Math.round(val/p)*p;
+    var d=Math.floor((val%(p*10))/p);
+    var m=mcq(correct,[Math.floor(val/p)*p,correct+p,correct-p],s+2);
+    var step3 = d>=5 ? (d+' ≥ 5 → '+n+' နေရာကို 1 တိုးပါ') : (d+' < 5 → '+n+' နေရာကို မတိုးပါ');
+    return{q:'Round <b>'+fmt(val)+'</b> to the nearest <b>'+n+'</b>.',
+      options:m.options,correctIndex:m.correctIndex,
+      why:n+' နေရာ၏ ညာဘက်ဂဏန်း ('+d+') သည် 5 သို့မဟုတ် 5 ထက်ကြီးပါက တိုးသည်။',
+      steps:[fmt(val)+' ကို '+n+' နေရာအထိ ကြည့်ပါ',n+' နေရာ၏ ညာဘက်ဂဏန်း = '+d,step3,'ရလဒ် = '+fmt(correct)],
+      answer:String(correct)};
+  },
+  function(s){ // 1.6 GCD word problem
+    var a=ri(s,2,8)*6,b=ri(s+1,2,8)*6,g=gcd(a,b);
+    var m=mcq(g,[a+b,a*b,g*2,g+2],s+2);
+    return{q:'A teacher has <b>'+a+'</b> pencils and <b>'+b+'</b> erasers. She wants to make identical gift bags with no items left over, using the greatest number of bags possible. How many bags can she make?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'အိတ်အရေအတွက် အများဆုံးရရန် '+a+' နှင့် '+b+' ၏ GCD ကို ရှာရသည်။',
+      steps:[a+' နှင့် '+b+' ၏ factors များကို ရှာပါ','GCD('+a+', '+b+') = '+g,
+        'အိတ်အရေအတွက် = '+g,'အိတ်တစ်ခုစီ — ခဲတံ '+(a/g)+'၊ ခဲဖျက် '+(b/g)],
+      answer:String(g)};
+  },
+  function(s){ // 1.7 Scientific notation
+    var coef=r2(ri(s,1,9)+ri(s+1,1,9)/10),exp=ri(s+2,3,7),num=coef*Math.pow(10,exp);
+    var correct=coef+' × 10^'+exp;
+    var m=mcq(correct,[coef+' × 10^'+(exp+1),coef+' × 10^'+(exp-1),(coef*10)+' × 10^'+(exp-1)],s+3);
+    return{q:'Write <b>'+fmt(num)+'</b> in scientific notation.',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Scientific notation ပုံစံ — a × 10ⁿ (1 ≤ a < 10)။',
+      steps:['မူလကိန်း = '+fmt(num),'ဒသမကိန်းကို ရွှေ့ပြီး a = '+coef,'ရွှေ့သော နေရာ = '+exp,'ထို့ကြောင့် '+coef+' × 10^'+exp],
+      answer:correct};
+  },
+  function(s){ // 1.8 Exponent rules
+    var base=ri(s,2,6),e1=ri(s+1,2,5),e2=ri(s+2,1,3),correct=base+'^'+(e1+e2),val=Math.pow(base,e1+e2);
+    var m=mcq(correct,[base+'^'+(e1*e2),(base*base)+'^'+(e1+e2),base+'^'+(e1-e2)],s+3);
+    return{q:'Simplify: <b>'+base+'^'+e1+' × '+base+'^'+e2+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'တူညီသော base ရှိ ထပ်ကိန်းများ မြှောက်သောအခါ exponent များ ပေါင်းရသည် — aᵐ × aⁿ = aᵐ⁺ⁿ။',
+      steps:[base+'^'+e1+' × '+base+'^'+e2,'= '+base+'^('+e1+' + '+e2+')','= '+base+'^'+(e1+e2)+' = '+fmt(val)],
+      answer:correct};
+  },
+  function(s){ // 1.9 Compare fractions
+    var fr=[['2/3','3/5'],['3/4','5/7'],['5/8','2/3'],['7/10','3/4'],['4/5','5/6'],['1/2','2/5'],['7/8','5/6'],['3/5','5/9'],['11/12','9/10']];
+    var p=pick(s,fr),a=p[0],b=p[1],av=eval(a),bv=eval(b),correct=av>bv?a:b;
+    var m=mcq(correct,[av>bv?b:a,'They are equal','Cannot be determined'],s+1);
+    return{q:'Which fraction is greater: <b>'+a+'</b> or <b>'+b+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'အပိုင်းကိန်းနှစ်ခုကို ဒသမပြောင်းပြီး နှိုင်းယှဉ်သည်။',
+      steps:[a+' = '+r2(av).toFixed(4),b+' = '+r2(bv).toFixed(4),
+        r2(av).toFixed(4)+' '+(av>bv?'>':'<')+' '+r2(bv).toFixed(4),correct+' ပိုကြီးသည်'],
+      answer:correct};
+  },
+  function(s){ // 1.10 Integer operations in context
+    var t=ri(s,5,30),drop=ri(s+1,10,40),correct=t-drop;
+    var m=mcq(correct,[t+drop,drop-t,-t-drop],s+2);
+    return{q:'The temperature was <b>'+t+'°F</b> in the morning. By evening, it dropped by <b>'+drop+'°F</b>. What was the temperature in the evening?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'အပူချိန် ကျဆင်းသောအခါ မူလအပူချိန်မှ ကျဆင်းမှုကို နုတ်ရသည်။',
+      steps:['မူလ = '+t+'°F','ကျဆင်းမှု = '+drop+'°F','ညနေ = '+t+' − '+drop+' = '+correct+'°F'],
+      answer:correct+'°F'};
+  }
+];
+
+/* ============================================================
+   GROUP 2 — QUANTITATIVE PROBLEM SOLVING (10 lessons)
+============================================================ */
+var G2 = [
+  function(s){ // 2.1 Unit rate (speed)
+    var dist=ri(s,80,400),t=ri(s+1,2,8),correct=r2(dist/t);
+    var m=mcq(correct,[dist*t,r2(t/dist),r2(correct+ri(s+2,2,10)),r2(correct-5)],s+3);
+    return{q:'A car travels <b>'+dist+' miles</b> in <b>'+t+' hours</b>. What is its average speed in miles per hour?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ပျမ်းမျှအလျင် = ခရီးအကွာအဝေး ÷ အချိန်။',
+      steps:['အလျင် = '+dist+' ÷ '+t,'= '+correct+' mph'],
+      answer:correct+' mph'};
+  },
+  function(s){ // 2.2 Proportions
+    var a=ri(s,2,6),b=ri(s+1,4,20),c=ri(s+2,2,8),correct=r2(b*c/a);
+    var m=mcq(correct,[b+c,b*c,r2(a*c/b),r2(correct+1)],s+3);
+    return{q:'A recipe uses <b>'+a+' cups</b> of flour to make <b>'+b+'</b> cookies. How many cups of flour are needed to make <b>'+c+'</b> cookies?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'အချိုးကျ — '+a+' : '+b+' = x : '+c+'။ ဖြတ်ပွားလုပ်ပါ။',
+      steps:[a+'/'+b+' = x/'+c,a+' × '+c+' = '+b+' × x',(a*c)+' = '+b+'x','x = '+(a*c)+' ÷ '+b+' = '+correct+' cups'],
+      answer:correct+' cups'};
+  },
+  function(s){ // 2.3 Scale factor
+    var scale=ri(s,2,8),mapLen=ri(s+1,3,12),correct=scale*mapLen;
+    var m=mcq(correct,[mapLen+scale,scale*(mapLen+1),scale*(mapLen-1),correct+scale],s+2);
+    return{q:'On a map, <b>1 cm represents '+scale+' km</b>. If two cities are <b>'+mapLen+' cm</b> apart on the map, what is the actual distance in km?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Scale factor ဖြင့် မြေပုံအကွာအဝေးကို မြှောက်သည်။',
+      steps:['1 cm → '+scale+' km',mapLen+' cm → '+mapLen+' × '+scale,'= '+correct+' km'],
+      answer:correct+' km'};
+  },
+  function(s){ // 2.4 Compound percent change
+    var p1=pick(s,[10,15,20]),p2=pick(s+1,[10,15,20]),total=r2(((1+p1/100)*(1+p2/100)-1)*100);
+    var m=mcq(total+'%',[(p1+p2)+'%',(p1+p2-1)+'%',(total+2)+'%',(p1*p2/100)+'%'],s+2);
+    return{q:'The population of a city increased by <b>'+p1+'%</b> in the first year and by <b>'+p2+'%</b> in the second year. What is the total percent increase over the two years?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ရာခိုင်နှုန်းတိုးမှု နှစ်ခုကို ရိုးရိုးပေါင်းလို့မရပါ — (1 + p₁/100)(1 + p₂/100) ဖြင့် တွက်ရသည်။',
+      steps:['ပထမနှစ် multiplier = '+(1+p1/100),'ဒုတိယနှစ် multiplier = '+(1+p2/100),
+        'စုစုပေါင်း = '+(1+p1/100)+' × '+(1+p2/100)+' = '+r2((1+p1/100)*(1+p2/100)),
+        'တိုးမှု % = ('+r2((1+p1/100)*(1+p2/100))+' − 1) × 100 = '+total+'%'],
+      answer:total+'%'};
+  },
+  function(s){ // 2.5 Simple interest
+    var p=ri(s,500,5000),r=pick(s+1,[2,3,4,5,6,8]),t=ri(s+2,1,5),correct=r2(p*r*t/100);
+    var m=mcq(correct,[p+correct,p*r*t,correct/2,r2(p*r/100)],s+3);
+    return{q:'How much simple interest is earned on <b>$'+fmt(p)+'</b> at an annual rate of <b>'+r+'%</b> for <b>'+t+' years</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Simple Interest = P × r × t ÷ 100။',
+      steps:['I = '+fmt(p)+' × '+r+' × '+t+' ÷ 100','I = '+fmt(p*r*t)+' ÷ 100','I = $'+fmt(correct)],
+      answer:'$'+fmt(correct)};
+  },
+  function(s){ // 2.6 Discount + tax
+    var price=ri(s,40,200),disc=pick(s+1,[10,15,20,25]),tax=pick(s+2,[5,6,7,8]);
+    var ad=r2(price*(1-disc/100)),correct=r2(ad*(1+tax/100));
+    var m=mcq(correct.toFixed(2),[r2(price*(1-(disc+tax)/100)).toFixed(2),ad.toFixed(2),
+      r2(price+price*tax/100).toFixed(2),r2(correct+5).toFixed(2)],s+3);
+    return{q:'A jacket originally costs <b>$'+price+'</b> and is discounted by <b>'+disc+'%</b>. After the discount, a sales tax of <b>'+tax+'%</b> is applied. What is the final price?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Discount အရင်လျှော့ပြီး ရလဒ်အပေါ် tax ထပ်တွက်ရသည်။',
+      steps:['Discount = '+price+' × '+(disc/100)+' = $'+r2(price*disc/100),'Discount ပြီးစျေး = $'+ad,
+        'Tax = '+ad+' × '+(tax/100)+' = $'+r2(ad*tax/100),'နောက်ဆုံးစျေး = $'+correct.toFixed(2)],
+      answer:'$'+correct.toFixed(2)};
+  },
+  function(s){ // 2.7 Commission
+    var sales=ri(s,2000,20000),rate=pick(s+1,[3,4,5,6,8,10]),correct=r2(sales*rate/100);
+    var m=mcq(correct,[sales+correct,sales*rate,correct+50,correct-100],s+2);
+    return{q:'A salesperson earns a <b>'+rate+'% commission</b> on total sales. If total sales were <b>$'+fmt(sales)+'</b>, what is the commission?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Commission = ရောင်းရငွေ × ရာခိုင်နှုန်း ÷ 100။',
+      steps:['Commission = '+fmt(sales)+' × '+rate+' ÷ 100','= '+fmt(sales*rate)+' ÷ 100','= $'+fmt(correct)],
+      answer:'$'+fmt(correct)};
+  },
+  function(s){ // 2.8 Distance-rate-time
+    var speed=ri(s,40,80),t=ri(s+1,2,6),correct=speed*t;
+    var m=mcq(correct,[speed+t,speed/t,correct+speed,correct-speed],s+2);
+    return{q:'A train travels at an average speed of <b>'+speed+' mph</b> for <b>'+t+' hours</b>. How far does it travel?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Distance = Rate × Time (d = r × t)။',
+      steps:['d = r × t','d = '+speed+' × '+t,'d = '+correct+' miles'],
+      answer:correct+' miles'};
+  },
+  function(s){ // 2.9 Work rate
+    var r1=ri(s,2,6),r2v=ri(s+1,2,6),correct=r2(1/(1/r1+1/r2v));
+    var m=mcq(correct.toFixed(1),[(r1+r2v).toString(),r2(1/r1+1/r2v).toFixed(1),r2((r1+r2v)/2).toFixed(1),(correct+1).toFixed(1)],s+2);
+    return{q:'Worker A can complete a job in <b>'+r1+' hours</b>. Worker B can complete the same job in <b>'+r2v+' hours</b>. Working together, how long will it take?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'အတူတကွလုပ်သောအခါ အလုပ်နှုန်းများကို ပေါင်းရသည် — 1/t = 1/t₁ + 1/t₂။',
+      steps:['A ၏ နှုန်း = 1/'+r1,'B ၏ နှုန်း = 1/'+r2v,
+        'ပေါင်းနှုန်း = '+r2(1/r1+1/r2v).toFixed(3),'အချိန် = 1 ÷ '+r2(1/r1+1/r2v).toFixed(3)+' = '+correct.toFixed(1)+' hours'],
+      answer:correct.toFixed(1)+' hours'};
+  },
+  function(s){ // 2.10 Currency conversion
+    var rate=r2(1.1+ri(s,0,9)/10),usd=ri(s+1,20,500),correct=r2(usd*rate);
+    var m=mcq(correct.toFixed(2),[r2(usd/rate).toFixed(2),(usd+rate).toFixed(2),r2(usd*rate+10).toFixed(2),r2(usd*rate-5).toFixed(2)],s+2);
+    return{q:'If <b>1 USD = '+rate+' EUR</b>, how many EUR will you get for <b>$'+usd+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'USD ကို exchange rate ဖြင့် မြှောက်ရသည်။',
+      steps:['EUR = USD × rate','= '+usd+' × '+rate,'= '+correct.toFixed(2)+' EUR'],
+      answer:correct.toFixed(2)+' EUR'};
+  }
+];
+
+/* ============================================================
+   GROUP 3 — EXPRESSIONS & EQUATIONS (10 lessons)
+============================================================ */
+var G3 = [
+  function(s){ // 3.1 Simplify
+    var a=ri(s,2,9),b=ri(s+1,2,9),c=ri(s+2,1,a-1)||1,d=ri(s+3,1,b);
+    var xc=a-c,yc=b+d,correct=xc+'x + '+yc+'y';
+    var m=mcq(correct,[(a+c)+'x + '+(b-d)+'y',xc+'x + '+(b-d)+'y',a+'x + '+b+'y',(xc+1)+'x + '+yc+'y'],s+4);
+    return{q:'Simplify: <b>'+a+'x + '+b+'y − '+c+'x + '+d+'y</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Like terms များကို အတူတကွ ပေါင်းရသည် — x ကို x နှင့်၊ y ကို y နှင့်။',
+      steps:['x terms: '+a+'x − '+c+'x = '+xc+'x','y terms: '+b+'y + '+d+'y = '+yc+'y','ရလဒ် = '+correct],
+      answer:correct};
+  },
+  function(s){ // 3.2 Two-step equations
+    var a=ri(s,2,9),x=ri(s+1,2,12),b=ri(s+2,1,20),c=a*x+b;
+    var m=mcq(x,[x+1,x-1,x+2,x-2],s+3);
+    return{q:'Solve for x: <b>'+a+'x + '+b+' = '+c+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Variable ကို သီးခြားခွဲထုတ်ရန် — နှစ်ဖက်လုံးမှ '+b+' နုတ်ပြီး '+a+' ဖြင့် စားသည်။',
+      steps:[a+'x = '+c+' − '+b,a+'x = '+(c-b),'x = '+(c-b)+' ÷ '+a+' = '+x],
+      answer:'x = '+x};
+  },
+  function(s){ // 3.3 Variables both sides
+    var a=ri(s,2,9),c=ri(s+1,1,a-1)||1,b=ri(s+2,1,15),d=ri(s+3,1,15),x=r2((d-b)/(a-c));
+    var m=mcq(x,[x+1,x-1,-x,x+2],s+4);
+    return{q:'Solve for x: <b>'+a+'x + '+b+' = '+c+'x + '+d+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'x terms ဘယ်ဘက်၊ ကိန်းများ ညာဘက် ရွှေ့ပြီး ဖြေရှင်းသည်။',
+      steps:[a+'x − '+c+'x = '+d+' − '+b,(a-c)+'x = '+(d-b),'x = '+(d-b)+' ÷ '+(a-c)+' = '+x],
+      answer:'x = '+x};
+  },
+  function(s){ // 3.4 Inequalities
+    var a=ri(s,-8,-2)||-3,x=ri(s+1,1,10),b=ri(s+2,1,20),c=a*x+b;
+    var correct='x < '+x;
+    var m=mcq(correct,['x > '+x,'x < '+(-x),'x = '+x,'x ≤ '+x],s+3);
+    return{q:'Solve the inequality: <b>'+a+'x + '+b+' > '+c+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'အနုတ်ကိန်းဖြင့် မြှောက်/စားသောအခါ လက္ခဏာကို ပြောင်းပြန်လှန်ရသည် (> → <)။',
+      steps:[a+'x > '+c+' − '+b,a+'x > '+(c-b),
+        a+' သည် အနုတ်ဖြစ်သောကြောင့် လက္ခဏာလှန်သည်','x < '+x],
+      answer:correct};
+  },
+  function(s){ // 3.5 Word problem → equation
+    var x=ri(s,15,50),diff=ri(s+1,3,12),small=x-diff,sum=x+small;
+    var m=mcq(small+' and '+x,[(small-1)+' and '+(x+1),(small+1)+' and '+(x-1),(small+2)+' and '+(x-2),x+' and '+small],s+2);
+    return{q:'One number is <b>'+diff+'</b> more than another number. The sum of the two numbers is <b>'+sum+'</b>. Find the two numbers.',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'သေးသောကိန်းကို x ဟု သတ်မှတ်ပါ — ကြီးသောကိန်း = x + '+diff+'။',
+      steps:['x + (x + '+diff+') = '+sum,'2x + '+diff+' = '+sum,'2x = '+(sum-diff),'x = '+small+'၊ ကြီးသောကိန်း = '+x],
+      answer:small+' and '+x};
+  },
+  function(s){ // 3.6 Evaluate expressions
+    var a=ri(s,2,8),x=ri(s+1,2,10),b=ri(s+2,1,15),correct=a*x+b;
+    var m=mcq(correct,[a+x+b,a*(x+b),correct+a,correct-a],s+3);
+    return{q:'If <b>x = '+x+'</b>, what is the value of <b>'+a+'x + '+b+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'x နေရာတွင် ပေးထားသော တန်ဖိုးကို အစားထိုးတွက်သည်။',
+      steps:[a+'x + '+b,'= '+a+'('+x+') + '+b,'= '+(a*x)+' + '+b+' = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 3.7 Consecutive integers
+    var n=ri(s,5,40),sum=n+(n+1)+(n+2);
+    var m=mcq(n,[n+1,n+2,n-1,n+3],s+1);
+    return{q:'The sum of three consecutive integers is <b>'+sum+'</b>. What is the smallest integer?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ဆက်တိုက်ကိန်းပြည့်များကို x, x+1, x+2 ဟု သတ်မှတ်သည်။',
+      steps:['x + (x+1) + (x+2) = '+sum,'3x + 3 = '+sum,'3x = '+(sum-3),'x = '+n],
+      answer:String(n)};
+  },
+  function(s){ // 3.8 Age problems
+    var age=ri(s,10,30),years=ri(s+1,3,15),future=age+years;
+    var m=mcq(age,[future,age-years,age+2,future+2],s+2);
+    return{q:'In <b>'+years+' years</b>, Maria will be <b>'+future+' years old</b>. How old is Maria now?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'လက်ရှိအသက်ကို x ဟု သတ်မှတ်ပါ — x + '+years+' = '+future+'။',
+      steps:['x + '+years+' = '+future,'x = '+future+' − '+years,'x = '+age],
+      answer:age+' years old'};
+  },
+  function(s){ // 3.9 Distributive
+    var a=ri(s,2,6),b=ri(s+1,1,8),c=ri(s+2,1,8),correct=(a*b)+'x + '+(a*c);
+    var m=mcq(correct,[(a*b)+'x + '+c,(a+b)+'x + '+(a+c),a+'x + '+(b+c),(a*b)+'x + '+(a+c)],s+3);
+    return{q:'Expand: <b>'+a+'('+b+'x + '+c+')</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Distributive Property — ကွင်းအပြင်ရှိ '+a+' ကို ကွင်းအတွင်းရှိ term တစ်ခုချင်းစီနှင့် မြှောက်ရသည်။',
+      steps:[a+' × '+b+'x = '+(a*b)+'x',a+' × '+c+' = '+(a*c),'ရလဒ် = '+correct],
+      answer:correct};
+  },
+  function(s){ // 3.10 Solve for variable
+    var d=ri(s,100,500),t=ri(s+1,2,8),r=r2(d/t);
+    var m=mcq(r,[d*t,d+t,r2(t/d),r2(r+1)],s+2);
+    return{q:'The formula for distance is <b>d = rt</b>. If d = '+d+' and t = '+t+', solve for r.',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'r ကို သီးခြားခွဲထုတ်ရန် — r = d/t။',
+      steps:['d = rt',d+' = r × '+t,'r = '+d+' ÷ '+t,'r = '+r],
+      answer:String(r)};
+  }
+];
+
+/* ============================================================
+   GROUP 4 — GRAPHS & FUNCTIONS (10 lessons)
+============================================================ */
+var G4 = [
+  function(s){ // 4.1 Slope from two points
+    var x1=ri(s,-5,4),y1=ri(s+1,-5,5),x2=x1+ri(s+2,1,5),y2=y1+ri(s+3,-4,6);
+    var correct=r2((y2-y1)/(x2-x1));
+    var m=mcq(correct,[r2((x2-x1)/(y2-y1)||0),r2(y2-y1),r2(x2-x1),r2(-(y2-y1)/(x2-x1))],s+4);
+    return{q:'What is the slope of the line passing through <b>('+x1+', '+y1+')</b> and <b>('+x2+', '+y2+')</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Slope = (y₂ − y₁) ÷ (x₂ − x₁)။',
+      steps:['m = ('+y2+' − '+y1+') ÷ ('+x2+' − '+x1+')','m = '+(y2-y1)+' ÷ '+(x2-x1),'m = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 4.2 Slope from equation
+    var mS=ri(s,-4,5)||2,b=ri(s+1,-8,8);
+    var m=mcq(mS,[b,-mS,mS+1,mS-1],s+2);
+    var bStr = b>=0?'+ '+b:'− '+Math.abs(b);
+    return{q:'What is the slope of the line <b>y = '+mS+'x '+bStr+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Slope-intercept form y = mx + b တွင် m သည် slope ဖြစ်သည်။',
+      steps:['y = '+mS+'x '+bStr,'ပုံစံ y = mx + b နှင့် နှိုင်းယှဉ်','m = '+mS],
+      answer:String(mS)};
+  },
+  function(s){ // 4.3 Y-intercept
+    var mS=ri(s,-3,5)||2,b=ri(s+1,-8,8);
+    var m=mcq(b,[mS,-b,b+2,b-2],s+2);
+    var bStr = b>=0?'+ '+b:'− '+Math.abs(b);
+    return{q:'What is the y-intercept of the line <b>y = '+mS+'x '+bStr+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'y = mx + b တွင် b သည် y-intercept ဖြစ်သည်။',
+      steps:['y = '+mS+'x '+bStr,'b = '+b,'y-intercept = (0, '+b+')'],
+      answer:String(b)};
+  },
+  function(s){ // 4.4 Write line equation
+    var mS=ri(s,2,6),b=ri(s+1,-5,6);
+    var bStr = b>=0?'+ '+b:'− '+Math.abs(b);
+    var correct='y = '+mS+'x '+bStr;
+    var m=mcq(correct,['y = '+b+'x '+(mS>=0?'+ '+mS:'− '+Math.abs(mS)),
+      'y = '+mS+'x '+(b>=0?'− '+b:'+ '+Math.abs(b)),'y = '+(mS+1)+'x + '+b,'y = '+mS+'x + '+(b+1)],s+2);
+    return{q:'Write the equation of a line with slope <b>'+mS+'</b> and y-intercept <b>'+b+'</b>.',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Slope-intercept form — y = mx + b။',
+      steps:['m = '+mS+', b = '+b,'y = mx + b',correct],
+      answer:correct};
+  },
+  function(s){ // 4.5 Function evaluation
+    var mS=ri(s,2,5),b=ri(s+1,-5,8),x=ri(s+2,0,6),correct=mS*x+b;
+    var m=mcq(correct,[mS+b,mS*x,mS*x-b,correct-mS],s+3);
+    var bStr = b>=0?'+ '+b:'− '+Math.abs(b);
+    return{q:'If <b>f(x) = '+mS+'x '+bStr+'</b>, what is <b>f('+x+')</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'f('+x+') = x နေရာတွင် '+x+' အစားထိုးတွက်သည်။',
+      steps:['f('+x+') = '+mS+'('+x+') '+bStr,'= '+(mS*x)+' '+bStr,'= '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 4.6 Systems simple
+    var x=ri(s,2,12),y=ri(s+1,2,12),sum=x+y,diff=x-y;
+    var m=mcq('x = '+x+', y = '+y,['x = '+y+', y = '+x,'x = '+(x+1)+', y = '+(y-1),'x = '+sum+', y = '+diff,'x = '+(x-1)+', y = '+(y+1)],s+2);
+    return{q:'Solve the system: <b>x + y = '+sum+'</b> and <b>x − y = '+diff+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Elimination နည်းဖြင့် ညီမျှခြင်းနှစ်ခု ပေါင်းလိုက်သောအခါ y ပျောက်သည်။',
+      steps:['(x + y) + (x − y) = '+sum+' + '+diff,'2x = '+(sum+diff),'x = '+x,x+' + y = '+sum+' → y = '+y],
+      answer:'x = '+x+', y = '+y};
+  },
+  function(s){ // 4.7 Systems by elimination
+    var x=ri(s,2,10),y=ri(s+1,1,10),c1=2*x+3*y,c2=x-y;
+    var m=mcq('x = '+x+', y = '+y,['x = '+y+', y = '+x,'x = '+(x+1)+', y = '+(y+1),'x = '+(x-1)+', y = '+(y-1),'x = '+(x+2)+', y = '+(y-2)],s+2);
+    return{q:'Solve the system: <b>2x + 3y = '+c1+'</b> and <b>x − y = '+c2+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Elimination — ညီမျှခြင်း (2) ကို ကိန်းတစ်ခုဖြင့် မြှောက်ပြီး (1) နှင့် ပေါင်း/နုတ်လုပ်သည်။',
+      steps:['(1): 2x + 3y = '+c1,'(2): x − y = '+c2,
+        '(2) × 2: 2x − 2y = '+(2*c2),'(1) − (2×2): 5y = '+(c1-2*c2),'y = '+y+'၊ ပြန်ထည့်: x = '+x],
+      answer:'x = '+x+', y = '+y};
+  },
+  function(s){ // 4.8 Parallel/perpendicular
+    var mS=ri(s,2,6),correct='-1/'+mS;
+    var m=mcq(correct,[String(mS),String(-mS),'1/'+mS,'-'+mS],s+1);
+    return{q:'A line has slope <b>'+mS+'</b>. What is the slope of a line perpendicular to it?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Perpendicular lines ၏ slopes များသည် negative reciprocals — m₁ × m₂ = −1။',
+      steps:['m₁ = '+mS,'m₁ × m₂ = −1',mS+' × m₂ = −1','m₂ = −1/'+mS],
+      answer:correct};
+  },
+  function(s){ // 4.9 Function from table
+    var mS=ri(s,2,5),b=ri(s+1,-3,5);
+    var rows=[0,1,2,3].map(function(x){return '('+x+', '+(mS*x+b)+')'}).join(', ');
+    var bStr = b>=0?'+ '+b:'− '+Math.abs(b);
+    var correct='y = '+mS+'x '+bStr;
+    var m=mcq(correct,['y = '+b+'x + '+mS,'y = '+mS+'x − '+b,'y = '+(mS+1)+'x + '+b,'y = '+(mS-1)+'x + '+b],s+2);
+    return{q:'A function table shows: <b>'+rows+'</b>. Which equation represents this function?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'x = 0 ဖြစ်သောအခါ y သည် y-intercept။ x တစ်ခုတိုးတိုင်း y တိုးနှုန်းသည် slope။',
+      steps:['x = 0 → y = '+b+' → y-intercept = '+b,'x တစ်ခုတိုးတိုင်း y '+mS+' တိုးသည် → slope = '+mS,correct],
+      answer:correct};
+  },
+  function(s){ // 4.10 Graph interpretation
+    var start=ri(s,10,40),rate=ri(s+1,2,8),correct=rate+' units per hour';
+    var m=mcq(correct,[start+' units',(rate+start)+' units per hour',start+' units per hour',rate+' units'],s+2);
+    return{q:'A graph shows a line passing through <b>(0, '+start+')</b> and <b>(1, '+(start+rate)+')</b>. What does the slope represent?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Slope = (y₂ − y₁) ÷ (x₂ − x₁) — တစ်ယူနစ်လျှင် ပြောင်းလဲနှုန်း။',
+      steps:['Slope = ('+(start+rate)+' − '+start+') ÷ (1 − 0)','= '+rate+' ÷ 1','= '+rate,rate+' units per hour ကို ကိုယ်စားပြုသည်'],
+      answer:correct};
+  }
+];
+
+/* ============================================================
+   GROUP 5 — DATA, STATISTICS & PROBABILITY (10 lessons)
+============================================================ */
+var G5 = [
+  function(s){ // 5.1 Mean
+    var arr=[];for(var i=0;i<5;i++)arr.push(ri(s+i,2,30));
+    var sum=arr.reduce(function(a,b){return a+b},0),correct=r2(sum/5);
+    var m=mcq(correct,[sum,r2(sum/4),r2(sum/6),Math.max.apply(null,arr)],s+10);
+    return{q:'What is the mean (average) of the following data set? <b>'+arr.join(', ')+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Mean = စုစုပေါင်း ÷ အရေအတွက်။',
+      steps:['ပေါင်းလဒ် = '+arr.join(' + ')+' = '+sum,'အရေအတွက် = 5','Mean = '+sum+' ÷ 5 = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 5.2 Median
+    var arr=[];for(var i=0;i<5;i++)arr.push(ri(s+i,2,40));
+    var sorted=arr.slice().sort(function(a,b){return a-b}),correct=sorted[2];
+    var m=mcq(correct,sorted.filter(function(v){return v!==correct}).slice(0,4),s+10);
+    return{q:'What is the median of the following data set? <b>'+arr.join(', ')+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Median ရှာရန် ဒေတာများကို အစဉ်လိုက်စီပြီး အလယ်တန်ဖိုးကို ယူသည်။',
+      steps:['အစဉ်လိုက်စီ — '+sorted.join(', '),'အလယ်တန်ဖိုး (3rd) = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 5.3 Mode
+    var base=ri(s,5,20),arr=[base,base,base,base+ri(s+1,1,10),base+ri(s+2,1,10)];
+    var sh=shuffle(arr,s+3);
+    var m=mcq(base,sh.filter(function(v){return v!==base}).slice(0,4).concat([base+1,base-1]),s+4);
+    return{q:'What is the mode of the following data set? <b>'+sh.join(', ')+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Mode = အကြိမ်အရေအတွက် အများဆုံး ပေါ်သော တန်ဖိုး။',
+      steps:['တန်ဖိုးတစ်ခုချင်း၏ အကြိမ်ရေ ရေတွက်',base+' သည် အများဆုံး ပေါ်သည်','Mode = '+base],
+      answer:String(base)};
+  },
+  function(s){ // 5.4 Range
+    var arr=[];for(var i=0;i<6;i++)arr.push(ri(s+i,1,50));
+    var sorted=arr.slice().sort(function(a,b){return a-b}),correct=sorted[5]-sorted[0];
+    var m=mcq(correct,[sorted[5],sorted[0],sorted[5]+sorted[0],correct+5],s+10);
+    return{q:'What is the range of the following data set? <b>'+arr.join(', ')+'</b>',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Range = အကြီးဆုံး − အငယ်ဆုံး။',
+      steps:['အကြီးဆုံး = '+sorted[5],'အငယ်ဆုံး = '+sorted[0],'Range = '+sorted[5]+' − '+sorted[0]+' = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 5.5 Weighted average
+    var n1=ri(s,10,30),a1=ri(s+1,60,90),n2=ri(s+2,10,30),a2=ri(s+3,60,90);
+    var correct=r2((n1*a1+n2*a2)/(n1+n2));
+    var m=mcq(correct,[r2((a1+a2)/2),a1+a2,correct+2,correct-2],s+4);
+    return{q:'A class has <b>'+n1+' students</b> with average score <b>'+a1+'</b> and <b>'+n2+' students</b> with average score <b>'+a2+'</b>. What is the average of all students?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Weighted average — (n₁a₁ + n₂a₂) ÷ (n₁ + n₂)။',
+      steps:['အုပ်စု 1 = '+n1+' × '+a1+' = '+(n1*a1),'အုပ်စု 2 = '+n2+' × '+a2+' = '+(n2*a2),
+        'စုစုပေါင်း = '+(n1*a1+n2*a2),'ပျမ်းမျှ = '+(n1*a1+n2*a2)+' ÷ '+(n1+n2)+' = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 5.6 Simple probability
+    var red=ri(s,2,10),blue=ri(s+1,2,10),total=red+blue,correct=red+'/'+total;
+    var m=mcq(correct,[blue+'/'+total,red+'/'+blue,total+'/'+red,blue+'/'+red],s+2);
+    return{q:'A bag contains <b>'+red+' red marbles</b> and <b>'+blue+' blue marbles</b>. What is the probability of drawing a red marble?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Probability = လိုချင်သောရလဒ် ÷ စုစုပေါင်းရလဒ်။',
+      steps:['လိုချင်သည် = '+red,'စုစုပေါင်း = '+red+' + '+blue+' = '+total,'Probability = '+red+'/'+total],
+      answer:correct};
+  },
+  function(s){ // 5.7 Counting principle
+    var a=ri(s,2,6),b=ri(s+1,2,6),c=ri(s+2,2,6),correct=a*b*c;
+    var m=mcq(correct,[a+b+c,a*b,correct+a,correct-b],s+3);
+    return{q:'A restaurant offers <b>'+a+' appetizers</b>, <b>'+b+' entrees</b>, and <b>'+c+' desserts</b>. How many different meals (one of each) are possible?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Counting Principle — ရွေးချယ်စရာများကို မြှောက်ရသည်။',
+      steps:['Appetizers × Entrees × Desserts',a+' × '+b+' × '+c+' = '+correct+' meals'],
+      answer:String(correct)};
+  },
+  function(s){ // 5.8 Compound probability
+    var pairs=[['1/2','a coin landing on heads'],['1/6','rolling a 4 on a die'],['1/3','spinning a 1 on a 3-section spinner'],
+      ['1/2','a coin landing on tails'],['1/6','rolling a 3 on a die'],['1/4','spinning a 2 on a 4-section spinner'],
+      ['1/6','rolling a 6 on a die'],['1/5','spinning a 3 on a 5-section spinner']];
+    var p1=pick(s,pairs),p2=pick(s+1,pairs),av=eval(p1[0]),bv=eval(p2[0]),correct=r2(av*bv).toString();
+    var m=mcq(correct,[r2(av+bv).toString(),r2(av/bv).toString(),r2(av-bv).toString(),r2(av*bv*2).toString()],s+2);
+    return{q:'What is the probability of <b>'+p1[1]+'</b> AND <b>'+p2[1]+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Independent events နှစ်ခု အတူတကွ — P(A) × P(B)။',
+      steps:['P(A) = '+p1[0],'P(B) = '+p2[0],'P(A and B) = '+p1[0]+' × '+p2[0]+' = '+correct],
+      answer:correct};
+  },
+  function(s){ // 5.9 Data from chart
+    var jan=ri(s,100,300),feb=ri(s+1,100,300),mar=ri(s+2,100,300),correct=r2((jan+feb+mar)/3);
+    var m=mcq(correct,[jan+feb+mar,Math.max(jan,feb,mar),correct+10,correct-10],s+3);
+    return{q:'A bar graph shows monthly sales: January = '+jan+', February = '+feb+', March = '+mar+'. What is the average monthly sales?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ပျမ်းမျှ = စုစုပေါင်း ÷ လအရေအတွက်။',
+      steps:['စုစုပေါင်း = '+(jan+feb+mar),'လအရေအတွက် = 3','ပျမ်းမျှ = '+(jan+feb+mar)+' ÷ 3 = '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 5.10 Percent from data
+    var total=ri(s,50,200),part=ri(s+1,10,total-10),correct=r2(part/total*100);
+    var m=mcq(correct+'%',[r2(total/part*100)+'%',(part+total)+'%',(correct+5)+'%',(correct-5)+'%'],s+2);
+    return{q:'In a survey of <b>'+total+' people</b>, <b>'+part+'</b> said they prefer tea. What percent of people prefer tea?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ရာခိုင်နှုန်း = (အပိုင်း ÷ စုစုပေါင်း) × 100။',
+      steps:[part+' ÷ '+total+' = '+r2(part/total),r2(part/total)+' × 100 = '+correct+'%'],
+      answer:correct+'%'};
+  }
+];
+
+/* ============================================================
+   GROUP 6 — GEOMETRY & MEASUREMENT (10 lessons)
+============================================================ */
+var G6 = [
+  function(s){ // 6.1 Rectangle area
+    var l=ri(s,5,25),w=ri(s+1,3,20),correct=l*w,per=2*(l+w);
+    var m=mcq(correct,[per,l+w,correct+l,correct-w],s+2);
+    return{q:'What is the area of a rectangle with length <b>'+l+'</b> and width <b>'+w+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'စတုဂံဧရိယာ = အလျား × အနံ။',
+      steps:['Area = l × w','= '+l+' × '+w,'= '+correct+' square units'],
+      answer:String(correct)};
+  },
+  function(s){ // 6.2 Triangle area
+    var b=ri(s,4,20),h=ri(s+1,3,15),correct=r2(b*h/2),prod=b*h;
+    var m=mcq(correct,[prod,b+h,correct+b,correct-b],s+2);
+    return{q:'What is the area of a triangle with base <b>'+b+'</b> and height <b>'+h+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'တြိဂံဧရိယာ = ½ × အခြေ × အမြင့်။',
+      steps:['Area = ½ × b × h','= ½ × '+b+' × '+h,'= ½ × '+prod,'= '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 6.3 Circle area
+    var r=ri(s,2,12),correct=r2(Math.PI*r*r);
+    var m=mcq(correct.toFixed(2),[r2(2*Math.PI*r).toFixed(2),r2(Math.PI*r).toFixed(2),r2(Math.PI*r*r*2).toFixed(2),r2(Math.PI*r*2).toFixed(2)],s+2);
+    return{q:'What is the area of a circle with radius <b>'+r+'</b>? (Use π ≈ 3.14)',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'စက်ဝိုင်းဧရိယာ = πr²။',
+      steps:['A = πr²','= 3.14 × '+r+'²','= 3.14 × '+(r*r),'= '+correct.toFixed(2)],
+      answer:correct.toFixed(2)};
+  },
+  function(s){ // 6.4 Circumference
+    var r=ri(s,2,12),correct=r2(2*Math.PI*r);
+    var m=mcq(correct.toFixed(2),[r2(Math.PI*r*r).toFixed(2),r2(Math.PI*r).toFixed(2),(2*r).toString(),r2(Math.PI*r*2*2).toFixed(2)],s+2);
+    return{q:'What is the circumference of a circle with radius <b>'+r+'</b>? (Use π ≈ 3.14)',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'စက်ဝိုင်းပတ်လည်အတိုင်းအတာ = 2πr။',
+      steps:['C = 2πr','= 2 × 3.14 × '+r,'= '+correct.toFixed(2)],
+      answer:correct.toFixed(2)};
+  },
+  function(s){ // 6.5 Volume of prism
+    var l=ri(s,2,10),w=ri(s+1,2,10),h=ri(s+2,2,10),correct=l*w*h;
+    var m=mcq(correct,[l+w+h,2*(l*w+l*h+w*h),l*w,correct+l],s+3);
+    return{q:'What is the volume of a rectangular prism with dimensions <b>'+l+' × '+w+' × '+h+'</b>?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ထောင့်မှန်စတုဂံတုံး ထုထည် = l × w × h။',
+      steps:['V = '+l+' × '+w+' × '+h,'= '+(l*w)+' × '+h,'= '+correct+' cubic units'],
+      answer:String(correct)};
+  },
+  function(s){ // 6.6 Volume of cylinder
+    var r=ri(s,2,6),h=ri(s+1,4,12),correct=r2(Math.PI*r*r*h);
+    var m=mcq(correct.toFixed(2),[r2(Math.PI*r*r).toFixed(2),r2(2*Math.PI*r*h).toFixed(2),r2(Math.PI*r*h).toFixed(2),r2(Math.PI*r*r*h*2).toFixed(2)],s+2);
+    return{q:'What is the volume of a cylinder with radius <b>'+r+'</b> and height <b>'+h+'</b>? (Use π ≈ 3.14)',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'ဆလင်ဒါထုထည် = πr²h။',
+      steps:['V = πr²h','= 3.14 × '+r+'² × '+h,'= 3.14 × '+(r*r)+' × '+h,'= '+correct.toFixed(2)],
+      answer:correct.toFixed(2)};
+  },
+  function(s){ // 6.7 Pythagorean theorem
+    var trip=[[3,4,5],[6,8,10],[5,12,13],[8,15,17],[7,24,25],[9,12,15],[20,21,29]];
+    var t=pick(s,trip),a=t[0],b=t[1],c=t[2];
+    var m=mcq(c,[a+b,a+b-1,c+1,c-1],s+1);
+    return{q:'A right triangle has legs of length <b>'+a+'</b> and <b>'+b+'</b>. What is the length of the hypotenuse?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Pythagorean Theorem — a² + b² = c²။',
+      steps:['c² = '+a+'² + '+b+'²','c² = '+(a*a)+' + '+(b*b),'c² = '+(a*a+b*b),'c = √'+(a*a+b*b)+' = '+c],
+      answer:String(c)};
+  },
+  function(s){ // 6.8 Angles supplementary
+    var angle=ri(s,20,160),correct=180-angle;
+    var m=mcq(correct,[90-angle,180+angle,360-angle,correct+10],s+1);
+    return{q:'Two angles are supplementary. If one angle measures <b>'+angle+'°</b>, what is the other angle?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Supplementary angles များ၏ ပေါင်းလဒ်သည် 180°။',
+      steps:['x + '+angle+' = 180','x = 180 − '+angle,'x = '+correct+'°'],
+      answer:correct+'°'};
+  },
+  function(s){ // 6.9 Similar triangles
+    var a=ri(s,2,8),b=ri(s+1,3,12),k=ri(s+2,2,4),correct=b*k;
+    var m=mcq(correct,[b+k,a*k,b/k,correct+a],s+3);
+    return{q:'Two triangles are similar. The first has sides <b>'+a+'</b> and <b>'+b+'</b>. The second has a side of <b>'+(a*k)+'</b> corresponding to side '+a+'. What is the corresponding side to '+b+'?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Similar triangles တွင် အနားများ၏ အချိုးသည် တူညီသည်။ Scale factor = '+k+'။',
+      steps:['Scale factor = '+(a*k)+' ÷ '+a+' = '+k,'သက်ဆိုင်ရာအနား = '+b+' × '+k,'= '+correct],
+      answer:String(correct)};
+  },
+  function(s){ // 6.10 Composite figure
+    var l=ri(s,4,12),w=ri(s+1,3,10),side=ri(s+2,2,6),rect=l*w,tri=side*side/2,correct=r2(rect+tri);
+    var m=mcq(correct,[rect,tri,rect+side*side,correct+5],s+3);
+    return{q:'A composite figure consists of a rectangle (<b>'+l+' × '+w+'</b>) with a right triangle (legs <b>'+side+'</b> and <b>'+side+'</b>) attached on top. What is the total area?',
+      options:m.options,correctIndex:m.correctIndex,
+      why:'Composite figure — အပိုင်းတစ်ခုချင်းစီ၏ ဧရိယာများ ပေါင်းရသည်။',
+      steps:['Rectangle = '+l+' × '+w+' = '+rect,'Triangle = ½ × '+side+' × '+side+' = '+tri,'Total = '+rect+' + '+tri+' = '+correct],
+      answer:String(correct)};
+  }
+];
+
+/* ============================================================
+   GROUP DEFINITIONS
+============================================================ */
+var GROUPS=[
+  {title:'Number Sense & Operations',icon:'📊',ac:'#3b82f6',
+   desc:'Fractions, decimals, percents, PEMDAS, rounding, exponents, scientific notation.',
+   gens:G1,
+   lessons:['Fractions from Word Problems','Order of Operations (PEMDAS)','Fraction → Decimal',
+     'Percent of a Number','Rounding','GCD & Grouping','Scientific Notation','Exponent Rules',
+     'Comparing Fractions','Integer Operations in Context']},
+  {title:'Quantitative Problem Solving',icon:'🧮',ac:'#8b5cf6',
+   desc:'Ratios, proportions, unit rates, percent change, simple interest, discounts, work rate.',
+   gens:G2,
+   lessons:['Unit Rate (Speed)','Proportions','Scale Factor on Maps','Compound Percent Change',
+     'Simple Interest','Discount + Tax','Commission','Distance-Rate-Time','Work Rate','Currency Conversion']},
+  {title:'Expressions & Equations',icon:'✏️',ac:'#ec4899',
+   desc:'Simplify expressions, solve linear equations, inequalities, word problems.',
+   gens:G3,
+   lessons:['Simplify Like Terms','Two-Step Equations','Variables on Both Sides','Inequalities',
+     'Word Problems → Equations','Evaluate Expressions','Consecutive Integers','Age Problems',
+     'Distributive Property','Solve Formula for Variable']},
+  {title:'Graphs & Functions',icon:'📈',ac:'#f59e0b',
+   desc:'Slope, y-intercept, slope-intercept form, function evaluation, systems.',
+   gens:G4,
+   lessons:['Slope from Two Points','Slope from Equation','Y-Intercept','Write Line Equation',
+     'Function Evaluation','Systems (Simple)','Systems (Elimination)','Parallel/Perpendicular',
+     'Function from Table','Graph Interpretation']},
+  {title:'Data, Statistics & Probability',icon:'📉',ac:'#10b981',
+   desc:'Mean, median, mode, range, weighted average, probability, counting principle.',
+   gens:G5,
+   lessons:['Mean','Median','Mode','Range','Weighted Average',
+     'Simple Probability','Counting Principle','Compound Probability','Data from Charts','Percent from Data']},
+  {title:'Geometry & Measurement',icon:'📐',ac:'#06b6d4',
+   desc:'Area, perimeter, volume, circumference, Pythagorean theorem, angles, similar triangles.',
+   gens:G6,
+   lessons:['Rectangle Area','Triangle Area','Circle Area','Circumference','Volume of Prism',
+     'Volume of Cylinder','Pythagorean Theorem','Supplementary Angles','Similar Triangles','Composite Figures']}
+];
+
+var EX_PER_LESSON=30, EX_PER_GROUP=300, TOTAL_EX=1800;
+
+/* ============================================================
+   STATE
+============================================================ */
+var STORE='ged:math:v3';
+var progress={};
+try{progress=JSON.parse(localStorage.getItem(STORE))||{}}catch(e){}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(progress))}catch(e){}}
+function lessonKey(gi,li){return gi+'-'+li}
+function lessonProg(gi,li){var k=lessonKey(gi,li);if(!progress[k])progress[k]={};return progress[k]}
+var cache={};
+
+/* ============================================================
+   SCREENS
+============================================================ */
+var homeScreen=document.getElementById('homeScreen');
+var groupScreen=document.getElementById('groupScreen');
+var lessonScreen=document.getElementById('lessonScreen');
+var currentGroup=-1,currentLesson=-1;
+
+function showOnly(screen){
+  [homeScreen,groupScreen,lessonScreen].forEach(function(s){s.classList.remove('active')});
+  screen.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ============================================================
+   HOME
+============================================================ */
+var groupGrid=document.getElementById('groupGrid');
+function buildHome(){
+  groupGrid.innerHTML='';
+  GROUPS.forEach(function(g,gi){
+    var done=0;
+    for(var li=0;li<10;li++){
+      var p=progress[lessonKey(gi,li)]||{};
+      Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+    }
+    var pct=Math.round(done/EX_PER_GROUP*100);
+    var card=document.createElement('button');
+    card.className='card';
+    card.style.setProperty('--c',g.ac);
+    card.style.animationDelay=(gi*60)+'ms';
+    card.innerHTML=
+      '<div class="c-top">'+
+        '<span class="c-icon">'+g.icon+'</span>'+
+        '<span class="c-arrow">→</span>'+
+      '</div>'+
+      '<h3>Group '+(gi+1)+' — '+g.title+'</h3>'+
+      '<p class="c-desc">'+g.desc+'</p>'+
+      '<div class="c-meta"><span>10 lessons · 300 questions</span><b>'+pct+'%</b></div>'+
+      '<div class="c-bar"><i style="width:'+pct+'%"></i></div>';
+    card.addEventListener('click',(function(idx){return function(){openGroup(idx)}})(gi));
+    groupGrid.appendChild(card);
+  });
+  updateOverall();
+}
+function updateOverall(){
+  var total=0;
+  for(var gi=0;gi<6;gi++)
+    for(var li=0;li<10;li++){
+      var p=progress[lessonKey(gi,li)]||{};
+      Object.keys(p).forEach(function(k){if(p[k]===true)total++});
+    }
+  var pct=Math.round(total/TOTAL_EX*100);
+  document.getElementById('overallPct').textContent=pct+'%';
+  document.getElementById('overallCount').textContent=total.toLocaleString()+' / '+TOTAL_EX.toLocaleString()+' ပြီးစီး';
+  document.getElementById('overallBar').style.width=pct+'%';
+}
+
+/* ============================================================
+   GROUP VIEW
+============================================================ */
+var lessonListEl=document.getElementById('lessonList');
+var gTitleEl=document.getElementById('gTitle');
+var gSubEl=document.getElementById('gSub');
+var gPctEl=document.getElementById('gPct');
+var gCountEl=document.getElementById('gCount');
+var gBarEl=document.getElementById('gBar');
+
+function openGroup(gi){
+  currentGroup=gi;
+  var g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  gTitleEl.textContent='Group '+(gi+1)+' — '+g.title;
+  gSubEl.textContent=g.desc;
+  buildLessonList(gi);
+  refreshGroupStats(gi);
+  showOnly(groupScreen);
+}
+function buildLessonList(gi){
+  var g=GROUPS[gi];
+  lessonListEl.innerHTML='';
+  g.lessons.forEach(function(title,li){
+    var p=progress[lessonKey(gi,li)]||{};
+    var done=0;
+    Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+    var pct=Math.round(done/EX_PER_LESSON*100);
+    var row=document.createElement('button');
+    row.className='lesson-row';
+    row.style.animationDelay=(li*40)+'ms';
+    row.innerHTML=
+      '<span class="l-id">'+(gi+1)+'.'+(li+1)+'</span>'+
+      '<div class="l-body"><h4>'+title+'</h4><p>'+EX_PER_LESSON+' exercises</p></div>'+
+      '<div class="l-prog"><b>'+done+'/'+EX_PER_LESSON+'</b><div class="bar"><i style="width:'+pct+'%"></i></div></div>';
+    row.addEventListener('click',(function(g2,l2){return function(){openLesson(g2,l2)}})(gi,li));
+    lessonListEl.appendChild(row);
+  });
+}
+function refreshGroupStats(gi){
+  if(gi!==currentGroup)return;
+  var done=0;
+  for(var li=0;li<10;li++){
+    var p=progress[lessonKey(gi,li)]||{};
+    Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+  }
+  var pct=Math.round(done/EX_PER_GROUP*100);
+  gPctEl.textContent=pct+'%';
+  gCountEl.textContent=done+' / '+EX_PER_GROUP;
+  gBarEl.style.width=pct+'%';
+}
+document.getElementById('backFromGroup').addEventListener('click',function(){buildHome();showOnly(homeScreen)});
+
+/* ============================================================
+   LESSON VIEW
+============================================================ */
+var exerciseList=document.getElementById('exerciseList');
+var lTitleEl=document.getElementById('lTitle');
+var lSubEl=document.getElementById('lSub');
+var lPctEl=document.getElementById('lPct');
+var lCountEl=document.getElementById('lCount');
+var lBarEl=document.getElementById('lBar');
+
+function generateLesson(gi,li){
+  var key=lessonKey(gi,li);
+  if(cache[key])return cache[key];
+  var gen=GROUPS[gi].gens[li];
+  var arr=[];
+  for(var i=0;i<EX_PER_LESSON;i++){
+    var seed=gi*1000000+li*1000+i*17+13;
+    arr.push(gen(seed));
+  }
+  cache[key]=arr;
+  return arr;
+}
+function openLesson(gi,li){
+  currentGroup=gi; currentLesson=li;
+  var g=GROUPS[gi];
+  document.documentElement.style.setProperty('--ac',g.ac);
+  lTitleEl.textContent=(gi+1)+'.'+(li+1)+' — '+g.lessons[li];
+  lSubEl.textContent='Group '+(gi+1)+' · '+EX_PER_LESSON+' exercises';
+  var arr=generateLesson(gi,li);
+  renderExercises(arr,gi,li);
+  refreshLessonStats(gi,li);
+  showOnly(lessonScreen);
+}
+function refreshLessonStats(gi,li){
+  if(gi!==currentGroup||li!==currentLesson)return;
+  var p=progress[lessonKey(gi,li)]||{};
+  var done=0;
+  Object.keys(p).forEach(function(k){if(p[k]===true)done++});
+  var pct=Math.round(done/EX_PER_LESSON*100);
+  lPctEl.textContent=pct+'%';
+  lCountEl.textContent=done+' / '+EX_PER_LESSON;
+  lBarEl.style.width=pct+'%';
+}
+
+var LTRS=['A','B','C','D'];
+function renderExercises(arr,gi,li){
+  var p=lessonProg(gi,li);
+  exerciseList.innerHTML='';
+  var frag=document.createDocumentFragment();
+  arr.forEach(function(e,idx){frag.appendChild(buildCard(e,idx,gi,li,p[idx]))});
+  exerciseList.appendChild(frag);
+}
+function buildCard(e,idx,gi,li,saved){
+  var wrap=document.createElement('div');
+  wrap.className='exercise';
+  var status=saved===true?'<span class="ex-status correct">✔ Correct</span>'
+    :saved===false?'<span class="ex-status wrong">✘ Wrong</span>'
+    :'<span class="ex-status">— Not answered</span>';
+  wrap.innerHTML=
+    '<div class="ex-head"><span class="ex-num">'+(idx+1)+'</span>'+status+'</div>'+
+    '<div class="ex-q">'+e.q+'</div>'+
+    '<div class="ex-opts">'+
+      e.options.map(function(o,i){return '<button class="opt" data-i="'+i+'"><span class="ltr">'+LTRS[i]+'.</span>'+o+'</button>'}).join('')+
+    '</div>'+
+    '<div class="ex-actions"><button class="show-sol">💡 Show Answer</button></div>'+
+    '<div class="ex-sol hidden">'+
+      '<div class="sol-why"><span class="sol-lbl">အဘယ်ကြောင့်</span>'+e.why+'</div>'+
+      '<div><span class="sol-lbl">တွက်နည်း အဆင့်ဆင့်</span><ol>'+e.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+'</ol></div>'+
+      '<span class="sol-ans">✔ အဖြေ: '+e.answer+'</span>'+
+    '</div>';
+  var opts=wrap.querySelectorAll('.opt');
+  var solBox=wrap.querySelector('.ex-sol');
+  var solBtn=wrap.querySelector('.show-sol');
+  var statusEl=wrap.querySelector('.ex-status');
+
+  if(saved===true||saved===false){
+    opts.forEach(function(b,i){b.disabled=true;if(i===e.correctIndex)b.classList.add('correct')});
+  }
+  opts.forEach(function(b,i){
+    b.addEventListener('click',function(){
+      if(b.disabled)return;
+      var ok=i===e.correctIndex;
+      opts.forEach(function(x){x.disabled=true});
+      b.classList.add(ok?'correct':'wrong');
+      if(!ok)opts[e.correctIndex].classList.add('correct');
+      statusEl.className='ex-status '+(ok?'correct':'wrong');
+      statusEl.textContent=ok?'✔ Correct':'✘ Wrong';
+      lessonProg(gi,li)[idx]=ok;
+      save();
+      refreshLessonStats(gi,li);
+      if(!ok){
+        solBox.classList.remove('hidden');
+        solBtn.classList.add('open');
+        solBtn.textContent='🙈 Hide Answer';
+      }
+    });
+  });
+  solBtn.addEventListener('click',function(){
+    solBox.classList.toggle('hidden');
+    var open=!solBox.classList.contains('hidden');
+    solBtn.classList.toggle('open',open);
+    solBtn.textContent=open?'🙈 Hide Answer':'💡 Show Answer';
+  });
+  return wrap;
+}
+document.getElementById('backFromLesson').addEventListener('click',function(){
+  buildLessonList(currentGroup);
+  refreshGroupStats(currentGroup);
+  showOnly(groupScreen);
+});
+
+/* ============================================================
+   TOOLBAR
+============================================================ */
+document.getElementById('btnShowAll').addEventListener('click',function(){
+  exerciseList.querySelectorAll('.ex-sol').forEach(function(b){b.classList.remove('hidden')});
+  exerciseList.querySelectorAll('.show-sol').forEach(function(b){b.classList.add('open');b.textContent='🙈 Hide Answer'});
+});
+document.getElementById('btnHideAll').addEventListener('click',function(){
+  exerciseList.querySelectorAll('.ex-sol').forEach(function(b){b.classList.add('hidden')});
+  exerciseList.querySelectorAll('.show-sol').forEach(function(b){b.classList.remove('open');b.textContent='💡 Show Answer'});
+});
+document.getElementById('btnReset').addEventListener('click',function(){
+  if(!confirm('Lesson '+(currentGroup+1)+'.'+(currentLesson+1)+' ၏ progress ကို reset လုပ်မလား။'))return;
+  progress[lessonKey(currentGroup,currentLesson)]={};
+  save();
+  openLesson(currentGroup,currentLesson);
+});
+
+buildHome();
+</script>
+</body>
+</html>

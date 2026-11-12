@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED RLA — Reference Sheet</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:rgba(15,23,42,.09);
+--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--radius:18px;--safe-top:env(safe-area-inset-top,0px);
+--safe-bottom:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+--shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);--ac:#3b82f6;
+--nav-bg:rgba(248,250,252,.92);--hover-soft:rgba(15,23,42,.03);--passage-bg:rgba(59,130,246,.05)}
+html[data-theme="dark"]{--bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;--border:rgba(255,255,255,.09);
+--shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);--shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+--nav-bg:rgba(11,18,32,.92);--hover-soft:rgba(255,255,255,.05);--passage-bg:rgba(59,130,246,.1)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(700px 420px at 8% -8%,rgba(59,130,246,.10),transparent 65%),
+radial-gradient(700px 420px at 100% 4%,rgba(6,182,212,.08),transparent 65%)}
+html[data-theme="dark"] body::before{opacity:.55}
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 0 10px}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#3b82f6,#06b6d4);
+box-shadow:0 8px 18px -8px rgba(59,130,246,.7)}
+.nav-logo b{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:8px 13px;border-radius:11px;
+border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;
+font-size:12.5px;font-weight:700;transition:transform .18s,background .2s}
+.back-btn:hover{background:var(--hover-soft)}
+.back-btn:active{transform:scale(.95)}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-size:16px;cursor:pointer;
+padding:0;font-family:inherit;transition:transform .18s,background .18s}
+.icon-btn:hover{background:var(--hover-soft)}
+.icon-btn:active{transform:scale(.9)}
+@media(max-width:520px){.nav-title{display:none}}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom))}
+.hero{padding:28px 0 20px;text-align:center}
+.hero .badge-icon{width:72px;height:72px;border-radius:22px;margin:0 auto 16px;display:grid;place-items:center;
+font-size:34px;background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#fff;
+box-shadow:0 20px 40px -16px rgba(59,130,246,.7)}
+.hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,32px);font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.hero p{margin:0 auto;max-width:560px;font-size:clamp(13px,3.4vw,15px);color:var(--muted);line-height:1.75}
+.search-wrap{max-width:1140px;margin:0 auto;padding:0 18px 14px;position:relative}
+.search-wrap input{width:100%;padding:14px 44px 14px 46px;border-radius:14px;border:1.5px solid var(--border);
+background:var(--card);color:var(--text);font-family:inherit;font-size:14.5px;font-weight:500;
+transition:border-color .18s,background .2s;box-shadow:var(--shadow)}
+.search-wrap input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(59,130,246,.12),var(--shadow)}
+.search-wrap .search-ico{position:absolute;left:34px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none}
+.search-wrap .clear-btn{position:absolute;right:34px;top:50%;transform:translateY(-50%);width:26px;height:26px;
+border:none;border-radius:50%;background:var(--hover-soft);color:var(--muted);display:none;place-items:center;
+cursor:pointer;font-family:inherit;font-size:12px;padding:0}
+.search-wrap .clear-btn.show{display:grid}
+.filters{max-width:1140px;margin:0 auto;padding:0 18px 20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter{flex:none;padding:8px 15px;border-radius:999px;border:1px solid var(--border);background:var(--card);
+color:var(--text);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s}
+.filter:hover{background:var(--hover-soft)}
+.filter.active{background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#fff;border-color:transparent;
+box-shadow:0 8px 18px -8px rgba(59,130,246,.7)}
+.cat{margin-bottom:32px;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cat-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.cat-ico{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;font-size:20px;
+color:#fff;background:var(--cat-color,var(--ac));box-shadow:0 8px 18px -8px var(--cat-color,var(--ac))}
+.cat-head h2{margin:0;flex:1;font-size:clamp(16px,4.2vw,19px);font-weight:800;letter-spacing:-.02em}
+.cat-head .count{font-size:11.5px;color:var(--muted);font-weight:700;padding:3px 10px;border-radius:999px;background:var(--hover-soft)}
+.formulas{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.formulas{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.formulas{grid-template-columns:repeat(3,1fr)}}
+.f-card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+padding:18px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
+@media(hover:hover){.f-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cat-color,var(--ac))}}
+.f-card .name{margin:0 0 12px;font-size:14.5px;font-weight:800;letter-spacing:-.01em;line-height:1.4;color:var(--text)}
+.f-card .formula{padding:14px 16px;background:var(--passage-bg);border-left:3px solid var(--cat-color,var(--ac));
+border-radius:10px;font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:14px;font-weight:600;line-height:1.9;
+color:var(--text);word-break:break-word;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.f-card .formula em{font-style:italic;color:var(--primary-d,#4f46e5);font-weight:700}
+.f-card .formula code{background:var(--hover-soft);padding:2px 6px;border-radius:5px;font-size:13px}
+.f-card .note{margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7}
+.f-card .note b{color:var(--text);font-weight:700}
+.copy-btn{position:absolute;top:12px;right:12px;width:30px;height:30px;padding:0;border-radius:9px;
+border:1px solid var(--border);background:var(--card);color:var(--muted);display:grid;place-items:center;
+cursor:pointer;font-family:inherit;font-size:12px;transition:all .18s;opacity:.7}
+.copy-btn:hover{opacity:1;color:var(--ac);border-color:var(--ac);background:rgba(59,130,246,.06)}
+.copy-btn.done{background:#16a34a;color:#fff;border-color:transparent}
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty .ico{font-size:48px;margin-bottom:14px;opacity:.6}
+.empty h3{margin:0 0 6px;font-size:16px;color:var(--text);font-weight:800}
+.empty p{margin:0;font-size:13px}
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(100px);
+background:#0f172a;color:#fff;padding:13px 20px;border-radius:12px;font-size:13.5px;font-weight:600;
+box-shadow:0 20px 40px -12px rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;
+transition:opacity .3s,transform .35s cubic-bezier(.22,.8,.28,1);max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:linear-gradient(135deg,#16a34a,#15803d)}
+footer{padding:34px 18px;text-align:center;font-size:12px;color:var(--muted);line-height:2}
+footer .brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:800;color:var(--text);font-size:13px}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:9px;
+font-weight:900;color:#fff;background:linear-gradient(135deg,#3b82f6,#06b6d4)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="main.html"><span class="mark">GED</span><b>GED Myanmar</b></a>
+    <div class="nav-title">RLA Reference Sheet</div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button>
+    <a class="back-btn" href="main.html">← Back</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge-icon">📖</div>
+  <h1>RLA Reference Sheet</h1>
+  <p>Grammar Rules · Sentence Structure · Figurative Language · Literary Devices · Essay Format · Transitions · Vocabulary</p>
+</section>
+
+<div class="search-wrap">
+  <span class="search-ico">🔍</span>
+  <input type="text" id="searchInput" placeholder="Rule ရှာရန်... (ဥပမာ: comma, simile, thesis)" autocomplete="off">
+  <button class="clear-btn" id="clearBtn" type="button" aria-label="Clear">✕</button>
+</div>
+
+<div class="filters" id="filters"></div>
+<div class="wrap" id="wrap"></div>
+
+<footer>
+  <div class="brand"><span class="mark">GED</span><span>GED Myanmar</span></div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var THEME_KEY='ged:theme';
+  var root=document.documentElement;
+  function applyTheme(t){
+    root.setAttribute('data-theme',t);
+    $('themeIcon').textContent = t==='dark'?'☀️':'🌙';
+    try{localStorage.setItem(THEME_KEY,t)}catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme')||'light');
+  $('themeBtn').addEventListener('click',function(){applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+
+  var CATEGORIES=[
+    {
+      id:'grammar',name:'Grammar & Punctuation',icon:'✏️',color:'#3b82f6',
+      formulas:[
+        {name:'Comma — Series',formula:'A, B, and C',note:'List item ၃ ခုအထက် — item တစ်ခုချင်းစီကြား comma။ "and" ရှေ့တွင်လည်း (Oxford comma)။',keywords:'comma series list oxford'},
+        {name:'Comma — Intro Phrase',formula:'After the storm, we cleaned up.',note:'Introductory phrase/clause ပြီးနောက် comma ထည့်သည်။',keywords:'comma intro phrase'},
+        {name:'Comma — Non-essential',formula:'John, my best friend, arrived.',note:'Non-essential info ကို comma ၂ ခုဖြင့် ခွာသည်။',keywords:'comma non-essential clause'},
+        {name:'Semicolon',formula:'Clause 1; Clause 2.',note:'Independent clause ၂ ခုကို semicolon ဖြင့် ဆက်သည်။',keywords:'semicolon independent clause'},
+        {name:'Semicolon + Conjunctive Adverb',formula:'I was tired; however, I kept working.',note:'Semicolon + however/therefore + comma ။',keywords:'semicolon however therefore'},
+        {name:'Colon',formula:'She bought three things: bread, milk, and eggs.',note:'List, example, quote မိတ်ဆက်ရန် colon သုံးသည်။ Verb/object ပြီးနောက် မထည့်ရ။',keywords:'colon list introduce'},
+        {name:'Apostrophe — Singular',formula:'The dog\'s bone',note:'Singular possessive = noun + \'s ။',keywords:'apostrophe singular possessive'},
+        {name:'Apostrophe — Plural',formula:'The dogs\' bones',note:'Plural (-s ဖြင့်ဆုံး) possessive = noun + \' ။',keywords:'apostrophe plural'},
+        {name:'Apostrophe — Pronouns',formula:'its, hers, theirs, yours',note:'Possessive pronouns တွင် apostrophe မထည့်ရ။',keywords:'apostrophe pronoun its'},
+        {name:'Subject-Verb Agreement',formula:'Singular subject → verb + s',note:'"Each," "everyone," "neither" = singular → verb + s။',keywords:'subject verb agreement singular'},
+        {name:'Pronoun Agreement',formula:'Each student → his or her',note:'"Each" = singular → his or her (formal)။',keywords:'pronoun agreement his her'},
+        {name:'Verb Tense Consistency',formula:'Yesterday she went; today she goes.',note:'Time marker နှင့် tense ကိုက်ညီရမည်။',keywords:'verb tense consistency'}
+      ]
+    },
+    {
+      id:'sentence',name:'Sentence Structure',icon:'📝',color:'#8b5cf6',
+      formulas:[
+        {name:'Complete Sentence',formula:'Subject + Verb + Complete Thought',note:'Subject/verb ၂ ခုလုံးရှိပြီး အဓိပ္ပာယ်ပြည့်စုံရမည်။',keywords:'complete sentence subject verb'},
+        {name:'Fragment',formula:'Because I was tired.',note:'Dependent clause သာ → fragment။ Complete sentence ဖြစ်ရန် main clause လိုသည်။',keywords:'fragment dependent clause'},
+        {name:'Run-on',formula:'I went to the store I bought milk.',note:'Independent clause ၂ ခု၊ punctuation/conjunction မပါ → run-on။',keywords:'run-on comma splice'},
+        {name:'Fix Run-on — Period',formula:'I went. I bought.',note:'Period/comma+semicolon/conjunction ဖြင့် ခွာနိုင်သည်။',keywords:'run-on fix period semicolon'},
+        {name:'Parallel Structure',formula:'swimming, running, biking',note:'List item များ grammatical form တူညီရမည်။',keywords:'parallel structure'},
+        {name:'Modifier Placement',formula:'Running quickly, I saw a dog.',note:'Modifier သည် သူပြင်ဆင်သည့် word နှင့် နီးရမည်။',keywords:'modifier dangling misplaced'},
+        {name:'Active Voice',formula:'The boy threw the ball.',note:'Subject က action ကို လုပ်သည် → active။ Passive ထက် ရှင်းလင်းသည်။',keywords:'active passive voice'},
+        {name:'Passive Voice',formula:'The ball was thrown by the boy.',note:'Subject က action ကို ခံရသည် → passive။',keywords:'passive voice'},
+        {name:'Sentence Combining',formula:'She studied hard, so she passed.',note:'Conjunction ဖြင့် sentence များ ပေါင်းနိုင်သည်။',keywords:'combining sentences conjunction'}
+      ]
+    },
+    {
+      id:'figurative',name:'Figurative Language',icon:'🎭',color:'#ec4899',
+      formulas:[
+        {name:'Simile',formula:'as brave as a lion / runs like the wind',note:'"like" သို့မဟုတ် "as" ဖြင့် နှိုင်းယှဉ်။',keywords:'simile like as'},
+        {name:'Metaphor',formula:'Time is a thief.',note:'"like/as" မပါဘဲ တိုက်ရိုက် နှိုင်းယှဉ်။',keywords:'metaphor'},
+        {name:'Personification',formula:'The wind whispered.',note:'အရာဝတ္ထုကို လူလို ပြုမူစေသည်။',keywords:'personification'},
+        {name:'Hyperbole',formula:'I\'m so hungry I could eat a horse.',note:'အလွန်အကျွံ ချဲ့ကားခြင်း။',keywords:'hyperbole exaggeration'},
+        {name:'Idiom',formula:'Break a leg! / Piece of cake',note:'တိုက်ရိုက်အဓိပ္ပာယ် မဟုတ်ဘဲ အထူးအဓိပ္ပာယ်ရှိသည်။',keywords:'idiom expression'},
+        {name:'Situational Irony',formula:'A fire station burns down.',note:'မျှော်လင့်ချက်နှင့် ဆန့်ကျင်ဘက်ဖြစ်သည်။',keywords:'irony situational'},
+        {name:'Verbal Irony',formula:'Saying "great!" when something bad happens.',note:'ပြောင်းပြန်ပြောခြင်း။',keywords:'irony verbal sarcasm'},
+        {name:'Dramatic Irony',formula:'Reader knows what character doesn\'t.',note:'ဖတ်သူသိ၊ ဇာတ်ကောင်မသိ။',keywords:'irony dramatic'}
+      ]
+    },
+    {
+      id:'literary',name:'Literary Elements',icon:'📖',color:'#10b981',
+      formulas:[
+        {name:'Theme',formula:'Universal lesson/message',note:'ဇာတ်လမ်း၏ သင်ခန်းစာ သို့မဟုတ် အဓိကစိတ်ကူး။',keywords:'theme message'},
+        {name:'Tone',formula:'Author\'s attitude',note:'စာရေးသူ၏ သဘောထား။',keywords:'tone attitude'},
+        {name:'Mood',formula:'Reader\'s feeling',note:'ဖတ်သူ ခံစားရသည့် ခံစားချက်။',keywords:'mood feeling'},
+        {name:'1st Person POV',formula:'I / we',note:'Narrator ကိုယ်တိုင် ပြောသည်။',keywords:'first person point of view'},
+        {name:'3rd Person Limited',formula:'he/she — one mind',note:'ဇာတ်ကောင်တစ်ဦး၏ အတွေးသာ သိသည်။',keywords:'third person limited'},
+        {name:'3rd Person Omniscient',formula:'he/she — all minds',note:'All-knowing narrator ။',keywords:'third person omniscient'},
+        {name:'Conflict — Person vs Self',formula:'Internal struggle',note:'ကိုယ်တိုင် ရုန်းကန်ခြင်း။',keywords:'conflict internal self'},
+        {name:'Conflict — Person vs Nature',formula:'Against storm/flood',note:'သဘာဝတရားနှင့် ရုန်းကန်။',keywords:'conflict nature'},
+        {name:'Conflict — Person vs Society',formula:'Against unfair law',note:'လူမှုအဖွဲ့အစည်းနှင့် ရုန်းကန်။',keywords:'conflict society'}
+      ]
+    },
+    {
+      id:'essay',name:'Essay Structure',icon:'🎯',color:'#f59e0b',
+      formulas:[
+        {name:'Introduction',formula:'Hook → Background → Thesis',note:'Hook (ဆွဲဆောင်မှု) + background + thesis statement။',keywords:'introduction hook thesis'},
+        {name:'Thesis Statement',formula:'Claim + Reasons',note:'Specific claim + 2-3 supporting reasons။',keywords:'thesis claim reasons'},
+        {name:'Body Paragraph',formula:'Topic sentence → Evidence → Analysis',note:'Paragraph တစ်ခုစီတွင် topic sentence၊ evidence၊ analysis ပါရမည်။',keywords:'body paragraph topic evidence'},
+        {name:'Conclusion',formula:'Restate thesis → Summarize → Final thought',note:'Thesis ကို ပြန်ပြောပြီး main points များ summarize။',keywords:'conclusion restate summarize'},
+        {name:'Counterargument',formula:'Acknowledge + Refute',note:'ဆန့်ကျင်ဘက်အမြင်ကို အသိအမှတ်ပြုပြီး ပြန်ချေပသည်။',keywords:'counterargument rebuttal'},
+        {name:'GED Essay',formula:'Analyze 2 sources · 400-600 words · 45 min',note:'RLA Extended Response ၏ format။',keywords:'GED extended response essay'},
+        {name:'Evidence from Text',formula:'Quote/Paraphrase + Analysis',note:'Sources မှ evidence ထုတ်ပြီး analysis လုပ်ရမည်။',keywords:'evidence quote analysis'}
+      ]
+    },
+    {
+      id:'transitions',name:'Transition Words',icon:'🔗',color:'#06b6d4',
+      formulas:[
+        {name:'Addition',formula:'also, moreover, furthermore, in addition',note:'အချက်အလက် ထပ်တိုးရန်။',keywords:'transition addition'},
+        {name:'Contrast',formula:'however, nevertheless, on the other hand',note:'ဆန့်ကျင်ဘက် ဖော်ပြရန်။',keywords:'transition contrast'},
+        {name:'Cause-Effect',formula:'therefore, consequently, as a result',note:'အကြောင်း-အကျိုး ဖော်ပြရန်။',keywords:'transition cause effect'},
+        {name:'Sequence',formula:'first, then, next, finally',note:'အစီအစဉ်အတိုင်း ဖော်ပြရန်။',keywords:'transition sequence'},
+        {name:'Comparison',formula:'similarly, likewise, in the same way',note:'တူညီသည့်အချက် ဖော်ပြရန်။',keywords:'transition comparison'},
+        {name:'Example',formula:'for example, for instance, such as',note:'ဥပမာ ဖော်ပြရန်။',keywords:'transition example'},
+        {name:'Emphasis',formula:'indeed, in fact, above all',note:'အလေးထားရန်။',keywords:'transition emphasis'},
+        {name:'Summary',formula:'in conclusion, to summarize, in short',note:'နိဂုံးချုပ်ရန်။',keywords:'transition summary conclusion'}
+      ]
+    },
+    {
+      id:'vocab',name:'Vocabulary & Roots',icon:'📚',color:'#a855f7',
+      formulas:[
+        {name:'Prefixes — Negation',formula:'un-, dis-, mis-, non-, anti-',note:'ငြင်းပယ်ခြင်း သို့မဟုတ် ဆန့်ကျင်ဘက်။',keywords:'prefix negation un dis mis'},
+        {name:'Prefixes — Direction',formula:'pre-, post-, sub-, super-, inter-',note:'နေရာ/အချိန် ဖော်ပြခြင်း။',keywords:'prefix direction pre post sub'},
+        {name:'Prefixes — Number',formula:'mono-, bi-, tri-, multi-',note:'အရေအတွက် ဖော်ပြခြင်း။',keywords:'prefix number mono bi tri'},
+        {name:'Suffixes — Adjective',formula:'-ful, -less, -able, -ous',note:'Adjective ဖန်တီးသည်။',keywords:'suffix adjective ful less'},
+        {name:'Suffixes — Noun',formula:'-ness, -ment, -tion, -ist',note:'Noun ဖန်တီးသည်။',keywords:'suffix noun ness ment'},
+        {name:'Suffixes — Verb',formula:'-ize, -ify, -ate',note:'Verb ဖန်တီးသည်။',keywords:'suffix verb ize ify'},
+        {name:'Roots — Greek',formula:'bio (life), geo (earth), tele (far)',note:'Greek roots ။',keywords:'root greek bio geo'},
+        {name:'Roots — Latin',formula:'spec (see), aud (hear), dict (speak)',note:'Latin roots ။',keywords:'root latin spec aud dict'},
+        {name:'Context Clues',formula:'Definition · Example · Contrast · Inference',note:'Sentence အတွင်းရှိ clues များဖြင့် အဓိပ္ပာယ် ခန့်မှန်းခြင်း။',keywords:'context clues definition example'}
+      ]
+    },
+    {
+      id:'reading',name:'Reading Strategies',icon:'📄',color:'#ef4444',
+      formulas:[
+        {name:'Main Idea',formula:'Topic + What is said about it',note:'Passage တစ်ခုလုံး၏ အဓိကအချက်။',keywords:'main idea central theme'},
+        {name:'Supporting Details',formula:'Facts · Examples · Data',note:'Main idea ကို ထောက်ပြသည့် အချက်များ။',keywords:'supporting details'},
+        {name:'Inference',formula:'Clues + Prior knowledge = Conclusion',note:'တိုက်ရိုက်မပြောဘဲ ကောက်ချက်ချခြင်း။',keywords:'inference clue'},
+        {name:'Author\'s Purpose',formula:'Inform · Persuade · Entertain · Instruct',note:'စာရေးသူ၏ ရည်ရွယ်ချက်။',keywords:'author purpose inform persuade'},
+        {name:'Text Structure',formula:'Cause/Effect · Compare/Contrast · Chronological · Problem/Solution',note:'စာသား စီစဉ်ပုံ။',keywords:'text structure cause effect'},
+        {name:'Fact vs Opinion',formula:'Verifiable vs Judgment',note:'Fact = စစ်ဆေးနိုင်။ Opinion = ထင်မြင်ချက်။',keywords:'fact opinion verifiable'},
+        {name:'Bias Detection',formula:'Loaded words · One-sided view · Missing sources',note:'Bias ကို ရှာဖွေခြင်း။',keywords:'bias loaded words'},
+        {name:'Point of View (Argument)',formula:'Claim + Evidence + Counterargument',note:'Argument ၏ ဖွဲ့စည်းပုံ။',keywords:'claim evidence argument'}
+      ]
+    }
+  ];
+
+  var currentFilter='all';
+  var searchQuery='';
+  var filtersEl=$('filters'),wrapEl=$('wrap'),searchInput=$('searchInput'),clearBtn=$('clearBtn');
+
+  function renderFilters(){
+    filtersEl.innerHTML='';
+    var allBtn=document.createElement('button');
+    allBtn.className='filter active';
+    allBtn.textContent='📋 အားလုံး';
+    allBtn.dataset.id='all';
+    allBtn.addEventListener('click',function(){setFilter('all')});
+    filtersEl.appendChild(allBtn);
+    CATEGORIES.forEach(function(c){
+      var b=document.createElement('button');
+      b.className='filter';
+      b.textContent=c.icon+' '+c.name;
+      b.dataset.id=c.id;
+      b.addEventListener('click',function(){setFilter(c.id)});
+      filtersEl.appendChild(b);
+    });
+  }
+  function setFilter(id){
+    currentFilter=id;
+    var filters=filtersEl.querySelectorAll('.filter');
+    for(var i=0;i<filters.length;i++){
+      filters[i].classList.toggle('active',filters[i].dataset.id===id);
+    }
+    render();
+  }
+  function matches(f,q){
+    if(!q) return true;
+    var h=(f.name+' '+f.formula+' '+(f.note||'')+' '+(f.keywords||'')).toLowerCase();
+    return h.indexOf(q)!==-1;
+  }
+  function stripHtml(s){var d=document.createElement('div');d.innerHTML=s;return (d.textContent||'').replace(/\s+/g,' ').trim();}
+  function escapeAttr(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/\n/g,'&#10;');}
+
+  function render(){
+    var q=searchQuery.toLowerCase().trim();
+    var html='';
+    var total=0;
+    CATEGORIES.forEach(function(cat){
+      if(currentFilter!=='all' && currentFilter!==cat.id) return;
+      var filtered=cat.formulas.filter(function(f){return matches(f,q)});
+      if(filtered.length===0) return;
+      total+=filtered.length;
+      html+='<div class="cat" style="--cat-color:'+cat.color+'">'+
+        '<div class="cat-head"><span class="cat-ico">'+cat.icon+'</span><h2>'+cat.name+'</h2><span class="count">'+filtered.length+'</span></div>'+
+        '<div class="formulas">'+
+        filtered.map(function(f){
+          return '<div class="f-card" style="--cat-color:'+cat.color+'">'+
+            '<button class="copy-btn" data-formula="'+escapeAttr(f.name+'\\n'+stripHtml(f.formula)+(f.note?'\\n'+stripHtml(f.note):''))+'" title="Copy">📋</button>'+
+            '<h3 class="name">'+f.name+'</h3>'+
+            '<div class="formula">'+f.formula+'</div>'+
+            (f.note?'<p class="note">'+f.note+'</p>':'')+
+          '</div>';
+        }).join('')+
+        '</div></div>';
+    });
+    if(total===0){html='<div class="empty"><div class="ico">🔍</div><h3>ရှာဖွေမှု ရလဒ် မတွေ့ပါ</h3><p>အခြားစကားလုံးဖြင့် ထပ်မံ ရှာကြည့်ပါ</p></div>';}
+    wrapEl.innerHTML=html;
+    wrapEl.querySelectorAll('.copy-btn').forEach(function(b){b.addEventListener('click',handleCopy)});
+  }
+
+  function handleCopy(e){
+    var btn=e.currentTarget;
+    var text=btn.getAttribute('data-formula');
+    var done=false;
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text);done=true;}}catch(e){}
+    if(!done){
+      try{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done=true;}catch(e){}
+    }
+    if(done){
+      btn.classList.add('done');btn.textContent='✓';
+      toast('📋 Rule ကူးယူပြီးပါပြီ');
+      setTimeout(function(){btn.classList.remove('done');btn.textContent='📋';},1600);
+    }
+  }
+
+  var searchTimer;
+  searchInput.addEventListener('input',function(){
+    clearTimeout(searchTimer);
+    var v=searchInput.value;
+    clearBtn.classList.toggle('show',v.length>0);
+    searchTimer=setTimeout(function(){searchQuery=v;render();},180);
+  });
+  clearBtn.addEventListener('click',function(){
+    searchInput.value='';searchQuery='';clearBtn.classList.remove('show');searchInput.focus();render();
+  });
+
+  var toastTimer;
+  function toast(msg){
+    var t=$('toast');
+    t.textContent=msg;t.className='toast show ok';
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){t.classList.remove('show');},2000);
+  }
+
+  renderFilters();
+  render();
+})();
+</script>
+</body>
+</html>

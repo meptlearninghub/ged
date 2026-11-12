@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED RLA — Advanced Real Exam</title>
+
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#3b82f6;--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--violet:#8b5cf6;
+  --radius:18px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --nav-bg:rgba(248,250,252,.92);
+  --passage-bg:rgba(59,130,246,.04);
+  --passage-border:rgba(59,130,246,.2);
+  --highlight-bg:rgba(245,158,11,.25);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --nav-bg:rgba(11,18,32,.92);
+  --passage-bg:rgba(59,130,246,.1);
+  --passage-border:rgba(59,130,246,.3);
+  --highlight-bg:rgba(245,158,11,.35);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 420px at 8% -8%,rgba(59,130,246,.10),transparent 65%),
+             radial-gradient(700px 420px at 100% 4%,rgba(139,92,246,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+
+.header{position:sticky;top:0;z-index:30;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 14px 10px}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.back-btn{display:inline-flex;align-items:center;gap:5px;flex:none;padding:8px 12px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+  font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.h-title{flex:1;min-width:0}
+.h-title h1{margin:0;font-size:clamp(12px,3.4vw,15px);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-title p{margin:1px 0 0;font-size:10.5px;color:var(--muted);font-weight:600}
+.part-badge{flex:none;display:inline-flex;align-items:center;gap:4px;padding:6px 9px;border-radius:9px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;
+  background:rgba(59,130,246,.12);color:#1d4ed8;border:1px solid rgba(59,130,246,.25);white-space:nowrap}
+.part-badge.p2{background:rgba(139,92,246,.12);color:#6d28d9;border-color:rgba(139,92,246,.25)}
+html[data-theme="dark"] .part-badge{background:rgba(59,130,246,.2);color:#93c5fd}
+html[data-theme="dark"] .part-badge.p2{background:rgba(139,92,246,.2);color:#c4b5fd}
+.timer{flex:none;display:inline-flex;align-items:center;gap:4px;padding:8px 10px;border-radius:11px;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;font-size:12px;font-weight:800;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -8px rgba(59,130,246,.8)}
+.timer.warn{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.timer.break{background:linear-gradient(135deg,#f59e0b,#f97316)}
+@media(max-width:520px){.h-title h1{font-size:11.5px}.part-badge{display:none}}
+
+.progress-wrap{max-width:900px;margin:10px auto 0;padding:0 14px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.progress-top b{font-size:12px;font-weight:800;color:var(--primary)}
+.progress-top span{font-size:11px;color:var(--muted);font-weight:600}
+.progress-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .progress-bar{background:rgba(255,255,255,.09)}
+.progress-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#3b82f6,#6366f1);transition:width .4s cubic-bezier(.22,.8,.28,1)}
+
+.dot-map{max-width:900px;margin:10px auto 0;padding:0 14px;display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);
+  cursor:pointer;border:none;font-family:inherit;position:relative;
+  transition:transform .15s,background .2s,color .2s;}
+html[data-theme="dark"] .dot{background:rgba(255,255,255,.06)}
+.dot:active{transform:scale(.9)}
+.dot.answered{background:rgba(59,130,246,.2);color:#1d4ed8}
+html[data-theme="dark"] .dot.answered{background:rgba(59,130,246,.3);color:#93c5fd}
+.dot.current{background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;
+  box-shadow:0 4px 12px -4px rgba(59,130,246,.9)}
+.dot.p2.answered{background:rgba(139,92,246,.2);color:#6d28d9}
+.dot.p2.current{background:linear-gradient(135deg,#8b5cf6,#6366f1)}
+.dot.essay::after{content:"✎";position:absolute;top:-2px;right:-2px;font-size:8px}
+
+.passage-indicator{max-width:900px;margin:14px auto 0;padding:0 14px;
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--muted);flex-wrap:wrap;}
+.passage-indicator .badge{padding:4px 10px;border-radius:999px;
+  background:var(--passage-bg);color:var(--primary);border:1px solid var(--passage-border);}
+.passage-indicator .bar{flex:1;height:1px;background:var(--border);min-width:20px;}
+
+.passage-box{max-width:900px;margin:10px auto 0;padding:0 14px;}
+.passage-pair{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:780px){.passage-pair{grid-template-columns:1fr 1fr}}
+.passage-inner{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:18px;font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+  font-size:15px;line-height:1.9;color:var(--text);max-height:55svh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;}
+.passage-inner.collapsed{max-height:200px;overflow:hidden;position:relative}
+.passage-inner.collapsed::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent, var(--passage-bg));pointer-events:none;}
+.passage-title{font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:11.5px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--primary);margin:0 0 8px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.passage-title .src{
+  font-size:10px;padding:2px 8px;border-radius:999px;
+  background:rgba(245,158,11,.15);color:#b45309;letter-spacing:.03em;
+}
+html[data-theme="dark"] .passage-title .src{background:rgba(245,158,11,.25);color:#fbbf24}
+.passage-text{white-space:pre-wrap;margin:0;position:relative}
+.passage-text p{margin:0 0 12px;position:relative}
+.passage-text p:last-child{margin-bottom:0}
+.sentence{
+  display:inline;cursor:pointer;border-radius:3px;padding:1px 2px;margin:0 -2px;
+  transition:background .15s;position:relative;
+}
+.sentence:hover{background:rgba(59,130,246,.12)}
+.sentence.selected{background:var(--highlight-bg);box-shadow:0 0 0 1px rgba(245,158,11,.4)}
+.sentence.correct-sel{background:rgba(22,163,74,.25);box-shadow:0 0 0 1px rgba(22,163,74,.5)}
+.sentence.wrong-sel{background:rgba(220,38,38,.2);box-shadow:0 0 0 1px rgba(220,38,38,.4)}
+.sentence-num{
+  font-size:9px;color:var(--muted);font-weight:800;vertical-align:super;
+  margin-right:1px;font-family:'Inter',sans-serif;
+}
+.passage-toggle{display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:8px auto 0;padding:7px 14px;border-radius:10px;
+  border:1px solid var(--passage-border);background:var(--card);
+  color:var(--primary);font-family:inherit;font-size:11.5px;font-weight:800;
+  cursor:pointer;transition:all .18s;}
+.passage-toggle:hover{background:var(--passage-bg)}
+.passage-toggle:active{transform:scale(.97)}
+
+.q-wrap{max-width:900px;margin:0 auto;padding:14px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-num{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:rgba(59,130,246,.12);color:#1d4ed8;font-size:11px;font-weight:800;margin-bottom:6px;}
+html[data-theme="dark"] .q-num{background:rgba(59,130,246,.2);color:#93c5fd}
+.q-type{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;margin-left:6px;
+  background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3);}
+html[data-theme="dark"] .q-type{background:rgba(245,158,11,.25);color:#fbbf24}
+.q-type.tech{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+html[data-theme="dark"] .q-type.tech{background:rgba(139,92,246,.25);color:#c4b5fd}
+.q-type.rhet{background:rgba(236,72,153,.15);color:#be185d;border-color:rgba(236,72,153,.3)}
+html[data-theme="dark"] .q-type.rhet{background:rgba(236,72,153,.25);color:#f9a8d4}
+.q-text{font-size:14.5px;line-height:1.75;margin:8px 0 14px;font-weight:500}
+.q-text b{font-weight:800}
+.q-hint{font-size:11.5px;color:var(--muted);font-weight:700;margin:-6px 0 12px;
+  padding:8px 12px;background:rgba(139,92,246,.06);border-radius:8px;border-left:3px solid var(--violet)}
+html[data-theme="dark"] .q-hint{background:rgba(139,92,246,.12)}
+
+.opts{display:grid;grid-template-columns:1fr;gap:8px}
+.opt{text-align:left;padding:12px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:all .18s;line-height:1.55;display:flex;align-items:flex-start;gap:10px;}
+.opt:active{transform:scale(.985)}
+.opt:not(:disabled):hover{border-color:var(--primary);background:rgba(59,130,246,.04)}
+.opt .ltr{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);transition:all .18s;}
+html[data-theme="dark"] .opt .ltr{background:rgba(255,255,255,.08)}
+.opt.selected{border-color:var(--primary);background:rgba(59,130,246,.06)}
+.opt.selected .ltr{background:var(--primary);color:#fff}
+.opt.correct{border-color:var(--green);background:#dcfce7;color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.correct .ltr{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#fee2e2;color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt.wrong .ltr{background:var(--red);color:#fff}
+.opt.multi .ltr{border-radius:5px}
+.opt.multi.selected .ltr::after{content:"✓"}
+.opt .body{flex:1;padding-top:1px}
+.opt:disabled{cursor:default}
+.opt.multi-opt{padding-left:16px}
+
+.order-pool{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.order-item{padding:11px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);font-family:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px;
+  text-align:left;max-width:100%;color:var(--text)}
+.order-item:hover{border-color:var(--violet);background:rgba(139,92,246,.05)}
+.order-item.used{opacity:.35;pointer-events:none}
+.order-slots{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;
+  background:rgba(139,92,246,.04);border:1.5px dashed var(--passage-border);min-height:52px}
+html[data-theme="dark"] .order-slots{background:rgba(139,92,246,.08)}
+.order-slot{padding:10px 12px;border-radius:9px;background:var(--violet);color:#fff;
+  font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px;
+  animation:popIn .25s cubic-bezier(.22,.8,.28,1)}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.order-slot .num{background:rgba(255,255,255,.25);border-radius:50%;
+  width:20px;height:20px;display:grid;place-items:center;font-size:10px;font-weight:800}
+.order-slot .rm{margin-left:auto;opacity:.7;font-size:13px;cursor:pointer;padding:0 4px}
+.order-empty{color:var(--muted);font-size:12.5px;font-style:italic;padding:6px;text-align:center}
+
+.dropdown-line{font-size:14.5px;line-height:2.1;font-weight:500;padding:14px 16px;border-radius:12px;
+  background:rgba(139,92,246,.05);border:1px solid var(--border)}
+html[data-theme="dark"] .dropdown-line{background:rgba(139,92,246,.1)}
+.dd-select{padding:7px 9px;border-radius:8px;border:1.5px solid var(--violet);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:700;
+  cursor:pointer;margin:0 3px}
+.dd-select.ok{background:#dcfce7;border-color:var(--green);color:#14532d}
+.dd-select.bad{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+
+.table-wrap{overflow-x:auto;margin-bottom:12px;border-radius:12px;border:1px solid var(--border)}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;min-width:320px}
+.data-table th,.data-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{background:rgba(139,92,246,.06);font-weight:800;color:#6d28d9;font-size:11.5px;
+  text-transform:uppercase;letter-spacing:.04em}
+html[data-theme="dark"] .data-table th{background:rgba(139,92,246,.12);color:#c4b5fd}
+.data-table td{font-weight:600}
+.data-table select{width:100%;padding:6px 8px;border-radius:7px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:12.5px;font-weight:700}
+.data-table select:focus{outline:none;border-color:var(--primary)}
+.data-table select.ok{background:#dcfce7;border-color:var(--green)}
+.data-table select.bad{background:#fee2e2;border-color:var(--red)}
+
+.q-nav{max-width:900px;margin:14px auto 0;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;
+  border-radius:11px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s,background .2s,color .2s;min-height:42px;text-decoration:none;}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(59,130,246,.7)}
+.btn.ghost{background:transparent;box-shadow:none}
+.btn.grow{flex:1;min-width:110px}
+.btn.submit{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(34,197,94,.7)}
+
+.start-hero,.break-hero,.result-hero{max-width:680px;margin:0 auto;
+  padding:calc(28px + var(--safe-top)) 20px 20px;text-align:center}
+.start-hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(59,130,246,.8);}
+.start-hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,30px);font-weight:800;letter-spacing:-.03em}
+.start-hero .subtitle{margin:0 0 4px;font-size:clamp(13px,3.4vw,15px);color:var(--muted)}
+.start-info{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin:24px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.start-info-item{text-align:left}
+.start-info-item b{display:block;font-size:20px;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.start-info-item span{font-size:12px;color:var(--muted);font-weight:600}
+.start-tips{text-align:left;font-size:12.5px;color:var(--muted);line-height:1.85;
+  background:rgba(245,158,11,.08);border-radius:12px;padding:14px 16px;border-left:3px solid var(--amber);}
+.start-tips b{color:var(--text)}
+.start-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;
+  padding:16px 22px;border-radius:16px;font-size:16px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 12px 26px -10px rgba(59,130,246,.8);transition:transform .2s,filter .2s;}
+.start-btn:active{transform:scale(.98)}
+
+.break-hero .icon{width:100px;height:100px;border-radius:26px;margin:0 auto 22px;
+  display:grid;place-items:center;font-size:48px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;
+  box-shadow:0 22px 46px -18px rgba(245,158,11,.8);}
+.break-hero h1{margin:0 0 10px;font-size:clamp(24px,6vw,32px);font-weight:800;letter-spacing:-.03em}
+.break-hero p{margin:0 0 22px;font-size:14px;color:var(--muted);line-height:1.75}
+.break-count{font-size:72px;font-weight:800;color:var(--amber);letter-spacing:-.04em;
+  line-height:1;font-variant-numeric:tabular-nums;margin:6px 0 22px}
+.break-info{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;
+  box-shadow:var(--shadow);font-size:12.5px;color:var(--muted);line-height:1.85;
+  text-align:left;margin-bottom:20px;}
+.break-info b{color:var(--text)}
+
+.essay-wrap{max-width:900px;margin:0 auto;padding:16px}
+.essay-prompt{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:18px;margin-bottom:14px;}
+.essay-prompt h3{margin:0 0 10px;font-size:14px;font-weight:800;color:var(--primary);
+  letter-spacing:.03em;text-transform:uppercase;}
+.essay-prompt p{margin:0 0 10px;font-size:13.5px;line-height:1.75}
+.essay-sources{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:640px){.essay-sources{grid-template-columns:1fr 1fr}}
+.essay-source{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;
+  font-family:'Source Serif 4',Georgia,serif;font-size:13px;line-height:1.75;max-height:280px;overflow-y:auto}
+.essay-source b{font-family:'Inter',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.05em;color:var(--primary);text-transform:uppercase;display:block;margin-bottom:6px}
+.essay-input-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:16px;box-shadow:var(--shadow)}
+.essay-input-wrap label{display:block;font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.essay-input{width:100%;min-height:280px;padding:14px;border-radius:10px;
+  border:1.5px solid var(--border);background:var(--bg);color:var(--text);
+  font-family:inherit;font-size:14px;line-height:1.7;resize:vertical;}
+.essay-input:focus{outline:none;border-color:var(--primary);background:var(--card)}
+.essay-meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;
+  font-size:11.5px;color:var(--muted);font-weight:600;}
+.essay-meta b{color:var(--primary);font-weight:800}
+
+.score-ring{width:170px;height:170px;margin:0 auto 22px;position:relative;display:grid;place-items:center}
+.score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.score-ring .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:12}
+html[data-theme="dark"] .score-ring .bgc{stroke:rgba(255,255,255,.08)}
+.score-ring .fgc{fill:none;stroke:url(#grad);stroke-width:12;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.8,.28,1)}
+.score-ring .pct{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-ring .lbl{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.ged-score{background:linear-gradient(135deg,#3b82f6,#6366f1);color:#fff;border-radius:16px;
+  padding:18px;margin-bottom:18px;text-align:center;box-shadow:0 12px 30px -12px rgba(59,130,246,.8)}
+.ged-score b{display:block;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ged-score span{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.05em;
+  text-transform:uppercase;margin-top:4px;display:block}
+.ged-score small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:8px}
+.result-msg{font-size:17px;font-weight:700;margin:0 0 8px}
+.result-sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.75}
+.result-stats{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;text-align:center;}
+.result-stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.result-stats span{font-size:11px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.rs-correct b{color:var(--green)}
+.rs-wrong b{color:var(--red)}
+.rs-time b{color:var(--primary)}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.result-actions .btn{flex:1;min-width:130px}
+.review-wrap{max-width:900px;margin:22px auto 0;padding:0 16px}
+.review-title{font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin:8px 0 12px;text-align:center}
+.sol{margin-top:14px;padding:14px;border-radius:14px;
+  background:rgba(59,130,246,.06);border-left:3px solid var(--primary);
+  font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .sol{background:rgba(59,130,246,.12)}
+.sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--primary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.sol ol{margin:6px 0 0;padding-left:20px}
+.sol ol li{margin-bottom:4px;line-height:1.7}
+.sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="startScreen" class="screen active">
+  <div class="start-hero">
+    <div class="big-icon">📖</div>
+    <h1>GED RLA — Real Exam</h1>
+    <p class="subtitle">Advanced Format · Paired Passages · Rhetorical Analysis · Tech-Enhanced</p>
+
+    <div class="start-info">
+      <div class="start-info-item"><b>46</b><span>Questions</span></div>
+      <div class="start-info-item"><b>1</b><span>Extended Response</span></div>
+      <div class="start-info-item"><b>150</b><span>Minutes</span></div>
+      <div class="start-info-item"><b>3 Sets</b><span>Random</span></div>
+    </div>
+
+    <div class="start-tips">
+      <b>📌 Real GED RLA Format</b><br>
+      • <b>Part 1</b> — Reading (Paired + Historical + Scientific + Argumentative) · 40 min<br>
+      • <b>3-minute break</b><br>
+      • <b>Part 2</b> — Language (Rhetorical + Grammar + Tech-enhanced) · 65 min<br>
+      • <b>Extended Response</b> — Essay (analyze paired sources) · 45 min<br>
+      • <b>Random Set</b> — Sets A/B/C မှ ကျပန်းရွေး
+    </div>
+
+    <button class="start-btn" id="startBtn">▶ Exam စတင်ရန်</button>
+    <a class="back-btn" href="pretest.html" style="margin-top:14px;display:inline-flex">← Pretest Hub</a>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="examScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="pretest.html" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>GED RLA Exam</h1>
+        <p id="qCounter">Question 1 of 46</p>
+      </div>
+      <span class="part-badge" id="partBadge">Part 1</span>
+      <div class="timer" id="timer">40:00</div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-top"><b id="pLabel">Progress</b><span id="pCount">0 / 47</span></div>
+    <div class="progress-bar"><i id="pBar"></i></div>
+  </div>
+
+  <div class="dot-map" id="dotMap"></div>
+
+  <div class="passage-indicator" id="passageIndicator">
+    <span class="badge" id="passageBadge">Passage 1</span>
+    <span class="bar"></span>
+    <span id="passageInfo">Informational Text</span>
+  </div>
+
+  <div class="passage-box" id="passageBox"></div>
+
+  <div class="q-wrap">
+    <div class="q-card" id="qCard"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="prevBtn">← Previous</button>
+      <button class="btn primary grow" id="nextBtn">Next →</button>
+    </div>
+    <div class="q-nav" style="margin-top:10px">
+      <button class="btn submit grow" id="submitBtn">✓ Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- BREAK -->
+<div id="breakScreen" class="screen">
+  <div class="break-hero">
+    <div class="icon">☕</div>
+    <h1>3-Minute Break</h1>
+    <p>Part 1 ပြီးဆုံးပါပြီ။ Part 2 — Language + Essay။</p>
+    <div class="break-count" id="breakCount">3:00</div>
+    <div class="break-info">
+      <b>⏸ လုပ်ဆောင်ရမည့်အရာများ</b><br>
+      • မျက်စိအနားပေးပါ · ရေသောက်ပါ<br>
+      • Part 2 — Rhetorical Analysis + Grammar · 65 min<br>
+      • Essay — Paired sources analyze · 45 min
+    </div>
+    <button class="btn primary grow" id="skipBreakBtn" style="width:100%">▶ Part 2 ချက်ချင်းစတင်ရန်</button>
+  </div>
+</div>
+
+<!-- ESSAY -->
+<div id="essayScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="#" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>Extended Response</h1>
+        <p>Essay · 45 minutes</p>
+      </div>
+      <span class="part-badge p2">Essay</span>
+      <div class="timer" id="essayTimer">45:00</div>
+    </div>
+  </div>
+
+  <div class="essay-wrap">
+    <div class="essay-prompt">
+      <h3 id="essayPromptTitle">📝 Writing Prompt</h3>
+      <p id="essayPromptText"></p>
+      <ol id="essayPromptList" style="margin:8px 0 12px 20px;padding:0;font-size:13.5px;line-height:1.8"></ol>
+      <p style="font-size:12.5px;color:var(--muted);font-style:italic">
+        Your response should be approximately 400-600 words. Type your essay in the box below.
+      </p>
+      <div class="essay-sources" id="essaySources"></div>
+    </div>
+
+    <div class="essay-input-wrap">
+      <label for="essayInput">Your Extended Response</label>
+      <textarea class="essay-input" id="essayInput" placeholder="Write your essay here..."></textarea>
+      <div class="essay-meta">
+        <span><b id="essayWords">0</b> words</span>
+        <span>Target: 400-600 words</span>
+      </div>
+    </div>
+
+    <div class="q-nav" style="max-width:100%;padding:0;margin-top:14px">
+      <button class="btn submit grow" id="essaySubmitBtn">✓ Finish & See Results</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160">
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#6366f1"/>
+        </linearGradient></defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="scoreRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div style="text-align:center">
+        <div class="pct" id="scorePct">0%</div>
+        <div class="lbl">Raw Score</div>
+      </div>
+    </div>
+    <div class="ged-score">
+      <b id="gedScore">0</b>
+      <span>Estimated GED Score</span>
+      <small id="gedMsg">Passing = 145 · College Ready = 165 · +Credit = 175</small>
+    </div>
+    <p class="result-msg" id="resultMsg"></p>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="result-stats">
+      <div class="rs-correct"><b id="rCorrect">0</b><span>Correct</span></div>
+      <div class="rs-wrong"><b id="rWrong">0</b><span>Wrong</span></div>
+      <div class="rs-time"><b id="rTime">00:00</b><span>Time</span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="reviewBtn">📖 Review</button>
+      <button class="btn primary" id="retryBtn">🔄 New Set</button>
+      <a class="btn" href="pretest.html" style="text-decoration:none">← Hub</a>
+    </div>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var $=function(id){return document.getElementById(id)};
+  var showOnly=function(s){
+    document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+    s.classList.add('active');
+    window.scrollTo(0,0);
+  };
+
+  /* ============================================================
+     PASSAGE POOLS — 3 SETS (Advanced)
+     Each set: 5 passages (paired counted as 1) + 6 standalone
+  ============================================================ */
+
+  /* ---------- SET A ---------- */
+  var PASSAGES_A = [
+    /* A1: PAIRED PASSAGES — Lincoln Gettysburg + MLK (Historical Speeches) */
+    {
+      id: 'a1', title: 'Historical Speeches — Two Views on Equality', type: 'Paired Historical Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — Abraham Lincoln, Gettysburg Address (1863)',
+          src: 'Historical Speech',
+          text: 'Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.\n\nNow we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live.\n\nIt is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us — that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion — that we here highly resolve that these dead shall not have died in vain — that this nation, under God, shall have a new birth of freedom — and that government of the people, by the people, for the people, shall not perish from the earth.'
+        },
+        {
+          title: 'Source B — Martin Luther King Jr., I Have a Dream (1963)',
+          src: 'Historical Speech',
+          text: 'Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation. But one hundred years later, the Negro still is not free.\n\nI say to you today, my friends, so even though we face the difficulties of today and tomorrow, I still have a dream. It is a dream deeply rooted in the American dream. I have a dream that one day this nation will rise up and live out the true meaning of its creed: "We hold these truths to be self-evident, that all men are created equal."\n\nI have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character. I have a dream today.\n\nWhen we allow freedom ring, when we let it ring from every village and every hamlet, from every state and every city, we will be able to speed up that day when all of God\'s children, black men and white men, Jews and Gentiles, Protestants and Catholics, will be able to join hands and sing in the words of the old Negro spiritual: "Free at last! Free at last! Thank God Almighty, we are free at last!"'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'Both Lincoln and King reference a founding document or principle. What shared belief do they emphasize?',
+         o:['That the Civil War was inevitable','That all men are created equal','That government should be limited','That freedom requires sacrifice'],
+         c:1,
+         why:'Lincoln "all men are created equal" နှင့် King "that all men are created equal" — နှစ်ဦးလုံး ဒီစကားကို အဓိကထား သုံးထားသည်။',
+         steps:['Lincoln ၏ စကား: "all men are created equal"','King ၏ စကား: "all men are created equal"','→ Shared belief: equality']},
+        {type:'mcq',q:'How does King use Lincoln\'s legacy in his speech?',
+         o:['He criticizes Lincoln','He builds on Lincoln\'s ideas as unfinished work','He ignores Lincoln entirely','He claims Lincoln\'s work is complete'],
+         c:1,
+         why:'King က "Five score years ago" ဖြင့် Lincoln ကို ရည်ညွှန်းပြီး သူ၏ အလုပ်ကို ဆက်လုပ်ရန် တိုက်တွန်းသည်။',
+         steps:['King opening: "Five score years ago"','References Emancipation Proclamation','Builds on Lincoln\'s unfinished work']},
+        {type:'mcq',q:'The phrase "unfinished work" in Lincoln\'s speech refers to:',
+         o:['Building a monument','Ending slavery and preserving the Union','Writing new laws','Electing a new president'],
+         c:1,
+         why:'Lincoln က စစ်ပြီးဆုံးရန် နှင့် နိုင်ငံ ဆက်လက်တည်ရှိရန် အလုပ်ကို ရည်ညွှန်းသည်။',
+         steps:['Context: Civil War battlefield','"Great task remaining"','→ Ending slavery, preserving Union']},
+        {type:'mcq',q:'Which rhetorical device does King use in "I have a dream that my four little children..."?',
+         o:['Repetition (anaphora)','Understatement','Sarcasm','Hyperbole'],
+         c:0,
+         why:'"I have a dream" ကို ထပ်ခါထပ်ခါ သုံးခြင်းသည် anaphora (repetition)။',
+         steps:['Repeated phrase: "I have a dream"','→ Anaphora/repetition']},
+        {type:'mcq',q:'Both speeches use the word "freedom." What does this reveal about their shared purpose?',
+         o:['Both celebrate military victory','Both call for expanded freedom and equality','Both criticize religion','Both defend slavery'],
+         c:1,
+         why:'နှစ်ဦးလုံး လွတ်လပ်မှုနှင့် တန်းတူညီမျှမှုအတွက် တိုက်တွန်းသည်။',
+         steps:['Lincoln: "new birth of freedom"','King: "Free at last"','→ Shared purpose: freedom']},
+        {type:'multi',q:'Select ALL rhetorical strategies that BOTH speeches share.',
+         o:['Direct quotations of the Declaration of Independence','Use of religious references (God)','Appeals to emotion and moral duty','Personal anecdote about childhood','Repetition of key phrases'],
+         c:[0,1,2,4],need:4,
+         why:'နှစ်ဦးလုံး Declaration quote, God reference, emotional appeal, repetition သုံးထားသည်။ Personal childhood anecdote မပါ။',
+         steps:['Lincoln: "all men are created equal" (Declaration)','Lincoln: "under God"','King: "God\'s children"','Both: repetition','Childhood anecdote: not in either']},
+        {type:'mcq',q:'What can be inferred from the fact that King gave his speech "five score years" after Lincoln\'s?',
+         o:['A century had passed since the Emancipation Proclamation','King was giving a history lesson','Lincoln and King were contemporaries','The speeches were written by the same person'],
+         c:0,
+         why:'"Five score" = 100 years — 1863 → 1963 ။ Emancipation Proclamation ၏ နှစ် ၁၀၀ ပြည့်။',
+         steps:['"Five score" = 100 years','Emancipation Proclamation: 1863','King\'s speech: 1963','→ 100 years later']},
+        {type:'mcq',q:'Which statement best describes the relationship between the two speeches?',
+         o:['Both are identical in content and purpose','Both share an ideal but King argues it remains unfulfilled','Lincoln opposes King\'s views','King rejects Lincoln\'s ideals'],
+         c:1,
+         why:'နှစ်ဦးလုံး equality ကို ယုံကြည်သည်၊ ဒါပေမယ့် King က ၁၀၀ နှစ်အကြာတွင် မပြည့်စုံသေးကြောင်း ဆိုသည်။',
+         steps:['Shared ideal: equality','King: "one hundred years later... not free"','→ King says ideal unfulfilled']}
+      ]
+    },
+    /* A2: SCIENTIFIC PASSAGE (long) */
+    {
+      id: 'a2', title: 'The Science of Memory', type: 'Technical / Scientific Text',
+      text: 'Human memory is not a single system but a collection of distinct processes that work together. Neuroscientists generally divide memory into three main types: sensory memory, short-term (or working) memory, and long-term memory. Each serves a different purpose and operates on a different timescale.\n\nSensory memory holds raw information from the senses for a fraction of a second. When you glance at a crowded room, your visual sensory memory briefly captures every face and object before the image fades. This information is processed automatically and without conscious effort, and most of it is discarded within half a second.\n\nShort-term memory, by contrast, holds about seven items for roughly 15 to 30 seconds. This capacity was famously described by psychologist George Miller in 1956 as "the magical number seven, plus or minus two." Short-term memory allows you to hold a phone number in mind long enough to dial it, but unless the information is rehearsed, it disappears quickly.\n\nLong-term memory is where information is stored for extended periods, from days to a lifetime. It has essentially unlimited capacity. Long-term memory is further divided into explicit memory (facts and events you can consciously recall) and implicit memory (skills and habits that operate below conscious awareness). Riding a bicycle, for example, relies on implicit memory, while recalling your first day of school relies on explicit memory.\n\nThe process by which short-term memories become long-term memories is called consolidation. This process depends heavily on sleep. During deep sleep, the brain replays the day\'s experiences, strengthening important neural connections and discarding irrelevant ones. Studies show that students who sleep after studying retain significantly more information than those who stay awake.\n\nUnderstanding how memory works has practical applications. Teachers can use spaced repetition and retrieval practice to help students retain information. Medical professionals can help patients with memory disorders by focusing on strengths in remaining memory systems. And anyone can improve their own memory by prioritizing sleep, reducing stress, and practicing active recall rather than passive review.',
+      questions: [
+        {type:'mcq',q:'What is the main idea of the passage?',
+         o:['Memory is a single brain function','Memory consists of multiple systems, each with distinct properties','Sleep is the only factor affecting memory','Memory cannot be improved'],
+         c:1,
+         why:'Passage သည် memory ၏ systems များကို ဖော်ပြပြီး ၎င်းတို့၏ ကွဲပြားမှုကို ဆွေးနွေးသည်။',
+         steps:['Introduction: memory is not a single system','3 types described','→ Multiple systems with distinct properties']},
+        {type:'mcq',q:'According to the passage, short-term memory can hold approximately:',
+         o:['Two items for one minute','Seven items for 15-30 seconds','Twenty items for one hour','Unlimited items permanently'],
+         c:1,
+         why:'Paragraph 3: "about seven items for roughly 15 to 30 seconds."',
+         steps:['Paragraph 3','"seven items... 15 to 30 seconds"','→ 7 items for 15-30 sec']},
+        {type:'mcq',q:'Which of the following is an example of implicit memory?',
+         o:['Recalling your first day of school','Riding a bicycle','Remembering a phone number briefly','Listing state capitals'],
+         c:1,
+         why:'Paragraph 4: "Riding a bicycle, for example, relies on implicit memory."',
+         steps:['Paragraph 4','Implicit = skills/habits','Riding bicycle = implicit']},
+        {type:'mcq',q:'The word "consolidation" in paragraph 5 most nearly means:',
+         o:['Elimination of memories','The process of strengthening and stabilizing memories','Random forgetting','Rapid temporary storage'],
+         c:1,
+         why:'Consolidation = short-term မှ long-term သို့ ကူးပြောင်းသည့် process (strengthening)။',
+         steps:['Context: "short-term memories become long-term"','"strengthening important connections"','→ Strengthening/stabilizing']},
+        {type:'multi',q:'Select ALL the practical applications of memory research mentioned in the passage.',
+         o:['Spaced repetition for students','Retrieval practice in teaching','Better memory through sleep','Improving memory through drugs','Helping patients with memory disorders'],
+         c:[0,1,2,4],need:4,
+         why:'Drugs မပါ။ Sleep, spaced repetition, retrieval practice, helping patients — ဒါတွေ အားလုံး ပါသည်။',
+         steps:['Paragraph 6','"spaced repetition"','"retrieval practice"','"prioritizing sleep"','"help patients"','Drugs: not mentioned']},
+        {type:'mcq',q:'The author\'s primary purpose is to:',
+         o:['Persuade readers to sleep more','Inform readers about the structure and function of memory','Entertain with stories about memory','Criticize memory research'],
+         c:1,
+         why:'Passage သည် memory အကြောင်း အသိပေးသည်။',
+         steps:['Informative tone throughout','Scientific facts','→ Inform']},
+        {type:'mcq',q:'Which statement would the author most likely agree with?',
+         o:['Memory is a fixed, unchangeable ability','Memory can be improved through specific habits','Only medical professionals can help with memory','Sleep plays no role in memory'],
+         c:1,
+         why:'Final paragraph: "anyone can improve their own memory by..."',
+         steps:['Paragraph 6: "anyone can improve"','Specific habits: sleep, stress reduction','→ Memory can be improved']},
+        {type:'mcq',q:'The reference to George Miller in paragraph 3 serves to:',
+         o:['Criticize Miller\'s research','Provide authoritative evidence for the "seven items" claim','Introduce a new theory','Suggest the research is outdated'],
+         c:1,
+         why:'Miller ကို "authority" အဖြစ် cite လုပ်ပြီး "seven items" ကို ထောက်ပြသည်။',
+         steps:['Paragraph 3','"famously described by psychologist George Miller"','→ Authoritative evidence']}
+      ]
+    },
+    /* A3: ARGUMENTATIVE (with rhetorical analysis) */
+    {
+      id: 'a3', title: 'Is Artificial Intelligence a Threat?', type: 'Argumentative Text',
+      text: 'Every major technological revolution has provoked fear. When the printing press was invented, some warned it would destroy memory. When electricity was introduced, others predicted it would cause fires in every home. When the internet arrived, critics declared it would destroy reading and social life. Each of these predictions, we now know, was exaggerated — and often the opposite came true. The same pattern is likely to hold for artificial intelligence.\n\nTo be clear, AI does pose real risks. Automation may displace workers in certain industries, and algorithmic bias can perpetuate discrimination. These are serious concerns that deserve attention. But the response to fear should be thoughtful regulation, not panic.\n\nThe evidence so far suggests that AI will augment human capability rather than replace it. In medicine, AI systems now detect certain cancers earlier than human radiologists. In education, AI tutors provide personalized instruction to students who cannot afford private teachers. In science, AI has helped identify new antibiotics and predict protein structures that would have taken decades to solve.\n\nCritics often argue that AI "thinks" for people and therefore degrades human intelligence. But this argument misunderstands how humans have always used tools. Writing "thinks for us" — we no longer memorize entire books — yet literacy has expanded human capability, not diminished it. Calculators "do math for us," yet mathematics has advanced more in the last fifty years than in the previous five hundred.\n\nThe real question is not whether AI will change society, but how we choose to shape that change. With careful policies — including worker retraining, algorithmic transparency, and ethical guidelines — we can capture AI\'s benefits while managing its risks. The future will not be determined by AI alone. It will be determined by the choices we make as a society.\n\nThe lesson of history is clear: fear of new technology has never prevented its adoption, and those who adapt earliest benefit most. Rather than resisting AI, we should invest in understanding it, regulating it wisely, and ensuring its benefits are widely shared.',
+      questions: [
+        {type:'rhet',q:'Which rhetorical strategy does the author use in the first paragraph?',
+         o:['Appeal to emotion','Historical analogy','Personal anecdote','Statistical evidence'],
+         c:1,
+         why:'Printing press, electricity, internet များကို နှိုင်းယှဉ်ပြခြင်းသည် historical analogy။',
+         steps:['Paragraph 1: past predictions','"printing press... electricity... internet"','→ Historical analogy']},
+        {type:'mcq',q:'What is the author\'s main claim?',
+         o:['AI should be banned','AI poses no risks','AI should be thoughtfully regulated, not feared','AI will replace all jobs'],
+         c:2,
+         why:'Author က "careful policies" နှင့် "thoughtful regulation" ကို ထောက်ခံသည်။',
+         steps:['Paragraph 2: "thoughtful regulation, not panic"','Paragraph 5: "careful policies"','→ Thoughtful regulation']},
+        {type:'mcq',q:'How does the author respond to the argument that AI "thinks for people"?',
+         o:['By agreeing','By pointing to how writing and calculators also "think for us"','By ignoring it','By threatening critics'],
+         c:1,
+         why:'Paragraph 4: "Writing thinks for us... Calculators do math for us" — historical parallel။',
+         steps:['Paragraph 4','"Writing thinks for us"','"Calculators do math for us"','→ Historical parallel']},
+        {type:'multi',q:'Select ALL examples of AI benefits the author provides.',
+         o:['Detecting cancers earlier','Personalized tutoring','Predicting protein structures','Replacing all teachers','Identifying new antibiotics'],
+         c:[0,1,2,4],need:4,
+         why:'Paragraph 3: cancers, tutors, antibiotics, proteins။ "Replacing teachers" မပါ။',
+         steps:['Paragraph 3','"detect cancers"','"AI tutors"','"new antibiotics"','"protein structures"','"replacing teachers" not mentioned']},
+        {type:'mcq',q:'The phrase "The lesson of history is clear" in the final paragraph signals:',
+         o:['A new topic','A concluding claim','An opposing viewpoint','A personal story'],
+         c:1,
+         why:'Final paragraph တွင် concluding claim ဖြစ်သည်။',
+         steps:['Last paragraph','"lesson of history is clear"','→ Concluding claim']},
+        {type:'mcq',q:'What assumption does the author make about technological change?',
+         o:['Technology always causes harm','People who adapt earliest benefit','Technology should be avoided','Only governments can manage technology'],
+         c:1,
+         why:'"Those who adapt earliest benefit most" — author\'s assumption။',
+         steps:['Last paragraph','"those who adapt earliest benefit most"','→ Adaptation benefits']},
+        {type:'mcq',q:'The author\'s tone toward AI is best described as:',
+         o:['Fearful and alarmist','Cautiously optimistic','Indifferent','Hostile'],
+         c:1,
+         why:'Risk ကို အသိအမှတ်ပြုသော်လည်း benefits ကို ယုံကြည်သည် → cautiously optimistic။',
+         steps:['Acknowledges risks','Emphasizes benefits','"thoughtful regulation"','→ Cautiously optimistic']},
+        {type:'mcq',q:'Which sentence best represents the author\'s thesis?',
+         o:['"Every major technological revolution has provoked fear."','"AI does pose real risks."','"The real question is not whether AI will change society, but how we choose to shape that change."','"Critics often argue that AI thinks for people."'],
+         c:2,
+         why:'Thesis သည် "how we shape the change" ကို ဖော်ပြသည့် စာကြောင်း။',
+         steps:['Paragraph 5 opening','"The real question is..."','→ Thesis statement']}
+      ]
+    },
+    /* A4: LANGUAGE PASSAGE (grammar + tech-enhanced) */
+    {
+      id: 'a4', title: 'The Invention of the Telephone', type: 'Language Conventions',
+      text: 'The invention of the telephone [1] has changed communication forever. Before its invention, people relied on letters and telegraphs to send messages over long distances. [2] These methods was slow and often unreliable.\n\nAlexander Graham Bell is credited with inventing the telephone in 1876. [3] However, several other inventors, including Elisha Gray and Antonio Meucci, [4] were working on similar devices at the same time. In fact, Meucci filed a caveat for his telephone design in 1871, five years before Bell\'s patent.\n\nThe first telephone call was made by Bell to his assistant, Thomas Watson. [5] "Mr. Watson, come here, I want to see you," Bell said. This famous sentence became the first words ever spoken over a telephone.\n\nAt first, telephones were considered a luxury item. [6] Only wealthy families could afford them. [7] By the 1920s, however, telephones had become common in most American homes. [8] Today, more than 95% of American adults own a cell phone, which has largely replaced the traditional landline.\n\nThe telephone has come a long way [9] since Bell\'s first call. [10] From bulky devices mounted on walls to sleek smartphones in our pockets, telephones have transformed how humans connect across distances. [11] Nevertheless, the fundamental purpose remains the same: [12] to allow people to communicate with one another instantly.',
+      questions: [
+        {type:'mcq',q:'Sentence [1] — Which revision is best?',
+         o:['has changed communication forever','changed communication forever','have changed communication forever','changing communication forever'],
+         c:1,
+         why:'Past tense "changed" သည် historical context အတွက် ပိုကောင်းသည်။ Present perfect "has changed" လည်း ရပေမယ့် historical fact အတွက် simple past ပိုသင့်။',
+         steps:['Historical invention','Simple past better','"changed communication"','→ B']},
+        {type:'mcq',q:'Sentence [2] — Identify the error.',
+         o:['"These methods was" — should be "were"','"methods" — should be "method"','"slow" — should be "slowness"','No error'],
+         c:0,
+         why:'"Methods" plural → "were"။',
+         steps:['Subject: methods (plural)','Verb → were','→ A']},
+        {type:'mcq',q:'Sentence [3] — What is the function of "However"?',
+         o:['To show cause-effect','To signal a contrast','To add information','To introduce an example'],
+         c:1,
+         why:'Bell ကို credit ပေးသော်လည်း အခြားသူများလည်း ရှိသည်ဟု ဆန့်ကျင်သည်။',
+         steps:['"However" = contrast marker','Signals opposition','→ B']},
+        {type:'mcq',q:'Sentence [4] — What does the sentence suggest about the invention?',
+         o:['Bell was the only inventor','Multiple inventors worked on similar devices','The invention was unimportant','No one wanted to invent the telephone'],
+         c:1,
+         why:'Gray နှင့် Meucci လည်း ဆက်စပ်နေသည်။',
+         steps:['"Several other inventors"','Gray, Meucci','→ Multiple inventors']},
+        {type:'mcq',q:'Sentence [5] — Which sentence demonstrates correct quote punctuation?',
+         o:['"Mr. Watson, come here, I want to see you," Bell said.','"Mr. Watson, come here, I want to see you." Bell said.','"Mr. Watson, come here, I want to see you", Bell said.','Mr. Watson, come here, I want to see you — Bell said.'],
+         c:0,
+         why:'Direct quote ပြီးနောက် comma ထည့်ပြီး attribution ကို lowercase ဖြင့် ဆက်ရမည်။',
+         steps:['Quote + comma','Then "Bell said"','→ A']},
+        {type:'mcq',q:'Sentences [6] & [7] — Best way to combine?',
+         o:['Only wealthy families could afford them; by the 1920s, however, telephones had become common.','Only wealthy families could afford them, by the 1920s telephones were common.','Only wealthy could afford them, and by the 1920s telephones were common.','Telephones only for wealthy; common by 1920s.'],
+         c:0,
+         why:'Semicolon + "however" ဖြင့် contrast ကို ရှင်းလင်းစွာ ဆက်သည်။',
+         steps:['Two independent clauses','Semicolon + transition','→ A']},
+        {type:'table',q:'Complete the table with the correct verb forms of the historical events.',
+         headers:['Event','Year','Verb'],
+         rows:[
+           {cells:['Bell\'s patent','1876',''],answers:[null,null,'invented']},
+           {cells:['Meucci caveat','1871',''],answers:[null,null,'filed']},
+           {cells:['First call','1876',''],answers:[null,null,'made']}
+         ],
+         why:'Historical past events → simple past tense ။ Bell invented (1876), Meucci filed (1871), First call made (1876)။',
+         steps:['All events in the past','Simple past form','invented / filed / made']},
+        {type:'mcq',q:'Sentence [11] & [12] — What is the author\'s final point?',
+         o:['Telephones have always been the same','Despite changes, the core purpose remains','Telephones are obsolete','Bell\'s invention was unnecessary'],
+         c:1,
+         why:'"The fundamental purpose remains the same" — despite changes, purpose unchanged။',
+         steps:['Contrast: bulky devices → smartphones','"Nevertheless, the fundamental purpose"','→ Purpose remains the same']}
+      ]
+    },
+    /* A5: LITERARY (paired comparison) */
+    {
+      id: 'a5', title: 'Two Perspectives on Nature', type: 'Paired Literary Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — from Walden by Henry David Thoreau (1854)',
+          src: 'Literary Essay',
+          text: 'I went to the woods because I wished to live deliberately, to front only the essential facts of life, and see if I could not learn what it had to teach, and not, when I came to die, discover that I had not lived. I did not wish to live what was not life, living is so dear; nor did I wish to practise resignation, unless it was quite necessary.\n\nI wanted to live deep and suck out all the marrow of life, to live so sturdily and Spartan-like as to put to rout all that was not life. Our life is frittered away by detail. Simplify, simplify. Instead of three meals a day, if it be necessary eat but one; instead of a hundred dishes, five; and reduce other things in proportion.'
+        },
+        {
+          title: 'Source B — from Nature by Ralph Waldo Emerson (1836)',
+          src: 'Literary Essay',
+          text: 'In the woods, we return to reason and faith. There I feel that nothing can befall me in life — no disgrace, no calamity (leaving me my eyes) — which nature cannot repair.\n\nStanding on the bare ground — my head bathed by the blithe air, and uplifted into infinite space — all mean egotism vanishes. I become a transparent eyeball; I am nothing; I see all; the currents of the Universal Being circulate through me; I am part or particle of God.\n\nThe greatest delight which the fields and woods minister, is the suggestion of an occult relation between man and the vegetable. I am not alone and unacknowledged. They nod to me, and I to them.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'What do Thoreau and Emerson both celebrate in these passages?',
+         o:['Urban life','The wisdom and renewal found in nature','Modern technology','Wealth and possessions'],
+         c:1,
+         why:'နှစ်ဦးလုံး nature ၏ တန်ဖိုးကို ချီးမွမ်းသည်။',
+         steps:['Thoreau: "went to the woods"','Emerson: "In the woods, we return"','→ Nature wisdom']},
+        {type:'mcq',q:'The phrase "suck out all the marrow of life" (Thoreau) is an example of:',
+         o:['Simile','Metaphor','Personification','Hyperbole'],
+         c:1,
+         why:'Life ကို အရိုးအဆီလို နှိုင်းယှဉ်ခြင်း → metaphor။',
+         steps:['Direct comparison: life = marrow','No "like/as"','→ Metaphor']},
+        {type:'mcq',q:'Emerson\'s "transparent eyeball" image suggests:',
+         o:['Physical blindness','A state of spiritual transcendence and unity with nature','Fear of the woods','Scientific observation'],
+         c:1,
+         why:'"I am part or particle of God" → spiritual transcendence။',
+         steps:['Context: "uplifted into infinite space"','"part or particle of God"','→ Spiritual transcendence']},
+        {type:'mcq',q:'How do the two passages differ in their focus?',
+         o:['Thoreau focuses on nature\'s beauty; Emerson on its danger','Thoreau focuses on simplifying life; Emerson on spiritual unity','Thoreau criticizes nature; Emerson praises it','Both are identical in focus'],
+         c:1,
+         why:'Thoreau: "Simplify, simplify" (simple living)။ Emerson: "part of God" (spiritual union)။',
+         steps:['Thoreau: "Simplify, simplify"','Emerson: "Universal Being"','→ Different focuses']},
+        {type:'mcq',q:'What is the tone of both passages?',
+         o:['Angry and bitter','Reflective and appreciative','Humorous and playful','Anxious and fearful'],
+         c:1,
+         why:'နှစ်ဦးလုံး nature ကို လေးလေးစားစား ရေးထားသည်။',
+         steps:['Reflective tone','Appreciative of nature','→ B']},
+        {type:'multi',q:'Select ALL the shared themes of BOTH passages.',
+         o:['Nature restores the soul','Modern society is corrupting','Man is connected to nature','Urban wealth is important','Simplicity is valuable'],
+         c:[0,2,4],need:3,
+         why:'Nature restores, connection to nature, simplicity — ဒါတွေ ပါ။ "Modern society corrupting" (implicit but not explicitly shared) နှင့် "Urban wealth" မပါ။',
+         steps:['Thoreau: "woods...essential"','Emerson: "return to reason"','Connection: "part of God"','Simplicity: "Simplify"','→ A, C, E']},
+        {type:'order',q:'Order these ideas as they progress from Thoreau\'s passage:',
+         items:['Thoreau goes to the woods','He seeks to live deliberately','He rejects non-essential details','He calls for simplicity'],
+         correctOrder:['Thoreau goes to the woods','He seeks to live deliberately','He rejects non-essential details','He calls for simplicity'],
+         why:'Sequence: woods → intention → reject → action',
+         steps:['"I went to the woods"','"live deliberately"','"frittered away by detail"','"Simplify, simplify"']},
+        {type:'mcq',q:'Which statement best describes the relationship between the two passages?',
+         o:['Both reject nature','Both celebrate nature but emphasize different aspects','Emerson criticizes Thoreau','Thoreau disagrees with Emerson entirely'],
+         c:1,
+         why:'နှစ်ဦးလုံး nature ကို ချီးမွမ်းသော်လည်း သူတို့၏ focus ကွာ။',
+         steps:['Shared: nature','Different: simplicity vs spiritual','→ Different aspects']}
+      ]
+    }
+  ];
+
+  /* ---------- SET B ---------- */
+  var PASSAGES_B = [
+    /* B1: PAIRED — Roosevelt + JFK (historical) */
+    {
+      id: 'b1', title: 'Historical Speeches — The Call to Action', type: 'Paired Historical Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — Franklin D. Roosevelt, First Inaugural Address (1933)',
+          src: 'Historical Speech',
+          text: 'This is preeminently the time to speak the truth, the whole truth, frankly and boldly. Nor need we shrink from honestly facing conditions in our country today. This great Nation will endure as it has endured, will revive and will prosper.\n\nSo, first of all, let me assert my firm belief that the only thing we have to fear is fear itself — nameless, unreasoning, unjustified terror which paralyzes needed efforts to convert retreat into advance.\n\nHappiness lies not in the mere possession of money; it lies in the joy of achievement, in the thrill of creative effort. The joy and moral stimulation of work no longer must be forgotten in the mad chase of evanescent profits.\n\nOur greatest primary task is to put people to work. This is no unsolvable problem if we face it wisely and courageously.'
+        },
+        {
+          title: 'Source B — John F. Kennedy, Inaugural Address (1961)',
+          src: 'Historical Speech',
+          text: 'We observe today not a victory of party but a celebration of freedom — symbolizing an end as well as a beginning — signifying renewal as well as change.\n\nAnd so, my fellow Americans: ask not what your country can do for you — ask what you can do for your country. My fellow citizens of the world: ask not what America will do for you, but what together we can do for the freedom of man.\n\nLet us never negotiate out of fear. But let us never fear to negotiate.\n\nAll this will not be finished in the first one hundred days. Nor will it be finished in the first one thousand days, nor in the life of this Administration, nor even perhaps in our lifetime on this planet. But let us begin.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'Both speeches call for what kind of response from citizens?',
+         o:['Isolation and withdrawal','Active engagement and collective effort','Passive acceptance of problems','Rejection of government'],
+         c:1,
+         why:'FDR: "put people to work" ။ JFK: "what you can do for your country"။',
+         steps:['FDR: "put people to work"','JFK: "what you can do"','→ Active engagement']},
+        {type:'mcq',q:'FDR\'s famous line "the only thing we have to fear is fear itself" uses:',
+         o:['Understatement','Paradox / irony','Simile','Personification'],
+         c:1,
+         why:'Fear ကိုယ်တိုင်က အကြောက်ဆုံး ဖြစ်သည် — paradox/irony။',
+         steps:['Paradox: fear is what we fear','→ Paradox']},
+        {type:'mcq',q:'JFK\'s "ask not what your country can do for you" primarily appeals to:',
+         o:['Logic (logos)','Emotion and civic duty (pathos)','Statistics','Expert opinion'],
+         c:1,
+         why:'Civic duty appeal = pathos။',
+         steps:['Civic responsibility','Emotional/moral appeal','→ Pathos']},
+        {type:'mcq',q:'What shared challenge do both speeches address?',
+         o:['Foreign invasion','Economic and national hardship requiring unified action','Technological failure','Religious conflict'],
+         c:1,
+         why:'FDR: Great Depression ။ JFK: Cold War challenges — နှစ်ဦးလုံး unified action ကို တောင်းဆိုသည်။',
+         steps:['FDR: economic crisis','JFK: national challenges','→ Unified action']},
+        {type:'multi',q:'Select ALL features that BOTH speeches share.',
+         o:['Use of rhetorical repetition','Focus on civic duty','Reference to fear','Statistical evidence','Patriotic language'],
+         c:[0,1,2,4],need:4,
+         why:'Repetition, civic duty, fear reference, patriotic — ဒါတွေ ပါ။ Statistics မပါ။',
+         steps:['FDR: "fear itself"','JFK: "let us never fear"','Both: patriotic language','Statistics: not present']},
+        {type:'mcq',q:'The word "evanescent" in FDR\'s speech most nearly means:',
+         o:['Permanent','Short-lived','Dangerous','Valuable'],
+         c:1,
+         why:'"Evanescent profits" = transient/temporary profits။',
+         steps:['Context: "mad chase of evanescent profits"','Short-lived meaning','→ Short-lived']},
+        {type:'mcq',q:'JFK\'s "But let us begin" serves as:',
+         o:['A conclusion that acknowledges challenge but urges action','A rejection of the past','An apology','A warning'],
+         c:0,
+         why:'Challenges ကို အသိအမှတ်ပြုပြီး စတင်ရန် တိုက်တွန်းသည်။',
+         steps:['"not be finished"','"But let us begin"','→ Urges action']},
+        {type:'mcq',q:'Both speeches were delivered at:',
+         o:['Inaugurations of new presidents','Military parades','State funerals','International conferences'],
+         c:0,
+         why:'"First Inaugural Address" နှင့် "Inaugural Address" နှစ်ခုလုံး သမ္မတတာဝန်ထမ်းဆောင်ခန်း မိန့်ခွန်း။',
+         steps:['Both are inaugural addresses','→ A']}
+      ]
+    },
+    /* B2: SCIENTIFIC — Climate change */
+    {
+      id: 'b2', title: 'Understanding Climate Feedback Loops', type: 'Technical / Scientific Text',
+      text: 'Climate scientists use the term "feedback loop" to describe processes that either amplify or dampen changes in the Earth\'s climate. Positive feedback loops amplify change, while negative feedback loops reduce it. Understanding these mechanisms is essential for predicting how the climate will respond to rising greenhouse gas emissions.\n\nThe most significant positive feedback loop involves Arctic sea ice. Ice is highly reflective, bouncing most of the sun\'s energy back into space — a property called albedo. When warming causes ice to melt, the darker ocean water beneath absorbs more solar energy, which causes further warming, which melts more ice. This cycle continues, accelerating Arctic warming.\n\nAnother major positive feedback loop involves water vapor. Warmer air holds more water vapor, and water vapor is itself a greenhouse gas. As the atmosphere warms, it traps more water vapor, which causes more warming, which allows the air to hold even more vapor. This loop roughly doubles the warming caused by carbon dioxide alone.\n\nNot all feedback loops are positive, however. Increased cloud cover — caused by higher evaporation — can reflect sunlight and cool the surface. Similarly, higher carbon dioxide levels can stimulate plant growth, and plants absorb carbon dioxide. These negative feedbacks slow warming but do not stop it.\n\nThe challenge is that positive feedbacks in the climate system are generally stronger and faster than negative feedbacks. Ice loss happens in decades, but forest regrowth takes centuries. This imbalance explains why scientists project significant warming even if emissions are reduced rapidly.\n\nUnderstanding feedback loops does not mean climate change is unstoppable. It means the problem is urgent — because feedback loops grow more powerful the longer we wait.',
+      questions: [
+        {type:'mcq',q:'What is the main difference between positive and negative feedback loops?',
+         o:['Positive loops are always good','Positive loops amplify change; negative loops reduce it','Negative loops are always bad','They are identical in effect'],
+         c:1,
+         why:'Paragraph 1: "Positive feedback loops amplify change, while negative feedback loops reduce it."',
+         steps:['Paragraph 1 definition','Amplify vs reduce','→ B']},
+        {type:'mcq',q:'The Arctic sea ice feedback loop works because:',
+         o:['Melted ice creates more ice','Darker water absorbs more solar energy','Ice reflects less than water','The ocean is not warming'],
+         c:1,
+         why:'Paragraph 2: "darker ocean water absorbs more solar energy."',
+         steps:['Paragraph 2','Ice melts → dark water','Dark water absorbs more energy','→ More warming']},
+        {type:'mcq',q:'The word "albedo" refers to:',
+         o:['Ocean depth','The reflectivity of a surface','The temperature of ice','Greenhouse gas concentration'],
+         c:1,
+         why:'Paragraph 2: "bouncing most of the sun\'s energy back... called albedo."',
+         steps:['Paragraph 2','"highly reflective... called albedo"','→ Reflectivity']},
+        {type:'multi',q:'Select ALL positive feedback loops mentioned in the passage.',
+         o:['Arctic sea ice melting','Water vapor increasing','Cloud cover increasing','Permafrost thawing','Plant growth increasing'],
+         c:[0,1],need:2,
+         why:'Positive: sea ice + water vapor။ Cloud cover & plant growth = negative။ Permafrost မပါ။',
+         steps:['Positive: sea ice (para 2)','Positive: water vapor (para 3)','Negative: clouds, plants (para 4)','Permafrost: not mentioned','→ A, B']},
+        {type:'mcq',q:'Why do positive feedback loops create a bigger problem than negative ones?',
+         o:['They are less common','They act faster and stronger than negative feedbacks','They are easier to stop','They only affect polar regions'],
+         c:1,
+         why:'Paragraph 5: "positive feedbacks are generally stronger and faster."',
+         steps:['Paragraph 5','"stronger and faster"','→ B']},
+        {type:'mcq',q:'The author\'s purpose is to:',
+         o:['Deny climate change exists','Explain climate mechanisms to emphasize urgency','Persuade readers to move to the Arctic','Describe plant biology'],
+         c:1,
+         why:'Passage သည် feedback loops ကို ရှင်းပြပြီး urgency ကို အလေးထားသည်။',
+         steps:['Explains feedback loops','Emphasizes urgency','→ B']},
+        {type:'dropdown',q:'Complete the sentence with the correct terms:',
+         text:'A {0} feedback loop amplifies climate change, while a {1} feedback loop reduces it.',
+         blanks:[
+           {options:['positive','negative','neutral'],correct:0},
+           {options:['positive','negative','neutral'],correct:1}
+         ],
+         why:'Positive = amplify ။ Negative = reduce။',
+         steps:['Definition from para 1','Positive → amplify','Negative → reduce']},
+        {type:'mcq',q:'The final sentence suggests the author believes:',
+         o:['Climate change is hopeless','Action must be taken urgently','Feedback loops cannot be understood','Science has failed'],
+         c:1,
+         why:'"The problem is urgent" — urgent action လိုအပ်သည်။',
+         steps:['"climate change is unstoppable" — no','"problem is urgent"','→ Action urgent']}
+      ]
+    },
+    /* B3: ARGUMENTATIVE — Standardized tests */
+    {
+      id: 'b3', title: 'Should Standardized Testing Continue?', type: 'Argumentative Text',
+      text: 'Standardized tests have been a cornerstone of American education for over a century. Supporters argue they provide objective data, hold schools accountable, and identify achievement gaps. Critics counter that they narrow curriculum, increase stress, and correlate more with family income than with student ability. After reviewing the evidence, the critics make the stronger case.\n\nConsider the claim that standardized tests are objective. In theory, they treat every student equally. In practice, however, test performance is heavily influenced by factors outside the classroom. A 2018 analysis found that SAT scores correlate more strongly with family income than with college GPA. Students from wealthier families can afford test prep, tutors, and multiple attempts.\n\nThe curriculum problem is equally serious. When schools are judged by test scores, teachers focus on tested subjects — reading and math — at the expense of art, music, and social studies. A survey of 4,000 teachers found that 70% reported reducing time on non-tested subjects to prepare for standardized exams.\n\nCritics of testing reform argue that removing tests would hide achievement gaps. This concern is legitimate. Without data, struggling schools might receive less attention. But this problem can be solved with better alternatives — portfolio assessments, project-based evaluations, and formative classroom assessments that measure growth rather than one-time performance.\n\nInternational comparisons support this approach. Finland, whose students consistently rank among the world\'s best, uses minimal standardized testing. Instead, Finnish teachers assess student progress through observation and projects. The result is both higher achievement and greater educational equity.\n\nStandardized tests are not inherently evil, but they have become a blunt instrument for a complex problem. A better system would combine multiple measures of student learning, prioritize teacher judgment, and reduce the high-stakes pressure that distorts education.',
+      questions: [
+        {type:'rhet',q:'Which rhetorical strategy does the author use in the opening paragraph?',
+         o:['Personal anecdote','Acknowledgment of both sides before taking a position','Appeal to fear','Direct quotation'],
+         c:1,
+         why:'Author က supporters နှင့် critics နှစ်ခုလုံးကို ဖော်ပြပြီး ကိုယ့် position ကို ဆုံးဖြတ်သည်။',
+         steps:['Supporter arguments listed','Critic arguments listed','"critics make the stronger case"','→ Acknowledges both sides']},
+        {type:'mcq',q:'What is the author\'s main claim?',
+         o:['Standardized tests should be banned','The critique of standardized tests is stronger than the defense','Standardized tests are perfect','Finland has no education system'],
+         c:1,
+         why:'Thesis: "the critics make the stronger case."',
+         steps:['Paragraph 1 end','"critics make the stronger case"','→ B']},
+        {type:'mcq',q:'The 2018 analysis found that SAT scores correlate more strongly with:',
+         o:['Student IQ','College GPA','Family income','Teacher quality'],
+         c:2,
+         why:'Paragraph 2: "correlate more strongly with family income than with college GPA."',
+         steps:['Paragraph 2','"family income"','→ C']},
+        {type:'mcq',q:'How does the author address the counterargument about hiding achievement gaps?',
+         o:['By ignoring it','By acknowledging it and proposing alternatives','By denying it exists','By dismissing it as unimportant'],
+         c:1,
+         why:'Paragraph 4: "This concern is legitimate. But this problem can be solved with better alternatives."',
+         steps:['Acknowledges concern','Proposes alternatives','→ B']},
+        {type:'multi',q:'Select ALL alternatives to standardized tests the author mentions.',
+         o:['Portfolio assessments','Project-based evaluations','Formative classroom assessments','Multiple choice exams','Teacher observation'],
+         c:[0,1,2,4],need:4,
+         why:'Portfolio, project, formative, observation = 4 alternatives။ Multiple-choice မပါ။',
+         steps:['Paragraph 4: portfolio, project, formative','Paragraph 5: observation','→ A, B, C, E']},
+        {type:'mcq',q:'The example of Finland serves to:',
+         o:['Show another country\'s culture','Provide evidence that less testing can work','Criticize American schools directly','Introduce an unrelated topic'],
+         c:1,
+         why:'Finland = evidence that alternatives work။',
+         steps:['Paragraph 5: Finland','"minimal standardized testing"','"higher achievement"','→ Evidence']},
+        {type:'mcq',q:'The word "blunt instrument" in the final paragraph suggests:',
+         o:['Tests are sharp and effective','Tests are imprecise tools for complex problems','Tests are new','Tests are cheap'],
+         c:1,
+         why:'"Blunt instrument" = imprecise tool။',
+         steps:['"blunt instrument for a complex problem"','→ Imprecise']},
+        {type:'mcq',q:'Which statement best reflects the author\'s conclusion?',
+         o:['Standardized tests should continue unchanged','A combined approach using multiple measures is better','Teacher judgment should be eliminated','International comparisons are useless'],
+         c:1,
+         why:'"A better system would combine multiple measures" — combined approach။',
+         steps:['Last paragraph','"combine multiple measures"','→ B']}
+      ]
+    },
+    /* B4: LANGUAGE — Tech enhanced */
+    {
+      id: 'b4', title: 'The Rise of Renewable Energy', type: 'Language Conventions',
+      text: 'Renewable energy has grown rapidly over the past decade. [1] Solar and wind power, once considered expensive and unreliable, are now among the cheapest sources of electricity in many parts of the world.\n\nThe growth has been driven by three factors. [2] First, the cost of solar panels has dropped by more than 80% since 2010. Second, government policies in many countries have encouraged renewable adoption through tax incentives and subsidies. Third, public concern about climate change has increased demand for clean energy.\n\nDespite this progress, challenges remain. [3] Renewable energy is intermittent, meaning it only produces electricity when the sun is shining or the wind is blowing. [4] This creates problems for electrical grids, which must balance supply and demand at all times.\n\nBattery storage is one solution. [5] Large-scale batteries can store excess energy during sunny or windy periods, and release it when demand is high. However, current battery technology is still expensive and limited in capacity.\n\nAnother approach is to diversify energy sources. [6] A region might use solar, wind, hydroelectric, and geothermal power together, so that when one source is unavailable, others can compensate. [7] This approach is sometimes called a "portfolio" strategy.\n\nGovernments have a critical role to play. [8] They can invest in research, provide incentives for adoption, and set long-term goals. [9] Without consistent policy, the transition to renewable energy [10] will continue to be slow and uneven.',
+      questions: [
+        {type:'mcq',q:'Sentence [1] — Which is the most concise revision?',
+         o:['Solar and wind power, once expensive and unreliable, are now among the cheapest sources.','Solar and wind power, considered expensive and unreliable, are now cheaper.','Solar and wind are cheap.','Solar and wind power are cheap and clean.'],
+         c:0,
+         why:'"once considered" → "once" ဖြင့် ချုံ့ပြီး "many parts of the world" → drop။',
+         steps:['Remove "considered"','Trim phrase','→ A']},
+        {type:'mcq',q:'Sentence [2] — What is the function of "First, Second, Third"?',
+         o:['To show contrast','To organize a list of factors','To introduce examples','To emphasize importance'],
+         c:1,
+         why:'Sequence markers ဖြင့် factors များကို စီပြသည်။',
+         steps:['First/Second/Third','→ List organization']},
+        {type:'mcq',q:'Sentence [3] — What does "intermittent" mean in this context?',
+         o:['Constant','Not continuous; only sometimes available','Expensive','Dangerous'],
+         c:1,
+         why:'"only produces when the sun is shining or wind is blowing" → not continuous။',
+         steps:['"only produces when..."','→ Not continuous']},
+        {type:'dropdown',q:'Complete the sentence with the correct transitions:',
+         text:'Solar panels are now cheap; {0}, they only work when the sun shines. {1}, battery storage can help.',
+         blanks:[
+           {options:['however','therefore','moreover'],correct:0},
+           {options:['However','Therefore','For example'],correct:0}
+         ],
+         why:'နှစ်ခုလုံး contrast — however။',
+         steps:['Contrast needed','However','→ A / A']},
+        {type:'mcq',q:'Sentence [5] — Best revision for clarity?',
+         o:['Large-scale batteries can store excess energy during sunny or windy periods and release it when demand is high.','Large-scale batteries store energy.','Large batteries can store energy during sunny periods, releasing it.','Batteries store energy.'],
+         c:0,
+         why:'Original already clear — a small comma fix။',
+         steps:['Original is clear','Remove unnecessary comma','→ A']},
+        {type:'multi',q:'Select ALL the challenges to renewable energy mentioned in the passage.',
+         o:['Intermittency of sun and wind','Electrical grid balancing','Expensive battery storage','Public opposition','Limited battery capacity'],
+         c:[0,1,2,4],need:4,
+         why:'Public opposition မပါ။ ကျန်လေးခု ပါ။',
+         steps:['Para 3: intermittent','Para 3: grid balancing','Para 4: expensive','Para 4: limited capacity','Public opposition: not mentioned']},
+        {type:'order',q:'Order the steps of the portfolio strategy described in the passage:',
+         items:['Use multiple energy sources','One source becomes unavailable','Others compensate','Balance is maintained'],
+         correctOrder:['Use multiple energy sources','One source becomes unavailable','Others compensate','Balance is maintained'],
+         why:'Portfolio strategy logic sequence။',
+         steps:['Para 5: multiple sources','When one unavailable','Others compensate','→ Balance maintained']},
+        {type:'mcq',q:'Sentence [8] — What does the author suggest about government\'s role?',
+         o:['Governments should do nothing','Governments have a critical role in the transition','Only businesses can solve it','Governments slow progress'],
+         c:1,
+         why:'"Governments have a critical role to play."',
+         steps:['Sentence [8]','→ Critical role']}
+      ]
+    },
+    /* B5: LITERARY — paired */
+    {
+      id: 'b5', title: 'Two Views of the City', type: 'Paired Literary Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — from Chicago by Carl Sandburg (1916)',
+          src: 'Poem',
+          text: 'Hog Butcher for the World, / Tool Maker, Stacker of Wheat, / Player with Railroads and the Nation\'s Freight Handler; / Stormy, husky, brawling, / City of the Big Shoulders:\n\nThey tell me you are wicked and I believe them, for I have seen your painted women under the gas lamps luring the farm boys. / And they tell me you are crooked and I answer: Yes, it is true I have seen the gunman kill and go free to kill again. / And they tell me you are brutal and my reply is: On the faces of women and children I have seen the marks of wanton hunger.\n\nAnd having answered so I turn once more to those who sneer at this my city, and I give them back the sneer and say to them: / Come and show me another city with lifted head singing so proud to be alive and coarse and strong and cunning.'
+        },
+        {
+          title: 'Source B — from The Great Gatsby by F. Scott Fitzgerald (1925)',
+          src: 'Literary Novel',
+          text: 'The city seen from the Queensboro Bridge is always the city seen for the first time, in its first wild promise of all the mystery and the beauty in the world.\n\nAnything can happen now that we\'ve slid over this bridge, I thought; anything at all...\n\nYet high over the city our line of yellow windows must have contributed their share of human secrecy to the casual watcher in the darkening streets, and I was him too, looking up and wondering. I was within and without, simultaneously enchanted and repelled by the inexhaustible variety of life.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'What do both passages share in common?',
+         o:['Both criticize the city','Both present a complex view of the city — admiring yet aware of its flaws','Both reject urban life entirely','Both focus only on nature'],
+         c:1,
+         why:'Sandburg: proud yet aware ။ Fitzgerald: enchanted yet repelled။',
+         steps:['Sandburg: proud/coarse','Fitzgerald: enchanted/repelled','→ Complex view']},
+        {type:'mcq',q:'Sandburg\'s use of repetition ("they tell me you are...and I answer") creates:',
+         o:['A soft, calm tone','A bold, defensive, rhythmic tone','A comic tone','An uncertain tone'],
+         c:1,
+         why:'Repetition + direct address = bold, defensive ။',
+         steps:['"They tell me... I believe..."','Bold rhythm','→ B']},
+        {type:'mcq',q:'Fitzgerald\'s phrase "enchanted and repelled" is an example of:',
+         o:['Simile','Oxymoron / paradox','Hyperbole','Onomatopoeia'],
+         c:1,
+         why:'Enchanted + repelled = ဆန့်ကျင်ဘက် ခံစားချက် ၂ ခု တွဲ = paradox။',
+         steps:['Opposite feelings together','→ Paradox']},
+        {type:'mcq',q:'How does Sandburg\'s tone differ from Fitzgerald\'s?',
+         o:['Sandburg: nostalgic; Fitzgerald: proud','Sandburg: defiant and proud; Fitzgerald: ambivalent and reflective','Both are angry','Sandburg is humorous; Fitzgerald is serious'],
+         c:1,
+         why:'Sandburg: "give them back the sneer" (defiant)။ Fitzgerald: "wondering" (reflective)။',
+         steps:['Sandburg: defensive/pride','Fitzgerald: wondering/reflective','→ B']},
+        {type:'mcq',q:'Which literary device is most prominent in Sandburg\'s opening lines?',
+         o:['Metonymy (City of the Big Shoulders)','Simile','Alliteration only','Understatement'],
+         c:0,
+         why:'"City of the Big Shoulders" = metonymy — city ကို human body အစိတ်အပိုင်းဖြင့် ဖော်ပြခြင်း။',
+         steps:['"Big Shoulders" = metaphor/metonymy','Body part represents city','→ Metonymy']},
+        {type:'mcq',q:'What does Fitzgerald\'s "within and without" suggest?',
+         o:['Geographic position','Both inside and outside the urban experience','Confusion about location','Rejection of city'],
+         c:1,
+         why:'"Within and without" = inside and outside → both perspectives simultaneously။',
+         steps:['Parallel opposites','Inside + outside experience','→ Both positions']},
+        {type:'order',q:'Order the literary elements as they appear in Sandburg\'s poem:',
+         items:['Praise of the city\'s power','Acknowledgment of the city\'s flaws','Rejection of critics','Proud restatement of city\'s value'],
+         correctOrder:['Praise of the city\'s power','Acknowledgment of the city\'s flaws','Rejection of critics','Proud restatement of city\'s value'],
+         why:'Sandburg သည် praise → acknowledgment → rejection → restatement အစီအစဉ်ဖြင့် ရေးထားသည်။',
+         steps:['Para 1: "Hog Butcher, Tool Maker"','Para 2: "wicked... crooked"','Para 3: "give them back the sneer"','Para 3 end: "so proud to be alive"']},
+        {type:'mcq',q:'Which statement best compares the two passages?',
+         o:['Both present the city as simple and one-dimensional','Both present the city as complex and multifaceted','Both reject urban life','Both focus only on wealth'],
+         c:1,
+         why:'Sandburg: proud + aware of flaws။ Fitzgerald: enchanted + repelled။',
+         steps:['Complex view from both','→ B']}
+      ]
+    }
+  ];
+
+  /* ---------- SET C ---------- */
+  var PASSAGES_C = [
+    /* C1: PAIRED — Two Views on Space (historical + modern) */
+    {
+      id: 'c1', title: 'The Space Race — Then and Now', type: 'Paired Historical Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — John F. Kennedy, Rice University Speech (1962)',
+          src: 'Historical Speech',
+          text: 'We choose to go to the moon. We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win, and the others, too.\n\nMany years ago the great British explorer George Mallory, who was to die on Mount Everest, was asked why he wanted to climb it. He said, "Because it is there." Well, space is there, and we\'re going to climb it, and the moon and the planets are there, and new hopes for knowledge and peace are there.'
+        },
+        {
+          title: 'Source B — Carl Sagan, Pale Blue Dot (1994)',
+          src: 'Modern Reflection',
+          text: 'Look again at that dot. That\'s here. That\'s home. That\'s us. On it everyone you love, everyone you know, everyone you ever heard of, every human being who ever was, lived out their lives. The aggregate of our joy and suffering, thousands of confident religions, ideologies, and economic doctrines, every hunter and forager, every hero and coward, every creator and destroyer of civilization, every king and peasant, every young couple in love, every mother and father, hopeful child, inventor and explorer, every teacher of morals, every corrupt politician, every "superstar," every "supreme leader," every saint and sinner in the history of our species lived there — on a mote of dust suspended in a sunbeam.\n\nThe Earth is the only world known so far to harbor life. There is nowhere else, at least in the near future, to which our species could migrate. Visit, yes. Settle, not yet. Like it or not, for the moment the Earth is where we make our stand.\n\nIt has been said that astronomy is a humbling and character-building experience. There is perhaps no better demonstration of the folly of human conceits than this distant image of our tiny world.'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'What contrasting views of space exploration do the two passages present?',
+         o:['Both reject space exploration','Kennedy: bold challenge; Sagan: humble reflection','Both emphasize conquest only','Kennedy: humble; Sagan: bold'],
+         c:1,
+         why:'Kennedy: "we choose to go" (bold)။ Sagan: "humbling" (humble)။',
+         steps:['Kennedy: action/challenge','Sagan: humility/reflection','→ Contrasting views']},
+        {type:'mcq',q:'Kennedy\'s repetition of "we choose to go to the moon" serves to:',
+         o:['Show indecision','Emphasize determination and shared commitment','Weaken the argument','Add humor'],
+         c:1,
+         why:'Repetition = emphasis on determination။',
+         steps:['Repeated phrase','Emphasis on choice','→ Determination']},
+        {type:'mcq',q:'Sagan\'s "mote of dust suspended in a sunbeam" is an example of:',
+         o:['Hyperbole','Metaphor','Personification','Simile'],
+         c:1,
+         why:'Earth ကို "mote of dust" လို့ တိုက်ရိုက် နှိုင်းယှဉ် → metaphor။',
+         steps:['Earth = dust mote','No "like/as"','→ Metaphor']},
+        {type:'mcq',q:'What does Sagan suggest about humanity\'s place in the universe?',
+         o:['Humans are the center of the universe','Humans are insignificant but precious','Space is empty','Space should be conquered'],
+         c:1,
+         why:'"Humility... folly of human conceits" — insignificant။ "Only world known to harbor life" — precious။',
+         steps:['"mote of dust" → small','"only world known to harbor life" → precious','→ Insignificant but precious']},
+        {type:'multi',q:'Select ALL shared themes between the two passages.',
+         o:['The importance of exploration','The value of humility','Humanity\'s small size in the universe','Space as a place of hope','The challenge of space exploration'],
+         c:[0,3,4],need:3,
+         why:'Kennedy: exploration + hope + challenge။ Sagan: humility (not "exploration" emphasis)။ Shared: exploration, hope, challenge။',
+         steps:['Kennedy: explore, hope, challenge','Sagan: humility, smallness','Shared: exploration, hope, challenge','→ A, D, E']},
+        {type:'mcq',q:'The phrase "Because it is there" in Kennedy\'s speech primarily:',
+         o:['Suggests exploration for its own sake','Criticizes explorers','Describes geography','Warns of danger'],
+         c:0,
+         why:'Mallory\'s answer = exploration because the challenge exists။',
+         steps:['Quote about Everest','"Because it is there"','→ Exploration for its own sake']},
+        {type:'dropdown',q:'Complete the sentence:',
+         text:'Kennedy\'s speech emphasizes {0}, while Sagan\'s reflection emphasizes {1}.',
+         blanks:[
+           {options:['action and ambition','humility','fear'],correct:0},
+           {options:['action and ambition','humility','fear'],correct:1}
+         ],
+         why:'Kennedy = action ။ Sagan = humility။',
+         steps:['Kennedy: bold/challenge','Sagan: humbling']},
+        {type:'mcq',q:'Which statement best captures the relationship between the two passages?',
+         o:['Both reject space exploration','Both support space exploration but frame it differently','Sagan rejects Kennedy\'s view','Kennedy ignores the moon'],
+         c:1,
+         why:'နှစ်ဦးလုံး space ကို ထောက်ခံသော်လည်း framing ကွာ။',
+         steps:['Kennedy: bold action','Sagan: humble reflection','→ Both support, different framing']}
+      ]
+    },
+    /* C2: SCIENTIFIC */
+    {
+      id: 'c2', title: 'How Vaccines Train the Immune System', type: 'Technical / Scientific Text',
+      text: 'Vaccines are one of the greatest achievements in the history of medicine. They have eradicated smallpox, nearly eliminated polio, and prevented millions of deaths from diseases like measles, tetanus, and influenza. Yet many people misunderstand how vaccines actually work. Understanding the science can help address concerns and increase trust.\n\nThe immune system has two main components: the innate immune system, which responds quickly and generally to any threat, and the adaptive immune system, which responds slowly but with great precision. The adaptive immune system is the basis of vaccination.\n\nWhen a pathogen enters the body, the adaptive immune system produces two key types of cells: B cells, which make antibodies, and T cells, which coordinate the response and destroy infected cells. Antibodies are proteins that bind to specific pathogens and mark them for destruction. Once the infection is cleared, most B and T cells die — but a small number become "memory cells" that remain in the body for years or decades.\n\nIf the same pathogen returns, memory cells respond immediately and powerfully. This is why most people who recover from chickenpox never get it again.\n\nVaccines harness this system by introducing a harmless version of a pathogen — either weakened, inactivated, or just a protein from its surface. The immune system responds as if facing the real pathogen, creating memory cells without risking serious illness. When the real pathogen later appears, the body is already prepared.\n\nSome vaccines require multiple doses or periodic boosters to maintain strong immunity. This is because memory cells can fade over time or because a pathogen (like influenza) mutates rapidly. Vaccine schedules are designed by scientists based on careful study of how long immunity lasts.\n\nUnderstanding vaccines also explains why community-wide vaccination matters. When enough people are immune, a pathogen cannot easily spread — a concept called "herd immunity." This protects those who cannot be vaccinated, such as infants and people with certain medical conditions.',
+      questions: [
+        {type:'mcq',q:'What is the main idea of the passage?',
+         o:['Vaccines are dangerous','Vaccines work by training the adaptive immune system to create memory cells','Vaccines should not be required','The immune system is mysterious'],
+         c:1,
+         why:'Passage သည် vaccine ဘယ်လိုအလုပ်လုပ်သည် ကို ရှင်းပြသည်။',
+         steps:['Introduction: understanding vaccine','Body: adaptive immune system','→ Training memory cells']},
+        {type:'mcq',q:'Which immune system produces memory cells?',
+         o:['Innate immune system','Adaptive immune system','Neither','Both equally'],
+         c:1,
+         why:'Paragraph 2-3: adaptive immune system = basis of vaccination ။',
+         steps:['Paragraph 2: adaptive = precise','Paragraph 3: memory cells','→ Adaptive']},
+        {type:'mcq',q:'Antibodies are described in the passage as:',
+         o:['Cells that coordinate responses','Proteins that bind to pathogens and mark them for destruction','A type of vaccine','Viruses'],
+         c:1,
+         why:'Paragraph 3: "Antibodies are proteins that bind to specific pathogens."',
+         steps:['Paragraph 3 definition','→ Proteins that bind pathogens']},
+        {type:'multi',q:'Select ALL the reasons a vaccine might need a booster.',
+         o:['Memory cells fade over time','The pathogen mutates rapidly','The vaccine is ineffective','Immunity needs to be maintained'],
+         c:[0,1,3],need:3,
+         why:'Paragraph 5: memory fade, rapid mutation, immunity maintenance။ "Vaccine ineffective" မပါ။',
+         steps:['Para 5: "memory cells can fade"','Para 5: "pathogen mutates"','Para 5: "maintain immunity"','"Ineffective": not mentioned']},
+        {type:'mcq',q:'What is "herd immunity"?',
+         o:['Immunity from animals','Community-wide protection when enough people are immune','A type of vaccine','A rare side effect'],
+         c:1,
+         why:'Paragraph 6: "when enough people are immune... called herd immunity."',
+         steps:['Paragraph 6 definition','→ Community protection']},
+        {type:'mcq',q:'The word "harness" in paragraph 4 means:',
+         o:['To destroy','To control and make use of','To reject','To avoid'],
+         c:1,
+         why:'Vaccines "harness" = utilize/use the immune system။',
+         steps:['Context: "Vaccines harness this system"','→ Make use of']},
+        {type:'dropdown',q:'Complete the sentence:',
+         text:'Vaccines introduce a {0} version of a pathogen so the immune system creates {1} without getting sick.',
+         blanks:[
+           {options:['harmless','deadly','random'],correct:0},
+           {options:['memory cells','antibodies only','symptoms'],correct:0}
+         ],
+         why:'Vaccines = harmless version → memory cells။',
+         steps:['Para 4','"harmless version"','→ memory cells']},
+        {type:'mcq',q:'The author\'s purpose is to:',
+         o:['Persuade against vaccines','Inform and increase trust in vaccines','Entertain with a story','Criticize medical research'],
+         c:1,
+         why:'Passage သည် information ပေးပြီး trust တည်ဆောက်ရန် ရည်ရွယ်သည်။',
+         steps:['"Understanding can help address concerns"','Inform + build trust','→ B']}
+      ]
+    },
+    /* C3: ARGUMENTATIVE */
+    {
+      id: 'c3', title: 'Should College Be Free?', type: 'Argumentative Text',
+      text: 'The rising cost of college has become a defining issue of our time. In the United States, average tuition has more than doubled since the 1980s, and student loan debt now exceeds $1.7 trillion — a burden that delays homeownership, marriage, and family formation for an entire generation. In response, some politicians have proposed making public college free. The idea is popular, but the evidence suggests a targeted approach would be more effective.\n\nFree college proposals typically cover tuition at public universities and community colleges. Supporters argue that education is a public good and should be funded like K-12 schooling. This argument has moral force: an educated citizenry benefits everyone, not just the individual who receives the degree.\n\nHowever, the economics are more complicated. A universal free-college program would cost an estimated $70 billion per year. That money would largely subsidize middle- and upper-income families who would attend college anyway. The lowest-income students — the ones most in need — often face barriers that free tuition alone does not solve, such as living expenses, childcare, and lost wages while studying.\n\nA more effective approach would expand targeted aid. Pell Grants, which support low-income students, currently cover less than a third of the average public college cost. Doubling Pell Grants would help the students who need it most, at a fraction of the cost of universal free college.\n\nCritics of targeted aid worry it creates a two-tier system. But this concern overlooks the fact that our current system is already two-tier: wealthy students graduate debt-free, while low-income students take on crippling loans. Targeted aid would narrow this gap, not widen it.\n\nThe debate is not about whether to support education — everyone agrees on that. It is about how to spend limited resources wisely. Universal free college is an appealing slogan, but targeted investment is a more effective and equitable policy.',
+      questions: [
+        {type:'mcq',q:'What is the author\'s main claim?',
+         o:['College should be completely free','Targeted aid is more effective than universal free college','College is not important','Student loans should be eliminated entirely'],
+         c:1,
+         why:'Thesis: "targeted investment is a more effective and equitable policy."',
+         steps:['Paragraph 1: thesis','"targeted approach would be more effective"','→ B']},
+        {type:'rhet',q:'Which rhetorical strategy does the author use in paragraph 3?',
+         o:['Emotional appeal','Economic analysis of costs and benefits','Personal anecdote','Appeal to authority'],
+         c:1,
+         why:'Paragraph 3: "$70 billion... subsidize middle-income... lowest-income barriers" — economic analysis။',
+         steps:['Cost analysis','Income analysis','→ Economic analysis']},
+        {type:'mcq',q:'According to the passage, universal free college would primarily benefit:',
+         o:['Low-income students','Middle- and upper-income families','Foreign students','Community colleges only'],
+         c:1,
+         why:'Paragraph 3: "subsidize middle- and upper-income families."',
+         steps:['Paragraph 3','"middle- and upper-income"','→ B']},
+        {type:'mcq',q:'What does the author propose instead of universal free college?',
+         o:['Eliminating student loans','Doubling Pell Grants for low-income students','Reducing college enrollment','Increasing tuition'],
+         c:1,
+         why:'Paragraph 4: "Doubling Pell Grants would help the students who need it most."',
+         steps:['Paragraph 4','"Doubling Pell Grants"','→ B']},
+        {type:'mcq',q:'How does the author respond to the "two-tier system" criticism?',
+         o:['By ignoring it','By arguing the system is already two-tier and targeted aid narrows the gap','By agreeing with critics','By proposing a different concern'],
+         c:1,
+         why:'Paragraph 5: "our current system is already two-tier... would narrow this gap."',
+         steps:['Paragraph 5','"already two-tier"','"would narrow this gap"','→ B']},
+        {type:'multi',q:'Select ALL the barriers for low-income students that the author mentions.',
+         o:['Living expenses','Childcare','Lost wages while studying','Tuition costs alone','Transportation'],
+         c:[0,1,2],need:3,
+         why:'Paragraph 3: living expenses, childcare, lost wages။ Tuition = free college က ဖြေရှင်းပေးသည့် အတွက် barrier အဖြစ် မဖော်ပြ။ Transportation မပါ။',
+         steps:['Para 3: "living expenses"','"childcare"','"lost wages"','→ A, B, C']},
+        {type:'mcq',q:'The author\'s tone is best described as:',
+         o:['Angry and confrontational','Reasoned and analytical','Humorous','Uncertain'],
+         c:1,
+         why:'Data + analysis ဖြင့် reason ရှိရှိ ဆွေးနွေးသည်။',
+         steps:['Data + analysis','Reasoned','→ B']},
+        {type:'mcq',q:'Which sentence best represents the author\'s conclusion?',
+         o:['"College should be free."','"Universal free college is an appealing slogan, but targeted investment is a more effective and equitable policy."','"The debate is not about whether to support education."','"Student loan debt now exceeds $1.7 trillion."'],
+         c:1,
+         why:'Last sentence = conclusion ။',
+         steps:['Last sentence','"appealing slogan" vs "targeted investment"','→ B']}
+      ]
+    },
+    /* C4: LANGUAGE */
+    {
+      id: 'c4', title: 'The Age of Artificial Intelligence', type: 'Language Conventions',
+      text: 'Artificial intelligence has become part of everyday life. [1] It powers our search engines, recommends what we watch, and even helps doctors diagnose diseases. Yet [2] despite its ubiquity, most people understand very little about how AI actually works.\n\nAt its core, AI is a system that learns patterns from data. [3] Machine learning, a subset of AI, uses statistical techniques to identify patterns in large datasets. [4] These patterns are then used to make predictions or decisions.\n\nHowever, AI systems are not always accurate. [5] They can reflect the biases present in the data they were trained on. [6] For example, an AI hiring tool trained on decades of male-dominated hiring might unfairly reject female candidates.\n\nGovernments and companies have begun to address these concerns. [7] In 2023, the European Union passed the AI Act, the first comprehensive law regulating AI. [8] It classifies AI systems by risk level, from minimal to unacceptable.\n\nWhile regulation is important, [9] so is education. [10] Citizens need to understand what AI can and cannot do, [11] and where its limits lie. [12] Without this understanding, we risk either fearing AI unnecessarily or trusting it too blindly.',
+      questions: [
+        {type:'mcq',q:'Sentence [1] — What is the purpose of this sentence?',
+         o:['To conclude','To introduce the ubiquity of AI','To warn readers','To criticize AI'],
+         c:1,
+         why:'Opening sentence = AI ubiquity ။',
+         steps:['First sentence','"everyday life"','→ Ubiquity']},
+        {type:'mcq',q:'Sentence [2] — What does "despite its ubiquity" suggest?',
+         o:['AI is rare','AI is everywhere but poorly understood','AI is dangerous','AI is new'],
+         c:1,
+         why:'"Ubiquity" = everywhere ။ "but few understand" = poorly understood။',
+         steps:['"ubiquity" = everywhere','"understand very little"','→ B']},
+        {type:'mcq',q:'Sentence [3] — What does "subset" mean?',
+         o:['A larger category','A smaller category within a larger one','An opposite','A new type'],
+         c:1,
+         why:'Machine learning is a "subset" of AI — smaller category။',
+         steps:['"subset of AI"','→ Smaller category']},
+        {type:'mcq',q:'Sentence [5] & [6] — What is the function of the example?',
+         o:['To entertain','To illustrate how AI biases work','To criticize the EU','To praise AI'],
+         c:1,
+         why:'Hiring tool example = illustration။',
+         steps:['"For example"','Illustrates AI bias','→ B']},
+        {type:'dropdown',q:'Complete the sentence:',
+         text:'The EU AI Act {0} AI systems by risk level. This is an example of {1}.',
+         blanks:[
+           {options:['classifies','ignores','rejects'],correct:0},
+           {options:['regulation','deregulation','education'],correct:0}
+         ],
+         why:'Para 4: "classifies AI systems by risk level" ။ Context: regulation။',
+         steps:['Para 4','"classifies... by risk level"','→ A / A']},
+        {type:'mcq',q:'Sentence [10] & [11] — Best revision for conciseness?',
+         o:['Citizens need to understand what AI can and cannot do and where its limits lie.','Citizens need to understand AI.','Citizens need to understand AI\'s limits.','People should know AI.'],
+         c:0,
+         why:'Original သည် specific + correct ။ Redundant မဖြစ်။',
+         steps:['Original is clear and specific','→ A']},
+        {type:'order',q:'Order these ideas as presented in the passage:',
+         items:['AI in everyday life','What AI is','Bias in AI systems','Regulation attempts','Need for education'],
+         correctOrder:['AI in everyday life','What AI is','Bias in AI systems','Regulation attempts','Need for education'],
+         why:'Paragraph flow ။',
+         steps:['Para 1: ubiquity','Para 2: definition','Para 3: bias','Para 4: regulation','Para 5: education']},
+        {type:'mcq',q:'Sentence [12] — What does the author warn against?',
+         o:['Only fearing AI','Only trusting AI','Both fearing and trusting AI blindly','Neither fearing nor trusting'],
+         c:2,
+         why:'"either fearing AI unnecessarily or trusting it too blindly" — နှစ်ခုလုံး။',
+         steps:['"either... or..."','Both extremes','→ C']}
+      ]
+    },
+    /* C5: LITERARY */
+    {
+      id: 'c5', title: 'The Road Not Taken — Two Readings', type: 'Paired Literary Texts',
+      isPaired: true,
+      sources: [
+        {
+          title: 'Source A — The Road Not Taken (Robert Frost, 1916)',
+          src: 'Poem',
+          text: 'Two roads diverged in a yellow wood, / And sorry I could not travel both / And be one traveler, long I stood / And looked down one as far as I could / To where it bent in the undergrowth;\n\nThen took the other, as just as fair, / And having perhaps the better claim, / Because it was grassy and wanted wear; / Though as for that the passing there / Had worn them really about the same,\n\nAnd both that morning equally lay / In leaves no step had trodden black. / Oh, I kept the first for another day! / Yet knowing how way leads on to way, / I doubted if I should ever come back.\n\nI shall be telling this with a sigh / Somewhere ages and ages hence: / Two roads diverged in a wood, and I— / I took the one less traveled by, / And that has made all the difference.'
+        },
+        {
+          title: 'Source B — Letter to Frost (Edward Thomas, 1915)',
+          src: 'Historical Letter',
+          text: 'My dear Frost,\n\nI have been thinking of your poem about the two roads. When I walk with you in the fields near your farm, I often wish I had taken a different path in my own life. Perhaps I should have stayed in America rather than returning to England, or chosen a different career than writing.\n\nBut the truth is that we cannot know where the other road leads. We can only guess — and often our guesses are wrong. I have known men who took one road and later wished for the other, and men who took the less common path and found it was not better at all.\n\nYour poem captures this beautifully. But I wonder whether the sigh at the end is a sigh of satisfaction or of regret. That ambiguity is what makes the poem so powerful.\n\nYours,\nEdward'
+        }
+      ],
+      questions: [
+        {type:'mcq',q:'What does the phrase "the one less traveled by" suggest about the speaker\'s choice?',
+         o:['He chose a common path','He chose an uncommon path','He never made a choice','He turned back'],
+         c:1,
+         why:'"Less traveled" = uncommon path။',
+         steps:['"less traveled"','→ Uncommon']},
+        {type:'mcq',q:'Edward Thomas\'s letter primarily:',
+         o:['Criticizes the poem','Reflects on the poem\'s theme of choice and uncertainty','Rejects Frost\'s friendship','Describes a journey'],
+         c:1,
+         why:'Letter သည် poem ၏ theme အပေါ် ရောင်ပြန်ဟပ်သည်။',
+         steps:['Letter reflections','"we cannot know where the other road leads"','→ Reflects on theme']},
+        {type:'mcq',q:'The word "sigh" in the poem\'s last stanza is ambiguous because:',
+         o:['It is quiet','It could express satisfaction or regret','It has no meaning','It appears twice'],
+         c:1,
+         why:'Thomas\'s letter: "whether the sigh is satisfaction or regret."',
+         steps:['Letter explains ambiguity','"satisfaction or regret"','→ B']},
+        {type:'mcq',q:'Which statement best captures the poem\'s central theme?',
+         o:['Always choose the safe path','Life involves choices whose outcomes cannot be predicted','Roads are dangerous','Nature is beautiful'],
+         c:1,
+         why:'Poem သည် choice နှင့် uncertainty ကို ဆွေးနွေးသည်။',
+         steps:['Road metaphor','Unknown outcomes','→ B']},
+        {type:'multi',q:'Select ALL ideas shared between the poem and the letter.',
+         o:['Life involves significant choices','We cannot know the outcome of unchosen paths','Choices always lead to happiness','We often look back at our choices'],
+         c:[0,1,3],need:3,
+         why:'Choices, uncertainty, looking back — ဒါတွေ ပါ။ "Always lead to happiness" မပါ။',
+         steps:['Poem: choices','Poem: "I shall be telling this... ages hence"','Letter: "we cannot know"','→ A, B, D']},
+        {type:'mcq',q:'How does the letter add to the poem?',
+         o:['By criticizing Frost','By providing a real-world interpretation of its theme','By changing the poem','By adding new characters'],
+         c:1,
+         why:'Thomas က poem ၏ theme ကို သူ၏ ကိုယ်ပိုင် experience ဖြင့် ရှင်းပြသည်။',
+         steps:['Letter interprets','Personal + philosophical','→ B']},
+        {type:'order',q:'Order the stages of the poem\'s speaker\'s journey:',
+         items:['Standing at the fork','Choosing a path','Wondering about return','Reflecting long after'],
+         correctOrder:['Standing at the fork','Choosing a path','Wondering about return','Reflecting long after'],
+         why:'Stanza 1 → 2 → 3 → 4 အစီအစဉ်။',
+         steps:['Stanza 1: standing','Stanza 2: took the other','Stanza 3: doubted return','Stanza 4: ages hence']},
+        {type:'mcq',q:'Thomas\'s letter suggests the poem\'s meaning is:',
+         o:['Clear and singular','Ambiguous and open to interpretation','Irrelevant','Simple'],
+         c:1,
+         why:'"That ambiguity is what makes the poem so powerful."',
+         steps:['Letter emphasizes ambiguity','→ B']}
+      ]
+    }
+  ];
+
+  /* ---------- STANDALONE LANGUAGE ---------- */
+  var STANDALONE_A = [
+    {q:'Which sentence is grammatically correct?',o:['Each of the students have finished their work.','Each of the students has finished his or her work.','Each of the students have finished his work.','Each has finished their work and they are ready.'],c:1,why:'"Each" singular → "has" + formal "his or her."',steps:['"Each" = singular','Verb: has','Pronoun: his or her','→ B']},
+    {q:'Identify the sentence fragment:',o:['The dog barked loudly.','Because it was raining.','She went home.','They ate dinner.'],c:1,why:'"Because..." = dependent clause only → fragment။',steps:['"Because" = subordinating conjunction','Dependent only','→ Fragment']},
+    {q:'Choose the correct transition: "He studied hard. ___, he passed."',o:['However','Therefore','Although','Otherwise'],c:1,why:'Cause-effect → therefore။',steps:['Cause: studied','Effect: passed','→ Therefore']},
+    {q:'Which sentence uses the apostrophe correctly?',o:['The childrens toys are new.','The children\'s toys are new.','The childrens\' toys are new.','The children\'s\'s toys are new.'],c:1,why:'"Children" = irregular plural → +\'s။',steps:['Irregular plural','Add \'s','→ B']},
+    {q:'Which revision is most concise?',o:['Due to the fact that it rained, we stayed home.','Because it rained, we stayed home.','Because of the fact of rain, we stayed.','It rained, we stayed home because of that.'],c:1,why:'"Due to the fact that" → "Because" concise။',steps:['Redundant phrase','→ "Because"','→ B']},
+    {q:'Identify the run-on sentence:',o:['I went home.','I went to the store I bought milk.','She runs fast.','They ate dinner.'],c:1,why:'Two independent clauses without punctuation။',steps:['Two clauses','No punctuation','→ Run-on']}
+  ];
+
+  var STANDALONE_B = [
+    {q:'Which sentence has correct subject-verb agreement?',o:['The list of items are long.','The list of items is long.','The list of items were long.','The list of items being long.'],c:1,why:'"List" singular → "is."',steps:['Subject: list','Verb: is','→ B']},
+    {q:'Choose the correct pronoun: "Between you and ___, this is strange."',o:['I','me','my','mine'],c:1,why:'"Between" = preposition → object pronoun "me."',steps:['Preposition','Object pronoun','→ B']},
+    {q:'Which sentence is a complex sentence?',o:['The dog barked.','The dog barked, and the cat ran.','Although it rained, we went outside.','The dog barked loudly.'],c:2,why:'"Although..." + main clause = complex။',steps:['Subordinating conjunction','"Although"','→ C']},
+    {q:'Which is the best transition? "First, gather materials. ___, begin."',o:['However','Then','Although','Instead'],c:1,why:'Sequence → then။',steps:['First... Then...','→ B']},
+    {q:'Which sentence has correct parallelism?',o:['She wanted to travel, learn, and grow.','She wanted traveling, to learn, and grow.','She wanted to travel, learning, growth.','She wanted travel, learn, and grow.'],c:0,why:'All infinitives (to-) = parallel။',steps:['Infinitives','"to travel, learn, grow"','→ A']},
+    {q:'Which sentence uses the semicolon correctly?',o:['I like coffee; my brother prefers tea.','I like coffee; and my brother prefers tea.','I like coffee; however my brother prefers tea.','I like coffee; my brother, prefers tea.'],c:0,why:'Semicolon = two independent clauses။',steps:['Two clauses','Semicolon only','→ A']}
+  ];
+
+  var STANDALONE_C = [
+    {q:'Which word correctly completes: "The team celebrated ___ victory."',o:['their','its','it\'s','there'],c:1,why:'"Team" = collective singular → "its."',steps:['Team = singular','its','→ B']},
+    {q:'Identify the fragment:',o:['The sun set.','Although it was hot.','She laughed.','They sang.'],c:1,why:'"Although..." = dependent only → fragment။',steps:['Subordinating','→ B']},
+    {q:'Best transition? "It was raining. ___, we went outside."',o:['Therefore','However','Thus','So'],c:1,why:'Contrast → however။',steps:['Contrast','→ B']},
+    {q:'Which sentence has no error?',o:['She don\'t like apples.','She doesn\'t like apples.','She don\'t likes apples.','She doesn\'t likes apples.'],c:1,why:'"She" → "doesn\'t" + base verb။',steps:['3rd person singular','"doesn\'t"','→ B']},
+    {q:'Which is most concise?',o:['In my personal opinion, I think we should leave now.','I think we should leave now.','In my opinion I think we should leave now.','Personally, I think we should leave.'],c:1,why:'"In my personal opinion, I think" = redundant။',steps:['Redundant','→ Simplest','→ B']},
+    {q:'Choose the parallel structure:',o:['The job requires writing, editing, and proofreading.','The job requires writing, to edit, and proofreading.','The job requires to write, editing, and proofread.','The job requires write, edit, proofread.'],c:0,why:'All gerunds = parallel။',steps:['All gerunds','→ A']}
+  ];
+
+  /* ---------- ESSAYS ---------- */
+  var ESSAYS = {
+    A: {
+      title: 'Two Views on Technology',
+      prompt: 'Below are two passages about the impact of smartphones on society. Read both passages carefully. Then write a well-organized essay that:',
+      tasks: ['Analyzes the arguments in both passages','Explains which argument is better supported','Uses evidence from the passages to support your position'],
+      s1title: 'Source 1 — Smartphones Improve Life',
+      s1: 'Smartphones have democratized access to information, allowing anyone to learn, communicate, and work from anywhere. They connect families across continents, provide instant access to medical advice, and enable small businesses to reach global markets. In disaster situations, smartphones save lives by coordinating relief efforts. Far from isolating us, smartphones have expanded human connection in ways previously unimaginable.',
+      s2title: 'Source 2 — Smartphones Harm Society',
+      s2: 'Smartphones have been linked to rising rates of anxiety, depression, and sleep deprivation, particularly in adolescents. A 2023 study found that teens who spent more than five hours daily on smartphones were 71% more likely to have suicidal thoughts than those who spent less than one hour. Beyond mental health, smartphones fragment attention, reduce face-to-face interaction, and enable surveillance. The conveniences they offer may not outweigh their costs.'
+    },
+    B: {
+      title: 'Two Views on Standardized Testing',
+      prompt: 'Below are two passages about whether standardized tests should play a central role in American education. Read both passages carefully. Then write a well-organized essay that:',
+      tasks: ['Analyzes the arguments in both passages','Explains which argument is better supported','Uses evidence from the passages to support your position'],
+      s1title: 'Source 1 — Keep Testing',
+      s1: 'Standardized tests provide the only truly objective measure of student learning across diverse schools and communities. Without them, we have no way to identify struggling schools, track achievement gaps, or compare educational outcomes. Tests also hold teachers and administrators accountable. When tests have been removed, low-income students often receive less attention, not more.',
+      s2title: 'Source 2 — Limit Testing',
+      s2: 'Standardized tests measure only a narrow slice of student ability — usually basic math and reading. They narrow curriculum, cause stress, and correlate more strongly with family income than with student learning. Countries like Finland, which rely on teacher judgment rather than tests, consistently outperform the United States. A better approach would combine multiple measures, including portfolios, projects, and classroom assessments.'
+    },
+    C: {
+      title: 'Two Views on Social Media',
+      prompt: 'Below are two passages about whether social media does more harm or more good for teenagers. Read both passages carefully. Then write a well-organized essay that:',
+      tasks: ['Analyzes the arguments in both passages','Explains which argument is better supported','Uses evidence from the passages to support your position'],
+      s1title: 'Source 1 — Social Media Harms',
+      s1: 'Social media platforms are engineered to be addictive, using algorithms that exploit human psychology to maximize screen time. Studies have linked heavy social media use to depression, anxiety, and loneliness among teenagers. Cyberbullying, unrealistic body standards, and constant comparison create a toxic environment. Many experts recommend that parents limit their children\'s social media use severely.',
+      s2title: 'Source 2 — Social Media Helps',
+      s2: 'Social media provides a lifeline for teenagers who feel isolated — including LGBTQ+ youth and those in rural areas. It enables creative expression, allows access to educational content, and provides a platform for activism. When used responsibly, social media strengthens friendships and community. Rather than banning it, we should teach digital literacy and platform responsibility.'
+    }
+  };
+
+  /* ============================================================
+     BUILD QUESTIONS
+  ============================================================ */
+  function buildQuestions(passages, standalone){
+    var allQ = [];
+    var passForQ = [];
+
+    passages.forEach(function(pass){
+      pass.questions.forEach(function(q){
+        var item = {
+          type: q.type || 'mcq',
+          q: q.q,
+          passageId: pass.id,
+          passage: pass
+        };
+        if(item.type === 'mcq'){
+          item.options = q.o;
+          item.correctIndex = q.c;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.o[q.c];
+        } else if(item.type === 'multi'){
+          item.options = q.o;
+          item.correctIndex = q.c;
+          item.need = q.need;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.c.map(function(i){return 'ABCD'[i]}).join(' · ');
+        } else if(item.type === 'order'){
+          item.items = q.items;
+          item.correctOrder = q.correctOrder;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.correctOrder.join(' → ');
+        } else if(item.type === 'dropdown'){
+          item.text = q.text;
+          item.blanks = q.blanks;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        } else if(item.type === 'table'){
+          item.headers = q.headers;
+          item.rows = q.rows;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.rows.map(function(r){return r.answers.filter(function(a){return a!==null}).join('/')}).join(' · ');
+        }
+        allQ.push(item);
+        passForQ.push(pass);
+      });
+    });
+
+    standalone.forEach(function(q){
+      allQ.push({
+        type:'mcq', q:q.q, options:q.o, correctIndex:q.c,
+        why:q.why, steps:q.steps, answer:q.o[q.c], passageId:null
+      });
+      passForQ.push(null);
+    });
+
+    allQ.push({type:'essay'});
+    passForQ.push(null);
+
+    return { questions: allQ, passForQ: passForQ };
+  }
+
+  var SETS = {
+    A: { name:'Set A', built: buildQuestions(PASSAGES_A, STANDALONE_A), essay: ESSAYS.A },
+    B: { name:'Set B', built: buildQuestions(PASSAGES_B, STANDALONE_B), essay: ESSAYS.B },
+    C: { name:'Set C', built: buildQuestions(PASSAGES_C, STANDALONE_C), essay: ESSAYS.C }
+  };
+
+  /* ============================================================
+     TIME
+  ============================================================ */
+  var T_PART1 = 40 * 60;
+  var T_BREAK = 3 * 60;
+  var T_PART2 = 65 * 60;
+  var T_ESSAY = 45 * 60;
+  var PART1_END = 24;
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var currentSetKey = null, currentSet = null;
+  var allQuestions = [], passageForQ = [];
+  var userAnswers = [], currentQ = 0;
+  var phase = 'p1', timerLeft = T_PART1, timerId = null;
+  var timeUsedTotal = 0, submitted = false, essayText = '';
+
+  function initState(){
+    var keys = Object.keys(SETS);
+    currentSetKey = keys[Math.floor(Math.random() * keys.length)];
+    currentSet = SETS[currentSetKey];
+    allQuestions = currentSet.built.questions.slice();
+    passageForQ = currentSet.built.passForQ.slice();
+    userAnswers = new Array(allQuestions.length).fill(null);
+    currentQ = 0; phase = 'p1'; timerLeft = T_PART1; timeUsedTotal = 0;
+    submitted = false; essayText = '';
+  }
+
+  $('startBtn').addEventListener('click', function(){
+    initState();
+    console.log('[RLA Exam] Random Set:', currentSetKey);
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  });
+
+  /* TIMER */
+  function startTimer(){
+    clearInterval(timerId);
+    updateTimerDisplay();
+    timerId = setInterval(function(){
+      timerLeft--; timeUsedTotal++;
+      if(phase === 'break') updateBreakDisplay();
+      else if(phase === 'essay') updateEssayTimer();
+      else updateTimerDisplay();
+      if(timerLeft <= 0){
+        clearInterval(timerId);
+        if(phase === 'p1') goToBreak();
+        else if(phase === 'break') skipBreak();
+        else if(phase === 'p2') goToEssay();
+        else if(phase === 'essay') finishExam();
+      }
+    }, 1000);
+  }
+  function fmtTime(sec){
+    var m = Math.floor(Math.max(sec, 0)/60);
+    var s = Math.max(sec, 0)%60;
+    return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  function updateTimerDisplay(){
+    var t = $('timer');
+    t.textContent = fmtTime(timerLeft);
+    if(phase === 'p1') t.classList.toggle('warn', timerLeft <= 180);
+    if(phase === 'p2') t.classList.toggle('warn', timerLeft <= 300);
+  }
+  function updateBreakDisplay(){
+    var str = Math.floor(timerLeft/60)+':'+((timerLeft%60)<10?'0':'')+(timerLeft%60);
+    $('breakCount').textContent = str; $('timer').textContent = str;
+  }
+  function updateEssayTimer(){
+    $('essayTimer').textContent = fmtTime(timerLeft);
+    $('essayTimer').classList.toggle('warn', timerLeft <= 300);
+  }
+
+  function goToBreak(){
+    phase = 'break'; timerLeft = T_BREAK;
+    $('timer').classList.add('break'); showOnly($('breakScreen')); startTimer();
+  }
+  function skipBreak(){
+    clearInterval(timerId);
+    phase = 'p2'; timerLeft = T_PART2;
+    $('timer').classList.remove('break');
+    currentQ = PART1_END;
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  }
+  $('skipBreakBtn').addEventListener('click', skipBreak);
+
+  /* RENDER QUESTION */
+  var TYPE_LABELS = {
+    mcq:'Multiple Choice', multi:'Multi-Select', order:'Ordering',
+    dropdown:'Dropdown', table:'Table', rhet:'Rhetorical Analysis'
+  };
+
+  function renderQuestion(){
+    var q = allQuestions[currentQ];
+    if(q.type === 'essay'){ goToEssay(); return; }
+    var card = $('qCard');
+    var badge = $('partBadge');
+    if(currentQ < PART1_END){ badge.textContent = 'Part 1 · Reading'; badge.classList.remove('p2'); }
+    else { badge.textContent = 'Part 2 · Language'; badge.classList.add('p2'); }
+
+    var typeTag = '<span class="q-type '+(q.type === 'rhet'?'rhet':(q.type === 'multi' || q.type === 'order' || q.type === 'dropdown' || q.type === 'table'?'tech':''))+'">'+(TYPE_LABELS[q.type] || 'MCQ')+'</span>';
+
+    card.innerHTML =
+      '<div class="q-num">Question '+(currentQ+1)+' of 46 '+typeTag+'</div>'+
+      '<div id="qHintWrap"></div>'+
+      '<div class="q-text">'+q.q+'</div>'+
+      '<div id="interactive"></div>';
+
+    var inter = card.querySelector('#interactive');
+    var hintWrap = card.querySelector('#qHintWrap');
+    if(q.type === 'multi') hintWrap.innerHTML = '<div class="q-hint">Select '+q.need+' answers</div>';
+    else if(q.type === 'order') hintWrap.innerHTML = '<div class="q-hint">Tap items in the correct order</div>';
+
+    if(q.type === 'mcq' || q.type === 'rhet') renderMCQ(q, inter);
+    else if(q.type === 'multi') renderMulti(q, inter);
+    else if(q.type === 'order') renderOrder(q, inter);
+    else if(q.type === 'dropdown') renderDropdown(q, inter);
+    else if(q.type === 'table') renderTable(q, inter);
+
+    renderPassage(currentQ);
+    $('qCounter').textContent = 'Question '+(currentQ+1)+' of 46';
+    $('prevBtn').disabled = (currentQ === 0) || (phase === 'p2' && currentQ === PART1_END);
+    var isLast = currentQ === 45;
+    $('nextBtn').textContent = isLast ? 'Begin Essay →' : 'Next →';
+    if(phase === 'p1' && currentQ === PART1_END - 1) $('nextBtn').textContent = '☕ Begin Break';
+  }
+
+  function commitAnswer(val){
+    userAnswers[currentQ] = val;
+    updateProgress(); renderDotMap();
+  }
+
+  function renderMCQ(q, container){
+    var chosen = userAnswers[currentQ];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+'ABCD'[i]+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if(phase === 'p1' && currentQ >= PART1_END) return;
+        if(phase === 'p2' && currentQ < PART1_END) return;
+        var i = +btn.dataset.i;
+        commitAnswer(i);
+        container.querySelectorAll('.opt').forEach(function(b){b.classList.remove('selected')});
+        btn.classList.add('selected');
+        autoAdvance();
+      });
+    });
+  }
+
+  function renderMulti(q, container){
+    var sel = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt multi multi-opt '+(sel.indexOf(i)!==-1?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+(sel.indexOf(i)!==-1?'✓':'')+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div><button class="btn primary" id="multiSubmit" style="margin-top:12px;width:100%">Confirm Selection</button>';
+    var cnt = null;
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+        var k = arr.indexOf(i);
+        if(k>=0) arr.splice(k,1); else if(arr.length < q.need) arr.push(i);
+        userAnswers[currentQ] = arr;
+        btn.classList.toggle('selected', arr.indexOf(i)!==-1);
+        btn.querySelector('.ltr').textContent = arr.indexOf(i)!==-1 ? '✓' : '';
+        var h = document.querySelector('.q-hint');
+        if(h) h.textContent = 'Select '+q.need+' answers ('+arr.length+' selected)';
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#multiSubmit').addEventListener('click', function(){
+      if((userAnswers[currentQ]||[]).length < q.need) return;
+      autoAdvance();
+    });
+  }
+
+  function renderOrder(q, container){
+    var pool = q.items.slice();
+    var seq = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+    container.innerHTML =
+      '<div class="order-pool" id="orderPool"></div>'+
+      '<div class="order-slots" id="orderSlots"></div>';
+    var poolEl = container.querySelector('#orderPool');
+    var slotsEl = container.querySelector('#orderSlots');
+    function paint(){
+      poolEl.innerHTML='';
+      pool.forEach(function(item){
+        var b = document.createElement('button');
+        b.className = 'order-item'+(seq.indexOf(item)!==-1?' used':'');
+        b.textContent = item;
+        b.addEventListener('click', function(){
+          if(seq.indexOf(item)!==-1) return;
+          seq.push(item);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots();
+          var h = document.querySelector('.q-hint');
+          if(h) h.textContent = 'Tap items in the correct order ('+seq.length+' / '+pool.length+')';
+          updateProgress(); renderDotMap();
+          if(seq.length===pool.length) setTimeout(autoAdvance,400);
+        });
+        poolEl.appendChild(b);
+      });
+    }
+    function paintSlots(){
+      slotsEl.innerHTML='';
+      if(seq.length===0){ slotsEl.innerHTML='<div class="order-empty">ဤနေရာတွင် အစဉ်လိုက် ပြသပါမည်</div>'; return; }
+      seq.forEach(function(it,i){
+        var d = document.createElement('div');
+        d.className = 'order-slot';
+        var sp = document.createElement('span'); sp.className='num'; sp.textContent=(i+1); d.appendChild(sp);
+        var txt = document.createElement('span'); txt.style.flex='1'; txt.textContent=it; d.appendChild(txt);
+        var rm = document.createElement('span'); rm.className='rm'; rm.textContent='✕';
+        rm.addEventListener('click', function(){
+          seq.splice(i,1);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots(); updateProgress(); renderDotMap();
+        });
+        d.appendChild(rm);
+        slotsEl.appendChild(d);
+      });
+    }
+    paint(); paintSlots();
+  }
+
+  function renderDropdown(q, container){
+    var vals = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : new Array(q.blanks.length).fill(null);
+    var html = '<div class="dropdown-line">';
+    var parts = q.text.split(/(\{\d+\})/);
+    parts.forEach(function(p){
+      var m = p.match(/^\{(\d+)\}$/);
+      if(m){
+        var idx = +m[1]; var b = q.blanks[idx];
+        html += '<select class="dd-select" data-idx="'+idx+'"><option value="">--</option>';
+        b.options.forEach(function(o,i){
+          html += '<option value="'+i+'"'+(vals[idx]===i?' selected':'')+'>'+o+'</option>';
+        });
+        html += '</select>';
+      } else html += p;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    container.querySelectorAll('.dd-select').forEach(function(sel){
+      sel.addEventListener('change', function(){
+        var idx = +sel.dataset.idx;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : new Array(q.blanks.length).fill(null);
+        arr[idx] = +sel.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+        if(arr.every(function(v){return v != null})) setTimeout(autoAdvance, 300);
+      });
+    });
+  }
+
+  function renderTable(q, container){
+    var answers = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : null;
+    var html = '<div class="table-wrap"><table class="data-table"><thead><tr>';
+    q.headers.forEach(function(h){html += '<th>'+h+'</th>'});
+    html += '</tr></thead><tbody>';
+    q.rows.forEach(function(r, ri){
+      html += '<tr>';
+      r.cells.forEach(function(c, ci){
+        if(r.answers[ci] === null){
+          html += '<td>'+c+'</td>';
+        } else {
+          var cur = (answers && answers[ri] && answers[ri][ci]) || '';
+          html += '<td><input type="text" data-r="'+ri+'" data-c="'+ci+'" value="'+cur+'" placeholder="..." style="width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;font-weight:700;font-size:13px"></td>';
+        }
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    html += '<button class="btn primary" id="tableSubmit" style="width:100%">Confirm Table</button>';
+    container.innerHTML = html;
+    container.querySelectorAll('input').forEach(function(inp){
+      inp.addEventListener('input', function(){
+        var r = +inp.dataset.r, c = +inp.dataset.c;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].map(function(x){return x ? x.slice() : []}) : q.rows.map(function(){return []});
+        if(!arr[r]) arr[r] = [];
+        arr[r][c] = inp.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#tableSubmit').addEventListener('click', function(){
+      var all = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+      var ok = q.rows.every(function(r, ri){
+        return r.answers.every(function(a, ci){
+          if(a === null) return true;
+          var u = all[ri] && all[ri][ci];
+          return u != null && u !== '';
+        });
+      });
+      if(!ok) return;
+      setTimeout(autoAdvance, 200);
+    });
+  }
+
+  function autoAdvance(){
+    if(currentQ >= PART1_END - 1 && phase === 'p1') return;
+    if(currentQ >= 45) return;
+    setTimeout(function(){
+      if(isAnswered(userAnswers[currentQ])){
+        currentQ++; renderQuestion(); renderDotMap();
+      }
+    }, 280);
+  }
+
+  /* RENDER PASSAGE */
+  function renderPassage(qIndex){
+    var pass = passageForQ[qIndex];
+    var box = $('passageBox');
+    var indicator = $('passageIndicator');
+    if(!pass){ box.style.display='none'; indicator.style.display='none'; return; }
+    box.style.display='block'; indicator.style.display='flex';
+    $('passageInfo').textContent = pass.type;
+
+    var pIdx = 0, seen = {};
+    for(var i=0; i<passageForQ.length; i++){
+      var p = passageForQ[i];
+      if(p && !seen[p.id]){ seen[p.id] = ++pIdx; if(p.id === pass.id) break; }
+    }
+    $('passageBadge').textContent = 'Passage '+pIdx+' of 5';
+
+    if(pass.isPaired){
+      box.innerHTML =
+        '<div class="passage-pair">'+
+          pass.sources.map(function(src, si){
+            return '<div class="passage-inner collapsed" data-src="'+si+'">'+
+              '<div class="passage-title">'+src.title+' <span class="src">'+src.src+'</span></div>'+
+              '<div class="passage-text">'+src.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+            '</div>';
+          }).join('')+
+        '</div>'+
+        '<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">'+
+          '<button class="passage-toggle" data-act="expand-all" style="flex:1">📖 Expand Both</button>'+
+          '<button class="passage-toggle" data-act="collapse-all" style="flex:1">📕 Collapse Both</button>'+
+        '</div>';
+      box.querySelectorAll('.passage-toggle').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var act = btn.dataset.act;
+          box.querySelectorAll('.passage-inner').forEach(function(inner){
+            if(act === 'expand-all') inner.classList.remove('collapsed');
+            else inner.classList.add('collapsed');
+          });
+        });
+      });
+    } else {
+      box.innerHTML =
+        '<div class="passage-inner collapsed">'+
+          '<div class="passage-title">'+pass.title+' <span class="src">'+pass.type+'</span></div>'+
+          '<div class="passage-text">'+pass.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+        '</div>'+
+        '<button class="passage-toggle" id="passageToggleBtn">📖 Show Full Passage</button>';
+      var btn = box.querySelector('#passageToggleBtn');
+      var inner = box.querySelector('.passage-inner');
+      btn.addEventListener('click', function(){
+        if(inner.classList.contains('collapsed')){
+          inner.classList.remove('collapsed');
+          btn.textContent = '📕 Collapse Passage';
+        } else {
+          inner.classList.add('collapsed');
+          btn.textContent = '📖 Show Full Passage';
+        }
+      });
+    }
+  }
+
+  $('prevBtn').addEventListener('click', function(){
+    if(phase === 'p2' && currentQ === PART1_END) return;
+    if(currentQ > 0){ currentQ--; renderQuestion(); renderDotMap(); }
+  });
+  $('nextBtn').addEventListener('click', function(){
+    if(phase === 'p1' && currentQ === PART1_END - 1){ goToBreak(); return; }
+    if(currentQ === 45){ goToEssay(); return; }
+    currentQ++; renderQuestion(); renderDotMap();
+  });
+
+  /* ESSAY */
+  function goToEssay(){
+    clearInterval(timerId);
+    phase = 'essay'; timerLeft = T_ESSAY;
+    startTimer();
+    var essay = currentSet.essay;
+    $('essayPromptTitle').textContent = '📝 ' + essay.title;
+    $('essayPromptText').textContent = essay.prompt;
+    $('essayPromptList').innerHTML = essay.tasks.map(function(t){return '<li>'+t+'</li>'}).join('');
+    $('essaySources').innerHTML =
+      '<div class="essay-source"><b>'+essay.s1title+'</b>'+essay.s1+'</div>'+
+      '<div class="essay-source"><b>'+essay.s2title+'</b>'+essay.s2+'</div>';
+    showOnly($('essayScreen'));
+    if(essayText){ $('essayInput').value = essayText; updateEssayWords(); }
+  }
+  function updateEssayWords(){
+    var txt = $('essayInput').value.trim();
+    essayText = $('essayInput').value;
+    var words = txt ? txt.split(/\s+/).length : 0;
+    $('essayWords').textContent = words;
+  }
+  $('essayInput').addEventListener('input', updateEssayWords);
+  $('essaySubmitBtn').addEventListener('click', function(){
+    if(!confirm('Essay ကို အတည်ပြုပြီး Result ကြည့်မလား။')) return;
+    finishExam();
+  });
+  function finishExam(){
+    if(submitted) return;
+    submitted = true; clearInterval(timerId); submitExam();
+  }
+
+  /* SCORING */
+  function isAnswered(a){
+    if(a === null || a === undefined) return false;
+    if(Array.isArray(a)) return a.length > 0;
+    if(typeof a === 'string') return a.trim() !== '';
+    if(typeof a === 'object') return true;
+    return true;
+  }
+
+  function scoreQ(q, ua){
+    if(q.type === 'essay') return false;
+    if(!isAnswered(ua)) return false;
+    if(q.type === 'mcq' || q.type === 'rhet') return ua === q.correctIndex;
+    if(q.type === 'multi'){
+      if(!Array.isArray(ua)) return false;
+      var a = ua.slice().sort(function(x,y){return x-y});
+      var c = q.correctIndex.slice().sort(function(x,y){return x-y});
+      return a.length === c.length && a.every(function(v,i){return v === c[i]});
+    }
+    if(q.type === 'order'){
+      if(!Array.isArray(ua)) return false;
+      return ua.length === q.correctOrder.length && ua.every(function(v,i){return v === q.correctOrder[i]});
+    }
+    if(q.type === 'dropdown'){
+      if(!Array.isArray(ua)) return false;
+      return q.blanks.every(function(b,i){return ua[i] === b.correct});
+    }
+    if(q.type === 'table'){
+      if(!Array.isArray(ua)) return false;
+      return q.rows.every(function(r, ri){
+        return r.answers.every(function(a, ci){
+          if(a === null) return true;
+          var u = ua[ri] && ua[ri][ci];
+          if(u == null || u === '') return false;
+          return String(u).trim().toLowerCase() === String(a).trim().toLowerCase();
+        });
+      });
+    }
+    return false;
+  }
+
+  /* SUBMIT */
+  $('submitBtn').addEventListener('click', function(){
+    var un = 0;
+    for(var i=0; i<46; i++) if(!isAnswered(userAnswers[i])) un++;
+    var msg = '';
+    if(un > 0) msg += un + ' multiple choice မဖြေရသေးပါ။ ';
+    if(essayText.trim().length === 0) msg += 'Essay မရေးရသေးပါ။ ';
+    msg += 'Exam ကို တင်မလား။';
+    if(!confirm(msg)) return;
+    finishExam();
+  });
+
+  function submitExam(){
+    var correct = 0, wrong = 0;
+    for(var i=0; i<46; i++){
+      if(scoreQ(allQuestions[i], userAnswers[i])) correct++; else wrong++;
+    }
+    var pct = Math.round(correct / 46 * 100);
+    try {
+      var s = JSON.parse(localStorage.getItem('ged:pretest:scores')) || {};
+      var rec = {
+        score: correct, total: 46, pct: pct,
+        date: new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}),
+        set: currentSetKey, hasEssay: essayText.trim().length > 0
+      };
+      var prev = s['rla'];
+      if(!prev || rec.pct > prev.pct) s['rla'] = rec;
+      localStorage.setItem('ged:pretest:scores', JSON.stringify(s));
+    } catch(e){}
+    renderResult(correct, wrong, pct);
+    showOnly($('resultScreen'));
+  }
+
+  /* RESULT */
+  function renderResult(correct, wrong, pct){
+    $('scorePct').textContent = pct + '%';
+    $('rCorrect').textContent = correct;
+    $('rWrong').textContent = wrong;
+    var m = Math.floor(timeUsedTotal/60), s = timeUsedTotal%60;
+    $('rTime').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    var gedScore = Math.round(100 + (pct/100)*100);
+    $('gedScore').textContent = gedScore;
+    var gs = $('gedMsg');
+    if(gedScore >= 175) gs.textContent = '🏆 College Ready + Credit (175+)';
+    else if(gedScore >= 165) gs.textContent = '🎓 College Ready (165+)';
+    else if(gedScore >= 145) gs.textContent = '✅ Passed GED (145+)';
+    else gs.textContent = '📚 အောင်မှတ် 145 ရရန် လိုသေးသည်';
+    var ring = $('scoreRing');
+    var C = 2 * Math.PI * 70;
+    ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C;
+    setTimeout(function(){ ring.style.strokeDashoffset = C * (1 - pct/100); }, 100);
+    var msg, sub;
+    if(gedScore >= 165){ msg = '🌟 College Ready!'; sub = 'GED RLA အတွက် ထူးချွန်စွာ အသင့်ဖြစ်နေပါပြီ။ ('+currentSetKey+' Set)'; }
+    else if(gedScore >= 145){ msg = '✅ Passed!'; sub = 'GED RLA အောင်မှတ် ရပါပြီ။ ('+currentSetKey+' Set)'; }
+    else if(gedScore >= 130){ msg = '📚 Near Passing'; sub = 'အောင်မှတ်နှင့် နီးကပ်နေသည်။ စာဖတ်ခြင်း ပြန်လေ့ကျင့်ပါ။ ('+currentSetKey+' Set)'; }
+    else { msg = '💪 လေ့ကျင့်ဖို့ လိုသေးသည်'; sub = 'RLA Lessons များ ပြန်လေ့လာပါ။ ('+currentSetKey+' Set)'; }
+    $('resultMsg').textContent = msg;
+    $('resultSub').textContent = sub;
+    renderReview();
+  }
+
+  /* REVIEW */
+  function renderReview(){
+    var el = $('reviewWrap');
+    el.innerHTML = '<div class="review-title">Answer Key & Explanations — Set '+currentSetKey+'</div>';
+    for(var i=0; i<46; i++){
+      var q = allQuestions[i];
+      var ua = userAnswers[i];
+      var ok = scoreQ(q, ua);
+      var pass = passageForQ[i];
+      var partTag = i < PART1_END
+        ? '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,.12);color:#1d4ed8">PART 1</span>'
+        : '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(139,92,246,.12);color:#6d28d9">PART 2</span>';
+      var passTag = pass
+        ? '<span style="font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(245,158,11,.12);color:#b45309">'+pass.title+'</span>'
+        : '';
+      var typeTag = '<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(236,72,153,.12);color:#be185d">'+(TYPE_LABELS[q.type]||'MCQ')+'</span>';
+
+      var answerHtml = '';
+      if(q.type === 'mcq' || q.type === 'rhet'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var cls = 'opt';
+            if(j === q.correctIndex) cls += ' correct';
+            else if(j === ua) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default;opacity:.98"><span class="ltr">'+'ABCD'[j]+'</span><span class="body">'+o+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'multi'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var isC = q.correctIndex.indexOf(j) !== -1;
+            var isU = Array.isArray(ua) && ua.indexOf(j) !== -1;
+            var cls = 'opt multi';
+            if(isC) cls += ' correct'; else if(isU) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default"><span class="ltr">'+(isU?'✓':'')+'</span><span class="body">'+o+(isC?' ✓ correct':'')+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'order'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your order: <b>'+(Array.isArray(ua) ? ua.join(' → ') : '(blank)')+'</b><br>'+
+          'Correct: <b style="color:#14532d">'+q.correctOrder.join(' → ')+'</b></div>';
+      } else if(q.type === 'dropdown'){
+        var correctChoices = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Correct choices: <b style="color:#14532d">'+correctChoices+'</b></div>';
+      } else if(q.type === 'table'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Correct values: <b style="color:#14532d">'+q.answer+'</b></div>';
+      }
+
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+      card.innerHTML =
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+          '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#3b82f6,#6366f1)">'+(i+1)+'</span>'+
+          partTag + passTag + typeTag +
+          '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+(ok?'color:#14532d;background:#bbf7d0':'color:#7f1d1d;background:#fecaca')+'">'+(ok?'✔ Correct':'✘ Wrong')+'</span>'+
+        '</div>'+
+        '<div style="font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500">'+q.q+'</div>'+
+        answerHtml+
+        '<div class="sol">'+
+          '<span class="lbl">အဘယ်ကြောင့်</span>'+q.why+
+          '<div style="margin-top:10px"><span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span><ol>'+
+            q.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+          '</ol></div>'+
+          '<span class="ans">✔ အဖြေ: '+q.answer+'</span>'+
+        '</div>';
+      el.appendChild(card);
+    }
+
+    /* Essay card */
+    var eCard = document.createElement('div');
+    eCard.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+    var essayStatus = essayText.trim().length > 0
+      ? '✔ Submitted ('+essayText.trim().split(/\s+/).length+' words)'
+      : '✘ Not submitted';
+    var essayColor = essayText.trim().length > 0 ? 'color:#14532d;background:#bbf7d0' : 'color:#7f1d1d;background:#fecaca';
+    eCard.innerHTML =
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+        '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#22c55e,#16a34a)">✎</span>'+
+        '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(22,163,74,.12);color:#15803d">EXTENDED RESPONSE</span>'+
+        '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+essayColor+'">'+essayStatus+'</span>'+
+      '</div>'+
+      '<div style="font-size:14px;line-height:1.7;margin:6px 0 12px;font-weight:500">Essay: '+currentSet.essay.title+'</div>'+
+      (essayText.trim().length > 0 ? '<div style="padding:14px;border-radius:12px;background:rgba(15,23,42,.03);font-size:13px;line-height:1.75;max-height:200px;overflow-y:auto;white-space:pre-wrap;font-style:italic">'+essayText.substring(0,500)+(essayText.length>500?'...':'')+'</div>' : '')+
+      '<div class="sol">'+
+        '<span class="lbl">အဘယ်ကြောင့်</span>Extended Response ကို 3-point rubric ဖြင့် စစ်ဆေးပါမည် — Analysis, Development, Clarity။'+
+        '<div style="margin-top:10px"><span class="lbl">အောင်မြင်ရန် လိုအပ်ချက်</span><ol>'+
+          '<li>Thesis statement (clear position)</li>'+
+          '<li>Evidence from BOTH sources (specific quotes/details)</li>'+
+          '<li>Address counterargument</li>'+
+          '<li>Clear organization (intro, body, conclusion)</li>'+
+          '<li>400-600 words</li>'+
+        '</ol></div>'+
+      '</div>';
+    el.appendChild(eCard);
+  }
+
+  /* BUTTONS */
+  $('reviewBtn').addEventListener('click', function(){
+    $('reviewWrap').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  $('retryBtn').addEventListener('click', function(){
+    if(!confirm('Exam အသစ် (ကျပန်း set) စတင်မလား။')) return;
+    initState();
+    showOnly($('startScreen'));
+  });
+  window.confirmExit = function(){
+    if(submitted) return true;
+    return confirm('Exam မှ ထွက်မလား။ ဖြေထားသည်များ ဆုံးရှုံးမည်။');
+  };
+
+  /* DOT MAP */
+  function renderDotMap(){
+    var el = $('dotMap'); el.innerHTML = '';
+    for(var i=0; i<47; i++){
+      var d = document.createElement('button');
+      d.className = 'dot' + (i >= PART1_END ? ' p2' : '');
+      if(i === 46) d.classList.add('essay');
+      d.textContent = i === 46 ? '✎' : (i+1);
+      if(i < 46 && isAnswered(userAnswers[i])) d.classList.add('answered');
+      if(i === 46 && essayText.trim().length > 0) d.classList.add('answered');
+      if(i === currentQ) d.classList.add('current');
+      (function(idx){
+        d.addEventListener('click', function(){
+          if(idx === 46){ if(phase === 'p1') return; goToEssay(); return; }
+          if(phase === 'essay') return;
+          if(phase === 'p1' && idx >= PART1_END) return;
+          if(phase === 'p2' && idx < PART1_END) return;
+          currentQ = idx; renderQuestion(); renderDotMap();
+        });
+      })(i);
+      el.appendChild(d);
+    }
+  }
+  function updateProgress(){
+    var answered = 0;
+    for(var i=0; i<46; i++) if(isAnswered(userAnswers[i])) answered++;
+    if(essayText.trim().length > 0) answered++;
+    $('pCount').textContent = answered + ' / 47';
+    $('pBar').style.width = (answered / 47 * 100) + '%';
+  }
+
+})();
+</script>
+</body>
+</html>

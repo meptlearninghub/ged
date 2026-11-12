@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Science — Real Exam (with Images)</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#10b981;--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--violet:#8b5cf6;--blue:#3b82f6;
+  --radius:18px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --nav-bg:rgba(248,250,252,.92);
+  --passage-bg:rgba(16,185,129,.05);
+  --passage-border:rgba(16,185,129,.25);
+  --table-bg:rgba(59,130,246,.05);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --nav-bg:rgba(11,18,32,.92);
+  --passage-bg:rgba(16,185,129,.12);
+  --passage-border:rgba(16,185,129,.35);
+  --table-bg:rgba(59,130,246,.12);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 420px at 8% -8%,rgba(16,185,129,.12),transparent 65%),
+             radial-gradient(700px 420px at 100% 4%,rgba(59,130,246,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+
+.header{position:sticky;top:0;z-index:30;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 14px 10px}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.back-btn{display:inline-flex;align-items:center;gap:5px;flex:none;padding:8px 12px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+  font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.h-title{flex:1;min-width:0}
+.h-title h1{margin:0;font-size:clamp(12px,3.4vw,15px);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-title p{margin:1px 0 0;font-size:10.5px;color:var(--muted);font-weight:600}
+.part-badge{flex:none;display:inline-flex;align-items:center;gap:4px;padding:6px 9px;border-radius:9px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;
+  background:rgba(16,185,129,.15);color:#047857;border:1px solid rgba(16,185,129,.3);white-space:nowrap}
+.part-badge.p2{background:rgba(59,130,246,.15);color:#1d4ed8;border-color:rgba(59,130,246,.3)}
+.part-badge.p3{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+html[data-theme="dark"] .part-badge{background:rgba(16,185,129,.25);color:#6ee7b7}
+html[data-theme="dark"] .part-badge.p2{background:rgba(59,130,246,.25);color:#93c5fd}
+html[data-theme="dark"] .part-badge.p3{background:rgba(139,92,246,.25);color:#c4b5fd}
+.timer{flex:none;display:inline-flex;align-items:center;gap:4px;padding:8px 10px;border-radius:11px;
+  background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;font-size:12px;font-weight:800;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -8px rgba(16,185,129,.8)}
+.timer.warn{background:linear-gradient(135deg,#dc2626,#ef4444)}
+@media(max-width:520px){.h-title h1{font-size:11.5px}.part-badge{display:none}}
+
+.progress-wrap{max-width:900px;margin:10px auto 0;padding:0 14px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.progress-top b{font-size:12px;font-weight:800;color:var(--primary)}
+.progress-top span{font-size:11px;color:var(--muted);font-weight:600}
+.progress-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .progress-bar{background:rgba(255,255,255,.09)}
+.progress-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#10b981,#06b6d4);transition:width .4s cubic-bezier(.22,.8,.28,1)}
+
+.dot-map{max-width:900px;margin:10px auto 0;padding:0 14px;display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);
+  cursor:pointer;border:none;font-family:inherit;
+  transition:transform .15s,background .2s,color .2s}
+html[data-theme="dark"] .dot{background:rgba(255,255,255,.06)}
+.dot:active{transform:scale(.9)}
+.dot.answered{background:rgba(16,185,129,.2);color:#047857}
+html[data-theme="dark"] .dot.answered{background:rgba(16,185,129,.3);color:#6ee7b7}
+.dot.current{background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;
+  box-shadow:0 4px 12px -4px rgba(16,185,129,.9)}
+.dot.p2.answered{background:rgba(59,130,246,.2);color:#1d4ed8}
+.dot.p2.current{background:linear-gradient(135deg,#3b82f6,#6366f1)}
+.dot.p3.answered{background:rgba(139,92,246,.2);color:#6d28d9}
+.dot.p3.current{background:linear-gradient(135deg,#8b5cf6,#6366f1)}
+
+.passage-indicator{max-width:900px;margin:14px auto 0;padding:0 14px;
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--muted);flex-wrap:wrap;}
+.passage-indicator .badge{padding:4px 10px;border-radius:999px;
+  background:var(--passage-bg);color:var(--primary);border:1px solid var(--passage-border);}
+.passage-indicator .bar{flex:1;height:1px;background:var(--border);min-width:20px;}
+
+.passage-box{max-width:900px;margin:10px auto 0;padding:0 14px;}
+.passage-inner{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:18px;font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+  font-size:14.5px;line-height:1.85;color:var(--text);max-height:60svh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;}
+.passage-inner.collapsed{max-height:280px;overflow:hidden;position:relative}
+.passage-inner.collapsed::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent, var(--passage-bg));pointer-events:none;}
+.passage-title{font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:11.5px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--primary);margin:0 0 10px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.passage-title .src{font-size:10px;padding:2px 8px;border-radius:999px;
+  background:rgba(245,158,11,.15);color:#b45309;letter-spacing:.03em}
+html[data-theme="dark"] .passage-title .src{background:rgba(245,158,11,.25);color:#fbbf24}
+.passage-text{white-space:pre-wrap;margin:0}
+.passage-text p{margin:0 0 12px}
+.passage-text p:last-child{margin-bottom:0}
+.passage-toggle{display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:8px auto 0;padding:7px 14px;border-radius:10px;
+  border:1px solid var(--passage-border);background:var(--card);
+  color:var(--primary);font-family:inherit;font-size:11.5px;font-weight:800;
+  cursor:pointer;transition:all .18s;}
+.passage-toggle:hover{background:var(--passage-bg)}
+.passage-toggle:active{transform:scale(.97)}
+
+/* Image wrap */
+.image-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;
+  margin:14px 0;padding:10px;background:rgba(255,255,255,.5);
+  border:1px solid var(--border);border-radius:12px;}
+html[data-theme="dark"] .image-wrap{background:rgba(0,0,0,.2)}
+.diagram-img{width:100%;max-width:400px;height:auto;border-radius:8px;display:block;
+  background:#fff;object-fit:contain;}
+html[data-theme="dark"] .diagram-img{background:#fff}
+.image-caption{font-size:11px;font-weight:700;color:var(--muted);text-align:center;
+  font-family:'Inter',sans-serif;font-style:italic;line-height:1.4}
+
+/* SVG diagram */
+.diagram-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;
+  margin:14px 0;padding:10px;background:rgba(255,255,255,.5);
+  border:1px solid var(--border);border-radius:12px;}
+html[data-theme="dark"] .diagram-wrap{background:rgba(0,0,0,.2)}
+.diagram-svg{width:100%;max-width:400px;height:auto;display:block}
+.diagram-caption{font-size:11px;font-weight:700;color:var(--muted);text-align:center;font-family:'Inter',sans-serif;font-style:italic}
+
+.data-table-wrap{overflow-x:auto;margin:10px 0;border-radius:10px;border:1px solid var(--border);background:var(--table-bg)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:340px}
+.data-table th,.data-table td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--border);font-family:'Inter',sans-serif}
+.data-table th{background:rgba(59,130,246,.08);font-weight:800;color:#1d4ed8;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+html[data-theme="dark"] .data-table th{background:rgba(59,130,246,.15);color:#93c5fd}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td{font-weight:600}
+
+.q-wrap{max-width:900px;margin:0 auto;padding:14px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-num{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:rgba(16,185,129,.12);color:#047857;font-size:11px;font-weight:800;margin-bottom:6px;}
+html[data-theme="dark"] .q-num{background:rgba(16,185,129,.2);color:#6ee7b7}
+.q-type{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;margin-left:6px;
+  background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3);}
+html[data-theme="dark"] .q-type{background:rgba(245,158,11,.25);color:#fbbf24}
+.q-type.tech{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+.q-type.exp{background:rgba(236,72,153,.15);color:#be185d;border-color:rgba(236,72,153,.3)}
+html[data-theme="dark"] .q-type.tech{background:rgba(139,92,246,.25);color:#c4b5fd}
+html[data-theme="dark"] .q-type.exp{background:rgba(236,72,153,.25);color:#f9a8d4}
+.q-text{font-size:14.5px;line-height:1.75;margin:8px 0 14px;font-weight:500}
+.q-hint{font-size:11.5px;color:var(--muted);font-weight:700;margin:-6px 0 12px;
+  padding:8px 12px;background:rgba(139,92,246,.06);border-radius:8px;border-left:3px solid var(--violet)}
+html[data-theme="dark"] .q-hint{background:rgba(139,92,246,.12)}
+
+.opts{display:grid;grid-template-columns:1fr;gap:8px}
+.opt{text-align:left;padding:12px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:all .18s;line-height:1.55;display:flex;align-items:flex-start;gap:10px;}
+.opt:active{transform:scale(.985)}
+.opt:not(:disabled):hover{border-color:var(--primary);background:rgba(16,185,129,.04)}
+.opt .ltr{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);transition:all .18s;}
+html[data-theme="dark"] .opt .ltr{background:rgba(255,255,255,.08)}
+.opt.selected{border-color:var(--primary);background:rgba(16,185,129,.06)}
+.opt.selected .ltr{background:var(--primary);color:#fff}
+.opt.correct{border-color:var(--green);background:#dcfce7;color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.correct .ltr{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#fee2e2;color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt.wrong .ltr{background:var(--red);color:#fff}
+.opt.multi .ltr{border-radius:5px}
+.opt.multi.selected .ltr::after{content:"✓"}
+.opt .body{flex:1;padding-top:1px}
+.opt:disabled{cursor:default}
+
+.order-pool{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.order-item{padding:11px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);font-family:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px;
+  text-align:left;max-width:100%;color:var(--text)}
+.order-item:hover{border-color:var(--violet);background:rgba(139,92,246,.05)}
+.order-item.used{opacity:.35;pointer-events:none}
+.order-slots{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;
+  background:rgba(139,92,246,.04);border:1.5px dashed var(--passage-border);min-height:52px}
+html[data-theme="dark"] .order-slots{background:rgba(139,92,246,.08)}
+.order-slot{padding:10px 12px;border-radius:9px;background:var(--violet);color:#fff;
+  font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px;
+  animation:popIn .25s cubic-bezier(.22,.8,.28,1)}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.order-slot .num{background:rgba(255,255,255,.25);border-radius:50%;
+  width:20px;height:20px;display:grid;place-items:center;font-size:10px;font-weight:800}
+.order-slot .rm{margin-left:auto;opacity:.7;font-size:13px;cursor:pointer;padding:0 4px}
+.order-empty{color:var(--muted);font-size:12.5px;font-style:italic;padding:6px;text-align:center}
+
+.dropdown-line{font-size:14.5px;line-height:2.1;font-weight:500;padding:14px 16px;border-radius:12px;
+  background:rgba(139,92,246,.05);border:1px solid var(--border)}
+html[data-theme="dark"] .dropdown-line{background:rgba(139,92,246,.1)}
+.dd-select{padding:7px 9px;border-radius:8px;border:1.5px solid var(--violet);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:700;
+  cursor:pointer;margin:0 3px}
+
+.q-nav{max-width:900px;margin:14px auto 0;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;
+  border-radius:11px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s,background .2s,color .2s;min-height:42px;text-decoration:none;}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(16,185,129,.7)}
+.btn.ghost{background:transparent;box-shadow:none}
+.btn.grow{flex:1;min-width:110px}
+.btn.submit{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(34,197,94,.7)}
+
+.start-hero,.result-hero{max-width:680px;margin:0 auto;
+  padding:calc(28px + var(--safe-top)) 20px 20px;text-align:center}
+.start-hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(16,185,129,.8);}
+.start-hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,30px);font-weight:800;letter-spacing:-.03em}
+.start-hero .subtitle{margin:0 0 4px;font-size:clamp(13px,3.4vw,15px);color:var(--muted)}
+.start-info{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin:24px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.start-info-item{text-align:left}
+.start-info-item b{display:block;font-size:20px;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.start-info-item span{font-size:12px;color:var(--muted);font-weight:600}
+.start-tips{text-align:left;font-size:12.5px;color:var(--muted);line-height:1.85;
+  background:rgba(245,158,11,.08);border-radius:12px;padding:14px 16px;border-left:3px solid var(--amber);}
+.start-tips b{color:var(--text)}
+.start-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;
+  padding:16px 22px;border-radius:16px;font-size:16px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#10b981,#06b6d4);border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 12px 26px -10px rgba(16,185,129,.8);transition:transform .2s,filter .2s;}
+.start-btn:active{transform:scale(.98)}
+
+.score-ring{width:170px;height:170px;margin:0 auto 22px;position:relative;display:grid;place-items:center}
+.score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.score-ring .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:12}
+html[data-theme="dark"] .score-ring .bgc{stroke:rgba(255,255,255,.08)}
+.score-ring .fgc{fill:none;stroke:url(#grad);stroke-width:12;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.8,.28,1)}
+.score-ring .pct{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-ring .lbl{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.ged-score{background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;border-radius:16px;
+  padding:18px;margin-bottom:18px;text-align:center;box-shadow:0 12px 30px -12px rgba(16,185,129,.8)}
+.ged-score b{display:block;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ged-score span{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.05em;
+  text-transform:uppercase;margin-top:4px;display:block}
+.ged-score small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:8px}
+.result-msg{font-size:17px;font-weight:700;margin:0 0 8px}
+.result-sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.75}
+.result-stats{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;text-align:center;}
+.result-stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.result-stats span{font-size:11px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.rs-correct b{color:var(--green)}
+.rs-wrong b{color:var(--red)}
+.rs-time b{color:var(--primary)}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.result-actions .btn{flex:1;min-width:130px}
+.review-wrap{max-width:900px;margin:22px auto 0;padding:0 16px}
+.review-title{font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin:8px 0 12px;text-align:center}
+.sol{margin-top:14px;padding:14px;border-radius:14px;
+  background:rgba(16,185,129,.06);border-left:3px solid var(--primary);
+  font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .sol{background:rgba(16,185,129,.12)}
+.sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--primary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.sol ol{margin:6px 0 0;padding-left:20px}
+.sol ol li{margin-bottom:4px;line-height:1.7}
+.sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="startScreen" class="screen active">
+  <div class="start-hero">
+    <div class="big-icon">🔬</div>
+    <h1>GED Science — Real Exam</h1>
+    <p class="subtitle">Life · Physical · Earth & Space · Data · Experiments · Diagrams</p>
+    <div class="start-info">
+      <div class="start-info-item"><b>40</b><span>Questions</span></div>
+      <div class="start-info-item"><b>90 min</b><span>Total time</span></div>
+      <div class="start-info-item"><b>5 + 5 + 5</b><span>Passages</span></div>
+      <div class="start-info-item"><b>3 Sets</b><span>Random</span></div>
+    </div>
+    <div class="start-tips">
+      <b>📌 Real GED Science Format</b><br>
+      • <b>Life Science</b> — Biology (cells, genetics, ecosystems) · ~40%<br>
+      • <b>Physical Science</b> — Chemistry + Physics · ~40%<br>
+      • <b>Earth & Space Science</b> — Climate, tectonics, astronomy · ~20%<br>
+      • <b>Science Practices</b> — Experiment design, data analysis<br>
+      • <b>Visuals</b> — Diagrams, graphs, tables, photos<br>
+      • <b>Random Set</b> — Sets A/B/C မှ ကျပန်းရွေး
+    </div>
+    <button class="start-btn" id="startBtn">▶ Exam စတင်ရန်</button>
+    <a class="back-btn" href="pretest.html" style="margin-top:14px;display:inline-flex">← Pretest Hub</a>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="examScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="pretest.html" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>GED Science Exam</h1>
+        <p id="qCounter">Question 1 of 40</p>
+      </div>
+      <span class="part-badge" id="partBadge">Life Science</span>
+      <div class="timer" id="timer">90:00</div>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-top"><b id="pLabel">Progress</b><span id="pCount">0 / 40</span></div>
+    <div class="progress-bar"><i id="pBar"></i></div>
+  </div>
+  <div class="dot-map" id="dotMap"></div>
+  <div class="passage-indicator" id="passageIndicator">
+    <span class="badge" id="passageBadge">Passage 1</span>
+    <span class="bar"></span>
+    <span id="passageInfo">Life Science</span>
+  </div>
+  <div class="passage-box" id="passageBox"></div>
+  <div class="q-wrap">
+    <div class="q-card" id="qCard"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="prevBtn">← Previous</button>
+      <button class="btn primary grow" id="nextBtn">Next →</button>
+    </div>
+    <div class="q-nav" style="margin-top:10px">
+      <button class="btn submit grow" id="submitBtn">✓ Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160">
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient></defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="scoreRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div style="text-align:center">
+        <div class="pct" id="scorePct">0%</div>
+        <div class="lbl">Raw Score</div>
+      </div>
+    </div>
+    <div class="ged-score">
+      <b id="gedScore">0</b>
+      <span>Estimated GED Score</span>
+      <small id="gedMsg">Passing = 145 · College Ready = 165 · +Credit = 175</small>
+    </div>
+    <p class="result-msg" id="resultMsg"></p>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="result-stats">
+      <div class="rs-correct"><b id="rCorrect">0</b><span>Correct</span></div>
+      <div class="rs-wrong"><b id="rWrong">0</b><span>Wrong</span></div>
+      <div class="rs-time"><b id="rTime">00:00</b><span>Time</span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="reviewBtn">📖 Review</button>
+      <button class="btn primary" id="retryBtn">🔄 New Set</button>
+      <a class="btn" href="pretest.html" style="text-decoration:none">← Hub</a>
+    </div>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var showOnly=function(s){
+    document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+    s.classList.add('active');window.scrollTo(0,0);
+  };
+
+  /* ============================================================
+     IMAGE / SVG FALLBACK RENDERER
+     - If pass.image exists → <img> with src
+     - If image fails to load → fallback to SVG (diagram)
+     - If no image but diagram → SVG
+  ============================================================ */
+  function renderVisual(pass){
+    var html = '';
+
+    // Try image first
+    if(pass.image && pass.image.src){
+      html += '<div class="image-wrap" id="imgWrap_'+pass.id+'">' +
+        '<img class="diagram-img" src="'+pass.image.src+'" alt="'+(pass.image.alt||'')+'" ' +
+        'loading="lazy" onerror="imgFallback(this, \''+pass.id+'\')" />' +
+        (pass.image.caption ? '<div class="image-caption">'+pass.image.caption+'</div>' : '') +
+      '</div>';
+    }
+
+    // Also render SVG (hidden if image exists)
+    if(pass.diagram){
+      var svgContent = svgDiagram(pass.diagram.type, pass.diagram.data || {});
+      if(svgContent){
+        var display = pass.image && pass.image.src ? 'none' : 'flex';
+        html += '<div class="diagram-wrap" id="svgWrap_'+pass.id+'" style="display:'+display+'">' +
+          svgContent +
+          (pass.diagram.data && pass.diagram.data.title ? '<div class="diagram-caption">'+pass.diagram.data.title+'</div>' : '') +
+        '</div>';
+      }
+    }
+
+    return html;
+  }
+
+  // Global fallback: if image fails, show SVG
+  window.imgFallback = function(imgEl, passId){
+    imgEl.parentNode.style.display = 'none';
+    var svgWrap = document.getElementById('svgWrap_' + passId);
+    if(svgWrap) svgWrap.style.display = 'flex';
+  };
+
+  /* ============================================================
+     SVG DIAGRAMS — fallback when images are missing
+  ============================================================ */
+  function svgDiagram(type, data){
+    if(type === 'line-graph'){
+      var pts = data.points || [];
+      if(pts.length < 2) return '';
+      var minX = Math.min.apply(null, pts.map(function(p){return p.x}));
+      var maxX = Math.max.apply(null, pts.map(function(p){return p.x}));
+      var minY = Math.min.apply(null, pts.map(function(p){return p.y}));
+      var maxY = Math.max.apply(null, pts.map(function(p){return p.y}));
+      var padX = (maxX-minX)*0.1 || 1, padY = (maxY-minY)*0.1 || 1;
+      var x0 = minX-padX, x1 = maxX+padX, y0 = minY-padY, y1 = maxY+padY;
+      var W = 320, H = 220, L = 44, R = 12, T = 14, B = 34;
+      function sx(v){ return L + (v-x0)/(x1-x0)*(W-L-R); }
+      function sy(v){ return H-B - (v-y0)/(y1-y0)*(H-T-B); }
+      var grid = '';
+      for(var i=0;i<=4;i++){
+        var yv = y0 + (y1-y0)*i/4;
+        grid += '<line x1="'+L+'" y1="'+sy(yv)+'" x2="'+(W-R)+'" y2="'+sy(yv)+'" stroke="#e2e8f0" stroke-width="1"/>';
+        grid += '<text x="'+(L-6)+'" y="'+(sy(yv)+4)+'" font-size="9" fill="#64748b" text-anchor="end" font-family="Inter">'+Math.round(yv)+'</text>';
+      }
+      var path = 'M' + pts.map(function(p){return sx(p.x)+','+sy(p.y)}).join(' L');
+      var dots = pts.map(function(p){return '<circle cx="'+sx(p.x)+'" cy="'+sy(p.y)+'" r="3.5" fill="#10b981" stroke="#fff" stroke-width="1.5"/>'}).join('');
+      var xlabels = '';
+      for(var i=0;i<=4;i++){
+        var xv = x0 + (x1-x0)*i/4;
+        xlabels += '<text x="'+sx(xv)+'" y="'+(H-B+15)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter">'+Math.round(xv)+'</text>';
+      }
+      return '<svg viewBox="0 0 '+W+' '+H+'" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">'+
+        grid + xlabels +
+        '<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<line x1="'+L+'" y1="'+(T)+'" x2="'+L+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<path d="'+path+'" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+        dots +
+        (data.xlabel ? '<text x="'+((W)/2)+'" y="'+(H-2)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter" font-weight="600">'+data.xlabel+'</text>' : '')+
+        (data.ylabel ? '<text x="10" y="'+(H/2)+'" font-size="9" fill="#64748b" text-anchor="middle" transform="rotate(-90 10 '+(H/2)+')" font-family="Inter" font-weight="600">'+data.ylabel+'</text>' : '')+
+      '</svg>';
+    }
+    if(type === 'bar-chart'){
+      var W = 320, H = 220, L = 34, R = 12, T = 14, B = 44;
+      var maxV = Math.max.apply(null, data.values) || 1;
+      var n = data.labels.length;
+      var gap = (W-L-R)/n;
+      var barW = gap * 0.65;
+      var bars = data.values.map(function(v,i){
+        var bh = (v/maxV)*(H-T-B);
+        var bx = L + gap*i + (gap-barW)/2;
+        var by = H-B-bh;
+        return '<rect x="'+bx+'" y="'+by+'" width="'+barW+'" height="'+bh+'" fill="#3b82f6" rx="3"/>'+
+               '<text x="'+(bx+barW/2)+'" y="'+(by-4)+'" font-size="9" fill="#1e293b" text-anchor="middle" font-family="Inter" font-weight="700">'+v+'</text>'+
+               '<text x="'+(bx+barW/2)+'" y="'+(H-B+14)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter">'+data.labels[i]+'</text>';
+      }).join('');
+      return '<svg viewBox="0 0 '+W+' '+H+'" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">'+
+        '<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        bars +
+        (data.title ? '<text x="'+((W)/2)+'" y="'+(H-4)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter" font-weight="600">'+data.title+'</text>' : '')+
+      '</svg>';
+    }
+    if(type === 'cell-diagram'){
+      return '<svg viewBox="0 0 320 220" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">'+
+        '<rect x="20" y="20" width="280" height="170" fill="#f0fdf4" stroke="#10b981" stroke-width="2.5" rx="10"/>'+
+        '<circle cx="160" cy="105" r="38" fill="#c7d2fe" stroke="#6366f1" stroke-width="2"/>'+
+        '<text x="160" y="108" font-size="9" fill="#1e293b" text-anchor="middle" font-family="Inter" font-weight="700">Nucleus</text>'+
+        '<ellipse cx="85" cy="70" rx="20" ry="11" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>'+
+        '<text x="85" y="73" font-size="7" fill="#78350f" text-anchor="middle" font-family="Inter" font-weight="700">Mito</text>'+
+        '<ellipse cx="235" cy="150" rx="20" ry="11" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>'+
+        '<text x="235" y="153" font-size="7" fill="#78350f" text-anchor="middle" font-family="Inter" font-weight="700">Mito</text>'+
+        '<circle cx="235" cy="65" r="9" fill="#a7f3d0" stroke="#059669" stroke-width="1.5"/>'+
+        '<text x="235" y="68" font-size="6" fill="#065f46" text-anchor="middle" font-family="Inter" font-weight="700">Rib</text>'+
+        '<circle cx="85" cy="150" r="9" fill="#a7f3d0" stroke="#059669" stroke-width="1.5"/>'+
+        '<text x="85" y="153" font-size="6" fill="#065f46" text-anchor="middle" font-family="Inter" font-weight="700">Rib</text>'+
+        '<text x="160" y="210" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter" font-weight="600">Eukaryotic Cell (Animal)</text>'+
+      '</svg>';
+    }
+    return '';
+  }
+
+  /* ============================================================
+     SET A
+  ============================================================ */
+  var SET_A = {
+    passages: [
+      {
+        id:'a1', title:'Cell Structure and Function', type:'Life Science',
+        image:{src:'images/cell-diagram.png', alt:'Eukaryotic cell diagram', caption:'Figure 1: Eukaryotic animal cell — labeled organelles'},
+        diagram:{type:'cell-diagram'},
+        text:'Cells are the basic unit of life. All living organisms are made of one or more cells, and every cell performs essential functions that keep the organism alive.\n\nEukaryotic cells (found in plants, animals, and fungi) contain membrane-bound organelles, each with a specific job. The nucleus stores DNA and controls cell activities. Mitochondria produce energy through cellular respiration, converting glucose and oxygen into ATP, carbon dioxide, and water. Ribosomes build proteins. In plant cells, chloroplasts carry out photosynthesis, and a rigid cell wall provides structural support.\n\nProkaryotic cells (bacteria and archaea) lack a nucleus and most organelles. Their DNA floats freely in the cytoplasm. Despite their simplicity, prokaryotes are incredibly diverse and can survive in extreme environments.\n\nThe table below shows ATP production in different conditions.',
+        dataTable:{
+          headers:['Condition','Oxygen Present','ATP Produced (per glucose)'],
+          rows:[
+            ['Cellular respiration','Yes','~36 ATP'],
+            ['Fermentation','No','2 ATP'],
+            ['Photosynthesis (net)','Yes (sunlight)','Not applicable']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the passage and table, which process produces the MOST ATP per glucose molecule?',
+           o:['Fermentation','Cellular respiration','Photosynthesis','They are equal'],
+           c:1,
+           why:'Cellular respiration = ~36 ATP ။ Fermentation = 2 ATP သာ။',
+           steps:['Table ကြည့်','Cellular respiration: 36 ATP','Fermentation: 2 ATP','→ Cellular respiration']},
+          {type:'mcq',q:'Which organelle is responsible for producing ATP?',
+           o:['Nucleus','Mitochondria','Ribosome','Chloroplast'],
+           c:1,
+           why:'"Mitochondria produce energy through cellular respiration."',
+           steps:['Passage para 2','"Mitochondria produce energy"','→ Mitochondria']},
+          {type:'mcq',q:'What distinguishes eukaryotic cells from prokaryotic cells?',
+           o:['Eukaryotic cells have no DNA','Eukaryotic cells have a nucleus and membrane-bound organelles','Prokaryotic cells are always larger','Prokaryotic cells cannot survive in extreme conditions'],
+           c:1,
+           why:'Para 2-3: eukaryotes have nucleus/organelles, prokaryotes lack them။',
+           steps:['Para 2: eukaryote has nucleus','Para 3: prokaryote lacks nucleus','→ B']},
+          {type:'multi',q:'Select ALL organelles found ONLY in plant cells (not animal cells).',
+           o:['Chloroplasts','Cell wall','Mitochondria','Large central vacuole','Nucleus'],
+           c:[0,1,3],need:3,
+           why:'Chloroplasts, cell wall, large vacuole — plant-only။ Mitochondria & nucleus နှစ်မျိုးလုံးတွင် ရှိ။',
+           steps:['Para 2: chloroplasts (plants)','Para 2: cell wall (plants)','Plants have large vacuole','Mitochondria: both','Nucleus: both','→ A, B, D']},
+          {type:'mcq',q:'A cell that has been deprived of oxygen would most likely rely on which process for energy?',
+           o:['Cellular respiration','Fermentation','Photosynthesis','Protein synthesis'],
+           c:1,
+           why:'Table: "Fermentation — No (oxygen)" ။ Oxygen မရှိလျှင် fermentation။',
+           steps:['Table: oxygen absent → fermentation','→ B']},
+          {type:'mcq',q:'What is the primary role of ribosomes?',
+           o:['Producing energy','Storing DNA','Building proteins','Breaking down waste'],
+           c:2,
+           why:'Para 2: "Ribosomes build proteins."',
+           steps:['Para 2','"Ribosomes build proteins"','→ C']}
+        ]
+      },
+      {
+        id:'a2', title:'Newton\'s Laws of Motion', type:'Physical Science',
+        image:{src:'images/newton-laws.png', alt:'Newton\'s three laws illustration', caption:'Figure 2: Newton\'s three laws — inertia, F = ma, action-reaction'},
+        diagram:{type:'line-graph',data:{points:[{x:0,y:0},{x:5,y:2.5},{x:10,y:5},{x:15,y:7.5},{x:20,y:10}],xlabel:'Force (N)',ylabel:'Acceleration (m/s²)',title:'Force vs. Acceleration (2 kg object)'}},
+        text:'Sir Isaac Newton\'s three laws of motion describe how forces affect the movement of objects. These laws form the foundation of classical mechanics.\n\nNewton\'s First Law (Inertia): An object at rest stays at rest, and an object in motion stays in motion at constant velocity, unless acted upon by an unbalanced force. This is why passengers lurch forward when a car suddenly stops.\n\nNewton\'s Second Law: Force equals mass times acceleration (F = ma). This means the acceleration of an object depends on the net force applied and the object\'s mass. A heavier object requires more force to achieve the same acceleration.\n\nNewton\'s Third Law: For every action, there is an equal and opposite reaction. When you push against a wall, the wall pushes back with equal force. Rockets work by expelling gas downward, which pushes the rocket upward.\n\nThe graph below shows the relationship between force and acceleration for a 2 kg object.',
+        questions:[
+          {type:'mcq',q:'According to the graph, what is the acceleration when force is 10 N?',
+           o:['2.5 m/s²','5 m/s²','7.5 m/s²','10 m/s²'],
+           c:1,
+           why:'Graph: x=10 → y=5။ F = ma → a = F/m = 10/2 = 5။',
+           steps:['Graph: x=10','y=5','→ 5 m/s²']},
+          {type:'mcq',q:'Newton\'s Third Law explains why a rocket can move in space. What is the "action" force?',
+           o:['The rocket moving forward','The gas expelled downward','The rocket\'s weight','Gravity'],
+           c:1,
+           why:'Para 4: "expelling gas downward" = action။ Rocket upward = reaction။',
+           steps:['Para 4','"expelling gas downward"','→ B']},
+          {type:'mcq',q:'Which scenario best illustrates Newton\'s First Law?',
+           o:['A ball rolling and gradually slowing down due to friction','A passenger lurching forward when a car stops suddenly','A heavier box requiring more force to push','A rocket launching upward'],
+           c:1,
+           why:'Passenger lurching = inertia (1st law)။',
+           steps:['1st law = inertia','Passenger lurching = inertia','→ B']},
+          {type:'experiment',q:'A student wants to test Newton\'s Second Law. Which is the BEST experimental design?',
+           o:['Change mass and force at the same time, measure acceleration','Keep mass constant, change force, measure acceleration','Change only mass, keep force constant, measure acceleration','Use different objects and measure only force'],
+           c:1,
+           why:'F = ma ကို စမ်းသပ်ရန် variable တစ်ခုသာ ပြောင်းရမည်။ Mass ကို ထိန်းပြီး Force ပြောင်း၊ Acceleration တိုင်း။',
+           steps:['Independent variable: force','Dependent: acceleration','Controlled: mass','→ B']},
+          {type:'mcq',q:'Using F = ma, calculate the acceleration when a 5 kg object experiences 20 N of force.',
+           o:['0.25 m/s²','4 m/s²','25 m/s²','100 m/s²'],
+           c:1,
+           why:'a = F/m = 20/5 = 4 m/s²။',
+           steps:['F = ma','a = F/m','a = 20/5 = 4 m/s²','→ B']},
+          {type:'mcq',q:'The graph shows a straight line through the origin. What does this indicate?',
+           o:['Force is independent of acceleration','Force and acceleration are directly proportional','Acceleration is constant','Mass changes with force'],
+           c:1,
+           why:'Straight line through origin = direct proportion။ F = ma (m constant)။',
+           steps:['Linear graph','Through origin','→ Directly proportional']}
+        ]
+      },
+      {
+        id:'a3', title:'Plate Tectonics', type:'Earth & Space Science',
+        image:{src:'images/plate-tectonics.png', alt:'Three types of plate boundaries', caption:'Figure 3: Divergent, convergent, and transform boundaries'},
+        text:'The Earth\'s outer shell, called the lithosphere, is broken into large slabs called tectonic plates. These plates float on the semi-molten asthenosphere below and move a few centimeters per year due to convection currents in the mantle.\n\nThere are three main types of plate boundaries. At divergent boundaries, plates move apart, and new crust forms (e.g., the Mid-Atlantic Ridge). At convergent boundaries, plates collide. When an oceanic plate meets a continental plate, the denser oceanic plate subducts (sinks below) the continental plate, forming mountain ranges and volcanoes (e.g., the Andes). At transform boundaries, plates slide past each other, causing earthquakes (e.g., the San Andreas Fault).\n\nThe table below compares the three types of plate boundaries.',
+        dataTable:{
+          headers:['Boundary Type','Motion','Geologic Feature'],
+          rows:[
+            ['Divergent','Plates move apart','Mid-ocean ridges'],
+            ['Convergent','Plates collide','Mountains, volcanoes'],
+            ['Transform','Plates slide past','Earthquakes']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'At which type of boundary would you expect volcanic activity?',
+           o:['Divergent only','Convergent only','Transform only','Both convergent and divergent'],
+           c:3,
+           why:'Divergent: new crust (volcanoes under ocean)။ Convergent: volcanoes (Andes example)။',
+           steps:['Divergent: new crust forms','Convergent: volcanoes','→ Both']},
+          {type:'mcq',q:'The San Andreas Fault in California is an example of which boundary?',
+           o:['Divergent','Convergent','Transform','Subduction'],
+           c:2,
+           why:'Para 2: "transform boundaries... San Andreas Fault."',
+           steps:['Para 2','"San Andreas Fault" = transform','→ C']},
+          {type:'mcq',q:'What causes tectonic plates to move?',
+           o:['Solar winds','Convection currents in the mantle','The moon\'s gravity','Rotation of the Earth'],
+           c:1,
+           why:'Para 1: "convection currents in the mantle."',
+           steps:['Para 1','"convection currents"','→ B']},
+          {type:'mcq',q:'When an oceanic plate meets a continental plate, which plate subducts?',
+           o:['Continental plate','Oceanic plate','Neither','Both'],
+           c:1,
+           why:'Para 2: "denser oceanic plate subducts."',
+           steps:['Para 2','"denser oceanic plate subducts"','→ B']},
+          {type:'order',q:'Order the boundaries from the least to greatest earthquake risk:',
+           items:['Divergent boundary','Transform boundary','Subduction zone (convergent)'],
+           correctOrder:['Divergent boundary','Transform boundary','Subduction zone (convergent)'],
+           why:'Divergent = mild ။ Transform = high ။ Subduction = very high (earthquakes + volcanoes)။',
+           steps:['Divergent: mild','Transform: frequent','Convergent: most powerful','→ A, B, C']},
+          {type:'mcq',q:'What geologic feature is associated with divergent boundaries?',
+           o:['Mountains','Mid-ocean ridges','San Andreas Fault','Volcanoes only'],
+           c:1,
+           why:'Table: "Divergent → Mid-ocean ridges."',
+           steps:['Table row 1','→ Mid-ocean ridges']}
+        ]
+      },
+      {
+        id:'a4', title:'Chemical Reactions and Conservation of Mass', type:'Physical Science',
+        image:{src:'images/chemical-reaction.png', alt:'Balanced equation 2H2 + O2 → 2H2O', caption:'Figure 4: Balanced equation — 4 H atoms and 2 O atoms on each side'},
+        text:'A chemical reaction occurs when substances (reactants) interact to form new substances (products). During any chemical reaction, matter is neither created nor destroyed — this is the Law of Conservation of Mass. The total mass of reactants always equals the total mass of products.\n\nBalanced chemical equations reflect this law. For example, in the reaction 2H₂ + O₂ → 2H₂O, there are 4 hydrogen atoms and 2 oxygen atoms on both sides. Coefficients (numbers before chemical formulas) show the relative amounts of each substance.\n\nChemical reactions can be classified into several types. Synthesis reactions combine two or more substances into one. Decomposition breaks a compound into simpler substances. Single replacement reactions involve one element replacing another in a compound. Double replacement reactions exchange partners between two compounds.\n\nThe table shows three example reactions.',
+        dataTable:{
+          headers:['Reaction','Type','Example'],
+          rows:[
+            ['A + B → AB','Synthesis','2Na + Cl₂ → 2NaCl'],
+            ['AB → A + B','Decomposition','2H₂O → 2H₂ + O₂'],
+            ['AB + C → AC + B','Single replacement','Zn + 2HCl → ZnCl₂ + H₂']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'The Law of Conservation of Mass states that:',
+           o:['Mass can be created during reactions','Mass is destroyed in most reactions','The mass of reactants equals the mass of products','Only gases obey this law'],
+           c:2,
+           why:'Para 1: "total mass of reactants always equals the total mass of products."',
+           steps:['Para 1 definition','→ C']},
+          {type:'mcq',q:'In the reaction 2H₂ + O₂ → 2H₂O, how many hydrogen atoms are on each side?',
+           o:['2','3','4','6'],
+           c:2,
+           why:'2H₂ = 2×2 = 4 hydrogen atoms ။ 2H₂O = 2×2 = 4 hydrogen atoms။',
+           steps:['2H₂ = 4 H atoms','2H₂O = 4 H atoms','→ Balanced: 4']},
+          {type:'mcq',q:'The reaction 2H₂O → 2H₂ + O₂ is an example of:',
+           o:['Synthesis','Decomposition','Single replacement','Double replacement'],
+           c:1,
+           why:'Table: "AB → A + B = Decomposition."',
+           steps:['Table row 2','Decomposition','→ B']},
+          {type:'multi',q:'Select ALL true statements about balanced chemical equations.',
+           o:['The number of atoms of each element is equal on both sides','Coefficients show relative amounts of substances','Atoms are created during reactions','The equation follows the Law of Conservation of Mass'],
+           c:[0,1,3],need:3,
+           why:'Atoms ဖန်တီးခြင်း မဖြစ်။ ကျန်သုံးချက် မှန်။',
+           steps:['Balanced = equal atoms','Coefficients: relative amounts','Law of Conservation applies','Atoms not created']},
+          {type:'experiment',q:'A student mixes 10 g of baking soda with 20 g of vinegar in an open cup. After the reaction, the total mass is 28 g. What is the BEST explanation?',
+           o:['Mass was destroyed','Mass was created','A gas (CO₂) escaped into the air','The reaction did not occur'],
+           c:2,
+           why:'Open system → gas ထွက်သွား။ Closed system ဆိုလျှင် mass ထိန်းသိမ်းမည်။',
+           steps:['10 + 20 = 30 g initial','After: 28 g','Difference: 2 g gas escaped','→ C']},
+          {type:'mcq',q:'If 50 g of reactants are combined in a closed container, what mass of products will form?',
+           o:['Less than 50 g','Exactly 50 g','More than 50 g','Depends on the reaction type'],
+           c:1,
+           why:'Law of Conservation of Mass: closed system → mass conserved။',
+           steps:['Closed container','Mass conserved','50 g reactants → 50 g products','→ B']}
+        ]
+      },
+      {
+        id:'a5', title:'Mendelian Genetics', type:'Life Science',
+        image:{src:'images/punnett-square.png', alt:'Punnett square Tt x Tt', caption:'Figure 5: Punnett square — TT, Tt, Tt, tt (3 tall : 1 short)'},
+        text:'Gregor Mendel, an Austrian monk, discovered the basic principles of heredity through experiments with pea plants in the 1860s. His work established that traits are passed from parents to offspring through discrete units now called genes.\n\nEach organism inherits two copies of each gene — one from each parent. These alternate forms of a gene are called alleles. If the two alleles are the same, the organism is homozygous; if different, heterozygous. An allele that is expressed even when only one copy is present is called dominant, while a recessive allele is expressed only when two copies are present.\n\nThe table below shows a cross between two heterozygous pea plants (Tt × Tt), where T = tall (dominant) and t = short (recessive).',
+        dataTable:{
+          headers:['','T (parent 1)','t (parent 1)'],
+          rows:[
+            ['T (parent 2)','TT (tall)','Tt (tall)'],
+            ['t (parent 2)','Tt (tall)','tt (short)']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'In the Tt × Tt cross, what percentage of offspring is expected to be short (tt)?',
+           o:['0%','25%','50%','75%'],
+           c:1,
+           why:'Punnett square တွင် tt = 1/4 = 25%။',
+           steps:['Table: 1 out of 4 is tt','1/4 = 25%','→ B']},
+          {type:'mcq',q:'An organism with two different alleles for a trait is called:',
+           o:['Homozygous','Heterozygous','Dominant','Recessive'],
+           c:1,
+           why:'Para 2: "if different, heterozygous."',
+           steps:['Para 2 definition','Different alleles = heterozygous','→ B']},
+          {type:'mcq',q:'Why do offspring show the recessive trait only when both alleles are recessive?',
+           o:['Recessive alleles are stronger','Dominant allele masks the recessive one','Recessive alleles disappear','Genes are randomly expressed'],
+           c:1,
+           why:'Para 2: "dominant expressed... recessive only when two copies present."',
+           steps:['Para 2 definition','Dominant masks recessive','→ B']},
+          {type:'multi',q:'Select ALL true statements about Mendelian genetics.',
+           o:['Each parent contributes one allele per gene','Alleles can be dominant or recessive','Homozygous means two identical alleles','Dominant traits only appear in homozygous form'],
+           c:[0,1,2],need:3,
+           why:'Dominant traits can appear in heterozygous (Tt = tall)။',
+           steps:['Each parent: 1 allele','Alleles: dominant/recessive','Homozygous = identical','Dominant in Tt = tall, not only TT']},
+          {type:'fill',q:'In a Tt × Tt cross, what fraction of offspring is expected to be TALL? Answer as a decimal (e.g., 0.75).',
+           answer:'0.75',tolerance:0.01,
+           why:'TT + Tt + Tt = 3 out of 4 = 0.75။',
+           steps:['Table: TT, Tt, Tt = tall','3/4 = 0.75','→ 0.75']},
+          {type:'mcq',q:'Mendel chose pea plants for his experiments primarily because:',
+           o:['They are large animals','They reproduce slowly','They have easily observable traits and reproduce quickly','They live in water'],
+           c:2,
+           why:'Pea plants = observable traits + quick reproduction (historical context)။',
+           steps:['Mendel\'s pea plant experiments','Observable traits + fast reproduction','→ C']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'Which of the following is a renewable energy source?',
+       o:['Coal','Natural gas','Solar power','Petroleum'],c:2,
+       why:'Solar power is renewable — it is naturally replenished။',
+       steps:['Renewable = naturally replaced','Solar = renewable','→ C']},
+      {q:'The pH scale measures:',
+       o:['Temperature','Acidity or basicity','Density','Mass'],c:1,
+       why:'pH < 7 = acidic, pH > 7 = basic, pH = 7 = neutral။',
+       steps:['pH scale: 0-14','Below 7: acid','Above 7: base','→ B']},
+      {q:'During photosynthesis, plants convert which gas into oxygen?',
+       o:['Nitrogen','Carbon dioxide','Hydrogen','Methane'],c:1,
+       why:'Photosynthesis: CO₂ + H₂O + light → glucose + O₂။',
+       steps:['Photosynthesis equation','CO₂ → O₂','→ B']},
+      {q:'The primary function of red blood cells is to:',
+       o:['Fight infection','Carry oxygen','Digest food','Produce hormones'],c:1,
+       why:'Red blood cells contain hemoglobin which carries oxygen။',
+       steps:['Red blood cells have hemoglobin','Hemoglobin binds O₂','→ B']},
+      {q:'Which force keeps planets in orbit around the Sun?',
+       o:['Magnetism','Gravity','Friction','Tension'],c:1,
+       why:'Gravity — Sun\'s gravitational pull keeps planets in orbit။',
+       steps:['Gravitational force','Sun attracts planets','→ B']},
+      {q:'A solution with a pH of 3 is:',
+       o:['Strongly basic','Slightly basic','Acidic','Neutral'],c:2,
+       why:'pH < 7 = acidic, pH 3 = strongly acidic။',
+       steps:['pH < 7','pH 3 = acidic','→ C']}
+    ]
+  };
+
+  /* ============================================================
+     SET B
+  ============================================================ */
+  var SET_B = {
+    passages: [
+      {
+        id:'b1', title:'The Human Circulatory System', type:'Life Science',
+        image:{src:'images/circulatory-system.png', alt:'Human heart with four chambers', caption:'Figure 6: Human heart — four chambers and blood flow'},
+        text:'The circulatory system is a network of organs and vessels that transports blood throughout the body. It delivers oxygen and nutrients to cells and removes carbon dioxide and waste products.\n\nThe system consists of the heart, blood vessels, and blood. The heart is a muscular pump with four chambers: two atria (upper) and two ventricles (lower). Deoxygenated blood enters the right atrium, moves to the right ventricle, and is pumped to the lungs. Oxygenated blood returns to the left atrium, moves to the left ventricle, and is pumped out to the body through the aorta.\n\nBlood vessels come in three types. Arteries carry blood away from the heart under high pressure. Veins carry blood back to the heart under low pressure and contain valves to prevent backflow. Capillaries are tiny vessels where gas and nutrient exchange occurs.\n\nThe table shows blood pressure readings and their interpretations.',
+        dataTable:{
+          headers:['Category','Systolic (mmHg)','Diastolic (mmHg)'],
+          rows:[
+            ['Normal','< 120','< 80'],
+            ['Elevated','120–129','< 80'],
+            ['Stage 1 Hypertension','130–139','80–89'],
+            ['Stage 2 Hypertension','≥ 140','≥ 90']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which chamber of the heart pumps oxygenated blood to the body?',
+           o:['Right atrium','Right ventricle','Left atrium','Left ventricle'],
+           c:3,
+           why:'Para 2: "Oxygenated blood... left ventricle... pumped out to the body."',
+           steps:['Para 2','Left ventricle → body','→ D']},
+          {type:'mcq',q:'A patient has a blood pressure of 135/85 mmHg. Based on the table, this is classified as:',
+           o:['Normal','Elevated','Stage 1 Hypertension','Stage 2 Hypertension'],
+           c:2,
+           why:'135 (systolic) is 130-139 ။ 85 (diastolic) is 80-89 → Stage 1။',
+           steps:['Table lookup','Systolic 135 → Stage 1','→ C']},
+          {type:'mcq',q:'Which type of blood vessel contains valves to prevent backflow?',
+           o:['Arteries','Veins','Capillaries','Aorta'],
+           c:1,
+           why:'Para 3: "Veins... contain valves to prevent backflow."',
+           steps:['Para 3','"Veins... valves"','→ B']},
+          {type:'experiment',q:'A researcher wants to test how exercise affects blood pressure. Which is the BEST design?',
+           o:['Measure BP before and after exercise in the same person','Measure BP of different people at different times','Ask people how they feel after exercise','Measure BP only after exercise'],
+           c:0,
+           why:'Before/after comparison = same person, controlled ။ Independent variable: exercise။ Dependent: BP။',
+           steps:['Independent: exercise','Dependent: blood pressure','Control: same person, same conditions','→ A']},
+          {type:'mcq',q:'A patient with blood pressure 145/95 mmHg is at higher risk for:',
+           o:['Broken bones','Heart attack and stroke','Tooth decay','Vision improvement'],
+           c:1,
+           why:'Stage 2 hypertension → heart/stroke risk။',
+           steps:['145/95 = Stage 2','High BP → cardiovascular risk','→ B']},
+          {type:'mcq',q:'Where does gas exchange (O₂ and CO₂) occur in the circulatory system?',
+           o:['Arteries','Veins','Capillaries','Heart'],
+           c:2,
+           why:'Para 3: "Capillaries... gas and nutrient exchange."',
+           steps:['Para 3','"Capillaries... exchange"','→ C']}
+        ]
+      },
+      {
+        id:'b2', title:'Types of Chemical Bonds', type:'Physical Science',
+        image:{src:'images/atom-structure.png', alt:'Atom structure with electrons', caption:'Figure 7: Atomic structure — protons, neutrons, electrons'},
+        text:'Atoms bond together to form compounds by gaining, losing, or sharing electrons. The type of bond formed depends on the atoms involved and their electron configurations.\n\nIonic bonds form between metals and nonmetals. The metal loses electrons to become a positively charged ion (cation), while the nonmetal gains electrons to become a negatively charged ion (anion). The resulting attraction holds the ions together. Sodium chloride (NaCl) is a classic example.\n\nCovalent bonds form between nonmetals. Instead of transferring electrons, atoms share them to achieve stable electron configurations. Water (H₂O) and carbon dioxide (CO₂) are covalent compounds.\n\nMetallic bonds occur between metal atoms. Electrons move freely between atoms, forming a "sea of electrons." This is why metals conduct electricity and heat well.\n\nThe table compares properties of ionic and covalent compounds.',
+        dataTable:{
+          headers:['Property','Ionic Compounds','Covalent Compounds'],
+          rows:[
+            ['Melting point','High','Low'],
+            ['Electrical conductivity (dissolved)','Conducts','Usually does not conduct'],
+            ['Formation','Metal + Nonmetal','Nonmetal + Nonmetal'],
+            ['Example','NaCl','H₂O']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which property distinguishes ionic from covalent compounds?',
+           o:['Color','Melting point','Texture','Smell'],
+           c:1,
+           why:'Table: Ionic = high mp ။ Covalent = low mp။',
+           steps:['Table row 1','High vs Low melting point','→ B']},
+          {type:'mcq',q:'In an ionic bond, the metal atom:',
+           o:['Gains electrons','Loses electrons','Shares electrons','Remains unchanged'],
+           c:1,
+           why:'Para 2: "metal loses electrons to become a positively charged ion."',
+           steps:['Para 2','Metal loses electrons','→ B']},
+          {type:'mcq',q:'Why do metals conduct electricity?',
+           o:['They have ionic bonds','They have covalent bonds','They have freely moving electrons in metallic bonds','They contain salt'],
+           c:2,
+           why:'Para 4: "electrons move freely between atoms... sea of electrons."',
+           steps:['Para 4','"sea of electrons"','→ C']},
+          {type:'dropdown',q:'Complete the sentence:',
+           text:'When metals bond with nonmetals, they form {0} bonds. When two nonmetals bond, they form {1} bonds.',
+           blanks:[
+             {options:['ionic','covalent','metallic'],correct:0},
+             {options:['ionic','covalent','metallic'],correct:1}
+           ],
+           why:'Metal + Nonmetal = ionic ။ Nonmetal + Nonmetal = covalent။',
+           steps:['Para 2: ionic','Para 3: covalent']},
+          {type:'experiment',q:'A student wants to determine whether an unknown white solid is ionic or covalent. Which test would be MOST helpful?',
+           o:['Check its color','Dissolve it in water and test conductivity','Smell it','Weigh it'],
+           c:1,
+           why:'Ionic compounds conduct when dissolved ။ Covalent compounds do not။',
+           steps:['Table: conductivity difference','Dissolve + test','→ B']},
+          {type:'multi',q:'Select ALL properties of covalent compounds.',
+           o:['Low melting point','Formed between two nonmetals','Conducts electricity when dissolved','Usually do not conduct electricity','Example: H₂O'],
+           c:[0,1,3,4],need:4,
+           why:'Covalent: low mp, nonmetal+nonmetal, no conductivity, H₂O။',
+           steps:['Table: low mp','Table: nonmetal + nonmetal','Table: no conduct','Table: H₂O example','→ A, B, D, E']}
+        ]
+      },
+      {
+        id:'b3', title:'Evidence for Climate Change', type:'Earth & Space Science',
+        image:{src:'images/climate-graph.png', alt:'Global temperature anomaly 1880-2020', caption:'Figure 8: Global temperature anomaly (1880–2020)'},
+        diagram:{type:'line-graph',data:{points:[{x:1880,y:290},{x:1950,y:310},{x:1980,y:340},{x:2020,y:415}],xlabel:'Year',ylabel:'CO₂ (ppm)',title:'Atmospheric CO₂ (1880–2020)'}},
+        text:'Earth\'s climate has changed throughout its history, but the current rate of warming is unprecedented. Scientists use multiple independent lines of evidence to conclude that human activity — primarily the burning of fossil fuels — is the dominant cause of recent warming.\n\nOne line of evidence comes from direct temperature measurements. Global average temperatures have risen about 1.1°C since 1880, with most of the warming occurring since 1970. The ten warmest years on record have all occurred since 2005.\n\nAnother line of evidence comes from ice cores. Air bubbles trapped in ancient ice contain samples of the atmosphere from hundreds of thousands of years ago. These cores show that current CO₂ levels (over 420 ppm) are higher than at any point in at least 800,000 years.\n\nSea level is another indicator. As the ocean warms, water expands. Melting glaciers and ice sheets add more water. Global sea level has risen about 21 cm since 1880, and the rate is accelerating.\n\nThe graph shows atmospheric CO₂ concentrations over time.',
+        questions:[
+          {type:'mcq',q:'Based on the graph, what is the relationship between time and CO₂ levels?',
+           o:['No relationship','Positive correlation — CO₂ rises over time','Negative correlation','Random relationship'],
+           c:1,
+           why:'Graph: time ↑ → CO₂ ↑ (positive correlation)။',
+           steps:['Graph points','1880: 290','2020: 415','→ Positive correlation']},
+          {type:'mcq',q:'Ice cores provide evidence for climate change because they:',
+           o:['Show current weather patterns','Contain air bubbles from ancient atmospheres','Measure ocean salinity','Measure solar activity'],
+           c:1,
+           why:'Para 3: "Air bubbles trapped in ancient ice contain samples of the atmosphere."',
+           steps:['Para 3','"Air bubbles trapped"','→ B']},
+          {type:'mcq',q:'According to the passage, what is the primary cause of recent warming?',
+           o:['Volcanic eruptions','Human burning of fossil fuels','Solar activity','Ocean currents'],
+           c:1,
+           why:'Para 1: "human activity — primarily the burning of fossil fuels."',
+           steps:['Para 1','"human activity... fossil fuels"','→ B']},
+          {type:'experiment',q:'A scientist wants to study ancient CO₂ levels. Which method would provide the BEST data?',
+           o:['Measure current CO₂','Analyze air bubbles in ice cores','Measure ocean temperature','Count tree rings'],
+           c:1,
+           why:'Ice cores = direct samples of ancient atmosphere။',
+           steps:['Ice cores preserve ancient air','Para 3 evidence','→ B']},
+          {type:'fill',q:'Based on the graph, what was the approximate CO₂ level in 2020? Enter the number only.',
+           answer:'415',tolerance:5,
+           why:'Graph: 2020 → 415 ppm။',
+           steps:['Graph point 2020','y ≈ 415','→ 415']},
+          {type:'mcq',q:'What does the phrase "unprecedented rate" in paragraph 1 suggest?',
+           o:['The climate has never changed','The current rate of change is unusual compared to the past','Climate change is natural','Scientists disagree'],
+           c:1,
+           why:'"Unprecedented" = never happened before at this rate။',
+           steps:['"Unprecedented" meaning','Unusual rate','→ B']}
+        ]
+      },
+      {
+        id:'b4', title:'Waves and Electromagnetic Spectrum', type:'Physical Science',
+        image:{src:'images/em-spectrum.png', alt:'Electromagnetic spectrum', caption:'Figure 9: EM spectrum — wavelength decreases, frequency & energy increase'},
+        text:'A wave is a disturbance that transfers energy from one place to another. Waves have measurable properties including wavelength, frequency, and amplitude. Wavelength is the distance between two consecutive wave peaks. Frequency is the number of waves that pass a point per second, measured in hertz (Hz). Amplitude is the height of the wave.\n\nThe electromagnetic spectrum is the full range of electromagnetic waves, which travel at the speed of light and do not require a medium. From lowest to highest frequency, the spectrum includes: radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays. As frequency increases, wavelength decreases, and energy increases.\n\nVisible light is the only part of the spectrum humans can see, ranging from red (lowest frequency) to violet (highest frequency).\n\nThe table shows the properties of some electromagnetic waves.',
+        dataTable:{
+          headers:['Type','Wavelength','Energy Level'],
+          rows:[
+            ['Radio','Longest','Lowest'],
+            ['Infrared','Medium-long','Low'],
+            ['Visible','Medium','Medium'],
+            ['Ultraviolet','Medium-short','High'],
+            ['Gamma rays','Shortest','Highest']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which electromagnetic wave has the highest energy?',
+           o:['Radio waves','Visible light','Ultraviolet','Gamma rays'],
+           c:3,
+           why:'Table: Gamma rays = highest energy ။ Para 2: "As frequency increases... energy increases."',
+           steps:['Table last row','Gamma: highest','→ D']},
+          {type:'mcq',q:'As wavelength decreases, what happens to frequency and energy?',
+           o:['Both decrease','Frequency decreases, energy increases','Frequency increases, energy increases','Both remain the same'],
+           c:2,
+           why:'Para 2: "As frequency increases, wavelength decreases, and energy increases."',
+           steps:['Para 2 relationship','Wavelength ↓ → Frequency ↑','→ Energy ↑','→ C']},
+          {type:'multi',q:'Select ALL waves on the electromagnetic spectrum.',
+           o:['Radio waves','Sound waves','X-rays','Ultraviolet','Ocean waves'],
+           c:[0,2,3],need:3,
+           why:'Sound waves and ocean waves are NOT electromagnetic — they require a medium။',
+           steps:['EM: radio, X-ray, UV','Sound: mechanical','Ocean: mechanical','→ A, C, D']},
+          {type:'order',q:'Order these EM waves from LONGEST to SHORTEST wavelength:',
+           items:['Radio','Microwave','Visible light','Ultraviolet','Gamma rays'],
+           correctOrder:['Radio','Microwave','Visible light','Ultraviolet','Gamma rays'],
+           why:'EM spectrum: radio (longest) → gamma (shortest)။',
+           steps:['Radio: longest','Then microwave','Visible: middle','UV: shorter','Gamma: shortest']},
+          {type:'experiment',q:'A student wants to test which color of visible light has the highest energy. Which design is BEST?',
+           o:['Use a prism to separate white light, then measure a property of each color','Measure the temperature of different colored lights','Ask people which color looks brightest','Measure the speed of light'],
+           c:0,
+           why:'Spectrum separation + measure property (e.g., photoelectric effect) = controlled experiment။',
+           steps:['Independent: color (wavelength)','Dependent: energy indicator','Control: same source','→ A']},
+          {type:'mcq',q:'Why can electromagnetic waves travel through the vacuum of space?',
+           o:['They carry their own medium','They do not require a medium','They use air molecules','They reflect off planets'],
+           c:1,
+           why:'Para 2: "travel at the speed of light and do not require a medium."',
+           steps:['Para 2','"do not require a medium"','→ B']}
+        ]
+      },
+      {
+        id:'b5', title:'Food Webs and Energy Flow', type:'Life Science',
+        image:{src:'images/food-web.png', alt:'Grassland food web', caption:'Figure 10: Grassland food web — energy flows from producers to consumers'},
+        text:'In an ecosystem, energy flows from producers to consumers. Producers (plants, algae) capture energy from the sun through photosynthesis. Primary consumers (herbivores) eat producers. Secondary consumers eat primary consumers. Tertiary consumers eat secondary consumers. Decomposers break down dead organisms and return nutrients to the soil.\n\nOnly about 10% of energy transfers from one trophic level to the next. The rest is lost as heat through metabolism. This is why food chains rarely have more than four or five levels — there is not enough energy to support more.\n\nThe table shows the energy available at each trophic level in a grassland ecosystem that starts with 10,000 units of energy from the sun.',
+        dataTable:{
+          headers:['Trophic Level','Organism','Energy (units)'],
+          rows:[
+            ['Producer','Grass','1,000'],
+            ['Primary consumer','Grasshopper','100'],
+            ['Secondary consumer','Frog','10'],
+            ['Tertiary consumer','Snake','1']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, what percentage of energy is transferred from grasshopper to frog?',
+           o:['1%','10%','50%','100%'],
+           c:1,
+           why:'Grasshopper 100 → Frog 10 = 10% transfer။',
+           steps:['Grasshopper 100','Frog 10','10/100 = 10%','→ B']},
+          {type:'mcq',q:'Why do food chains rarely have more than 5 trophic levels?',
+           o:['Not enough organisms','Energy is lost at each level','Producers die too quickly','Consumers are too large'],
+           c:1,
+           why:'Para 2: "only about 10% of energy transfers... not enough energy to support more."',
+           steps:['Para 2','10% transfer rule','→ B']},
+          {type:'mcq',q:'What role do decomposers play in an ecosystem?',
+           o:['Capture sunlight','Break down dead organisms and return nutrients','Eat primary consumers','Produce oxygen only'],
+           c:1,
+           why:'Para 1: "Decomposers break down dead organisms and return nutrients."',
+           steps:['Para 1','Decomposers definition','→ B']},
+          {type:'multi',q:'Select ALL primary consumers from the food web.',
+           o:['Grass','Grasshopper','Frog','Rabbit','Snake'],
+           c:[1,3],need:2,
+           why:'Primary consumers = herbivores = grasshopper, rabbit။ Grass = producer, frog/snake = secondary/tertiary။',
+           steps:['Primary consumer = herbivore','Grasshopper: herbivore','Rabbit: herbivore','→ B, D']},
+          {type:'experiment',q:'A scientist wants to measure how much energy is lost at each trophic level. Which method would be BEST?',
+           o:['Count the number of organisms at each level','Measure the biomass and energy content at each level','Observe which animals eat which','Measure the temperature of the ecosystem'],
+           c:1,
+           why:'Energy transfer ကို တိုင်းရန် biomass/energy content တိုင်းရမည်။',
+           steps:['Energy = biomass × energy content','Measure at each level','→ B']},
+          {type:'mcq',q:'Which statement best describes energy flow in an ecosystem?',
+           o:['Energy cycles continuously','Energy flows one way and is lost as heat','Energy is created by consumers','Energy never changes form'],
+           c:1,
+           why:'Energy flows one direction (sun → producers → consumers) and is lost as heat။',
+           steps:['Energy: sun → producers → consumers','Heat loss at each level','→ B']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'Which of the following is the smallest unit of an element?',
+       o:['Molecule','Atom','Cell','Compound'],c:1,
+       why:'Atom = smallest unit of an element that retains its properties။',
+       steps:['Atom = basic unit of element','→ B']},
+      {q:'What type of rock forms from cooled lava or magma?',
+       o:['Sedimentary','Metamorphic','Igneous','Fossil'],c:2,
+       why:'Igneous rocks form from cooling magma/lava။',
+       steps:['Igneous = from magma/lava','→ C']},
+      {q:'Which biome receives the least amount of rainfall?',
+       o:['Rainforest','Desert','Grassland','Wetland'],c:1,
+       why:'Desert = driest biome with least rainfall။',
+       steps:['Desert < 25 cm/year','→ B']},
+      {q:'The force that opposes motion between two surfaces is called:',
+       o:['Gravity','Friction','Tension','Magnetism'],c:1,
+       why:'Friction opposes motion between surfaces in contact။',
+       steps:['Friction = opposing force','→ B']},
+      {q:'Which organ system is responsible for breaking down food into nutrients?',
+       o:['Respiratory','Digestive','Circulatory','Nervous'],c:1,
+       why:'Digestive system breaks down food and absorbs nutrients။',
+       steps:['Digestion = breakdown of food','→ B']},
+      {q:'The process by which water changes from liquid to gas is called:',
+       o:['Condensation','Evaporation','Precipitation','Sublimation'],c:1,
+       why:'Evaporation = liquid → gas။',
+       steps:['Evaporation = liquid to gas','→ B']}
+    ]
+  };
+
+  /* ============================================================
+     SET C
+  ============================================================ */
+  var SET_C = {
+    passages: [
+      {
+        id:'c1', title:'Natural Selection and Evolution', type:'Life Science',
+        image:{src:'images/peppered-moth.png', alt:'Peppered moth light and dark', caption:'Figure 11: Peppered moth — light vs. dark coloration'},
+        text:'Evolution is the change in the genetic makeup of populations over time. The primary mechanism of evolution is natural selection, proposed by Charles Darwin in 1859.\n\nNatural selection operates through four key principles. First, organisms produce more offspring than can survive. Second, individuals within a population vary in their traits. Third, some variations give individuals an advantage in surviving and reproducing. Fourth, advantageous traits are passed to offspring, becoming more common in the population over generations.\n\nA classic example is the peppered moth in England. Before the Industrial Revolution, most moths were light-colored, blending with lichen-covered trees. After pollution darkened the trees with soot, dark-colored moths became more common because they were better camouflaged from predators.\n\nThe table shows the change in peppered moth populations in one region.',
+        dataTable:{
+          headers:['Year','Light Moths (%)','Dark Moths (%)'],
+          rows:[
+            ['1850 (pre-industrial)','95%','5%'],
+            ['1900 (industrial)','10%','90%'],
+            ['2000 (post-cleanup)','80%','20%']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, what happened to the percentage of dark moths between 1850 and 1900?',
+           o:['It stayed the same','It decreased','It increased dramatically','It disappeared'],
+           c:2,
+           why:'Table: 5% → 90% (dramatic increase)။',
+           steps:['Table 1850: 5%','Table 1900: 90%','→ Increased dramatically']},
+          {type:'mcq',q:'Why did dark moths become more common during the Industrial Revolution?',
+           o:['They became stronger','They were better camouflaged on soot-covered trees','They reproduced faster','They ate more food'],
+           c:1,
+           why:'Para 3: "dark-colored moths became more common because they were better camouflaged."',
+           steps:['Para 3','Camouflage advantage','→ B']},
+          {type:'multi',q:'Select ALL principles of natural selection described in the passage.',
+           o:['Organisms produce more offspring than can survive','Individuals vary in traits','Advantageous traits become more common','Organisms choose which traits to pass on','Some variations help survival and reproduction'],
+           c:[0,1,2,4],need:4,
+           why:'Organisms do NOT choose their traits — mutations are random။',
+           steps:['Principle 1: overproduction','Principle 2: variation','Principle 3: advantage','Principle 4: inheritance','Organisms do not choose']},
+          {type:'experiment',q:'A scientist wants to test whether dark coloration provides a survival advantage in polluted environments. Which design is BEST?',
+           o:['Place equal numbers of light and dark moths in polluted and unpolluted areas, observe survival','Count moths in one polluted area','Ask people which moths they see more','Measure the color of moths'],
+           c:0,
+           why:'Independent: environment type ။ Dependent: survival rate ။ Control: equal numbers, same species။',
+           steps:['Independent: pollution level','Dependent: survival','Control: equal numbers','→ A']},
+          {type:'fill',q:'Based on the table, what percentage of moths were dark in 2000? (Enter number only)',
+           answer:'20',tolerance:1,
+           why:'Table: 2000 → 20%။',
+           steps:['Table last row','Dark moths: 20%','→ 20']},
+          {type:'mcq',q:'What does the peppered moth example best illustrate?',
+           o:['Moths are colorful','Natural selection depends on environmental conditions','Moths are becoming extinct','All moths are identical'],
+           c:1,
+           why:'Environmental change (soot) → different selective pressure → different trait advantage။',
+           steps:['Environment changes','Selection pressure changes','→ B']}
+        ]
+      },
+      {
+        id:'c2', title:'Kinetic and Potential Energy', type:'Physical Science',
+        image:{src:'images/data-graph-1.png', alt:'Bar chart of PE at different heights', caption:'Figure 12: Potential energy decreases as an object falls'},
+        diagram:{type:'bar-chart',data:{labels:['10 m','7.5 m','5 m','2.5 m','0 m'],values:[100,75,50,25,0],title:'Potential Energy (J) at Different Heights'}},
+        text:'Energy is the ability to do work. It exists in many forms but can be broadly classified into kinetic energy (energy of motion) and potential energy (stored energy).\n\nKinetic energy depends on both mass and velocity: KE = ½mv². This means doubling the velocity quadruples the kinetic energy, while doubling mass only doubles it.\n\nGravitational potential energy depends on mass, gravity, and height: PE = mgh. When an object falls, potential energy converts to kinetic energy. At the highest point, an object has maximum potential energy and minimum kinetic energy. At the lowest point, it has maximum kinetic energy and minimum potential energy.\n\nOther forms of energy include thermal (heat), chemical (stored in bonds), electrical, and nuclear. The Law of Conservation of Energy states that energy cannot be created or destroyed, only converted from one form to another.\n\nThe graph shows the energy of a falling object at different heights.',
+        questions:[
+          {type:'mcq',q:'Based on the graph, what happens to potential energy as the object falls?',
+           o:['It increases','It decreases','It stays the same','It becomes zero at the top'],
+           c:1,
+           why:'Graph: PE 100 → 0 as height decreases။',
+           steps:['Graph bars','100 → 75 → 50 → 25 → 0','→ Decreases']},
+          {type:'mcq',q:'According to the passage, what is the total energy of the system at all heights?',
+           o:['50 J','75 J','100 J','It changes'],
+           c:2,
+           why:'Law of Conservation: total energy stays 100 J (PE + KE = 100)။',
+           steps:['Law of Conservation','PE + KE = constant','→ 100 J']},
+          {type:'mcq',q:'If velocity doubles, kinetic energy:',
+           o:['Doubles','Triples','Quadruples','Stays the same'],
+           c:2,
+           why:'KE = ½mv² ။ v doubles → v² is 4× → KE is 4×။',
+           steps:['KE = ½mv²','v → 2v','v² → 4v²','→ Quadruples']},
+          {type:'multi',q:'Select ALL true statements about energy.',
+           o:['Energy can be converted from one form to another','Energy can be created','Kinetic energy depends on velocity','Potential energy depends on height','Energy can be destroyed'],
+           c:[0,2,3],need:3,
+           why:'Law of Conservation: energy cannot be created or destroyed။',
+           steps:['Energy conversion: true','Energy creation: false','KE + velocity: true','PE + height: true','Energy destruction: false','→ A, C, D']},
+          {type:'experiment',q:'A student wants to test how height affects potential energy. Which is the BEST design?',
+           o:['Drop objects from different heights, measure PE','Drop the same object from different heights, measure PE','Drop different objects from the same height','Measure the mass of objects'],
+           c:1,
+           why:'Independent: height ။ Dependent: PE ။ Control: same object။',
+           steps:['Independent: height','Dependent: PE','Control: same object','→ B']},
+          {type:'mcq',q:'Which equation correctly represents gravitational potential energy?',
+           o:['PE = mv','PE = ½mv²','PE = mgh','PE = mc²'],
+           c:2,
+           why:'Para 3: "PE = mgh."',
+           steps:['Para 3 formula','→ PE = mgh']}
+        ]
+      },
+      {
+        id:'c3', title:'The Solar System', type:'Earth & Space Science',
+        image:{src:'images/solar-system.png', alt:'Solar system with 8 planets', caption:'Figure 13: Solar system — 8 planets, asteroid belt between Mars & Jupiter'},
+        text:'The solar system consists of the Sun, eight planets, moons, asteroids, and comets. The Sun contains more than 99% of the mass of the solar system and provides the gravitational force that holds everything in orbit.\n\nThe four inner planets — Mercury, Venus, Earth, and Mars — are rocky and small. They are called terrestrial planets. The four outer planets — Jupiter, Saturn, Uranus, and Neptune — are large, gaseous, and have many moons. They are called gas giants (though Uranus and Neptune are sometimes called ice giants).\n\nThe asteroid belt lies between Mars and Jupiter. Beyond Neptune is the Kuiper Belt, home to Pluto and many other icy objects. The Oort Cloud, far beyond that, is the source of long-period comets.\n\nPlanets orbit the Sun in elliptical paths, with the Sun at one focus. A planet moves faster when closer to the Sun (perihelion) and slower when farther (aphelion), following Kepler\'s Second Law.\n\nThe table shows basic data for the planets.',
+        dataTable:{
+          headers:['Planet','Type','Distance from Sun (AU)'],
+          rows:[
+            ['Mercury','Terrestrial','0.39'],
+            ['Venus','Terrestrial','0.72'],
+            ['Earth','Terrestrial','1.00'],
+            ['Mars','Terrestrial','1.52'],
+            ['Jupiter','Gas giant','5.20'],
+            ['Saturn','Gas giant','9.58']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, which planet is approximately 5 times farther from the Sun than Earth?',
+           o:['Mars','Jupiter','Saturn','Venus'],
+           c:1,
+           why:'Earth = 1.00 AU ။ Jupiter = 5.20 AU (5×)။',
+           steps:['Earth: 1.00','Jupiter: 5.20','5.2 ≈ 5×','→ B']},
+          {type:'mcq',q:'What distinguishes terrestrial planets from gas giants?',
+           o:['Terrestrial planets are larger','Terrestrial planets are rocky and small','Gas giants have no moons','Gas giants are closer to the Sun'],
+           c:1,
+           why:'Para 2: "inner planets are rocky and small... outer planets are large, gaseous."',
+           steps:['Para 2','Terrestrial: rocky/small','→ B']},
+          {type:'mcq',q:'According to Kepler\'s Second Law, a planet moves fastest when it is:',
+           o:['Farthest from the Sun','Closest to the Sun','At a right angle to the Sun','In the asteroid belt'],
+           c:1,
+           why:'Para 4: "moves faster when closer to the Sun (perihelion)."',
+           steps:['Para 4','Perihelion = closest','→ B']},
+          {type:'multi',q:'Select ALL true statements about the solar system.',
+           o:['The Sun contains most of the mass','There are 8 planets','The asteroid belt lies between Mars and Jupiter','Pluto is a gas giant','Comets come from the Kuiper Belt and Oort Cloud'],
+           c:[0,1,2,4],need:4,
+           why:'Pluto is not a gas giant — it is a dwarf planet။',
+           steps:['Sun > 99% mass','8 planets','Asteroid belt: Mars-Jupiter','Comets: Kuiper/Oort','Pluto: dwarf planet']},
+          {type:'order',q:'Order these objects from CLOSEST to FARTHEST from the Sun:',
+           items:['Mercury','Earth','Mars','Jupiter','Kuiper Belt'],
+           correctOrder:['Mercury','Earth','Mars','Jupiter','Kuiper Belt'],
+           why:'Distance order from the table ။ Kuiper Belt is beyond Neptune။',
+           steps:['Mercury: 0.39','Earth: 1.00','Mars: 1.52','Jupiter: 5.20','Kuiper: beyond Neptune']},
+          {type:'mcq',q:'Where is the asteroid belt located?',
+           o:['Between Earth and Mars','Between Mars and Jupiter','Beyond Neptune','Inside Mercury\'s orbit'],
+           c:1,
+           why:'Para 3: "asteroid belt lies between Mars and Jupiter."',
+           steps:['Para 3','Mars-Jupiter','→ B']}
+        ]
+      },
+      {
+        id:'c4', title:'States of Matter and Phase Changes', type:'Physical Science',
+        image:{src:'images/water-cycle.png', alt:'Water cycle diagram', caption:'Figure 14: Water cycle — phase changes in nature'},
+        text:'Matter exists in three primary states: solid, liquid, and gas. The state depends on the arrangement and energy of particles. In a solid, particles are tightly packed in a fixed arrangement and vibrate in place. In a liquid, particles are close together but can move past one another. In a gas, particles are far apart and move rapidly in all directions.\n\nPhase changes occur when energy (usually heat) is added or removed. Melting (solid → liquid), freezing (liquid → solid), vaporization (liquid → gas), condensation (gas → liquid), sublimation (solid → gas), and deposition (gas → solid) are all phase changes.\n\nDuring a phase change, temperature remains constant even though heat is being added or removed. The added energy breaks intermolecular bonds rather than raising temperature. This "hidden" heat is called latent heat.\n\nThe table shows temperature changes as heat is added to a sample of water.',
+        dataTable:{
+          headers:['Phase','Temperature','State'],
+          rows:[
+            ['Heating ice','-20°C to 0°C','Solid'],
+            ['Melting','0°C (constant)','Solid → Liquid'],
+            ['Heating water','0°C to 100°C','Liquid'],
+            ['Boiling','100°C (constant)','Liquid → Gas'],
+            ['Heating steam','100°C and above','Gas']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'According to the table, what happens to temperature during melting?',
+           o:['It increases rapidly','It decreases','It stays constant','It fluctuates'],
+           c:2,
+           why:'Table: Melting = "0°C (constant)."',
+           steps:['Table row 2','Melting: constant temp','→ C']},
+          {type:'mcq',q:'During a phase change, why does temperature remain constant?',
+           o:['No heat is added','Added energy breaks intermolecular bonds instead of raising temperature','Particles stop moving','Phase changes do not require energy'],
+           c:1,
+           why:'Para 3: "added energy breaks intermolecular bonds rather than raising temperature."',
+           steps:['Para 3','Latent heat','→ B']},
+          {type:'mcq',q:'Sublimation is the phase change from:',
+           o:['Solid to liquid','Liquid to gas','Solid to gas','Gas to solid'],
+           c:2,
+           why:'Para 2: "sublimation (solid → gas)."',
+           steps:['Para 2','Solid → gas','→ C']},
+          {type:'multi',q:'Select ALL phase changes that require the ADDITION of heat.',
+           o:['Melting','Freezing','Vaporization','Condensation','Sublimation'],
+           c:[0,2,4],need:3,
+           why:'Melting, vaporization, sublimation require heat။ Freezing, condensation release heat။',
+           steps:['Melting: heat in','Freezing: heat out','Vaporization: heat in','Condensation: heat out','Sublimation: heat in','→ A, C, E']},
+          {type:'experiment',q:'A student wants to verify that temperature stays constant during melting. Which procedure is BEST?',
+           o:['Heat ice and record temperature every minute','Heat ice and record only the final temperature','Measure the mass of ice before and after','Ask how the ice feels'],
+           c:0,
+           why:'Continuous temperature recording = observe the plateau (constant temp during phase change)။',
+           steps:['Record temperature over time','Observe plateau at 0°C','→ A']},
+          {type:'mcq',q:'How do particles in a gas differ from particles in a solid?',
+           o:['Gas particles are stationary','Gas particles are far apart and move rapidly','Gas particles are tightly packed','Gas particles form a fixed shape'],
+           c:1,
+           why:'Para 1: "In a gas, particles are far apart and move rapidly."',
+           steps:['Para 1','Gas particles: far apart','→ B']}
+        ]
+      },
+      {
+        id:'c5', title:'Photosynthesis and Cellular Respiration', type:'Life Science',
+        image:{src:'images/photosynthesis-diagram.png', alt:'Photosynthesis in plant cell', caption:'Figure 15: Photosynthesis — CO₂ + H₂O + light → glucose + O₂'},
+        text:'Photosynthesis and cellular respiration are complementary processes. Photosynthesis converts light energy into chemical energy stored in glucose. Cellular respiration releases that energy for use by the cell.\n\nPhotosynthesis occurs in the chloroplasts of plant cells. It requires carbon dioxide, water, and light energy. The overall equation is: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂. The process produces glucose (food) and releases oxygen as a byproduct.\n\nCellular respiration occurs in the mitochondria of all living cells. It requires glucose and oxygen, and produces carbon dioxide, water, and ATP. The overall equation is: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP. This process releases the energy stored in glucose.\n\nTogether, these two processes form a cycle: photosynthesis uses the products of respiration (CO₂ and H₂O), while respiration uses the products of photosynthesis (glucose and O₂).\n\nThe table compares the two processes.',
+        dataTable:{
+          headers:['Feature','Photosynthesis','Cellular Respiration'],
+          rows:[
+            ['Location','Chloroplast','Mitochondria'],
+            ['Input','CO₂, H₂O, light','Glucose, O₂'],
+            ['Output','Glucose, O₂','CO₂, H₂O, ATP'],
+            ['Energy','Stores energy','Releases energy']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, what does photosynthesis produce that cellular respiration uses?',
+           o:['CO₂ and H₂O','Glucose and O₂','ATP only','Light energy'],
+           c:1,
+           why:'Photosynthesis output: glucose + O₂ ။ Respiration input: glucose + O₂။',
+           steps:['Photosynthesis output','Respiration input','→ Glucose and O₂']},
+          {type:'mcq',q:'Where in the cell does photosynthesis occur?',
+           o:['Nucleus','Mitochondria','Chloroplast','Ribosome'],
+           c:2,
+           why:'Para 2: "photosynthesis occurs in the chloroplasts."',
+           steps:['Para 2','Chloroplasts','→ C']},
+          {type:'mcq',q:'Which statement best describes the relationship between the two processes?',
+           o:['They are unrelated','They are complementary — the products of one are the inputs of the other','They both store energy','They occur in the same organelle'],
+           c:1,
+           why:'Para 4: "Together, these two processes form a cycle."',
+           steps:['Para 4','Complementary cycle','→ B']},
+          {type:'multi',q:'Select ALL true statements about cellular respiration.',
+           o:['Occurs in mitochondria','Requires glucose and oxygen','Produces ATP','Stores energy in glucose','Releases CO₂ and H₂O'],
+           c:[0,1,2,4],need:4,
+           why:'Respiration releases energy (does not store it — photosynthesis stores)။',
+           steps:['Location: mitochondria','Inputs: glucose + O₂','Produces ATP','Outputs: CO₂ + H₂O','Photosynthesis stores energy']},
+          {type:'experiment',q:'A student wants to demonstrate that plants produce oxygen during photosynthesis. Which setup is BEST?',
+           o:['Place a plant in sunlight and measure O₂ in the air','Place a plant in darkness and measure O₂','Place a plant in sunlight under water and collect gas bubbles','Weigh the plant before and after'],
+           c:2,
+           why:'Underwater setup = collect gas bubbles (O₂) from photosynthesis။ Sunlight = independent variable။',
+           steps:['Collect gas from plant','Test with glowing splint','→ C']},
+          {type:'mcq',q:'What gas do plants release during photosynthesis?',
+           o:['Carbon dioxide','Nitrogen','Oxygen','Methane'],
+           c:2,
+           why:'Para 2: "produces glucose and releases oxygen as a byproduct."',
+           steps:['Para 2','O₂ released','→ C']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'What is the primary function of DNA?',
+       o:['Produce energy','Store genetic information','Break down food','Transport oxygen'],c:1,
+       why:'DNA stores genetic instructions for building proteins။',
+       steps:['DNA = genetic code','→ B']},
+      {q:'Which of the following is a chemical change?',
+       o:['Melting ice','Burning wood','Cutting paper','Dissolving sugar'],c:1,
+       why:'Burning wood = irreversible chemical change (new substances formed)။',
+       steps:['Chemical change = new substance','Burning wood: CO₂, ash','→ B']},
+      {q:'The outermost layer of Earth is called the:',
+       o:['Mantle','Crust','Outer core','Inner core'],c:1,
+       why:'Crust = outermost solid layer of Earth။',
+       steps:['Earth layers: crust → mantle → core','→ B']},
+      {q:'Which type of organism is a decomposer?',
+       o:['Grass','Deer','Mushroom','Hawk'],c:2,
+       why:'Mushroom/fungi = decomposer that breaks down dead matter။',
+       steps:['Decomposers: fungi, bacteria','→ C']},
+      {q:'The SI unit of force is the:',
+       o:['Joule','Newton','Watt','Pascal'],c:1,
+       why:'Newton (N) = SI unit of force။',
+       steps:['Force = Newton','→ B']},
+      {q:'What is the process by which plants lose water through their leaves?',
+       o:['Respiration','Transpiration','Photosynthesis','Digestion'],c:1,
+       why:'Transpiration = water loss through leaves via stomata။',
+       steps:['Transpiration = leaf water loss','→ B']}
+    ]
+  };
+
+  /* ============================================================
+     BUILD QUESTIONS
+  ============================================================ */
+  function buildQuestions(setData){
+    var allQ = [];
+    var passForQ = [];
+    var partForQ = [];
+    var partCounter = 0;
+
+    setData.passages.forEach(function(pass){
+      pass.questions.forEach(function(q){
+        var item = {
+          type: q.type || 'mcq',
+          q: q.q,
+          passageId: pass.id,
+          passage: pass,
+          part: partCounter
+        };
+        if(item.type === 'mcq' || item.type === 'experiment'){
+          item.options = q.o;
+          item.correctIndex = q.c;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.o[q.c];
+        } else if(item.type === 'multi'){
+          item.options = q.o;
+          item.correctIndex = q.c;
+          item.need = q.need;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.c.map(function(i){return 'ABCD'[i]}).join(' · ');
+        } else if(item.type === 'order'){
+          item.items = q.items;
+          item.correctOrder = q.correctOrder;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.correctOrder.join(' → ');
+        } else if(item.type === 'dropdown'){
+          item.text = q.text;
+          item.blanks = q.blanks;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        } else if(item.type === 'fill'){
+          item.answer = q.answer;
+          item.tolerance = q.tolerance || 0.1;
+          item.why = q.why;
+          item.steps = q.steps;
+        }
+        allQ.push(item);
+        passForQ.push(pass);
+        partForQ.push(partCounter);
+      });
+      partCounter++;
+    });
+
+    setData.standalone.forEach(function(q){
+      allQ.push({
+        type:'mcq', q:q.q, options:q.o, correctIndex:q.c,
+        why:q.why, steps:q.steps, answer:q.o[q.c],
+        passageId:null, part: 99
+      });
+      passForQ.push(null);
+      partForQ.push(99);
+    });
+
+    return { questions: allQ, passForQ: passForQ, partForQ: partForQ };
+  }
+
+  var SETS = {
+    A: { name:'Set A', built: buildQuestions(SET_A) },
+    B: { name:'Set B', built: buildQuestions(SET_B) },
+    C: { name:'Set C', built: buildQuestions(SET_C) }
+  };
+
+  /* ============================================================
+     TIME
+  ============================================================ */
+  var TOTAL_TIME = 90 * 60;
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var currentSetKey = null, currentSet = null;
+  var allQuestions = [], passageForQ = [], partForQ = [];
+  var userAnswers = [], currentQ = 0;
+  var timerLeft = TOTAL_TIME, timerId = null;
+  var timeUsedTotal = 0, submitted = false;
+
+  function initState(){
+    var keys = Object.keys(SETS);
+    currentSetKey = keys[Math.floor(Math.random() * keys.length)];
+    currentSet = SETS[currentSetKey];
+    allQuestions = currentSet.built.questions.slice();
+    passageForQ = currentSet.built.passForQ.slice();
+    partForQ = currentSet.built.partForQ.slice();
+    userAnswers = new Array(allQuestions.length).fill(null);
+    currentQ = 0; timerLeft = TOTAL_TIME; timeUsedTotal = 0; submitted = false;
+  }
+
+  $('startBtn').addEventListener('click', function(){
+    initState();
+    console.log('[Science Exam] Random Set:', currentSetKey, '| Total Qs:', allQuestions.length);
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  });
+
+  /* TIMER */
+  function startTimer(){
+    clearInterval(timerId);
+    updateTimerDisplay();
+    timerId = setInterval(function(){
+      timerLeft--; timeUsedTotal++;
+      updateTimerDisplay();
+      if(timerLeft <= 0){
+        clearInterval(timerId);
+        finishExam();
+      }
+    }, 1000);
+  }
+  function fmtTime(sec){
+    var m = Math.floor(Math.max(sec, 0)/60);
+    var s = Math.max(sec, 0)%60;
+    return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  function updateTimerDisplay(){
+    var t = $('timer');
+    t.textContent = fmtTime(timerLeft);
+    t.classList.toggle('warn', timerLeft <= 300);
+  }
+
+  /* RENDER QUESTION */
+  var TYPE_LABELS = {
+    mcq:'Multiple Choice', multi:'Multi-Select', order:'Ordering',
+    dropdown:'Dropdown', fill:'Fill-in-Blank', experiment:'Experiment Design'
+  };
+
+  var PART_NAMES = ['Life Science','Physical Science','Earth & Space Science','Mixed'];
+
+  function renderQuestion(){
+    var q = allQuestions[currentQ];
+    var card = $('qCard');
+    var badge = $('partBadge');
+
+    var part = q.part;
+    var partName = PART_NAMES[part] || 'Mixed';
+    badge.textContent = partName;
+    badge.className = 'part-badge' + (part === 1 ? ' p2' : (part === 2 ? ' p3' : ''));
+
+    var typeClass = q.type === 'experiment' ? 'exp' : (q.type !== 'mcq' ? 'tech' : '');
+    var typeTag = '<span class="q-type ' + typeClass + '">' + (TYPE_LABELS[q.type] || 'MCQ') + '</span>';
+
+    card.innerHTML =
+      '<div class="q-num">Question '+(currentQ+1)+' of '+allQuestions.length+' '+typeTag+'</div>'+
+      '<div id="qHintWrap"></div>'+
+      '<div class="q-text">'+q.q+'</div>'+
+      '<div id="interactive"></div>';
+
+    var inter = card.querySelector('#interactive');
+    var hintWrap = card.querySelector('#qHintWrap');
+    if(q.type === 'multi') hintWrap.innerHTML = '<div class="q-hint">Select '+q.need+' answers</div>';
+    else if(q.type === 'order') hintWrap.innerHTML = '<div class="q-hint">Tap items in the correct order</div>';
+    else if(q.type === 'fill') hintWrap.innerHTML = '<div class="q-hint">Type your answer as a number or short text</div>';
+    else if(q.type === 'experiment') hintWrap.innerHTML = '<div class="q-hint">🧪 Identify the BEST experimental design</div>';
+
+    if(q.type === 'mcq' || q.type === 'experiment') renderMCQ(q, inter);
+    else if(q.type === 'multi') renderMulti(q, inter);
+    else if(q.type === 'order') renderOrder(q, inter);
+    else if(q.type === 'dropdown') renderDropdown(q, inter);
+    else if(q.type === 'fill') renderFill(q, inter);
+
+    renderPassage(currentQ);
+    $('qCounter').textContent = 'Question '+(currentQ+1)+' of '+allQuestions.length;
+    $('prevBtn').disabled = currentQ === 0;
+    $('nextBtn').textContent = (currentQ === allQuestions.length-1) ? 'Finish' : 'Next →';
+  }
+
+  function renderMCQ(q, container){
+    var chosen = userAnswers[currentQ];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+'ABCD'[i]+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        userAnswers[currentQ] = i;
+        container.querySelectorAll('.opt').forEach(function(b){b.classList.remove('selected')});
+        btn.classList.add('selected');
+        updateProgress(); renderDotMap();
+        autoAdvance();
+      });
+    });
+  }
+
+  function renderMulti(q, container){
+    var sel = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt multi '+(sel.indexOf(i)!==-1?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+(sel.indexOf(i)!==-1?'✓':'')+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div><button class="btn primary" id="multiSubmit" style="margin-top:12px;width:100%">Confirm Selection</button>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+        var k = arr.indexOf(i);
+        if(k>=0) arr.splice(k,1); else if(arr.length < q.need) arr.push(i);
+        userAnswers[currentQ] = arr;
+        btn.classList.toggle('selected', arr.indexOf(i)!==-1);
+        btn.querySelector('.ltr').textContent = arr.indexOf(i)!==-1 ? '✓' : '';
+        var h = container.parentNode.querySelector('.q-hint');
+        if(h) h.textContent = 'Select '+q.need+' answers ('+arr.length+' selected)';
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#multiSubmit').addEventListener('click', function(){
+      if((userAnswers[currentQ]||[]).length < q.need) return;
+      autoAdvance();
+    });
+  }
+
+  function renderOrder(q, container){
+    var pool = q.items.slice();
+    var seq = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+    container.innerHTML =
+      '<div class="order-pool" id="orderPool"></div>'+
+      '<div class="order-slots" id="orderSlots"></div>';
+    var poolEl = container.querySelector('#orderPool');
+    var slotsEl = container.querySelector('#orderSlots');
+    function paint(){
+      poolEl.innerHTML='';
+      pool.forEach(function(item){
+        var b = document.createElement('button');
+        b.className = 'order-item'+(seq.indexOf(item)!==-1?' used':'');
+        b.textContent = item;
+        b.addEventListener('click', function(){
+          if(seq.indexOf(item)!==-1) return;
+          seq.push(item);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots();
+          var h = container.parentNode.querySelector('.q-hint');
+          if(h) h.textContent = 'Tap items in the correct order ('+seq.length+' / '+pool.length+')';
+          updateProgress(); renderDotMap();
+          if(seq.length===pool.length) setTimeout(autoAdvance,400);
+        });
+        poolEl.appendChild(b);
+      });
+    }
+    function paintSlots(){
+      slotsEl.innerHTML='';
+      if(seq.length===0){ slotsEl.innerHTML='<div class="order-empty">ဤနေရာတွင် အစဉ်လိုက် ပြသပါမည်</div>'; return; }
+      seq.forEach(function(it,i){
+        var d = document.createElement('div');
+        d.className = 'order-slot';
+        var sp = document.createElement('span'); sp.className='num'; sp.textContent=(i+1); d.appendChild(sp);
+        var txt = document.createElement('span'); txt.style.flex='1'; txt.textContent=it; d.appendChild(txt);
+        var rm = document.createElement('span'); rm.className='rm'; rm.textContent='✕';
+        rm.addEventListener('click', function(){
+          seq.splice(i,1);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots(); updateProgress(); renderDotMap();
+        });
+        d.appendChild(rm);
+        slotsEl.appendChild(d);
+      });
+    }
+    paint(); paintSlots();
+  }
+
+  function renderDropdown(q, container){
+    var vals = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : new Array(q.blanks.length).fill(null);
+    var html = '<div class="dropdown-line">';
+    var parts = q.text.split(/(\{\d+\})/);
+    parts.forEach(function(p){
+      var m = p.match(/^\{(\d+)\}$/);
+      if(m){
+        var idx = +m[1]; var b = q.blanks[idx];
+        html += '<select class="dd-select" data-idx="'+idx+'"><option value="">--</option>';
+        b.options.forEach(function(o,i){
+          html += '<option value="'+i+'"'+(vals[idx]===i?' selected':'')+'>'+o+'</option>';
+        });
+        html += '</select>';
+      } else html += p;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    container.querySelectorAll('.dd-select').forEach(function(sel){
+      sel.addEventListener('change', function(){
+        var idx = +sel.dataset.idx;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : new Array(q.blanks.length).fill(null);
+        arr[idx] = +sel.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+        if(arr.every(function(v){return v != null})) setTimeout(autoAdvance, 300);
+      });
+    });
+  }
+
+  function renderFill(q, container){
+    var val = userAnswers[currentQ] != null ? String(userAnswers[currentQ]) : '';
+    container.innerHTML =
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">'+
+        '<input class="fill-input" id="fillIn" type="text" inputmode="decimal" placeholder="Answer..." value="'+val+'" '+
+        'style="flex:1;min-width:160px;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);'+
+        'background:var(--card);color:var(--text);font-family:inherit;font-size:16px;font-weight:700">'+
+        '<button class="btn primary" id="fillSubmit">Confirm</button>'+
+      '</div>'+
+      '<div style="font-size:11.5px;color:var(--muted);margin-top:8px;font-weight:600">Numeric answer · Tolerance: ±'+(q.tolerance || 0.1)+'</div>';
+    var inp = container.querySelector('#fillIn');
+    container.querySelector('#fillSubmit').addEventListener('click', function(){
+      var v = inp.value.trim();
+      if(v === '') return;
+      userAnswers[currentQ] = v;
+      updateProgress(); renderDotMap();
+      inp.style.borderColor = '#16a34a';
+      setTimeout(autoAdvance, 200);
+    });
+    inp.addEventListener('keydown', function(e){
+      if(e.key === 'Enter') container.querySelector('#fillSubmit').click();
+    });
+  }
+
+  function autoAdvance(){
+    if(currentQ >= allQuestions.length - 1) return;
+    setTimeout(function(){
+      if(isAnswered(userAnswers[currentQ])){
+        currentQ++; renderQuestion(); renderDotMap();
+      }
+    }, 280);
+  }
+
+  /* RENDER PASSAGE */
+  function renderPassage(qIndex){
+    var pass = passageForQ[qIndex];
+    var box = $('passageBox');
+    var indicator = $('passageIndicator');
+    if(!pass){ box.style.display='none'; indicator.style.display='none'; return; }
+    box.style.display='block'; indicator.style.display='flex';
+    $('passageInfo').textContent = pass.type;
+
+    var pIdx = 0, seen = {};
+    for(var i=0; i<passageForQ.length; i++){
+      var p = passageForQ[i];
+      if(p && !seen[p.id]){ seen[p.id] = ++pIdx; if(p.id === pass.id) break; }
+    }
+    var totalPass = 0; var seen2 = {};
+    for(var i=0; i<passageForQ.length; i++){
+      if(passageForQ[i] && !seen2[passageForQ[i].id]){ seen2[passageForQ[i].id] = 1; totalPass++; }
+    }
+    $('passageBadge').textContent = 'Passage '+pIdx+' of '+totalPass;
+
+    var tableHtml = '';
+    if(pass.dataTable){
+      tableHtml = '<div class="data-table-wrap"><table class="data-table"><thead><tr>';
+      pass.dataTable.headers.forEach(function(h){ tableHtml += '<th>'+h+'</th>'; });
+      tableHtml += '</tr></thead><tbody>';
+      pass.dataTable.rows.forEach(function(row){
+        tableHtml += '<tr>';
+        row.forEach(function(cell){ tableHtml += '<td>'+cell+'</td>'; });
+        tableHtml += '</tr>';
+      });
+      tableHtml += '</tbody></table></div>';
+    }
+
+    var visualHtml = renderVisual(pass);
+
+    box.innerHTML =
+      '<div class="passage-inner collapsed">'+
+        '<div class="passage-title">'+pass.title+' <span class="src">'+pass.type+'</span></div>'+
+        visualHtml+
+        '<div class="passage-text">'+pass.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+        tableHtml+
+      '</div>'+
+      '<button class="passage-toggle" id="passageToggleBtn">📖 Show Full Passage</button>';
+    var btn = box.querySelector('#passageToggleBtn');
+    var inner = box.querySelector('.passage-inner');
+    btn.addEventListener('click', function(){
+      if(inner.classList.contains('collapsed')){
+        inner.classList.remove('collapsed');
+        btn.textContent = '📕 Collapse Passage';
+      } else {
+        inner.classList.add('collapsed');
+        btn.textContent = '📖 Show Full Passage';
+      }
+    });
+  }
+
+  $('prevBtn').addEventListener('click', function(){
+    if(currentQ > 0){ currentQ--; renderQuestion(); renderDotMap(); }
+  });
+  $('nextBtn').addEventListener('click', function(){
+    if(currentQ === allQuestions.length - 1){
+      $('submitBtn').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    currentQ++; renderQuestion(); renderDotMap();
+  });
+
+  /* SCORING */
+  function isAnswered(a){
+    if(a === null || a === undefined) return false;
+    if(Array.isArray(a)) return a.length > 0;
+    if(typeof a === 'string') return a.trim() !== '';
+    if(typeof a === 'object') return true;
+    return true;
+  }
+
+  function scoreQ(q, ua){
+    if(!isAnswered(ua)) return false;
+    if(q.type === 'mcq' || q.type === 'experiment') return ua === q.correctIndex;
+    if(q.type === 'multi'){
+      if(!Array.isArray(ua)) return false;
+      var a = ua.slice().sort(function(x,y){return x-y});
+      var c = q.correctIndex.slice().sort(function(x,y){return x-y});
+      return a.length === c.length && a.every(function(v,i){return v === c[i]});
+    }
+    if(q.type === 'order'){
+      if(!Array.isArray(ua)) return false;
+      return ua.length === q.correctOrder.length && ua.every(function(v,i){return v === q.correctOrder[i]});
+    }
+    if(q.type === 'dropdown'){
+      if(!Array.isArray(ua)) return false;
+      return q.blanks.every(function(b,i){return ua[i] === b.correct});
+    }
+    if(q.type === 'fill'){
+      var n = parseFloat(ua);
+      if(!isFinite(n)) return false;
+      return Math.abs(n - parseFloat(q.answer)) <= (q.tolerance || 0.1);
+    }
+    return false;
+  }
+
+  /* SUBMIT */
+  $('submitBtn').addEventListener('click', function(){
+    var un = 0;
+    for(var i=0; i<allQuestions.length; i++) if(!isAnswered(userAnswers[i])) un++;
+    var msg = un > 0 ? un + ' ခု မဖြေရသေးပါ။ တင်မလား။' : 'Exam ကို တင်မလား။';
+    if(!confirm(msg)) return;
+    finishExam();
+  });
+
+  function finishExam(){
+    if(submitted) return;
+    submitted = true; clearInterval(timerId); submitExam();
+  }
+
+  function submitExam(){
+    var total = allQuestions.length;
+    var correct = 0;
+    for(var i=0; i<total; i++){
+      if(scoreQ(allQuestions[i], userAnswers[i])) correct++;
+    }
+    var wrong = total - correct;
+    var pct = Math.round(correct / total * 100);
+
+    try {
+      var s = JSON.parse(localStorage.getItem('ged:pretest:scores')) || {};
+      var rec = {
+        score: correct, total: total, pct: pct,
+        date: new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}),
+        set: currentSetKey
+      };
+      var prev = s['science'];
+      if(!prev || rec.pct > prev.pct) s['science'] = rec;
+      localStorage.setItem('ged:pretest:scores', JSON.stringify(s));
+    } catch(e){}
+
+    renderResult(correct, wrong, pct);
+    showOnly($('resultScreen'));
+  }
+
+  /* RESULT */
+  function renderResult(correct, wrong, pct){
+    $('scorePct').textContent = pct + '%';
+    $('rCorrect').textContent = correct;
+    $('rWrong').textContent = wrong;
+    var m = Math.floor(timeUsedTotal/60), s = timeUsedTotal%60;
+    $('rTime').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    var gedScore;
+    if(pct < 72.5) gedScore = Math.round(100 + (pct/72.5)*45);
+    else if(pct < 87) gedScore = Math.round(145 + ((pct-72.5)/(87-72.5))*20);
+    else if(pct < 95) gedScore = Math.round(165 + ((pct-87)/(95-87))*10);
+    else gedScore = Math.round(175 + ((pct-95)/(100-95))*25);
+    gedScore = Math.max(100, Math.min(200, gedScore));
+    $('gedScore').textContent = gedScore;
+    var gs = $('gedMsg');
+    if(gedScore >= 175) gs.textContent = '🏆 College Ready + Credit (175+)';
+    else if(gedScore >= 165) gs.textContent = '🎓 College Ready (165+)';
+    else if(gedScore >= 145) gs.textContent = '✅ Passed GED (145+)';
+    else gs.textContent = '📚 အောင်မှတ် 145 ရရန် လိုသေးသည်';
+    var ring = $('scoreRing');
+    var C = 2 * Math.PI * 70;
+    ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C;
+    setTimeout(function(){ ring.style.strokeDashoffset = C * (1 - pct/100); }, 100);
+    var msg, sub;
+    if(gedScore >= 165){ msg = '🌟 College Ready!'; sub = 'GED Science အတွက် ထူးချွန်စွာ အသင့်ဖြစ်နေပါပြီ။ ('+currentSetKey+' Set)'; }
+    else if(gedScore >= 145){ msg = '✅ Passed!'; sub = 'GED Science အောင်မှတ် ရပါပြီ။ ('+currentSetKey+' Set)'; }
+    else if(gedScore >= 130){ msg = '📚 Near Passing'; sub = 'အောင်မှတ်နှင့် နီးကပ်နေသည်။ ခေါင်းစဉ်များ ပြန်လေ့လာပါ။ ('+currentSetKey+' Set)'; }
+    else { msg = '💪 လေ့ကျင့်ဖို့ လိုသေးသည်'; sub = 'Science Lessons များ ပြန်လေ့လာပါ။ ('+currentSetKey+' Set)'; }
+    $('resultMsg').textContent = msg;
+    $('resultSub').textContent = sub;
+    renderReview();
+  }
+
+  /* REVIEW */
+  function renderReview(){
+    var el = $('reviewWrap');
+    el.innerHTML = '<div class="review-title">Answer Key & Explanations — Set '+currentSetKey+'</div>';
+    allQuestions.forEach(function(q, i){
+      var ua = userAnswers[i];
+      var ok = scoreQ(q, ua);
+      var pass = passageForQ[i];
+      var part = partForQ[i];
+      var partTag = '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(16,185,129,.12);color:#047857">'+(PART_NAMES[part] || 'Mixed')+'</span>';
+      var passTag = pass
+        ? '<span style="font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,.12);color:#1d4ed8">'+pass.title+'</span>'
+        : '';
+      var typeTag = '<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(236,72,153,.12);color:#be185d">'+(TYPE_LABELS[q.type]||'MCQ')+'</span>';
+
+      var answerHtml = '';
+      if(q.type === 'mcq' || q.type === 'experiment'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var cls = 'opt';
+            if(j === q.correctIndex) cls += ' correct';
+            else if(j === ua) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default;opacity:.98"><span class="ltr">'+'ABCD'[j]+'</span><span class="body">'+o+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'multi'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var isC = q.correctIndex.indexOf(j) !== -1;
+            var isU = Array.isArray(ua) && ua.indexOf(j) !== -1;
+            var cls = 'opt multi';
+            if(isC) cls += ' correct'; else if(isU) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default"><span class="ltr">'+(isU?'✓':'')+'</span><span class="body">'+o+(isC?' ✓ correct':'')+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'order'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your order: <b>'+(Array.isArray(ua) ? ua.join(' → ') : '(blank)')+'</b><br>'+
+          'Correct: <b style="color:#14532d">'+q.correctOrder.join(' → ')+'</b></div>';
+      } else if(q.type === 'dropdown'){
+        var correctChoices = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Correct choices: <b style="color:#14532d">'+correctChoices+'</b></div>';
+      } else if(q.type === 'fill'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your answer: <b>'+(ua != null ? ua : '(blank)')+'</b><br>'+
+          'Correct answer: <b style="color:#14532d">'+q.answer+'</b></div>';
+      }
+
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+      card.innerHTML =
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+          '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#10b981,#06b6d4)">'+(i+1)+'</span>'+
+          partTag + passTag + typeTag +
+          '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+(ok?'color:#14532d;background:#bbf7d0':'color:#7f1d1d;background:#fecaca')+'">'+(ok?'✔ Correct':'✘ Wrong')+'</span>'+
+        '</div>'+
+        '<div style="font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500">'+q.q+'</div>'+
+        answerHtml+
+        '<div class="sol">'+
+          '<span class="lbl">အဘယ်ကြောင့်</span>'+q.why+
+          '<div style="margin-top:10px"><span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span><ol>'+
+            q.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+          '</ol></div>'+
+          '<span class="ans">✔ အဖြေ: '+q.answer+'</span>'+
+        '</div>';
+      el.appendChild(card);
+    });
+  }
+
+  /* BUTTONS */
+  $('reviewBtn').addEventListener('click', function(){
+    $('reviewWrap').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  $('retryBtn').addEventListener('click', function(){
+    if(!confirm('Exam အသစ် (ကျပန်း set) စတင်မလား။')) return;
+    initState();
+    showOnly($('startScreen'));
+  });
+  window.confirmExit = function(){
+    if(submitted) return true;
+    return confirm('Exam မှ ထွက်မလား။ ဖြေထားသည်များ ဆုံးရှုံးမည်။');
+  };
+
+  /* DOT MAP */
+  function renderDotMap(){
+    var el = $('dotMap'); el.innerHTML = '';
+    for(var i=0; i<allQuestions.length; i++){
+      var d = document.createElement('button');
+      var part = partForQ[i];
+      var pClass = part === 1 ? ' p2' : (part === 2 ? ' p3' : '');
+      d.className = 'dot' + pClass;
+      d.textContent = i+1;
+      if(isAnswered(userAnswers[i])) d.classList.add('answered');
+      if(i === currentQ) d.classList.add('current');
+      (function(idx){
+        d.addEventListener('click', function(){
+          currentQ = idx; renderQuestion(); renderDotMap();
+        });
+      })(i);
+      el.appendChild(d);
+    }
+  }
+  function updateProgress(){
+    var answered = 0;
+    for(var i=0; i<allQuestions.length; i++) if(isAnswered(userAnswers[i])) answered++;
+    $('pCount').textContent = answered + ' / ' + allQuestions.length;
+    $('pBar').style.width = (answered / allQuestions.length * 100) + '%';
+  }
+
+})();
+</script>
+</body>
+</html>

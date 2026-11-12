@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Myanmar — Notes & Bookmarks</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1;--primary-d:#4f46e5;
+  --green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --blue:#3b82f6;--violet:#8b5cf6;--cyan:#06b6d4;--emerald:#10b981;--pink:#ec4899;
+  --radius:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.92);
+  --chip-bg:rgba(99,102,241,.08);
+  --chip-border:rgba(99,102,241,.2);
+  --hover-soft:rgba(15,23,42,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.92);
+  --chip-bg:rgba(99,102,241,.14);
+  --chip-border:rgba(99,102,241,.3);
+  --hover-soft:rgba(255,255,255,.05);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%, rgba(99,102,241,.10), transparent 65%),
+    radial-gradient(720px 480px at 100% 4%, rgba(236,72,153,.08), transparent 65%),
+    radial-gradient(620px 420px at 50% 105%, rgba(16,185,129,.08), transparent 65%)}
+html[data-theme="dark"] body::before{opacity:.55}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 0 10px}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;
+  display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--violet));
+  box-shadow:0 8px 18px -8px rgba(99,102,241,.7)}
+.nav-logo b{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.nav-actions{display:flex;gap:8px;align-items:center;flex:none}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  text-decoration:none;font-size:12.5px;font-weight:700;transition:transform .18s,background .2s}
+.back-btn:hover{background:var(--hover-soft)}
+.back-btn:active{transform:scale(.95)}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-size:16px;cursor:pointer;padding:0;font-family:inherit;transition:transform .18s,background .18s}
+.icon-btn:hover{background:var(--hover-soft)}
+.icon-btn:active{transform:scale(.9)}
+@media(max-width:520px){.nav-title{display:none}}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(80px + var(--safe-bottom))}
+
+/* HERO */
+.hero{padding:32px 0 22px;text-align:center}
+.hero .badge-icon{width:72px;height:72px;border-radius:22px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:34px;
+  background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(236,72,153,.7)}
+.hero h1{margin:0 0 8px;font-size:clamp(24px,5.5vw,34px);
+  font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.hero p{margin:0 auto;max-width:560px;font-size:clamp(13px,3.4vw,15px);
+  color:var(--muted);line-height:1.75}
+
+/* TOP STATS */
+.stats-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+@media(min-width:640px){.stats-strip{grid-template-columns:repeat(4,1fr)}}
+.stat-card{background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:16px 14px;box-shadow:var(--shadow);text-align:center}
+.stat-card b{display:block;font-size:26px;font-weight:900;letter-spacing:-.03em;
+  line-height:1.1;margin-bottom:4px;color:var(--ac,var(--primary));font-variant-numeric:tabular-nums}
+.stat-card span{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em}
+
+/* TOOLBAR */
+.toolbar{background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:16px;box-shadow:var(--shadow);margin-bottom:18px}
+.search-box{position:relative;margin-bottom:12px}
+.search-box input{width:100%;padding:14px 44px 14px 46px;border-radius:12px;
+  border:1.5px solid var(--border);background:var(--bg);color:var(--text);
+  font-family:inherit;font-size:14.5px;font-weight:500;
+  transition:border-color .18s,background .2s}
+.search-box input:focus{outline:none;border-color:var(--primary);background:var(--card)}
+.search-box .ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);
+  color:var(--muted);font-size:16px;pointer-events:none}
+.search-box .clear{position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:26px;height:26px;border:none;border-radius:50%;
+  background:var(--hover-soft);color:var(--muted);
+  display:none;place-items:center;cursor:pointer;font-family:inherit;font-size:12px;padding:0}
+.search-box .clear.show{display:grid}
+
+.filter-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.filter-tabs::-webkit-scrollbar{display:none}
+.f-tab{flex:none;padding:8px 14px;border-radius:10px;
+  border:1px solid var(--border);background:var(--card);
+  color:var(--text);font-family:inherit;font-size:12.5px;
+  font-weight:700;cursor:pointer;white-space:nowrap;
+  transition:all .18s;display:inline-flex;align-items:center;gap:6px}
+.f-tab:hover{background:var(--hover-soft)}
+.f-tab.active{background:linear-gradient(135deg,var(--primary),var(--violet));
+  color:#fff;border-color:transparent;
+  box-shadow:0 6px 14px -6px rgba(99,102,241,.7)}
+.f-tab .count{background:rgba(0,0,0,.1);border-radius:999px;
+  padding:1px 7px;font-size:10.5px;font-weight:800}
+.f-tab.active .count{background:rgba(255,255,255,.25)}
+.f-tab.all .count{background:var(--chip-bg);color:var(--primary-d)}
+.f-tab.active.all .count{background:rgba(255,255,255,.25);color:#fff}
+
+/* SUBJECT CHIP COLORS */
+.f-tab[data-s="math"] .count{background:rgba(139,92,246,.15);color:#6d28d9}
+.f-tab[data-s="rla"] .count{background:rgba(59,130,246,.15);color:#1d4ed8}
+.f-tab[data-s="science"] .count{background:rgba(16,185,129,.15);color:#047857}
+.f-tab[data-s="social"] .count{background:rgba(245,158,11,.15);color:#b45309}
+.f-tab.active[data-s] .count{background:rgba(255,255,255,.25);color:#fff}
+
+/* NOTE CARD */
+.notes-list{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.notes-list{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.notes-list{grid-template-columns:repeat(3,1fr)}}
+
+.note-card{background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:16px;box-shadow:var(--shadow);
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  position:relative;overflow:hidden;
+  animation:cardIn .35s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.note-card::before{content:"";position:absolute;top:0;left:0;right:0;
+  height:3px;background:var(--ac)}
+@media(hover:hover){
+  .note-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);
+    border-color:var(--ac)}
+}
+.note-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.note-icon{width:36px;height:36px;flex:none;border-radius:11px;
+  display:grid;place-items:center;font-size:18px;
+  background:color-mix(in srgb,var(--ac) 15%,transparent)}
+html[data-theme="dark"] .note-icon{background:color-mix(in srgb,var(--ac) 25%,transparent)}
+.note-meta{flex:1;min-width:0}
+.note-subject{font-size:10.5px;font-weight:800;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ac);margin-bottom:2px}
+.note-date{font-size:11px;color:var(--muted);font-weight:600}
+.note-actions{display:flex;gap:4px;flex:none}
+.note-act{width:28px;height:28px;padding:0;border-radius:8px;
+  border:1px solid var(--border);background:var(--card);color:var(--muted);
+  display:grid;place-items:center;cursor:pointer;font-size:12px;
+  font-family:inherit;transition:all .18s}
+.note-act:hover{background:var(--hover-soft);color:var(--text)}
+.note-act.del:hover{background:rgba(220,38,38,.08);color:var(--red);
+  border-color:rgba(220,38,38,.3)}
+.note-title{margin:0 0 8px;font-size:15px;font-weight:800;
+  letter-spacing:-.01em;line-height:1.35;color:var(--text)}
+.note-body{font-size:13px;color:var(--text);line-height:1.75;
+  white-space:pre-wrap;word-break:break-word;margin:0 0 12px;
+  max-height:180px;overflow:hidden;position:relative}
+.note-body.expanded{max-height:none}
+.note-body.fade::after{content:"";position:absolute;bottom:0;left:0;right:0;
+  height:30px;background:linear-gradient(transparent,var(--card));pointer-events:none}
+.note-expand{padding:5px 10px;border-radius:8px;border:none;
+  background:transparent;color:var(--primary);
+  font-family:inherit;font-size:11.5px;font-weight:800;
+  cursor:pointer;transition:background .18s}
+.note-expand:hover{background:var(--chip-bg)}
+.note-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.note-tag{font-size:10.5px;font-weight:800;padding:3px 9px;
+  border-radius:999px;letter-spacing:.02em;
+  background:var(--hover-soft);color:var(--muted)}
+.note-pin{position:absolute;top:12px;right:12px;width:24px;height:24px;
+  display:grid;place-items:center;font-size:12px;color:var(--amber);
+  opacity:.85;pointer-events:none}
+.note-card.pinned{border-color:var(--amber);box-shadow:0 2px 6px rgba(245,158,11,.15)}
+
+/* EMPTY STATE */
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;
+  background:var(--card);border:1px dashed var(--border);
+  border-radius:20px;box-shadow:var(--shadow)}
+.empty .e-icon{font-size:56px;opacity:.5;margin-bottom:14px}
+.empty h3{margin:0 0 8px;font-size:17px;font-weight:800;color:var(--text)}
+.empty p{margin:0 0 20px;font-size:13.5px;color:var(--muted);line-height:1.75;
+  max-width:380px;margin-left:auto;margin-right:auto}
+
+/* FAB */
+.fab{position:fixed;bottom:calc(24px + var(--safe-bottom));
+  right:20px;width:60px;height:60px;border-radius:20px;
+  display:grid;place-items:center;font-size:26px;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--violet));
+  border:none;cursor:pointer;z-index:50;
+  box-shadow:0 16px 32px -10px rgba(99,102,241,.75);
+  transition:transform .2s,filter .2s;font-family:inherit}
+.fab:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.fab:active{transform:scale(.94)}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:100;
+  background:rgba(15,23,42,.55);backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .25s ease both}
+.modal-bg.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:none}}
+.modal{background:var(--card);border-radius:22px;width:100%;max-width:520px;
+  max-height:92svh;overflow-y:auto;padding:24px;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+  animation:popIn .3s cubic-bezier(.22,.8,.28,1) both;
+  position:relative}
+.modal .x{position:absolute;top:14px;right:14px;
+  width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+  background:var(--hover-soft);color:var(--muted);
+  border:none;font-family:inherit;font-size:16px;cursor:pointer;
+  transition:background .18s,color .18s}
+.modal .x:hover{background:rgba(15,23,42,.1);color:var(--text)}
+.modal h2{margin:0 0 6px;font-size:20px;font-weight:900;
+  letter-spacing:-.02em;text-align:center}
+.modal .sub{margin:0 0 20px;text-align:center;
+  font-size:13px;color:var(--muted)}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12.5px;font-weight:700;
+  color:var(--text);margin-bottom:6px;letter-spacing:.01em}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 14px;border-radius:12px;
+  border:1.5px solid var(--border);background:var(--bg);color:var(--text);
+  font-family:inherit;font-size:14px;font-weight:500;
+  transition:border-color .18s,background .18s;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--primary);background:var(--card)}
+.field textarea{min-height:160px;line-height:1.7}
+.field .hint{font-size:11.5px;color:var(--muted);
+  font-weight:600;margin-top:5px}
+
+.subj-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.subj-chip{padding:8px 14px;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--card);
+  color:var(--text);font-family:inherit;font-size:12.5px;
+  font-weight:700;cursor:pointer;transition:all .18s;
+  display:inline-flex;align-items:center;gap:6px}
+.subj-chip:hover{background:var(--hover-soft)}
+.subj-chip.active{color:#fff;border-color:transparent}
+.subj-chip[data-s="math"].active{background:linear-gradient(135deg,#8b5cf6,#6366f1)}
+.subj-chip[data-s="rla"].active{background:linear-gradient(135deg,#3b82f6,#6366f1)}
+.subj-chip[data-s="science"].active{background:linear-gradient(135deg,#10b981,#06b6d4)}
+.subj-chip[data-s="social"].active{background:linear-gradient(135deg,#f59e0b,#f97316)}
+.subj-chip[data-s="general"].active{background:linear-gradient(135deg,#64748b,#475569)}
+
+.modal-actions{display:flex;gap:8px;margin-top:20px}
+.modal-actions .btn{flex:1;padding:13px;border-radius:12px;
+  border:none;font-family:inherit;font-size:14px;font-weight:800;
+  cursor:pointer;transition:transform .18s,filter .2s}
+.modal-actions .btn:active{transform:scale(.97)}
+.modal-actions .btn.primary{background:linear-gradient(135deg,var(--primary),var(--violet));
+  color:#fff;box-shadow:0 10px 22px -8px rgba(99,102,241,.8)}
+.modal-actions .btn.primary:hover{filter:brightness(1.08)}
+.modal-actions .btn.ghost{background:transparent;color:var(--text);
+  border:1.5px solid var(--border)}
+.modal-actions .btn.ghost:hover{background:var(--hover-soft)}
+
+/* IMPORT/EXPORT */
+.io-bar{display:flex;gap:8px;margin-top:14px}
+.io-btn{flex:1;padding:10px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);
+  color:var(--text);font-family:inherit;font-size:12.5px;
+  font-weight:700;cursor:pointer;transition:all .18s;
+  display:flex;align-items:center;justify-content:center;gap:6px}
+.io-btn:hover{background:var(--hover-soft);border-color:var(--primary);color:var(--primary)}
+.io-btn:active{transform:scale(.97)}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:#0f172a;color:#fff;padding:13px 20px;
+  border-radius:12px;font-size:13.5px;font-weight:600;
+  box-shadow:0 20px 40px -12px rgba(0,0,0,.5);
+  z-index:200;opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .35s cubic-bezier(.22,.8,.28,1);
+  max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:linear-gradient(135deg,#16a34a,#15803d)}
+.toast.err{background:linear-gradient(135deg,#dc2626,#b91c1c)}
+
+footer{padding:34px 18px;text-align:center;font-size:12px;
+  color:var(--muted);line-height:2}
+footer .brand{display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:6px;font-weight:800;color:var(--text);font-size:13px}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;
+  display:grid;place-items:center;font-size:9px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--violet))}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="main.html">
+      <span class="mark">GED</span>
+      <b>GED Myanmar</b>
+    </a>
+    <div class="nav-title">Notes & Bookmarks</div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+      </button>
+      <a class="back-btn" href="main.html">← Back</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="badge-icon">📝</div>
+    <h1>Notes & Bookmarks</h1>
+    <p>သင့်လေ့လာမှုမှတ်စုများ၊ အရေးကြီးသည့်အချက်များ၊ Formula များကို တစ်နေရာတည်းတွင် သိမ်းဆည်းပါ။ Search, Filter, Export လုပ်နိုင်ပါသည်။</p>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-card" style="--ac:#6366f1">
+      <b id="statTotal">0</b>
+      <span>Total Notes</span>
+    </div>
+    <div class="stat-card" style="--ac:#8b5cf6">
+      <b id="statMath">0</b>
+      <span>Math</span>
+    </div>
+    <div class="stat-card" style="--ac:#3b82f6">
+      <b id="statRla">0</b>
+      <span>RLA</span>
+    </div>
+    <div class="stat-card" style="--ac:#10b981">
+      <b id="statSciSoc">0</b>
+      <span>Sci + Soc</span>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="search-box">
+      <span class="ico">🔍</span>
+      <input type="text" id="searchInput" placeholder="Note ရှာဖွေရန်..." autocomplete="off">
+      <button class="clear" id="clearSearch" type="button" aria-label="Clear">✕</button>
+    </div>
+    <div class="filter-tabs" id="filterTabs"></div>
+  </div>
+
+  <!-- NOTES LIST -->
+  <div class="notes-list" id="notesList"></div>
+
+  <!-- IMPORT/EXPORT -->
+  <div class="io-bar">
+    <button class="io-btn" id="exportBtn">📤 Export Notes</button>
+    <button class="io-btn" id="importBtn">📥 Import Notes</button>
+    <input type="file" id="importFile" accept=".json" style="display:none">
+  </div>
+
+</div>
+
+<button class="fab" id="addBtn" type="button" aria-label="Add note">＋</button>
+
+<footer>
+  <div class="brand">
+    <span class="mark">GED</span>
+    <span>GED Myanmar</span>
+  </div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="x" id="closeModal" type="button" aria-label="Close">✕</button>
+    <h2 id="modalTitle">New Note</h2>
+    <p class="sub" id="modalSub">သင့်လေ့လာမှုမှတ်စု သိမ်းရန်</p>
+
+    <div class="field">
+      <label>Subject</label>
+      <div class="subj-chips" id="subjChips">
+        <button class="subj-chip" data-s="math" type="button">📐 Math</button>
+        <button class="subj-chip" data-s="rla" type="button">📖 RLA</button>
+        <button class="subj-chip" data-s="science" type="button">🔬 Science</button>
+        <button class="subj-chip" data-s="social" type="button">🌍 Social</button>
+        <button class="subj-chip active" data-s="general" type="button">📝 General</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="noteTitle">Title</label>
+      <input type="text" id="noteTitle" placeholder="ဥပမာ: Pythagorean Theorem" maxlength="80">
+    </div>
+
+    <div class="field">
+      <label for="noteBody">Content</label>
+      <textarea id="noteBody" placeholder="မှတ်စု ရေးရန်...&#10;&#10;Tip: Formula, မေးခွန်းများ, အရေးကြီးအချက်များ မှတ်ထားပါ။" maxlength="4000"></textarea>
+      <div class="hint" id="charHint">0 / 4000</div>
+    </div>
+
+    <div class="field">
+      <label for="noteTags">Tags (optional)</label>
+      <input type="text" id="noteTags" placeholder="formula, geometry, ခက်သည် (comma-separated)" maxlength="100">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn ghost" id="cancelBtn" type="button">Cancel</button>
+      <button class="btn primary" id="saveBtn" type="button">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){return document.getElementById(id)};
+
+  /* ============================================================
+     THEME
+  ============================================================ */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    $('themeIcon').textContent = t === 'dark' ? '☀️' : '🌙';
+    try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  $('themeBtn').addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ============================================================
+     STORAGE
+  ============================================================ */
+  var STORE_KEY = 'ged:notes:v1';
+
+  function loadNotes(){
+    try {
+      var d = JSON.parse(localStorage.getItem(STORE_KEY));
+      if(Array.isArray(d)) return d;
+      return [];
+    } catch(e){ return []; }
+  }
+  function saveNotes(arr){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(arr)); }catch(e){}
+  }
+
+  var notes = loadNotes();
+
+  /* ============================================================
+     SUBJECT META
+  ============================================================ */
+  var SUBJECTS = {
+    math:     { name:'Math',     icon:'📐', color:'#8b5cf6', label:'Math' },
+    rla:      { name:'RLA',      icon:'📖', color:'#3b82f6', label:'RLA' },
+    science:  { name:'Science',  icon:'🔬', color:'#10b981', label:'Science' },
+    social:   { name:'Social',   icon:'🌍', color:'#f59e0b', label:'Social' },
+    general:  { name:'General',  icon:'📝', color:'#64748b', label:'General' }
+  };
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var filterSubject = 'all';
+  var searchQuery = '';
+  var editingId = null;
+
+  /* ============================================================
+     UTIL
+  ============================================================ */
+  function uid(){
+    return 'n_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+  }
+
+  function fmtDate(ts){
+    var d = new Date(ts);
+    var now = new Date();
+    var diff = Math.floor((now - d) / 1000);
+    if(diff < 60) return 'now';
+    if(diff < 3600) return Math.floor(diff/60) + 'm ago';
+    if(diff < 86400) return Math.floor(diff/3600) + 'h ago';
+    if(diff < 604800) return Math.floor(diff/86400) + 'd ago';
+    return d.toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'});
+  }
+
+  function escHtml(s){
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function toast(msg, type){
+    var t = $('toast');
+    t.textContent = msg;
+    t.className = 'toast show ' + (type || 'ok');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function(){ t.classList.remove('show'); }, 2400);
+  }
+
+  /* ============================================================
+     RENDER STATS
+  ============================================================ */
+  function renderStats(){
+    var counts = { math:0, rla:0, science:0, social:0, general:0 };
+    notes.forEach(function(n){
+      if(counts[n.subject] !== undefined) counts[n.subject]++;
+      else counts.general++;
+    });
+    $('statTotal').textContent = notes.length;
+    $('statMath').textContent = counts.math;
+    $('statRla').textContent = counts.rla;
+    $('statSciSoc').textContent = counts.science + counts.social;
+  }
+
+  /* ============================================================
+     RENDER FILTER TABS
+  ============================================================ */
+  function renderFilterTabs(){
+    var counts = { all: notes.length, math:0, rla:0, science:0, social:0, general:0 };
+    notes.forEach(function(n){
+      if(counts[n.subject] !== undefined) counts[n.subject]++;
+      else counts.general++;
+    });
+
+    var tabs = [
+      { id:'all', label:'📋 All', cls:'all' },
+      { id:'math', label:'📐 Math', cls:'' },
+      { id:'rla', label:'📖 RLA', cls:'' },
+      { id:'science', label:'🔬 Science', cls:'' },
+      { id:'social', label:'🌍 Social', cls:'' },
+      { id:'general', label:'📝 General', cls:'' }
+    ];
+
+    var el = $('filterTabs');
+    el.innerHTML = '';
+    tabs.forEach(function(t){
+      var btn = document.createElement('button');
+      btn.className = 'f-tab ' + t.cls + (filterSubject === t.id ? ' active' : '');
+      btn.setAttribute('data-s', t.id);
+      btn.innerHTML = t.label + ' <span class="count">' + (counts[t.id] || 0) + '</span>';
+      btn.addEventListener('click', function(){
+        filterSubject = t.id;
+        renderFilterTabs();
+        renderNotes();
+      });
+      el.appendChild(btn);
+    });
+  }
+
+  /* ============================================================
+     RENDER NOTES
+  ============================================================ */
+  function filteredNotes(){
+    var q = searchQuery.toLowerCase().trim();
+    return notes.filter(function(n){
+      if(filterSubject !== 'all' && n.subject !== filterSubject) return false;
+      if(!q) return true;
+      var haystack = (
+        (n.title || '') + ' ' +
+        (n.body || '') + ' ' +
+        (n.tags || '') + ' ' +
+        (SUBJECTS[n.subject] ? SUBJECTS[n.subject].name : '')
+      ).toLowerCase();
+      return haystack.indexOf(q) !== -1;
+    }).sort(function(a, b){
+      // Pinned first, then newest
+      if(a.pinned && !b.pinned) return -1;
+      if(!a.pinned && b.pinned) return 1;
+      return (b.updated || b.created) - (a.updated || a.created);
+    });
+  }
+
+  function renderNotes(){
+    var list = $('notesList');
+    var filtered = filteredNotes();
+
+    if(filtered.length === 0){
+      list.innerHTML =
+        '<div class="empty">' +
+          '<div class="e-icon">📝</div>' +
+          '<h3>' + (notes.length === 0 ? 'မှတ်စု မရှိသေးပါ' : 'ရှာဖွေမှု ရလဒ် မတွေ့ပါ') + '</h3>' +
+          '<p>' +
+            (notes.length === 0
+              ? 'ညာဘက်အောက်ခြေရှိ ＋ ကို နှိပ်ပြီး သင့်ပထမဆုံး မှတ်စုကို ရေးပါ။'
+              : 'အခြားစကားလုံးဖြင့် ထပ်မံ ရှာကြည့်ပါ။') +
+          '</p>' +
+        '</div>';
+      return;
+    }
+
+    list.innerHTML = '';
+    filtered.forEach(function(n, i){
+      var s = SUBJECTS[n.subject] || SUBJECTS.general;
+      var card = document.createElement('div');
+      card.className = 'note-card' + (n.pinned ? ' pinned' : '');
+      card.style.setProperty('--ac', s.color);
+      card.style.animationDelay = (i * 40) + 'ms';
+
+      var bodyHtml = escHtml(n.body || '');
+      var isLong = (n.body || '').length > 320;
+
+      var tagsHtml = '';
+      if(n.tags){
+        var tags = n.tags.split(',').map(function(t){return t.trim()}).filter(Boolean);
+        if(tags.length){
+          tagsHtml = '<div class="note-tags">' +
+            tags.map(function(t){return '<span class="note-tag">#' + escHtml(t) + '</span>'}).join('') +
+          '</div>';
+        }
+      }
+
+      card.innerHTML =
+        (n.pinned ? '<span class="note-pin">📌</span>' : '') +
+        '<div class="note-head">' +
+          '<span class="note-icon">' + s.icon + '</span>' +
+          '<div class="note-meta">' +
+            '<div class="note-subject" style="color:' + s.color + '">' + s.name + '</div>' +
+            '<div class="note-date">' + fmtDate(n.updated || n.created) + '</div>' +
+          '</div>' +
+          '<div class="note-actions">' +
+            '<button class="note-act pin" data-act="pin" data-id="' + n.id + '" title="Pin">' + (n.pinned ? '📌' : '📍') + '</button>' +
+            '<button class="note-act copy" data-act="copy" data-id="' + n.id + '" title="Copy">📋</button>' +
+            '<button class="note-act" data-act="edit" data-id="' + n.id + '" title="Edit">✏️</button>' +
+            '<button class="note-act del" data-act="del" data-id="' + n.id + '" title="Delete">🗑️</button>' +
+          '</div>' +
+        '</div>' +
+        '<h3 class="note-title">' + (escHtml(n.title) || 'Untitled') + '</h3>' +
+        '<p class="note-body' + (isLong ? ' fade' : '') + '" data-id="' + n.id + '">' + bodyHtml + '</p>' +
+        (isLong ? '<button class="note-expand" data-act="expand" data-id="' + n.id + '">📖 ပိုပြရန်</button>' : '') +
+        tagsHtml;
+
+      list.appendChild(card);
+    });
+
+    // Bind actions
+    list.querySelectorAll('[data-act]').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var id = btn.getAttribute('data-id');
+        var act = btn.getAttribute('data-act');
+        handleAction(act, id, btn);
+      });
+    });
+  }
+
+  function handleAction(act, id, btn){
+    var n = notes.find(function(x){return x.id === id});
+    if(!n && act !== 'expand') return;
+
+    if(act === 'edit'){
+      openModal(n);
+    } else if(act === 'del'){
+      if(!confirm('"'+ (n.title || 'Untitled') +'" ကို ဖျက်မလား?')) return;
+      notes = notes.filter(function(x){return x.id !== id});
+      saveNotes(notes);
+      renderAll();
+      toast('🗑️ Note ဖျက်ပြီးပါပြီ', 'ok');
+    } else if(act === 'copy'){
+      copyNote(n);
+    } else if(act === 'pin'){
+      n.pinned = !n.pinned;
+      n.updated = Date.now();
+      saveNotes(notes);
+      renderNotes();
+      toast(n.pinned ? '📌 Pin လုပ်ပြီးပါပြီ' : '📍 Unpin လုပ်ပြီးပါပြီ', 'ok');
+    } else if(act === 'expand'){
+      var body = document.querySelector('.note-body[data-id="'+id+'"]');
+      if(!body) return;
+      if(body.classList.contains('expanded')){
+        body.classList.remove('expanded');
+        body.classList.add('fade');
+        btn.textContent = '📖 ပိုပြရန်';
+      } else {
+        body.classList.add('expanded');
+        body.classList.remove('fade');
+        btn.textContent = '📕 ချုံ့ရန်';
+      }
+    }
+  }
+
+  function copyNote(n){
+    var text = (n.title ? n.title + '\n\n' : '') + (n.body || '');
+    var done = false;
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text);
+        done = true;
+      }
+    } catch(e){}
+    if(!done){
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done = true;
+      } catch(e){}
+    }
+    if(done) toast('📋 ကူးယူပြီးပါပြီ', 'ok');
+    else toast('Copy မအောင်မြင်ပါ', 'err');
+  }
+
+  /* ============================================================
+     MODAL
+  ============================================================ */
+  var currentSubject = 'general';
+
+  function setSubject(s){
+    currentSubject = s;
+    document.querySelectorAll('.subj-chip').forEach(function(c){
+      c.classList.toggle('active', c.getAttribute('data-s') === s);
+    });
+  }
+
+  document.querySelectorAll('.subj-chip').forEach(function(c){
+    c.addEventListener('click', function(){ setSubject(c.getAttribute('data-s')); });
+  });
+
+  function updateCharCount(){
+    var v = $('noteBody').value;
+    $('charHint').textContent = v.length + ' / 4000';
+  }
+  $('noteBody').addEventListener('input', updateCharCount);
+
+  function openModal(note){
+    if(note){
+      editingId = note.id;
+      $('modalTitle').textContent = 'Edit Note';
+      $('modalSub').textContent = 'မှတ်စုကို ပြင်ဆင်ရန်';
+      $('noteTitle').value = note.title || '';
+      $('noteBody').value = note.body || '';
+      $('noteTags').value = note.tags || '';
+      setSubject(note.subject || 'general');
+    } else {
+      editingId = null;
+      $('modalTitle').textContent = 'New Note';
+      $('modalSub').textContent = 'သင့်လေ့လာမှုမှတ်စု သိမ်းရန်';
+      $('noteTitle').value = '';
+      $('noteBody').value = '';
+      $('noteTags').value = '';
+      setSubject('general');
+    }
+    updateCharCount();
+    $('modal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ $('noteTitle').focus(); }, 220);
+  }
+
+  function closeModal(){
+    $('modal').classList.remove('show');
+    document.body.style.overflow = '';
+    editingId = null;
+  }
+
+  $('addBtn').addEventListener('click', function(){ openModal(null); });
+  $('closeModal').addEventListener('click', closeModal);
+  $('cancelBtn').addEventListener('click', closeModal);
+  $('modal').addEventListener('click', function(e){
+    if(e.target === $('modal')) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && $('modal').classList.contains('show')) closeModal();
+    if((e.ctrlKey || e.metaKey) && e.key === 's' && $('modal').classList.contains('show')){
+      e.preventDefault();
+      $('saveBtn').click();
+    }
+  });
+
+  $('saveBtn').addEventListener('click', function(){
+    var title = $('noteTitle').value.trim();
+    var body = $('noteBody').value.trim();
+    var tags = $('noteTags').value.trim();
+
+    if(!title && !body){
+      toast('Title သို့မဟုတ် Content ထည့်ပါ', 'err');
+      $('noteTitle').focus();
+      return;
+    }
+
+    if(editingId){
+      var n = notes.find(function(x){return x.id === editingId});
+      if(n){
+        n.title = title;
+        n.body = body;
+        n.tags = tags;
+        n.subject = currentSubject;
+        n.updated = Date.now();
+      }
+      toast('✏️ Note ပြင်ပြီးပါပြီ', 'ok');
+    } else {
+      notes.push({
+        id: uid(),
+        title: title,
+        body: body,
+        tags: tags,
+        subject: currentSubject,
+        pinned: false,
+        created: Date.now(),
+        updated: Date.now()
+      });
+      toast('💾 Note သိမ်းပြီးပါပြီ', 'ok');
+    }
+
+    saveNotes(notes);
+    closeModal();
+    renderAll();
+  });
+
+  /* ============================================================
+     SEARCH
+  ============================================================ */
+  var searchTimer;
+  $('searchInput').addEventListener('input', function(){
+    clearTimeout(searchTimer);
+    var v = $('searchInput').value;
+    $('clearSearch').classList.toggle('show', v.length > 0);
+    searchTimer = setTimeout(function(){
+      searchQuery = v;
+      renderNotes();
+    }, 160);
+  });
+  $('clearSearch').addEventListener('click', function(){
+    $('searchInput').value = '';
+    searchQuery = '';
+    $('clearSearch').classList.remove('show');
+    $('searchInput').focus();
+    renderNotes();
+  });
+
+  /* ============================================================
+     IMPORT / EXPORT
+  ============================================================ */
+  $('exportBtn').addEventListener('click', function(){
+    if(notes.length === 0){
+      toast('Export လုပ်ရန် Note မရှိပါ', 'err');
+      return;
+    }
+    var data = {
+      version: 1,
+      exported: new Date().toISOString(),
+      count: notes.length,
+      notes: notes
+    };
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    var date = new Date().toISOString().split('T')[0];
+    a.href = url;
+    a.download = 'ged-notes-' + date + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 200);
+    toast('📤 ' + notes.length + ' notes export ပြီးပါပြီ', 'ok');
+  });
+
+  $('importBtn').addEventListener('click', function(){
+    $('importFile').click();
+  });
+
+  $('importFile').addEventListener('change', function(e){
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      try {
+        var data = JSON.parse(ev.target.result);
+        var incoming = Array.isArray(data) ? data : (data.notes || []);
+        if(!Array.isArray(incoming) || incoming.length === 0){
+          toast('File ထဲတွင် Note မတွေ့ပါ', 'err');
+          return;
+        }
+
+        // Merge: skip duplicates by id
+        var existing = {};
+        notes.forEach(function(n){ existing[n.id] = true; });
+        var added = 0;
+        incoming.forEach(function(n){
+          if(!n || !n.id) {
+            n = n || {};
+            n.id = uid();
+          }
+          if(!existing[n.id]){
+            notes.push({
+              id: n.id,
+              title: n.title || '',
+              body: n.body || '',
+              tags: n.tags || '',
+              subject: n.subject || 'general',
+              pinned: !!n.pinned,
+              created: n.created || Date.now(),
+              updated: n.updated || Date.now()
+            });
+            existing[n.id] = true;
+            added++;
+          }
+        });
+
+        if(added > 0){
+          saveNotes(notes);
+          renderAll();
+          toast('📥 ' + added + ' notes import ပြီးပါပြီ', 'ok');
+        } else {
+          toast('Note အသစ် မပါဝင်ပါ', 'err');
+        }
+      } catch(err){
+        toast('File ဖတ်မရပါ — JSON မမှန်ပါ', 'err');
+      }
+      $('importFile').value = '';
+    };
+    reader.readAsText(file);
+  });
+
+  /* ============================================================
+     RENDER ALL
+  ============================================================ */
+  function renderAll(){
+    renderStats();
+    renderFilterTabs();
+    renderNotes();
+  }
+
+  renderAll();
+
+})();
+</script>
+</body>
+</html>

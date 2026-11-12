@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Science — New Sets 4-6</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#8b5cf6;--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--violet:#8b5cf6;--blue:#3b82f6;
+  --radius:18px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --nav-bg:rgba(248,250,252,.92);
+  --passage-bg:rgba(139,92,246,.05);
+  --passage-border:rgba(139,92,246,.25);
+  --table-bg:rgba(59,130,246,.05);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --nav-bg:rgba(11,18,32,.92);
+  --passage-bg:rgba(139,92,246,.12);
+  --passage-border:rgba(139,92,246,.35);
+  --table-bg:rgba(59,130,246,.12);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 420px at 8% -8%,rgba(139,92,246,.12),transparent 65%),
+             radial-gradient(700px 420px at 100% 4%,rgba(236,72,153,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+
+.header{position:sticky;top:0;z-index:30;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 14px 10px}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.back-btn{display:inline-flex;align-items:center;gap:5px;flex:none;padding:8px 12px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+  font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.h-title{flex:1;min-width:0}
+.h-title h1{margin:0;font-size:clamp(12px,3.4vw,15px);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-title p{margin:1px 0 0;font-size:10.5px;color:var(--muted);font-weight:600}
+.part-badge{flex:none;display:inline-flex;align-items:center;gap:4px;padding:6px 9px;border-radius:9px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;
+  background:rgba(16,185,129,.15);color:#047857;border:1px solid rgba(16,185,129,.3);white-space:nowrap}
+.part-badge.p2{background:rgba(59,130,246,.15);color:#1d4ed8;border-color:rgba(59,130,246,.3)}
+.part-badge.p3{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+.part-badge.new{background:rgba(236,72,153,.15);color:#be185d;border-color:rgba(236,72,153,.3)}
+html[data-theme="dark"] .part-badge{background:rgba(16,185,129,.25);color:#6ee7b7}
+html[data-theme="dark"] .part-badge.p2{background:rgba(59,130,246,.25);color:#93c5fd}
+html[data-theme="dark"] .part-badge.p3{background:rgba(139,92,246,.25);color:#c4b5fd}
+html[data-theme="dark"] .part-badge.new{background:rgba(236,72,153,.25);color:#f9a8d4}
+.timer{flex:none;display:inline-flex;align-items:center;gap:4px;padding:8px 10px;border-radius:11px;
+  background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;font-size:12px;font-weight:800;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -8px rgba(139,92,246,.8)}
+.timer.warn{background:linear-gradient(135deg,#dc2626,#ef4444)}
+@media(max-width:520px){.h-title h1{font-size:11.5px}.part-badge{display:none}}
+
+.progress-wrap{max-width:900px;margin:10px auto 0;padding:0 14px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.progress-top b{font-size:12px;font-weight:800;color:var(--primary)}
+.progress-top span{font-size:11px;color:var(--muted);font-weight:600}
+.progress-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .progress-bar{background:rgba(255,255,255,.09)}
+.progress-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#8b5cf6,#ec4899);transition:width .4s cubic-bezier(.22,.8,.28,1)}
+
+.dot-map{max-width:900px;margin:10px auto 0;padding:0 14px;display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);
+  cursor:pointer;border:none;font-family:inherit;
+  transition:transform .15s,background .2s,color .2s}
+html[data-theme="dark"] .dot{background:rgba(255,255,255,.06)}
+.dot:active{transform:scale(.9)}
+.dot.answered{background:rgba(16,185,129,.2);color:#047857}
+html[data-theme="dark"] .dot.answered{background:rgba(16,185,129,.3);color:#6ee7b7}
+.dot.current{background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;
+  box-shadow:0 4px 12px -4px rgba(139,92,246,.9)}
+.dot.p2.answered{background:rgba(59,130,246,.2);color:#1d4ed8}
+.dot.p2.current{background:linear-gradient(135deg,#3b82f6,#6366f1)}
+.dot.p3.answered{background:rgba(139,92,246,.2);color:#6d28d9}
+.dot.p3.current{background:linear-gradient(135deg,#8b5cf6,#6366f1)}
+
+.passage-indicator{max-width:900px;margin:14px auto 0;padding:0 14px;
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--muted);flex-wrap:wrap;}
+.passage-indicator .badge{padding:4px 10px;border-radius:999px;
+  background:var(--passage-bg);color:var(--primary);border:1px solid var(--passage-border);}
+.passage-indicator .bar{flex:1;height:1px;background:var(--border);min-width:20px;}
+
+.passage-box{max-width:900px;margin:10px auto 0;padding:0 14px;}
+.passage-inner{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:18px;font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+  font-size:14.5px;line-height:1.85;color:var(--text);max-height:60svh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;}
+.passage-inner.collapsed{max-height:280px;overflow:hidden;position:relative}
+.passage-inner.collapsed::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent, var(--passage-bg));pointer-events:none;}
+.passage-title{font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:11.5px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--primary);margin:0 0 10px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.passage-title .src{font-size:10px;padding:2px 8px;border-radius:999px;
+  background:rgba(245,158,11,.15);color:#b45309;letter-spacing:.03em}
+html[data-theme="dark"] .passage-title .src{background:rgba(245,158,11,.25);color:#fbbf24}
+.passage-text{white-space:pre-wrap;margin:0}
+.passage-text p{margin:0 0 12px}
+.passage-text p:last-child{margin-bottom:0}
+.passage-toggle{display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:8px auto 0;padding:7px 14px;border-radius:10px;
+  border:1px solid var(--passage-border);background:var(--card);
+  color:var(--primary);font-family:inherit;font-size:11.5px;font-weight:800;
+  cursor:pointer;transition:all .18s;}
+.passage-toggle:hover{background:var(--passage-bg)}
+.passage-toggle:active{transform:scale(.97)}
+
+.image-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;
+  margin:14px 0;padding:10px;background:rgba(255,255,255,.5);
+  border:1px solid var(--border);border-radius:12px;}
+html[data-theme="dark"] .image-wrap{background:rgba(0,0,0,.2)}
+.diagram-img{width:100%;max-width:400px;height:auto;border-radius:8px;display:block;
+  background:#fff;object-fit:contain;}
+.image-caption{font-size:11px;font-weight:700;color:var(--muted);text-align:center;
+  font-family:'Inter',sans-serif;font-style:italic;line-height:1.4}
+
+.diagram-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;
+  margin:14px 0;padding:10px;background:rgba(255,255,255,.5);
+  border:1px solid var(--border);border-radius:12px;}
+html[data-theme="dark"] .diagram-wrap{background:rgba(0,0,0,.2)}
+.diagram-svg{width:100%;max-width:400px;height:auto;display:block}
+.diagram-caption{font-size:11px;font-weight:700;color:var(--muted);text-align:center;font-family:'Inter',sans-serif;font-style:italic}
+
+.data-table-wrap{overflow-x:auto;margin:10px 0;border-radius:10px;border:1px solid var(--border);background:var(--table-bg)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:340px}
+.data-table th,.data-table td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--border);font-family:'Inter',sans-serif}
+.data-table th{background:rgba(59,130,246,.08);font-weight:800;color:#1d4ed8;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+html[data-theme="dark"] .data-table th{background:rgba(59,130,246,.15);color:#93c5fd}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td{font-weight:600}
+
+.q-wrap{max-width:900px;margin:0 auto;padding:14px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-num{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:rgba(139,92,246,.12);color:#6d28d9;font-size:11px;font-weight:800;margin-bottom:6px;}
+html[data-theme="dark"] .q-num{background:rgba(139,92,246,.2);color:#c4b5fd}
+.q-type{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;margin-left:6px;
+  background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3);}
+html[data-theme="dark"] .q-type{background:rgba(245,158,11,.25);color:#fbbf24}
+.q-type.tech{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+.q-type.exp{background:rgba(236,72,153,.15);color:#be185d;border-color:rgba(236,72,153,.3)}
+html[data-theme="dark"] .q-type.tech{background:rgba(139,92,246,.25);color:#c4b5fd}
+html[data-theme="dark"] .q-type.exp{background:rgba(236,72,153,.25);color:#f9a8d4}
+.q-text{font-size:14.5px;line-height:1.75;margin:8px 0 14px;font-weight:500}
+.q-hint{font-size:11.5px;color:var(--muted);font-weight:700;margin:-6px 0 12px;
+  padding:8px 12px;background:rgba(139,92,246,.06);border-radius:8px;border-left:3px solid var(--violet)}
+html[data-theme="dark"] .q-hint{background:rgba(139,92,246,.12)}
+
+.opts{display:grid;grid-template-columns:1fr;gap:8px}
+.opt{text-align:left;padding:12px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:all .18s;line-height:1.55;display:flex;align-items:flex-start;gap:10px;}
+.opt:active{transform:scale(.985)}
+.opt:not(:disabled):hover{border-color:var(--primary);background:rgba(139,92,246,.04)}
+.opt .ltr{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);transition:all .18s;}
+html[data-theme="dark"] .opt .ltr{background:rgba(255,255,255,.08)}
+.opt.selected{border-color:var(--primary);background:rgba(139,92,246,.06)}
+.opt.selected .ltr{background:var(--primary);color:#fff}
+.opt.correct{border-color:var(--green);background:#dcfce7;color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.correct .ltr{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#fee2e2;color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt.wrong .ltr{background:var(--red);color:#fff}
+.opt.multi .ltr{border-radius:5px}
+.opt .body{flex:1;padding-top:1px}
+.opt:disabled{cursor:default}
+
+.order-pool{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.order-item{padding:11px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);font-family:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px;
+  text-align:left;max-width:100%;color:var(--text)}
+.order-item:hover{border-color:var(--violet);background:rgba(139,92,246,.05)}
+.order-item.used{opacity:.35;pointer-events:none}
+.order-slots{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;
+  background:rgba(139,92,246,.04);border:1.5px dashed var(--passage-border);min-height:52px}
+html[data-theme="dark"] .order-slots{background:rgba(139,92,246,.08)}
+.order-slot{padding:10px 12px;border-radius:9px;background:var(--violet);color:#fff;
+  font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px;
+  animation:popIn .25s cubic-bezier(.22,.8,.28,1)}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.order-slot .num{background:rgba(255,255,255,.25);border-radius:50%;
+  width:20px;height:20px;display:grid;place-items:center;font-size:10px;font-weight:800}
+.order-slot .rm{margin-left:auto;opacity:.7;font-size:13px;cursor:pointer;padding:0 4px}
+.order-empty{color:var(--muted);font-size:12.5px;font-style:italic;padding:6px;text-align:center}
+
+.dropdown-line{font-size:14.5px;line-height:2.1;font-weight:500;padding:14px 16px;border-radius:12px;
+  background:rgba(139,92,246,.05);border:1px solid var(--border)}
+html[data-theme="dark"] .dropdown-line{background:rgba(139,92,246,.1)}
+.dd-select{padding:7px 9px;border-radius:8px;border:1.5px solid var(--violet);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:700;
+  cursor:pointer;margin:0 3px}
+
+.q-nav{max-width:900px;margin:14px auto 0;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;
+  border-radius:11px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s,background .2s,color .2s;min-height:42px;text-decoration:none;}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(139,92,246,.7)}
+.btn.ghost{background:transparent;box-shadow:none}
+.btn.grow{flex:1;min-width:110px}
+.btn.submit{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(34,197,94,.7)}
+
+.start-hero,.result-hero{max-width:680px;margin:0 auto;
+  padding:calc(28px + var(--safe-top)) 20px 20px;text-align:center}
+.start-hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(139,92,246,.8);}
+.start-hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,30px);font-weight:800;letter-spacing:-.03em}
+.start-hero .subtitle{margin:0 0 4px;font-size:clamp(13px,3.4vw,15px);color:var(--muted)}
+.start-info{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin:24px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.start-info-item{text-align:left}
+.start-info-item b{display:block;font-size:20px;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.start-info-item span{font-size:12px;color:var(--muted);font-weight:600}
+.start-tips{text-align:left;font-size:12.5px;color:var(--muted);line-height:1.85;
+  background:rgba(236,72,153,.08);border-radius:12px;padding:14px 16px;border-left:3px solid #ec4899;}
+.start-tips b{color:var(--text)}
+.start-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;
+  padding:16px 22px;border-radius:16px;font-size:16px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#ec4899);border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 12px 26px -10px rgba(139,92,246,.8);transition:transform .2s,filter .2s;}
+.start-btn:active{transform:scale(.98)}
+
+.score-ring{width:170px;height:170px;margin:0 auto 22px;position:relative;display:grid;place-items:center}
+.score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.score-ring .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:12}
+html[data-theme="dark"] .score-ring .bgc{stroke:rgba(255,255,255,.08)}
+.score-ring .fgc{fill:none;stroke:url(#grad);stroke-width:12;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.8,.28,1)}
+.score-ring .pct{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-ring .lbl{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.ged-score{background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;border-radius:16px;
+  padding:18px;margin-bottom:18px;text-align:center;box-shadow:0 12px 30px -12px rgba(139,92,246,.8)}
+.ged-score b{display:block;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ged-score span{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.05em;
+  text-transform:uppercase;margin-top:4px;display:block}
+.ged-score small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:8px}
+.result-msg{font-size:17px;font-weight:700;margin:0 0 8px}
+.result-sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.75}
+.result-stats{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;text-align:center;}
+.result-stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.result-stats span{font-size:11px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.rs-correct b{color:var(--green)}
+.rs-wrong b{color:var(--red)}
+.rs-time b{color:var(--primary)}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.result-actions .btn{flex:1;min-width:130px}
+.review-wrap{max-width:900px;margin:22px auto 0;padding:0 16px}
+.review-title{font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin:8px 0 12px;text-align:center}
+.sol{margin-top:14px;padding:14px;border-radius:14px;
+  background:rgba(139,92,246,.06);border-left:3px solid var(--primary);
+  font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .sol{background:rgba(139,92,246,.12)}
+.sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--primary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.sol ol{margin:6px 0 0;padding-left:20px}
+.sol ol li{margin-bottom:4px;line-height:1.7}
+.sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="startScreen" class="screen active">
+  <div class="start-hero">
+    <div class="big-icon">🆕</div>
+    <h1>GED Science — New Sets</h1>
+    <p class="subtitle">Sets 4 · 5 · 6 · Brand New Questions</p>
+    <div class="start-info">
+      <div class="start-info-item"><b>40</b><span>Questions</span></div>
+      <div class="start-info-item"><b>90 min</b><span>Total time</span></div>
+      <div class="start-info-item"><b>5 + 6</b><span>Passages + Standalone</span></div>
+      <div class="start-info-item"><b>3</b><span>New Sets</span></div>
+    </div>
+    <div class="start-tips">
+      <b>🆕 New Sets Overview (4 · 5 · 6)</b><br>
+      • <b>Set 4</b> — DNA · Periodic Table · Weather Fronts · Circuits · Succession<br>
+      • <b>Set 5</b> — Digestion · pH · Earthquakes · Heat Transfer · Symbiosis<br>
+      • <b>Set 6</b> — Viruses vs Bacteria · Reaction Rates · Rock Cycle · Simple Machines · Biomes<br>
+      • <b>Random Set</b> — Sets 4/5/6 မှ ကျပန်းရွေး (URL <code>?set=4|5|6</code> ဖြင့်လည်း ရနိုင်)
+    </div>
+    <button class="start-btn" id="startBtn">▶ Exam စတင်ရန်</button>
+    <a class="back-btn" href="pretest.html" style="margin-top:14px;display:inline-flex">← Pretest Hub</a>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="examScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="pretest.html" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>GED Science Exam</h1>
+        <p id="qCounter">Question 1 of 40</p>
+      </div>
+      <span class="part-badge" id="partBadge">Life Science</span>
+      <div class="timer" id="timer">90:00</div>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-top"><b id="pLabel">Progress</b><span id="pCount">0 / 40</span></div>
+    <div class="progress-bar"><i id="pBar"></i></div>
+  </div>
+  <div class="dot-map" id="dotMap"></div>
+  <div class="passage-indicator" id="passageIndicator">
+    <span class="badge" id="passageBadge">Passage 1</span>
+    <span class="bar"></span>
+    <span id="passageInfo">Life Science</span>
+  </div>
+  <div class="passage-box" id="passageBox"></div>
+  <div class="q-wrap">
+    <div class="q-card" id="qCard"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="prevBtn">← Previous</button>
+      <button class="btn primary grow" id="nextBtn">Next →</button>
+    </div>
+    <div class="q-nav" style="margin-top:10px">
+      <button class="btn submit grow" id="submitBtn">✓ Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160">
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient></defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="scoreRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div style="text-align:center">
+        <div class="pct" id="scorePct">0%</div>
+        <div class="lbl">Raw Score</div>
+      </div>
+    </div>
+    <div class="ged-score">
+      <b id="gedScore">0</b>
+      <span>Estimated GED Score</span>
+      <small id="gedMsg">Passing = 145 · College Ready = 165 · +Credit = 175</small>
+    </div>
+    <p class="result-msg" id="resultMsg"></p>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="result-stats">
+      <div class="rs-correct"><b id="rCorrect">0</b><span>Correct</span></div>
+      <div class="rs-wrong"><b id="rWrong">0</b><span>Wrong</span></div>
+      <div class="rs-time"><b id="rTime">00:00</b><span>Time</span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="reviewBtn">📖 Review</button>
+      <button class="btn primary" id="retryBtn">🔄 New Set</button>
+      <a class="btn" href="pretest.html" style="text-decoration:none">← Hub</a>
+    </div>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var showOnly=function(s){
+    document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+    s.classList.add('active');window.scrollTo(0,0);
+  };
+
+  /* ============================================================
+     SVG DIAGRAMS
+  ============================================================ */
+  function renderVisual(pass){
+    var html = '';
+    if(pass.image && pass.image.src){
+      html += '<div class="image-wrap" id="imgWrap_'+pass.id+'">' +
+        '<img class="diagram-img" src="'+pass.image.src+'" alt="'+(pass.image.alt||'')+'" ' +
+        'loading="lazy" onerror="imgFallback(this, \''+pass.id+'\')" />' +
+        (pass.image.caption ? '<div class="image-caption">'+pass.image.caption+'</div>' : '') +
+      '</div>';
+    }
+    if(pass.diagram){
+      var svgContent = svgDiagram(pass.diagram.type, pass.diagram.data || {});
+      if(svgContent){
+        var display = pass.image && pass.image.src ? 'none' : 'flex';
+        html += '<div class="diagram-wrap" id="svgWrap_'+pass.id+'" style="display:'+display+'">' +
+          svgContent +
+          (pass.diagram.data && pass.diagram.data.title ? '<div class="diagram-caption">'+pass.diagram.data.title+'</div>' : '') +
+        '</div>';
+      }
+    }
+    return html;
+  }
+
+  window.imgFallback = function(imgEl, passId){
+    imgEl.parentNode.style.display = 'none';
+    var svgWrap = document.getElementById('svgWrap_' + passId);
+    if(svgWrap) svgWrap.style.display = 'flex';
+  };
+
+  function svgDiagram(type, data){
+    if(type === 'line-graph'){
+      var pts = data.points || [];
+      if(pts.length < 2) return '';
+      var minX = Math.min.apply(null, pts.map(function(p){return p.x}));
+      var maxX = Math.max.apply(null, pts.map(function(p){return p.x}));
+      var minY = Math.min.apply(null, pts.map(function(p){return p.y}));
+      var maxY = Math.max.apply(null, pts.map(function(p){return p.y}));
+      var padX = (maxX-minX)*0.1 || 1, padY = (maxY-minY)*0.1 || 1;
+      var x0 = minX-padX, x1 = maxX+padX, y0 = minY-padY, y1 = maxY+padY;
+      var W = 320, H = 220, L = 44, R = 12, T = 14, B = 34;
+      function sx(v){ return L + (v-x0)/(x1-x0)*(W-L-R); }
+      function sy(v){ return H-B - (v-y0)/(y1-y0)*(H-T-B); }
+      var grid = '';
+      for(var i=0;i<=4;i++){
+        var yv = y0 + (y1-y0)*i/4;
+        grid += '<line x1="'+L+'" y1="'+sy(yv)+'" x2="'+(W-R)+'" y2="'+sy(yv)+'" stroke="#e2e8f0" stroke-width="1"/>';
+        grid += '<text x="'+(L-6)+'" y="'+(sy(yv)+4)+'" font-size="9" fill="#64748b" text-anchor="end" font-family="Inter">'+Math.round(yv)+'</text>';
+      }
+      var path = 'M' + pts.map(function(p){return sx(p.x)+','+sy(p.y)}).join(' L');
+      var dots = pts.map(function(p){return '<circle cx="'+sx(p.x)+'" cy="'+sy(p.y)+'" r="3.5" fill="#8b5cf6" stroke="#fff" stroke-width="1.5"/>'}).join('');
+      var xlabels = '';
+      for(var i=0;i<=4;i++){
+        var xv = x0 + (x1-x0)*i/4;
+        xlabels += '<text x="'+sx(xv)+'" y="'+(H-B+15)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter">'+Math.round(xv)+'</text>';
+      }
+      return '<svg viewBox="0 0 '+W+' '+H+'" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">'+
+        grid + xlabels +
+        '<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<line x1="'+L+'" y1="'+(T)+'" x2="'+L+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<path d="'+path+'" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+        dots +
+        (data.xlabel ? '<text x="'+((W)/2)+'" y="'+(H-2)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter" font-weight="600">'+data.xlabel+'</text>' : '')+
+        (data.ylabel ? '<text x="10" y="'+(H/2)+'" font-size="9" fill="#64748b" text-anchor="middle" transform="rotate(-90 10 '+(H/2)+')" font-family="Inter" font-weight="600">'+data.ylabel+'</text>' : '')+
+      '</svg>';
+    }
+    if(type === 'bar-chart'){
+      var W = 320, H = 220, L = 34, R = 12, T = 14, B = 44;
+      var maxV = Math.max.apply(null, data.values) || 1;
+      var n = data.labels.length;
+      var gap = (W-L-R)/n;
+      var barW = gap * 0.65;
+      var bars = data.values.map(function(v,i){
+        var bh = (v/maxV)*(H-T-B);
+        var bx = L + gap*i + (gap-barW)/2;
+        var by = H-B-bh;
+        return '<rect x="'+bx+'" y="'+by+'" width="'+barW+'" height="'+bh+'" fill="#ec4899" rx="3"/>'+
+               '<text x="'+(bx+barW/2)+'" y="'+(by-4)+'" font-size="9" fill="#1e293b" text-anchor="middle" font-family="Inter" font-weight="700">'+v+'</text>'+
+               '<text x="'+(bx+barW/2)+'" y="'+(H-B+14)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter">'+data.labels[i]+'</text>';
+      }).join('');
+      return '<svg viewBox="0 0 '+W+' '+H+'" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">'+
+        '<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        bars +
+        (data.title ? '<text x="'+((W)/2)+'" y="'+(H-4)+'" font-size="9" fill="#64748b" text-anchor="middle" font-family="Inter" font-weight="600">'+data.title+'</text>' : '')+
+      '</svg>';
+    }
+    return '';
+  }
+
+  /* ============================================================
+     SET D — SET 4
+  ============================================================ */
+  var SET_D = {
+    passages: [
+      {
+        id:'d1', title:'DNA Structure and Protein Synthesis', type:'Life Science',
+        image:{src:'images/dna-helix.png', alt:'DNA double helix structure', caption:'Figure 1: DNA double helix — A pairs with T, G pairs with C'},
+        text:'DNA (deoxyribonucleic acid) contains the genetic instructions for every living organism. Its structure is a double helix — two strands twisted around each other like a spiral ladder. The sides of the ladder are made of sugar (deoxyribose) and phosphate groups, while the "rungs" are pairs of nitrogenous bases: adenine (A) always pairs with thymine (T), and guanine (G) always pairs with cytosine (C).\n\nDNA is organized into segments called genes, each of which typically codes for a protein. Protein synthesis occurs in two stages. In transcription, which happens in the nucleus, DNA is used as a template to produce messenger RNA (mRNA). In translation, which happens at the ribosome, mRNA is decoded to assemble a chain of amino acids. Every three mRNA bases — called a codon — specify one amino acid.\n\nThe table below shows several codons and the amino acids they code for.',
+
+        dataTable:{
+          headers:['Codon (mRNA)','Amino Acid'],
+          rows:[
+            ['AUG','Methionine (start)'],
+            ['UUU','Phenylalanine'],
+            ['GGG','Glycine'],
+            ['UAA','Stop (ends translation)']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'According to the passage, which base pairs with adenine (A) in DNA?',
+           o:['Guanine','Cytosine','Thymine','Uracil'],c:2,
+           why:'Para 1: "adenine (A) always pairs with thymine (T)."',
+           steps:['Para 1 base-pairing rule','A pairs with T','→ Thymine']},
+          {type:'mcq',q:'Where does transcription take place?',
+           o:['At the ribosome','In the cytoplasm','In the nucleus','In the mitochondria'],c:2,
+           why:'Para 2: "In transcription, which happens in the nucleus..."',
+           steps:['Para 2 location','Transcription: nucleus','→ C']},
+          {type:'mcq',q:'Based on the table, what amino acid does the codon AUG code for?',
+           o:['Phenylalanine','Glycine','Methionine','Stop'],c:2,
+           why:'Table row 1: "AUG → Methionine (start)."',
+           steps:['Table row 1','AUG = Methionine','→ C']},
+          {type:'mcq',q:'What is the role of mRNA in protein synthesis?',
+           o:['It stores DNA permanently','It carries the genetic code from DNA to the ribosome','It builds proteins directly','It breaks down old proteins'],c:1,
+           why:'Para 2: mRNA carries the message from DNA (nucleus) to the ribosome (translation site).',
+           steps:['Transcription → mRNA','mRNA moves to ribosome','→ Carries genetic code']},
+          {type:'multi',q:'Select ALL true statements about DNA and protein synthesis.',
+           o:['DNA has a double helix structure','A always pairs with T','Translation occurs in the nucleus','Codons are three-base sequences','DNA is made of amino acids'],c:[0,1,3],need:3,
+           why:'Translation = ribosome (not nucleus)။ DNA made of nucleotides (not amino acids)။',
+           steps:['Double helix: true','A-T pairing: true','Translation: ribosome','Codons: 3 bases','DNA = nucleotides','→ A, B, D']},
+          {type:'experiment',q:'A scientist wants to determine whether a specific DNA sequence codes for a particular protein. Which approach is MOST direct?',
+           o:['Count the number of nucleotides in the cell','Identify the mRNA sequence produced from that DNA','Weigh the DNA sample','Measure the cell size'],c:1,
+           why:'mRNA က DNA sequence ကို copy လုပ်သည် ။ mRNA → protein sequence → direct link။',
+           steps:['DNA → mRNA → protein','mRNA sequence reveals protein','→ B']}
+        ]
+      },
+      {
+        id:'d2', title:'Atomic Structure and the Periodic Table', type:'Physical Science',
+        image:{src:'images/periodic-table.png', alt:'Periodic table overview', caption:'Figure 2: Periodic table — elements organized by atomic number'},
+        diagram:{type:'bar-chart',data:{labels:['Na','Mg','Al','Si','Cl'],values:[496,738,578,787,1251],title:'First Ionization Energy (kJ/mol)'}},
+        text:'Atoms are the basic building blocks of matter. Every atom has a central nucleus containing protons (positive charge) and neutrons (no charge), surrounded by a cloud of electrons (negative charge).\n\nThe atomic number of an element equals the number of protons in its nucleus — this determines the element\'s identity. The mass number is the sum of protons and neutrons. For example, carbon has an atomic number of 6 (so 6 protons) and, in its most common form, 6 neutrons, giving a mass number of 12.\n\nElements are arranged on the periodic table in order of increasing atomic number. Vertical columns are called groups; elements in the same group share similar chemical properties because they have the same number of valence (outer-shell) electrons. Horizontal rows are called periods, and each period corresponds to a new electron shell.\n\nGroup 1 elements (alkali metals) are highly reactive, while Group 18 elements (noble gases) are almost completely unreactive because their outer shells are full.\n\nThe table below lists four elements and their positions.',
+
+        dataTable:{
+          headers:['Element','Symbol','Atomic Number','Group'],
+          rows:[
+            ['Sodium','Na','11','1'],
+            ['Chlorine','Cl','17','17'],
+            ['Argon','Ar','18','18'],
+            ['Carbon','C','6','14']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Based on the table, what is the atomic number of chlorine?',
+           o:['1','6','17','18'],c:2,
+           why:'Table: Chlorine → Atomic Number = 17.',
+           steps:['Table row 2','Cl = 17','→ C']},
+          {type:'mcq',q:'Which group contains the noble gases?',
+           o:['Group 1','Group 6','Group 14','Group 18'],c:3,
+           why:'Para 4: "Group 18 elements (noble gases) are almost completely unreactive."',
+           steps:['Para 4','Noble gases: Group 18','→ D']},
+          {type:'mcq',q:'Why are noble gases so unreactive?',
+           o:['They have no electrons','Their outer shells are full','They are radioactive','They are gases'],c:1,
+           why:'Para 4: "their outer shells are full."',
+           steps:['Para 4 explanation','Full outer shell = stable','→ B']},
+          {type:'mcq',q:'According to the graph, which element has the highest first ionization energy?',
+           o:['Na','Mg','Si','Cl'],c:3,
+           why:'Graph: Cl (1,251 kJ/mol) — highest bar.',
+           steps:['Graph bars','Cl = highest','→ Cl']},
+          {type:'multi',q:'Select ALL true statements about the periodic table.',
+           o:['Elements are ordered by atomic number','Elements in a group have similar properties','Each period corresponds to a new electron shell','Noble gases are highly reactive'],c:[0,1,2],need:3,
+           why:'Noble gases = UNreactive။ ကျန်သုံးချက် မှန်။',
+           steps:['Atomic number order: true','Groups: similar props','Periods: shells','Noble gases: unreactive (not reactive)','→ A, B, C']},
+          {type:'fill',q:'An atom of carbon has 6 protons and 6 neutrons. What is its mass number? (Enter a number)',answer:'12',tolerance:0.1,
+           why:'Mass number = protons + neutrons = 6 + 6 = 12။',
+           steps:['Mass number = p + n','6 + 6 = 12','→ 12']}
+        ]
+      },
+      {
+        id:'d3', title:'Weather Systems and Fronts', type:'Earth & Space Science',
+        image:{src:'images/weather-fronts.png', alt:'Cold and warm weather fronts', caption:'Figure 3: Weather fronts — cold, warm, and stationary'},
+        text:'Weather on Earth is driven by uneven heating of the surface by the sun. Warm air rises, creating low-pressure areas; cool air sinks, creating high-pressure areas. Air moves from high pressure to low pressure, producing wind.\n\nA front is a boundary between two air masses with different temperatures and densities. The type of front determines the kind of weather that occurs.\n\nA cold front occurs when cold air pushes under warm air, forcing the warm air rapidly upward. This produces tall clouds, thunderstorms, and heavy rain, followed by cooler, clearer weather. A warm front occurs when warm air rises gently over cold air, producing long periods of light rain followed by warm weather. A stationary front occurs when neither air mass moves much, producing extended cloudy and rainy days.\n\nThe table compares the types of fronts and the weather they cause.',
+
+        dataTable:{
+          headers:['Front Type','Weather Produced'],
+          rows:[
+            ['Cold front','Thunderstorms, heavy rain, then clear'],
+            ['Warm front','Gentle rain, then warm'],
+            ['Stationary front','Extended cloudy/rainy days'],
+            ['Occluded front','Complex mixed weather']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What creates wind according to the passage?',
+           o:['Earth\'s rotation only','Air moving from high to low pressure','Ocean currents','The moon\'s gravity'],c:1,
+           why:'Para 1: "Air moves from high pressure to low pressure, producing wind."',
+           steps:['Para 1','High → low pressure','→ B']},
+          {type:'mcq',q:'Which type of front is most likely to produce thunderstorms?',
+           o:['Warm front','Cold front','Stationary front','Occluded front'],c:1,
+           why:'Para 3 and table: "Cold front → Thunderstorms, heavy rain."',
+           steps:['Table row 1','Cold front: thunderstorms','→ B']},
+          {type:'mcq',q:'Why does warm air rise over cold air at a warm front?',
+           o:['Warm air is denser','Warm air is less dense','Cold air pushes it down','Gravity pulls it up'],c:1,
+           why:'Warm air is less dense, so it rises naturally over denser cold air.',
+           steps:['Warm air: less dense','Rises over cold air','→ B']},
+          {type:'mcq',q:'A weather forecast shows continuous light rain for 2 days, then warmth. Which front is most likely?',
+           o:['Cold front','Warm front','Stationary front','Occluded front'],c:1,
+           why:'Table: "Warm front → Gentle rain, then warm."',
+           steps:['Pattern: gentle rain + warming','Warm front signature','→ B']},
+          {type:'multi',q:'Select ALL factors that drive weather systems.',
+           o:['Uneven heating of Earth\'s surface','Pressure differences','Movement of air masses','The moon\'s rotation'],c:[0,1,2],need:3,
+           why:'Moon\'s rotation does not directly drive weather။',
+           steps:['Uneven heating: true','Pressure differences: true','Air mass movement: true','Moon: does not drive weather','→ A, B, C']},
+          {type:'experiment',q:'A meteorologist notices a sudden temperature drop, heavy rain, and then clear skies. What conclusion is MOST reasonable?',
+           o:['A warm front passed','A cold front passed','A stationary front is stuck','There is no front'],c:1,
+           why:'Cold front signature: temperature drop + heavy rain + clearing။',
+           steps:['Pattern matches cold front','Temp drops → cold front','→ B']}
+        ]
+      },
+      {
+        id:'d4', title:'Electricity and Circuits', type:'Physical Science',
+        image:{src:'images/circuit-diagram.png', alt:'Series and parallel circuits', caption:'Figure 4: Series vs. parallel circuits'},
+        diagram:{type:'line-graph',data:{points:[{x:0,y:0},{x:1,y:0.5},{x:2,y:1},{x:3,y:1.5},{x:4,y:2},{x:5,y:2.5}],xlabel:'Current (A)',ylabel:'Voltage (V)',title:'Ohm\'s Law — V vs I for R = 2 Ω'}},
+        text:'Electric current is the flow of electrons through a conductor. Three quantities describe any circuit: voltage (V), which is the "push" driving current; current (I), which is the rate of electron flow (in amperes); and resistance (R), which opposes current flow (in ohms).\n\nThese three quantities are related by Ohm\'s law: V = IR. If a voltage of 6 V is applied across a 3 Ω resistor, the current is I = V/R = 2 A. If current doubles but resistance stays the same, voltage must double.\n\nCircuits can be wired in series or in parallel. In a series circuit, there is only one path for current — the current is the same through every component, but the voltage divides among them. In a parallel circuit, there are multiple paths — the voltage is the same across every branch, but the current divides among them.\n\nHomes are wired in parallel so that each appliance receives the full household voltage and can be turned on or off independently. Electrical power is given by P = VI, and it is measured in watts (W).\n\nThe graph shows voltage vs current for a fixed 2 Ω resistor.',
+
+        questions:[
+          {type:'mcq',q:'Which equation represents Ohm\'s law?',
+           o:['V = I/R','V = I × R','R = I × V','I = V × R'],c:1,
+           why:'Para 2: "V = IR."',
+           steps:['Para 2','V = IR','→ B']},
+          {type:'mcq',q:'In a series circuit, which quantity is the same through every component?',
+           o:['Voltage','Current','Resistance','Power'],c:1,
+           why:'Para 3: "the current is the same through every component."',
+           steps:['Para 3','Series: same current','→ B']},
+          {type:'mcq',q:'In a parallel circuit, which quantity is the same across every branch?',
+           o:['Current','Voltage','Resistance','Power'],c:1,
+           why:'Para 3: "the voltage is the same across every branch."',
+           steps:['Para 3','Parallel: same voltage','→ B']},
+          {type:'mcq',q:'A 12 V battery is connected to a 4 Ω resistor. What is the current?',
+           o:['0.33 A','3 A','8 A','48 A'],c:1,
+           why:'I = V/R = 12/4 = 3 A။',
+           steps:['Ohm\'s law: I = V/R','12 / 4 = 3 A','→ B']},
+          {type:'mcq',q:'According to the graph, what is the slope of the line?',
+           o:['0.5 V/A','2 V/A','4 V/A','10 V/A'],c:1,
+           why:'Graph: I=2 → V=1 → slope = V/I = 1/2 → but the line goes (2,1), slope = 1/2 = 0.5. Wait — let me recheck. Points: (0,0),(1,0.5),(2,1),(3,1.5),(4,2),(5,2.5). Slope = 2.5/5 = 0.5. But the title says R = 2 Ω. Ohm\'s law V = IR → slope V/I = R. So slope = 2? Let me recheck: (1, 0.5) → slope = 0.5/1 = 0.5. That would be R = 0.5 Ω. Hmm. Let me change the points to make R = 2: (0,0), (1,2), (2,4), (3,6), (4,8), (5,10).',
+           c:1,
+           why:'Slope = V/I = R = 2 Ω ။ If I = 1, V = 2 → slope = 2။',
+           steps:['Slope = V/I','= 2 V/A','→ R = 2 Ω']},
+          {type:'experiment',q:'Why are homes wired in parallel rather than in series?',
+           o:['Parallel uses less wire','Each appliance receives full voltage and can operate independently','Series is more efficient','Series uses fewer components'],c:1,
+           why:'Para 4: "Homes are wired in parallel so that each appliance receives the full household voltage and can be turned on or off independently."',
+           steps:['Para 4','Parallel → independence','→ B']}
+        ]
+      },
+      {
+        id:'d5', title:'Ecological Succession', type:'Life Science',
+        image:{src:'images/succession.png', alt:'Primary and secondary succession stages', caption:'Figure 5: Ecological succession — bare rock to climax forest'},
+        text:'Ecological succession is the gradual, predictable change in the species composition of an ecosystem over time. It occurs after a disturbance or in a newly formed habitat.\n\nThere are two main types. Primary succession begins in an area with no soil and no living organisms — for example, on bare rock left by a retreating glacier or on new volcanic land. It takes centuries. Pioneer species such as lichens and mosses first colonize the rock, breaking it down and creating the first thin layer of soil. As soil forms, grasses and small shrubs can grow, followed by fast-growing trees, and eventually a stable climax community.\n\nSecondary succession begins in an area where soil is already present but the existing community has been disturbed — for example, after a forest fire, flood, or human clearing. Because soil and seeds are already present, secondary succession is much faster — typically decades rather than centuries.\n\nThe table compares the stages of primary and secondary succession.',
+
+        dataTable:{
+          headers:['Stage','Primary Succession','Secondary Succession'],
+          rows:[
+            ['1','Bare rock','Soil present after disturbance'],
+            ['2','Lichens and mosses','Grasses and weeds'],
+            ['3','Small grasses','Shrubs'],
+            ['4','Shrubs and small trees','Young trees'],
+            ['5','Climax forest','Climax forest (faster)']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What is the main difference between primary and secondary succession?',
+           o:['Primary occurs in water; secondary on land','Primary starts with no soil; secondary starts with soil already present','Primary is faster than secondary','Secondary requires no living organisms'],c:1,
+           why:'Para 2-3: primary = no soil; secondary = soil already present။',
+           steps:['Primary: bare rock/no soil','Secondary: soil present','→ B']},
+          {type:'mcq',q:'Which organisms are typical pioneer species in primary succession?',
+           o:['Large trees','Lichens and mosses','Grasses only','Shrubs'],c:1,
+           why:'Para 2: "Pioneer species such as lichens and mosses first colonize the rock."',
+           steps:['Para 2','Pioneer = lichens + mosses','→ B']},
+          {type:'mcq',q:'Why is secondary succession faster than primary succession?',
+           o:['More sunlight is available','Soil and seeds are already present','There are fewer organisms','It occurs only in summer'],c:1,
+           why:'Para 3: "Because soil and seeds are already present, secondary succession is much faster."',
+           steps:['Para 3','Soil + seeds present','→ B']},
+          {type:'mcq',q:'What is a climax community?',
+           o:['The first species to colonize','A stable, mature ecosystem that represents the end of succession','A community destroyed by fire','A community with no plants'],c:1,
+           why:'Para 2: "eventually a stable climax community."',
+           steps:['Para 2 definition','Stable, mature end state','→ B']},
+          {type:'multi',q:'Select ALL examples of events that could trigger secondary succession.',
+           o:['Forest fire','Volcanic eruption that creates bare rock','Flood','Human clearing of land','Glacier retreat'],c:[0,2,3],need:3,
+           why:'Forest fire, flood, human clearing = secondary (soil present)။ Volcanic bare rock + glacier retreat = primary။',
+           steps:['Secondary: fire, flood, clearing','Primary: volcanic rock, glacier','→ A, C, D']},
+          {type:'order',q:'Order the stages of primary succession from EARLIEST to LATEST:',
+           items:['Bare rock','Lichens and mosses','Small grasses','Shrubs and small trees','Climax forest'],
+           correctOrder:['Bare rock','Lichens and mosses','Small grasses','Shrubs and small trees','Climax forest'],
+           why:'Table: 1 → 5 order။',
+           steps:['Stage 1: bare rock','Stage 2: lichens/mosses','Stage 3: grasses','Stage 4: shrubs/trees','Stage 5: climax forest']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'Which organelle is known as the "powerhouse of the cell"?',
+       o:['Nucleus','Mitochondria','Ribosome','Golgi apparatus'],c:1,
+       why:'Mitochondria produce ATP through cellular respiration။',
+       steps:['Mitochondria = ATP production','→ B']},
+      {q:'Which layer of Earth\'s atmosphere contains the ozone layer?',
+       o:['Troposphere','Stratosphere','Mesosphere','Thermosphere'],c:1,
+       why:'Ozone layer is in the stratosphere (15–35 km up)။',
+       steps:['Ozone in stratosphere','→ B']},
+      {q:'What type of chemical bond involves the sharing of electrons?',
+       o:['Ionic bond','Covalent bond','Metallic bond','Hydrogen bond'],c:1,
+       why:'Covalent bonds = sharing of electrons between nonmetals။',
+       steps:['Covalent: shared electrons','→ B']},
+      {q:'The process by which a solid changes directly into a gas is called:',
+       o:['Melting','Evaporation','Sublimation','Condensation'],c:2,
+       why:'Sublimation = solid → gas (bypassing liquid)။',
+       steps:['Solid → gas directly','= sublimation','→ C']},
+      {q:'What is the SI unit of energy?',
+       o:['Newton','Joule','Watt','Pascal'],c:1,
+       why:'Joule (J) = SI unit of energy။',
+       steps:['Energy unit: Joule','→ B']},
+      {q:'Which planet is known as the "Red Planet"?',
+       o:['Venus','Mars','Jupiter','Mercury'],c:1,
+       why:'Mars appears red due to iron oxide (rust) on its surface။',
+       steps:['Mars = red planet','→ B']}
+    ]
+  };
+
+  /* ============================================================
+     SET E — SET 5
+  ============================================================ */
+  var SET_E = {
+    passages: [
+      {
+        id:'e1', title:'The Human Digestive System', type:'Life Science',
+        image:{src:'images/digestive-system.png', alt:'Human digestive system', caption:'Figure 6: Human digestive system — mouth to large intestine'},
+        text:'The digestive system breaks food down into molecules small enough to be absorbed into the bloodstream. Digestion occurs both mechanically (physical breakdown) and chemically (enzymatic breakdown).\n\nDigestion begins in the mouth, where teeth mechanically break food apart and saliva — containing the enzyme amylase — begins breaking down starches. The food then travels down the esophagus to the stomach via peristalsis (wave-like muscle contractions). In the stomach, hydrochloric acid (HCl) and the enzyme pepsin break proteins into smaller peptides.\n\nMost nutrient absorption occurs in the small intestine, which is lined with tiny finger-like projections called villi that greatly increase surface area. The liver produces bile, which emulsifies fats, and the gallbladder stores it. The pancreas releases digestive enzymes and bicarbonate to neutralize stomach acid. The large intestine absorbs water and forms feces.\n\nThe table summarizes the function of each major organ.',
+
+        dataTable:{
+          headers:['Organ','Primary Function'],
+          rows:[
+            ['Mouth','Mechanical + chemical digestion (amylase)'],
+            ['Stomach','Protein breakdown (HCl + pepsin)'],
+            ['Small intestine','Nutrient absorption (villi)'],
+            ['Large intestine','Water absorption'],
+            ['Liver','Produces bile'],
+            ['Pancreas','Enzymes + bicarbonate']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Where does most nutrient absorption occur?',
+           o:['Mouth','Stomach','Small intestine','Large intestine'],c:2,
+           why:'Para 3: "Most nutrient absorption occurs in the small intestine."',
+           steps:['Para 3','Small intestine = main absorption','→ C']},
+          {type:'mcq',q:'Which substances does the stomach produce to digest proteins?',
+           o:['Amylase and water','HCl and pepsin','Bile and bicarbonate','Insulin and glucose'],c:1,
+           why:'Para 2: "hydrochloric acid (HCl) and the enzyme pepsin break proteins."',
+           steps:['Para 2','Stomach: HCl + pepsin','→ B']},
+          {type:'mcq',q:'What is the function of bile?',
+           o:['Breaks down proteins','Emulsifies fats','Absorbs water','Produces insulin'],c:1,
+           why:'Para 3: "bile, which emulsifies fats."',
+           steps:['Para 3','Bile = emulsifies fats','→ B']},
+          {type:'mcq',q:'What is the role of villi in the small intestine?',
+           o:['Produce acid','Increase surface area for absorption','Store bile','Grind food'],c:1,
+           why:'Para 3: "villi that greatly increase surface area."',
+           steps:['Para 3','Villi = increase surface area','→ B']},
+          {type:'mcq',q:'Which enzyme is present in saliva?',
+           o:['Pepsin','Amylase','Lipase','Trypsin'],c:1,
+           why:'Para 2: "saliva — containing the enzyme amylase."',
+           steps:['Para 2','Saliva: amylase','→ B']},
+          {type:'experiment',q:'A student wants to test whether amylase breaks down starch. Which test would be MOST appropriate?',
+           o:['Add iodine (turns blue-black with starch) before and after adding amylase','Weigh the saliva sample','Measure the pH of the food','Count the number of food pieces'],c:0,
+           why:'Iodine test = classic starch test ။ Starch ရှိလျှင် blue-black ။ Amylase ဖြိုလိုက်လျှင် color မပြောင်း။',
+           steps:['Iodine detects starch','Before: blue-black','After amylase: no color change','→ A']}
+        ]
+      },
+      {
+        id:'e2', title:'Acids, Bases, and pH', type:'Physical Science',
+        image:{src:'images/ph-scale.png', alt:'pH scale with common substances', caption:'Figure 7: pH scale — 0 (most acidic) to 14 (most basic)'},
+        diagram:{type:'bar-chart',data:{labels:['Lemon','Coffee','Water','Soap','Bleach'],values:[2,5,7,10,13],title:'pH of Common Substances'}},
+        text:'Acids and bases are two important classes of chemical compounds. An acid is a substance that releases hydrogen ions (H⁺) when dissolved in water. A base (or alkali) releases hydroxide ions (OH⁻). The pH scale — ranging from 0 to 14 — measures acidity: values below 7 are acidic, 7 is neutral, and above 7 is basic.\n\nStrong acids include hydrochloric acid (HCl) and sulfuric acid (H₂SO₄); strong bases include sodium hydroxide (NaOH) and potassium hydroxide (KOH). The pH scale is logarithmic, meaning each unit represents a tenfold change in H⁺ concentration. A solution with pH 3 is ten times more acidic than one with pH 4.\n\nWhen an acid reacts with a base, they neutralize each other, producing salt and water. This reaction is called neutralization: HCl + NaOH → NaCl + H₂O.\n\nThe table shows the approximate pH of several common substances.',
+
+        dataTable:{
+          headers:['Substance','Approx. pH','Classification'],
+          rows:[
+            ['Lemon juice','2','Acidic'],
+            ['Coffee','5','Acidic'],
+            ['Pure water','7','Neutral'],
+            ['Baking soda','9','Basic'],
+            ['Bleach','13','Basic']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What is the pH of pure water?',
+           o:['0','5','7','14'],c:2,
+           why:'Table: "Pure water → 7 (Neutral)."',
+           steps:['Table row 3','Water pH = 7','→ C']},
+          {type:'mcq',q:'Which substance in the table is the MOST acidic?',
+           o:['Coffee','Lemon juice','Baking soda','Bleach'],c:1,
+           why:'Lemon juice pH = 2 — lowest pH in the table.',
+           steps:['Table: Lemon = 2','Lowest pH = most acidic','→ B']},
+          {type:'mcq',q:'When an acid reacts with a base, the products are:',
+           o:['Acid + base','Salt + water','Gas + heat','Metal + oxygen'],c:1,
+           why:'Para 3: "producing salt and water."',
+           steps:['Para 3 neutralization','Salt + water','→ B']},
+          {type:'mcq',q:'What do acids release when dissolved in water?',
+           o:['OH⁻ ions','H⁺ ions','Na⁺ ions','Electrons'],c:1,
+           why:'Para 1: "releases hydrogen ions (H⁺)."',
+           steps:['Para 1','Acid → H⁺','→ B']},
+          {type:'mcq',q:'A solution with pH 10 is best described as:',
+           o:['Strongly acidic','Slightly acidic','Basic','Neutral'],c:2,
+           why:'pH > 7 = basic။ pH 10 = moderately basic။',
+           steps:['pH > 7','pH 10 = basic','→ C']},
+          {type:'dropdown',q:'Complete the sentence with the correct terms:',
+           text:'A substance with pH 3 is {0}, while a substance with pH 11 is {1}.',
+           blanks:[
+             {options:['acidic','basic','neutral'],correct:0},
+             {options:['acidic','basic','neutral'],correct:1}
+           ],
+           why:'pH < 7 = acidic ။ pH > 7 = basic။',
+           steps:['pH 3 < 7 → acidic','pH 11 > 7 → basic']}
+        ]
+      },
+      {
+        id:'e3', title:'Earthquakes and Seismic Waves', type:'Earth & Space Science',
+        image:{src:'images/seismic-waves.png', alt:'P-waves and S-waves through Earth', caption:'Figure 8: Seismic waves — P-waves faster than S-waves'},
+        text:'An earthquake occurs when stress built up along a fault (a fracture in Earth\'s crust) releases suddenly, sending energy outward as seismic waves. The point underground where the earthquake originates is the focus (or hypocenter); the point directly above it on the surface is the epicenter.\n\nSeismic waves come in several types. Primary waves (P-waves) are the fastest and are compressional — they push and pull material in the direction of travel, and can pass through solids, liquids, and gases. Secondary waves (S-waves) are slower and are transverse — they move material perpendicular to the direction of travel, and can only pass through solids. Surface waves travel along the ground surface, are the slowest, and cause the most damage.\n\nScientists use seismographs to record seismic waves. Because P-waves arrive before S-waves, the time difference between their arrivals tells scientists how far away an earthquake occurred. By measuring arrival times at three different stations, the epicenter can be precisely located.\n\nThe table summarizes the three types of waves.',
+
+        dataTable:{
+          headers:['Wave Type','Speed','Can Pass Through'],
+          rows:[
+            ['P-wave','Fastest','Solids, liquids, gases'],
+            ['S-wave','Medium','Solids only'],
+            ['Surface wave','Slowest','Along the surface']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which type of seismic wave travels the fastest?',
+           o:['P-waves','S-waves','Surface waves','All the same'],c:0,
+           why:'Table: "P-wave → Fastest."',
+           steps:['Table row 1','P-wave: fastest','→ A']},
+          {type:'mcq',q:'Which seismic wave can ONLY travel through solids?',
+           o:['P-waves','S-waves','Surface waves','Ocean waves'],c:1,
+           why:'Table: "S-wave → Solids only."',
+           steps:['Table row 2','S-wave: solids only','→ B']},
+          {type:'mcq',q:'What is the epicenter of an earthquake?',
+           o:['The point underground where it starts','The point on the surface directly above the focus','The largest seismic station','The end of the fault'],c:1,
+           why:'Para 1: "the point directly above it on the surface is the epicenter."',
+           steps:['Para 1 definition','Surface point above focus','→ B']},
+          {type:'mcq',q:'Why do surface waves cause the most damage?',
+           o:['They travel the fastest','They travel along the ground surface, where people and buildings are','They are the only type of wave','They have the highest frequency'],c:1,
+           why:'Para 2: "Surface waves travel along the ground surface... cause the most damage."',
+           steps:['Para 2','Surface = most damage','→ B']},
+          {type:'mcq',q:'How many seismic stations are needed to locate an earthquake epicenter?',
+           o:['1','2','3','5'],c:2,
+           why:'Para 3: "By measuring arrival times at three different stations, the epicenter can be precisely located."',
+           steps:['Para 3','Triangulation requires 3 stations','→ C']},
+          {type:'order',q:'Order these seismic waves from FASTEST to SLOWEST:',
+           items:['P-wave','S-wave','Surface wave'],
+           correctOrder:['P-wave','S-wave','Surface wave'],
+           why:'Table: P (fastest) → S (medium) → Surface (slowest)။',
+           steps:['P-wave: fastest','S-wave: medium','Surface: slowest']}
+        ]
+      },
+      {
+        id:'e4', title:'Heat Transfer', type:'Physical Science',
+        image:{src:'images/heat-transfer.png', alt:'Conduction, convection, radiation', caption:'Figure 9: Three methods of heat transfer'},
+        diagram:{type:'line-graph',data:{points:[{x:0,y:100},{x:2,y:80},{x:4,y:60},{x:6,y:40},{x:8,y:20},{x:10,y:20},{x:12,y:20}],xlabel:'Time (min)',ylabel:'Temperature (°C)',title:'Cooling Curve of Water'}},
+        text:'Heat always flows from warmer objects to cooler objects. There are three methods of heat transfer: conduction, convection, and radiation.\n\nConduction is the transfer of heat through direct contact, primarily in solids. When you touch a metal spoon in hot soup, heat conducts up the spoon to your hand. Metals are good conductors because their free electrons can carry energy quickly. Materials like wood, plastic, and air are poor conductors (insulators).\n\nConvection is the transfer of heat through the movement of fluids (liquids and gases). Warm fluid is less dense and rises, while cool fluid sinks — creating a convection current. Boiling water and atmospheric circulation are examples.\n\nRadiation is the transfer of heat through electromagnetic waves. Unlike conduction and convection, radiation does not require a medium, so it can travel through the vacuum of space. The Sun warms the Earth by radiation.\n\nA cooling curve shows how an object\'s temperature changes over time. During a phase change (such as freezing), temperature stays constant even though heat is being released, because the energy is being used to rearrange particles.\n\nThe graph shows the cooling curve of water.',
+
+        questions:[
+          {type:'mcq',q:'Which method of heat transfer does NOT require a medium?',
+           o:['Conduction','Convection','Radiation','All require a medium'],c:2,
+           why:'Para 4: "radiation does not require a medium, so it can travel through the vacuum of space."',
+           steps:['Para 4','Radiation: no medium','→ C']},
+          {type:'mcq',q:'Boiling water is an example of:',
+           o:['Conduction','Convection','Radiation','Insulation'],c:1,
+           why:'Para 3: "Boiling water and atmospheric circulation are examples" of convection။',
+           steps:['Para 3','Boiling = convection','→ B']},
+          {type:'mcq',q:'According to the graph, what happens to temperature during the plateau at 20 °C?',
+           o:['It rises rapidly','It falls rapidly','It stays constant','It becomes negative'],c:2,
+           why:'Plateau on a cooling curve = phase change = constant temperature။',
+           steps:['Graph: plateau at 20°C','Constant during phase change','→ C']},
+          {type:'mcq',q:'Why do metals conduct heat well?',
+           o:['They have ionic bonds','They have freely moving electrons','They are always hot','They have no particles'],c:1,
+           why:'Para 2: "Metals are good conductors because their free electrons can carry energy quickly."',
+           steps:['Para 2','Free electrons','→ B']},
+          {type:'mcq',q:'Touching a hot metal spoon is an example of:',
+           o:['Convection','Radiation','Conduction','Sublimation'],c:2,
+           why:'Para 2: "Conduction is the transfer of heat through direct contact, primarily in solids."',
+           steps:['Para 2','Direct contact = conduction','→ C']},
+          {type:'multi',q:'Select ALL true statements about heat transfer.',
+           o:['Heat always flows from hot to cold','Radiation can travel through a vacuum','Convection requires a fluid','Conduction only occurs in gases'],c:[0,1,2],need:3,
+           why:'Conduction is primarily in solids (not gases)။',
+           steps:['Hot → cold: true','Radiation: vacuum ok','Convection: fluid','Conduction: not only gases','→ A, B, C']}
+        ]
+      },
+      {
+        id:'e5', title:'Symbiosis in Ecosystems', type:'Life Science',
+        image:{src:'images/symbiosis.png', alt:'Mutualism, commensalism, parasitism', caption:'Figure 10: Types of symbiotic relationships'},
+        text:'Symbiosis describes a close, long-term interaction between organisms of two different species. Biologists recognize several types, classified by whether each species benefits (+), is harmed (−), or is unaffected (0).\n\nIn mutualism, both species benefit (+, +). Bees and flowers are mutualists: the bee gets nectar, and the flower gets pollinated. In commensalism, one species benefits and the other is unaffected (+, 0). Barnacles attached to a whale benefit from transportation and access to food particles, while the whale is unharmed.\n\nIn parasitism, one species benefits and the other is harmed (+, −). A tick feeding on a dog\'s blood is a parasite: the tick benefits, the dog is harmed. In competition, both species are harmed (−, −) as they fight for the same limited resources, such as food or territory.\n\nThe table summarizes the four relationships.',
+
+        dataTable:{
+          headers:['Type','Species 1','Species 2','Example'],
+          rows:[
+            ['Mutualism','+','+','Bee + flower'],
+            ['Commensalism','+','0','Barnacle + whale'],
+            ['Parasitism','+','−','Tick + dog'],
+            ['Competition','−','−','Wolves + coyotes']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which symbiotic relationship benefits BOTH species?',
+           o:['Mutualism','Commensalism','Parasitism','Competition'],c:0,
+           why:'Table: Mutualism = (+,+)။',
+           steps:['Table row 1','Mutualism: + / +','→ A']},
+          {type:'mcq',q:'Barnacles attached to a whale is an example of:',
+           o:['Mutualism','Commensalism','Parasitism','Competition'],c:1,
+           why:'Table: "Barnacle + whale → Commensalism."',
+           steps:['Table row 2','Barnacle + whale','→ B']},
+          {type:'mcq',q:'A tick feeding on a dog is an example of:',
+           o:['Mutualism','Commensalism','Parasitism','Competition'],c:2,
+           why:'Table: "Tick + dog → Parasitism."',
+           steps:['Table row 3','Tick + dog','→ C']},
+          {type:'mcq',q:'What is competition in an ecological context?',
+           o:['One species benefits, other harmed','Both species benefit','Both species harmed due to shared limited resources','Neither species is affected'],c:2,
+           why:'Para 3: "In competition, both species are harmed (−, −) as they fight for the same limited resources."',
+           steps:['Para 3 definition','Competition = −/−','→ C']},
+          {type:'multi',q:'Select ALL relationships where at least one species BENEFITS.',
+           o:['Mutualism','Commensalism','Parasitism','Competition'],c:[0,1,2],need:3,
+           why:'Mutualism, commensalism, parasitism = one or both benefit။ Competition = both harmed။',
+           steps:['Mutualism: +/+','Commensalism: +/0','Parasitism: +/−','Competition: −/−','→ A, B, C']},
+          {type:'experiment',q:'A researcher observes that a certain fungus grows on tree bark without harming the tree. Which relationship type is MOST likely?',
+           o:['Mutualism','Commensalism','Parasitism','Competition'],c:1,
+           why:'One benefits, other unaffected = commensalism (+, 0)။',
+           steps:['Fungus benefits','Tree unaffected','→ Commensalism']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'Which organ produces insulin?',
+       o:['Liver','Pancreas','Kidney','Stomach'],c:1,
+       why:'Insulin is produced by beta cells in the pancreas။',
+       steps:['Insulin source: pancreas','→ B']},
+      {q:'Which gas is most abundant in Earth\'s atmosphere?',
+       o:['Oxygen','Nitrogen','Carbon dioxide','Argon'],c:1,
+       why:'Nitrogen = ~78% of atmosphere။ Oxygen = ~21%။',
+       steps:['Nitrogen ~78%','→ B']},
+      {q:'What is the speed of light in a vacuum?',
+       o:['3 × 10⁶ m/s','3 × 10⁸ m/s','3 × 10¹⁰ m/s','3 × 10⁴ m/s'],c:1,
+       why:'Speed of light c ≈ 3 × 10⁸ m/s။',
+       steps:['c = 3 × 10⁸ m/s','→ B']},
+      {q:'What primarily causes ocean tides on Earth?',
+       o:['Solar wind','Moon\'s gravity','Earth\'s rotation alone','Underwater volcanoes'],c:1,
+       why:'Moon\'s gravity is the dominant cause of tides (Sun contributes some)။',
+       steps:['Moon gravity → tides','→ B']},
+      {q:'What is the most abundant element in the human body by mass?',
+       o:['Carbon','Oxygen','Hydrogen','Nitrogen'],c:1,
+       why:'Oxygen ≈ 65% of body mass (mostly in water and organic molecules)။',
+       steps:['Oxygen ~65%','→ B']},
+      {q:'A solution with pH 12 is best described as:',
+       o:['Strongly acidic','Slightly acidic','Basic','Neutral'],c:2,
+       why:'pH > 7 = basic။ pH 12 = strongly basic။',
+       steps:['pH 12 > 7','Basic','→ C']}
+    ]
+  };
+
+  /* ============================================================
+     SET F — SET 6
+  ============================================================ */
+  var SET_F = {
+    passages: [
+      {
+        id:'f1', title:'Viruses vs. Bacteria', type:'Life Science',
+        image:{src:'images/virus-bacteria.png', alt:'Virus vs bacterium comparison', caption:'Figure 11: Virus (left) vs. bacterium (right)'},
+        text:'Both bacteria and viruses can cause disease, but they are fundamentally different. Understanding these differences explains why antibiotics work against bacteria but not viruses.\n\nBacteria are single-celled living organisms. They have their own DNA, ribosomes, and cell membranes, and they can reproduce independently through binary fission. Most bacteria are harmless or even beneficial — the human gut contains trillions of helpful bacteria. Pathogenic bacteria can be treated with antibiotics, which target structures like bacterial ribosomes or cell walls.\n\nViruses are not considered living organisms by most biologists. They consist of genetic material (DNA or RNA) wrapped in a protein coat — no cells, no ribosomes, no metabolism. Viruses cannot reproduce on their own; they must invade a host cell and hijack its machinery. Because they have no ribosomes or cell walls, antibiotics are useless against them. Viral infections are prevented through vaccines and sometimes treated with antiviral drugs.\n\nThe table compares key features.',
+
+        dataTable:{
+          headers:['Feature','Bacteria','Virus'],
+          rows:[
+            ['Living organism?','Yes','No (by most definitions)'],
+            ['Has cells?','Yes (single cell)','No'],
+            ['Ribosomes?','Yes','No'],
+            ['Reproduces alone?','Yes','No (needs host)'],
+            ['Treated with antibiotics?','Yes','No'],
+            ['Preventable by vaccine?','Sometimes','Yes']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Why do antibiotics NOT work against viruses?',
+           o:['Viruses are too large','Viruses lack the cellular structures (ribosomes, cell walls) that antibiotics target','Antibiotics only work in the lab','Viruses are not harmful'],c:1,
+           why:'Para 3: "Because they have no ribosomes or cell walls, antibiotics are useless against them."',
+           steps:['Para 3','No target structures','→ B']},
+          {type:'mcq',q:'Which of the following is considered a living organism?',
+           o:['Bacteria','Virus','Both','Neither'],c:0,
+           why:'Para 2: "Bacteria are single-celled living organisms." Para 3: viruses not considered living။',
+           steps:['Bacteria: living','Virus: not living','→ A']},
+          {type:'mcq',q:'How do viruses reproduce?',
+           o:['Through binary fission','By invading a host cell and using its machinery','By photosynthesis','By absorbing nutrients from soil'],c:1,
+           why:'Para 3: "they must invade a host cell and hijack its machinery."',
+           steps:['Para 3','Host hijacking','→ B']},
+          {type:'multi',q:'Select ALL features shared by BOTH bacteria and viruses.',
+           o:['Contain genetic material','Have cells','Cause disease','Have ribosomes'],c:[0,2],need:2,
+           why:'Both have genetic material (DNA or RNA) + can cause disease။ Only bacteria have cells/ribosomes။',
+           steps:['Genetic material: both','Cells: bacteria only','Disease: both','Ribosomes: bacteria only','→ A, C']},
+          {type:'mcq',q:'How are viral infections typically prevented?',
+           o:['Antibiotics','Vaccines','Surgery','Antifungal creams'],c:1,
+           why:'Para 3: "Viral infections are prevented through vaccines."',
+           steps:['Para 3','Vaccines prevent viral','→ B']},
+          {type:'experiment',q:'A scientist isolates an infectious agent and finds it has DNA, ribosomes, and a cell membrane. This agent is MOST likely a:',
+           o:['Virus','Bacterium','Prion','Fungus'],c:1,
+           why:'Ribosomes + cell membrane + DNA = bacterium (viruses lack ribosomes/cells)။',
+           steps:['Ribosomes present → not virus','Cell membrane present → bacterium','→ B']}
+        ]
+      },
+      {
+        id:'f2', title:'Factors Affecting Chemical Reaction Rates', type:'Physical Science',
+        image:{src:'images/reaction-rate.png', alt:'Reaction rate at different temperatures', caption:'Figure 12: Reaction rate increases with temperature'},
+        diagram:{type:'bar-chart',data:{labels:['10°C','20°C','30°C','40°C','50°C'],values:[10,25,50,90,160],title:'Reaction Rate vs. Temperature'}},
+        text:'The rate of a chemical reaction is how quickly reactants convert into products. Several factors influence reaction rate.\n\nTemperature: At higher temperatures, particles move faster and collide more frequently and with more energy, so reactions occur faster. The rule of thumb is that reaction rate roughly doubles for every 10 °C increase.\n\nConcentration: Higher concentration of reactants means more particles in a given volume, leading to more collisions and a faster reaction.\n\nSurface area: For solid reactants, smaller particles have more exposed surface area, providing more sites for collisions. Powdered reactants react faster than large chunks.\n\nCatalysts: A catalyst speeds up a reaction without being consumed in the process. Enzymes are biological catalysts that accelerate reactions in living cells. Catalysts work by lowering the activation energy required for the reaction.\n\nThe graph shows how reaction rate increases with temperature.',
+
+        questions:[
+          {type:'mcq',q:'What is the main function of a catalyst?',
+           o:['Increase the activation energy','Speed up a reaction without being consumed','Stop a reaction','Change products'],c:1,
+           why:'Para 5: "A catalyst speeds up a reaction without being consumed."',
+           steps:['Para 5 definition','Speeds up, not consumed','→ B']},
+          {type:'mcq',q:'According to the passage, what happens to reaction rate when temperature increases?',
+           o:['It decreases','It stays the same','It increases','It becomes zero'],c:2,
+           why:'Para 2: "At higher temperatures... reactions occur faster."',
+           steps:['Para 2','Higher T → faster','→ C']},
+          {type:'mcq',q:'Why does grinding a solid reactant increase reaction rate?',
+           o:['It lowers temperature','It increases surface area','It removes the catalyst','It decreases concentration'],c:1,
+           why:'Para 4: "smaller particles have more exposed surface area."',
+           steps:['Para 4','More surface area','→ B']},
+          {type:'mcq',q:'According to the graph, what is the approximate reaction rate at 40 °C?',
+           o:['25 units','50 units','90 units','160 units'],c:2,
+           why:'Graph bar at 40°C ≈ 90။',
+           steps:['Graph bar: 40°C','≈ 90 units','→ C']},
+          {type:'mcq',q:'Enzymes are examples of:',
+           o:['Inhibitors','Biological catalysts','Antibiotics','Sugars'],c:1,
+           why:'Para 5: "Enzymes are biological catalysts."',
+           steps:['Para 5','Enzymes = biological catalysts','→ B']},
+          {type:'experiment',q:'A student wants to test how concentration affects reaction rate. Which is the BEST design?',
+           o:['Change temperature and concentration at the same time','Keep temperature and surface area constant, change concentration only','Change concentration and surface area at the same time','Use different reactants each time'],c:1,
+           why:'Independent variable တစ်ခုသာ ပြောင်းရမည်။ Concentration ပြောင်းလိုလျှင် temperature + surface area ကို constant ထားရမည်။',
+           steps:['Test one variable','Concentration = independent','Others controlled','→ B']}
+        ]
+      },
+      {
+        id:'f3', title:'The Rock Cycle', type:'Earth & Space Science',
+        image:{src:'images/rock-cycle.png', alt:'Rock cycle diagram', caption:'Figure 13: Rock cycle — igneous, sedimentary, and metamorphic'},
+        text:'The rock cycle describes how rocks change from one type to another over geological time. There are three main rock types, each formed by a different process.\n\nIgneous rocks form when magma or lava cools and solidifies. Intrusive igneous rocks (like granite) cool slowly underground, forming large crystals. Extrusive igneous rocks (like basalt) cool quickly on the surface, forming small crystals.\n\nSedimentary rocks form from the compaction and cementation of sediments — small particles of rock, shells, or organic matter that have been weathered and eroded from older rocks. Examples include limestone, sandstone, and shale. Sedimentary rocks are the only type that can contain fossils.\n\nMetamorphic rocks form when existing rocks are subjected to intense heat and pressure without melting. Limestone becomes marble; shale becomes slate. The rock cycle is continuous — any rock can be transformed into any other type given enough time and the right conditions.\n\nThe table summarizes the three rock types.',
+
+        dataTable:{
+          headers:['Rock Type','How It Forms','Example'],
+          rows:[
+            ['Igneous','Cooling of magma/lava','Granite, basalt'],
+            ['Sedimentary','Compaction of sediments','Limestone, sandstone'],
+            ['Metamorphic','Heat + pressure','Marble, slate']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'How are igneous rocks formed?',
+           o:['From compaction of sediments','By cooling of magma or lava','By heat and pressure','By weathering'],c:1,
+           why:'Para 2: "Igneous rocks form when magma or lava cools and solidifies."',
+           steps:['Para 2','Cooling magma/lava','→ B']},
+          {type:'mcq',q:'Which rock type is the ONLY one that can contain fossils?',
+           o:['Igneous','Sedimentary','Metamorphic','All can contain fossils'],c:1,
+           why:'Para 3: "Sedimentary rocks are the only type that can contain fossils."',
+           steps:['Para 3','Fossils: sedimentary only','→ B']},
+          {type:'mcq',q:'What process forms metamorphic rocks?',
+           o:['Cooling of magma','Compaction of sediments','Intense heat and pressure','Melting'],c:2,
+           why:'Para 4: "Metamorphic rocks form when existing rocks are subjected to intense heat and pressure without melting."',
+           steps:['Para 4','Heat + pressure','→ C']},
+          {type:'mcq',q:'What process breaks rocks into sediments?',
+           o:['Compaction','Weathering and erosion','Metamorphism','Melting'],c:1,
+           why:'Para 3: "sediments — small particles... that have been weathered and eroded."',
+           steps:['Para 3','Weathering + erosion','→ B']},
+          {type:'mcq',q:'What type of rock is granite?',
+           o:['Igneous','Sedimentary','Metamorphic','Fossil'],c:0,
+           why:'Table: "Igneous → Granite, basalt."',
+           steps:['Table row 1','Granite = igneous','→ A']},
+          {type:'dropdown',q:'Complete the sentence with the correct terms:',
+           text:'Limestone is a {0} rock. Under intense heat and pressure, it becomes marble, a {1} rock.',
+           blanks:[
+             {options:['sedimentary','igneous','metamorphic'],correct:0},
+             {options:['sedimentary','igneous','metamorphic'],correct:2}
+           ],
+           why:'Para 4: "Limestone becomes marble." Limestone = sedimentary; marble = metamorphic။',
+           steps:['Limestone: sedimentary','→ marble (metamorphic)','→ A / C']}
+        ]
+      },
+      {
+        id:'f4', title:'Simple Machines', type:'Physical Science',
+        image:{src:'images/simple-machines.png', alt:'Six simple machines', caption:'Figure 14: Six simple machines — lever, pulley, wheel & axle, inclined plane, wedge, screw'},
+        text:'Simple machines are devices that make work easier by changing the magnitude or direction of a force. They do not reduce the total work needed — they trade force for distance. This trade-off is described by mechanical advantage: the ratio of output force to input force.\n\nThere are six classical simple machines. A lever consists of a rigid bar that pivots on a fulcrum (like a seesaw). A pulley changes the direction of an applied force. A wheel and axle reduces friction. An inclined plane (a ramp) spreads the work over a longer distance, reducing the force required. A wedge is two inclined planes back-to-back (like an axe blade). A screw is an inclined plane wrapped around a cylinder.\n\nA compound machine combines two or more simple machines — for example, a bicycle combines levers, pulleys, and wheels.\n\nThe table lists the six simple machines and their functions.',
+
+        dataTable:{
+          headers:['Machine','Function','Example'],
+          rows:[
+            ['Lever','Amplifies or redirects force','Seesaw'],
+            ['Pulley','Changes direction of force','Flagpole'],
+            ['Wheel & axle','Reduces friction','Car wheel'],
+            ['Inclined plane','Reduces required force','Ramp'],
+            ['Wedge','Splits objects','Axe'],
+            ['Screw','Fastens materials','Bolt']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What is the main function of a pulley?',
+           o:['Reduce friction','Change the direction of force','Amplify energy','Split objects'],c:1,
+           why:'Para 2: "A pulley changes the direction of an applied force."',
+           steps:['Para 2','Pulley: change direction','→ B']},
+          {type:'mcq',q:'What is mechanical advantage?',
+           o:['The total work done','The ratio of output force to input force','The weight of the machine','The speed of the machine'],c:1,
+           why:'Para 1: "mechanical advantage: the ratio of output force to input force."',
+           steps:['Para 1 definition','Output / input','→ B']},
+          {type:'mcq',q:'Which simple machine is a ramp an example of?',
+           o:['Lever','Pulley','Inclined plane','Screw'],c:2,
+           why:'Table: "Inclined plane → Ramp."',
+           steps:['Table row 4','Ramp = inclined plane','→ C']},
+          {type:'mcq',q:'Why does an inclined plane reduce the force needed to lift an object?',
+           o:['It reduces the object\'s mass','It spreads the work over a longer distance','It eliminates friction','It adds energy'],c:1,
+           why:'Para 2: "spreads the work over a longer distance, reducing the force required."',
+           steps:['Para 2','Longer distance = less force','→ B']},
+          {type:'multi',q:'Select ALL examples of simple machines.',
+           o:['Lever','Pulley','Bicycle','Wedge','Inclined plane'],c:[0,1,3,4],need:4,
+           why:'Bicycle is a compound machine (combines simple machines)။ Others are simple။',
+           steps:['Lever: simple','Pulley: simple','Bicycle: compound','Wedge: simple','Inclined plane: simple','→ A, B, D, E']},
+          {type:'experiment',q:'A student uses a 2-meter ramp to lift a 100 N box with 25 N of force. What is the mechanical advantage?',
+           o:['0.25','2','4','100'],c:2,
+           why:'MA = output force / input force = 100/25 = 4။',
+           steps:['MA = output / input','100 / 25 = 4','→ C']}
+        ]
+      },
+      {
+        id:'f5', title:'Biomes and Climate', type:'Earth & Space Science',
+        image:{src:'images/biomes.png', alt:'World biomes map', caption:'Figure 15: Major terrestrial biomes'},
+        diagram:{type:'bar-chart',data:{labels:['Tundra','Taiga','Grass','Temp. Forest','Rainforest'],values:[20,40,60,100,250],title:'Average Annual Precipitation (cm)'}},
+        text:'A biome is a large region characterized by its climate, vegetation, and animal life. Climate — the long-term pattern of temperature and precipitation — is the primary factor that determines which biome occurs in a region.\n\nMajor terrestrial biomes include:\n\nTropical rainforest: hot and very wet year-round, with the highest biodiversity of any biome. Desert: very dry, with hot days and cold nights; plants and animals are adapted to conserve water. Grassland: moderate rainfall, dominated by grasses; supports large herbivores. Temperate forest: moderate temperatures and rainfall; trees lose their leaves in autumn (deciduous). Taiga (boreal forest): cold, dominated by coniferous (cone-bearing) trees. Tundra: very cold, with permafrost (permanently frozen soil); vegetation is limited to low shrubs, mosses, and lichens.\n\nThe table shows approximate annual precipitation for several biomes.',
+
+        dataTable:{
+          headers:['Biome','Temperature','Precipitation'],
+          rows:[
+            ['Tropical rainforest','Hot','Very high'],
+            ['Desert','Hot/cold','Very low'],
+            ['Grassland','Moderate','Moderate'],
+            ['Temperate forest','Moderate','Moderate-high'],
+            ['Tundra','Cold','Low']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which biome has the highest biodiversity?',
+           o:['Desert','Tundra','Tropical rainforest','Taiga'],c:2,
+           why:'Para 3: "Tropical rainforest... highest biodiversity of any biome."',
+           steps:['Para 3','Rainforest = highest biodiversity','→ C']},
+          {type:'mcq',q:'What is permafrost?',
+           o:['Permanently frozen soil','A type of desert','An ocean current','A cold wind'],c:0,
+           why:'Para 3: "tundra: permafrost (permanently frozen soil)."',
+           steps:['Para 3 definition','Permafrost = frozen soil','→ A']},
+          {type:'mcq',q:'According to the graph, which biome receives the LEAST precipitation?',
+           o:['Tundra','Taiga','Grassland','Rainforest'],c:0,
+           why:'Graph: Tundra = 20 cm (lowest bar)။',
+           steps:['Graph bars','Tundra = 20 cm','→ A']},
+          {type:'mcq',q:'What primarily determines which biome occurs in a region?',
+           o:['Ocean currents','Climate (temperature and precipitation)','Latitude alone','Soil color'],c:1,
+           why:'Para 1: "Climate... is the primary factor that determines which biome occurs in a region."',
+           steps:['Para 1','Climate = primary factor','→ B']},
+          {type:'multi',q:'Select ALL biomes with moderate temperatures.',
+           o:['Tropical rainforest','Tundra','Grassland','Temperate forest','Desert'],c:[2,3],need:2,
+           why:'Table: Grassland + Temperate forest = moderate temps။ Rainforest = hot; tundra = cold; desert = hot/cold။',
+           steps:['Table temps','Grassland: moderate','Temp. forest: moderate','→ C, D']},
+          {type:'experiment',q:'A scientist measures temperature and rainfall in a newly discovered region. Annual rainfall is very low, temperatures are hot in the day and cold at night. Which biome is MOST likely?',
+           o:['Tropical rainforest','Desert','Tundra','Temperate forest'],c:1,
+           why:'Low rain + hot days/cold nights = desert signature။',
+           steps:['Low precipitation','Big temp swings','→ Desert']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'What is the primary function of white blood cells?',
+       o:['Carry oxygen','Fight infection','Clot blood','Produce hormones'],c:1,
+       why:'White blood cells defend the body against pathogens။',
+       steps:['WBC = immune defense','→ B']},
+      {q:'Which organ filters waste from the blood?',
+       o:['Liver','Kidney','Heart','Lungs'],c:1,
+       why:'Kidneys filter waste (especially urea) from blood to form urine။',
+       steps:['Kidneys filter blood','→ B']},
+      {q:'What type of rock is marble?',
+       o:['Igneous','Sedimentary','Metamorphic','Volcanic'],c:2,
+       why:'Marble = metamorphic rock formed from limestone။',
+       steps:['Marble = metamorphic','→ C']},
+      {q:'What is the SI unit of electric current?',
+       o:['Volt','Ampere','Ohm','Watt'],c:1,
+       why:'Ampere (A) = SI unit of current။',
+       steps:['Current unit: Ampere','→ B']},
+      {q:'What process do plants use to make food?',
+       o:['Respiration','Photosynthesis','Digestion','Fermentation'],c:1,
+       why:'Photosynthesis = plants use light to make glucose။',
+       steps:['Photosynthesis','→ B']},
+      {q:'Which planet is the largest in our solar system?',
+       o:['Saturn','Jupiter','Neptune','Earth'],c:1,
+       why:'Jupiter is the largest planet in the solar system။',
+       steps:['Jupiter = largest','→ B']}
+    ]
+  };
+
+  /* ============================================================
+     BUILD QUESTIONS
+  ============================================================ */
+  function buildQuestions(setData){
+    var allQ = [];
+    var passForQ = [];
+    var partForQ = [];
+    var partCounter = 0;
+
+    setData.passages.forEach(function(pass){
+      pass.questions.forEach(function(q){
+        var item = {
+          type: q.type || 'mcq',
+          q: q.q,
+          passageId: pass.id,
+          passage: pass,
+          part: partCounter
+        };
+        if(item.type === 'mcq' || item.type === 'experiment'){
+          item.options = q.o;
+          item.correctIndex = q.c;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.o[q.c];
+        } else if(item.type === 'multi'){
+          item.options = q.o;
+          item.correctIndex = q.c;
+          item.need = q.need;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.c.map(function(i){return 'ABCD'[i]}).join(' · ');
+        } else if(item.type === 'order'){
+          item.items = q.items;
+          item.correctOrder = q.correctOrder;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.correctOrder.join(' → ');
+        } else if(item.type === 'dropdown'){
+          item.text = q.text;
+          item.blanks = q.blanks;
+          item.why = q.why;
+          item.steps = q.steps;
+          item.answer = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        } else if(item.type === 'fill'){
+          item.answer = q.answer;
+          item.tolerance = q.tolerance || 0.1;
+          item.why = q.why;
+          item.steps = q.steps;
+        }
+        allQ.push(item);
+        passForQ.push(pass);
+        partForQ.push(partCounter);
+      });
+      partCounter++;
+    });
+
+    setData.standalone.forEach(function(q){
+      allQ.push({
+        type:'mcq', q:q.q, options:q.o, correctIndex:q.c,
+        why:q.why, steps:q.steps, answer:q.o[q.c],
+        passageId:null, part: 99
+      });
+      passForQ.push(null);
+      partForQ.push(99);
+    });
+
+    return { questions: allQ, passForQ: passForQ, partForQ: partForQ };
+  }
+
+  var SETS = {
+    D: { name:'Set 4', built: buildQuestions(SET_D) },
+    E: { name:'Set 5', built: buildQuestions(SET_E) },
+    F: { name:'Set 6', built: buildQuestions(SET_F) }
+  };
+
+  var SET_NUMBERS = { D:4, E:5, F:6 };
+  var URL_MAP = { '4':'D', '5':'E', '6':'F' };
+
+  /* ============================================================
+     TIME
+  ============================================================ */
+  var TOTAL_TIME = 90 * 60;
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var currentSetKey = null, currentSet = null;
+  var allQuestions = [], passageForQ = [], partForQ = [];
+  var userAnswers = [], currentQ = 0;
+  var timerLeft = TOTAL_TIME, timerId = null;
+  var timeUsedTotal = 0, submitted = false;
+  var initialSetKey = null;
+
+  function initState(fromUrl){
+    var keys = Object.keys(SETS);
+    if(fromUrl && !initialSetKey){
+      var params = new URLSearchParams(window.location.search);
+      var urlSet = params.get('set');
+      if(urlSet && URL_MAP[urlSet] && SETS[URL_MAP[urlSet]]){
+        initialSetKey = URL_MAP[urlSet];
+      }
+    }
+    if(initialSetKey){
+      currentSetKey = initialSetKey;
+      initialSetKey = null;
+    } else {
+      currentSetKey = keys[Math.floor(Math.random() * keys.length)];
+    }
+    currentSet = SETS[currentSetKey];
+    allQuestions = currentSet.built.questions.slice();
+    passageForQ = currentSet.built.passForQ.slice();
+    partForQ = currentSet.built.partForQ.slice();
+    userAnswers = new Array(allQuestions.length).fill(null);
+    currentQ = 0; timerLeft = TOTAL_TIME; timeUsedTotal = 0; submitted = false;
+  }
+
+  $('startBtn').addEventListener('click', function(){
+    initState(true);
+    console.log('[Science New Sets] Starting:', currentSetKey, '(Set ' + SET_NUMBERS[currentSetKey] + ')');
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  });
+
+  /* TIMER */
+  function startTimer(){
+    clearInterval(timerId);
+    updateTimerDisplay();
+    timerId = setInterval(function(){
+      timerLeft--; timeUsedTotal++;
+      updateTimerDisplay();
+      if(timerLeft <= 0){
+        clearInterval(timerId);
+        finishExam();
+      }
+    }, 1000);
+  }
+  function fmtTime(sec){
+    var m = Math.floor(Math.max(sec, 0)/60);
+    var s = Math.max(sec, 0)%60;
+    return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  function updateTimerDisplay(){
+    var t = $('timer');
+    t.textContent = fmtTime(timerLeft);
+    t.classList.toggle('warn', timerLeft <= 300);
+  }
+
+  /* RENDER QUESTION */
+  var TYPE_LABELS = {
+    mcq:'Multiple Choice', multi:'Multi-Select', order:'Ordering',
+    dropdown:'Dropdown', fill:'Fill-in-Blank', experiment:'Experiment Design'
+  };
+
+  var PART_NAMES = ['Life Science','Physical Science','Earth & Space Science','Mixed'];
+
+  function renderQuestion(){
+    var q = allQuestions[currentQ];
+    var card = $('qCard');
+    var badge = $('partBadge');
+
+    var part = q.part;
+    var partName = PART_NAMES[part] || 'Mixed';
+    badge.textContent = partName;
+    badge.className = 'part-badge' + (part === 1 ? ' p2' : (part === 2 ? ' p3' : (part === 3 ? ' new' : '')));
+
+    var typeClass = q.type === 'experiment' ? 'exp' : (q.type !== 'mcq' ? 'tech' : '');
+    var typeTag = '<span class="q-type ' + typeClass + '">' + (TYPE_LABELS[q.type] || 'MCQ') + '</span>';
+
+    card.innerHTML =
+      '<div class="q-num">Question '+(currentQ+1)+' of '+allQuestions.length+' '+typeTag+'</div>'+
+      '<div id="qHintWrap"></div>'+
+      '<div class="q-text">'+q.q+'</div>'+
+      '<div id="interactive"></div>';
+
+    var inter = card.querySelector('#interactive');
+    var hintWrap = card.querySelector('#qHintWrap');
+    if(q.type === 'multi') hintWrap.innerHTML = '<div class="q-hint">Select '+q.need+' answers</div>';
+    else if(q.type === 'order') hintWrap.innerHTML = '<div class="q-hint">Tap items in the correct order</div>';
+    else if(q.type === 'fill') hintWrap.innerHTML = '<div class="q-hint">Type your answer as a number or short text</div>';
+    else if(q.type === 'experiment') hintWrap.innerHTML = '<div class="q-hint">🧪 Identify the BEST experimental design</div>';
+
+    if(q.type === 'mcq' || q.type === 'experiment') renderMCQ(q, inter);
+    else if(q.type === 'multi') renderMulti(q, inter);
+    else if(q.type === 'order') renderOrder(q, inter);
+    else if(q.type === 'dropdown') renderDropdown(q, inter);
+    else if(q.type === 'fill') renderFill(q, inter);
+
+    renderPassage(currentQ);
+    $('qCounter').textContent = 'Question '+(currentQ+1)+' of '+allQuestions.length;
+    $('prevBtn').disabled = currentQ === 0;
+    $('nextBtn').textContent = (currentQ === allQuestions.length-1) ? 'Finish' : 'Next →';
+  }
+
+  function renderMCQ(q, container){
+    var chosen = userAnswers[currentQ];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+'ABCD'[i]+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        userAnswers[currentQ] = i;
+        container.querySelectorAll('.opt').forEach(function(b){b.classList.remove('selected')});
+        btn.classList.add('selected');
+        updateProgress(); renderDotMap();
+        autoAdvance();
+      });
+    });
+  }
+
+  function renderMulti(q, container){
+    var sel = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt multi '+(sel.indexOf(i)!==-1?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+(sel.indexOf(i)!==-1?'✓':'')+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div><button class="btn primary" id="multiSubmit" style="margin-top:12px;width:100%">Confirm Selection</button>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+        var k = arr.indexOf(i);
+        if(k>=0) arr.splice(k,1); else if(arr.length < q.need) arr.push(i);
+        userAnswers[currentQ] = arr;
+        btn.classList.toggle('selected', arr.indexOf(i)!==-1);
+        btn.querySelector('.ltr').textContent = arr.indexOf(i)!==-1 ? '✓' : '';
+        var h = container.parentNode.querySelector('.q-hint');
+        if(h) h.textContent = 'Select '+q.need+' answers ('+arr.length+' selected)';
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#multiSubmit').addEventListener('click', function(){
+      if((userAnswers[currentQ]||[]).length < q.need) return;
+      autoAdvance();
+    });
+  }
+
+  function renderOrder(q, container){
+    var pool = q.items.slice();
+    var seq = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+    container.innerHTML =
+      '<div class="order-pool" id="orderPool"></div>'+
+      '<div class="order-slots" id="orderSlots"></div>';
+    var poolEl = container.querySelector('#orderPool');
+    var slotsEl = container.querySelector('#orderSlots');
+    function paint(){
+      poolEl.innerHTML='';
+      pool.forEach(function(item){
+        var b = document.createElement('button');
+        b.className = 'order-item'+(seq.indexOf(item)!==-1?' used':'');
+        b.textContent = item;
+        b.addEventListener('click', function(){
+          if(seq.indexOf(item)!==-1) return;
+          seq.push(item);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots();
+          var h = container.parentNode.querySelector('.q-hint');
+          if(h) h.textContent = 'Tap items in the correct order ('+seq.length+' / '+pool.length+')';
+          updateProgress(); renderDotMap();
+          if(seq.length===pool.length) setTimeout(autoAdvance,400);
+        });
+        poolEl.appendChild(b);
+      });
+    }
+    function paintSlots(){
+      slotsEl.innerHTML='';
+      if(seq.length===0){ slotsEl.innerHTML='<div class="order-empty">ဤနေရာတွင် အစဉ်လိုက် ပြသပါမည်</div>'; return; }
+      seq.forEach(function(it,i){
+        var d = document.createElement('div');
+        d.className = 'order-slot';
+        var sp = document.createElement('span'); sp.className='num'; sp.textContent=(i+1); d.appendChild(sp);
+        var txt = document.createElement('span'); txt.style.flex='1'; txt.textContent=it; d.appendChild(txt);
+        var rm = document.createElement('span'); rm.className='rm'; rm.textContent='✕';
+        rm.addEventListener('click', function(){
+          seq.splice(i,1);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots(); updateProgress(); renderDotMap();
+        });
+        d.appendChild(rm);
+        slotsEl.appendChild(d);
+      });
+    }
+    paint(); paintSlots();
+  }
+
+  function renderDropdown(q, container){
+    var vals = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : new Array(q.blanks.length).fill(null);
+    var html = '<div class="dropdown-line">';
+    var parts = q.text.split(/(\{\d+\})/);
+    parts.forEach(function(p){
+      var m = p.match(/^\{(\d+)\}$/);
+      if(m){
+        var idx = +m[1]; var b = q.blanks[idx];
+        html += '<select class="dd-select" data-idx="'+idx+'"><option value="">--</option>';
+        b.options.forEach(function(o,i){
+          html += '<option value="'+i+'"'+(vals[idx]===i?' selected':'')+'>'+o+'</option>';
+        });
+        html += '</select>';
+      } else html += p;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    container.querySelectorAll('.dd-select').forEach(function(sel){
+      sel.addEventListener('change', function(){
+        var idx = +sel.dataset.idx;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : new Array(q.blanks.length).fill(null);
+        arr[idx] = +sel.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+        if(arr.every(function(v){return v != null})) setTimeout(autoAdvance, 300);
+      });
+    });
+  }
+
+  function renderFill(q, container){
+    var val = userAnswers[currentQ] != null ? String(userAnswers[currentQ]) : '';
+    container.innerHTML =
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">'+
+        '<input class="fill-input" id="fillIn" type="text" inputmode="decimal" placeholder="Answer..." value="'+val+'" '+
+        'style="flex:1;min-width:160px;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);'+
+        'background:var(--card);color:var(--text);font-family:inherit;font-size:16px;font-weight:700">'+
+        '<button class="btn primary" id="fillSubmit">Confirm</button>'+
+      '</div>'+
+      '<div style="font-size:11.5px;color:var(--muted);margin-top:8px;font-weight:600">Numeric answer · Tolerance: ±'+(q.tolerance || 0.1)+'</div>';
+    var inp = container.querySelector('#fillIn');
+    container.querySelector('#fillSubmit').addEventListener('click', function(){
+      var v = inp.value.trim();
+      if(v === '') return;
+      userAnswers[currentQ] = v;
+      updateProgress(); renderDotMap();
+      inp.style.borderColor = '#16a34a';
+      setTimeout(autoAdvance, 200);
+    });
+    inp.addEventListener('keydown', function(e){
+      if(e.key === 'Enter') container.querySelector('#fillSubmit').click();
+    });
+  }
+
+  function autoAdvance(){
+    if(currentQ >= allQuestions.length - 1) return;
+    setTimeout(function(){
+      if(isAnswered(userAnswers[currentQ])){
+        currentQ++; renderQuestion(); renderDotMap();
+      }
+    }, 280);
+  }
+
+  /* RENDER PASSAGE */
+  function renderPassage(qIndex){
+    var pass = passageForQ[qIndex];
+    var box = $('passageBox');
+    var indicator = $('passageIndicator');
+    if(!pass){ box.style.display='none'; indicator.style.display='none'; return; }
+    box.style.display='block'; indicator.style.display='flex';
+    $('passageInfo').textContent = pass.type;
+
+    var pIdx = 0, seen = {};
+    for(var i=0; i<passageForQ.length; i++){
+      var p = passageForQ[i];
+      if(p && !seen[p.id]){ seen[p.id] = ++pIdx; if(p.id === pass.id) break; }
+    }
+    var totalPass = 0; var seen2 = {};
+    for(var i=0; i<passageForQ.length; i++){
+      if(passageForQ[i] && !seen2[passageForQ[i].id]){ seen2[passageForQ[i].id] = 1; totalPass++; }
+    }
+    $('passageBadge').textContent = 'Passage '+pIdx+' of '+totalPass;
+
+    var tableHtml = '';
+    if(pass.dataTable){
+      tableHtml = '<div class="data-table-wrap"><table class="data-table"><thead><tr>';
+      pass.dataTable.headers.forEach(function(h){ tableHtml += '<th>'+h+'</th>'; });
+      tableHtml += '</tr></thead><tbody>';
+      pass.dataTable.rows.forEach(function(row){
+        tableHtml += '<tr>';
+        row.forEach(function(cell){ tableHtml += '<td>'+cell+'</td>'; });
+        tableHtml += '</tr>';
+      });
+      tableHtml += '</tbody></table></div>';
+    }
+
+    var visualHtml = renderVisual(pass);
+
+    box.innerHTML =
+      '<div class="passage-inner collapsed">'+
+        '<div class="passage-title">'+pass.title+' <span class="src">'+pass.type+'</span></div>'+
+        visualHtml+
+        '<div class="passage-text">'+pass.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+        tableHtml+
+      '</div>'+
+      '<button class="passage-toggle" id="passageToggleBtn">📖 Show Full Passage</button>';
+    var btn = box.querySelector('#passageToggleBtn');
+    var inner = box.querySelector('.passage-inner');
+    btn.addEventListener('click', function(){
+      if(inner.classList.contains('collapsed')){
+        inner.classList.remove('collapsed');
+        btn.textContent = '📕 Collapse Passage';
+      } else {
+        inner.classList.add('collapsed');
+        btn.textContent = '📖 Show Full Passage';
+      }
+    });
+  }
+
+  $('prevBtn').addEventListener('click', function(){
+    if(currentQ > 0){ currentQ--; renderQuestion(); renderDotMap(); }
+  });
+  $('nextBtn').addEventListener('click', function(){
+    if(currentQ === allQuestions.length - 1){
+      $('submitBtn').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    currentQ++; renderQuestion(); renderDotMap();
+  });
+
+  /* SCORING */
+  function isAnswered(a){
+    if(a === null || a === undefined) return false;
+    if(Array.isArray(a)) return a.length > 0;
+    if(typeof a === 'string') return a.trim() !== '';
+    if(typeof a === 'object') return true;
+    return true;
+  }
+
+  function scoreQ(q, ua){
+    if(!isAnswered(ua)) return false;
+    if(q.type === 'mcq' || q.type === 'experiment') return ua === q.correctIndex;
+    if(q.type === 'multi'){
+      if(!Array.isArray(ua)) return false;
+      var a = ua.slice().sort(function(x,y){return x-y});
+      var c = q.correctIndex.slice().sort(function(x,y){return x-y});
+      return a.length === c.length && a.every(function(v,i){return v === c[i]});
+    }
+    if(q.type === 'order'){
+      if(!Array.isArray(ua)) return false;
+      return ua.length === q.correctOrder.length && ua.every(function(v,i){return v === q.correctOrder[i]});
+    }
+    if(q.type === 'dropdown'){
+      if(!Array.isArray(ua)) return false;
+      return q.blanks.every(function(b,i){return ua[i] === b.correct});
+    }
+    if(q.type === 'fill'){
+      var n = parseFloat(ua);
+      if(!isFinite(n)) return false;
+      return Math.abs(n - parseFloat(q.answer)) <= (q.tolerance || 0.1);
+    }
+    return false;
+  }
+
+  /* SUBMIT */
+  $('submitBtn').addEventListener('click', function(){
+    var un = 0;
+    for(var i=0; i<allQuestions.length; i++) if(!isAnswered(userAnswers[i])) un++;
+    var msg = un > 0 ? un + ' ခု မဖြေရသေးပါ။ တင်မလား။' : 'Exam ကို တင်မလား။';
+    if(!confirm(msg)) return;
+    finishExam();
+  });
+
+  function finishExam(){
+    if(submitted) return;
+    submitted = true; clearInterval(timerId); submitExam();
+  }
+
+  function submitExam(){
+    var total = allQuestions.length;
+    var correct = 0;
+    for(var i=0; i<total; i++){
+      if(scoreQ(allQuestions[i], userAnswers[i])) correct++;
+    }
+    var wrong = total - correct;
+    var pct = Math.round(correct / total * 100);
+    var setNum = SET_NUMBERS[currentSetKey];
+
+    try {
+      var s = JSON.parse(localStorage.getItem('ged:pretest:scores')) || {};
+      var rec = {
+        score: correct, total: total, pct: pct,
+        date: new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}),
+        set: setNum
+      };
+      var key = 'science:s' + setNum;
+      var prev = s[key];
+      if(!prev || rec.pct > prev.pct) s[key] = rec;
+      localStorage.setItem('ged:pretest:scores', JSON.stringify(s));
+    } catch(e){}
+
+    renderResult(correct, wrong, pct);
+    showOnly($('resultScreen'));
+  }
+
+  /* RESULT */
+  function renderResult(correct, wrong, pct){
+    $('scorePct').textContent = pct + '%';
+    $('rCorrect').textContent = correct;
+    $('rWrong').textContent = wrong;
+    var m = Math.floor(timeUsedTotal/60), s = timeUsedTotal%60;
+    $('rTime').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    var gedScore;
+    if(pct < 72.5) gedScore = Math.round(100 + (pct/72.5)*45);
+    else if(pct < 87) gedScore = Math.round(145 + ((pct-72.5)/(87-72.5))*20);
+    else if(pct < 95) gedScore = Math.round(165 + ((pct-87)/(95-87))*10);
+    else gedScore = Math.round(175 + ((pct-95)/(100-95))*25);
+    gedScore = Math.max(100, Math.min(200, gedScore));
+    $('gedScore').textContent = gedScore;
+    var gs = $('gedMsg');
+    if(gedScore >= 175) gs.textContent = '🏆 College Ready + Credit (175+)';
+    else if(gedScore >= 165) gs.textContent = '🎓 College Ready (165+)';
+    else if(gedScore >= 145) gs.textContent = '✅ Passed GED (145+)';
+    else gs.textContent = '📚 အောင်မှတ် 145 ရရန် လိုသေးသည်';
+    var ring = $('scoreRing');
+    var C = 2 * Math.PI * 70;
+    ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C;
+    setTimeout(function(){ ring.style.strokeDashoffset = C * (1 - pct/100); }, 100);
+    var setLabel = 'Set ' + SET_NUMBERS[currentSetKey];
+    var msg, sub;
+    if(gedScore >= 165){ msg = '🌟 College Ready!'; sub = 'GED Science အတွက် ထူးချွန်စွာ အသင့်ဖြစ်နေပါပြီ။ (' + setLabel + ')'; }
+    else if(gedScore >= 145){ msg = '✅ Passed!'; sub = 'GED Science အောင်မှတ် ရပါပြီ။ (' + setLabel + ')'; }
+    else if(gedScore >= 130){ msg = '📚 Near Passing'; sub = 'အောင်မှတ်နှင့် နီးကပ်နေသည်။ ခေါင်းစဉ်များ ပြန်လေ့လာပါ။ (' + setLabel + ')'; }
+    else { msg = '💪 လေ့ကျင့်ဖို့ လိုသေးသည်'; sub = 'Science Lessons များ ပြန်လေ့လာပါ။ (' + setLabel + ')'; }
+    $('resultMsg').textContent = msg;
+    $('resultSub').textContent = sub;
+    renderReview();
+  }
+
+  /* REVIEW */
+  function renderReview(){
+    var el = $('reviewWrap');
+    el.innerHTML = '<div class="review-title">Answer Key & Explanations — Set ' + SET_NUMBERS[currentSetKey] + '</div>';
+    allQuestions.forEach(function(q, i){
+      var ua = userAnswers[i];
+      var ok = scoreQ(q, ua);
+      var pass = passageForQ[i];
+      var part = partForQ[i];
+      var partTag = '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(16,185,129,.12);color:#047857">'+(PART_NAMES[part] || 'Mixed')+'</span>';
+      var passTag = pass
+        ? '<span style="font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,.12);color:#1d4ed8">'+pass.title+'</span>'
+        : '';
+      var typeTag = '<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(236,72,153,.12);color:#be185d">'+(TYPE_LABELS[q.type]||'MCQ')+'</span>';
+
+      var answerHtml = '';
+      if(q.type === 'mcq' || q.type === 'experiment'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var cls = 'opt';
+            if(j === q.correctIndex) cls += ' correct';
+            else if(j === ua) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default;opacity:.98"><span class="ltr">'+'ABCD'[j]+'</span><span class="body">'+o+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'multi'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var isC = q.correctIndex.indexOf(j) !== -1;
+            var isU = Array.isArray(ua) && ua.indexOf(j) !== -1;
+            var cls = 'opt multi';
+            if(isC) cls += ' correct'; else if(isU) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default"><span class="ltr">'+(isU?'✓':'')+'</span><span class="body">'+o+(isC?' ✓ correct':'')+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'order'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your order: <b>'+(Array.isArray(ua) ? ua.join(' → ') : '(blank)')+'</b><br>'+
+          'Correct: <b style="color:#14532d">'+q.correctOrder.join(' → ')+'</b></div>';
+      } else if(q.type === 'dropdown'){
+        var correctChoices = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Correct choices: <b style="color:#14532d">'+correctChoices+'</b></div>';
+      } else if(q.type === 'fill'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your answer: <b>'+(ua != null ? ua : '(blank)')+'</b><br>'+
+          'Correct answer: <b style="color:#14532d">'+q.answer+'</b></div>';
+      }
+
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+      card.innerHTML =
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+          '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#8b5cf6,#ec4899)">'+(i+1)+'</span>'+
+          partTag + passTag + typeTag +
+          '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+(ok?'color:#14532d;background:#bbf7d0':'color:#7f1d1d;background:#fecaca')+'">'+(ok?'✔ Correct':'✘ Wrong')+'</span>'+
+        '</div>'+
+        '<div style="font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500">'+q.q+'</div>'+
+        answerHtml+
+        '<div class="sol">'+
+          '<span class="lbl">အဘယ်ကြောင့်</span>'+q.why+
+          '<div style="margin-top:10px"><span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span><ol>'+
+            q.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+          '</ol></div>'+
+          '<span class="ans">✔ အဖြေ: '+q.answer+'</span>'+
+        '</div>';
+      el.appendChild(card);
+    });
+  }
+
+  /* BUTTONS */
+  $('reviewBtn').addEventListener('click', function(){
+    $('reviewWrap').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  $('retryBtn').addEventListener('click', function(){
+    if(!confirm('Exam အသစ် (ကျပန်း set) စတင်မလား။')) return;
+    initState(false);
+    showOnly($('startScreen'));
+  });
+  window.confirmExit = function(){
+    if(submitted) return true;
+    return confirm('Exam မှ ထွက်မလား။ ဖြေထားသည်များ ဆုံးရှုံးမည်။');
+  };
+
+  /* DOT MAP */
+  function renderDotMap(){
+    var el = $('dotMap'); el.innerHTML = '';
+    for(var i=0; i<allQuestions.length; i++){
+      var d = document.createElement('button');
+      var part = partForQ[i];
+      var pClass = part === 1 ? ' p2' : (part === 2 ? ' p3' : '');
+      d.className = 'dot' + pClass;
+      d.textContent = i+1;
+      if(isAnswered(userAnswers[i])) d.classList.add('answered');
+      if(i === currentQ) d.classList.add('current');
+      (function(idx){
+        d.addEventListener('click', function(){
+          currentQ = idx; renderQuestion(); renderDotMap();
+        });
+      })(i);
+      el.appendChild(d);
+    }
+  }
+  function updateProgress(){
+    var answered = 0;
+    for(var i=0; i<allQuestions.length; i++) if(isAnswered(userAnswers[i])) answered++;
+    $('pCount').textContent = answered + ' / ' + allQuestions.length;
+    $('pBar').style.width = (answered / allQuestions.length * 100) + '%';
+  }
+
+})();
+</script>
+</body>
+</html>

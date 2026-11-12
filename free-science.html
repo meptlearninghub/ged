@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>Free Science Learning — GED Myanmar</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1;--primary-d:#4f46e5;
+  --green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --blue:#3b82f6;--violet:#8b5cf6;--cyan:#06b6d4;--fc:#10b981;
+  --radius:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.85);
+  --hover-soft:rgba(15,23,42,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.85);
+  --hover-soft:rgba(255,255,255,.05);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;
+  font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%,rgba(16,185,129,.12),transparent 65%),
+    radial-gradient(720px 480px at 100% 4%,rgba(6,182,212,.10),transparent 65%),
+    radial-gradient(620px 420px at 50% 105%,rgba(59,130,246,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:calc(10px + var(--safe-top)) 0 10px;}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:12px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none;}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--cyan));
+  box-shadow:0 8px 18px -8px var(--fc);}
+.nav-logo b{font-size:15px;font-weight:800;}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);}
+.nav-actions{display:flex;gap:8px;align-items:center;flex:none;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  text-decoration:none;font-size:12.5px;font-weight:700;
+  transition:transform .18s,background .2s;}
+.back-btn:hover{background:var(--hover-soft);}
+.back-btn:active{transform:scale(.95);}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;
+  border-radius:11px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font-size:16px;cursor:pointer;padding:0;
+  font-family:inherit;transition:transform .18s,background .18s;}
+.icon-btn:hover{background:var(--hover-soft);}
+.icon-btn:active{transform:scale(.9);}
+@media(max-width:520px){.nav-title{display:none;}}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom));}
+
+/* HERO */
+.hero{padding:36px 0 24px;text-align:center;}
+.hero .free-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  font-size:12.5px;font-weight:800;letter-spacing:.04em;margin-bottom:16px;
+  box-shadow:0 8px 18px -8px rgba(22,163,74,.7);}
+.hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 18px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,var(--fc),var(--cyan));color:#fff;
+  box-shadow:0 20px 40px -16px var(--fc);}
+.hero h1{margin:0 0 10px;font-size:clamp(24px,5.5vw,36px);font-weight:900;
+  letter-spacing:-.03em;line-height:1.15;}
+.hero p{margin:0 auto;max-width:560px;font-size:14.5px;color:var(--muted);line-height:1.75;}
+.hero p b{color:var(--text);font-weight:800;}
+
+/* FREE COUNT BANNER */
+.free-count{
+  max-width:520px;margin:20px auto 0;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:16px;padding:16px 20px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:14px;
+}
+.free-count .num{
+  width:56px;height:56px;flex:none;border-radius:16px;
+  display:grid;place-items:center;font-size:22px;font-weight:900;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  box-shadow:0 10px 22px -10px rgba(22,163,74,.8);
+}
+.free-count .info{flex:1;text-align:left;}
+.free-count .info b{display:block;font-size:15px;font-weight:800;margin-bottom:3px;}
+.free-count .info span{font-size:12.5px;color:var(--muted);font-weight:600;}
+
+/* SECTIONS */
+.section{padding:32px 0 0;}
+.section-head{text-align:center;margin-bottom:22px;}
+.section-head h2{margin:0 0 8px;font-size:clamp(20px,4.5vw,26px);font-weight:800;letter-spacing:-.02em;}
+.section-head p{margin:0 auto;max-width:520px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+/* LESSON LIST — LOCKED */
+.lesson-list{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:640px){.lesson-list{grid-template-columns:repeat(2,1fr);}}
+
+.lesson-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:18px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s;}
+@media(hover:hover){
+  .lesson-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--fc);}
+}
+.lesson-card:active{transform:scale(.985);}
+.lesson-num{width:40px;height:40px;flex:none;border-radius:12px;
+  display:grid;place-items:center;font-size:15px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--cyan));
+  box-shadow:0 8px 18px -8px var(--fc);}
+.lesson-body{flex:1;min-width:0;}
+.lesson-body h3{margin:0 0 4px;font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.35;}
+.lesson-body p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.65;}
+.lesson-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:3px 9px;border-radius:999px;
+  font-size:10.5px;font-weight:800;letter-spacing:.03em;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);}
+html[data-theme="dark"] .lesson-badge{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.lesson-lock{position:absolute;top:14px;right:14px;
+  width:28px;height:28px;border-radius:9px;
+  display:grid;place-items:center;font-size:13px;
+  background:rgba(15,23,42,.06);color:var(--muted);}
+html[data-theme="dark"] .lesson-lock{background:rgba(255,255,255,.08);}
+
+/* PRACTICE QUESTIONS */
+.q-block{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:20px;box-shadow:var(--shadow);margin-bottom:12px;}
+.q-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.q-num{width:32px;height:32px;flex:none;border-radius:10px;
+  display:grid;place-items:center;font-size:13px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--cyan));}
+.q-tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);
+  letter-spacing:.03em;}
+html[data-theme="dark"] .q-tag{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.q-text{font-size:14.5px;line-height:1.75;margin:0 0 14px;font-weight:500;color:var(--text);}
+.q-text b{font-weight:800;}
+
+/* DATA TABLE */
+.data-table-wrap{
+  overflow-x:auto;margin:0 0 14px;border-radius:12px;
+  border:1.5px solid var(--border);
+  background:color-mix(in srgb,var(--fc) 5%,transparent);
+}
+html[data-theme="dark"] .data-table-wrap{
+  background:color-mix(in srgb,var(--fc) 12%,transparent);
+}
+.data-table{
+  width:100%;border-collapse:collapse;font-size:13px;min-width:340px;
+}
+.data-table th,.data-table td{
+  padding:10px 14px;text-align:left;
+  border-bottom:1px solid var(--border);
+  font-family:'Inter','Noto Sans Myanmar',sans-serif;
+}
+.data-table th{
+  background:color-mix(in srgb,var(--fc) 12%,transparent);
+  font-weight:800;color:var(--fc);font-size:11.5px;
+  text-transform:uppercase;letter-spacing:.04em;
+}
+html[data-theme="dark"] .data-table th{
+  background:color-mix(in srgb,var(--fc) 22%,transparent);
+}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table td{font-weight:600;color:var(--text);}
+
+/* PASSAGE */
+.passage{
+  background:color-mix(in srgb,var(--fc) 6%,transparent);
+  border-left:3px solid var(--fc);
+  border-radius:10px;padding:14px 16px;margin:0 0 14px;
+  font-size:14px;line-height:1.85;color:var(--text);
+}
+html[data-theme="dark"] .passage{background:color-mix(in srgb,var(--fc) 12%,transparent);}
+
+.q-opts{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:520px){.q-opts{grid-template-columns:1fr 1fr;}}
+.q-opt{text-align:left;padding:11px 14px;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;
+  transition:all .18s;line-height:1.5;}
+.q-opt:hover{border-color:var(--fc);background:color-mix(in srgb,var(--fc) 4%,transparent);}
+.q-opt:active{transform:scale(.985);}
+.q-opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700;}
+html[data-theme="dark"] .q-opt.correct{background:rgba(22,163,74,.2);color:#86efac;}
+.q-opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d;}
+html[data-theme="dark"] .q-opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5;}
+.q-opt:disabled{cursor:default;}
+.q-opt .ltr{font-weight:800;margin-right:6px;color:var(--muted);}
+.q-opt.correct .ltr{color:#14532d;}
+.q-opt.wrong .ltr{color:#7f1d1d;}
+
+.show-ans{padding:8px 14px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+  background:rgba(245,158,11,.08);color:#92400e;
+  font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
+  transition:all .18s;}
+html[data-theme="dark"] .show-ans{background:rgba(245,158,11,.15);color:#fbbf24;}
+.show-ans:hover{background:rgba(245,158,11,.15);}
+.show-ans.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent;}
+.q-sol{margin-top:12px;padding:14px;border-radius:12px;
+  background:color-mix(in srgb,var(--fc) 6%,transparent);
+  border-left:3px solid var(--fc);font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .q-sol{background:color-mix(in srgb,var(--fc) 12%,transparent);}
+.q-sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--fc);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
+.q-sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px;}
+
+/* LOCKED CARD */
+.locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06));
+  border:2px dashed rgba(99,102,241,.4);
+  border-radius:20px;padding:32px 24px;text-align:center;
+  box-shadow:var(--shadow);margin-top:8px;}
+html[data-theme="dark"] .locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.12));
+  border-color:rgba(99,102,241,.5);}
+.locked-card .lock-icon{width:64px;height:64px;border-radius:20px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:30px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 16px 32px -12px rgba(99,102,241,.8);}
+.locked-card h3{margin:0 0 10px;font-size:20px;font-weight:900;letter-spacing:-.02em;}
+.locked-card p{margin:0 auto 20px;max-width:420px;font-size:13.5px;
+  color:var(--muted);line-height:1.75;}
+.locked-card .stats{display:flex;gap:14px;justify-content:center;
+  flex-wrap:wrap;margin-bottom:20px;}
+.locked-card .stat{padding:10px 16px;border-radius:12px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:12.5px;font-weight:700;}
+.locked-card .stat b{color:var(--primary);font-weight:900;font-size:14px;}
+.locked-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 24px;border-radius:14px;border:1px solid transparent;
+  font-family:inherit;font-size:14.5px;font-weight:800;cursor:pointer;
+  text-decoration:none;transition:transform .18s,filter .2s;}
+.btn:active{transform:scale(.96);}
+.btn.primary{background:linear-gradient(135deg,var(--primary),var(--violet));color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.8);}
+.btn.primary:hover{filter:brightness(1.08);}
+.btn.tg{background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(34,158,217,.8);}
+.btn.tg:hover{filter:brightness(1.08);}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.6);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .25s ease both;}
+.modal-bg.show{display:flex;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(10px);}to{opacity:1;transform:none;}}
+.modal{background:var(--card);border-radius:22px;width:100%;max-width:420px;
+  padding:26px;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+  animation:popIn .3s cubic-bezier(.22,.8,.28,1) both;position:relative;text-align:center;}
+.modal .x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;background:var(--hover-soft);color:var(--muted);
+  border:none;font-family:inherit;font-size:16px;cursor:pointer;}
+.modal .lock-icon{width:56px;height:56px;border-radius:18px;margin:0 auto 14px;
+  display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.7);}
+.modal h2{margin:0 0 8px;font-size:19px;font-weight:900;letter-spacing:-.02em;}
+.modal p{margin:0 0 20px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.modal p b{color:var(--text);font-weight:800;}
+.modal .modal-actions{display:flex;gap:10px;flex-direction:column;}
+.modal .modal-actions .btn{width:100%;}
+
+/* PREMIUM BANNER */
+.premium-banner{margin-top:30px;padding:26px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(139,92,246,.08));
+  border:1.5px solid rgba(99,102,241,.3);text-align:center;box-shadow:var(--shadow);}
+html[data-theme="dark"] .premium-banner{
+  background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(139,92,246,.15));
+  border-color:rgba(99,102,241,.4);}
+.premium-banner h3{margin:0 0 8px;font-size:18px;font-weight:900;letter-spacing:-.02em;}
+.premium-banner p{margin:0 auto 18px;max-width:480px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.premium-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{padding:34px 0 calc(46px + var(--safe-bottom));text-align:center;
+  font-size:12px;color:var(--muted);line-height:2;}
+footer .brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:6px;
+  font-weight:800;color:var(--text);font-size:13px;}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:9px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--cyan));}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="mark">GED</span>
+      <b>GED Myanmar</b>
+    </a>
+    <div class="nav-title">Free Science Learning</div>
+    <div class="nav-actions">
+      <a class="back-btn" href="index.html">← Back</a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="free-badge">🆓 100% FREE</span>
+    <div class="big-icon">🔬</div>
+    <h1>Free Science Learning</h1>
+    <p>GED Science အတွက် <b>Practice Questions ၅၀ ခု</b>ကို အခမဲ့ လေ့လာပါ။ Lesson Preview ၅ ခုကို ကြည့်ရှုနိုင်ပါသည် (Login မလိုပါ)။</p>
+
+    <div class="free-count">
+      <div class="num">50</div>
+      <div class="info">
+        <b>Free Practice Questions</b>
+        <span>Login မလိုဘဲ ဖြေဆိုနိုင်သည်</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE LESSONS (LOCKED) -->
+  <section class="section">
+    <div class="section-head">
+      <h2>📚 Sample Lesson Previews</h2>
+      <p>Lesson Title နှင့် အနှစ်ချုပ်သာ ကြည့်ရှုနိုင်သည် — Full Lesson အတွက် Login ဝင်ပါ</p>
+    </div>
+    <div class="lesson-list" id="lessonList"></div>
+  </section>
+
+  <!-- PRACTICE QUESTIONS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>✏️ Practice Questions (50)</h2>
+      <p>မေးခွန်း ၅၀ ခုကို အခမဲ့ ဖြေဆိုပါ — အဖြေနှင့် ရှင်းလင်းချက် ပါဝင်သည်</p>
+    </div>
+
+    <div id="practiceList"></div>
+
+    <!-- LOCKED CARD -->
+    <div class="locked-card" id="lockedCard" style="display:none;">
+      <div class="lock-icon">🔒</div>
+      <h3>Free 50 Questions ပြီးဆုံးပါပြီ!</h3>
+      <p>ကျန်သော <b>1,750 မေးခွန်း</b>နှင့် Official Format Pretest ၃ ခုကို ဆက်လေ့လာရန် Login ဝင်ပါ။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+      <div class="stats">
+        <div class="stat">✅ Free <b>50</b></div>
+        <div class="stat">🔒 Locked <b>1,750</b></div>
+      </div>
+      <div class="locked-actions">
+        <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+        <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM CTA -->
+  <div class="premium-banner">
+    <h3>🔐 Full Access — 1,800 Exercises + 3 Pretests</h3>
+    <p>Login ဝင်ပြီး Science Exercise ၁,၈၀၀+၊ Official Format Pretest ၃ ခုနှင့် Reference Sheet အားလုံးကို အပြည့်အဝ အသုံးပြုပါ။</p>
+    <div class="premium-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="brand"><span class="mark">GED</span><span>GED Myanmar</span></div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<!-- LOCKED PREVIEW MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="x" id="closeModal" type="button">✕</button>
+    <div class="lock-icon">🔒</div>
+    <h2 id="modalTitle">Login လိုအပ်ပါသည်</h2>
+    <p id="modalMsg">ဤ Lesson ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* THEME */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☀️' : '🌙';
+    try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ============================================================
+     LESSON PREVIEWS — LOCKED
+     ============================================================ */
+  var LESSONS = [
+    { num: 1, title: 'Cell Theory & Organelles', desc: 'ဆဲလ်သီအိုရီနှင့် ဆဲလ်အတွင်း အစိတ်အပိုင်းများ (Nucleus, Mitochondria, Ribosome)' },
+    { num: 2, title: 'Photosynthesis & Respiration', desc: 'အလင်းမှီစွမ်းအင်ဖန်တီးခြင်းနှင့် ဆဲလ်အသက်ရှူခြင်း လုပ်ငန်းစဉ်များ' },
+    { num: 3, title: "Newton's Laws of Motion", desc: 'နယူတန်၏ ရွေ့လျားမှုဥပဒေ ၃ ခု (Inertia, F = ma, Action-Reaction)' },
+    { num: 4, title: 'Atomic Structure & Periodic Table', desc: 'အက်တမ်ဖွဲ့စည်းပုံ (Proton, Neutron, Electron) နှင့် Periodic Table အခြေခံ' },
+    { num: 5, title: 'Plate Tectonics', desc: 'မြေကြီးလွှာချပ်များ ရွေ့လျားမှုနှင့် ငလျင်၊ မီးတောင်၊ တောင်တန်းများ ဖြစ်ပေါ်ခြင်း' }
+  ];
+
+  var lessonListEl = document.getElementById('lessonList');
+  LESSONS.forEach(function(lesson){
+    var card = document.createElement('div');
+    card.className = 'lesson-card';
+    card.innerHTML =
+      '<span class="lesson-lock">🔒</span>' +
+      '<span class="lesson-num">' + lesson.num + '</span>' +
+      '<div class="lesson-body">' +
+        '<h3>' + lesson.title + '</h3>' +
+        '<p>' + lesson.desc + '</p>' +
+        '<span class="lesson-badge">🔐 Login Required</span>' +
+      '</div>';
+    card.addEventListener('click', function(){
+      openModal(lesson.title);
+    });
+    lessonListEl.appendChild(card);
+  });
+
+  /* ============================================================
+     MODAL
+     ============================================================ */
+  var modal = document.getElementById('modal');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalMsg = document.getElementById('modalMsg');
+  function openModal(lessonName){
+    modalTitle.textContent = '🔒 Login လိုအပ်ပါသည်';
+    modalMsg.innerHTML = 'Lesson <b>"' + lessonName + '"</b> ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။<br><br>Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။';
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  /* ============================================================
+     PRACTICE QUESTIONS — 30 Sample Science Qs
+     ============================================================ */
+  var QUESTIONS = [
+    // === Biology ===
+    { q: 'Which organelle is responsible for producing ATP (energy) in the cell?',
+      options: ['Nucleus','Mitochondria','Ribosome','Chloroplast'],
+      correctIndex: 1,
+      why: 'Mitochondria သည် cellular respiration မှတစ်ဆင့် ATP ကို ထုတ်လုပ်ပေးသည်။ "Powerhouse of the cell" ဟုလည်း ခေါ်သည်။',
+      steps: ['ATP = ဆဲလ်အတွက် စွမ်းအင်','ATP ထုတ်လုပ်သည့် လုပ်ငန်းစဉ် = Cellular Respiration','Cellular Respiration ဖြစ်ပေါ်သည့်နေရာ = Mitochondria','အဖြေ = Mitochondria'],
+      answer: 'Mitochondria', tag: 'Biology' },
+
+    { q: 'What is the chemical equation for photosynthesis?',
+      options: ['C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP','6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂','2H₂ + O₂ → 2H₂O','NaCl → Na⁺ + Cl⁻'],
+      correctIndex: 1,
+      why: 'Photosynthesis = CO₂ + H₂O + light → glucose + O₂။',
+      steps: ['Input: CO₂, H₂O, light','Output: glucose (C₆H₁₂O₆), O₂','Equation: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂'],
+      answer: '6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂', tag: 'Biology' },
+
+    { q: 'What is the basic unit of life?',
+      options: ['Atom','Molecule','Cell','Organ'],
+      correctIndex: 2,
+      why: 'Cell သည် သက်ရှိတို့၏ အခြေခံအကျဆုံး ယူနစ်ဖြစ်သည် (Cell Theory)။',
+      steps: ['Atom = ဒြပ်စင်၏ အသေးဆုံးယူနစ်','Molecule = atom အုပ်စု','Cell = သရှိ၏ အခြေခံယူနစ်','အဖြေ = Cell'],
+      answer: 'Cell', tag: 'Biology' },
+
+    { q: 'What is the main difference between mitosis and meiosis?',
+      options: ['Mitosis produces 4 cells; meiosis produces 2','Mitosis produces 2 identical cells; meiosis produces 4 unique cells','Mitosis occurs in gametes only','They are the same process'],
+      correctIndex: 1,
+      why: 'Mitosis = growth + repair → 2 identical daughter cells ။ Meiosis = gametes → 4 unique haploid cells။',
+      steps: ['Mitosis → 2 cells, identical, diploid','Meiosis → 4 cells, unique, haploid','Mitosis = growth/repair','Meiosis = gametes','အဖြေ = "Mitosis produces 2 identical cells; meiosis produces 4 unique cells"'],
+      answer: 'Mitosis produces 2 identical cells; meiosis produces 4 unique cells', tag: 'Biology' },
+
+    { q: 'Which of these is a decomposer in an ecosystem?',
+      options: ['Grass','Deer','Mushroom','Hawk'],
+      correctIndex: 2,
+      why: 'Mushroom (fungi) သည် decomposer — သေသွားသော သက်ရှိများကို ဖြိုခွဲပြီး အာဟာရများ ပြန်လည်ရရှိစေသည်။',
+      steps: ['Producer = အပင်များ','Primary consumer = herbivores','Decomposer = fungi/bacteria','Mushroom = decomposer'],
+      answer: 'Mushroom', tag: 'Biology' },
+
+    // === Physics ===
+    { q: "Newton's Second Law of Motion is expressed as:",
+      options: ['E = mc²','F = ma','V = IR','PV = nRT'],
+      correctIndex: 1,
+      why: "Newton's Second Law: Force = mass × acceleration (F = ma)။",
+      steps: ["Newton's 1st = Inertia","Newton's 2nd = F = ma","Newton's 3rd = Action-Reaction",'အဖြေ = F = ma'],
+      answer: 'F = ma', tag: 'Physics' },
+
+    { q: 'What is the speed of a wave with a frequency of 50 Hz and a wavelength of 2 meters?',
+      options: ['25 m/s','50 m/s','100 m/s','200 m/s'],
+      correctIndex: 2,
+      why: 'Wave Speed = Frequency × Wavelength (v = f × λ)။',
+      steps: ['v = f × λ','v = 50 × 2','v = 100 m/s'],
+      answer: '100 m/s', tag: 'Physics' },
+
+    { q: 'A 5 kg object accelerates at 2 m/s². What is the force?',
+      options: ['2.5 N','7 N','10 N','15 N'],
+      correctIndex: 2,
+      why: 'F = ma = 5 × 2 = 10 N။',
+      steps: ['F = ma','F = 5 × 2','F = 10 N'],
+      answer: '10 N', tag: 'Physics' },
+
+    { q: 'What is the SI unit of force?',
+      options: ['Joule','Newton','Watt','Pascal'],
+      correctIndex: 1,
+      why: 'SI unit of force = Newton (N) = kg·m/s²။',
+      steps: ['Force unit = N','1 N = 1 kg·m/s²','အဖြေ = Newton'],
+      answer: 'Newton', tag: 'Physics' },
+
+    { q: "According to Newton's First Law, an object at rest will:",
+      options: ['Always move','Stay at rest unless acted upon by a force','Accelerate','Lose mass'],
+      correctIndex: 1,
+      why: "Newton's 1st Law = Inertia — အားမရှိလျှင် ကိုယ်ရပ်နေလျှင် ရပ်၊ ကိုယ်ရွေ့နေလျှင် ရွေ့။",
+      steps: ['1st Law = Inertia','Force မရှိလျှင် motion မပြောင်း','အဖြေ = "Stay at rest unless acted upon by a force"'],
+      answer: 'Stay at rest unless acted upon by a force', tag: 'Physics' },
+
+    // === Chemistry ===
+    { q: 'What is the pH of a neutral solution?',
+      options: ['0','7','14','1'],
+      correctIndex: 1,
+      why: 'pH 7 = neutral (ရေသန့်)။ pH < 7 = acid၊ pH > 7 = base။',
+      steps: ['pH scale: 0–14','Acid: pH < 7','Neutral: pH = 7','Base: pH > 7','အဖြေ = 7'],
+      answer: '7', tag: 'Chemistry' },
+
+    { q: 'Which of the following is a chemical change?',
+      options: ['Ice melting into water','Burning wood','Cutting paper','Dissolving sugar in water'],
+      correctIndex: 1,
+      why: 'Chemical change = ဒြပ်ပစ္စည်းအသစ် ဖြစ်သည်။ Burning wood → CO₂ + ash + water vapor။',
+      steps: ['Physical = form/state ပြောင်း','Chemical = ဒြပ်ပစ္စည်းအသစ်','Ice melting → physical','Burning wood → chemical','အဖြေ = Burning wood'],
+      answer: 'Burning wood', tag: 'Chemistry' },
+
+    { q: 'What is the smallest unit of an element?',
+      options: ['Molecule','Atom','Compound','Cell'],
+      correctIndex: 1,
+      why: 'Atom = ဒြပ်စင်တစ်ခု၏ အသေးဆုံးယူနစ် (element identity ကို ထိန်းထား)။',
+      steps: ['Molecule = atom ၂ ခုအထက်','Atom = element ၏ အသေးဆုံးယူနစ်','Compound = atom အမျိုးမျိုး','အဖြေ = Atom'],
+      answer: 'Atom', tag: 'Chemistry' },
+
+    { q: 'What is the atomic number of an element?',
+      options: ['Number of neutrons','Number of protons','Total mass','Number of electrons only'],
+      correctIndex: 1,
+      why: 'Atomic number = proton အရေအတွက် (element ၏ identity ကို သတ်မှတ်)။',
+      steps: ['Atomic # = protons','Protons က element ကို သတ်မှတ်','အဖြေ = "Number of protons"'],
+      answer: 'Number of protons', tag: 'Chemistry' },
+
+    { q: 'Which type of bond forms between a metal and a nonmetal?',
+      options: ['Covalent','Ionic','Metallic','Hydrogen'],
+      correctIndex: 1,
+      why: 'Ionic bond = metal + nonmetal (electron transfer)။ Covalent = nonmetal + nonmetal (electron sharing)။',
+      steps: ['Metal + nonmetal = ionic','Nonmetal + nonmetal = covalent','Metal + metal = metallic','အဖြေ = Ionic'],
+      answer: 'Ionic', tag: 'Chemistry' },
+
+    // === Earth Science ===
+    { q: 'Which type of rock forms from cooled magma or lava?',
+      options: ['Sedimentary','Metamorphic','Igneous','Fossil'],
+      correctIndex: 2,
+      why: 'Igneous rock ("fire-formed") = magma/lava အေးခြင်းမှ ဖြစ်ပေါ်သည်။',
+      steps: ['Rock ၃ မျိုး: Igneous, Sedimentary, Metamorphic','Igneous = magma/lava အေး','Sedimentary = အနည်ထိုင်','Metamorphic = အပူ + ဖိအား','အဖြေ = Igneous'],
+      answer: 'Igneous', tag: 'Earth Science' },
+
+    { q: 'What is the outermost layer of Earth called?',
+      options: ['Mantle','Crust','Outer core','Inner core'],
+      correctIndex: 1,
+      why: 'Crust = Earth ၏ အပြင်ဆုံး အလွှာ (thin, solid)။',
+      steps: ['Earth အလွှာ ၄ ခု: Crust, Mantle, Outer Core, Inner Core','Crust = အပြင်ဆုံး','အဖြေ = Crust'],
+      answer: 'Crust', tag: 'Earth Science' },
+
+    { q: 'What causes earthquakes?',
+      options: ['Wind','Plate movement along faults','Heavy rain','Solar flares'],
+      correctIndex: 1,
+      why: 'Earthquake = tectonic plates များ fault လျှောက် ရုတ်တရက် ရွေ့လျားခြင်းကြောင့် ဖြစ်ပေါ်သည်။',
+      steps: ['Tectonic plates = မြေကြီးလွှာချပ်','Fault = မြေကြီးအကွဲအက်ရာ','Plate movement along faults = earthquake','အဖြေ = "Plate movement along faults"'],
+      answer: 'Plate movement along faults', tag: 'Earth Science' },
+
+    { q: 'What is the most common gas in Earth\'s atmosphere?',
+      options: ['Oxygen','Carbon dioxide','Nitrogen','Hydrogen'],
+      correctIndex: 2,
+      why: 'Earth ၏ လေထုတွင် Nitrogen ~78% ပါဝင်သည်။ Oxygen ~21%။',
+      steps: ['Atmosphere = N₂ 78%, O₂ 21%','Most common = Nitrogen','အဖြေ = Nitrogen'],
+      answer: 'Nitrogen', tag: 'Earth Science' },
+
+    { q: 'What is the primary source of energy for the water cycle?',
+      options: ['The Moon','The Sun','Earth\'s core','Wind'],
+      correctIndex: 1,
+      why: 'Sun = water cycle ကို မောင်းနှင်သည့် စွမ်းအင် (evaporation ဖြစ်စေသည်)။',
+      steps: ['Water cycle = evaporation, condensation, precipitation','Sun → heat → evaporation','Sun = primary source','အဖြေ = The Sun'],
+      answer: 'The Sun', tag: 'Earth Science' },
+
+    // === Data Table ===
+    { q: 'Read the data table and answer the question below.',
+      dataTable: {
+        headers: ['Trophic Level','Organism','Energy (units)'],
+        rows: [
+          ['Producer','Grass','1,000'],
+          ['Primary Consumer','Grasshopper','100'],
+          ['Secondary Consumer','Frog','10'],
+          ['Tertiary Consumer','Snake','1']
+        ]
+      },
+      q2: 'Based on the table, what percentage of energy is transferred from grasshopper to frog?',
+      options: ['1%','10%','50%','100%'],
+      correctIndex: 1,
+      why: 'Grasshopper (100) → Frog (10) = 10% transfer (10% Rule)။',
+      steps: ['Grasshopper = 100 units','Frog = 10 units','Transfer % = (10 ÷ 100) × 100 = 10%','အဖြေ = 10%'],
+      answer: '10%', tag: 'Ecology' },
+
+    // === Scientific Reasoning ===
+    { q: 'What is a hypothesis?',
+      options: ['A proven fact','A testable prediction','A conclusion','An observation'],
+      correctIndex: 1,
+      why: 'Hypothesis = စမ်းသပ်နိုင်သော ခန့်မှန်းချက် (testable prediction)။',
+      steps: ['Scientific method = observation → question → hypothesis','Hypothesis = testable prediction','အဖြေ = "A testable prediction"'],
+      answer: 'A testable prediction', tag: 'Method' },
+
+    { q: 'What is an independent variable?',
+      options: ['The variable that is measured','The variable that is changed by the researcher','The control group','The result'],
+      correctIndex: 1,
+      why: 'Independent = researcher ပြောင်းလဲသော variable ။ Dependent = ရလဒ်ကို တိုင်းတာသော variable။',
+      steps: ['Independent = manipulated/changed','Dependent = measured','အဖြေ = "The variable that is changed by the researcher"'],
+      answer: 'The variable that is changed by the researcher', tag: 'Method' },
+
+    { q: 'Why is a control group important in an experiment?',
+      options: ['To confuse results','To provide a baseline for comparison','To reduce cost','To slow the experiment'],
+      correctIndex: 1,
+      why: 'Control group = treatment မပေးသည့် အုပ်စု — နှိုင်းယှဉ်ရန် အခြေခံစံ (baseline)။',
+      steps: ['Control = no treatment','Baseline for comparison','အဖြေ = "To provide a baseline for comparison"'],
+      answer: 'To provide a baseline for comparison', tag: 'Method' },
+
+    // === Additional Mixed ===
+    { q: 'What is the difference between weather and climate?',
+      options: ['They are the same','Weather is short-term; climate is long-term','Weather is long-term; climate is short-term','Only climate matters'],
+      correctIndex: 1,
+      why: 'Weather = ရက်/ပတ် အခြေအနေ ။ Climate = နှစ်များစွာ၏ ပျမ်းမျှ။',
+      steps: ['Weather = days/weeks','Climate = years/decades','အဖြေ = "Weather is short-term; climate is long-term"'],
+      answer: 'Weather is short-term; climate is long-term', tag: 'Earth Science' },
+
+    { q: 'What is the function of red blood cells?',
+      options: ['Fight infection','Carry oxygen','Digest food','Produce hormones'],
+      correctIndex: 1,
+      why: 'Red blood cells တွင် hemoglobin ပါပြီး O₂ ကို သယ်ဆောင်သည်။',
+      steps: ['RBC has hemoglobin','Hemoglobin binds O₂','Function = carry oxygen','အဖြေ = "Carry oxygen"'],
+      answer: 'Carry oxygen', tag: 'Biology' },
+
+    { q: 'Which organ system is responsible for breaking down food into nutrients?',
+      options: ['Respiratory','Digestive','Circulatory','Nervous'],
+      correctIndex: 1,
+      why: 'Digestive system = အစားအစာကို ဖြိုခွဲပြီး အာဟာရ စုပ်ယူသည်။',
+      steps: ['Digestive = food breakdown','အဖြေ = Digestive'],
+      answer: 'Digestive', tag: 'Biology' },
+
+    { q: 'What is a chemical formula for water?',
+      options: ['CO₂','H₂O','NaCl','O₂'],
+      correctIndex: 1,
+      why: 'Water = H₂O (hydrogen ၂ atom + oxygen ၁ atom)။',
+      steps: ['Water = 2H + 1O','Formula = H₂O','အဖြေ = H₂O'],
+      answer: 'H₂O', tag: 'Chemistry' },
+
+    { q: 'Which force keeps planets in orbit around the Sun?',
+      options: ['Magnetism','Gravity','Friction','Tension'],
+      correctIndex: 1,
+      why: 'Gravity = Sun ၏ ဆွဲအားက ဂြိုဟ်များကို လမ်းကြောင်းပေါ် ထိန်းထားသည်။',
+      steps: ['Sun has gravitational pull','Keeps planets in orbit','အဖြေ = Gravity'],
+      answer: 'Gravity', tag: 'Physics' },
+
+    { q: 'What is the process by which plants lose water through their leaves?',
+      options: ['Respiration','Transpiration','Photosynthesis','Digestion'],
+      correctIndex: 1,
+      why: 'Transpiration = အရွက်မှ ရေငွေ့ ထွက်ခြင်း (stomata မှတစ်ဆင့်)။',
+      steps: ['Plant loses water → transpiration','အဖြေ = Transpiration'],
+      answer: 'Transpiration', tag: 'Biology' },
+
+    { q: 'What is an ecosystem?',
+      options: ['A single organism','A community of organisms and their physical environment','A type of rock','A chemical reaction'],
+      correctIndex: 1,
+      why: 'Ecosystem = သက်ရှိအုပ်စု + သူတို့၏ ရုပ်ပိုင်းဆိုင်ရာ ပတ်ဝန်းကျင် (biotic + abiotic)။',
+      steps: ['Ecosystem = living + non-living','အဖြေ = "A community of organisms and their physical environment"'],
+      answer: 'A community of organisms and their physical environment', tag: 'Ecology' }
+  ];
+
+  /* ============================================================
+     RENDER PRACTICE QUESTIONS
+     ============================================================ */
+  var LTRS = ['A','B','C','D'];
+  var container = document.getElementById('practiceList');
+
+  QUESTIONS.forEach(function(item, idx){
+    var card = document.createElement('div');
+    card.className = 'q-block';
+
+    var dataTableHtml = '';
+    if(item.dataTable){
+      dataTableHtml = '<div class="data-table-wrap"><table class="data-table"><thead><tr>';
+      item.dataTable.headers.forEach(function(h){
+        dataTableHtml += '<th>' + h + '</th>';
+      });
+      dataTableHtml += '</tr></thead><tbody>';
+      item.dataTable.rows.forEach(function(row){
+        dataTableHtml += '<tr>';
+        row.forEach(function(cell){
+          dataTableHtml += '<td>' + cell + '</td>';
+        });
+        dataTableHtml += '</tr>';
+      });
+      dataTableHtml += '</tbody></table></div>';
+    }
+
+    var questionText = item.q2 || item.q;
+
+    card.innerHTML =
+      '<div class="q-head">' +
+        '<span class="q-num">' + (idx + 1) + '</span>' +
+        '<span class="q-tag">' + item.tag + '</span>' +
+      '</div>' +
+      '<p class="q-text">' + item.q + '</p>' +
+      dataTableHtml +
+      (item.q2 ? '<p class="q-text">' + item.q2 + '</p>' : '') +
+      '<div class="q-opts">' +
+        item.options.map(function(o, i){
+          return '<button class="q-opt" data-i="' + i + '"><span class="ltr">' + LTRS[i] + '.</span>' + o + '</button>';
+        }).join('') +
+      '</div>' +
+      '<button class="show-ans">💡 အဖြေကြည့်ရန်</button>' +
+      '<div class="q-sol" hidden>' +
+        '<div style="margin-bottom:12px;">' +
+          '<span class="lbl">အဘယ်ကြောင့်</span>' +
+          item.why +
+        '</div>' +
+        '<div>' +
+          '<span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span>' +
+          '<ol style="margin:6px 0 0;padding-left:20px;">' +
+            item.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('') +
+          '</ol>' +
+        '</div>' +
+        '<span class="ans">✔ အဖြေ: ' + item.answer + '</span>' +
+      '</div>';
+
+    var opts = card.querySelectorAll('.q-opt');
+    var solBox = card.querySelector('.q-sol');
+    var solBtn = card.querySelector('.show-ans');
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(btn.disabled) return;
+        opts.forEach(function(b){ b.disabled = true; });
+        var ok = i === item.correctIndex;
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        if(!ok) opts[item.correctIndex].classList.add('correct');
+        solBox.hidden = false;
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      });
+    });
+
+    solBtn.addEventListener('click', function(){
+      solBox.hidden = !solBox.hidden;
+      if(solBox.hidden){
+        solBtn.classList.remove('open');
+        solBtn.textContent = '💡 အဖြေကြည့်ရန်';
+      } else {
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      }
+    });
+
+    container.appendChild(card);
+  });
+
+  /* Show locked card */
+  setTimeout(function(){
+    document.getElementById('lockedCard').style.display = 'block';
+  }, 800);
+
+})();
+</script>
+</body>
+</html>

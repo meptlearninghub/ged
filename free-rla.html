@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>Free RLA Learning — GED Myanmar</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1;--primary-d:#4f46e5;
+  --green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --blue:#3b82f6;--violet:#8b5cf6;--cyan:#06b6d4;--fc:#3b82f6;
+  --radius:20px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.85);
+  --hover-soft:rgba(15,23,42,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.85);
+  --hover-soft:rgba(255,255,255,.05);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;
+  font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%,rgba(59,130,246,.12),transparent 65%),
+    radial-gradient(720px 480px at 100% 4%,rgba(99,102,241,.10),transparent 65%),
+    radial-gradient(620px 420px at 50% 105%,rgba(6,182,212,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:calc(10px + var(--safe-top)) 0 10px;}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:12px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none;}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));
+  box-shadow:0 8px 18px -8px var(--fc);}
+.nav-logo b{font-size:15px;font-weight:800;}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);}
+.nav-actions{display:flex;gap:8px;align-items:center;flex:none;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);
+  text-decoration:none;font-size:12.5px;font-weight:700;
+  transition:transform .18s,background .2s;}
+.back-btn:hover{background:var(--hover-soft);}
+.back-btn:active{transform:scale(.95);}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;
+  border-radius:11px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);font-size:16px;cursor:pointer;padding:0;
+  font-family:inherit;transition:transform .18s,background .18s;}
+.icon-btn:hover{background:var(--hover-soft);}
+.icon-btn:active{transform:scale(.9);}
+@media(max-width:520px){.nav-title{display:none;}}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom));}
+
+/* HERO */
+.hero{padding:36px 0 24px;text-align:center;}
+.hero .free-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  font-size:12.5px;font-weight:800;letter-spacing:.04em;margin-bottom:16px;
+  box-shadow:0 8px 18px -8px rgba(22,163,74,.7);}
+.hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 18px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,var(--fc),var(--primary));color:#fff;
+  box-shadow:0 20px 40px -16px var(--fc);}
+.hero h1{margin:0 0 10px;font-size:clamp(24px,5.5vw,36px);font-weight:900;
+  letter-spacing:-.03em;line-height:1.15;}
+.hero p{margin:0 auto;max-width:560px;font-size:14.5px;color:var(--muted);line-height:1.75;}
+.hero p b{color:var(--text);font-weight:800;}
+
+/* FREE COUNT BANNER */
+.free-count{
+  max-width:520px;margin:20px auto 0;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:16px;padding:16px 20px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:14px;
+}
+.free-count .num{
+  width:56px;height:56px;flex:none;border-radius:16px;
+  display:grid;place-items:center;font-size:22px;font-weight:900;
+  background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;
+  box-shadow:0 10px 22px -10px rgba(22,163,74,.8);
+}
+.free-count .info{flex:1;text-align:left;}
+.free-count .info b{display:block;font-size:15px;font-weight:800;margin-bottom:3px;}
+.free-count .info span{font-size:12.5px;color:var(--muted);font-weight:600;}
+
+/* SECTIONS */
+.section{padding:32px 0 0;}
+.section-head{text-align:center;margin-bottom:22px;}
+.section-head h2{margin:0 0 8px;font-size:clamp(20px,4.5vw,26px);font-weight:800;letter-spacing:-.02em;}
+.section-head p{margin:0 auto;max-width:520px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+
+/* LESSON LIST — LOCKED PREVIEW */
+.lesson-list{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:640px){.lesson-list{grid-template-columns:repeat(2,1fr);}}
+
+.lesson-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:18px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s;}
+@media(hover:hover){
+  .lesson-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--fc);}
+}
+.lesson-card:active{transform:scale(.985);}
+.lesson-num{width:40px;height:40px;flex:none;border-radius:12px;
+  display:grid;place-items:center;font-size:15px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));
+  box-shadow:0 8px 18px -8px var(--fc);}
+.lesson-body{flex:1;min-width:0;}
+.lesson-body h3{margin:0 0 4px;font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.35;}
+.lesson-body p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.65;}
+.lesson-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:3px 9px;border-radius:999px;
+  font-size:10.5px;font-weight:800;letter-spacing:.03em;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);}
+html[data-theme="dark"] .lesson-badge{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.lesson-lock{position:absolute;top:14px;right:14px;
+  width:28px;height:28px;border-radius:9px;
+  display:grid;place-items:center;font-size:13px;
+  background:rgba(15,23,42,.06);color:var(--muted);}
+html[data-theme="dark"] .lesson-lock{background:rgba(255,255,255,.08);}
+
+/* PRACTICE QUESTIONS */
+.q-block{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:20px;box-shadow:var(--shadow);margin-bottom:12px;}
+.q-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.q-num{width:32px;height:32px;flex:none;border-radius:10px;
+  display:grid;place-items:center;font-size:13px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));}
+.q-tag{font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--fc) 15%,transparent);color:var(--fc);
+  letter-spacing:.03em;}
+html[data-theme="dark"] .q-tag{background:color-mix(in srgb,var(--fc) 25%,transparent);}
+.q-text{font-size:14.5px;line-height:1.75;margin:0 0 14px;font-weight:500;color:var(--text);}
+.q-text b{font-weight:800;}
+
+/* PASSAGE */
+.passage{
+  background:color-mix(in srgb,var(--fc) 6%,transparent);
+  border-left:3px solid var(--fc);
+  border-radius:10px;padding:14px 16px;margin:0 0 14px;
+  font-family:'Georgia','Times New Roman',serif;
+  font-size:14px;line-height:1.85;font-style:italic;color:var(--text);
+}
+html[data-theme="dark"] .passage{background:color-mix(in srgb,var(--fc) 12%,transparent);}
+
+.q-opts{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px;}
+@media(min-width:520px){.q-opts{grid-template-columns:1fr 1fr;}}
+.q-opt{text-align:left;padding:11px 14px;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;
+  transition:all .18s;line-height:1.5;}
+.q-opt:hover{border-color:var(--fc);background:color-mix(in srgb,var(--fc) 4%,transparent);}
+.q-opt:active{transform:scale(.985);}
+.q-opt.correct{background:#dcfce7;border-color:var(--green);color:#14532d;font-weight:700;}
+html[data-theme="dark"] .q-opt.correct{background:rgba(22,163,74,.2);color:#86efac;}
+.q-opt.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d;}
+html[data-theme="dark"] .q-opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5;}
+.q-opt:disabled{cursor:default;}
+.q-opt .ltr{font-weight:800;margin-right:6px;color:var(--muted);}
+.q-opt.correct .ltr{color:#14532d;}
+.q-opt.wrong .ltr{color:#7f1d1d;}
+
+.show-ans{padding:8px 14px;border-radius:10px;border:1px dashed rgba(245,158,11,.6);
+  background:rgba(245,158,11,.08);color:#92400e;
+  font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
+  transition:all .18s;}
+html[data-theme="dark"] .show-ans{background:rgba(245,158,11,.15);color:#fbbf24;}
+.show-ans:hover{background:rgba(245,158,11,.15);}
+.show-ans.open{background:var(--amber);color:#fff;border-style:solid;border-color:transparent;}
+.q-sol{margin-top:12px;padding:14px;border-radius:12px;
+  background:color-mix(in srgb,var(--fc) 6%,transparent);
+  border-left:3px solid var(--fc);font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .q-sol{background:color-mix(in srgb,var(--fc) 12%,transparent);}
+.q-sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--fc);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
+.q-sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px;}
+
+/* LOCKED CARD */
+.locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06));
+  border:2px dashed rgba(99,102,241,.4);
+  border-radius:20px;padding:32px 24px;text-align:center;
+  box-shadow:var(--shadow);margin-top:8px;}
+html[data-theme="dark"] .locked-card{
+  background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(139,92,246,.12));
+  border-color:rgba(99,102,241,.5);}
+.locked-card .lock-icon{width:64px;height:64px;border-radius:20px;margin:0 auto 16px;
+  display:grid;place-items:center;font-size:30px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 16px 32px -12px rgba(99,102,241,.8);}
+.locked-card h3{margin:0 0 10px;font-size:20px;font-weight:900;letter-spacing:-.02em;}
+.locked-card p{margin:0 auto 20px;max-width:420px;font-size:13.5px;
+  color:var(--muted);line-height:1.75;}
+.locked-card .stats{display:flex;gap:14px;justify-content:center;
+  flex-wrap:wrap;margin-bottom:20px;}
+.locked-card .stat{padding:10px 16px;border-radius:12px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:12.5px;font-weight:700;}
+.locked-card .stat b{color:var(--primary);font-weight:900;font-size:14px;}
+.locked-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 24px;border-radius:14px;border:1px solid transparent;
+  font-family:inherit;font-size:14.5px;font-weight:800;cursor:pointer;
+  text-decoration:none;transition:transform .18s,filter .2s;}
+.btn:active{transform:scale(.96);}
+.btn.primary{background:linear-gradient(135deg,var(--primary),var(--violet));color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.8);}
+.btn.primary:hover{filter:brightness(1.08);}
+.btn.tg{background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(34,158,217,.8);}
+.btn.tg:hover{filter:brightness(1.08);}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.6);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .25s ease both;}
+.modal-bg.show{display:flex;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes popIn{from{opacity:0;transform:scale(.94) translateY(10px);}to{opacity:1;transform:none;}}
+.modal{background:var(--card);border-radius:22px;width:100%;max-width:420px;
+  padding:26px;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+  animation:popIn .3s cubic-bezier(.22,.8,.28,1) both;position:relative;text-align:center;}
+.modal .x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;background:var(--hover-soft);color:var(--muted);
+  border:none;font-family:inherit;font-size:16px;cursor:pointer;}
+.modal .lock-icon{width:56px;height:56px;border-radius:18px;margin:0 auto 14px;
+  display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;
+  box-shadow:0 12px 26px -10px rgba(99,102,241,.7);}
+.modal h2{margin:0 0 8px;font-size:19px;font-weight:900;letter-spacing:-.02em;}
+.modal p{margin:0 0 20px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.modal p b{color:var(--text);font-weight:800;}
+.modal .modal-actions{display:flex;gap:10px;flex-direction:column;}
+.modal .modal-actions .btn{width:100%;}
+
+/* PREMIUM BANNER */
+.premium-banner{margin-top:30px;padding:26px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(139,92,246,.08));
+  border:1.5px solid rgba(99,102,241,.3);text-align:center;box-shadow:var(--shadow);}
+html[data-theme="dark"] .premium-banner{
+  background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(139,92,246,.15));
+  border-color:rgba(99,102,241,.4);}
+.premium-banner h3{margin:0 0 8px;font-size:18px;font-weight:900;letter-spacing:-.02em;}
+.premium-banner p{margin:0 auto 18px;max-width:480px;font-size:13.5px;color:var(--muted);line-height:1.7;}
+.premium-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{padding:34px 0 calc(46px + var(--safe-bottom));text-align:center;
+  font-size:12px;color:var(--muted);line-height:2;}
+footer .brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:6px;
+  font-weight:800;color:var(--text);font-size:13px;}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:9px;font-weight:900;color:#fff;
+  background:linear-gradient(135deg,var(--fc),var(--primary));}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="mark">GED</span>
+      <b>GED Myanmar</b>
+    </a>
+    <div class="nav-title">Free RLA Learning</div>
+    <div class="nav-actions">
+      <a class="back-btn" href="index.html">← Back</a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="free-badge">🆓 100% FREE</span>
+    <div class="big-icon">📖</div>
+    <h1>Free RLA Learning</h1>
+    <p>GED Reasoning Through Language Arts အတွက် <b>Practice Questions ၅၀ ခု</b>ကို အခမဲ့ လေ့လာပါ။ Lesson Preview ၅ ခုကို ကြည့်ရှုနိုင်ပါသည် (Login မလိုပါ)။</p>
+
+    <div class="free-count">
+      <div class="num">50</div>
+      <div class="info">
+        <b>Free Practice Questions</b>
+        <span>Login မလိုဘဲ ဖြေဆိုနိုင်သည်</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE LESSONS (LOCKED) -->
+  <section class="section">
+    <div class="section-head">
+      <h2>📚 Sample Lesson Previews</h2>
+      <p>Lesson Title နှင့် အနှစ်ချုပ်သာ ကြည့်ရှုနိုင်သည် — Full Lesson အတွက် Login ဝင်ပါ</p>
+    </div>
+    <div class="lesson-list" id="lessonList"></div>
+  </section>
+
+  <!-- PRACTICE QUESTIONS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>✏️ Practice Questions (50)</h2>
+      <p>မေးခွန်း ၅၀ ခုကို အခမဲ့ ဖြေဆိုပါ — အဖြေနှင့် ရှင်းလင်းချက် ပါဝင်သည်</p>
+    </div>
+
+    <div id="practiceList"></div>
+
+    <!-- LOCKED CARD -->
+    <div class="locked-card" id="lockedCard" style="display:none;">
+      <div class="lock-icon">🔒</div>
+      <h3>Free 50 Questions ပြီးဆုံးပါပြီ!</h3>
+      <p>ကျန်သော <b>1,750 မေးခွန်း</b>နှင့် Official Format Pretest ၃ ခုကို ဆက်လေ့လာရန် Login ဝင်ပါ။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+      <div class="stats">
+        <div class="stat">✅ Free <b>50</b></div>
+        <div class="stat">🔒 Locked <b>1,750</b></div>
+      </div>
+      <div class="locked-actions">
+        <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+        <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM CTA -->
+  <div class="premium-banner">
+    <h3>🔐 Full Access — 1,800 Exercises + 3 Pretests</h3>
+    <p>Login ဝင်ပြီး RLA Exercise ၁,၈၀၀+၊ Official Format Pretest ၃ ခုနှင့် Reference Sheet အားလုံးကို အပြည့်အဝ အသုံးပြုပါ။</p>
+    <div class="premium-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="brand"><span class="mark">GED</span><span>GED Myanmar</span></div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<!-- LOCKED PREVIEW MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="x" id="closeModal" type="button">✕</button>
+    <div class="lock-icon">🔒</div>
+    <h2 id="modalTitle">Login လိုအပ်ပါသည်</h2>
+    <p id="modalMsg">ဤ Lesson ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။ Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။</p>
+    <div class="modal-actions">
+      <a class="btn primary" href="index.html">🔓 Login ဝင်ရန်</a>
+      <a class="btn tg" href="https://t.me/gedhubs" target="_blank" rel="noopener">✈️ Admin ဆက်သွယ်</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* THEME */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☀️' : '🌙';
+    try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ============================================================
+     LESSON PREVIEWS — LOCKED
+     ============================================================ */
+  var LESSONS = [
+    { num: 1, title: 'Main Idea & Central Theme', desc: 'စာပိုဒ်၏ အဓိကအချက်နှင့် ဗဟိုအကြောင်းအရာကို ရှာဖွေခြင်း' },
+    { num: 2, title: 'Supporting Details', desc: 'အဓိကအချက်ကို ထောက်ပြသည့် အချက်အလက်များ ဖော်ထုတ်ခြင်း' },
+    { num: 3, title: 'Subject-Verb Agreement', desc: 'Subject နှင့် Verb ကိန်း ကိုက်ညီမှု စည်းမျဉ်းများ' },
+    { num: 4, title: 'Comma Rules', desc: 'Comma အသုံးပြုရသည့် အခြေခံစည်းမျဉ်း ၅ ချက်' },
+    { num: 5, title: 'Figurative Language', desc: 'Simile · Metaphor · Personification · Hyperbole · Idiom' }
+  ];
+
+  var lessonListEl = document.getElementById('lessonList');
+  LESSONS.forEach(function(lesson){
+    var card = document.createElement('div');
+    card.className = 'lesson-card';
+    card.innerHTML =
+      '<span class="lesson-lock">🔒</span>' +
+      '<span class="lesson-num">' + lesson.num + '</span>' +
+      '<div class="lesson-body">' +
+        '<h3>' + lesson.title + '</h3>' +
+        '<p>' + lesson.desc + '</p>' +
+        '<span class="lesson-badge">🔐 Login Required</span>' +
+      '</div>';
+    card.addEventListener('click', function(){
+      openModal(lesson.title);
+    });
+    lessonListEl.appendChild(card);
+  });
+
+  /* ============================================================
+     MODAL
+     ============================================================ */
+  var modal = document.getElementById('modal');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalMsg = document.getElementById('modalMsg');
+  function openModal(lessonName){
+    modalTitle.textContent = '🔒 Login လိုအပ်ပါသည်';
+    modalMsg.innerHTML = 'Lesson <b>"' + lessonName + '"</b> ကို အပြည့်အဝ လေ့လာရန် Login ဝင်ရန် လိုအပ်ပါသည်။<br><br>Admin က သင့်ကို Username နှင့် ID ပေးပါမည်။';
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  /* ============================================================
+     PRACTICE QUESTIONS — 30 Sample RLA Qs
+     ============================================================ */
+  var QUESTIONS = [
+    // === Main Idea ===
+    { q: 'What is the main idea of the passage?',
+      passage: 'Regular exercise improves cardiovascular health, strengthens muscles, and boosts mental well-being. Even 30 minutes a day can significantly reduce the risk of chronic disease.',
+      options: ['Exercise should be done in the morning','Regular exercise offers many health benefits','Only athletes need to exercise','30 minutes is the only useful amount'],
+      correctIndex: 1,
+      why: 'Main idea သည် passage တစ်ခုလုံး၏ အဓိကအကြောင်းအရာ ဖြစ်သည်။ "Regular exercise offers many health benefits" သည် အနှစ်ချုပ်ဆုံး ဖော်ပြချက် ဖြစ်သည်။',
+      steps: ['Passage တစ်ခုလုံး ဖတ်ပါ','Exercise → heart, muscles, mental — အားလုံး ကောင်းကျိုး','Main idea = "Regular exercise offers many health benefits"'],
+      answer: 'Regular exercise offers many health benefits', tag: 'Main Idea' },
+
+    { q: 'What is the main idea of the passage?',
+      passage: 'Many cities are investing in public transportation to reduce traffic congestion and air pollution. Buses and trains can move far more people than private cars using the same road space.',
+      options: ['Cities are becoming overcrowded','Private cars are better than buses','Public transportation helps reduce traffic and pollution','Air pollution only affects cities'],
+      correctIndex: 2,
+      why: 'Passage တစ်ခုလုံးသည် public transportation ၏ ကောင်းကျိုးကို ဆွေးနွေးထားသည်။',
+      steps: ['Topic = public transportation','Purpose = reduce traffic + air pollution','Main idea = "Public transportation helps reduce traffic and pollution"'],
+      answer: 'Public transportation helps reduce traffic and pollution', tag: 'Main Idea' },
+
+    { q: 'What is the main idea of the passage?',
+      passage: 'The internet has transformed how people access information, communicate, and conduct business. It has also created new challenges, including concerns about privacy and misinformation.',
+      options: ['The internet is only useful for business','The internet has both positive and negative effects','Privacy is no longer a concern','Misinformation is rare online'],
+      correctIndex: 1,
+      why: 'Passage သည် internet ၏ ကောင်းကျိုးနှင့် ဆိုးကျိုး ၂ မျိုးလုံးကို ဖော်ပြထားသည်။',
+      steps: ['Pros = access, communicate, business','Cons = privacy, misinformation','Main idea = "The internet has both positive and negative effects"'],
+      answer: 'The internet has both positive and negative effects', tag: 'Main Idea' },
+
+    // === Grammar (Subject-Verb) ===
+    { q: 'Which sentence has correct subject-verb agreement?',
+      options: ['The dog bark loudly every night.','The dogs barks loudly every night.','The dog barks loudly every night.','The dog barking loudly every night.'],
+      correctIndex: 2,
+      why: '"The dog" သည် singular subject ဖြစ်သောကြောင့် verb တွင် -s ထည့်ရသည်။',
+      steps: ['Subject: "The dog" (singular)','Singular subject → verb + s','"barks" သည် singular verb','အဖြေ = "The dog barks loudly every night."'],
+      answer: 'The dog barks loudly every night.', tag: 'Grammar' },
+
+    { q: 'Which sentence has correct subject-verb agreement?',
+      options: ['The students study in the library.','The students studies in the library.','The students studying in the library.','The students was study in the library.'],
+      correctIndex: 0,
+      why: '"The students" သည် plural subject ဖြစ်သောကြောင့် verb တွင် -s မထည့်ရ။',
+      steps: ['Subject: "The students" (plural)','Plural subject → base verb (no -s)','"study" သည် plural verb','အဖြေ = "The students study in the library."'],
+      answer: 'The students study in the library.', tag: 'Grammar' },
+
+    // === Author's Purpose ===
+    { q: 'Read the passage and identify the author\'s purpose:',
+      passage: 'Buy now and save 30%! This limited-time offer ends Friday. Don\'t miss out on the deal of the season.',
+      options: ['Inform','Persuade','Entertain','Instruct'],
+      correctIndex: 1,
+      why: '"Buy now", "Don\'t miss out", "limited-time offer" စသည့် စကားလုံးများသည် ဖျောင်းဖျရန် ရည်ရွယ်သည်။',
+      steps: ['စာသား၏ လေသံကို ကြည့်ပါ','"Buy now" → ဖျောင်းဖျသော စကားလုံး','Author\'s purpose = Persuade'],
+      answer: 'Persuade', tag: 'Purpose' },
+
+    { q: 'Read the passage and identify the author\'s purpose:',
+      passage: 'First, preheat the oven to 350°F. Then, mix the flour and sugar in a large bowl. Next, add eggs and butter.',
+      options: ['Inform','Persuade','Entertain','Instruct'],
+      correctIndex: 3,
+      why: '"First, Then, Next" စသည့် အဆင့်ဆင့် ညွှန်ကြားချက်များသည် instruct ရန် ရည်ရွယ်သည်။',
+      steps: ['"First", "Then", "Next" ရှာပါ','ဤသည်မှာ step-by-step ညွှန်ကြားချက်','Author\'s purpose = Instruct'],
+      answer: 'Instruct', tag: 'Purpose' },
+
+    // === Figurative Language ===
+    { q: 'What does the following sentence best illustrate?',
+      passage: '"The wind howled like a wounded animal."',
+      options: ['Metaphor','Simile','Personification','Hyperbole'],
+      correctIndex: 1,
+      why: '"like" ပါသောကြောင့် simile ဖြစ်သည်။',
+      steps: ['"like" ရှာပါ — "like a wounded animal"','"like" သို့မဟုတ် "as" ပါလျှင် → Simile','ဤ sentence သည် simile'],
+      answer: 'Simile', tag: 'Figurative' },
+
+    { q: 'What does the following sentence best illustrate?',
+      passage: '"Time is a thief."',
+      options: ['Simile','Metaphor','Personification','Hyperbole'],
+      correctIndex: 1,
+      why: '"like/as" မပါဘဲ time ကို thief ဟု တိုက်ရိုက် နှိုင်းယှဉ်ထားသည် → metaphor။',
+      steps: ['"like/as" မပါ','Time = a thief — တိုက်ရိုက် နှိုင်းယှဉ်','ဤ sentence သည် metaphor'],
+      answer: 'Metaphor', tag: 'Figurative' },
+
+    { q: 'What does the following sentence best illustrate?',
+      passage: '"The stars danced in the sky."',
+      options: ['Simile','Metaphor','Personification','Hyperbole'],
+      correctIndex: 2,
+      why: 'Stars များကို "danced" (လူလို) ပြုမူစေသည် → personification။',
+      steps: ['Stars = သက်မဲ့','"danced" = လူ၏ လုပ်ရပ်','သက်မဲ့ကို လူလို ပြုမူ → Personification'],
+      answer: 'Personification', tag: 'Figurative' },
+
+    { q: 'What does the following sentence best illustrate?',
+      passage: '"I am so hungry I could eat a horse."',
+      options: ['Simile','Metaphor','Personification','Hyperbole'],
+      correctIndex: 3,
+      why: 'အလွန်အကျွံ ချဲ့ကားထားသည် → hyperbole။',
+      steps: ['အလွန်အကျွံ ချဲ့ကားမှုလား? ဟုတ်','"eat a horse" — literal မဟုတ်','ဤ sentence သည် hyperbole'],
+      answer: 'Hyperbole', tag: 'Figurative' },
+
+    // === Punctuation ===
+    { q: 'Choose the sentence with the correct comma usage:',
+      options: ['I bought apples oranges and bananas.','I bought apples, oranges, and bananas.','I bought apples oranges, and bananas.','I bought, apples oranges and bananas.'],
+      correctIndex: 1,
+      why: 'Series comma — item ၃ ခုအထက်တွင် item တစ်ခုချင်းစီကြား comma ထည့်ပြီး "and" ရှေ့တွင်လည်း comma ထည့်သည်။',
+      steps: ['Series တွင် item ၃ ခု: apples, oranges, bananas','Item များကြား comma ထည့်','"and" ရှေ့တွင်လည်း comma ထည့်','အဖြေ = "I bought apples, oranges, and bananas."'],
+      answer: 'I bought apples, oranges, and bananas.', tag: 'Punctuation' },
+
+    { q: 'Choose the sentence with the correct apostrophe usage:',
+      options: ['The dog\'s bone is buried.','The dogs bone is buried.','The dogs\'s bone is buried.','The dog bone\'s is buried.'],
+      correctIndex: 0,
+      why: 'Singular possessive = noun + \'s ။ "dog" = singular → "dog\'s" ဖြစ်သည်။',
+      steps: ['Singular noun လား? — "dog"','Singular possessive → + \'s','"dog\'s" = "dog" ၏ ပိုင်ဆိုင်မှု','အဖြေ = "The dog\'s bone is buried."'],
+      answer: 'The dog\'s bone is buried.', tag: 'Punctuation' },
+
+    { q: 'Which sentence uses the semicolon correctly?',
+      options: ['I like coffee; my brother prefers tea.','I like coffee; and my brother prefers tea.','I like coffee; however my brother prefers tea.','I like coffee; my brother, prefers tea.'],
+      correctIndex: 0,
+      why: 'Semicolon ကို independent clause ၂ ခု ဆက်ရန် သုံးသည်။ "and" ကို semicolon နှင့် တွဲသုံးလို့ မရ။',
+      steps: ['Independent clause ၂ ခု ရှိလား? — ဟုတ်','Semicolon ဖြင့် ဆက်နိုင်သည်','"and" မလိုအပ်','အဖြေ = "I like coffee; my brother prefers tea."'],
+      answer: 'I like coffee; my brother prefers tea.', tag: 'Punctuation' },
+
+    // === Vocabulary / Connotation ===
+    { q: 'Which word has a NEGATIVE connotation?',
+      options: ['determined','persistent','stubborn','firm'],
+      correctIndex: 2,
+      why: '"Stubborn" သည် ခေါင်းမာသည်ဟု အဓိပ္ပာယ်ရပြီး negative ဖြစ်သည်။',
+      steps: ['Connotation = စကားလုံး၏ ခံစားချက်','"determined", "persistent", "firm" → positive','"stubborn" → negative','အဖြေ = "stubborn"'],
+      answer: 'stubborn', tag: 'Vocabulary' },
+
+    { q: 'Which word has a POSITIVE connotation?',
+      options: ['thrifty','stingy','cheap','miserly'],
+      correctIndex: 0,
+      why: '"Thrifty" သည် ချွေတာသည်ဟု positive အဓိပ္ပာယ်ရသည်။ ကျန်တာတွေက negative။',
+      steps: ['Connotation = ခံစားချက်','"thrifty" → positive (ချွေတာ)','"stingy", "cheap", "miserly" → negative','အဖြေ = "thrifty"'],
+      answer: 'thrifty', tag: 'Vocabulary' },
+
+    { q: 'What does the phrase "break a leg" mean?',
+      options: ['be careful','good luck','run fast','fall down'],
+      correctIndex: 1,
+      why: 'Idiom "break a leg" သည် "good luck" ဟု အဓိပ္ပာယ်ရသည် (အထူးသဖြင့် ဇာတ်ခုံဖျော်ဖြေမှု မတိုင်မီ)။',
+      steps: ['Idiom ကို တိုက်ရိုက် ဘာသာပြန်လို့မရ','"break a leg" = cultural expression','အဓိပ္ပာယ် = "good luck"'],
+      answer: 'good luck', tag: 'Vocabulary' },
+
+    { q: 'What does the idiom "piece of cake" mean?',
+      options: ['a dessert','easy task','hard work','small piece'],
+      correctIndex: 1,
+      why: '"Piece of cake" = အလွန်လွယ်ကူသော အလုပ် (easy task)။',
+      steps: ['Idiom ကို တိုက်ရိုက် ဘာသာပြန်လို့မရ','"piece of cake" = easy task'],
+      answer: 'easy task', tag: 'Vocabulary' },
+
+    // === Inference ===
+    { q: 'What can be inferred from the passage?',
+      passage: 'Maria walked in with wet hair and an umbrella, shaking raindrops from her coat.',
+      options: ['Maria forgot her coat','It is raining outside','Maria just went swimming','The umbrella is broken'],
+      correctIndex: 1,
+      why: '"Wet hair", "umbrella", "raindrops" စသည့် သဲလွန်စများမှ မိုးရွာနေသည်ဟု ကောက်ချက်ချနိုင်သည်။',
+      steps: ['Passage ထဲရှိ clues ရှာပါ','"wet hair" → ရေစို','"umbrella" + "raindrops" → မိုး','Inference = "It is raining outside"'],
+      answer: 'It is raining outside', tag: 'Inference' },
+
+    { q: 'What can be inferred from the passage?',
+      passage: 'Tom checked his watch three times in five minutes and kept looking toward the door.',
+      options: ['Tom is bored','Tom is anxious about being late','Tom lost his watch','Tom is waiting for a friend'],
+      correctIndex: 1,
+      why: 'အကြိမ်ကြိမ် နာရီကြည့်ခြင်း + တံခါးကို စောင့်ကြည့်ခြင်း → စိုးရိမ်မှု (anxiety)။',
+      steps: ['Actions ကြည့်ပါ','"checked his watch three times" → စိုးရိမ်','"looking toward the door" → စောင့်','Inference = "Tom is anxious about being late"'],
+      answer: 'Tom is anxious about being late', tag: 'Inference' },
+
+    // === Compare/Contrast ===
+    { q: 'Compare the two texts and identify the relationship:',
+      passage: 'Text 1: Owning a dog brings joy and daily exercise.\nText 2: Dogs require significant time and money.',
+      options: ['Both agree on all points','Both discuss owning a dog but from different angles','Both texts are about unrelated topics','Both reject the topic entirely'],
+      correctIndex: 1,
+      why: 'Text 1 က ကောင်းကျိုး၊ Text 2 က ဆိုးကျိုး — နှစ်ခုလုံး ခွေးမွေးခြင်းအကြောင်း၊ ဒါပေမယ့် မတူညီသော ရှုထောင့်။',
+      steps: ['Text 1 = ကောင်းကျိုး','Text 2 = ဆိုးကျိုး','နှစ်ခုလုံး = ခွေးမွေးခြင်း','Relationship = "Both discuss owning a dog but from different angles"'],
+      answer: 'Both discuss owning a dog but from different angles', tag: 'Compare' },
+
+    // === Text Structure ===
+    { q: 'Identify the text structure:',
+      passage: 'Because the factory closed, hundreds of workers lost their jobs, and the town\'s economy declined.',
+      options: ['Cause and Effect','Compare and Contrast','Chronological','Problem and Solution'],
+      correctIndex: 0,
+      why: '"Because" သည် cause/effect signal word ဖြစ်သည်။',
+      steps: ['Signal words ရှာပါ','"Because ... economy declined"','Cause → Effect','အဖြေ = "Cause and Effect"'],
+      answer: 'Cause and Effect', tag: 'Structure' },
+
+    { q: 'Identify the text structure:',
+      passage: 'First, the colonists arrived. Next, they built settlements. Later, they declared independence.',
+      options: ['Cause and Effect','Compare and Contrast','Chronological','Problem and Solution'],
+      correctIndex: 2,
+      why: '"First, Next, Later" သည် chronological signal words ဖြစ်သည်။',
+      steps: ['Signal words ရှာပါ','"First", "Next", "Later"','အချိန်အစဉ်လိုက်','အဖြေ = "Chronological"'],
+      answer: 'Chronological', tag: 'Structure' },
+
+    // === Fact vs Opinion ===
+    { q: 'Is the following statement a fact or an opinion?',
+      passage: '"Chocolate is the best dessert."',
+      options: ['Fact','Opinion'],
+      correctIndex: 1,
+      why: '"Best" သည် value word — စစ်ဆေးလို့မရသော ကိုယ်ပိုင်ထင်မြင်ချက် → opinion။',
+      steps: ['စစ်ဆေးလို့ရလား? မရ','"best" = value word','= Opinion'],
+      answer: 'Opinion', tag: 'Fact/Opinion' },
+
+    { q: 'Is the following statement a fact or an opinion?',
+      passage: '"Water boils at 100°C at sea level."',
+      options: ['Fact','Opinion'],
+      correctIndex: 0,
+      why: 'စစ်ဆေးလို့ရသည် → fact။',
+      steps: ['စစ်ဆေးလို့ရလား? ရ','= Fact'],
+      answer: 'Fact', tag: 'Fact/Opinion' },
+
+    // === Sentence Structure ===
+    { q: 'Classify the sentence:',
+      passage: '"Because I was tired."',
+      options: ['Fragment','Complete sentence','Run-on sentence'],
+      correctIndex: 0,
+      why: '"Because" ဖြင့် စထားသော dependent clause သာ — main clause မပါ → fragment။',
+      steps: ['"Because" = subordinating conjunction','Dependent clause သာ','Main clause မရှိ','= Fragment'],
+      answer: 'Fragment', tag: 'Sentences' },
+
+    { q: 'Classify the sentence:',
+      passage: '"I went to the store I bought milk."',
+      options: ['Fragment','Complete sentence','Run-on sentence'],
+      correctIndex: 2,
+      why: 'Independent clause ၂ ခု၊ punctuation/conjunction မပါ → run-on။',
+      steps: ['Clause ၁: "I went to the store"','Clause ၂: "I bought milk"','Punctuation မပါ','= Run-on'],
+      answer: 'Run-on sentence', tag: 'Sentences' },
+
+    // === Transitions ===
+    { q: 'Choose the best transition word: "I studied hard. ___, I passed the exam."',
+      options: ['However','Therefore','Although','Otherwise'],
+      correctIndex: 1,
+      why: 'Cause-effect relationship → "Therefore"။',
+      steps: ['Cause: studied hard','Effect: passed','Transition = "Therefore"'],
+      answer: 'Therefore', tag: 'Transitions' },
+
+    { q: 'Choose the best transition word: "It was raining. ___, we went for a walk."',
+      options: ['Therefore','However','Thus','So'],
+      correctIndex: 1,
+      why: 'Contrast relationship → "However"။',
+      steps: ['Sentence 1: raining','Sentence 2: went outside anyway','Contrast = "However"'],
+      answer: 'However', tag: 'Transitions' }
+  ];
+
+  /* ============================================================
+     RENDER PRACTICE QUESTIONS
+     ============================================================ */
+  var LTRS = ['A','B','C','D'];
+  var container = document.getElementById('practiceList');
+
+  QUESTIONS.forEach(function(item, idx){
+    var card = document.createElement('div');
+    card.className = 'q-block';
+
+    var passageHtml = item.passage
+      ? '<div class="passage">' + item.passage.replace(/\n/g, '<br>') + '</div>'
+      : '';
+
+    card.innerHTML =
+      '<div class="q-head">' +
+        '<span class="q-num">' + (idx + 1) + '</span>' +
+        '<span class="q-tag">' + item.tag + '</span>' +
+      '</div>' +
+      '<p class="q-text">' + item.q + '</p>' +
+      passageHtml +
+      '<div class="q-opts">' +
+        item.options.map(function(o, i){
+          return '<button class="q-opt" data-i="' + i + '"><span class="ltr">' + LTRS[i] + '.</span>' + o + '</button>';
+        }).join('') +
+      '</div>' +
+      '<button class="show-ans">💡 အဖြေကြည့်ရန်</button>' +
+      '<div class="q-sol" hidden>' +
+        '<div style="margin-bottom:12px;">' +
+          '<span class="lbl">အဘယ်ကြောင့်</span>' +
+          item.why +
+        '</div>' +
+        '<div>' +
+          '<span class="lbl">ရှင်းလင်းချက် အဆင့်ဆင့်</span>' +
+          '<ol style="margin:6px 0 0;padding-left:20px;">' +
+            item.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('') +
+          '</ol>' +
+        '</div>' +
+        '<span class="ans">✔ အဖြေ: ' + item.answer + '</span>' +
+      '</div>';
+
+    var opts = card.querySelectorAll('.q-opt');
+    var solBox = card.querySelector('.q-sol');
+    var solBtn = card.querySelector('.show-ans');
+
+    opts.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if(btn.disabled) return;
+        opts.forEach(function(b){ b.disabled = true; });
+        var ok = i === item.correctIndex;
+        btn.classList.add(ok ? 'correct' : 'wrong');
+        if(!ok) opts[item.correctIndex].classList.add('correct');
+        solBox.hidden = false;
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      });
+    });
+
+    solBtn.addEventListener('click', function(){
+      solBox.hidden = !solBox.hidden;
+      if(solBox.hidden){
+        solBtn.classList.remove('open');
+        solBtn.textContent = '💡 အဖြေကြည့်ရန်';
+      } else {
+        solBtn.classList.add('open');
+        solBtn.textContent = '🙈 အဖြေပိတ်ရန်';
+      }
+    });
+
+    container.appendChild(card);
+  });
+
+  /* Show locked card */
+  setTimeout(function(){
+    document.getElementById('lockedCard').style.display = 'block';
+  }, 800);
+
+})();
+</script>
+</body>
+</html>

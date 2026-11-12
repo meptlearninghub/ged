@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Science — Reference Sheet</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:rgba(15,23,42,.09);
+--green:#16a34a;--red:#dc2626;--amber:#f59e0b;--radius:18px;--safe-top:env(safe-area-inset-top,0px);
+--safe-bottom:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+--shadow-lg:0 4px 8px rgba(15,23,42,.06),0 20px 40px -16px rgba(15,23,42,.22);--ac:#10b981;
+--nav-bg:rgba(248,250,252,.92);--hover-soft:rgba(15,23,42,.03);--passage-bg:rgba(16,185,129,.05)}
+html[data-theme="dark"]{--bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;--border:rgba(255,255,255,.09);
+--shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);--shadow-lg:0 8px 20px rgba(0,0,0,.45),0 28px 50px -20px rgba(0,0,0,.85);
+--nav-bg:rgba(11,18,32,.92);--hover-soft:rgba(255,255,255,.05);--passage-bg:rgba(16,185,129,.1)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(700px 420px at 8% -8%,rgba(16,185,129,.10),transparent 65%),
+radial-gradient(700px 420px at 100% 4%,rgba(6,182,212,.08),transparent 65%)}
+html[data-theme="dark"] body::before{opacity:.55}
+.nav{position:sticky;top:0;z-index:40;background:var(--nav-bg);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 0 10px}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 18px;display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;flex:none}
+.nav-logo .mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+font-size:12.5px;font-weight:900;letter-spacing:.5px;color:#fff;background:linear-gradient(135deg,#10b981,#06b6d4);
+box-shadow:0 8px 18px -8px rgba(16,185,129,.7)}
+.nav-logo b{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.nav-title{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:8px 13px;border-radius:11px;
+border:1px solid var(--border);background:var(--card);color:var(--text);text-decoration:none;
+font-size:12.5px;font-weight:700;transition:transform .18s,background .2s}
+.back-btn:hover{background:var(--hover-soft)}
+.back-btn:active{transform:scale(.95)}
+.icon-btn{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;
+border:1px solid var(--border);background:var(--card);color:var(--text);font-size:16px;cursor:pointer;
+padding:0;font-family:inherit;transition:transform .18s,background .18s}
+.icon-btn:hover{background:var(--hover-soft)}
+.icon-btn:active{transform:scale(.9)}
+@media(max-width:520px){.nav-title{display:none}}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px calc(60px + var(--safe-bottom))}
+.hero{padding:28px 0 20px;text-align:center}
+.hero .badge-icon{width:72px;height:72px;border-radius:22px;margin:0 auto 16px;display:grid;place-items:center;
+font-size:34px;background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;
+box-shadow:0 20px 40px -16px rgba(16,185,129,.7)}
+.hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,32px);font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.hero p{margin:0 auto;max-width:560px;font-size:clamp(13px,3.4vw,15px);color:var(--muted);line-height:1.75}
+.search-wrap{max-width:1140px;margin:0 auto;padding:0 18px 14px;position:relative}
+.search-wrap input{width:100%;padding:14px 44px 14px 46px;border-radius:14px;border:1.5px solid var(--border);
+background:var(--card);color:var(--text);font-family:inherit;font-size:14.5px;font-weight:500;
+transition:border-color .18s,background .2s;box-shadow:var(--shadow)}
+.search-wrap input:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 4px rgba(16,185,129,.12),var(--shadow)}
+.search-wrap .search-ico{position:absolute;left:34px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none}
+.search-wrap .clear-btn{position:absolute;right:34px;top:50%;transform:translateY(-50%);width:26px;height:26px;
+border:none;border-radius:50%;background:var(--hover-soft);color:var(--muted);display:none;place-items:center;
+cursor:pointer;font-family:inherit;font-size:12px;padding:0}
+.search-wrap .clear-btn.show{display:grid}
+.filters{max-width:1140px;margin:0 auto;padding:0 18px 20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter{flex:none;padding:8px 15px;border-radius:999px;border:1px solid var(--border);background:var(--card);
+color:var(--text);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s}
+.filter:hover{background:var(--hover-soft)}
+.filter.active{background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff;border-color:transparent;
+box-shadow:0 8px 18px -8px rgba(16,185,129,.7)}
+.cat{margin-bottom:32px;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cat-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.cat-ico{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;font-size:20px;
+color:#fff;background:var(--cat-color,var(--ac));box-shadow:0 8px 18px -8px var(--cat-color,var(--ac))}
+.cat-head h2{margin:0;flex:1;font-size:clamp(16px,4.2vw,19px);font-weight:800;letter-spacing:-.02em}
+.cat-head .count{font-size:11.5px;color:var(--muted);font-weight:700;padding:3px 10px;border-radius:999px;background:var(--hover-soft)}
+.formulas{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.formulas{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.formulas{grid-template-columns:repeat(3,1fr)}}
+.f-card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+padding:18px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
+@media(hover:hover){.f-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--cat-color,var(--ac))}}
+.f-card .name{margin:0 0 12px;font-size:14.5px;font-weight:800;letter-spacing:-.01em;line-height:1.4;color:var(--text)}
+.f-card .formula{padding:14px 16px;background:var(--passage-bg);border-left:3px solid var(--cat-color,var(--ac));
+border-radius:10px;font-family:'Cambria Math','Times New Roman',serif;font-size:15px;font-weight:600;line-height:1.9;
+color:var(--text);word-break:break-word;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.f-card .formula em{font-style:italic;color:#047857;font-weight:700}
+html[data-theme="dark"] .f-card .formula em{color:#6ee7b7}
+.f-card .formula code{background:var(--hover-soft);padding:2px 6px;border-radius:5px;font-size:13px;font-family:'Inter',sans-serif}
+.f-card .note{margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7}
+.f-card .note b{color:var(--text);font-weight:700}
+.copy-btn{position:absolute;top:12px;right:12px;width:30px;height:30px;padding:0;border-radius:9px;
+border:1px solid var(--border);background:var(--card);color:var(--muted);display:grid;place-items:center;
+cursor:pointer;font-family:inherit;font-size:12px;transition:all .18s;opacity:.7}
+.copy-btn:hover{opacity:1;color:var(--ac);border-color:var(--ac);background:rgba(16,185,129,.06)}
+.copy-btn.done{background:#16a34a;color:#fff;border-color:transparent}
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty .ico{font-size:48px;margin-bottom:14px;opacity:.6}
+.empty h3{margin:0 0 6px;font-size:16px;color:var(--text);font-weight:800}
+.empty p{margin:0;font-size:13px}
+.toast{position:fixed;bottom:calc(24px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(100px);
+background:#0f172a;color:#fff;padding:13px 20px;border-radius:12px;font-size:13.5px;font-weight:600;
+box-shadow:0 20px 40px -12px rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;
+transition:opacity .3s,transform .35s cubic-bezier(.22,.8,.28,1);max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:linear-gradient(135deg,#16a34a,#15803d)}
+footer{padding:34px 18px;text-align:center;font-size:12px;color:var(--muted);line-height:2}
+footer .brand{display:inline-flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:800;color:var(--text);font-size:13px}
+footer .brand .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:9px;
+font-weight:900;color:#fff;background:linear-gradient(135deg,#10b981,#06b6d4)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="main.html"><span class="mark">GED</span><b>GED Myanmar</b></a>
+    <div class="nav-title">Science Reference Sheet</div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme"><span id="themeIcon">🌙</span></button>
+    <a class="back-btn" href="main.html">← Back</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge-icon">🔬</div>
+  <h1>Science Reference Sheet</h1>
+  <p>Physics Formulas · Chemistry Equations · Biology Processes · Earth Science Laws · Scientific Method</p>
+</section>
+
+<div class="search-wrap">
+  <span class="search-ico">🔍</span>
+  <input type="text" id="searchInput" placeholder="Formula ရှာရန်... (ဥပမာ: pH, force, photosynthesis)" autocomplete="off">
+  <button class="clear-btn" id="clearBtn" type="button" aria-label="Clear">✕</button>
+</div>
+
+<div class="filters" id="filters"></div>
+<div class="wrap" id="wrap"></div>
+
+<footer>
+  <div class="brand"><span class="mark">GED</span><span>GED Myanmar</span></div>
+  <div>Learn. Practice. Pass.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var THEME_KEY='ged:theme';
+  var root=document.documentElement;
+  function applyTheme(t){root.setAttribute('data-theme',t);$('themeIcon').textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem(THEME_KEY,t)}catch(e){}}
+  applyTheme(root.getAttribute('data-theme')||'light');
+  $('themeBtn').addEventListener('click',function(){applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+
+  var CATEGORIES=[
+    {
+      id:'physics-formulas',name:'Physics Formulas',icon:'⚛️',color:'#3b82f6',
+      formulas:[
+        {name:'Newton\'s Second Law',formula:'F = m × a',note:'Force = mass × acceleration ။ Unit: Newton (N)။',keywords:'force mass acceleration newton'},
+        {name:'Newton\'s First Law',formula:'Object at rest → stays at rest',note:'Inertia — force မရှိလျှင် motion မပြောင်း။',keywords:'inertia first law'},
+        {name:'Newton\'s Third Law',formula:'Action = −Reaction',note:'အားတိုင်း တန်ပြန်အား တူညီစွာ ရှိသည်။',keywords:'action reaction third law'},
+        {name:'Speed',formula:'Speed = d ÷ t',note:'Distance ÷ time ။',keywords:'speed distance time'},
+        {name:'Acceleration',formula:'a = Δv ÷ Δt',note:'Velocity ပြောင်းလဲနှုန်း။ Unit: m/s²။',keywords:'acceleration velocity time'},
+        {name:'Kinetic Energy',formula:'KE = ½ × m × v²',note:'Motion energy ။ Velocity နှစ်ထပ်ကိန်း။',keywords:'kinetic energy mass velocity'},
+        {name:'Potential Energy',formula:'PE = m × g × h',note:'Gravitational PE ။ g ≈ 9.8 m/s² ။',keywords:'potential energy height gravity'},
+        {name:'Work',formula:'W = F × d',note:'Force × distance ။ Unit: Joule (J)။',keywords:'work force distance joule'},
+        {name:'Power',formula:'P = W ÷ t',note:'Work ÷ time ။ Unit: Watt (W)။',keywords:'power work time watt'},
+        {name:'Ohm\'s Law',formula:'V = I × R',note:'Voltage = Current × Resistance။',keywords:'ohms law voltage current resistance'},
+        {name:'Electric Power',formula:'P = V × I',note:'Power = Voltage × Current။',keywords:'electric power voltage current'},
+        {name:'Wave Speed',formula:'v = f × λ',note:'Speed = frequency × wavelength။',keywords:'wave speed frequency wavelength'},
+        {name:'Density',formula:'Density = m ÷ V',note:'Mass ÷ Volume။',keywords:'density mass volume'},
+        {name:'Pressure',formula:'P = F ÷ A',note:'Force ÷ Area။',keywords:'pressure force area'},
+        {name:'Weight',formula:'W = m × g',note:'Mass × gravitational acceleration။',keywords:'weight mass gravity'}
+      ]
+    },
+    {
+      id:'physics-laws',name:'Physics Laws',icon:'⚙️',color:'#8b5cf6',
+      formulas:[
+        {name:'Law of Conservation of Energy',formula:'Energy cannot be created or destroyed',note:'Energy ပြောင်းလဲနိုင်သည်၊ ဖန်တီး/ဖျက်ဆီး မရ။',keywords:'conservation energy law'},
+        {name:'Law of Conservation of Mass',formula:'Reactants = Products (mass)',note:'Chemical reaction တွင် mass မပြောင်း။',keywords:'conservation mass law'},
+        {name:'Boyle\'s Law',formula:'P₁V₁ = P₂V₂',note:'Temperature constant — P ↑ → V ↓ (inverse)။',keywords:'boyle pressure volume gas'},
+        {name:'Charles\'s Law',formula:'V₁/T₁ = V₂/T₂',note:'Pressure constant — V ↑ → T ↑ (direct)။ Temperature in Kelvin။',keywords:'charles volume temperature gas'},
+        {name:'Combined Gas Law',formula:'P₁V₁/T₁ = P₂V₂/T₂',note:'Boyle + Charles ပေါင်းစပ်။',keywords:'combined gas law'},
+        {name:'Absolute Zero',formula:'0 K = −273.15°C',note:'Molecular motion ရပ်သည့် အပူချိန်။',keywords:'absolute zero kelvin temperature'}
+      ]
+    },
+    {
+      id:'chemistry',name:'Chemistry',icon:'⚗️',color:'#a855f7',
+      formulas:[
+        {name:'pH Scale',formula:'Acid < 7 · Neutral = 7 · Base > 7',note:'pH = −log[H⁺] ။ Acid = H⁺ ထုတ်၊ Base = OH⁻ ထုတ်။',keywords:'pH acid base neutral'},
+        {name:'Neutralization',formula:'Acid + Base → Salt + Water',note:'Neutralization reaction ။',keywords:'neutralization acid base salt'},
+        {name:'Photosynthesis',formula:'6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂',note:'Plants က အလင်းစွမ်းအင်ဖြင့် glucose ဖန်တီး၊ O₂ ထုတ်။',keywords:'photosynthesis equation glucose oxygen'},
+        {name:'Cellular Respiration',formula:'C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP',note:'Glucose ဖြိုခွဲပြီး ATP ထုတ်။',keywords:'cellular respiration atp'},
+        {name:'Aerobic ATP',formula:'~36 ATP per glucose',note:'Oxygen ရှိလျှင် အများဆုံး ATP။',keywords:'aerobic atp'},
+        {name:'Anaerobic ATP',formula:'2 ATP per glucose',note:'Fermentation တွင် ၂ ATP သာ။',keywords:'anaerobic fermentation atp'},
+        {name:'Avogadro\'s Number',formula:'6.02 × 10²³',note:'1 mole substance တွင် ရှိသည့် particle အရေအတွက်။',keywords:'avogadro mole number'},
+        {name:'Moles',formula:'n = mass ÷ molar mass',note:'Mol အရေအတွက် တွက်ခြင်း။',keywords:'moles molar mass'},
+        {name:'Ionic Bond',formula:'Metal + Nonmetal',note:'Electron transfer — metal loses, nonmetal gains။',keywords:'ionic bond metal nonmetal'},
+        {name:'Covalent Bond',formula:'Nonmetal + Nonmetal',note:'Electron sharing။',keywords:'covalent bond nonmetal'}
+      ]
+    },
+    {
+      id:'biology',name:'Biology',icon:'🧬',color:'#10b981',
+      formulas:[
+        {name:'Cell Theory (3 rules)',formula:'1. All living things are made of cells · 2. Cell = basic unit of life · 3. Cells come from existing cells',note:'Cell theory ၏ အခြေခံသဘောတရား။',keywords:'cell theory biology'},
+        {name:'DNA Base Pairs',formula:'A–T · G–C',note:'Adenine pairs with Thymine (DNA) ။ Guanine pairs with Cytosine။',keywords:'dna base pair adenine thymine'},
+        {name:'RNA Base Pairs',formula:'A–U · G–C',note:'RNA တွင် Thymine အစား Uracil။',keywords:'rna base pair uracil'},
+        {name:'Punnett Square (Tt × Tt)',formula:'TT : Tt : tt = 1 : 2 : 1',note:'T = dominant (tall) ။ t = recessive (short) ။ 25% short။',keywords:'punnett square genetics tt'},
+        {name:'Energy Pyramid',formula:'10% transfer rule',note:'Trophic level တစ်ခုမှ တစ်ခုသို့ 10% သာ စွမ်းအင် ကူး။',keywords:'energy pyramid 10 percent trophic'},
+        {name:'Photosynthesis Location',formula:'Chloroplast (chlorophyll)',note:'အပင်ဆဲလ်အတွင်း photosynthesis ဖြစ်သည်။',keywords:'chloroplast chlorophyll photosynthesis'},
+        {name:'Respiration Location',formula:'Mitochondria',note:'Cellular respiration ဖြစ်သည့် organelle။',keywords:'mitochondria respiration'},
+        {name:'Cell Organelles',formula:'Nucleus · Mitochondria · Ribosome · Chloroplast · Vacuole',note:'ဆဲလ်တွင်း အစိတ်အပိုင်းများ။',keywords:'cell organelles nucleus mitochondria'},
+        {name:'Mitosis vs Meiosis',formula:'Mitosis → 2 cells (identical) · Meiosis → 4 cells (haploid)',note:'Mitosis = growth ။ Meiosis = gametes။',keywords:'mitosis meiosis cell division'}
+      ]
+    },
+    {
+      id:'earthscience',name:'Earth Science',icon:'🌍',color:'#06b6d4',
+      formulas:[
+        {name:'Plate Boundaries',formula:'Divergent (apart) · Convergent (collide) · Transform (slide past)',note:'Divergent → new crust ။ Convergent → mountains/volcanoes ။ Transform → earthquakes။',keywords:'plate boundary divergent convergent'},
+        {name:'Rock Cycle',formula:'Igneous ↔ Sedimentary ↔ Metamorphic',note:'Rock အမျိုးအစား ၃ ခု ဆက်စပ်မှု။',keywords:'rock cycle igneous sedimentary metamorphic'},
+        {name:'Water Cycle',formula:'Evaporation → Condensation → Precipitation → Collection',note:'ရေစက်ဝန်း အဆင့် ၄ ဆင့်။',keywords:'water cycle evaporation condensation'},
+        {name:'Earth Age',formula:'~4.6 billion years',note:'Radiometric dating အရ။',keywords:'earth age billion years'},
+        {name:'Universe Age',formula:'~13.8 billion years',note:'Big Bang မှ ယခုအချိန်အထိ။',keywords:'universe age big bang'},
+        {name:'Kepler\'s 2nd Law',formula:'Planet moves faster at perihelion',note:'Sun နှင့် အနီးဆုံးအချိန် အမြန်ဆုံး။',keywords:'kepler second law perihelion'},
+        {name:'Climate Zones (5)',formula:'Tropical · Dry · Temperate · Continental · Polar',note:'လတ္တီကျု့အလိုက် climate zones။',keywords:'climate zone tropical polar'},
+        {name:'Earth Layers',formula:'Crust → Mantle → Outer Core → Inner Core',note:'အပြင်မှ အတွင်းသို့။',keywords:'earth layers crust mantle core'},
+        {name:'Greenhouse Gases',formula:'CO₂ · CH₄ · N₂O · H₂O vapor',note:'အပူကို ထိန်းထားသည့် ဓာတ်ငွေ့များ။',keywords:'greenhouse gas co2 methane'}
+      ]
+    },
+    {
+      id:'scientific',name:'Scientific Method',icon:'🔬',color:'#f59e0b',
+      formulas:[
+        {name:'Scientific Method Steps',formula:'Observe → Question → Hypothesis → Experiment → Analyze → Conclude',note:'လေ့လာမှု အဆင့် ၆ ဆင့်။',keywords:'scientific method steps hypothesis'},
+        {name:'Independent Variable',formula:'Variable researcher changes',note:'သုတေသီ ပြောင်းလဲသည့် variable ။',keywords:'independent variable experimental'},
+        {name:'Dependent Variable',formula:'Variable that is measured',note:'ရလဒ်ကို တိုင်းတာသည့် variable ။',keywords:'dependent variable measured'},
+        {name:'Control Group',formula:'No treatment — baseline comparison',note:'နှိုင်းယှဉ်ရန် အုပ်စု။',keywords:'control group baseline'},
+        {name:'Accuracy vs Precision',formula:'Accuracy = close to true · Precision = repeatable',note:'Accuracy = မှန်ကန်မှု ။ Precision = ထပ်တူကျမှု။',keywords:'accuracy precision measurement'},
+        {name:'Scientific Notation',formula:'a × 10ⁿ (1 ≤ a < 10)',note:'ကြီးမားသော/သေးငယ်သော ကိန်းများ ရေးနည်း။',keywords:'scientific notation power of ten'},
+        {name:'Significant Figures',formula:'Non-zero digits + zeros between + trailing zeros (with decimal)',note:'Sig figs = တိကျမှု ဖော်ပြချက်။',keywords:'significant figures sig figs'},
+        {name:'Theory vs Hypothesis',formula:'Theory = well-tested · Hypothesis = testable prediction',note:'Hypothesis → tested → theory if supported။',keywords:'theory hypothesis tested'}
+      ]
+    }
+  ];
+
+  var currentFilter='all',searchQuery='';
+  var filtersEl=$('filters'),wrapEl=$('wrap'),searchInput=$('searchInput'),clearBtn=$('clearBtn');
+
+  function renderFilters(){
+    filtersEl.innerHTML='';
+    var allBtn=document.createElement('button');
+    allBtn.className='filter active';allBtn.textContent='📋 အားလုံး';allBtn.dataset.id='all';
+    allBtn.addEventListener('click',function(){setFilter('all')});
+    filtersEl.appendChild(allBtn);
+    CATEGORIES.forEach(function(c){
+      var b=document.createElement('button');
+      b.className='filter';b.textContent=c.icon+' '+c.name;b.dataset.id=c.id;
+      b.addEventListener('click',function(){setFilter(c.id)});
+      filtersEl.appendChild(b);
+    });
+  }
+  function setFilter(id){
+    currentFilter=id;
+    filtersEl.querySelectorAll('.filter').forEach(function(f){f.classList.toggle('active',f.dataset.id===id)});
+    render();
+  }
+  function matches(f,q){
+    if(!q)return true;
+    var h=(f.name+' '+f.formula+' '+(f.note||'')+' '+(f.keywords||'')).toLowerCase();
+    return h.indexOf(q)!==-1;
+  }
+  function stripHtml(s){var d=document.createElement('div');d.innerHTML=s;return (d.textContent||'').replace(/\s+/g,' ').trim();}
+  function escapeAttr(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/\n/g,'&#10;');}
+
+  function render(){
+    var q=searchQuery.toLowerCase().trim();
+    var html='',total=0;
+    CATEGORIES.forEach(function(cat){
+      if(currentFilter!=='all' && currentFilter!==cat.id) return;
+      var filtered=cat.formulas.filter(function(f){return matches(f,q)});
+      if(filtered.length===0) return;
+      total+=filtered.length;
+      html+='<div class="cat" style="--cat-color:'+cat.color+'">'+
+        '<div class="cat-head"><span class="cat-ico">'+cat.icon+'</span><h2>'+cat.name+'</h2><span class="count">'+filtered.length+'</span></div>'+
+        '<div class="formulas">'+
+        filtered.map(function(f){
+          return '<div class="f-card" style="--cat-color:'+cat.color+'">'+
+            '<button class="copy-btn" data-formula="'+escapeAttr(f.name+'\\n'+stripHtml(f.formula)+(f.note?'\\n'+stripHtml(f.note):''))+'" title="Copy">📋</button>'+
+            '<h3 class="name">'+f.name+'</h3>'+
+            '<div class="formula">'+f.formula+'</div>'+
+            (f.note?'<p class="note">'+f.note+'</p>':'')+
+          '</div>';
+        }).join('')+
+        '</div></div>';
+    });
+    if(total===0){html='<div class="empty"><div class="ico">🔍</div><h3>ရှာဖွေမှု ရလဒ် မတွေ့ပါ</h3><p>အခြားစကားလုံးဖြင့် ထပ်မံ ရှာကြည့်ပါ</p></div>';}
+    wrapEl.innerHTML=html;
+    wrapEl.querySelectorAll('.copy-btn').forEach(function(b){b.addEventListener('click',handleCopy)});
+  }
+
+  function handleCopy(e){
+    var btn=e.currentTarget,text=btn.getAttribute('data-formula'),done=false;
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text);done=true;}}catch(e){}
+    if(!done){try{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done=true;}catch(e){}}
+    if(done){btn.classList.add('done');btn.textContent='✓';toast('📋 Formula ကူးယူပြီးပါပြီ');
+      setTimeout(function(){btn.classList.remove('done');btn.textContent='📋';},1600);}
+  }
+
+  var searchTimer;
+  searchInput.addEventListener('input',function(){
+    clearTimeout(searchTimer);
+    var v=searchInput.value;
+    clearBtn.classList.toggle('show',v.length>0);
+    searchTimer=setTimeout(function(){searchQuery=v;render();},180);
+  });
+  clearBtn.addEventListener('click',function(){
+    searchInput.value='';searchQuery='';clearBtn.classList.remove('show');searchInput.focus();render();
+  });
+
+  var toastTimer;
+  function toast(msg){var t=$('toast');t.textContent=msg;t.className='toast show ok';
+    clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show');},2000);}
+
+  renderFilters();render();
+})();
+</script>
+</body>
+</html>

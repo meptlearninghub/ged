@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Social Studies — New Sets 4–6</title>
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#f59e0b;--primary-d:#b45309;--green:#16a34a;--red:#dc2626;--blue:#3b82f6;--violet:#8b5cf6;
+  --radius:18px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+  --nav-bg:rgba(248,250,252,.92);
+  --passage-bg:rgba(245,158,11,.05);
+  --passage-border:rgba(245,158,11,.25);
+  --table-bg:rgba(59,130,246,.05);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--card:#141d30;--text:#e9eefb;--muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 34px -18px rgba(0,0,0,.75);
+  --nav-bg:rgba(11,18,32,.92);
+  --passage-bg:rgba(245,158,11,.12);
+  --passage-border:rgba(245,158,11,.35);
+  --table-bg:rgba(59,130,246,.12);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .35s,color .35s;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 420px at 8% -8%,rgba(245,158,11,.10),transparent 65%),
+             radial-gradient(700px 420px at 100% 4%,rgba(236,72,153,.08),transparent 65%);}
+html[data-theme="dark"] body::before{opacity:.55}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+
+.header{position:sticky;top:0;z-index:30;background:var(--nav-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:calc(10px + var(--safe-top)) 14px 10px}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.back-btn{display:inline-flex;align-items:center;gap:5px;flex:none;padding:8px 12px;border-radius:11px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+  font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.h-title{flex:1;min-width:0}
+.h-title h1{margin:0;font-size:clamp(12px,3.4vw,15px);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-title p{margin:1px 0 0;font-size:10.5px;color:var(--muted);font-weight:600}
+.part-badge{flex:none;display:inline-flex;align-items:center;gap:4px;padding:6px 9px;border-radius:9px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;
+  background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3);white-space:nowrap}
+.part-badge.hist{background:rgba(139,92,246,.15);color:#6d28d9;border-color:rgba(139,92,246,.3)}
+.part-badge.geo{background:rgba(59,130,246,.15);color:#1d4ed8;border-color:rgba(59,130,246,.3)}
+.part-badge.econ{background:rgba(16,185,129,.15);color:#047857;border-color:rgba(16,185,129,.3)}
+.part-badge.world{background:rgba(236,72,153,.15);color:#be185d;border-color:rgba(236,72,153,.3)}
+html[data-theme="dark"] .part-badge{background:rgba(245,158,11,.25);color:#fbbf24}
+html[data-theme="dark"] .part-badge.hist{background:rgba(139,92,246,.25);color:#c4b5fd}
+html[data-theme="dark"] .part-badge.geo{background:rgba(59,130,246,.25);color:#93c5fd}
+html[data-theme="dark"] .part-badge.econ{background:rgba(16,185,129,.25);color:#6ee7b7}
+html[data-theme="dark"] .part-badge.world{background:rgba(236,72,153,.25);color:#f9a8d4}
+.timer{flex:none;display:inline-flex;align-items:center;gap:4px;padding:8px 10px;border-radius:11px;
+  background:linear-gradient(135deg,#f59e0b,#ec4899);color:#fff;font-size:12px;font-weight:800;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -8px rgba(245,158,11,.8)}
+.timer.warn{background:linear-gradient(135deg,#dc2626,#ef4444)}
+@media(max-width:520px){.h-title h1{font-size:11.5px}.part-badge{display:none}}
+
+.progress-wrap{max-width:900px;margin:10px auto 0;padding:0 14px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.progress-top b{font-size:12px;font-weight:800;color:var(--primary)}
+.progress-top span{font-size:11px;color:var(--muted);font-weight:600}
+.progress-bar{height:6px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+html[data-theme="dark"] .progress-bar{background:rgba(255,255,255,.09)}
+.progress-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#f59e0b,#ec4899);transition:width .4s cubic-bezier(.22,.8,.28,1)}
+
+.dot-map{max-width:900px;margin:10px auto 0;padding:0 14px;display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:10px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);
+  cursor:pointer;border:none;font-family:inherit;
+  transition:transform .15s,background .2s,color .2s}
+html[data-theme="dark"] .dot{background:rgba(255,255,255,.06)}
+.dot:active{transform:scale(.9)}
+.dot.answered{background:rgba(245,158,11,.2);color:#b45309}
+html[data-theme="dark"] .dot.answered{background:rgba(245,158,11,.3);color:#fbbf24}
+.dot.current{background:linear-gradient(135deg,#f59e0b,#ec4899);color:#fff;
+  box-shadow:0 4px 12px -4px rgba(245,158,11,.9)}
+
+.passage-indicator{max-width:900px;margin:14px auto 0;padding:0 14px;
+  display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--muted);flex-wrap:wrap;}
+.passage-indicator .badge{padding:4px 10px;border-radius:999px;
+  background:var(--passage-bg);color:var(--primary);border:1px solid var(--passage-border);}
+.passage-indicator .bar{flex:1;height:1px;background:var(--border);min-width:20px;}
+
+.passage-box{max-width:900px;margin:10px auto 0;padding:0 14px;}
+.passage-inner{background:var(--passage-bg);border:1px solid var(--passage-border);
+  border-radius:14px;padding:16px;font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+  font-size:14px;line-height:1.8;color:var(--text);max-height:60svh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;}
+.passage-inner.collapsed{max-height:240px;overflow:hidden;position:relative}
+.passage-inner.collapsed::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent, var(--passage-bg));pointer-events:none;}
+.passage-title{font-family:'Inter','Noto Sans Myanmar',sans-serif;font-size:11.5px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--primary);margin:0 0 10px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.passage-title .src{font-size:10px;padding:2px 8px;border-radius:999px;
+  background:rgba(245,158,11,.15);color:#b45309;letter-spacing:.03em}
+html[data-theme="dark"] .passage-title .src{background:rgba(245,158,11,.25);color:#fbbf24}
+.passage-text{margin:0}
+.passage-text p{margin:0 0 10px}
+.passage-text p:last-child{margin-bottom:0}
+.passage-quote{background:rgba(139,92,246,.08);border-left:3px solid var(--violet);
+  padding:10px 14px;margin:10px 0;border-radius:6px;font-style:italic;font-size:13px}
+html[data-theme="dark"] .passage-quote{background:rgba(139,92,246,.15)}
+.passage-toggle{display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:8px auto 0;padding:7px 14px;border-radius:10px;
+  border:1px solid var(--passage-border);background:var(--card);
+  color:var(--primary);font-family:inherit;font-size:11.5px;font-weight:800;
+  cursor:pointer;transition:all .18s;}
+.passage-toggle:hover{background:var(--passage-bg)}
+.passage-toggle:active{transform:scale(.97)}
+
+.diagram-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;
+  margin:10px 0;padding:10px;background:rgba(255,255,255,.5);
+  border:1px solid var(--border);border-radius:12px;}
+html[data-theme="dark"] .diagram-wrap{background:rgba(0,0,0,.2)}
+.diagram-svg{width:100%;max-width:340px;height:auto;display:block}
+.diagram-caption{font-size:11px;font-weight:700;color:var(--muted);text-align:center;font-style:italic}
+
+.data-table-wrap{overflow-x:auto;margin:10px 0;border-radius:10px;border:1px solid var(--border);background:var(--table-bg)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:280px}
+.data-table th,.data-table td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{background:rgba(59,130,246,.08);font-weight:800;color:#1d4ed8;font-size:11px;text-transform:uppercase}
+html[data-theme="dark"] .data-table th{background:rgba(59,130,246,.15);color:#93c5fd}
+.data-table tr:last-child td{border-bottom:none}
+.data-table td{font-weight:600}
+
+.q-wrap{max-width:900px;margin:0 auto;padding:14px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-num{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+  background:rgba(245,158,11,.12);color:#b45309;font-size:11px;font-weight:800;margin-bottom:6px;}
+html[data-theme="dark"] .q-num{background:rgba(245,158,11,.2);color:#fbbf24}
+.q-type{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;
+  font-size:10px;font-weight:800;letter-spacing:.03em;margin-left:6px;
+  background:rgba(139,92,246,.15);color:#6d28d9;border:1px solid rgba(139,92,246,.3);}
+html[data-theme="dark"] .q-type{background:rgba(139,92,246,.25);color:#c4b5fd}
+.q-text{font-size:14.5px;line-height:1.75;margin:8px 0 14px;font-weight:500}
+.q-hint{font-size:11.5px;color:var(--muted);font-weight:700;margin:-6px 0 12px;
+  padding:8px 12px;background:rgba(139,92,246,.06);border-radius:8px;border-left:3px solid var(--violet)}
+html[data-theme="dark"] .q-hint{background:rgba(139,92,246,.12)}
+
+.opts{display:grid;grid-template-columns:1fr;gap:8px}
+.opt{text-align:left;padding:12px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:all .18s;line-height:1.55;display:flex;align-items:flex-start;gap:10px;}
+.opt:active{transform:scale(.985)}
+.opt:not(:disabled):hover{border-color:var(--primary);background:rgba(245,158,11,.04)}
+.opt .ltr{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-size:11px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);transition:all .18s;}
+html[data-theme="dark"] .opt .ltr{background:rgba(255,255,255,.08)}
+.opt.selected{border-color:var(--primary);background:rgba(245,158,11,.06)}
+.opt.selected .ltr{background:var(--primary);color:#fff}
+.opt.correct{border-color:var(--green);background:#dcfce7;color:#14532d;font-weight:700}
+html[data-theme="dark"] .opt.correct{background:rgba(22,163,74,.2);color:#86efac}
+.opt.correct .ltr{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#fee2e2;color:#7f1d1d}
+html[data-theme="dark"] .opt.wrong{background:rgba(220,38,38,.2);color:#fca5a5}
+.opt.wrong .ltr{background:var(--red);color:#fff}
+.opt.multi .ltr{border-radius:5px}
+.opt .body{flex:1;padding-top:1px}
+.opt:disabled{cursor:default}
+
+.order-pool{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.order-item{padding:11px 14px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--card);font-family:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px;
+  text-align:left;max-width:100%;color:var(--text)}
+.order-item:hover{border-color:var(--violet);background:rgba(139,92,246,.05)}
+.order-item.used{opacity:.35;pointer-events:none}
+.order-slots{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;
+  background:rgba(139,92,246,.04);border:1.5px dashed var(--passage-border);min-height:52px}
+html[data-theme="dark"] .order-slots{background:rgba(139,92,246,.08)}
+.order-slot{padding:10px 12px;border-radius:9px;background:var(--violet);color:#fff;
+  font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.order-slot .num{background:rgba(255,255,255,.25);border-radius:50%;
+  width:20px;height:20px;display:grid;place-items:center;font-size:10px;font-weight:800}
+.order-slot .rm{margin-left:auto;opacity:.7;font-size:13px;cursor:pointer;padding:0 4px}
+.order-empty{color:var(--muted);font-size:12.5px;font-style:italic;padding:6px;text-align:center}
+
+.dropdown-line{font-size:14.5px;line-height:2.1;font-weight:500;padding:14px 16px;border-radius:12px;
+  background:rgba(139,92,246,.05);border:1px solid var(--border)}
+html[data-theme="dark"] .dropdown-line{background:rgba(139,92,246,.1)}
+.dd-select{padding:7px 9px;border-radius:8px;border:1.5px solid var(--violet);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:700;
+  cursor:pointer;margin:0 3px}
+
+.fill-wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.fill-input{flex:1;min-width:160px;padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:16px;font-weight:700}
+.fill-input:focus{outline:none;border-color:var(--primary)}
+.fill-note{font-size:11.5px;color:var(--muted);margin-top:8px;font-weight:600}
+
+.q-nav{max-width:900px;margin:14px auto 0;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;
+  border-radius:11px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s,background .2s,color .2s;min-height:42px;text-decoration:none;}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#f59e0b,#ec4899);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(245,158,11,.7)}
+.btn.ghost{background:transparent;box-shadow:none}
+.btn.grow{flex:1;min-width:110px}
+.btn.submit{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(34,197,94,.7)}
+
+.start-hero,.result-hero{max-width:680px;margin:0 auto;
+  padding:calc(28px + var(--safe-top)) 20px 20px;text-align:center}
+.start-hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#f59e0b,#ec4899);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(245,158,11,.8);}
+.start-hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,30px);font-weight:800;letter-spacing:-.03em}
+.start-hero .subtitle{margin:0 0 4px;font-size:clamp(13px,3.4vw,15px);color:var(--muted)}
+.start-info{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin:24px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.start-info-item{text-align:left}
+.start-info-item b{display:block;font-size:20px;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.start-info-item span{font-size:12px;color:var(--muted);font-weight:600}
+.start-tips{text-align:left;font-size:12.5px;color:var(--muted);line-height:1.85;
+  background:rgba(236,72,153,.08);border-radius:12px;padding:14px 16px;border-left:3px solid #ec4899;}
+.start-tips b{color:var(--text)}
+.start-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;
+  padding:16px 22px;border-radius:16px;font-size:16px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#f59e0b,#ec4899);border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 12px 26px -10px rgba(245,158,11,.8);transition:transform .2s,filter .2s;}
+.start-btn:active{transform:scale(.98)}
+
+.score-ring{width:170px;height:170px;margin:0 auto 22px;position:relative;display:grid;place-items:center}
+.score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.score-ring .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:12}
+html[data-theme="dark"] .score-ring .bgc{stroke:rgba(255,255,255,.08)}
+.score-ring .fgc{fill:none;stroke:url(#grad);stroke-width:12;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.8,.28,1)}
+.score-ring .pct{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-ring .lbl{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.ged-score{background:linear-gradient(135deg,#f59e0b,#ec4899);color:#fff;border-radius:16px;
+  padding:18px;margin-bottom:18px;text-align:center;box-shadow:0 12px 30px -12px rgba(245,158,11,.8)}
+.ged-score b{display:block;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ged-score span{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.05em;
+  text-transform:uppercase;margin-top:4px;display:block}
+.ged-score small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:8px}
+.result-msg{font-size:17px;font-weight:700;margin:0 0 8px}
+.result-sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.75}
+.result-stats{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;text-align:center;}
+.result-stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.result-stats span{font-size:11px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.rs-correct b{color:var(--green)}
+.rs-wrong b{color:var(--red)}
+.rs-time b{color:var(--primary)}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.result-actions .btn{flex:1;min-width:130px}
+.review-wrap{max-width:900px;margin:22px auto 0;padding:0 16px}
+.review-title{font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin:8px 0 12px;text-align:center}
+.sol{margin-top:14px;padding:14px;border-radius:14px;
+  background:rgba(245,158,11,.06);border-left:3px solid var(--primary);
+  font-size:13.5px;line-height:1.8;}
+html[data-theme="dark"] .sol{background:rgba(245,158,11,.12)}
+.sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--primary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.sol ol{margin:6px 0 0;padding-left:20px}
+.sol ol li{margin-bottom:4px;line-height:1.7}
+.sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="startScreen" class="screen active">
+  <div class="start-hero">
+    <div class="big-icon">🌍</div>
+    <h1>GED Social Studies — New Sets</h1>
+    <p class="subtitle">Sets 4 · 5 · 6 · Brand New Questions</p>
+    <div class="start-info">
+      <div class="start-info-item"><b>36</b><span>Questions</span></div>
+      <div class="start-info-item"><b>70 min</b><span>Continuous</span></div>
+      <div class="start-info-item"><b>5 + 6</b><span>Passages + Standalone</span></div>
+      <div class="start-info-item"><b>3</b><span>New Sets</span></div>
+    </div>
+    <div class="start-tips">
+      <b>🌍 New Sets Overview (4 · 5 · 6)</b><br>
+      • <b>Set 4</b> — Three Branches · Bill of Rights · Supply & Demand · Latitude/Longitude · Industrial Revolution<br>
+      • <b>Set 5</b> — Civil War Causes · Voting Amendments · Inflation & GDP · Climate Zones · Progressive Era<br>
+      • <b>Set 6</b> — WWII · Constitutional Principles · Opportunity Cost · Population Geography · Cold War<br>
+      • <b>Random Set</b> — Sets 4/5/6 မှ ကျပန်းရွေး (<code>?set=4|5|6</code>)
+    </div>
+    <button class="start-btn" id="startBtn">▶ Exam စတင်ရန်</button>
+    <a class="back-btn" href="pretest.html" style="margin-top:14px;display:inline-flex">← Pretest Hub</a>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="examScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="pretest.html" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>GED Social Studies Exam</h1>
+        <p id="qCounter">Question 1 of 36</p>
+      </div>
+      <span class="part-badge" id="partBadge">Civics</span>
+      <div class="timer" id="timer">70:00</div>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-top"><b id="pLabel">Progress</b><span id="pCount">0 / 36</span></div>
+    <div class="progress-bar"><i id="pBar"></i></div>
+  </div>
+  <div class="dot-map" id="dotMap"></div>
+  <div class="passage-indicator" id="passageIndicator">
+    <span class="badge" id="passageBadge">Passage 1</span>
+    <span class="bar"></span>
+    <span id="passageInfo">Civics</span>
+  </div>
+  <div class="passage-box" id="passageBox"></div>
+  <div class="q-wrap">
+    <div class="q-card" id="qCard"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="prevBtn">← Previous</button>
+      <button class="btn primary grow" id="nextBtn">Next →</button>
+    </div>
+    <div class="q-nav" style="margin-top:10px">
+      <button class="btn submit grow" id="submitBtn">✓ Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160">
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ec4899"/>
+        </linearGradient></defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="scoreRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div style="text-align:center">
+        <div class="pct" id="scorePct">0%</div>
+        <div class="lbl">Raw Score</div>
+      </div>
+    </div>
+    <div class="ged-score">
+      <b id="gedScore">0</b>
+      <span>Estimated GED Score</span>
+      <small id="gedMsg">Passing = 145 · College Ready = 165 · +Credit = 175</small>
+    </div>
+    <p class="result-msg" id="resultMsg"></p>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="result-stats">
+      <div class="rs-correct"><b id="rCorrect">0</b><span>Correct</span></div>
+      <div class="rs-wrong"><b id="rWrong">0</b><span>Wrong</span></div>
+      <div class="rs-time"><b id="rTime">00:00</b><span>Time</span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="reviewBtn">📖 Review</button>
+      <button class="btn primary" id="retryBtn">🔄 New Set</button>
+      <a class="btn" href="pretest.html" style="text-decoration:none">← Hub</a>
+    </div>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var showOnly=function(s){
+    document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+    s.classList.add('active');window.scrollTo(0,0);
+  };
+
+  /* ============================================================
+     SVG DIAGRAMS
+  ============================================================ */
+  function renderVisual(pass){
+    if(!pass.diagram) return '';
+    var svgContent = svgDiagram(pass.diagram.type, pass.diagram.data || {});
+    if(!svgContent) return '';
+    return '<div class="diagram-wrap">' + svgContent +
+      (pass.diagram.data && pass.diagram.data.title ? '<div class="diagram-caption">'+pass.diagram.data.title+'</div>' : '') +
+      '</div>';
+  }
+
+  function svgDiagram(type, data){
+    if(type === 'bar-chart'){
+      var W=320,H=200,L=34,R=12,T=14,B=40;
+      var maxV=Math.max.apply(null,data.values)||1;
+      var n=data.labels.length;
+      var gap=(W-L-R)/n, barW=gap*0.6;
+      var bars=data.values.map(function(v,i){
+        var bh=(v/maxV)*(H-T-B);
+        var bx=L+gap*i+(gap-barW)/2;
+        var by=H-B-bh;
+        return '<rect x="'+bx+'" y="'+by+'" width="'+barW+'" height="'+bh+'" fill="#f59e0b" rx="3"/>'+
+          '<text x="'+(bx+barW/2)+'" y="'+(by-4)+'" font-size="10" fill="#1e293b" text-anchor="middle" font-weight="700">'+v+'</text>'+
+          '<text x="'+(bx+barW/2)+'" y="'+(H-B+14)+'" font-size="9" fill="#64748b" text-anchor="middle">'+data.labels[i]+'</text>';
+      }).join('');
+      return '<svg viewBox="0 0 '+W+' '+H+'" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">'+
+        '<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        bars + '</svg>';
+    }
+    if(type === 'line-graph'){
+      var W=320,H=200,L=44,R=12,T=14,B=34;
+      var pts=data.points||[];
+      if(pts.length<2) return '';
+      var minX=Math.min.apply(null,pts.map(function(p){return p.x}));
+      var maxX=Math.max.apply(null,pts.map(function(p){return p.x}));
+      var minY=Math.min.apply(null,pts.map(function(p){return p.y}));
+      var maxY=Math.max.apply(null,pts.map(function(p){return p.y}));
+      var padX=(maxX-minX)*0.1||1, padY=(maxY-minY)*0.1||1;
+      var x0=minX-padX,x1=maxX+padX,y0=minY-padY,y1=maxY+padY;
+      function sx(v){return L+(v-x0)/(x1-x0)*(W-L-R)}
+      function sy(v){return H-B-(v-y0)/(y1-y0)*(H-T-B)}
+      var path='M'+pts.map(function(p){return sx(p.x)+','+sy(p.y)}).join(' L');
+      var dots=pts.map(function(p){return '<circle cx="'+sx(p.x)+'" cy="'+sy(p.y)+'" r="3.5" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/>'}).join('');
+      return '<svg viewBox="0 0 '+W+' '+H+'" class="diagram-svg" xmlns="http://www.w3.org/2000/svg">'+
+        '<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'" stroke="#475569" stroke-width="1.5"/>'+
+        '<path d="'+path+'" fill="none" stroke="#f59e0b" stroke-width="2.5"/>'+dots+
+        (data.xlabel?'<text x="'+(W/2)+'" y="'+(H-2)+'" font-size="9" fill="#64748b" text-anchor="middle">'+data.xlabel+'</text>':'')+
+        '</svg>';
+    }
+    if(type === 'pie-chart'){
+      var W=260,H=260,cx=130,cy=130,r=90;
+      var total = data.segments.reduce(function(s,x){return s+x.value},0);
+      var startAngle = -Math.PI/2;
+      var colors = ['#f59e0b','#8b5cf6','#ec4899','#3b82f6','#10b981'];
+      var slices = data.segments.map(function(seg, i){
+        var angle = (seg.value/total) * Math.PI * 2;
+        var endAngle = startAngle + angle;
+        var x1 = cx + r*Math.cos(startAngle);
+        var y1 = cy + r*Math.sin(startAngle);
+        var x2 = cx + r*Math.cos(endAngle);
+        var y2 = cy + r*Math.sin(endAngle);
+        var large = angle > Math.PI ? 1 : 0;
+        var path = 'M'+cx+','+cy+' L'+x1+','+y1+' A'+r+','+r+' 0 '+large+' 1 '+x2+','+y2+' Z';
+        var fill = colors[i % colors.length];
+        startAngle = endAngle;
+        return '<path d="'+path+'" fill="'+fill+'" stroke="#fff" stroke-width="1.5"/>';
+      }).join('');
+      return '<svg viewBox="0 0 '+W+' '+H+'" class="diagram-svg">'+slices+'</svg>';
+    }
+    return '';
+  }
+
+  /* ============================================================
+     SET D — SET 4
+  ============================================================ */
+  var SET_D = {
+    passages: [
+      {
+        id:'d1', title:'Three Branches of Government', type:'Civics',
+        text:'The U.S. Constitution divides the federal government into three branches to prevent any one branch from becoming too powerful.\n\n<b>Legislative Branch</b> — Congress (Senate + House of Representatives). Congress makes laws, declares war, coins money, and can override a presidential veto with a two-thirds majority in both houses.\n\n<b>Executive Branch</b> — The President, Vice President, and Cabinet. The President enforces laws, serves as Commander-in-Chief of the armed forces, appoints federal judges, and can veto legislation.\n\n<b>Judicial Branch</b> — The Supreme Court and federal courts. The judiciary interprets laws. Through judicial review (established in Marbury v. Madison, 1803), courts can declare laws unconstitutional.\n\n<b>Checks and balances</b> — Each branch limits the others. The President vetoes laws, but Congress can override. Congress confirms judges, but courts can declare laws unconstitutional.',
+        questions:[
+          {type:'mcq',q:'Which branch has the power to make federal laws?',
+           o:['Executive','Legislative','Judicial','State governments'],c:1,
+           why:'The Legislative branch (Congress) writes federal laws.',steps:['Congress = Legislative','Makes laws','→ B']},
+          {type:'mcq',q:'Who serves as Commander-in-Chief of the U.S. armed forces?',
+           o:['The Secretary of Defense','The President','The Senate Majority Leader','The Chief Justice'],c:1,
+           why:'The President is Commander-in-Chief (Executive branch).',steps:['Executive branch','Commander-in-Chief = President','→ B']},
+          {type:'mcq',q:'What is judicial review?',
+           o:['The power to appoint judges','The power to declare laws unconstitutional','The power to veto bills','The power to create lower courts'],c:1,
+           why:'Judicial review = courts can rule laws unconstitutional (Marbury v. Madison).',steps:['Marbury v. Madison (1803)','Courts review laws','→ B']},
+          {type:'mcq',q:'Which is an example of a check on the President\'s power?',
+           o:['The President signs a bill','Congress overrides a veto','A judge writes a law','A governor appoints a senator'],c:1,
+           why:'Congress overriding a veto is a legislative check on the President.',steps:['Check on President','Congress overrides veto','→ B']},
+          {type:'multi',q:'Select ALL powers of Congress.',
+           o:['Declare war','Coin money','Command the armed forces','Override a veto','Appoint Supreme Court justices'],c:[0,1,3],need:3,
+           why:'Congress declares war, coins money, overrides vetoes. The President commands the armed forces and nominates (not appoints) judges (Senate confirms).',
+           steps:['Declare war: Congress','Coin money: Congress','Override veto: Congress','Command armed forces: President','Appoint judges: President + Senate confirms','→ A, B, D']},
+          {type:'order',q:'Order the steps of a bill becoming a law:',
+           items:['Bill introduced in Congress','Both houses vote and pass','President signs the bill','Law goes into effect'],
+           correctOrder:['Bill introduced in Congress','Both houses vote and pass','President signs the bill','Law goes into effect'],
+           why:'Standard process: introduce → pass both houses → President signs → law.',steps:['Introduction','Vote','Sign','Law']}
+        ]
+      },
+      {
+        id:'d2', title:'The Bill of Rights', type:'Civics',
+        text:'The Bill of Rights consists of the first 10 amendments to the U.S. Constitution, ratified in 1791. These amendments protect individual liberties from government overreach.\n\n<b>1st Amendment</b> — Freedom of speech, religion, press, assembly, and petition.\n<b>2nd Amendment</b> — Right to bear arms.\n<b>4th Amendment</b> — Protection against unreasonable searches and seizures.\n<b>5th Amendment</b> — Protection against self-incrimination and double jeopardy; right to due process.\n<b>6th Amendment</b> — Right to a speedy public trial by jury and to legal counsel.\n<b>8th Amendment</b> — Protection against cruel and unusual punishment.',
+        dataTable:{
+          headers:['Amendment','Protects'],
+          rows:[
+            ['1st','Speech, religion, press, assembly, petition'],
+            ['2nd','Right to bear arms'],
+            ['4th','No unreasonable search/seizure'],
+            ['5th','No self-incrimination'],
+            ['6th','Speedy trial, lawyer'],
+            ['8th','No cruel/unusual punishment']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which amendment protects freedom of speech and religion?',
+           o:['1st','2nd','4th','5th'],c:0,
+           why:'The 1st Amendment protects speech, religion, press, assembly, petition.',steps:['Table row 1','1st = speech/religion','→ A']},
+          {type:'mcq',q:'Which amendment protects against unreasonable searches?',
+           o:['2nd','4th','6th','8th'],c:1,
+           why:'The 4th Amendment protects against unreasonable search and seizure.',steps:['Table row 3','4th = search/seizure','→ B']},
+          {type:'mcq',q:'The 5th Amendment protects a person from:',
+           o:['Testifying against themselves','Cruel punishment','Unreasonable searches','Quartering soldiers'],c:0,
+           why:'5th Amendment protects against self-incrimination.',steps:['Table row 4','5th = no self-incrimination','→ A']},
+          {type:'mcq',q:'Which amendment guarantees a speedy trial and right to a lawyer?',
+           o:['4th','5th','6th','8th'],c:2,
+           why:'6th Amendment guarantees a speedy trial and counsel.',steps:['Table row 5','6th = speedy trial/lawyer','→ C']},
+          {type:'multi',q:'Select ALL rights protected by the 1st Amendment.',
+           o:['Speech','Religion','Press','Bear arms','Assembly'],c:[0,1,2,4],need:4,
+           why:'1st Amendment = speech, religion, press, assembly, petition. "Bear arms" is the 2nd Amendment.',
+           steps:['1st: speech, religion, press','Also assembly + petition','Bear arms = 2nd','→ A, B, C, E']},
+          {type:'fill',q:'How many amendments are in the Bill of Rights? (Enter a number.)',
+           answer:'10',tolerance:0.1,why:'The Bill of Rights contains the first 10 amendments.',steps:['1st–10th','= 10 amendments','→ 10']}
+        ]
+      },
+      {
+        id:'d3', title:'Supply and Demand', type:'Economics',
+        text:'The law of demand states that as the price of a good rises, the quantity demanded falls (and vice versa). The law of supply states that as price rises, quantity supplied rises.\n\nWhere supply and demand meet, we find the <b>equilibrium price</b> — the price at which the quantity demanded equals the quantity supplied. If the price is above equilibrium, a surplus occurs. If below, a shortage occurs.\n\nDemand can shift due to changes in income, tastes, prices of related goods, or population. Supply can shift due to changes in production costs, technology, or number of sellers.\n\nThe graph shows a demand curve: as price increases, quantity demanded decreases.',
+        diagram:{type:'line-graph',data:{points:[{x:1,y:100},{x:2,y:80},{x:3,y:60},{x:4,y:40},{x:5,y:20}],xlabel:'Quantity',title:'Demand Curve'}},
+        questions:[
+          {type:'mcq',q:'According to the law of demand, when price rises:',
+           o:['Quantity demanded rises','Quantity demanded falls','Quantity supplied falls','Supply is unchanged'],c:1,
+           why:'Demand is inversely related to price.',steps:['Price ↑','Demand ↓','→ B']},
+          {type:'mcq',q:'What is equilibrium price?',
+           o:['The highest price a seller can charge','The price where quantity demanded equals quantity supplied','The lowest price in the market','The price set by the government'],c:1,
+           why:'Equilibrium = quantity demanded = quantity supplied.',steps:['Supply = Demand','→ B']},
+          {type:'mcq',q:'If price is set ABOVE equilibrium, what happens?',
+           o:['Shortage','Surplus','Equilibrium','No change'],c:1,
+           why:'Above equilibrium: quantity supplied exceeds quantity demanded → surplus.',steps:['Price > equilibrium','Supply > demand','Surplus','→ B']},
+          {type:'mcq',q:'Which would shift the demand curve for coffee?',
+           o:['A change in the price of coffee','An increase in consumer income','A new coffee farming technology','More coffee shops opening'],c:1,
+           why:'Higher income shifts demand (consumers buy more at every price).',steps:['Income ↑ → demand ↑','Shifts curve','→ B']},
+          {type:'multi',q:'Select ALL factors that can shift SUPPLY.',
+           o:['Production costs','Technology','Consumer income','Number of sellers'],c:[0,1,3],need:3,
+           why:'Supply shifters: costs, technology, sellers. Consumer income shifts demand, not supply.',
+           steps:['Costs: supply shift','Technology: supply shift','Consumer income: demand shift','Sellers: supply shift','→ A, B, D']},
+          {type:'mcq',q:'According to the graph, at quantity 3, what is the approximate price on the demand curve?',
+           o:['20','40','60','80'],c:2,
+           why:'Graph: at quantity 3, price = 60.',steps:['Graph point (3, 60)','→ 60']}
+        ]
+      },
+      {
+        id:'d4', title:'Latitude and Longitude', type:'Geography',
+        text:'<b>Latitude</b> lines run east–west and measure how far north or south a location is from the equator. Latitude ranges from 0° (equator) to 90° N/S (poles).\n\n<b>Longitude</b> lines run north–south and measure how far east or west a location is from the Prime Meridian. Longitude ranges from 0° (Prime Meridian) to 180° E/W.\n\nCoordinates are written as (latitude, longitude). For example, New York City is at approximately 40°N, 74°W.\n\nThe equator divides the Earth into Northern and Southern Hemispheres. The Prime Meridian divides Earth into Eastern and Western Hemispheres.',
+        questions:[
+          {type:'mcq',q:'Latitude lines measure distance from the:',
+           o:['Prime Meridian','Equator','Poles','International Date Line'],c:1,
+           why:'Latitude is measured north or south from the equator.',steps:['Latitude: equator','→ B']},
+          {type:'mcq',q:'Longitude lines measure distance from the:',
+           o:['Equator','Prime Meridian','North Pole','South Pole'],c:1,
+           why:'Longitude is measured east or west from the Prime Meridian.',steps:['Longitude: Prime Meridian','→ B']},
+          {type:'mcq',q:'What is the latitude of the equator?',
+           o:['0°','45°','90°','180°'],c:0,
+           why:'Equator = 0° latitude.',steps:['Equator','0°','→ A']},
+          {type:'mcq',q:'A location at 40°N, 74°W is in which hemisphere(s)?',
+           o:['Northern and Eastern','Northern and Western','Southern and Eastern','Southern and Western'],c:1,
+           why:'40°N → Northern; 74°W → Western.',steps:['N → Northern','W → Western','→ B']},
+          {type:'multi',q:'Select ALL true statements about coordinates.',
+           o:['Latitude is listed first','Latitude ranges from 0° to 90°','Longitude ranges from 0° to 180°','Positive longitude means west'],c:[0,1,2],need:3,
+           why:'Positive longitude means EAST, not west. West longitudes are negative in standard notation.',
+           steps:['Latitude first: yes','Lat 0-90: yes','Lon 0-180: yes','Positive lon = east, not west','→ A, B, C']},
+          {type:'fill',q:'How many degrees of longitude make a full circle around Earth? (Enter a number.)',
+           answer:'360',tolerance:0.1,why:'A full circle = 360°; longitude spans 180°E + 180°W = 360°.',steps:['180 E + 180 W','= 360°','→ 360']}
+        ]
+      },
+      {
+        id:'d5', title:'The Industrial Revolution', type:'US History',
+        text:'The Industrial Revolution began in Britain in the mid-1700s and spread to the United States in the early 1800s. It transformed economies from agriculture-based to manufacturing-based.\n\nKey inventions included the steam engine (James Watt), the cotton gin (Eli Whitney), and the telegraph (Samuel Morse). The steam engine powered factories, trains, and ships. Factories concentrated workers in cities, leading to <b>urbanization</b> — rapid growth of urban populations.\n\nWhile industrialization created wealth and new goods, it also produced harsh working conditions. Factory workers — including children — often worked 12–16 hour days in dangerous environments for low pay. These conditions inspired later labor reforms and the rise of labor unions.\n\nThe table shows growth in U.S. urban population during industrialization.',
+        dataTable:{
+          headers:['Year','Urban Population (%)'],
+          rows:[
+            ['1840','11%'],
+            ['1860','20%'],
+            ['1880','28%'],
+            ['1900','40%'],
+            ['1920','51%']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Where did the Industrial Revolution begin?',
+           o:['United States','France','Britain','Germany'],c:2,
+           why:'The Industrial Revolution began in Britain in the mid-1700s.',steps:['Mid-1700s','Britain','→ C']},
+          {type:'mcq',q:'Which invention powered early factories and trains?',
+           o:['Cotton gin','Telegraph','Steam engine','Telephone'],c:2,
+           why:'The steam engine (improved by James Watt) powered factories and locomotives.',steps:['Steam engine','Powered factories/trains','→ C']},
+          {type:'mcq',q:'What does "urbanization" mean?',
+           o:['Decline of cities','Growth of city populations','Spread of farms','End of manufacturing'],c:1,
+           why:'Urbanization = rapid growth of urban (city) populations.',steps:['Urban = city','Urbanization = growth','→ B']},
+          {type:'mcq',q:'Based on the table, what percentage of Americans lived in cities by 1920?',
+           o:['11%','28%','40%','51%'],c:3,
+           why:'Table: 1920 → 51%.',steps:['Table row 5','1920 = 51%','→ D']},
+          {type:'multi',q:'Select ALL negative effects of early industrialization.',
+           o:['Long working hours','Child labor','Dangerous conditions','Rise of labor unions','Rapid urbanization'],c:[0,1,2],need:3,
+           why:'Labor unions and urbanization were responses, not negative effects themselves.',steps:['12-16 hour days','Child labor','Dangerous conditions','→ A, B, C']},
+          {type:'order',q:'Order these inventions chronologically (earliest first):',
+           items:['Steam engine','Cotton gin','Telegraph','Telephone'],
+           correctOrder:['Steam engine','Cotton gin','Telegraph','Telephone'],
+           why:'Steam engine (1769), cotton gin (1793), telegraph (1837), telephone (1876).',steps:['Steam: 1769','Cotton gin: 1793','Telegraph: 1837','Telephone: 1876']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'What is the supreme law of the United States?',
+       o:['The Declaration of Independence','The U.S. Constitution','The Bill of Rights','The Magna Carta'],c:1,
+       why:'The U.S. Constitution is the supreme law of the land.',steps:['Supreme law = Constitution','→ B']},
+      {q:'Who is the head of the Executive branch?',
+       o:['The Chief Justice','The Speaker of the House','The President','The Senate Majority Leader'],c:2,
+       why:'The President heads the Executive branch.',steps:['Executive = President','→ C']},
+      {q:'The Preamble to the Constitution begins with which phrase?',
+       o:['"When in the Course of human events"','"We the People"','"Four score and seven years ago"','"I pledge allegiance"'],c:1,
+       why:'"We the People of the United States..." is the Preamble.',steps:['Preamble start','"We the People"','→ B']},
+      {q:'What is a tariff?',
+       o:['A tax on income','A tax on imported goods','A limit on immigration','A type of currency'],c:1,
+       why:'A tariff is a tax on imported goods.',steps:['Tariff = import tax','→ B']},
+      {q:'Which ocean lies between the United States and Europe?',
+       o:['Pacific','Atlantic','Indian','Arctic'],c:1,
+       why:'The Atlantic Ocean separates the US East Coast from Europe.',steps:['US–Europe','Atlantic','→ B']},
+      {q:'What is 25% of 400?',
+       o:['80','100','125','160'],c:1,
+       why:'0.25 × 400 = 100.',steps:['0.25 × 400','= 100','→ B']}
+    ]
+  };
+
+  /* ============================================================
+     SET E — SET 5
+  ============================================================ */
+  var SET_E = {
+    passages: [
+      {
+        id:'e1', title:'Causes of the Civil War', type:'US History',
+        text:'The American Civil War (1861–1865) arose from decades of tension between Northern and Southern states. The central issue was slavery, but several other factors deepened the divide.\n\n<b>Slavery</b> — The Southern economy depended on enslaved labor for cotton production, while Northern states gradually abolished slavery.\n\n<b>Sectionalism</b> — Loyalty to one\'s region (North or South) rather than the nation as a whole.\n\n<b>States\' rights</b> — Southern leaders argued that states should decide whether to allow slavery, not the federal government.\n\n<b>Election of 1860</b> — Abraham Lincoln\'s election (opposing slavery\'s expansion) triggered Southern secession. South Carolina seceded first in December 1860, followed by six more states. War began at Fort Sumter in April 1861.',
+        dataTable:{
+          headers:['Year','Free States','Slave States'],
+          rows:[
+            ['1820','11','11'],
+            ['1850','15','15'],
+            ['1860','18','15']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What was the central cause of the Civil War?',
+           o:['Taxes','Slavery','Immigration','Territorial expansion to the West'],c:1,
+           why:'Slavery was the central issue; other factors (states\' rights, sectionalism) were tied to it.',steps:['Slavery central','→ B']},
+          {type:'mcq',q:'What does "sectionalism" mean?',
+           o:['Loyalty to the nation as a whole','Loyalty to one\'s region over the nation','Dividing land into sections','A form of taxation'],c:1,
+           why:'Sectionalism = regional loyalty over national loyalty.',steps:['Section = region','Sectionalism = regional loyalty','→ B']},
+          {type:'mcq',q:'Which event directly triggered Southern secession?',
+           o:['The Emancipation Proclamation','The election of Abraham Lincoln (1860)','The Kansas-Nebraska Act','The Dred Scott decision'],c:1,
+           why:'Lincoln\'s 1860 election prompted secession (South Carolina first, Dec 1860).',steps:['1860 election','Lincoln wins','Secession','→ B']},
+          {type:'mcq',q:'Based on the table, how did the balance of free vs. slave states change between 1820 and 1860?',
+           o:['Free states decreased','Free states increased while slave states stayed at 15','Both increased equally','Slave states doubled'],c:1,
+           why:'Table: free states grew 11→18; slave states stayed at 15.',steps:['Free: 11 → 18','Slave: 11 → 15','Free grew more','→ B']},
+          {type:'multi',q:'Select ALL causes of the Civil War.',
+           o:['Slavery','Sectionalism','States\' rights','Industrialization in the North','The election of 1860'],c:[0,1,2,4],need:4,
+           why:'Industrialization itself wasn\'t a direct cause (it deepened economic divide but wasn\'t listed as a cause).',steps:['Slavery: yes','Sectionalism: yes','States\' rights: yes','Industrialization: not a direct cause','1860 election: yes','→ A, B, C, E']},
+          {type:'order',q:'Order these events leading to the Civil War chronologically:',
+           items:['Missouri Compromise (1820)','Compromise of 1850','Election of Lincoln (1860)','Fort Sumter (1861)'],
+           correctOrder:['Missouri Compromise (1820)','Compromise of 1850','Election of Lincoln (1860)','Fort Sumter (1861)'],
+           why:'Chronological order of pre-war events.',steps:['1820','1850','1860','1861']}
+        ]
+      },
+      {
+        id:'e2', title:'Voting Rights Amendments', type:'Civics',
+        text:'Several amendments to the U.S. Constitution expanded voting rights over time. Before these amendments, voting was largely restricted to white male property owners.\n\n<b>15th Amendment (1870)</b> — Prohibited denying the vote based on race, color, or previous condition of servitude.\n<b>19th Amendment (1920)</b> — Granted women the right to vote.\n<b>23rd Amendment (1961)</b> — Gave residents of Washington, D.C. the right to vote for President.\n<b>24th Amendment (1964)</b> — Abolished poll taxes in federal elections.\n<b>26th Amendment (1971)</b> — Lowered the voting age to 18.',
+        dataTable:{
+          headers:['Amendment','Year','Effect'],
+          rows:[
+            ['15th','1870','No racial discrimination in voting'],
+            ['19th','1920','Women can vote'],
+            ['23rd','1961','D.C. residents vote for President'],
+            ['24th','1964','No poll tax'],
+            ['26th','1971','Voting age = 18']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which amendment gave women the right to vote?',
+           o:['15th','19th','24th','26th'],c:1,
+           why:'The 19th Amendment (1920) gave women the right to vote.',steps:['Table row 2','19th = women','→ B']},
+          {type:'mcq',q:'Which amendment prohibited racial discrimination in voting?',
+           o:['13th','14th','15th','19th'],c:2,
+           why:'The 15th Amendment (1870) prohibited denial of vote based on race.',steps:['Table row 1','15th = race','→ C']},
+          {type:'mcq',q:'What did the 24th Amendment abolish?',
+           o:['Slavery','Poll taxes','Segregation','Child labor'],c:1,
+           why:'The 24th Amendment (1964) abolished poll taxes in federal elections.',steps:['Table row 4','24th = poll tax','→ B']},
+          {type:'mcq',q:'The 26th Amendment changed the voting age to:',
+           o:['16','18','21','25'],c:1,
+           why:'The 26th Amendment (1971) set the voting age to 18.',steps:['Table row 5','26th = 18','→ B']},
+          {type:'multi',q:'Select ALL amendments that expanded voting rights.',
+           o:['15th','19th','23rd','24th','26th'],c:[0,1,2,3,4],need:5,
+           why:'Each amendment listed expanded access to voting in some way.',steps:['All five expanded voting','→ A, B, C, D, E']},
+          {type:'fill',q:'What year was the 19th Amendment ratified? (Enter a number.)',
+           answer:'1920',tolerance:1,why:'The 19th Amendment was ratified in 1920.',steps:['Table row 2','1920','→ 1920']}
+        ]
+      },
+      {
+        id:'e3', title:'Inflation and GDP', type:'Economics',
+        text:'<b>Gross Domestic Product (GDP)</b> is the total market value of all final goods and services produced within a country in a given period. GDP is a primary measure of economic health.\n\n<b>Inflation</b> is a general rise in prices over time. As prices rise, the purchasing power of money falls — a dollar buys less than it used to.\n\n<b>Nominal GDP</b> is measured at current prices. <b>Real GDP</b> is adjusted for inflation, giving a more accurate picture of economic growth.\n\nIf inflation is 5% and a worker\'s income rises 2%, the worker\'s real purchasing power decreases by approximately 3%.',
+        dataTable:{
+          headers:['Year','Inflation Rate','Real GDP Growth'],
+          rows:[
+            ['2019','1.8%','2.3%'],
+            ['2020','1.2%','-3.4%'],
+            ['2021','4.7%','5.7%'],
+            ['2022','8.0%','2.1%'],
+            ['2023','4.1%','2.5%']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What does GDP measure?',
+           o:['Total government spending','Total value of goods and services produced','Average household income','Number of jobs in a country'],c:1,
+           why:'GDP = total market value of final goods/services produced.',steps:['GDP definition','Total value produced','→ B']},
+          {type:'mcq',q:'What happens to purchasing power during inflation?',
+           o:['It increases','It decreases','It stays the same','It doubles'],c:1,
+           why:'As prices rise, each dollar buys less → purchasing power falls.',steps:['Prices ↑','Purchasing power ↓','→ B']},
+          {type:'mcq',q:'Real GDP differs from nominal GDP because it is:',
+           o:['Measured in foreign currency','Adjusted for inflation','Counted only once per decade','Always higher'],c:1,
+           why:'Real GDP is inflation-adjusted.',steps:['Real = inflation-adjusted','→ B']},
+          {type:'mcq',q:'Based on the table, which year had the highest inflation?',
+           o:['2020','2021','2022','2023'],c:2,
+           why:'Table: 2022 inflation = 8.0% (highest).',steps:['Table column 2','2022 = 8.0%','→ C']},
+          {type:'multi',q:'Select ALL true statements about inflation.',
+           o:['It is a general rise in prices','It reduces purchasing power','It makes each dollar buy less','It is always zero in healthy economies'],c:[0,1,2],need:3,
+           why:'Inflation is never zero in a healthy economy — moderate inflation is normal.',steps:['Rise in prices: yes','Purchasing power falls: yes','Dollar buys less: yes','Always zero: false','→ A, B, C']},
+          {type:'fill',q:'If inflation is 5% and income rises 2%, what is the approximate change in real income? (Enter a number; use -3 for −3%.)',
+           answer:'-3',tolerance:0.5,why:'5% inflation − 2% income growth = −3% real change.',steps:['Real change = income growth − inflation','= 2 − 5 = −3','→ -3']}
+        ]
+      },
+      {
+        id:'e4', title:'Climate Zones', type:'Geography',
+        text:'Climate zones are large regions with similar patterns of temperature and precipitation. Latitude is the strongest factor in determining climate: the equator receives the most direct sunlight, while the poles receive the least.\n\n<b>Tropical</b> (near equator, 0°–23.5°) — Hot year-round, high rainfall. Rainforests are found here.\n<b>Temperate</b> (23.5°–66.5°) — Four distinct seasons, moderate temperatures.\n<b>Polar</b> (66.5°–90°) — Extremely cold, ice and tundra.\n\nOther factors affect climate too: altitude (higher = colder), ocean currents (warm or cold water affects nearby land), and proximity to water (coastal areas have milder climates than inland areas).',
+        dataTable:{
+          headers:['Zone','Latitude Range','Typical Climate'],
+          rows:[
+            ['Tropical','0°–23.5°','Hot, wet'],
+            ['Temperate','23.5°–66.5°','Four seasons'],
+            ['Polar','66.5°–90°','Very cold']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What is the strongest factor in determining climate zones?',
+           o:['Altitude','Latitude','Ocean currents','Soil type'],c:1,
+           why:'Latitude (distance from equator) is the strongest factor.',steps:['Latitude primary','→ B']},
+          {type:'mcq',q:'Which climate zone is closest to the equator?',
+           o:['Polar','Temperate','Tropical','Arctic'],c:2,
+           why:'Tropical zone spans 0°–23.5° latitude (nearest equator).',steps:['Table row 1','Tropical: 0-23.5','→ C']},
+          {type:'mcq',q:'Which zone has the coldest climate?',
+           o:['Tropical','Temperate','Polar','Coastal'],c:2,
+           why:'Polar zone (66.5°–90°) is extremely cold.',steps:['Table row 3','Polar = coldest','→ C']},
+          {type:'mcq',q:'Why do coastal areas often have milder climates than inland areas?',
+           o:['They are higher in altitude','Water absorbs and releases heat slowly','They receive more sunlight','They have more trees'],c:1,
+           why:'Water heats and cools slowly, moderating coastal temperatures.',steps:['Water moderates temperature','Milder coast','→ B']},
+          {type:'multi',q:'Select ALL factors that affect climate.',
+           o:['Latitude','Altitude','Ocean currents','Proximity to water','Soil color'],c:[0,1,2,3],need:4,
+           why:'Latitude, altitude, ocean currents, and proximity to water all affect climate. Soil color does not.',steps:['Latitude: yes','Altitude: yes','Currents: yes','Water proximity: yes','Soil color: no','→ A, B, C, D']},
+          {type:'order',q:'Order these climate zones from equator to pole:',
+           items:['Tropical','Temperate','Polar'],
+           correctOrder:['Tropical','Temperate','Polar'],
+           why:'Equator → tropics → temperate → polar.',steps:['Equator: tropical','Mid: temperate','Poles: polar']}
+        ]
+      },
+      {
+        id:'e5', title:'The Progressive Era', type:'US History',
+        text:'The Progressive Era (roughly 1890–1920) was a period of social and political reform in the United States. Progressives sought to address problems caused by industrialization, urbanization, and political corruption.\n\n<b>Muckrakers</b> were journalists who exposed corruption, unsafe working conditions, and political scandals. Upton Sinclair\'s <i>The Jungle</i> (1906) led to food safety laws.\n\n<b>Trust-busting</b> — Progressive presidents (Theodore Roosevelt, William Howard Taft, Woodrow Wilson) broke up monopolies to restore competition.\n\nFour constitutional amendments reflected Progressive goals:\n• <b>16th (1913)</b> — Federal income tax\n• <b>17th (1913)</b> — Direct election of senators\n• <b>18th (1919)</b> — Prohibition of alcohol\n• <b>19th (1920)</b> — Women\'s suffrage',
+        dataTable:{
+          headers:['Amendment','Year','Purpose'],
+          rows:[
+            ['16th','1913','Federal income tax'],
+            ['17th','1913','Direct election of senators'],
+            ['18th','1919','Prohibition of alcohol'],
+            ['19th','1920','Women\'s suffrage']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Who were the "muckrakers"?',
+           o:['Factory workers','Journalists who exposed corruption','Politicians who fought reform','Farmers during the Depression'],c:1,
+           why:'Muckrakers were investigative journalists who exposed problems.',steps:['Muckrakers = journalists','Exposed corruption','→ B']},
+          {type:'mcq',q:'What does "trust-busting" mean?',
+           o:['Building factories','Breaking up monopolies','Forming labor unions','Passing new taxes'],c:1,
+           why:'Trust-busting = breaking up monopolies to restore competition.',steps:['Bust = break','Trusts = monopolies','→ B']},
+          {type:'mcq',q:'The 16th Amendment created:',
+           o:['Women\'s suffrage','The federal income tax','Prohibition','Direct Senate elections'],c:1,
+           why:'16th Amendment = federal income tax.',steps:['Table row 1','16th = income tax','→ B']},
+          {type:'mcq',q:'Which Progressive amendment allowed citizens to directly elect U.S. senators?',
+           o:['16th','17th','18th','19th'],c:1,
+           why:'17th Amendment = direct election of senators.',steps:['Table row 2','17th = direct election','→ B']},
+          {type:'multi',q:'Select ALL Progressive Era reforms.',
+           o:['Income tax','Direct election of senators','Women\'s suffrage','Abolition of slavery','Prohibition'],c:[0,1,2,4],need:4,
+           why:'Abolition of slavery was the 13th Amendment (1865), well before the Progressive Era.',steps:['Income tax: Progressive','Direct election: Progressive','Women\'s suffrage: Progressive','Slavery abolition: 1865 (not Progressive)','Prohibition: Progressive','→ A, B, C, E']},
+          {type:'order',q:'Order these Progressive Era amendments chronologically:',
+           items:['16th Amendment','17th Amendment','18th Amendment','19th Amendment'],
+           correctOrder:['16th Amendment','17th Amendment','18th Amendment','19th Amendment'],
+           why:'16th & 17th in 1913; 18th in 1919; 19th in 1920.',steps:['16th: 1913','17th: 1913','18th: 1919','19th: 1920']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'Who wrote the Declaration of Independence?',
+       o:['George Washington','Thomas Jefferson','Benjamin Franklin','John Adams'],c:1,
+       why:'Thomas Jefferson was the primary author of the Declaration.',steps:['Jefferson drafted','→ B']},
+      {q:'In what year was the U.S. Constitution ratified?',
+       o:['1776','1783','1788','1801'],c:2,
+       why:'The Constitution was ratified in 1788.',steps:['Ratified 1788','→ C']},
+      {q:'What is inflation?',
+       o:['A rise in prices over time','A decrease in prices','A drop in employment','An increase in GDP'],c:0,
+       why:'Inflation = sustained rise in the general price level.',steps:['Prices rise','→ A']},
+      {q:'Where is the Sahara Desert located?',
+       o:['Asia','Africa','Australia','South America'],c:1,
+       why:'The Sahara Desert is in northern Africa.',steps:['Sahara = Africa','→ B']},
+      {q:'The 3rd Amendment protects against:',
+       o:['Quartering soldiers in homes','Unreasonable searches','Self-incrimination','Cruel punishment'],c:0,
+       why:'3rd Amendment = no quartering of soldiers in private homes.',steps:['3rd = quartering','→ A']},
+      {q:'What is the capital of the United States?',
+       o:['New York City','Philadelphia','Washington, D.C.','Boston'],c:2,
+       why:'Washington, D.C. is the U.S. capital.',steps:['U.S. capital = D.C.','→ C']}
+    ]
+  };
+
+  /* ============================================================
+     SET F — SET 6
+  ============================================================ */
+  var SET_F = {
+    passages: [
+      {
+        id:'f1', title:'World War II', type:'World History',
+        text:'World War II (1939–1945) was the deadliest conflict in human history. It pitted the <b>Axis powers</b> (Germany, Italy, Japan) against the <b>Allied powers</b> (United States, United Kingdom, Soviet Union, France, China, and others).\n\nKey events:\n• <b>1939</b> — Germany invades Poland; war begins in Europe.\n• <b>1941</b> — Japan attacks Pearl Harbor; the United States enters the war.\n• <b>1944</b> — D-Day (Allied invasion of Normandy, France).\n• <b>1945</b> — Germany surrenders (May); atomic bombs dropped on Hiroshima and Nagasaki (August); Japan surrenders (September).\n\nAfter the war, the United Nations was founded (1945) to promote international peace and cooperation. The U.S. emerged as a global superpower.',
+        dataTable:{
+          headers:['Event','Year'],
+          rows:[
+            ['Germany invades Poland','1939'],
+            ['Pearl Harbor','1941'],
+            ['D-Day','1944'],
+            ['Atomic bombs / War ends','1945']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'Which nations were Axis powers?',
+           o:['Germany, Italy, Japan','United States, UK, France','Soviet Union, China, UK','Germany, Russia, Japan'],c:0,
+           why:'Axis = Germany, Italy, Japan.',steps:['Axis: Germany, Italy, Japan','→ A']},
+          {type:'mcq',q:'Which nations were Allied powers?',
+           o:['Germany, Italy, Japan','US, UK, Soviet Union, France, China','Only the United States','Only the Soviet Union'],c:1,
+           why:'Allies = US, UK, USSR, France, China (plus others).',steps:['Allies: US, UK, USSR, France, China','→ B']},
+          {type:'mcq',q:'What event brought the United States into World War II?',
+           o:['Invasion of Poland','Attack on Pearl Harbor','D-Day','Fall of France'],c:1,
+           why:'The Japanese attack on Pearl Harbor (Dec 7, 1941) brought the US into the war.',steps:['Pearl Harbor','Dec 1941','→ B']},
+          {type:'mcq',q:'What was D-Day?',
+           o:['The day Germany surrendered','The Allied invasion of Normandy (France)','The bombing of Hiroshima','The founding of the UN'],c:1,
+           why:'D-Day = June 6, 1944 — Allied invasion of Normandy.',steps:['D-Day = Normandy invasion','1944','→ B']},
+          {type:'multi',q:'Select ALL outcomes of World War II.',
+           o:['Founding of the United Nations','US emerged as a superpower','Germany was divided','The Soviet Union collapsed'],c:[0,1,2],need:3,
+           why:'The Soviet Union did not collapse until 1991.',steps:['UN founded: 1945','US superpower: yes','Germany divided: yes','USSR collapsed: 1991','→ A, B, C']},
+          {type:'order',q:'Order these WWII events chronologically:',
+           items:['Germany invades Poland','Pearl Harbor','D-Day','Atomic bombs dropped'],
+           correctOrder:['Germany invades Poland','Pearl Harbor','D-Day','Atomic bombs dropped'],
+           why:'1939 → 1941 → 1944 → 1945.',steps:['1939','1941','1944','1945']}
+        ]
+      },
+      {
+        id:'f2', title:'Constitutional Principles', type:'Civics',
+        text:'The U.S. Constitution is built on several foundational principles that shape American government.\n\n<b>Popular sovereignty</b> — Government power comes from the people.\n<b>Limited government</b> — Government is restricted by the Constitution.\n<b>Separation of powers</b> — Government is divided into three branches (legislative, executive, judicial).\n<b>Checks and balances</b> — Each branch limits the power of the others.\n<b>Federalism</b> — Power is shared between the national government and the states.\n<b>Individual rights</b> — Personal freedoms protected by the Bill of Rights.',
+        questions:[
+          {type:'mcq',q:'What does "federalism" mean?',
+           o:['Power belongs only to the states','Power belongs only to the national government','Power is shared between national and state governments','Power belongs only to the president'],c:2,
+           why:'Federalism = power shared between national and state governments.',steps:['Federalism = shared power','→ C']},
+          {type:'mcq',q:'"Separation of powers" refers to the division of government into:',
+           o:['Two political parties','Three branches','Federal and local levels','Four regions'],c:1,
+           why:'Separation of powers = 3 branches (legislative, executive, judicial).',steps:['3 branches','→ B']},
+          {type:'mcq',q:'"Popular sovereignty" means that government power comes from:',
+           o:['The military','The people','The courts','The states'],c:1,
+           why:'Popular sovereignty = power derived from the people.',steps:['Popular = people','→ B']},
+          {type:'mcq',q:'Which principle prevents any one branch from becoming too powerful?',
+           o:['Federalism','Checks and balances','Limited government','Individual rights'],c:1,
+           why:'Checks and balances lets each branch limit the others.',steps:['Checks/balances','→ B']},
+          {type:'multi',q:'Select ALL constitutional principles.',
+           o:['Popular sovereignty','Separation of powers','Federalism','Monarchy','Individual rights'],c:[0,1,2,4],need:4,
+           why:'The U.S. is a republic/democracy, not a monarchy.',steps:['Popular sovereignty: yes','Separation of powers: yes','Federalism: yes','Monarchy: no','Individual rights: yes','→ A, B, C, E']},
+          {type:'fill',q:'How many branches of government does the U.S. Constitution create? (Enter a number.)',
+           answer:'3',tolerance:0.1,why:'Three branches: legislative, executive, judicial.',steps:['Legislative','Executive','Judicial','= 3','→ 3']}
+        ]
+      },
+      {
+        id:'f3', title:'Opportunity Cost and Scarcity', type:'Economics',
+        text:'<b>Scarcity</b> means resources are limited while wants are unlimited. Because of scarcity, every choice involves a <b>trade-off</b> — giving up one thing to get another.\n\n<b>Opportunity cost</b> is the value of the next-best alternative you give up when you make a choice.\n\nExamples:\n• Choosing to attend college instead of working full-time — opportunity cost = the income you would have earned.\n• Buying a car instead of saving for a vacation — opportunity cost = the vacation.\n\nBusinesses and governments also face opportunity costs. A government spending money on roads cannot use that same money for schools.',
+        dataTable:{
+          headers:['Choice','Benefit','Opportunity Cost'],
+          rows:[
+            ['Attend college','Degree, career','Wages from working'],
+            ['Buy a car','Transportation','Savings for vacation'],
+            ['Spend on roads','Infrastructure','Schools/other programs'],
+            ['Extra hour of sleep','Rest','Time for studying']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'What is opportunity cost?',
+           o:['The price of a product','The value of the next-best alternative you give up','The total cost of a good','A type of tax'],c:1,
+           why:'Opportunity cost = value of the next-best alternative you give up.',steps:['Next-best alternative','Forgone value','→ B']},
+          {type:'mcq',q:'Based on the table, what is the opportunity cost of attending college?',
+           o:['Tuition costs','Wages from working','Social life','Books'],c:1,
+           why:'The table lists "Wages from working" as the opportunity cost of attending college.',steps:['Table row 1','College → forgone wages','→ B']},
+          {type:'mcq',q:'What does "scarcity" mean in economics?',
+           o:['Widespread poverty','Limited resources relative to unlimited wants','A shortage caused by government policy','Anything expensive'],c:1,
+           why:'Scarcity = resources are limited while wants are unlimited.',steps:['Limited resources','Unlimited wants','→ B']},
+          {type:'mcq',q:'A student chooses to study for an exam instead of going to a party. What is the opportunity cost?',
+           o:['Good grade','Better exam score','Fun they would have had at the party','Time spent studying'],c:2,
+           why:'The foregone alternative (the party) is the opportunity cost.',steps:['Chose studying','Gave up party','→ C']},
+          {type:'multi',q:'Select ALL examples of opportunity cost.',
+           o:['Working instead of going to a movie','Buying a house instead of renting','Charging a phone overnight','Choosing one major over another'],c:[0,1,3],need:3,
+           why:'Charging a phone has no meaningful trade-off in this sense.',steps:['Work vs movie: yes','House vs rent: yes','Charging phone: no','Major choice: yes','→ A, B, D']},
+          {type:'fill',q:'A student can earn $200 by working on Saturday, or spend the day at a concert. If they choose the concert, what is the opportunity cost in dollars? (Enter a number.)',
+           answer:'200',tolerance:0.5,why:'The foregone alternative is $200 of wages.',steps:['Foregone wages = $200','→ 200']}
+        ]
+      },
+      {
+        id:'f4', title:'Population Geography', type:'Geography',
+        text:'<b>Population density</b> is the number of people per unit of area (usually people per square mile or square kilometer). It is calculated by dividing total population by total area.\n\nDensity varies widely: dense urban areas can have thousands of people per square mile, while rural or desert areas may have fewer than 10.\n\n<b>Push-pull factors</b> drive migration:\n• <b>Push factors</b> — conditions that make people want to leave a place (war, famine, unemployment, persecution).\n• <b>Pull factors</b> — conditions that attract people to a new place (jobs, safety, freedom, better education).\n\nThe table shows population density in selected countries.',
+        dataTable:{
+          headers:['Country','Population','Area (sq mi)','Density (per sq mi)'],
+          rows:[
+            ['United States','335 million','3.8 million','≈ 88'],
+            ['India','1.4 billion','1.27 million','≈ 1,100'],
+            ['Canada','39 million','3.86 million','≈ 10'],
+            ['Japan','125 million','146,000','≈ 856']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'How is population density calculated?',
+           o:['Population × area','Population ÷ area','Area ÷ population','Population + area'],c:1,
+           why:'Density = population ÷ area.',steps:['Density formula','Pop ÷ area','→ B']},
+          {type:'mcq',q:'Which of these is a PUSH factor?',
+           o:['Job opportunities in a new city','War in one\'s home country','Good schools','Freedom of speech'],c:1,
+           why:'War pushes people away from a region.',steps:['Push = reasons to leave','War → leave','→ B']},
+          {type:'mcq',q:'Which of these is a PULL factor?',
+           o:['Famine at home','Persecution','Better job opportunities elsewhere','A natural disaster'],c:2,
+           why:'Better jobs pull people toward a region.',steps:['Pull = reasons to come','Better jobs → attract','→ C']},
+          {type:'mcq',q:'Based on the table, which country has the HIGHEST population density?',
+           o:['United States','India','Canada','Japan'],c:1,
+           why:'Table: India ≈ 1,100 per sq mi (highest).',steps:['Table column 4','India: 1,100','→ B']},
+          {type:'multi',q:'Select ALL push factors.',
+           o:['War','Famine','Job opportunities','Persecution'],c:[0,1,3],need:3,
+           why:'Job opportunities pull people in; the others push people out.',steps:['War: push','Famine: push','Jobs: pull','Persecution: push','→ A, B, D']},
+          {type:'fill',q:'A country has 100 million people and an area of 500,000 square miles. What is its population density (people per sq mi)?',
+           answer:'200',tolerance:1,why:'100,000,000 ÷ 500,000 = 200.',steps:['100M ÷ 500K','= 200','→ 200']}
+        ]
+      },
+      {
+        id:'f5', title:'The Cold War', type:'World History',
+        text:'The Cold War (roughly 1947–1991) was a period of geopolitical tension between the United States and the Soviet Union. It was "cold" because the two superpowers never fought each other directly, though they supported opposing sides in proxy wars.\n\n<b>Ideological conflict</b> — The U.S. promoted capitalism and democracy; the Soviet Union promoted communism and a centrally planned economy.\n\nKey events:\n• <b>1949</b> — NATO formed (Western alliance); Soviet Union tests its first atomic bomb.\n• <b>1962</b> — Cuban Missile Crisis (closest the world came to nuclear war).\n• <b>1989</b> — Berlin Wall falls.\n• <b>1991</b> — Soviet Union dissolves; Cold War ends.',
+        dataTable:{
+          headers:['Event','Year'],
+          rows:[
+            ['NATO formed','1949'],
+            ['Cuban Missile Crisis','1962'],
+            ['Berlin Wall falls','1989'],
+            ['USSR dissolves','1991']
+          ]
+        },
+        questions:[
+          {type:'mcq',q:'The Cold War was primarily a conflict between:',
+           o:['The U.S. and China','The U.S. and the Soviet Union','Germany and France','The U.S. and Japan'],c:1,
+           why:'The Cold War pitted the U.S. against the Soviet Union.',steps:['US vs USSR','→ B']},
+          {type:'mcq',q:'What two ideologies clashed during the Cold War?',
+           o:['Feudalism vs. monarchy','Capitalism/democracy vs. communism','Christianity vs. Islam','Isolationism vs. imperialism'],c:1,
+           why:'Capitalism/democracy (US) vs. communism (USSR).',steps:['US: capitalism','USSR: communism','→ B']},
+          {type:'mcq',q:'In what year did the Berlin Wall fall?',
+           o:['1962','1979','1989','1991'],c:2,
+           why:'Table: Berlin Wall fell in 1989.',steps:['Table row 3','1989','→ C']},
+          {type:'mcq',q:'When did the Soviet Union dissolve?',
+           o:['1989','1990','1991','1993'],c:2,
+           why:'The USSR dissolved in 1991, ending the Cold War.',steps:['Table row 4','1991','→ C']},
+          {type:'multi',q:'Select ALL Cold War events.',
+           o:['Berlin Wall falls','Cuban Missile Crisis','NATO formed','US Civil War','USSR dissolves'],c:[0,1,2,4],need:4,
+           why:'The U.S. Civil War (1861–1865) was not part of the Cold War.',steps:['Berlin Wall: Cold War','Cuban Missile: Cold War','NATO: Cold War','Civil War: 1861 (not Cold War)','USSR dissolves: Cold War','→ A, B, C, E']},
+          {type:'order',q:'Order these Cold War events chronologically:',
+           items:['NATO formed','Cuban Missile Crisis','Berlin Wall falls','USSR dissolves'],
+           correctOrder:['NATO formed','Cuban Missile Crisis','Berlin Wall falls','USSR dissolves'],
+           why:'1949 → 1962 → 1989 → 1991.',steps:['1949','1962','1989','1991']}
+        ]
+      }
+    ],
+    standalone: [
+      {q:'Who was U.S. president during most of World War II?',
+       o:['Harry Truman','Franklin D. Roosevelt','Dwight Eisenhower','Herbert Hoover'],c:1,
+       why:'FDR was president from 1933 until his death in 1945 (Truman finished the war).',steps:['FDR: 1933-1945','→ B']},
+      {q:'In what year was the Declaration of Independence signed?',
+       o:['1776','1787','1789','1791'],c:0,
+       why:'The Declaration was adopted July 4, 1776.',steps:['July 4, 1776','→ A']},
+      {q:'What is a monopoly?',
+       o:['A single company controlling an entire market','A government-owned business','A type of tax','A labor union'],c:0,
+       why:'Monopoly = one company controls the whole market.',steps:['Mono = one','One seller','→ A']},
+      {q:'Which are the Great Lakes?',
+       o:['Superior, Michigan, Huron, Erie, Ontario','Superior, Michigan, Huron, Erie, Baikal','Victoria, Erie, Huron, Ontario, Superior','Erie, Ontario, Baikal, Michigan, Huron'],c:0,
+       why:'The five Great Lakes: Superior, Michigan, Huron, Erie, Ontario.',steps:['5 Great Lakes','Superior, Michigan, Huron, Erie, Ontario','→ A']},
+      {q:'What did the 13th Amendment do?',
+       o:['Gave women the right to vote','Abolished slavery','Gave citizenship to former slaves','Established income tax'],c:1,
+       why:'The 13th Amendment (1865) abolished slavery.',steps:['13th = slavery abolished','→ B']},
+      {q:'When did World War II end?',
+       o:['1918','1939','1945','1950'],c:2,
+       why:'WWII ended in 1945 (V-E Day May, V-J Day September).',steps:['War ended 1945','→ C']}
+    ]
+  };
+
+  /* ============================================================
+     BUILD QUESTIONS
+  ============================================================ */
+  function buildQuestions(setData){
+    var allQ = [], passForQ = [];
+    setData.passages.forEach(function(pass){
+      pass.questions.forEach(function(q){
+        var item = { type:q.type||'mcq', q:q.q, passageId:pass.id, passage:pass, topic:pass.type };
+        if(item.type === 'mcq'){
+          item.options=q.o; item.correctIndex=q.c; item.why=q.why; item.steps=q.steps; item.answer=q.o[q.c];
+        } else if(item.type === 'multi'){
+          item.options=q.o; item.correctIndex=q.c; item.need=q.need; item.why=q.why; item.steps=q.steps;
+          item.answer=q.c.map(function(i){return 'ABCD'[i]}).join(' · ');
+        } else if(item.type === 'order'){
+          item.items=q.items; item.correctOrder=q.correctOrder; item.why=q.why; item.steps=q.steps;
+          item.answer=q.correctOrder.join(' → ');
+        } else if(item.type === 'dropdown'){
+          item.text=q.text; item.blanks=q.blanks; item.why=q.why; item.steps=q.steps;
+          item.answer=q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        } else if(item.type === 'fill'){
+          item.answer=q.answer; item.tolerance=q.tolerance||0.5; item.why=q.why; item.steps=q.steps;
+        }
+        allQ.push(item); passForQ.push(pass);
+      });
+    });
+    setData.standalone.forEach(function(q){
+      allQ.push({ type:'mcq', q:q.q, options:q.o, correctIndex:q.c, why:q.why, steps:q.steps,
+        answer:q.o[q.c], passageId:null, topic:'Mixed' });
+      passForQ.push(null);
+    });
+    return { questions: allQ, passForQ: passForQ };
+  }
+
+  var SETS = {
+    D: { name:'Set 4', built: buildQuestions(SET_D) },
+    E: { name:'Set 5', built: buildQuestions(SET_E) },
+    F: { name:'Set 6', built: buildQuestions(SET_F) }
+  };
+  var SET_NUMBERS = { D:4, E:5, F:6 };
+  var URL_MAP = { '4':'D', '5':'E', '6':'F' };
+
+  var TOPIC_CLASS = {
+    'Civics':'', 'US History':'hist', 'World History':'world',
+    'Geography':'geo', 'Economics':'econ', 'Mixed':''
+  };
+
+  /* ============================================================
+     TIME
+  ============================================================ */
+  var TOTAL_TIME = 70 * 60;  // 70 minutes, continuous
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var currentSetKey = null, currentSet = null;
+  var allQuestions = [], passageForQ = [];
+  var userAnswers = [], currentQ = 0;
+  var timerLeft = TOTAL_TIME, timerId = null;
+  var timeUsedTotal = 0, submitted = false;
+  var initialSetKey = null;
+
+  function initState(fromUrl){
+    var keys = Object.keys(SETS);
+    if(fromUrl && !initialSetKey){
+      var params = new URLSearchParams(window.location.search);
+      var urlSet = params.get('set');
+      if(urlSet && URL_MAP[urlSet] && SETS[URL_MAP[urlSet]]){
+        initialSetKey = URL_MAP[urlSet];
+      }
+    }
+    if(initialSetKey){
+      currentSetKey = initialSetKey;
+      initialSetKey = null;
+    } else {
+      currentSetKey = keys[Math.floor(Math.random() * keys.length)];
+    }
+    currentSet = SETS[currentSetKey];
+    allQuestions = currentSet.built.questions.slice();
+    passageForQ = currentSet.built.passForQ.slice();
+    userAnswers = new Array(allQuestions.length).fill(null);
+    currentQ = 0; timerLeft = TOTAL_TIME; timeUsedTotal = 0; submitted = false;
+  }
+
+  $('startBtn').addEventListener('click', function(){
+    initState(true);
+    console.log('[Social Studies New Sets] Starting:', currentSetKey, '(Set ' + SET_NUMBERS[currentSetKey] + ')');
+    startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+    showOnly($('examScreen'));
+  });
+
+  /* TIMER */
+  function startTimer(){
+    clearInterval(timerId);
+    updateTimerDisplay();
+    timerId = setInterval(function(){
+      timerLeft--; timeUsedTotal++;
+      updateTimerDisplay();
+      if(timerLeft <= 0){
+        clearInterval(timerId);
+        finishExam();
+      }
+    }, 1000);
+  }
+  function fmtTime(sec){
+    var m = Math.floor(Math.max(sec, 0)/60);
+    var s = Math.max(sec, 0)%60;
+    return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  function updateTimerDisplay(){
+    var t = $('timer');
+    t.textContent = fmtTime(timerLeft);
+    t.classList.toggle('warn', timerLeft <= 300);
+  }
+
+  /* RENDER QUESTION */
+  var TYPE_LABELS = {
+    mcq:'Multiple Choice', multi:'Multi-Select', order:'Ordering',
+    dropdown:'Dropdown', fill:'Fill-in'
+  };
+
+  function renderQuestion(){
+    var q = allQuestions[currentQ];
+    var card = $('qCard');
+    var badge = $('partBadge');
+
+    var topic = q.topic || 'Mixed';
+    badge.textContent = topic;
+    badge.className = 'part-badge ' + (TOPIC_CLASS[topic] || '');
+
+    var typeClass = (q.type !== 'mcq') ? 'tech' : '';
+    var typeTag = '<span class="q-type ' + typeClass + '">' + (TYPE_LABELS[q.type] || 'MCQ') + '</span>';
+
+    card.innerHTML =
+      '<div class="q-num">Question '+(currentQ+1)+' of '+allQuestions.length+' '+typeTag+'</div>'+
+      '<div id="qHintWrap"></div>'+
+      '<div class="q-text">'+q.q+'</div>'+
+      '<div id="interactive"></div>';
+
+    var inter = card.querySelector('#interactive');
+    var hintWrap = card.querySelector('#qHintWrap');
+    if(q.type === 'multi') hintWrap.innerHTML = '<div class="q-hint">Select '+q.need+' answers</div>';
+    else if(q.type === 'order') hintWrap.innerHTML = '<div class="q-hint">Tap items in the correct order</div>';
+    else if(q.type === 'fill') hintWrap.innerHTML = '<div class="q-hint">Type your answer (number or short text)</div>';
+
+    if(q.type === 'mcq') renderMCQ(q, inter);
+    else if(q.type === 'multi') renderMulti(q, inter);
+    else if(q.type === 'order') renderOrder(q, inter);
+    else if(q.type === 'dropdown') renderDropdown(q, inter);
+    else if(q.type === 'fill') renderFill(q, inter);
+
+    renderPassage(currentQ);
+    $('qCounter').textContent = 'Question '+(currentQ+1)+' of '+allQuestions.length;
+    $('prevBtn').disabled = currentQ === 0;
+    $('nextBtn').textContent = (currentQ === allQuestions.length-1) ? 'Finish' : 'Next →';
+  }
+
+  function renderMCQ(q, container){
+    var chosen = userAnswers[currentQ];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+'ABCD'[i]+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        userAnswers[currentQ] = i;
+        container.querySelectorAll('.opt').forEach(function(b){b.classList.remove('selected')});
+        btn.classList.add('selected');
+        updateProgress(); renderDotMap();
+        autoAdvance();
+      });
+    });
+  }
+
+  function renderMulti(q, container){
+    var sel = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+    container.innerHTML = '<div class="opts">'+q.options.map(function(o,i){
+      return '<button class="opt multi '+(sel.indexOf(i)!==-1?'selected':'')+'" data-i="'+i+'"><span class="ltr">'+(sel.indexOf(i)!==-1?'✓':'')+'</span><span class="body">'+o+'</span></button>';
+    }).join('')+'</div><button class="btn primary" id="multiSubmit" style="margin-top:12px;width:100%">Confirm Selection</button>';
+    container.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = +btn.dataset.i;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+        var k = arr.indexOf(i);
+        if(k>=0) arr.splice(k,1); else if(arr.length < q.need) arr.push(i);
+        userAnswers[currentQ] = arr;
+        btn.classList.toggle('selected', arr.indexOf(i)!==-1);
+        btn.querySelector('.ltr').textContent = arr.indexOf(i)!==-1 ? '✓' : '';
+        var h = container.parentNode.querySelector('.q-hint');
+        if(h) h.textContent = 'Select '+q.need+' answers ('+arr.length+' selected)';
+        updateProgress(); renderDotMap();
+      });
+    });
+    container.querySelector('#multiSubmit').addEventListener('click', function(){
+      if((userAnswers[currentQ]||[]).length < q.need) return;
+      autoAdvance();
+    });
+  }
+
+  function renderOrder(q, container){
+    var pool = q.items.slice();
+    var seq = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : [];
+    container.innerHTML = '<div class="order-pool" id="orderPool"></div><div class="order-slots" id="orderSlots"></div>';
+    var poolEl = container.querySelector('#orderPool');
+    var slotsEl = container.querySelector('#orderSlots');
+    function paint(){
+      poolEl.innerHTML='';
+      pool.forEach(function(item){
+        var b = document.createElement('button');
+        b.className = 'order-item'+(seq.indexOf(item)!==-1?' used':'');
+        b.textContent = item;
+        b.addEventListener('click', function(){
+          if(seq.indexOf(item)!==-1) return;
+          seq.push(item);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots();
+          var h = container.parentNode.querySelector('.q-hint');
+          if(h) h.textContent = 'Tap items in the correct order ('+seq.length+' / '+pool.length+')';
+          updateProgress(); renderDotMap();
+          if(seq.length===pool.length) setTimeout(autoAdvance,400);
+        });
+        poolEl.appendChild(b);
+      });
+    }
+    function paintSlots(){
+      slotsEl.innerHTML='';
+      if(seq.length===0){ slotsEl.innerHTML='<div class="order-empty">ဤနေရာတွင် အစဉ်လိုက် ပြသပါမည်</div>'; return; }
+      seq.forEach(function(it,i){
+        var d = document.createElement('div');
+        d.className = 'order-slot';
+        var sp = document.createElement('span'); sp.className='num'; sp.textContent=(i+1); d.appendChild(sp);
+        var txt = document.createElement('span'); txt.style.flex='1'; txt.textContent=it; d.appendChild(txt);
+        var rm = document.createElement('span'); rm.className='rm'; rm.textContent='✕';
+        rm.addEventListener('click', function(){
+          seq.splice(i,1);
+          userAnswers[currentQ] = seq.slice();
+          paint(); paintSlots(); updateProgress(); renderDotMap();
+        });
+        d.appendChild(rm);
+        slotsEl.appendChild(d);
+      });
+    }
+    paint(); paintSlots();
+  }
+
+  function renderDropdown(q, container){
+    var vals = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : new Array(q.blanks.length).fill(null);
+    var html = '<div class="dropdown-line">';
+    var parts = q.text.split(/(\{\d+\})/);
+    parts.forEach(function(p){
+      var m = p.match(/^\{(\d+)\}$/);
+      if(m){
+        var idx = +m[1]; var b = q.blanks[idx];
+        html += '<select class="dd-select" data-idx="'+idx+'"><option value="">--</option>';
+        b.options.forEach(function(o,i){
+          html += '<option value="'+i+'"'+(vals[idx]===i?' selected':'')+'>'+o+'</option>';
+        });
+        html += '</select>';
+      } else html += p;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    container.querySelectorAll('.dd-select').forEach(function(sel){
+      sel.addEventListener('change', function(){
+        var idx = +sel.dataset.idx;
+        var arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].slice() : new Array(q.blanks.length).fill(null);
+        arr[idx] = +sel.value;
+        userAnswers[currentQ] = arr;
+        updateProgress(); renderDotMap();
+        if(arr.every(function(v){return v != null})) setTimeout(autoAdvance, 300);
+      });
+    });
+  }
+
+  function renderFill(q, container){
+    var val = userAnswers[currentQ] != null ? String(userAnswers[currentQ]) : '';
+    container.innerHTML =
+      '<div class="fill-wrap">'+
+        '<input class="fill-input" id="fillIn" type="text" placeholder="Answer..." value="'+val+'">'+
+        '<button class="btn primary" id="fillSubmit">Confirm</button>'+
+      '</div>'+
+      '<div class="fill-note">Tolerance: ±'+(q.tolerance||0.5)+'</div>';
+    var inp = container.querySelector('#fillIn');
+    container.querySelector('#fillSubmit').addEventListener('click', function(){
+      var v = inp.value.trim();
+      if(v === '') return;
+      userAnswers[currentQ] = v;
+      updateProgress(); renderDotMap();
+      inp.style.borderColor = '#16a34a';
+      setTimeout(autoAdvance, 200);
+    });
+    inp.addEventListener('keydown', function(e){
+      if(e.key === 'Enter') container.querySelector('#fillSubmit').click();
+    });
+  }
+
+  function autoAdvance(){
+    if(currentQ >= allQuestions.length - 1) return;
+    setTimeout(function(){
+      if(isAnswered(userAnswers[currentQ])){
+        currentQ++; renderQuestion(); renderDotMap();
+      }
+    }, 280);
+  }
+
+  /* RENDER PASSAGE */
+  function renderPassage(qIndex){
+    var pass = passageForQ[qIndex];
+    var box = $('passageBox');
+    var indicator = $('passageIndicator');
+    if(!pass){ box.style.display='none'; indicator.style.display='none'; return; }
+    box.style.display='block'; indicator.style.display='flex';
+    $('passageInfo').textContent = pass.type;
+
+    var pIdx = 0, seen = {};
+    for(var i=0; i<passageForQ.length; i++){
+      var p = passageForQ[i];
+      if(p && !seen[p.id]){ seen[p.id] = ++pIdx; if(p.id === pass.id) break; }
+    }
+    var totalPass = 0; var seen2 = {};
+    for(var i=0; i<passageForQ.length; i++){
+      if(passageForQ[i] && !seen2[passageForQ[i].id]){ seen2[passageForQ[i].id] = 1; totalPass++; }
+    }
+    $('passageBadge').textContent = 'Passage '+pIdx+' of '+totalPass;
+
+    var tableHtml = '';
+    if(pass.dataTable){
+      tableHtml = '<div class="data-table-wrap"><table class="data-table"><thead><tr>';
+      pass.dataTable.headers.forEach(function(h){ tableHtml += '<th>'+h+'</th>'; });
+      tableHtml += '</tr></thead><tbody>';
+      pass.dataTable.rows.forEach(function(row){
+        tableHtml += '<tr>';
+        row.forEach(function(cell){ tableHtml += '<td>'+cell+'</td>'; });
+        tableHtml += '</tr>';
+      });
+      tableHtml += '</tbody></table></div>';
+    }
+
+    var visualHtml = renderVisual(pass);
+
+    box.innerHTML =
+      '<div class="passage-inner collapsed">'+
+        '<div class="passage-title">'+pass.title+' <span class="src">'+pass.type+'</span></div>'+
+        visualHtml+
+        '<div class="passage-text">'+pass.text.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('')+'</div>'+
+        tableHtml+
+      '</div>'+
+      '<button class="passage-toggle" id="passageToggleBtn">📖 Show Full Passage</button>';
+    var btn = box.querySelector('#passageToggleBtn');
+    var inner = box.querySelector('.passage-inner');
+    btn.addEventListener('click', function(){
+      if(inner.classList.contains('collapsed')){
+        inner.classList.remove('collapsed');
+        btn.textContent = '📕 Collapse';
+      } else {
+        inner.classList.add('collapsed');
+        btn.textContent = '📖 Show Full Passage';
+      }
+    });
+  }
+
+  $('prevBtn').addEventListener('click', function(){
+    if(currentQ > 0){ currentQ--; renderQuestion(); renderDotMap(); }
+  });
+  $('nextBtn').addEventListener('click', function(){
+    if(currentQ === allQuestions.length - 1){
+      $('submitBtn').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    currentQ++; renderQuestion(); renderDotMap();
+  });
+
+  /* SCORING */
+  function isAnswered(a){
+    if(a === null || a === undefined) return false;
+    if(Array.isArray(a)) return a.length > 0;
+    if(typeof a === 'string') return a.trim() !== '';
+    if(typeof a === 'object') return true;
+    return true;
+  }
+
+  function scoreQ(q, ua){
+    if(!isAnswered(ua)) return false;
+    if(q.type === 'mcq') return ua === q.correctIndex;
+    if(q.type === 'multi'){
+      if(!Array.isArray(ua)) return false;
+      var a = ua.slice().sort(function(x,y){return x-y});
+      var c = q.correctIndex.slice().sort(function(x,y){return x-y});
+      return a.length === c.length && a.every(function(v,i){return v === c[i]});
+    }
+    if(q.type === 'order'){
+      if(!Array.isArray(ua)) return false;
+      return ua.length === q.correctOrder.length && ua.every(function(v,i){return v === q.correctOrder[i]});
+    }
+    if(q.type === 'dropdown'){
+      if(!Array.isArray(ua)) return false;
+      return q.blanks.every(function(b,i){return ua[i] === b.correct});
+    }
+    if(q.type === 'fill'){
+      var n = parseFloat(ua);
+      var correct = parseFloat(q.answer);
+      if(isFinite(n) && isFinite(correct)){
+        return Math.abs(n - correct) <= (q.tolerance || 0.5);
+      }
+      return String(ua).trim().toLowerCase() === String(q.answer).trim().toLowerCase();
+    }
+    return false;
+  }
+
+  /* SUBMIT */
+  $('submitBtn').addEventListener('click', function(){
+    var un = 0;
+    for(var i=0; i<allQuestions.length; i++) if(!isAnswered(userAnswers[i])) un++;
+    var msg = un > 0 ? un + ' ခု မဖြေရသေးပါ။ တင်မလား။' : 'Exam ကို တင်မလား။';
+    if(!confirm(msg)) return;
+    finishExam();
+  });
+
+  function finishExam(){
+    if(submitted) return;
+    submitted = true; clearInterval(timerId); submitExam();
+  }
+
+  function submitExam(){
+    var total = allQuestions.length;
+    var correct = 0;
+    for(var i=0; i<total; i++){
+      if(scoreQ(allQuestions[i], userAnswers[i])) correct++;
+    }
+    var wrong = total - correct;
+    var pct = Math.round(correct / total * 100);
+    var setNum = SET_NUMBERS[currentSetKey];
+    try {
+      var s = JSON.parse(localStorage.getItem('ged:pretest:scores')) || {};
+      var rec = {
+        score: correct, total: total, pct: pct,
+        date: new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}),
+        set: setNum
+      };
+      var key = 'social:s' + setNum;
+      var prev = s[key];
+      if(!prev || rec.pct > prev.pct) s[key] = rec;
+      localStorage.setItem('ged:pretest:scores', JSON.stringify(s));
+    } catch(e){}
+    renderResult(correct, wrong, pct);
+    showOnly($('resultScreen'));
+  }
+
+  /* RESULT */
+  function renderResult(correct, wrong, pct){
+    $('scorePct').textContent = pct + '%';
+    $('rCorrect').textContent = correct;
+    $('rWrong').textContent = wrong;
+    var m = Math.floor(timeUsedTotal/60), s = timeUsedTotal%60;
+    $('rTime').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    var gedScore;
+    if(pct < 72.5) gedScore = Math.round(100 + (pct/72.5)*45);
+    else if(pct < 87) gedScore = Math.round(145 + ((pct-72.5)/(87-72.5))*20);
+    else if(pct < 95) gedScore = Math.round(165 + ((pct-87)/(95-87))*10);
+    else gedScore = Math.round(175 + ((pct-95)/(100-95))*25);
+    gedScore = Math.max(100, Math.min(200, gedScore));
+    $('gedScore').textContent = gedScore;
+    var gs = $('gedMsg');
+    if(gedScore >= 175) gs.textContent = '🏆 College Ready + Credit (175+)';
+    else if(gedScore >= 165) gs.textContent = '🎓 College Ready (165+)';
+    else if(gedScore >= 145) gs.textContent = '✅ Passed GED (145+)';
+    else gs.textContent = '📚 အောင်မှတ် 145 ရရန် လိုသေးသည်';
+    var ring = $('scoreRing');
+    var C = 2 * Math.PI * 70;
+    ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C;
+    setTimeout(function(){ ring.style.strokeDashoffset = C * (1 - pct/100); }, 100);
+    var setLabel = 'Set ' + SET_NUMBERS[currentSetKey];
+    var msg, sub;
+    if(gedScore >= 165){ msg = '🌟 College Ready!'; sub = 'GED Social Studies အတွက် ထူးချွန်စွာ အသင့်ဖြစ်နေပါပြီ။ (' + setLabel + ')'; }
+    else if(gedScore >= 145){ msg = '✅ Passed!'; sub = 'GED Social Studies အောင်မှတ် ရပါပြီ။ (' + setLabel + ')'; }
+    else if(gedScore >= 130){ msg = '📚 Near Passing'; sub = 'အောင်မှတ်နှင့် နီးကပ်နေသည်။ ခေါင်းစဉ်များ ပြန်လေ့လာပါ။ (' + setLabel + ')'; }
+    else { msg = '💪 လေ့ကျင့်ဖို့ လိုသေးသည်'; sub = 'Social Studies Lessons များ ပြန်လေ့လာပါ။ (' + setLabel + ')'; }
+    $('resultMsg').textContent = msg;
+    $('resultSub').textContent = sub;
+    renderReview();
+  }
+
+  /* REVIEW */
+  function renderReview(){
+    var el = $('reviewWrap');
+    el.innerHTML = '<div class="review-title">Answer Key & Explanations — Set ' + SET_NUMBERS[currentSetKey] + '</div>';
+    allQuestions.forEach(function(q, i){
+      var ua = userAnswers[i];
+      var ok = scoreQ(q, ua);
+      var pass = passageForQ[i];
+      var topicTag = '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(245,158,11,.12);color:#b45309">'+(q.topic||'Mixed')+'</span>';
+      var passTag = pass
+        ? '<span style="font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(59,130,246,.12);color:#1d4ed8">'+pass.title+'</span>'
+        : '';
+      var typeTag = '<span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(139,92,246,.12);color:#6d28d9">'+(TYPE_LABELS[q.type]||'MCQ')+'</span>';
+
+      var answerHtml = '';
+      if(q.type === 'mcq'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var cls = 'opt';
+            if(j === q.correctIndex) cls += ' correct';
+            else if(j === ua) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default;opacity:.98"><span class="ltr">'+'ABCD'[j]+'</span><span class="body">'+o+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'multi'){
+        answerHtml = '<div style="display:grid;grid-template-columns:1fr;gap:8px">'+
+          q.options.map(function(o, j){
+            var isC = q.correctIndex.indexOf(j) !== -1;
+            var isU = Array.isArray(ua) && ua.indexOf(j) !== -1;
+            var cls = 'opt multi';
+            if(isC) cls += ' correct'; else if(isU) cls += ' wrong';
+            return '<div class="'+cls+'" style="cursor:default"><span class="ltr">'+(isU?'✓':'')+'</span><span class="body">'+o+(isC?' ✓ correct':'')+'</span></div>';
+          }).join('')+'</div>';
+      } else if(q.type === 'order'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your order: <b>'+(Array.isArray(ua) ? ua.join(' → ') : '(blank)')+'</b><br>'+
+          'Correct: <b style="color:#14532d">'+q.correctOrder.join(' → ')+'</b></div>';
+      } else if(q.type === 'dropdown'){
+        var correctChoices = q.blanks.map(function(b){return b.options[b.correct]}).join(' / ');
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Correct choices: <b style="color:#14532d">'+correctChoices+'</b></div>';
+      } else if(q.type === 'fill'){
+        answerHtml = '<div style="padding:14px;border-radius:12px;background:'+(ok?'#dcfce7':'#fee2e2')+';font-weight:700">'+
+          'Your answer: <b>'+(ua != null ? ua : '(blank)')+'</b><br>'+
+          'Correct answer: <b style="color:#14532d">'+q.answer+'</b></div>';
+      }
+
+      var card = document.createElement('div');
+      card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+      card.innerHTML =
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">'+
+          '<span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f59e0b,#ec4899)">'+(i+1)+'</span>'+
+          topicTag + passTag + typeTag +
+          '<span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;'+(ok?'color:#14532d;background:#bbf7d0':'color:#7f1d1d;background:#fecaca')+'">'+(ok?'✔ Correct':'✘ Wrong')+'</span>'+
+        '</div>'+
+        '<div style="font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500">'+q.q+'</div>'+
+        answerHtml+
+        '<div class="sol">'+
+          '<span class="lbl">အဘယ်ကြောင့်</span>'+q.why+
+          '<div style="margin-top:10px"><span class="lbl">ရှင်းလင်းချက်</span><ol>'+
+            q.steps.map(function(s){return '<li>'+s+'</li>'}).join('')+
+          '</ol></div>'+
+          '<span class="ans">✔ အဖြေ: '+q.answer+'</span>'+
+        '</div>';
+      el.appendChild(card);
+    });
+  }
+
+  /* BUTTONS */
+  $('reviewBtn').addEventListener('click', function(){
+    $('reviewWrap').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  $('retryBtn').addEventListener('click', function(){
+    if(!confirm('Exam အသစ် (ကျပန်း set) စတင်မလား။')) return;
+    initState(false);
+    showOnly($('startScreen'));
+  });
+  window.confirmExit = function(){
+    if(submitted) return true;
+    return confirm('Exam မှ ထွက်မလား။ ဖြေထားသည်များ ဆုံးရှုံးမည်။');
+  };
+
+  /* DOT MAP */
+  function renderDotMap(){
+    var el = $('dotMap'); el.innerHTML = '';
+    for(var i=0; i<allQuestions.length; i++){
+      var d = document.createElement('button');
+      d.className = 'dot';
+      d.textContent = i+1;
+      if(isAnswered(userAnswers[i])) d.classList.add('answered');
+      if(i === currentQ) d.classList.add('current');
+      (function(idx){
+        d.addEventListener('click', function(){
+          currentQ = idx; renderQuestion(); renderDotMap();
+        });
+      })(i);
+      el.appendChild(d);
+    }
+  }
+  function updateProgress(){
+    var answered = 0;
+    for(var i=0; i<allQuestions.length; i++) if(isAnswered(userAnswers[i])) answered++;
+    $('pCount').textContent = answered + ' / ' + allQuestions.length;
+    $('pBar').style.width = (answered / allQuestions.length * 100) + '%';
+  }
+
+})();
+</script>
+</body>
+</html>

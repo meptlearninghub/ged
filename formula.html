@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Formula Sheet — ဖော်မြူလာ စာရွက်</title>
+
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('ged:theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#6366f1; --primary-d:#4f46e5;
+  --green:#16a34a; --amber:#f59e0b; --red:#dc2626;
+  --blue:#3b82f6; --violet:#8b5cf6; --cyan:#06b6d4; --pink:#ec4899;
+  --radius:18px;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05), 0 8px 24px -12px rgba(15,23,42,.15);
+  --shadow-lg:0 4px 8px rgba(15,23,42,.06), 0 20px 40px -16px rgba(15,23,42,.22);
+  --nav-bg:rgba(248,250,252,.88);
+  --chip-bg:rgba(99,102,241,.08);
+  --chip-border:rgba(99,102,241,.2);
+  --hover-soft:rgba(15,23,42,.03);
+  --formula-bg:rgba(99,102,241,.05);
+  --formula-bg-dark:rgba(99,102,241,.03);
+}
+html[data-theme="dark"]{
+  --bg:#0b1220; --card:#141d30; --text:#e9eefb; --muted:#93a4c2;
+  --border:rgba(255,255,255,.09);
+  --shadow:0 2px 4px rgba(0,0,0,.3), 0 16px 34px -18px rgba(0,0,0,.75);
+  --shadow-lg:0 8px 20px rgba(0,0,0,.45), 0 28px 50px -20px rgba(0,0,0,.85);
+  --nav-bg:rgba(11,18,32,.88);
+  --chip-bg:rgba(99,102,241,.14);
+  --chip-border:rgba(99,102,241,.3);
+  --hover-soft:rgba(255,255,255,.05);
+  --formula-bg:rgba(99,102,241,.1);
+  --formula-bg-dark:rgba(99,102,241,.05);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; min-height:100svh;
+  font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.6;
+  -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+  transition:background .35s, color .35s;
+}
+body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(720px 480px at 8% -8%, rgba(99,102,241,.12), transparent 65%),
+    radial-gradient(720px 480px at 100% 4%, rgba(139,92,246,.10), transparent 65%),
+    radial-gradient(620px 420px at 50% 105%, rgba(16,185,129,.08), transparent 65%);
+}
+html[data-theme="dark"] body::before{ opacity:.55 }
+
+/* ============ NAVBAR ============ */
+.nav{
+  position:sticky; top:0; z-index:40;
+  background:var(--nav-bg);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:calc(10px + var(--safe-top)) 0 10px;
+  transition:background .35s, border-color .35s;
+}
+.nav-inner{
+  max-width:1140px; margin:0 auto; padding:0 18px;
+  display:flex; align-items:center; gap:12px;
+}
+.back-btn{
+  display:inline-flex; align-items:center; gap:6px; flex:none;
+  padding:9px 13px; border-radius:11px;
+  border:1px solid var(--border); background:var(--card);
+  color:var(--text); text-decoration:none;
+  font-size:12.5px; font-weight:700;
+  transition:transform .18s, background .2s;
+}
+.back-btn:hover{ background:var(--hover-soft) }
+.back-btn:active{ transform:scale(.95) }
+.nav-title{
+  flex:1; min-width:0;
+  font-size:clamp(13px,3.6vw,16px); font-weight:800;
+  letter-spacing:-.01em;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.nav-title small{
+  display:block; font-size:11px; font-weight:600;
+  color:var(--muted); margin-top:1px;
+}
+.icon-btn{
+  width:38px; height:38px; flex:none;
+  display:grid; place-items:center;
+  border-radius:11px; border:1px solid var(--border);
+  background:var(--card); color:var(--text);
+  font-size:16px; cursor:pointer; padding:0;
+  transition:transform .18s, background .18s;
+  font-family:inherit;
+}
+.icon-btn:hover{ background:var(--hover-soft) }
+.icon-btn:active{ transform:scale(.9) }
+
+/* ============ HERO ============ */
+.hero{
+  max-width:1140px; margin:0 auto;
+  padding:28px 18px 20px; text-align:center;
+}
+.hero .icon{
+  width:72px; height:72px; border-radius:22px; margin:0 auto 16px;
+  display:grid; place-items:center; font-size:34px;
+  background:linear-gradient(135deg, var(--primary), var(--violet));
+  box-shadow:0 16px 34px -12px rgba(99,102,241,.7);
+}
+.hero h1{
+  margin:0 0 8px;
+  font-size:clamp(22px, 5.5vw, 32px);
+  font-weight:900; letter-spacing:-.03em; line-height:1.15;
+}
+.hero p{
+  margin:0 auto; max-width:560px;
+  font-size:clamp(13px,3.4vw,15px);
+  color:var(--muted); line-height:1.75;
+}
+
+/* ============ SEARCH ============ */
+.search-wrap{
+  max-width:1140px; margin:0 auto;
+  padding:0 18px 14px;
+  position:relative;
+}
+.search-wrap input{
+  width:100%; padding:14px 44px 14px 46px;
+  border-radius:14px;
+  border:1.5px solid var(--border);
+  background:var(--card); color:var(--text);
+  font-family:inherit; font-size:14.5px; font-weight:500;
+  transition:border-color .18s, background .2s, box-shadow .2s;
+  box-shadow:var(--shadow);
+}
+.search-wrap input:focus{
+  outline:none; border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(99,102,241,.12), var(--shadow);
+}
+.search-wrap .search-ico{
+  position:absolute; left:34px; top:50%;
+  transform:translateY(-50%);
+  color:var(--muted); font-size:16px; pointer-events:none;
+}
+.search-wrap .clear-btn{
+  position:absolute; right:34px; top:50%;
+  transform:translateY(-50%);
+  width:26px; height:26px;
+  border:none; border-radius:50%;
+  background:var(--hover-soft); color:var(--muted);
+  display:none; place-items:center;
+  cursor:pointer; font-family:inherit; font-size:12px;
+  padding:0;
+}
+.search-wrap .clear-btn.show{ display:grid }
+
+/* ============ FILTER TABS ============ */
+.filters{
+  max-width:1140px; margin:0 auto;
+  padding:0 18px 20px;
+  display:flex; gap:8px; overflow-x:auto;
+  scrollbar-width:none;
+}
+.filters::-webkit-scrollbar{ display:none }
+.filter{
+  flex:none;
+  padding:8px 15px; border-radius:999px;
+  border:1px solid var(--border); background:var(--card);
+  color:var(--text); font-family:inherit;
+  font-size:12.5px; font-weight:700;
+  cursor:pointer; white-space:nowrap;
+  transition:all .18s;
+}
+.filter:hover{ background:var(--hover-soft) }
+.filter.active{
+  background:linear-gradient(135deg, var(--primary), var(--violet));
+  color:#fff; border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(99,102,241,.7);
+}
+
+/* ============ MAIN ============ */
+.wrap{
+  max-width:1140px; margin:0 auto;
+  padding:0 18px calc(60px + var(--safe-bottom));
+}
+
+.cat{
+  margin-bottom:32px;
+  animation:fadeUp .4s ease both;
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(10px) }
+  to{ opacity:1; transform:none }
+}
+
+.cat-head{
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:14px; padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+.cat-ico{
+  width:40px; height:40px; flex:none;
+  border-radius:12px; display:grid; place-items:center;
+  font-size:20px; color:#fff;
+  background:var(--cat-color, var(--primary));
+  box-shadow:0 8px 18px -8px var(--cat-color, var(--primary));
+}
+.cat-head h2{
+  margin:0; flex:1;
+  font-size:clamp(16px, 4.2vw, 19px);
+  font-weight:800; letter-spacing:-.02em;
+}
+.cat-head .count{
+  font-size:11.5px; color:var(--muted); font-weight:700;
+  padding:3px 10px; border-radius:999px;
+  background:var(--hover-soft);
+}
+
+/* ============ FORMULA CARD ============ */
+.formulas{
+  display:grid;
+  grid-template-columns:1fr; gap:12px;
+}
+@media(min-width:640px){ .formulas{ grid-template-columns:repeat(2,1fr) } }
+@media(min-width:960px){ .formulas{ grid-template-columns:repeat(3,1fr) } }
+
+.f-card{
+  position:relative;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px;
+  box-shadow:var(--shadow);
+  transition:transform .25s, box-shadow .25s, border-color .25s;
+  overflow:hidden;
+}
+@media(hover:hover){
+  .f-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--cat-color, var(--primary));
+  }
+}
+.f-card .name{
+  margin:0 0 12px; font-size:14.5px; font-weight:800;
+  letter-spacing:-.01em; line-height:1.4;
+  color:var(--text);
+}
+.f-card .formula{
+  padding:14px 16px;
+  background:var(--formula-bg);
+  border-left:3px solid var(--cat-color, var(--primary));
+  border-radius:10px;
+  font-family:'Cambria Math','Latin Modern Math','STIX Two Math',
+              'Times New Roman', serif;
+  font-size:15.5px; font-weight:600;
+  line-height:1.9;
+  color:var(--text);
+  word-break:break-word;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.f-card .formula .frac{
+  display:inline-flex; flex-direction:column;
+  vertical-align:middle; text-align:center;
+  margin:0 4px; font-size:0.95em; line-height:1.15;
+}
+.f-card .formula .frac .top{
+  border-bottom:1.5px solid currentColor;
+  padding:0 4px 1px;
+}
+.f-card .formula .frac .bot{
+  padding:1px 4px 0;
+}
+.f-card .formula em{ font-style:italic }
+.f-card .formula sup{ font-size:.72em }
+.f-card .formula sub{ font-size:.72em }
+
+.f-card .note{
+  margin:12px 0 0; font-size:12.5px; color:var(--muted);
+  line-height:1.7;
+}
+.f-card .note b{ color:var(--text); font-weight:700 }
+
+.copy-btn{
+  position:absolute; top:12px; right:12px;
+  width:30px; height:30px; padding:0;
+  border-radius:9px; border:1px solid var(--border);
+  background:var(--card); color:var(--muted);
+  display:grid; place-items:center;
+  cursor:pointer; font-family:inherit; font-size:12px;
+  transition:all .18s;
+  opacity:.7;
+}
+.copy-btn:hover{
+  opacity:1; color:var(--primary);
+  border-color:var(--primary);
+  background:rgba(99,102,241,.06);
+}
+.copy-btn.done{
+  background:#16a34a; color:#fff;
+  border-color:transparent;
+}
+
+/* ============ NO RESULTS ============ */
+.empty{
+  text-align:center; padding:60px 20px;
+  color:var(--muted);
+}
+.empty .ico{ font-size:48px; margin-bottom:14px; opacity:.6 }
+.empty h3{ margin:0 0 6px; font-size:16px; color:var(--text); font-weight:800 }
+.empty p{ margin:0; font-size:13px }
+
+/* ============ FOOTER ============ */
+footer{
+  padding:34px 18px calc(46px + var(--safe-bottom));
+  text-align:center; font-size:12px; color:var(--muted);
+  line-height:2;
+}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed; bottom:calc(24px + var(--safe-bottom)); left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:#0f172a; color:#fff;
+  padding:13px 20px; border-radius:12px;
+  font-size:13.5px; font-weight:600;
+  box-shadow:0 20px 40px -12px rgba(0,0,0,.5);
+  z-index:200; opacity:0; pointer-events:none;
+  transition:opacity .3s, transform .35s cubic-bezier(.22,.8,.28,1);
+  max-width:90vw; text-align:center;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0) }
+.toast.ok{ background:linear-gradient(135deg, #16a34a, #15803d) }
+
+/* ============ PRINT ============ */
+@media print{
+  .nav, .search-wrap, .filters, .hero .icon, .copy-btn, footer, .toast{ display:none !important }
+  body{ background:#fff; color:#000 }
+  .wrap{ max-width:100%; padding:0 }
+  .hero h1, .cat-head h2{ color:#000 }
+  .f-card{ break-inside:avoid; box-shadow:none; border:1px solid #ccc }
+  .formulas{ grid-template-columns:repeat(2, 1fr) !important }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="back-btn" href="main.html">← Back</a>
+    <div class="nav-title">
+      Formula Sheet
+      <small>GED Math · ဖော်မြူလာ စာရွက်</small>
+    </div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+      <span id="themeIcon">🌙</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="icon">📐</div>
+  <h1>GED Math Formula Sheet</h1>
+  <p>
+    GED စာမေးပွဲမှာ ပေးထားတဲ့ Formula Sheet အားလုံးကို မြန်မာလို ရှင်းလင်းချက်နှင့်တကွ
+    တစ်နေရာတည်းမှာ ကြည့်နိုင်ပါပြီ။ ရှာဖွေရန် search box ကို အသုံးပြုပါ။
+  </p>
+</section>
+
+<!-- ============ SEARCH ============ -->
+<div class="search-wrap">
+  <span class="search-ico">🔍</span>
+  <input type="text" id="searchInput" placeholder="ဖော်မြူလာ ရှာရန်... (ဥပမာ area, slope, cylinder)" autocomplete="off">
+  <button class="clear-btn" id="clearBtn" type="button" aria-label="Clear">✕</button>
+</div>
+
+<!-- ============ FILTER TABS ============ -->
+<div class="filters" id="filters"></div>
+
+<!-- ============ MAIN ============ -->
+<div class="wrap" id="wrap"></div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  GED Myanmar · Formula Sheet · Learn. Practice. Pass.
+</footer>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     THEME
+  ============================================================ */
+  var THEME_KEY = 'ged:theme';
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  var themeIcon = document.getElementById('themeIcon');
+  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyTheme(theme){
+    root.setAttribute('data-theme', theme);
+    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if(themeColorMeta){
+      themeColorMeta.setAttribute('content', theme === 'dark' ? '#0b1220' : '#f8fafc');
+    }
+    try { localStorage.setItem(THEME_KEY, theme); } catch(e){}
+  }
+  applyTheme(root.getAttribute('data-theme') || 'light');
+  themeBtn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  });
+
+  /* ============================================================
+     HELPERS
+  ============================================================ */
+  function frac(top, bot){
+    return '<span class="frac"><span class="top">' + top + '</span><span class="bot">' + bot + '</span></span>';
+  }
+
+  /* ============================================================
+     FORMULA DATA
+  ============================================================ */
+  var CATEGORIES = [
+    {
+      id: 'geometry',
+      name: 'Geometry — ဧရိယာ',
+      nameEn: 'Area',
+      icon: '📐',
+      color: '#3b82f6',
+      formulas: [
+        {
+          name: 'Square (စတုရန်း)',
+          formula: 'A = s<sup>2</sup>',
+          note: '<b>s</b> = အနားတစ်ခု၏ အလျား',
+          keywords: 'square area area of square စတုရန်း ဧရိယာ'
+        },
+        {
+          name: 'Rectangle (စတုဂံ)',
+          formula: 'A = l × w',
+          note: '<b>l</b> = အလျား၊ <b>w</b> = အနံ',
+          keywords: 'rectangle area စတုဂံ ဧရိယာ'
+        },
+        {
+          name: 'Parallelogram (အနားပြိုင်)',
+          formula: 'A = b × h',
+          note: '<b>b</b> = အခြေ၊ <b>h</b> = အမြင့်',
+          keywords: 'parallelogram area အနားပြိုင်'
+        },
+        {
+          name: 'Triangle (တြိဂံ)',
+          formula: 'A = ' + frac('1', '2') + ' × b × h',
+          note: '<b>b</b> = အခြေ၊ <b>h</b> = အမြင့်',
+          keywords: 'triangle area တြိဂံ ဧရိယာ'
+        },
+        {
+          name: 'Trapezoid (တြာပေဇိုက်)',
+          formula: 'A = ' + frac('1', '2') + ' × (b<sub>1</sub> + b<sub>2</sub>) × h',
+          note: '<b>b₁, b₂</b> = အခြေ နှစ်ခု၊ <b>h</b> = အမြင့်',
+          keywords: 'trapezoid area တြာပေဇိုက်'
+        },
+        {
+          name: 'Circle (စက်ဝိုင်း)',
+          formula: 'A = πr<sup>2</sup>',
+          note: '<b>r</b> = အချင်းဝက်၊ π ≈ 3.14',
+          keywords: 'circle area circumference စက်ဝိုင်း ဧရိယာ'
+        },
+        {
+          name: 'Circumference (ပတ်လည်အတိုင်းအတာ)',
+          formula: 'C = 2πr = πd',
+          note: '<b>d</b> = အချင်း (diameter) = 2r',
+          keywords: 'circumference circle perimeter စက်ဝိုင်း ပတ်လည်'
+        },
+        {
+          name: 'Pythagorean Theorem',
+          formula: 'a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>',
+          note: 'ထောင့်မှန်တြိဂံတွင် <b>c</b> = hypotenuse',
+          keywords: 'pythagorean triangle hypotenuse ပီသာဂိုရက်'
+        }
+      ]
+    },
+    {
+      id: 'perimeter',
+      name: 'Perimeter — ပတ်လည်အတိုင်းအတာ',
+      nameEn: 'Perimeter',
+      icon: '📏',
+      color: '#06b6d4',
+      formulas: [
+        {
+          name: 'Square (စတုရန်း)',
+          formula: 'P = 4s',
+          note: '<b>s</b> = အနားအလျား',
+          keywords: 'square perimeter စတုရန်း ပတ်လည်'
+        },
+        {
+          name: 'Rectangle (စတုဂံ)',
+          formula: 'P = 2(l + w)',
+          note: '<b>l</b> = အလျား၊ <b>w</b> = အနံ',
+          keywords: 'rectangle perimeter စတုဂံ ပတ်လည်'
+        },
+        {
+          name: 'Triangle (တြိဂံ)',
+          formula: 'P = a + b + c',
+          note: 'အနား ၃ ခု၏ ပေါင်းလဒ်',
+          keywords: 'triangle perimeter တြိဂံ ပတ်လည်'
+        }
+      ]
+    },
+    {
+      id: 'volume',
+      name: 'Volume — ထုထည်',
+      nameEn: 'Volume',
+      icon: '🧊',
+      color: '#8b5cf6',
+      formulas: [
+        {
+          name: 'Rectangular Prism (ထောင့်မှန်စတုဂံတုံး)',
+          formula: 'V = l × w × h',
+          note: '<b>l, w, h</b> = အလျား၊ အနံ၊ အမြင့်',
+          keywords: 'volume prism box ထုထည် ထောင့်မှန်စတုဂံတုံး'
+        },
+        {
+          name: 'Cube (ကုဗတုံး)',
+          formula: 'V = s<sup>3</sup>',
+          note: '<b>s</b> = အနားအလျား',
+          keywords: 'cube volume ကုဗတုံး ထုထည်'
+        },
+        {
+          name: 'Cylinder (ဆလင်ဒါ)',
+          formula: 'V = πr<sup>2</sup>h',
+          note: '<b>r</b> = အချင်းဝက်၊ <b>h</b> = အမြင့်',
+          keywords: 'cylinder volume ဆလင်ဒါ ထုထည်'
+        },
+        {
+          name: 'Pyramid (ပိရမစ်)',
+          formula: 'V = ' + frac('1', '3') + ' × (base area) × h',
+          note: 'အခြေ ဧရိယာ × အမြင့် ÷ 3',
+          keywords: 'pyramid volume ပိရမစ် ထုထည်'
+        },
+        {
+          name: 'Cone (ကတော့)',
+          formula: 'V = ' + frac('1', '3') + ' × πr<sup>2</sup> × h',
+          note: '<b>r</b> = အချင်းဝက်၊ <b>h</b> = အမြင့်',
+          keywords: 'cone volume ကတော့ ထုထည်'
+        },
+        {
+          name: 'Sphere (လုံးဝန်း)',
+          formula: 'V = ' + frac('4', '3') + ' × πr<sup>3</sup>',
+          note: '<b>r</b> = အချင်းဝက်',
+          keywords: 'sphere volume လုံးဝန်း ထုထည်'
+        },
+        {
+          name: 'Surface Area — Sphere',
+          formula: 'SA = 4πr<sup>2</sup>',
+          note: 'လုံးဝန်း၏ မျက်နှာပြင် ဧရိယာ',
+          keywords: 'sphere surface area မျက်နှာပြင်'
+        },
+        {
+          name: 'Surface Area — Cylinder',
+          formula: 'SA = 2πr<sup>2</sup> + 2πrh',
+          note: 'ဆလင်ဒါ၏ မျက်နှာပြင် ဧရိယာ',
+          keywords: 'cylinder surface area မျက်နှာပြင်'
+        }
+      ]
+    },
+    {
+      id: 'coordinate',
+      name: 'Coordinate Geometry — ကိုဩဒိနိတ် ဂျီဩမေတြီ',
+      nameEn: 'Coordinate',
+      icon: '📈',
+      color: '#f59e0b',
+      formulas: [
+        {
+          name: 'Slope (အနံစောက်မှု)',
+          formula: 'm = ' + frac('y<sub>2</sub> − y<sub>1</sub>', 'x<sub>2</sub> − x<sub>1</sub>'),
+          note: 'အမှတ် (x₁, y₁) နှင့် (x₂, y₂) ကို ဖြတ်သန်းသော မျဉ်း၏ slope',
+          keywords: 'slope line coordinate အနံစောက်'
+        },
+        {
+          name: 'Slope-Intercept Form',
+          formula: 'y = mx + b',
+          note: '<b>m</b> = slope၊ <b>b</b> = y-intercept',
+          keywords: 'slope intercept equation မျဉ်းညီမျှခြင်း'
+        },
+        {
+          name: 'Point-Slope Form',
+          formula: 'y − y<sub>1</sub> = m(x − x<sub>1</sub>)',
+          note: 'အမှတ် (x₁, y₁) ကို ဖြတ်သန်းပြီး slope <b>m</b> ရှိသော မျဉ်း',
+          keywords: 'point slope equation မျဉ်းညီမျှခြင်း'
+        },
+        {
+          name: 'Distance Formula',
+          formula: 'd = √[(x<sub>2</sub> − x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub> − y<sub>1</sub>)<sup>2</sup>]',
+          note: 'အမှတ် ၂ ခုအကြား အကွာအဝေး',
+          keywords: 'distance formula အကွာအဝေး'
+        },
+        {
+          name: 'Midpoint Formula',
+          formula: 'M = (' + frac('x<sub>1</sub> + x<sub>2</sub>', '2') + ', ' + frac('y<sub>1</sub> + y<sub>2</sub>', '2') + ')',
+          note: 'အမှတ် ၂ ခု၏ အလယ်အမှတ်',
+          keywords: 'midpoint formula အလယ်အမှတ်'
+        },
+        {
+          name: 'Parallel Lines',
+          formula: 'm<sub>1</sub> = m<sub>2</sub>',
+          note: 'မျဉ်းပြိုင် ၂ ခု၏ slope တူညီသည်',
+          keywords: 'parallel lines slope မျဉ်းပြိုင်'
+        },
+        {
+          name: 'Perpendicular Lines',
+          formula: 'm<sub>1</sub> × m<sub>2</sub> = −1',
+          note: 'ထောင့်မှန်မျဉ်း ၂ ခု၏ slope များ negative reciprocal',
+          keywords: 'perpendicular lines slope ထောင့်မှန်'
+        }
+      ]
+    },
+    {
+      id: 'algebra',
+      name: 'Algebra — အက္ခရာသင်္ကေတ',
+      nameEn: 'Algebra',
+      icon: '🔢',
+      color: '#ec4899',
+      formulas: [
+        {
+          name: 'Quadratic Formula',
+          formula: 'x = ' + frac('−b ± √(b<sup>2</sup> − 4ac)', '2a'),
+          note: '<b>ax² + bx + c = 0</b> ပုံစံအတွက်',
+          keywords: 'quadratic formula equation ကွာဒရက်'
+        },
+        {
+          name: 'Difference of Squares',
+          formula: 'a<sup>2</sup> − b<sup>2</sup> = (a − b)(a + b)',
+          note: 'Factoring ဖော်မြူလာ',
+          keywords: 'difference squares factoring'
+        },
+        {
+          name: 'Perfect Square Trinomial',
+          formula: '(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup>',
+          note: 'Perfect square ဖော်မြူလာ',
+          keywords: 'perfect square trinomial'
+        },
+        {
+          name: 'Perfect Square (Minus)',
+          formula: '(a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup>',
+          note: 'Perfect square ဖော်မြူလာ',
+          keywords: 'perfect square trinomial minus'
+        },
+        {
+          name: 'Exponent Rules — Multiply',
+          formula: 'a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup>',
+          note: 'Base တူညီလျှင် exponent ပေါင်း',
+          keywords: 'exponent rules multiply'
+        },
+        {
+          name: 'Exponent Rules — Divide',
+          formula: 'a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m−n</sup>',
+          note: 'Base တူညီလျှင် exponent နုတ်',
+          keywords: 'exponent rules divide'
+        },
+        {
+          name: 'Exponent Rules — Power',
+          formula: '(a<sup>m</sup>)<sup>n</sup> = a<sup>m×n</sup>',
+          note: 'Power of a power',
+          keywords: 'exponent rules power'
+        },
+        {
+          name: 'Simple Interest',
+          formula: 'I = Prt',
+          note: '<b>P</b> = principal၊ <b>r</b> = rate (decimal)၊ <b>t</b> = years',
+          keywords: 'simple interest အတိုး'
+        },
+        {
+          name: 'Percent Change',
+          formula: '% change = ' + frac('new − old', 'old') + ' × 100',
+          note: 'တိုးခြင်း/လျော့ခြင်း ရာခိုင်နှုန်း',
+          keywords: 'percent change ရာခိုင်နှုန်း'
+        },
+        {
+          name: 'Distance = Rate × Time',
+          formula: 'd = rt',
+          note: '<b>d</b> = အကွာအဝေး၊ <b>r</b> = အလျင်၊ <b>t</b> = အချိန်',
+          keywords: 'distance rate time'
+        }
+      ]
+    },
+    {
+      id: 'statistics',
+      name: 'Statistics — စာရင်းအင်း',
+      nameEn: 'Statistics',
+      icon: '📊',
+      color: '#10b981',
+      formulas: [
+        {
+          name: 'Mean (ပျမ်းမျှ)',
+          formula: 'Mean = ' + frac('sum of all values', 'number of values'),
+          note: 'တန်ဖိုးအားလုံး ပေါင်းပြီး အရေအတွက်ဖြင့် စား',
+          keywords: 'mean average ပျမ်းမျှ'
+        },
+        {
+          name: 'Median (အလယ်တန်ဖိုး)',
+          formula: 'Median = အလယ်တန်ဖိုး',
+          note: 'အစဉ်လိုက်စီပြီး အလယ်တန်ဖိုးကို ယူ',
+          keywords: 'median middle အလယ်တန်ဖိုး'
+        },
+        {
+          name: 'Mode (အကြိမ်အများဆုံး)',
+          formula: 'Mode = အကြိမ်အများဆုံး တန်ဖိုး',
+          note: 'အများဆုံး ပေါ်သော တန်ဖိုး',
+          keywords: 'mode most frequent'
+        },
+        {
+          name: 'Range (အကွာအဝေး)',
+          formula: 'Range = max − min',
+          note: 'အကြီးဆုံး − အငယ်ဆုံး',
+          keywords: 'range max min'
+        },
+        {
+          name: 'Weighted Average',
+          formula: frac('Σ(w × x)', 'Σw'),
+          note: 'Weight တစ်ခုချင်းစီဖြင့် ချိန်တွယ်တွက်ချက်',
+          keywords: 'weighted average'
+        },
+        {
+          name: 'Probability',
+          formula: 'P = ' + frac('favorable outcomes', 'total outcomes'),
+          note: 'ဖြစ်နိုင်ခြေ = လိုချင်သောရလဒ် ÷ စုစုပေါင်းရလဒ်',
+          keywords: 'probability chance ဖြစ်နိုင်ခြေ'
+        },
+        {
+          name: 'Compound Probability',
+          formula: 'P(A and B) = P(A) × P(B)',
+          note: 'Independent events နှစ်ခု ဆက်တိုက်',
+          keywords: 'compound probability independent'
+        },
+        {
+          name: 'Fundamental Counting Principle',
+          formula: 'Total = a × b × c',
+          note: 'ရွေးချယ်စရာများကို မြှောက်',
+          keywords: 'counting principle combination'
+        }
+      ]
+    },
+    {
+      id: 'conversion',
+      name: 'Conversion — ပြောင်းလဲခြင်း',
+      nameEn: 'Conversions',
+      icon: '🔄',
+      color: '#f97316',
+      formulas: [
+        {
+          name: 'Length',
+          formula: '1 ft = 12 in<br>1 yd = 3 ft = 36 in<br>1 mi = 5,280 ft',
+          note: 'အလျား အတိုင်းအတာ ပြောင်းလဲမှု',
+          keywords: 'length conversion feet yard mile'
+        },
+        {
+          name: 'Metric Length',
+          formula: '1 km = 1,000 m<br>1 m = 100 cm<br>1 cm = 10 mm',
+          note: 'Metric စနစ် အလျား',
+          keywords: 'metric length kilometer meter centimeter'
+        },
+        {
+          name: 'Weight / Mass',
+          formula: '1 lb = 16 oz<br>1 ton = 2,000 lb<br>1 kg = 1,000 g',
+          note: 'အလေးချိန် ပြောင်းလဲမှု',
+          keywords: 'weight mass pound ounce kilogram gram'
+        },
+        {
+          name: 'Volume',
+          formula: '1 gal = 4 qt = 8 pt<br>1 L = 1,000 mL<br>1 cup = 8 fl oz',
+          note: 'ထုထည် ပြောင်းလဲမှု',
+          keywords: 'volume gallon liter cup'
+        },
+        {
+          name: 'Time',
+          formula: '1 hr = 60 min<br>1 min = 60 sec<br>1 day = 24 hr',
+          note: 'အချိန် ပြောင်းလဲမှု',
+          keywords: 'time hour minute second'
+        },
+        {
+          name: 'Temperature',
+          formula: '°F = (9/5 × °C) + 32<br>°C = 5/9 × (°F − 32)',
+          note: 'အပူချိန် ပြောင်းလဲမှု',
+          keywords: 'temperature fahrenheit celsius'
+        },
+        {
+          name: 'π (Pi)',
+          formula: 'π ≈ 3.14 ≈ ' + frac('22', '7'),
+          note: 'စက်ဝိုင်း တွက်ချက်ရာတွင် အသုံးပြု',
+          keywords: 'pi 3.14 constant'
+        }
+      ]
+    }
+  ];
+
+  /* ============================================================
+     STATE
+  ============================================================ */
+  var currentFilter = 'all';
+  var searchQuery = '';
+
+  var filtersEl = document.getElementById('filters');
+  var wrapEl = document.getElementById('wrap');
+  var searchInput = document.getElementById('searchInput');
+  var clearBtn = document.getElementById('clearBtn');
+
+  /* ============================================================
+     FILTERS
+  ============================================================ */
+  function renderFilters(){
+    filtersEl.innerHTML = '';
+    var allBtn = document.createElement('button');
+    allBtn.className = 'filter active';
+    allBtn.textContent = '📋 အားလုံး';
+    allBtn.dataset.id = 'all';
+    allBtn.addEventListener('click', function(){ setFilter('all'); });
+    filtersEl.appendChild(allBtn);
+
+    CATEGORIES.forEach(function(c){
+      var b = document.createElement('button');
+      b.className = 'filter';
+      b.textContent = c.icon + ' ' + c.nameEn;
+      b.dataset.id = c.id;
+      b.addEventListener('click', function(){ setFilter(c.id); });
+      filtersEl.appendChild(b);
+    });
+  }
+
+  function setFilter(id){
+    currentFilter = id;
+    var filters = filtersEl.querySelectorAll('.filter');
+    for(var i = 0; i < filters.length; i++){
+      filters[i].classList.toggle('active', filters[i].dataset.id === id);
+    }
+    render();
+  }
+
+  /* ============================================================
+     RENDER
+  ============================================================ */
+  function matchesSearch(f, q){
+    if(!q) return true;
+    var haystack = (
+      f.name + ' ' + f.formula + ' ' + (f.note || '') + ' ' + (f.keywords || '')
+    ).toLowerCase();
+    return haystack.indexOf(q) !== -1;
+  }
+
+  function render(){
+    var q = searchQuery.toLowerCase().trim();
+    var html = '';
+    var total = 0;
+
+    CATEGORIES.forEach(function(cat){
+      if(currentFilter !== 'all' && currentFilter !== cat.id) return;
+
+      var filtered = cat.formulas.filter(function(f){ return matchesSearch(f, q); });
+      if(filtered.length === 0) return;
+      total += filtered.length;
+
+      html +=
+        '<div class="cat" style="--cat-color:' + cat.color + '">' +
+          '<div class="cat-head">' +
+            '<span class="cat-ico">' + cat.icon + '</span>' +
+            '<h2>' + cat.name + '</h2>' +
+            '<span class="count">' + filtered.length + '</span>' +
+          '</div>' +
+          '<div class="formulas">' +
+            filtered.map(function(f){
+              return (
+                '<div class="f-card" style="--cat-color:' + cat.color + '">' +
+                  '<button class="copy-btn" data-formula="' +
+                    escapeAttr(f.name + '\\n' + stripHtml(f.formula) + (f.note ? '\\n' + stripHtml(f.note) : '')) +
+                  '" title="Copy">📋</button>' +
+                  '<h3 class="name">' + f.name + '</h3>' +
+                  '<div class="formula">' + f.formula + '</div>' +
+                  (f.note ? '<p class="note">' + f.note + '</p>' : '') +
+                '</div>'
+              );
+            }).join('') +
+          '</div>' +
+        '</div>';
+    });
+
+    if(total === 0){
+      html =
+        '<div class="empty">' +
+          '<div class="ico">🔍</div>' +
+          '<h3>ရှာဖွေမှု ရလဒ် မတွေ့ပါ</h3>' +
+          '<p>အခြားစကားလုံးဖြင့် ထပ်မံ ရှာကြည့်ပါ</p>' +
+        '</div>';
+    }
+
+    wrapEl.innerHTML = html;
+
+    var copyBtns = wrapEl.querySelectorAll('.copy-btn');
+    for(var i = 0; i < copyBtns.length; i++){
+      copyBtns[i].addEventListener('click', handleCopy);
+    }
+  }
+
+  function stripHtml(s){
+    var d = document.createElement('div');
+    d.innerHTML = s;
+    return (d.textContent || d.innerText || '').replace(/\s+/g, ' ').trim();
+  }
+  function escapeAttr(s){
+    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/\n/g, '&#10;');
+  }
+
+  /* ============================================================
+     COPY
+  ============================================================ */
+  function handleCopy(e){
+    var btn = e.currentTarget;
+    var text = btn.getAttribute('data-formula');
+    var done = false;
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text);
+        done = true;
+      }
+    } catch(err){}
+
+    if(!done){
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done = true;
+      } catch(err){}
+    }
+
+    if(done){
+      btn.classList.add('done');
+      btn.textContent = '✓';
+      toast('📋 ဖော်မြူလာ ကူးယူပြီးပါပြီ');
+      setTimeout(function(){
+        btn.classList.remove('done');
+        btn.textContent = '📋';
+      }, 1600);
+    }
+  }
+
+  /* ============================================================
+     SEARCH
+  ============================================================ */
+  var searchTimer;
+  searchInput.addEventListener('input', function(){
+    clearTimeout(searchTimer);
+    var v = searchInput.value;
+    clearBtn.classList.toggle('show', v.length > 0);
+    searchTimer = setTimeout(function(){
+      searchQuery = v;
+      render();
+    }, 180);
+  });
+
+  clearBtn.addEventListener('click', function(){
+    searchInput.value = '';
+    searchQuery = '';
+    clearBtn.classList.remove('show');
+    searchInput.focus();
+    render();
+  });
+
+  /* ============================================================
+     TOAST
+  ============================================================ */
+  var toastTimer;
+  function toast(msg){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show ok';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){
+      t.classList.remove('show');
+    }, 2000);
+  }
+
+  /* ============================================================
+     INIT
+  ============================================================ */
+  renderFilters();
+  render();
+
+})();
+</script>
+</body>
+</html>

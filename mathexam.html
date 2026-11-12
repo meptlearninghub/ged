@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>GED Math — Full Exam + Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;
+  --border:rgba(15,23,42,.09);
+  --primary:#8b5cf6;--green:#16a34a;--red:#dc2626;--amber:#f59e0b;
+  --radius:18px;--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+  --shadow:0 1px 3px rgba(15,23,42,.05),0 8px 24px -12px rgba(15,23,42,.15);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100svh;font-family:'Inter','Noto Sans Myanmar','Padauk',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 420px at 8% -8%,rgba(139,92,246,.10),transparent 65%),
+             radial-gradient(700px 420px at 100% 4%,rgba(59,130,246,.08),transparent 65%)}
+.screen{display:none;min-height:100svh;padding-bottom:calc(40px + var(--safe-bottom))}
+.screen.active{display:block}
+
+.header{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);
+  padding:calc(10px + var(--safe-top)) 16px 12px}
+.header-inner{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;flex:none;padding:9px 13px;border-radius:12px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);font-family:inherit;
+  font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s;text-decoration:none}
+.back-btn:active{transform:scale(.95)}
+.h-title{flex:1;min-width:0}
+.h-title h1{margin:0;font-size:clamp(13px,3.6vw,16px);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-title p{margin:2px 0 0;font-size:11px;color:var(--muted);font-weight:600}
+.part-badge{flex:none;display:inline-flex;align-items:center;gap:5px;padding:7px 11px;border-radius:10px;
+  font-size:11px;font-weight:800;letter-spacing:.03em;
+  background:rgba(139,92,246,.12);color:#6d28d9;border:1px solid rgba(139,92,246,.25)}
+.part-badge.p2{background:rgba(22,163,74,.12);color:#15803d;border-color:rgba(22,163,74,.25)}
+.timer{flex:none;display:inline-flex;align-items:center;gap:5px;padding:9px 12px;border-radius:12px;
+  background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;font-size:13px;font-weight:800;
+  font-variant-numeric:tabular-nums;box-shadow:0 6px 16px -8px rgba(139,92,246,.8)}
+.timer.warn{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.timer.break{background:linear-gradient(135deg,#f59e0b,#f97316)}
+.calc-btn{flex:none;display:inline-flex;align-items:center;gap:5px;padding:9px 12px;border-radius:12px;
+  background:linear-gradient(135deg,#0f766e,#0d9488);color:#fff;font-size:12px;font-weight:800;
+  border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 6px 16px -8px rgba(13,148,136,.8);transition:transform .18s}
+.calc-btn:active{transform:scale(.95)}
+.calc-btn.hidden{display:none}
+
+.progress-wrap{max-width:820px;margin:14px auto 0;padding:0 16px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.progress-top b{font-size:13.5px;font-weight:800;color:var(--primary)}
+.progress-top span{font-size:11.5px;color:var(--muted);font-weight:600}
+.progress-bar{height:7px;border-radius:999px;background:rgba(15,23,42,.07);overflow:hidden}
+.progress-bar i{display:block;height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,#8b5cf6,#6366f1);transition:width .4s cubic-bezier(.22,.8,.28,1)}
+.dot-map{max-width:820px;margin:0 auto;padding:14px 16px 0;display:flex;gap:5px;flex-wrap:wrap}
+.dot{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  font-size:10.5px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);
+  cursor:pointer;border:none;font-family:inherit;transition:transform .15s,background .2s,color .2s}
+.dot:active{transform:scale(.9)}
+.dot.answered{background:rgba(139,92,246,.18);color:#6d28d9}
+.dot.current{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;
+  box-shadow:0 4px 12px -4px rgba(139,92,246,.9)}
+.dot.p2.answered{background:rgba(22,163,74,.18);color:#15803d}
+.dot.p2.current{background:linear-gradient(135deg,#22c55e,#16a34a)}
+
+.q-wrap{max-width:820px;margin:0 auto;padding:16px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;box-shadow:var(--shadow);animation:fadeUp .35s cubic-bezier(.22,.8,.28,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-num{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;
+  background:rgba(139,92,246,.12);color:#6d28d9;font-size:12px;font-weight:800;margin-bottom:8px}
+.q-type{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;
+  font-size:10.5px;font-weight:800;letter-spacing:.03em;margin-left:6px;
+  background:rgba(245,158,11,.15);color:#b45309;border:1px solid rgba(245,158,11,.3)}
+.q-text{font-size:15px;line-height:1.75;margin:0 0 18px;font-weight:500}
+.q-text b{font-weight:800}
+
+.opts{display:grid;grid-template-columns:1fr;gap:9px}
+@media(min-width:520px){.opts{grid-template-columns:1fr 1fr}}
+.opt{text-align:left;padding:13px 15px;border-radius:12px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:14px;font-weight:500;
+  cursor:pointer;transition:all .18s;line-height:1.5;display:flex;align-items:flex-start;gap:10px}
+.opt:active{transform:scale(.985)}
+.opt:not(:disabled):hover{border-color:var(--primary);background:rgba(139,92,246,.04)}
+.opt .ltr{flex:none;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-size:11.5px;font-weight:800;background:rgba(15,23,42,.06);color:var(--muted);transition:all .18s}
+.opt.selected{border-color:var(--primary);background:rgba(139,92,246,.06)}
+.opt.selected .ltr{background:var(--primary);color:#fff}
+.opt.correct{border-color:var(--green);background:#dcfce7}
+.opt.correct .ltr{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#fee2e2}
+.opt.wrong .ltr{background:var(--red);color:#fff}
+.opt .body{flex:1;padding-top:1px}
+.opt.multi .ltr{border-radius:6px}
+
+.fill-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.fill-input{flex:1;min-width:160px;padding:14px 16px;border-radius:12px;
+  border:1.5px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:16px;font-weight:700;
+  transition:border-color .18s,background .18s}
+.fill-input:focus{outline:none;border-color:var(--primary);background:rgba(139,92,246,.03)}
+.fill-input.locked{background:rgba(15,23,42,.03)}
+.fill-ok{border-color:var(--green)!important;background:#dcfce7!important}
+.fill-bad{border-color:var(--red)!important;background:#fee2e2!important}
+
+.order-pool{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.order-item{padding:12px 16px;border-radius:12px;border:1.5px solid var(--border);
+  background:var(--card);font-family:inherit;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:8px}
+.order-item:hover{border-color:var(--primary);background:rgba(139,92,246,.04)}
+.order-item.used{opacity:.3;pointer-events:none}
+.order-slots{display:flex;gap:8px;flex-wrap:wrap;padding:14px;border-radius:12px;
+  background:rgba(15,23,42,.03);border:1.5px dashed var(--border);min-height:52px}
+.order-slot{padding:10px 14px;border-radius:10px;background:var(--primary);color:#fff;
+  font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px;
+  animation:popIn .25s cubic-bezier(.22,.8,.28,1)}
+@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.order-slot .rm{opacity:.7;font-size:14px;cursor:pointer}
+.order-empty{color:var(--muted);font-size:13px;font-style:italic;padding:8px}
+
+.graph-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.graph-svg{width:100%;max-width:320px;aspect-ratio:1;border-radius:12px;
+  background:#fff;border:1.5px solid var(--border);box-shadow:var(--shadow);cursor:crosshair;
+  touch-action:manipulation}
+.graph-hint{font-size:12px;color:var(--muted);font-weight:600;text-align:center}
+.graph-coord{font-size:13.5px;font-weight:800;color:var(--primary);font-variant-numeric:tabular-nums}
+.graph-coord.empty{color:var(--muted);font-weight:600}
+
+.dropdown-line{font-size:15px;line-height:2.2;font-weight:500;padding:14px 16px;border-radius:12px;
+  background:rgba(139,92,246,.04);border:1px solid var(--border)}
+.dd-select{padding:8px 10px;border-radius:8px;border:1.5px solid var(--primary);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:14px;font-weight:700;
+  cursor:pointer;margin:0 4px}
+
+.table-wrap{overflow-x:auto;margin-bottom:14px;border-radius:12px;border:1px solid var(--border)}
+.data-table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:340px}
+.data-table th,.data-table td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{background:rgba(139,92,246,.06);font-weight:800;color:#6d28d9;font-size:12px;
+  text-transform:uppercase;letter-spacing:.04em}
+.data-table td{font-weight:600}
+.data-table input{width:100%;padding:8px 10px;border-radius:8px;border:1.5px solid var(--border);
+  background:var(--card);color:var(--text);font-family:inherit;font-size:13.5px;font-weight:700}
+.data-table input:focus{outline:none;border-color:var(--primary)}
+
+.q-nav{max-width:820px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 18px;
+  border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);
+  font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .18s,background .2s,color .2s;min-height:44px;text-decoration:none}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(139,92,246,.7)}
+.btn.ghost{background:transparent;box-shadow:none}
+.btn.grow{flex:1;min-width:120px}
+.btn.submit{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px -8px rgba(34,197,94,.7)}
+
+.start-hero,.break-hero,.result-hero{max-width:640px;margin:0 auto;
+  padding:calc(28px + var(--safe-top)) 20px 20px;text-align:center}
+.start-hero .big-icon{width:88px;height:88px;border-radius:24px;margin:0 auto 20px;
+  display:grid;place-items:center;font-size:42px;
+  background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;
+  box-shadow:0 20px 40px -16px rgba(139,92,246,.8)}
+.start-hero h1{margin:0 0 8px;font-size:clamp(22px,5.5vw,30px);font-weight:800;letter-spacing:-.03em}
+.start-hero .subtitle{margin:0 0 4px;font-size:clamp(13px,3.4vw,15px);color:var(--muted)}
+.start-info{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin:24px 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.start-info-item{text-align:left}
+.start-info-item b{display:block;font-size:20px;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:3px}
+.start-info-item span{font-size:12px;color:var(--muted);font-weight:600}
+.start-tips{text-align:left;font-size:12.5px;color:var(--muted);line-height:1.85;
+  background:rgba(245,158,11,.08);border-radius:12px;padding:14px 16px;border-left:3px solid var(--amber)}
+.start-tips b{color:var(--text)}
+.start-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:22px;
+  padding:16px 22px;border-radius:16px;font-size:16px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#8b5cf6,#6366f1);border:none;cursor:pointer;font-family:inherit;
+  box-shadow:0 12px 26px -10px rgba(139,92,246,.8);transition:transform .2s,filter .2s}
+.start-btn:active{transform:scale(.98)}
+
+.break-hero .icon{width:100px;height:100px;border-radius:26px;margin:0 auto 22px;
+  display:grid;place-items:center;font-size:48px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;
+  box-shadow:0 22px 46px -18px rgba(245,158,11,.8)}
+.break-hero h1{margin:0 0 10px;font-size:clamp(24px,6vw,32px);font-weight:800;letter-spacing:-.03em}
+.break-hero p{margin:0 0 22px;font-size:14px;color:var(--muted);line-height:1.75}
+.break-count{font-size:72px;font-weight:800;color:var(--amber);letter-spacing:-.04em;
+  line-height:1;font-variant-numeric:tabular-nums;margin:6px 0 22px}
+.break-info{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;
+  box-shadow:var(--shadow);font-size:12.5px;color:var(--muted);line-height:1.85;text-align:left;margin-bottom:20px}
+.break-info b{color:var(--text)}
+
+.score-ring{width:170px;height:170px;margin:0 auto 22px;position:relative;display:grid;place-items:center}
+.score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.score-ring .bgc{fill:none;stroke:rgba(15,23,42,.08);stroke-width:12}
+.score-ring .fgc{fill:none;stroke:url(#grad);stroke-width:12;stroke-linecap:round;
+  stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.8,.28,1)}
+.score-ring .pct{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-ring .lbl{font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.ged-score{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;border-radius:16px;
+  padding:18px;margin-bottom:18px;text-align:center;box-shadow:0 12px 30px -12px rgba(139,92,246,.8)}
+.ged-score b{display:block;font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ged-score span{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.05em;
+  text-transform:uppercase;margin-top:4px;display:block}
+.ged-score small{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:8px}
+.result-msg{font-size:17px;font-weight:700;margin:0 0 8px}
+.result-sub{font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.75}
+.result-stats{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;
+  box-shadow:var(--shadow);margin-bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;text-align:center}
+.result-stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.result-stats span{font-size:11px;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+.rs-correct b{color:var(--green)}
+.rs-wrong b{color:var(--red)}
+.rs-time b{color:var(--primary)}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;max-width:560px;margin:0 auto}
+.result-actions .btn{flex:1;min-width:130px}
+
+.review-wrap{max-width:820px;margin:22px auto 0;padding:0 16px}
+.review-title{font-size:12px;font-weight:800;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;margin:8px 0 12px;text-align:center}
+.sol{margin-top:14px;padding:14px;border-radius:14px;
+  background:rgba(139,92,246,.06);border-left:3px solid var(--primary);
+  font-size:13.5px;line-height:1.8}
+.sol .lbl{display:block;font-weight:800;font-size:11px;color:var(--primary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.sol ol{margin:6px 0 0;padding-left:20px}
+.sol ol li{margin-bottom:4px;line-height:1.7}
+.sol .ans{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:8px;
+  background:#dcfce7;color:#14532d;font-weight:800;font-size:13px}
+.hidden{display:none!important}
+
+.modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(4px);
+  z-index:100;display:none;place-items:center;padding:20px}
+.modal-bg.show{display:grid}
+.modal{background:var(--card);border-radius:20px;padding:24px;max-width:420px;width:100%;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.4);animation:fadeUp .25s ease}
+.modal h3{margin:0 0 8px;font-size:17px;font-weight:800}
+.modal p{margin:0 0 20px;font-size:13.5px;color:var(--muted);line-height:1.7}
+.modal-actions{display:flex;gap:8px}
+.modal-actions .btn{flex:1}
+
+/* ============ ONSCREEN CALCULATOR (TI-30XS style) ============ */
+.calc-panel{
+  position:fixed;bottom:calc(20px + var(--safe-bottom));right:20px;z-index:200;
+  width:340px;max-width:calc(100vw - 40px);
+  background:linear-gradient(180deg,#1e293b 0%,#0f172a 100%);
+  border-radius:22px;padding:16px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08) inset;
+  display:none;flex-direction:column;gap:10px;
+  transform-origin:bottom right;
+  animation:calcIn .25s cubic-bezier(.22,.8,.28,1);
+}
+.calc-panel.show{display:flex}
+@keyframes calcIn{from{opacity:0;transform:scale(.85) translateY(20px)}to{opacity:1;transform:none}}
+.calc-header{display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1)}
+.calc-title{color:#a6e3ff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.calc-close{background:rgba(255,255,255,.1);border:none;color:#fff;width:26px;height:26px;
+  border-radius:50%;cursor:pointer;font-size:14px;display:grid;place-items:center;
+  transition:background .18s;font-family:inherit}
+.calc-close:hover{background:rgba(220,38,38,.7)}
+.calc-display{
+  background:#c5d5c5;border-radius:10px;padding:10px 14px;
+  min-height:60px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;
+  font-family:'Courier New',monospace;
+  box-shadow:inset 0 3px 10px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.15);
+  border:1px solid rgba(0,0,0,.3);
+  overflow:hidden;
+}
+.calc-expression{font-size:13px;color:#4a5c4a;font-weight:700;min-height:16px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;letter-spacing:.5px}
+.calc-result{font-size:26px;color:#0f1f0f;font-weight:800;letter-spacing:1px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;line-height:1.1}
+.calc-result.error{color:#991b1b}
+.calc-keys{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.calc-key{
+  border:none;border-radius:10px;padding:12px 4px;
+  font-family:inherit;font-size:14px;font-weight:800;
+  cursor:pointer;transition:transform .1s,filter .15s;
+  color:#fff;background:#334155;
+  box-shadow:0 3px 0 rgba(0,0,0,.35),0 4px 8px rgba(0,0,0,.2);
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.calc-key:hover{filter:brightness(1.15)}
+.calc-key:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.calc-key.num{background:#475569}
+.calc-key.op{background:#0d9488}
+.calc-key.fn{background:#7c3aed}
+.calc-key.eq{background:linear-gradient(135deg,#f59e0b,#ea580c);grid-column:span 2;font-size:16px}
+.calc-key.clear{background:#dc2626}
+.calc-key.del{background:#b45309}
+.calc-key.zero{grid-column:span 2}
+.calc-hint{font-size:10px;color:rgba(255,255,255,.5);text-align:center;
+  font-weight:600;letter-spacing:.03em;padding-top:2px}
+
+@media(max-width:600px){
+  .calc-panel{width:calc(100vw - 24px);right:12px;bottom:calc(12px + var(--safe-bottom));padding:12px}
+  .calc-key{padding:10px 3px;font-size:13px}
+  .calc-result{font-size:22px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="startScreen" class="screen active">
+  <div class="start-hero">
+    <div class="big-icon">📐</div>
+    <h1>GED Math — Official + Enhanced</h1>
+    <p class="subtitle">46 Questions · 115 minutes · 2 Parts + 3-min Break</p>
+    <div class="start-info">
+      <div class="start-info-item"><b>46</b><span>Questions / set</span></div>
+      <div class="start-info-item"><b>115 min</b><span>Total time</span></div>
+      <div class="start-info-item"><b>5 + 41</b><span>Part 1 + Part 2</span></div>
+      <div class="start-info-item"><b>3 Sets</b><span>Random</span></div>
+    </div>
+    <div class="start-tips">
+      <b>🧩 Question Types</b><br>
+      • Multiple Choice · Multi-Select · Fill-in-Blank<br>
+      • Ordering · Coordinate Plot · Dropdown · Table<br>
+      • <b>Part 1:</b> 5 questions (no calculator, 10 min)<br>
+      • <b>Break:</b> 3 min<br>
+      • <b>Part 2:</b> 41 questions (calculator OK, 102 min)
+    </div>
+    <button class="start-btn" id="startBtn">▶ Exam စတင်ရန်</button>
+    <a class="back-btn" href="pretest.html" style="margin-top:14px;display:inline-flex">← Pretest Hub</a>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div id="examScreen" class="screen">
+  <div class="header">
+    <div class="header-inner">
+      <a class="back-btn" href="pretest.html" onclick="return confirmExit()">← Exit</a>
+      <div class="h-title">
+        <h1>GED Math Exam</h1>
+        <p id="qCounter">Question 1 of 46</p>
+      </div>
+      <span class="part-badge" id="partBadge">Part 1</span>
+      <div class="timer" id="timer">10:00</div>
+      <button class="calc-btn hidden" id="calcToggle" title="Open Calculator">🧮 Calc</button>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-top"><b id="pLabel">Progress</b><span id="pCount">0 / 46</span></div>
+    <div class="progress-bar"><i id="pBar"></i></div>
+  </div>
+  <div class="dot-map" id="dotMap"></div>
+  <div class="q-wrap">
+    <div class="q-card" id="qCard"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="prevBtn">← Previous</button>
+      <button class="btn primary grow" id="nextBtn">Next →</button>
+    </div>
+    <div class="q-nav" style="margin-top:10px">
+      <button class="btn submit grow" id="submitBtn">✓ Submit Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- BREAK -->
+<div id="breakScreen" class="screen">
+  <div class="break-hero">
+    <div class="icon">☕</div>
+    <h1>3-Minute Break</h1>
+    <p>Part 1 ပြီးဆုံးပါပြီ။ Calculator ဖွင့်ရန် အချိန်ယူပါ။</p>
+    <div class="break-count" id="breakCount">3:00</div>
+    <div class="break-info">
+      <b>⏸ လုပ်ဆောင်ရမည့်အရာများ</b><br>
+      • မျက်စိအနားပေးပါ · ရေသောက်ပါ<br>
+      • Calculator (on-screen) ဖွင့်ရန် အသင့်ပြင်ပါ<br>
+      • အချိန်ကုန်လျှင် Part 2 အလိုအလျောက် စတင်မည်
+    </div>
+    <button class="btn primary grow" id="skipBreakBtn" style="width:100%">▶ Part 2 ချက်ချင်းစတင်ရန်</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultScreen" class="screen">
+  <div class="result-hero">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160">
+        <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#6366f1"/>
+        </linearGradient></defs>
+        <circle class="bgc" cx="80" cy="80" r="70"/>
+        <circle class="fgc" id="scoreRing" cx="80" cy="80" r="70"/>
+      </svg>
+      <div style="text-align:center">
+        <div class="pct" id="scorePct">0%</div>
+        <div class="lbl">Raw Score</div>
+      </div>
+    </div>
+    <div class="ged-score">
+      <b id="gedScore">0</b>
+      <span>Estimated GED Score</span>
+      <small id="gedMsg">Passing = 145 · College Ready = 165 · +Credit = 175</small>
+    </div>
+    <p class="result-msg" id="resultMsg"></p>
+    <p class="result-sub" id="resultSub"></p>
+    <div class="result-stats">
+      <div class="rs-correct"><b id="rCorrect">0</b><span>Correct</span></div>
+      <div class="rs-wrong"><b id="rWrong">0</b><span>Wrong</span></div>
+      <div class="rs-time"><b id="rTime">00:00</b><span>Time used</span></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn" id="reviewBtn">📖 Review</button>
+      <button class="btn primary" id="retryBtn">🔄 New Set</button>
+      <a class="btn" href="pretest.html" style="text-decoration:none">← Hub</a>
+    </div>
+  </div>
+  <div class="review-wrap" id="reviewWrap"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3 id="modalTitle"></h3>
+    <p id="modalBody"></p>
+    <div class="modal-actions">
+      <button class="btn ghost" id="modalCancel">Cancel</button>
+      <button class="btn primary" id="modalOk">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ONSCREEN CALCULATOR PANEL ============ -->
+<div class="calc-panel" id="calcPanel">
+  <div class="calc-header">
+    <span class="calc-title">TI-30XS · Onscreen</span>
+    <button class="calc-close" id="calcClose" title="Close">✕</button>
+  </div>
+  <div class="calc-display">
+    <div class="calc-expression" id="calcExpr"></div>
+    <div class="calc-result" id="calcResult">0</div>
+  </div>
+  <div class="calc-keys" id="calcKeys">
+    <!-- Row 1 -->
+    <button class="calc-key fn" data-k="(">(</button>
+    <button class="calc-key fn" data-k=")">)</button>
+    <button class="calc-key fn" data-k="sqrt">√</button>
+    <button class="calc-key fn" data-k="sq">x²</button>
+    <button class="calc-key fn" data-k="pow">xʸ</button>
+    <!-- Row 2 -->
+    <button class="calc-key clear" data-k="C">C</button>
+    <button class="calc-key del" data-k="DEL">⌫</button>
+    <button class="calc-key fn" data-k="sign">+/−</button>
+    <button class="calc-key fn" data-k="%">%</button>
+    <button class="calc-key op" data-k="/">÷</button>
+    <!-- Row 3 -->
+    <button class="calc-key num" data-k="7">7</button>
+    <button class="calc-key num" data-k="8">8</button>
+    <button class="calc-key num" data-k="9">9</button>
+    <button class="calc-key op" data-k="*">×</button>
+    <button class="calc-key op" data-k="-">−</button>
+    <!-- Row 4 -->
+    <button class="calc-key num" data-k="4">4</button>
+    <button class="calc-key num" data-k="5">5</button>
+    <button class="calc-key num" data-k="6">6</button>
+    <button class="calc-key op" data-k="+">+</button>
+    <button class="calc-key eq" data-k="=">=</button>
+    <!-- Row 5 -->
+    <button class="calc-key num" data-k="1">1</button>
+    <button class="calc-key num" data-k="2">2</button>
+    <button class="calc-key num" data-k="3">3</button>
+    <button class="calc-key num zero" data-k="0">0</button>
+    <button class="calc-key num" data-k=".">.</button>
+  </div>
+  <div class="calc-hint">Tap keys · Result appears below expression</div>
+</div>
+
+<script>
+/* ============================================================
+   SAFE HELPERS
+============================================================ */
+const sr = s => {
+  const x = Math.sin(s * 12.9898 + 78.233) * 43758.5453;
+  const f = x - Math.floor(x);
+  return f < 0 ? f + 1 : f;
+};
+const ri = (s, a, b) => {
+  a = Math.floor(a); b = Math.floor(b);
+  if (b < a) b = a;
+  return Math.floor(sr(s) * (b - a + 1)) + a;
+};
+const r2 = n => Math.round(n * 100) / 100;
+const pick = (s, arr) => {
+  if (!arr || arr.length === 0) return undefined;
+  const idx = Math.min(arr.length - 1, Math.floor(sr(s) * arr.length));
+  return arr[idx];
+};
+const shuffle = (a, s) => {
+  const r = [...a];
+  for (let i = r.length - 1; i > 0; i--) {
+    const j = Math.floor(sr(s + i * 13.37) * (i + 1));
+    [r[i], r[j]] = [r[j], r[i]];
+  }
+  return r;
+};
+const fmt = n => Number(n).toLocaleString('en-US');
+
+function mcq(correct, distractors, seed) {
+  const c = String(correct);
+  const set = new Set([c]);
+  for (const d of distractors) {
+    if (set.size >= 4) break;
+    const s = String(d);
+    if (s !== c && !set.has(s)) set.add(s);
+  }
+  let k = 1;
+  while (set.size < 4 && k <= 100) {
+    const alt = c + ' #' + k;
+    if (!set.has(alt)) set.add(alt);
+    k++;
+  }
+  const opts = shuffle([...set], seed);
+  while (opts.length < 4) opts.push('—');
+  return { o: opts.slice(0, 4), c: opts.indexOf(c) };
+}
+
+/* ============================================================
+   TIME
+============================================================ */
+const T_PART1 = 10 * 60, T_BREAK = 3 * 60, T_PART2 = 102 * 60;
+
+/* ============================================================
+   QUESTION TEMPLATES (same as before — 46 templates)
+============================================================ */
+const TPL = [
+s => {
+  const base = ri(s, 2, 5), perMile = r2(ri(s + 1, 15, 35) / 10), tip = ri(s + 2, 2, 8), miles = ri(s + 3, 3, 12);
+  const fare = r2(base + perMile * miles), total = r2(fare + tip);
+  const m = mcq(total.toFixed(2), [fare.toFixed(2), (total + 3).toFixed(2), (total - perMile).toFixed(2)], s + 5);
+  return { type: 'mcq',
+    q: `A taxi charges a base fare of <b>$${base}</b> plus <b>$${perMile}</b> per mile. Maria rode <b>${miles} miles</b> and gave a <b>$${tip}</b> tip. What was her total cost?`,
+    ...m,
+    why: 'ခရီးအကွာအဝေးအတွက် ကျသင့်ငွေ + base fare + tip ကို ပေါင်းသည်။',
+    steps: [`Distance cost = ${miles} × $${perMile} = $${r2(perMile * miles).toFixed(2)}`,
+      `Fare = $${base} + $${r2(perMile * miles).toFixed(2)} = $${fare.toFixed(2)}`,
+      `Total = $${fare.toFixed(2)} + $${tip} = $${total.toFixed(2)}`],
+    a: `$${total.toFixed(2)}` };
+},
+s => {
+  const price = ri(s, 40, 120), disc = pick(s + 1, [10, 15, 20, 25]), tax = pick(s + 2, [6, 7, 8, 9]);
+  const ad = r2(price * (1 - disc / 100)), afterTax = r2(ad * (1 + tax / 100));
+  const m = mcq(afterTax.toFixed(2), [ad.toFixed(2), (price * (1 + (tax - disc) / 100)).toFixed(2), (afterTax + 5).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `A shirt costs <b>$${price}</b>. It's marked <b>${disc}% off</b>, and then <b>${tax}% tax</b> is added. What is the final price?`,
+    ...m,
+    why: 'Discount အရင်လျှော့ → ရလဒ်အပေါ် tax တွက်။',
+    steps: [`After discount = ${price} × ${(1 - disc / 100).toFixed(2)} = $${ad.toFixed(2)}`,
+      `With tax = $${ad.toFixed(2)} × ${(1 + tax / 100).toFixed(2)} = $${afterTax.toFixed(2)}`],
+    a: `$${afterTax.toFixed(2)}` };
+},
+s => {
+  const x = ri(s, 10, 30), y = ri(s + 1, 10, 30);
+  const sum = x + y, diff2 = 2 * x - y;
+  const correct = `x = ${x}, y = ${y}`;
+  const m = mcq(correct, [`x = ${y}, y = ${x}`, `x = ${x + 2}, y = ${y - 2}`, `x = ${x - 1}, y = ${y + 1}`], s + 2);
+  return { type: 'mcq',
+    q: `Two numbers add to <b>${sum}</b>. Twice the first minus the second equals <b>${diff2}</b>. What are the numbers?`,
+    ...m,
+    why: 'ညီမျှခြင်း ၂ ခု ရေးပြီး substitution သို့မဟုတ် elimination ဖြင့် ဖြေရှင်း။',
+    steps: [`x + y = ${sum}`, `2x − y = ${diff2}`, `ပေါင်း: 3x = ${sum + diff2} → x = ${x}`,
+      `${x} + y = ${sum} → y = ${y}`],
+    a: correct };
+},
+s => {
+  const v1 = ri(s, 30, 50), v2 = v1 + ri(s + 1, 10, 30), headstart = ri(s + 2, 1, 3);
+  const t = r2((v1 * headstart) / (v2 - v1)), d = r2(v1 * (headstart + t));
+  const m = mcq(t.toFixed(2), [d.toFixed(2), (t + 1).toFixed(2), (t - 1).toFixed(2)], s + 4);
+  return { type: 'mcq',
+    q: `Car A leaves at <b>${v1} mph</b>. ${headstart} hour(s) later, Car B leaves the same route at <b>${v2} mph</b>. How many hours after Car B leaves will it catch Car A?`,
+    ...m,
+    why: 'ဖမ်းမိသည့်အခါ ခရီးအကွာအဝေး ၂ ခု တူညီသည်။',
+    steps: [`Head start distance = ${v1} × ${headstart} = ${r2(v1 * headstart)} mi`,
+      `Closing speed = ${v2} − ${v1} = ${v2 - v1} mph`,
+      `Time = ${r2(v1 * headstart)} ÷ ${v2 - v1} = ${t.toFixed(2)} hrs`],
+    a: `${t.toFixed(2)} hours` };
+},
+s => {
+  const a = ri(s, 3, 6), b = ri(s + 1, 4, 8), c = ri(s + 2, 5, 10);
+  const correct = r2(1 / (1 / a + 1 / b + 1 / c));
+  const m = mcq(correct.toFixed(2), [(a + b + c).toString(), ((a + b + c) / 3).toFixed(2), (correct + 1).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `Worker A can finish a job in <b>${a} hrs</b>, B in <b>${b} hrs</b>, C in <b>${c} hrs</b>. Working together, how long to finish?`,
+    ...m,
+    why: 'အလုပ်နှုန်းများ ပေါင်း: 1/t = 1/a + 1/b + 1/c။',
+    steps: [`1/t = 1/${a} + 1/${b} + 1/${c} = ${r2(1 / a + 1 / b + 1 / c).toFixed(3)}`,
+      `t = 1 ÷ ${r2(1 / a + 1 / b + 1 / c).toFixed(3)} = ${correct.toFixed(2)} hrs`],
+    a: `${correct.toFixed(2)} hours` };
+},
+s => {
+  const p = ri(s, 500, 3000), r1 = pick(s + 1, [3, 4, 5, 6]), r2v = pick(s + 2, [3, 4, 5, 6]);
+  const correct = r2(p * (1 + r1 / 100) * (1 + r2v / 100));
+  const m = mcq(correct.toFixed(2), [(p * (1 + r1 / 100)).toFixed(2), (p * (1 + (r1 + r2v) / 100)).toFixed(2), (correct - 50).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `$${fmt(p)} is invested at <b>${r1}%</b> for year 1 and <b>${r2v}%</b> for year 2 (compound). Value after 2 years?`,
+    ...m,
+    why: 'Compound — ဒုတိယနှစ် % ကို ပထမနှစ်ရလဒ်ပေါ် တွက်။',
+    steps: [`Year 1: ${p} × ${(1 + r1 / 100).toFixed(2)} = ${r2(p * (1 + r1 / 100))}`,
+      `Year 2: ${r2(p * (1 + r1 / 100))} × ${(1 + r2v / 100).toFixed(2)} = ${correct.toFixed(2)}`],
+    a: `$${correct.toFixed(2)}` };
+},
+s => {
+  const x1 = ri(s, 0, 5), y1 = ri(s + 1, 10, 30), x2 = x1 + ri(s + 2, 2, 6), y2 = y1 + ri(s + 3, 5, 15);
+  const m = (y2 - y1) / (x2 - x1);
+  const mc = mcq(m.toFixed(2), [((y2 + y1) / (x2 + x1)).toFixed(2), ((x2 - x1) / (y2 - y1)).toFixed(2), (y1).toFixed(2)], s + 4);
+  return { type: 'mcq',
+    q: `A plant is <b>${y1} cm</b> tall at week <b>${x1}</b>, and <b>${y2} cm</b> at week <b>${x2}</b>. What is the average growth rate (cm/week)?`,
+    ...mc,
+    why: 'Growth rate = slope = (Δy) ÷ (Δx)။',
+    steps: [`m = (${y2} − ${y1}) ÷ (${x2} − ${x1})`, `m = ${y2 - y1} ÷ ${x2 - x1}`, `m = ${m.toFixed(2)} cm/week`],
+    a: `${m.toFixed(2)} cm/week` };
+},
+s => {
+  const m2 = ri(s, 2, 5), b = ri(s + 1, -3, 6);
+  const rows = [0, 1, 2, 3].map(x => `(${x}, ${m2 * x + b})`).join(' · ');
+  const correct = `y = ${m2}x ${b >= 0 ? '+ ' + b : '− ' + Math.abs(b)}`;
+  const mc = mcq(correct, [`y = ${b}x + ${m2}`, `y = ${m2 + 1}x + ${b}`, `y = ${m2}x − ${b}`], s + 2);
+  return { type: 'mcq',
+    q: `A linear function produces: <b>${rows}</b>. Which equation matches?`,
+    ...mc,
+    why: 'x = 0 → y-intercept; x တစ်ခုတိုးတိုင်း y တိုးနှုန်း = slope။',
+    steps: [`x = 0 → y = ${b}, so y-intercept = ${b}`, `Δy / Δx = ${m2} → slope`, `${correct}`],
+    a: correct };
+},
+s => {
+  const a = ri(s, 2, 5), x1 = ri(s + 1, 2, 8), k = ri(s + 2, 3, 10);
+  const x1s = (x1 === k) ? k + 1 : x1;
+  const x2s = 2 * k - x1s;
+  const small = Math.min(x1s, x2s), large = Math.max(x1s, x2s);
+  const correct = `x = ${small} or x = ${large}`;
+  const mc = mcq(correct, [`x = ${x1s} only`, `x = ${small} or x = ${small + 1}`, `x = ${large} only`], s + 3);
+  return { type: 'mcq',
+    q: `Solve: <b>|x − ${k}| = ${Math.abs(x1s - k)}</b>`,
+    ...mc,
+    why: 'Absolute value = 2 solutions: x − k = ±value။',
+    steps: [`x − ${k} = ${x1s - k} → x = ${x1s}`, `x − ${k} = ${-(x1s - k)} → x = ${x2s}`,
+      `Solutions: x = ${small} or x = ${large}`],
+    a: correct };
+},
+s => {
+  const v1 = ri(s, 2, 6), p1 = pick(s + 1, [10, 20, 30]), v2 = ri(s + 2, 2, 6), p2 = pick(s + 3, [50, 60, 70]);
+  const result = r2((v1 * p1 + v2 * p2) / (v1 + v2));
+  const simpleAvg = (p1 + p2) / 2;
+  const distractors = [(p1 + p2).toFixed(1), (result + 5).toFixed(1)];
+  if (Math.abs(simpleAvg - result) > 0.5) distractors.push(simpleAvg.toFixed(1));
+  const mc = mcq(result.toFixed(1), distractors, s + 4);
+  return { type: 'mcq',
+    q: `Mix <b>${v1} L</b> of <b>${p1}%</b> solution with <b>${v2} L</b> of <b>${p2}%</b> solution. Resulting concentration?`,
+    ...mc,
+    why: 'Weighted average — ပမာဏ × % ကို ပေါင်းပြီး စုစုပေါင်းပမာဏဖြင့် စား။',
+    steps: [`Total solute = ${v1}×${p1 / 100} + ${v2}×${p2 / 100} = ${r2(v1 * p1 / 100 + v2 * p2 / 100)} L`,
+      `Total volume = ${v1 + v2} L`, `Concentration = ${result.toFixed(1)}%`],
+    a: `${result.toFixed(1)}%` };
+},
+s => {
+  const l = ri(s, 6, 12), w = ri(s + 1, 4, 8);
+  const maxR = Math.max(1, Math.floor(Math.min(l, w) / 2));
+  const r = ri(s + 2, 1, maxR);
+  const rect = l * w, semicircle = r2(Math.PI * r * r / 2);
+  const total = r2(rect + semicircle);
+  const mc = mcq(total.toFixed(2), [rect.toFixed(2), semicircle.toFixed(2), (rect - semicircle).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `A rectangle <b>${l} × ${w}</b> has a semicircle of radius <b>${r}</b> attached on one side. Total area? (π ≈ 3.14)`,
+    ...mc,
+    why: 'Composite = rectangle + semicircle (½ πr²)။',
+    steps: [`Rectangle = ${l} × ${w} = ${rect}`, `Semicircle = ½ × 3.14 × ${r}² = ${semicircle.toFixed(2)}`,
+      `Total = ${rect} + ${semicircle.toFixed(2)} = ${total.toFixed(2)}`],
+    a: `${total.toFixed(2)}` };
+},
+s => {
+  const personH = ri(s, 5, 6), shadowP = ri(s + 1, 3, 6), shadowT = ri(s + 2, 8, 16);
+  const treeH = r2(personH * shadowT / shadowP);
+  const mc = mcq(treeH.toFixed(2), [(personH + shadowT).toFixed(2), (personH * shadowP / shadowT).toFixed(2), (treeH + 2).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `A <b>${personH} ft</b> person casts a <b>${shadowP} ft</b> shadow. At the same time, a tree casts a <b>${shadowT} ft</b> shadow. How tall is the tree?`,
+    ...mc,
+    why: 'Similar triangles — height : shadow အချိုး တူညီသည်။',
+    steps: [`${personH}/${shadowP} = h/${shadowT}`, `h = ${personH} × ${shadowT} ÷ ${shadowP} = ${treeH.toFixed(2)} ft`],
+    a: `${treeH.toFixed(2)} ft` };
+},
+s => {
+  const n1 = ri(s, 10, 20), a1 = ri(s + 1, 70, 85), n2 = ri(s + 2, 10, 20), avg = r2(ri(s + 3, 75, 88));
+  const total = n1 + n2, sum2 = r2(avg * total - n1 * a1), a2 = r2(sum2 / n2);
+  const mc = mcq(a2.toFixed(1), [(avg + 5).toFixed(1), (a1).toFixed(1), (a2 - 3).toFixed(1)], s + 4);
+  return { type: 'mcq',
+    q: `Class A (<b>${n1}</b> students) averages <b>${a1}</b>. Class B (<b>${n2}</b> students) has unknown average. Combined average is <b>${avg}</b>. Find Class B's average.`,
+    ...mc,
+    why: 'Weighted average formula။',
+    steps: [`${n1}×${a1} + ${n2}×a₂ = ${avg} × ${total}`,
+      `${n1 * a1} + ${n2}a₂ = ${r2(avg * total)}`, `${n2}a₂ = ${sum2} → a₂ = ${a2.toFixed(1)}`],
+    a: `${a2.toFixed(1)}` };
+},
+s => {
+  const red = ri(s, 4, 8), blue = ri(s + 1, 3, 6);
+  const total = red + blue;
+  const p = r2(red / total * ((red - 1) / (total - 1)));
+  const mc = mcq(p.toFixed(3), [(red / total).toFixed(3), ((red / total) ** 2).toFixed(3), (p + 0.05).toFixed(3)], s + 2);
+  return { type: 'mcq',
+    q: `A bag has <b>${red} red</b> and <b>${blue} blue</b> marbles. Two drawn without replacement. P(both red)?`,
+    ...mc,
+    why: 'Replacement မရှိ — ပထမ ဆွဲပြီးနောက် အရေအတွက် ၁ လျော့။',
+    steps: [`P(first red) = ${red}/${total}`, `P(second red) = ${red - 1}/${total - 1}`,
+      `P(both) = ${red}/${total} × ${red - 1}/${total - 1} = ${p.toFixed(3)}`],
+    a: p.toFixed(3) };
+},
+s => {
+  const q1 = ri(s, 20, 50), q2 = ri(s + 1, 20, 50), q3 = ri(s + 2, 20, 50), q4 = ri(s + 3, 20, 50);
+  const total = q1 + q2 + q3 + q4, pct = r2(q4 / total * 100);
+  const mc = mcq(pct.toFixed(1) + '%', [(q4 / (total - q4) * 100).toFixed(1) + '%', (q4 / total * 10).toFixed(1) + '%', (pct + 5).toFixed(1) + '%'], s + 4);
+  return { type: 'mcq',
+    q: `Quarterly sales: Q1 = ${q1}, Q2 = ${q2}, Q3 = ${q3}, Q4 = ${q4}. What percent of total sales came from Q4?`,
+    ...mc,
+    why: '% = (Q4 ÷ Total) × 100။',
+    steps: [`Total = ${q1}+${q2}+${q3}+${q4} = ${total}`, `% = ${q4}/${total} × 100 = ${pct.toFixed(1)}%`],
+    a: pct.toFixed(1) + '%' };
+},
+s => {
+  const c1 = r2(ri(s, 2, 9) + ri(s + 1, 1, 9) / 10), c2 = r2(ri(s + 2, 2, 9) + ri(s + 3, 1, 9) / 10);
+  const e1 = ri(s + 4, 2, 5), e2 = ri(s + 5, 2, 5);
+  const prod = r2(c1 * c2), eSum = e1 + e2;
+  const correct = `${prod} × 10^${eSum}`;
+  const mc = mcq(correct, [`${prod} × 10^${eSum + 1}`, `${r2(c1 + c2)} × 10^${eSum}`, `${prod} × 10^${eSum - 1}`], s + 6);
+  return { type: 'mcq',
+    q: `Compute: <b>(${c1} × 10^${e1}) × (${c2} × 10^${e2})</b>`,
+    ...mc,
+    why: 'Coefficients မြှောက်၊ exponents ပေါင်း။',
+    steps: [`${c1} × ${c2} = ${prod}`, `10^${e1} × 10^${e2} = 10^${eSum}`, `Result = ${prod} × 10^${eSum}`],
+    a: correct };
+},
+s => {
+  const r1 = ri(s, 2, 8), r2v = r1 + ri(s + 1, 1, 5);
+  const b = -(r1 + r2v), c = r1 * r2v;
+  const correct = `x = ${r1} or x = ${r2v}`;
+  const mc = mcq(correct, [`x = ${-r1} or x = ${-r2v}`, `x = ${r1} only`, `x = ${r2v} only`], s + 2);
+  return { type: 'mcq',
+    q: `Solve: <b>x² ${b >= 0 ? '+ ' + b : '− ' + Math.abs(b)}x ${c >= 0 ? '+ ' + c : '− ' + Math.abs(c)} = 0</b>`,
+    ...mc,
+    why: 'Factor: (x − r₁)(x − r₂) = 0။',
+    steps: [`Factors: (x − ${r1})(x − ${r2v}) = 0`, `x = ${r1} or x = ${r2v}`],
+    a: correct };
+},
+s => {
+  const each = ri(s, 5, 15), fixed = ri(s + 1, 20, 60), budget = ri(s + 2, 100, 200);
+  const max = Math.floor((budget - fixed) / each);
+  const mc = mcq(`x ≤ ${max}`, [`x ≤ ${max + 1}`, `x ≥ ${max}`, `x ≥ ${max + 1}`], s + 3);
+  return { type: 'mcq',
+    q: `A club pays <b>$${fixed}</b> to rent a hall plus <b>$${each}</b> per guest. They can spend at most <b>$${budget}</b>. Which inequality represents the number of guests x?`,
+    ...mc,
+    why: `${fixed} + ${each}x ≤ ${budget}။`,
+    steps: [`${fixed} + ${each}x ≤ ${budget}`, `${each}x ≤ ${budget - fixed}`, `x ≤ ${max}`],
+    a: `x ≤ ${max}` };
+},
+s => {
+  const correct = [0, 1, 2, 4];
+  return { type: 'multi',
+    q: `<b>Select all</b> expressions that are equivalent to <b>0.75</b>.`,
+    o: ['75%', '3/4', '6/8', '9/16', '18/24'],
+    c: correct, need: correct.length,
+    why: '0.75 = 75% = 3/4 = 6/8 = 18/24 (9/16 = 0.5625 ≠ 0.75)။',
+    steps: ['75% = 0.75 ✓', '3/4 = 0.75 ✓', '6/8 = 0.75 ✓', '9/16 = 0.5625 ✗', '18/24 = 0.75 ✓'],
+    a: 'A · B · C · E' };
+},
+s => {
+  const correct = [0, 2, 3];
+  return { type: 'multi',
+    q: `<b>Select all</b> expressions equivalent to <b>2(x + 3) + 4</b>.`,
+    o: ['2x + 10', '2x + 7', '2(x + 5)', '4 + 2x + 6', 'x + 3 + 4'],
+    c: correct, need: correct.length,
+    why: '2(x+3)+4 = 2x+6+4 = 2x+10။',
+    steps: ['2(x+3)+4 = 2x+6+4 = 2x+10', '2(x+5) = 2x+10 ✓', '4 + 2x + 6 = 2x+10 ✓'],
+    a: 'A · C · D' };
+},
+s => {
+  const correct = [1, 2, 4];
+  return { type: 'multi',
+    q: `<b>Select all</b> values that satisfy <b>3x − 2 > 7</b>.`,
+    o: ['x = 2', 'x = 4', 'x = 5', 'x = 1', 'x = 10'],
+    c: correct, need: correct.length,
+    why: '3x − 2 > 7 → 3x > 9 → x > 3။',
+    steps: ['3x − 2 > 7', '3x > 9 → x > 3', '4, 5, 10 > 3 ✓'],
+    a: 'B · C · E' };
+},
+s => {
+  const a = ri(s, 2, 6), x = ri(s + 1, 3, 12), b = ri(s + 2, 1, 15);
+  const c = a * x + b;
+  return { type: 'fill',
+    q: `Solve for x: <b>${a}x + ${b} = ${c}</b>. Enter only the number.`,
+    answer: x, tolerance: 0.01,
+    why: `${a}x = ${c} − ${b} = ${c - b} → x = ${c - b} ÷ ${a}။`,
+    steps: [`${a}x = ${c - b}`, `x = ${c - b} ÷ ${a}`, `x = ${x}`],
+    a: String(x) };
+},
+s => {
+  const a = ri(s, 2, 8), b = ri(s + 1, 3, 10), k = ri(s + 2, 2, 6);
+  const c = b * k, x = a * k;
+  return { type: 'fill',
+    q: `Solve the proportion: <b>${a}/${b} = x/${c}</b>. Enter x.`,
+    answer: x, tolerance: 0.01,
+    why: 'Cross multiply: a × c = b × x။',
+    steps: [`${a} × ${c} = ${b} × x`, `${a * c} = ${b}x`, `x = ${a * c} ÷ ${b} = ${x}`],
+    a: String(x) };
+},
+s => {
+  const x1 = ri(s, 1, 5), y1 = ri(s + 1, 1, 8), x2 = x1 + ri(s + 2, 2, 5), y2 = y1 + ri(s + 3, 2, 10);
+  const m = r2((y2 - y1) / (x2 - x1));
+  return { type: 'fill',
+    q: `Find the slope through <b>(${x1}, ${y1})</b> and <b>(${x2}, ${y2})</b>. Enter the numeric slope.`,
+    answer: m, tolerance: 0.01,
+    why: 'Slope = (y₂ − y₁)/(x₂ − x₁)။',
+    steps: [`m = (${y2} − ${y1})/(${x2} − ${x1})`, `m = ${y2 - y1}/${x2 - x1}`, `m = ${m}`],
+    a: String(m) };
+},
+s => {
+  const a = ri(s, 2, 5), b = ri(s + 1, 2, 6), x = ri(s + 2, 2, 5);
+  const correct = a * x * x + b * x;
+  return { type: 'fill',
+    q: `If <b>x = ${x}</b>, evaluate <b>${a}x² + ${b}x</b>. Enter the value.`,
+    answer: correct, tolerance: 0.01,
+    why: 'x နေရာတွင် ပေးထားသော တန်ဖိုး အစားထိုး။',
+    steps: [`${a}(${x})² + ${b}(${x})`, `= ${a * x * x} + ${b * x}`, `= ${correct}`],
+    a: String(correct) };
+},
+s => {
+  const lft = ri(s, 2, 6), lIn = ri(s + 1, 3, 11), w = ri(s + 2, 2, 5);
+  const l = lft * 12 + lIn, correct = l * w;
+  return { type: 'fill',
+    q: `Rectangle: length = <b>${lft} ft ${lIn} in</b>, width = <b>${w} ft</b>. Area in square inches? (1 ft = 12 in)`,
+    answer: correct, tolerance: 0.01,
+    why: 'အားလုံးကို inches ပြောင်းပြီး ဧရိယာ = length × width။',
+    steps: [`Length = ${lft}×12 + ${lIn} = ${l} in`, `Width = ${w}×12 = ${w * 12} in`, `Area = ${l} × ${w * 12} = ${correct} in²`],
+    a: `${correct} in²` };
+},
+s => {
+  const r = ri(s, 2, 6), h = ri(s + 1, 4, 10);
+  const correct = r2(3.14 * r * r * h);
+  return { type: 'fill',
+    q: `Cylinder radius <b>${r}</b>, height <b>${h}</b>. Volume? (π = 3.14) Round to 2 decimals.`,
+    answer: correct, tolerance: 0.5,
+    why: 'V = πr²h။',
+    steps: [`V = 3.14 × ${r * r} × ${h}`, `V = ${correct.toFixed(2)}`],
+    a: `${correct.toFixed(2)}` };
+},
+s => {
+  const pick4 = [
+    { s: '0.6', v: 0.6 }, { s: '55%', v: 0.55 }, { s: '5/8', v: 0.625 }, { s: '0.7', v: 0.7 }
+  ];
+  const sorted = [...pick4].sort((a, b) => a.v - b.v);
+  return { type: 'order',
+    q: `Order these values from <b>least to greatest</b>:`,
+    items: pick4.map(v => v.s),
+    correctOrder: sorted.map(v => v.s),
+    why: 'အားလုံးကို ဒသမပြောင်းပြီး နှိုင်းယှဉ်။',
+    steps: ['0.6 = 0.600', '55% = 0.550', '5/8 = 0.625', '0.7 = 0.700', 'Order: 55%, 0.6, 5/8, 0.7'],
+    a: '55% < 0.6 < 5/8 < 0.7' };
+},
+s => {
+  const ordered = ['2.5', '√9', 'π', '√16'];
+  const display = shuffle(ordered, s + 42);
+  return { type: 'order',
+    q: `Order from <b>smallest to largest</b>:`,
+    items: display, correctOrder: ordered,
+    why: '√9 = 3, π ≈ 3.14, √16 = 4။',
+    steps: ['2.5 = 2.5', '√9 = 3', 'π ≈ 3.14', '√16 = 4'],
+    a: '2.5 < √9 < π < √16' };
+},
+s => {
+  const x = ri(s, -4, 4) || 1, y = ri(s + 1, -4, 4) || 2;
+  return { type: 'graph',
+    q: `Plot the point <b>(${x}, ${y})</b> on the coordinate plane. Tap the correct location.`,
+    answer: { x, y }, tolerance: 0.3,
+    why: 'x သည် အလျားလိုက် (right/left), y သည် ဒေါင်လိုက် (up/down)။',
+    steps: [`x = ${x} → ${x > 0 ? 'right ' + x : x < 0 ? 'left ' + Math.abs(x) : 'origin'} direction`,
+      `y = ${y} → ${y > 0 ? 'up ' + y : y < 0 ? 'down ' + Math.abs(y) : 'origin'} direction`,
+      `Point = (${x}, ${y})`],
+    a: `(${x}, ${y})` };
+},
+s => {
+  const x = ri(s, -3, -1), y = ri(s + 1, 1, 4);
+  return { type: 'graph',
+    q: `Plot the point <b>(${x}, ${y})</b> — it's in Quadrant II. Tap the location.`,
+    answer: { x, y }, tolerance: 0.3,
+    why: 'Quadrant II — x < 0, y > 0။',
+    steps: [`x = ${x} (left)`, `y = ${y} (up)`, `Point = (${x}, ${y})`],
+    a: `(${x}, ${y})` };
+},
+s => {
+  const m2 = ri(s, 2, 6), b = ri(s + 1, -8, 8);
+  const bStr = b >= 0 ? '+ ' + b : '− ' + Math.abs(b);
+  return { type: 'dropdown',
+    q: `Complete the sentence using the equation <b>y = ${m2}x ${bStr}</b>:`,
+    text: 'The slope is {0} and the y-intercept is {1}.',
+    blanks: [
+      { options: [String(m2), String(b), String(-m2), String(m2 + b)], correct: 0 },
+      { options: [String(b), String(m2), String(-b), '0'], correct: 0 }
+    ],
+    why: 'y = mx + b ပုံစံတွင် m = slope, b = y-intercept။',
+    steps: [`m = ${m2}`, `b = ${b}`, `Slope = ${m2}, y-intercept = ${b}`],
+    a: `slope = ${m2}, y-intercept = ${b}` };
+},
+s => {
+  const m2 = ri(s, 3, 7), b = ri(s + 1, 10, 30);
+  return { type: 'dropdown',
+    q: `A phone plan charges $${b} base fee plus $${m2} per GB used.`,
+    text: 'The equation is y = {0}x + {1}, where the y-intercept represents the {2}.',
+    blanks: [
+      { options: [String(m2), String(b)], correct: 0 },
+      { options: [String(m2), String(b)], correct: 1 },
+      { options: ['per GB cost', 'base fee', 'total cost'], correct: 1 }
+    ],
+    why: 'Base fee = y-intercept။ Per-GB = slope။',
+    steps: [`Slope = per GB cost = ${m2}`, `y-intercept = base fee = ${b}`],
+    a: `y = ${m2}x + ${b}` };
+},
+s => {
+  const m2 = ri(s, 2, 5), b = ri(s + 1, -3, 5);
+  const xs = [0, 1, 2, 3, 4];
+  const rows = xs.map(x => ({ x, ans: m2 * x + b }));
+  return { type: 'table',
+    q: `Fill in the table for <b>y = ${m2}x ${b >= 0 ? '+ ' + b : '− ' + Math.abs(b)}</b>`,
+    headers: ['x', 'y'],
+    rows: rows.map(r => ({ cells: [String(r.x), ''], answers: [null, String(r.ans)] })),
+    why: 'x တစ်ခုချင်း အစားထိုးပြီး y ရှာ။',
+    steps: [`m = ${m2}, b = ${b}`, `y = ${m2}x ${b >= 0 ? '+ ' + b : '− ' + Math.abs(b)}`,
+      `x = 0 → y = ${b}`, `x = 1 → y = ${m2 + b}`, `x = 2 → y = ${m2 * 2 + b}`, `x = 3 → y = ${m2 * 3 + b}`, `x = 4 → y = ${m2 * 4 + b}`],
+    a: rows.map(r => `(${r.x}, ${r.ans})`).join(' · ') };
+},
+s => {
+  const base = ri(s, 50, 200), p1 = 10, p2 = 20, p3 = 30;
+  const a1 = r2(base * (1 + p1 / 100)), a2 = r2(a1 * (1 + p2 / 100)), a3 = r2(a2 * (1 + p3 / 100));
+  return { type: 'table',
+    q: `Fill in the table showing growth from a starting value of <b>${base}</b>.`,
+    headers: ['Year', 'Value'],
+    rows: [
+      { cells: ['Start', String(base)], answers: [null, null] },
+      { cells: ['After +' + p1 + '%', ''], answers: [null, String(a1)] },
+      { cells: ['After +' + p2 + '%', ''], answers: [null, String(a2)] },
+      { cells: ['After +' + p3 + '%', ''], answers: [null, String(a3)] }
+    ],
+    why: 'တစ်ဆင့်ချင်း ရလဒ်အပေါ် နောက် % ကို တွက် (compound)။',
+    steps: [`Start = ${base}`, `× 1.${p1} = ${a1}`, `× 1.${p2} = ${a2}`, `× 1.${p3} = ${a3}`],
+    a: `${base} → ${a1} → ${a2} → ${a3}` };
+},
+s => {
+  const hourly = ri(s, 10, 25), hours = ri(s + 1, 20, 40), overtime = ri(s + 2, 5, 15);
+  const overtimeRate = r2(hourly * 1.5);
+  const pay = r2(hourly * hours + overtimeRate * overtime);
+  const mc = mcq(pay.toFixed(2), [(hourly * (hours + overtime)).toFixed(2), (pay + 50).toFixed(2), (pay - 30).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `Sara earns <b>$${hourly}/hr</b> for 40 hrs plus <b>1.5× rate</b> for overtime. She worked <b>${hours} regular + ${overtime} overtime hours</b>. Total pay?`,
+    ...mc,
+    why: 'Regular pay + overtime pay (×1.5 rate)။',
+    steps: [`Regular = ${hours} × $${hourly} = $${r2(hourly * hours)}`,
+      `Overtime = ${overtime} × $${overtimeRate} = $${r2(overtimeRate * overtime)}`,
+      `Total = $${pay.toFixed(2)}`],
+    a: `$${pay.toFixed(2)}` };
+},
+s => {
+  const price = ri(s, 100, 400), d1 = pick(s + 1, [10, 20, 25]), d2 = pick(s + 2, [10, 20]);
+  const correct = r2(price * (1 - d1 / 100) * (1 - d2 / 100));
+  const wrong1 = r2(price * (1 - (d1 + d2) / 100));
+  const mc = mcq(correct.toFixed(2), [wrong1.toFixed(2), (price * (1 - d1 / 100)).toFixed(2), (correct + 10).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `A $${price} item is discounted <b>${d1}%</b>, then discounted another <b>${d2}%</b>. Final price?`,
+    ...mc,
+    why: 'Discount ၂ ခုကို ရိုးရိုးပေါင်းလို့မရ — multiplier များ ဆက်တိုက် မြှောက်။',
+    steps: [`After 1st = ${price} × ${(1 - d1 / 100)} = $${r2(price * (1 - d1 / 100))}`,
+      `After 2nd = × ${(1 - d2 / 100)} = $${correct.toFixed(2)}`],
+    a: `$${correct.toFixed(2)}` };
+},
+s => {
+  const a = ri(s, 30, 80), b = ri(s + 1, 20, 60), c = ri(s + 2, 40, 90);
+  const total = a + b + c, correct = r2(a / total * 100);
+  const mc = mcq(correct.toFixed(1) + '%', [(b / total * 100).toFixed(1) + '%', (c / total * 100).toFixed(1) + '%', (correct + 5).toFixed(1) + '%'], s + 3);
+  return { type: 'mcq',
+    q: `A pie chart shows: Category A = ${a}, B = ${b}, C = ${c}. What percent is Category A?`,
+    ...mc,
+    why: '% = (A ÷ total) × 100။',
+    steps: [`Total = ${total}`, `% = ${a}/${total} × 100 = ${correct.toFixed(1)}%`],
+    a: correct.toFixed(1) + '%' };
+},
+s => {
+  const a = ri(s, 2, 4), b = ri(s + 1, 1, 5), c = ri(s + 2, 1, 5), x = ri(s + 3, 1, 4);
+  const gx = x + c, result = a * gx + b;
+  const mc = mcq(result, [a * x + b + c, a * x + b, result + 2], s + 4);
+  return { type: 'mcq',
+    q: `If <b>f(x) = ${a}x + ${b}</b> and <b>g(x) = x + ${c}</b>, find <b>f(g(${x}))</b>.`,
+    ...mc,
+    why: 'Inner function g အရင် တွက်၊ ထို့နောက် f တွင် အစားထိုး။',
+    steps: [`g(${x}) = ${x} + ${c} = ${gx}`, `f(${gx}) = ${a}(${gx}) + ${b} = ${result}`],
+    a: String(result) };
+},
+s => {
+  const b = ri(s + 1, 2, 8);
+  const correct = `−${b} ≤ x ≤ ${b}`;
+  const mc = mcq(correct, [`x ≤ ${b}`, `x ≥ −${b}`, `x = ${b}`], s + 2);
+  return { type: 'mcq',
+    q: `Solve: <b>|x| ≤ ${b}</b>`,
+    ...mc,
+    why: '|x| ≤ b → −b ≤ x ≤ b။',
+    steps: [`−${b} ≤ x ≤ ${b}`],
+    a: correct };
+},
+s => {
+  const start = ri(s, 100, 500), rate = pick(s + 1, [2, 3, 4, 5]), t = ri(s + 2, 3, 6);
+  const correct = r2(start * Math.pow(1 + rate / 100, t));
+  const mc = mcq(correct.toFixed(2), [(start * (1 + rate * t / 100)).toFixed(2), (start * (1 + rate / 100) * t).toFixed(2), (correct + 20).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `A population of <b>${start}</b> grows at <b>${rate}% per year</b> (compound). Size after <b>${t} years</b>?`,
+    ...mc,
+    why: 'Compound growth: P × (1 + r)ᵗ။',
+    steps: [`${start} × (1+${rate / 100})^${t}`, `= ${start} × ${Math.pow(1 + rate / 100, t).toFixed(4)}`, `= ${correct.toFixed(2)}`],
+    a: String(correct.toFixed(2)) };
+},
+s => {
+  const m = ri(s, 2, 6);
+  const correct = `-1/${m}`;
+  const mc = mcq(correct, [String(m), String(-m), `1/${m}`], s + 1);
+  return { type: 'mcq',
+    q: `Line <b>ℓ</b> has slope <b>${m}</b>. What is the slope of a line perpendicular to <b>ℓ</b>?`,
+    ...mc,
+    why: 'Perpendicular slopes: m₁ × m₂ = −1။',
+    steps: [`m₁ × m₂ = −1`, `${m} × m₂ = −1`, `m₂ = −1/${m}`],
+    a: correct };
+},
+s => {
+  const km = ri(s, 5, 20), mins = ri(s + 1, 20, 60);
+  const speed = r2((km * 1000) / (mins * 60));
+  const mc = mcq(speed.toFixed(2) + ' m/s', [(km / mins).toFixed(2) + ' m/s', (speed + 1).toFixed(2) + ' m/s', (km * 1000 / mins).toFixed(2) + ' m/s'], s + 2);
+  return { type: 'mcq',
+    q: `A runner covers <b>${km} km</b> in <b>${mins} minutes</b>. Speed in <b>m/s</b>?`,
+    ...mc,
+    why: 'km → m (×1000), mins → sec (×60)။',
+    steps: [`${km} km = ${km * 1000} m`, `${mins} min = ${mins * 60} s`,
+      `Speed = ${km * 1000}/${mins * 60} = ${speed.toFixed(2)} m/s`],
+    a: `${speed.toFixed(2)} m/s` };
+},
+s => {
+  const total = ri(s, 20, 50), red = ri(s + 1, 5, total - 5), blue = total - red - ri(s + 2, 3, 8);
+  const green = total - red - blue;
+  const correct = r2(red / total);
+  const mc = mcq(correct.toFixed(2), [(green / total).toFixed(2), (blue / total).toFixed(2), (red / (total - red)).toFixed(2)], s + 3);
+  return { type: 'mcq',
+    q: `A jar has <b>${red} red</b>, <b>${blue} blue</b>, and <b>${green} green</b> candies. P(red)?`,
+    ...mc,
+    why: 'P(red) = red ÷ total။',
+    steps: [`Total = ${total}`, `P(red) = ${red}/${total} = ${correct.toFixed(2)}`],
+    a: correct.toFixed(2) };
+},
+s => {
+  const a = ri(s, 30, 70), b = ri(s + 1, 40, 80);
+  const c = 180 - a - b;
+  const mc = mcq(`${c}°`, [`${180 - c}°`, `${a}°`, `${b}°`], s + 2);
+  return { type: 'mcq',
+    q: `In a triangle, angle A = <b>${a}°</b>, angle B = <b>${b}°</b>. What is angle C?`,
+    ...mc,
+    why: 'တြိဂံအတွင်းထောင့် ၃ ခု ပေါင်းလဒ် = 180°။',
+    steps: [`${a} + ${b} + C = 180`, `C = 180 − ${a + b}`, `C = ${c}°`],
+    a: `${c}°` };
+},
+s => {
+  const a = ri(s, 2, 5), b = ri(s + 1, 3, 7), total = (a + b) * ri(s + 2, 3, 8);
+  const valA = total * a / (a + b), valB = total * b / (a + b);
+  const correct = String(valA);
+  const distractors = [String(valB), String(total - valA + 5), String(total / 2)];
+  const mc = mcq(correct, distractors, s + 3);
+  return { type: 'mcq',
+    q: `Two numbers are in ratio <b>${a}:${b}</b> and their sum is <b>${total}</b>. What is the smaller number? (Assume ${a} < ${b})`,
+    ...mc,
+    why: `Parts = ${a}+${b} = ${a + b}။ တစ်စိတ်တစ်ပိုင်း = ${total} ÷ ${a + b}။`,
+    steps: [`Total parts = ${a + b}`, `One part = ${total} ÷ ${a + b} = ${total / (a + b)}`,
+      `Smaller = ${a} × ${total / (a + b)} = ${valA}`],
+    a: correct };
+}
+];
+
+/* ============================================================
+   BUILD SETS
+============================================================ */
+function buildSet(seedOffset, rotateBy) {
+  const order = TPL.map((_, i) => i);
+  const rotated = order.slice(rotateBy).concat(order.slice(0, rotateBy));
+  const qs = [];
+  for (let i = 0; i < rotated.length && qs.length < 46; i++) {
+    const tplIdx = rotated[i];
+    try {
+      const q = TPL[tplIdx](seedOffset + i * 137 + 7);
+      if (q && q.type && q.q) qs.push(q);
+    } catch (err) {
+      console.error('Template error at index', tplIdx, err);
+    }
+  }
+  while (qs.length < 46) {
+    qs.push({ type: 'mcq', q: 'Placeholder question', o: ['A', 'B', 'C', 'D'], c: 0, why: '-', steps: ['-'], a: 'A' });
+  }
+  return qs;
+}
+
+const SETS = {
+  A: buildSet(10000, 0),
+  B: buildSet(20000, 17),
+  C: buildSet(30000, 33)
+};
+
+/* ============================================================
+   STATE
+============================================================ */
+let currentSet = null, allQuestions = [], userAnswers = [], currentQ = 0;
+let phase = 'p1', timerLeft = T_PART1, timerId = null, timeUsedTotal = 0, submitted = false;
+
+const $ = id => document.getElementById(id);
+const showOnly = s => { document.querySelectorAll('.screen').forEach(x => x.classList.remove('active')); s.classList.add('active'); window.scrollTo(0, 0); };
+
+function modal(title, body, okText, cb) {
+  $('modalTitle').textContent = title;
+  $('modalBody').textContent = body;
+  $('modalOk').textContent = okText || 'OK';
+  $('modal').classList.add('show');
+  const ok = $('modalOk'), cancel = $('modalCancel');
+  let fired = false;
+  const cleanup = () => {
+    $('modal').classList.remove('show');
+    ok.removeEventListener('click', onOk);
+    cancel.removeEventListener('click', onCancel);
+  };
+  const onOk = () => { if (fired) return; fired = true; cleanup(); cb && cb(true); };
+  const onCancel = () => { if (fired) return; fired = true; cleanup(); cb && cb(false); };
+  ok.addEventListener('click', onOk);
+  cancel.addEventListener('click', onCancel);
+}
+
+/* ============================================================
+   ONSCREEN CALCULATOR ENGINE
+============================================================ */
+const Calc = {
+  expr: '',
+  result: '0',
+  hasError: false,
+  justEvaluated: false,
+
+  reset() {
+    this.expr = '';
+    this.result = '0';
+    this.hasError = false;
+    this.justEvaluated = false;
+    this.render();
+  },
+
+  // Convert display string → safe JS expression
+  toJS(e) {
+    let s = e;
+    // Replace × ÷ − with * / -
+    s = s.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+    // Replace √ with Math.sqrt — but need proper grouping: √9 or √(9+1)
+    // Simple approach: replace √ with sqrt() using a recursive parser is complex.
+    // Instead: use Function with Math.sqrt bound — we replace √x with __sqrt(x) only if single token.
+    // Best: use a custom tokenizer for √.
+    return s;
+  },
+
+  // Safe evaluation with Math functions
+  safeEval(expr) {
+    // Tokenize for √: scan and replace √ followed by number or (expr)
+    let s = expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+
+    // Handle √ symbol: √N or √(EXPR)
+    // Repeat until no √ left
+    let safety = 0;
+    while (s.includes('√') && safety < 50) {
+      safety++;
+      const idx = s.lastIndexOf('√');
+      // Find the operand start after √
+      let rest = s.slice(idx + 1);
+      let operand = '';
+      if (rest.startsWith('(')) {
+        // match balanced parentheses
+        let depth = 0, i = 0;
+        for (; i < rest.length; i++) {
+          if (rest[i] === '(') depth++;
+          else if (rest[i] === ')') { depth--; if (depth === 0) { i++; break; } }
+        }
+        operand = rest.slice(0, i);
+        s = s.slice(0, idx) + 'Math.sqrt(' + operand + ')' + rest.slice(i);
+      } else {
+        // match number
+        const m = rest.match(/^\d+\.?\d*/);
+        if (m) {
+          operand = m[0];
+          s = s.slice(0, idx) + 'Math.sqrt(' + operand + ')' + rest.slice(operand.length);
+        } else {
+          // fallback: replace √ with Math.sqrt
+          s = s.slice(0, idx) + 'Math.sqrt' + rest;
+        }
+      }
+    }
+
+    // Handle x²: replace N² with (N)^2 — but pattern is complex. We'll handle via ^ operator.
+    // Handle ^ as Math.pow — need to parse. Simpler: use ** for power, then replace a^b with Math.pow(a,b)
+    // We'll use a simple recursive approach: treat ^ as ** but JS doesn't support ** in older browsers — it does in modern.
+    // Use ** operator: a^b → a**b
+    s = s.replace(/\^/g, '**');
+
+    // Handle % as /100
+    s = s.replace(/%/g, '/100');
+
+    // Validate characters
+    if (!/^[\d\s\+\-\*\/\(\)\.Mathsqrtpow\*]+$/.test(s.replace(/Math\.sqrt|Math\.pow/g, ''))) {
+      // fallback allow
+    }
+
+    // eslint-disable-next-line no-new-func
+    const fn = new Function('"use strict"; return (' + s + ')');
+    return fn();
+  },
+
+  press(key) {
+    if (this.hasError && key !== 'C' && key !== 'DEL') {
+      this.expr = '';
+      this.hasError = false;
+    }
+
+    if (key === 'C') {
+      this.reset();
+      return;
+    }
+    if (key === 'DEL') {
+      this.expr = this.expr.slice(0, -1);
+      this.render();
+      return;
+    }
+    if (key === '=') {
+      this.evaluate();
+      return;
+    }
+    if (key === 'sign') {
+      // Toggle sign of last number
+      const m = this.expr.match(/(-?\d+\.?\d*)$/);
+      if (m) {
+        const num = m[1];
+        if (num.startsWith('-')) {
+          this.expr = this.expr.slice(0, -num.length) + num.slice(1);
+        } else {
+          this.expr = this.expr.slice(0, -num.length) + '-' + num;
+        }
+      } else {
+        this.expr += '-';
+      }
+      this.render();
+      return;
+    }
+    if (key === 'sqrt') {
+      this.expr += '√';
+      this.render();
+      return;
+    }
+    if (key === 'sq') {
+      this.expr += '^2';
+      this.render();
+      return;
+    }
+    if (key === 'pow') {
+      this.expr += '^';
+      this.render();
+      return;
+    }
+    if (key === '%') {
+      this.expr += '%';
+      this.render();
+      return;
+    }
+    // Numbers and basic ops
+    if (/^[\d\+\-\*\/\.\(\)]$/.test(key)) {
+      this.expr += key;
+      this.render();
+      return;
+    }
+  },
+
+  evaluate() {
+    if (this.expr.trim() === '') return;
+    try {
+      const val = this.safeEval(this.expr);
+      if (!Number.isFinite(val)) throw new Error('Invalid');
+      // Format result
+      let out;
+      if (Number.isInteger(val)) {
+        out = String(val);
+      } else {
+        out = String(Math.round(val * 1e10) / 1e10);
+      }
+      this.result = out;
+      this.hasError = false;
+      this.justEvaluated = true;
+    } catch (err) {
+      this.result = 'Error';
+      this.hasError = true;
+    }
+    this.render();
+  },
+
+  render() {
+    const exprEl = $('calcExpr');
+    const resEl = $('calcResult');
+    if (!exprEl || !resEl) return;
+    // Pretty display
+    let display = this.expr
+      .replace(/\*/g, ' × ')
+      .replace(/\//g, ' ÷ ')
+      .replace(/-/g, ' − ')
+      .replace(/\+/g, ' + ')
+      .replace(/\^2/g, '²')
+      .replace(/\^/g, ' ^ ')
+      .replace(/%/g, ' % ');
+    exprEl.textContent = display || ' ';
+    resEl.textContent = this.result;
+    resEl.classList.toggle('error', this.hasError);
+  }
+};
+
+/* ============================================================
+   CALCULATOR UI
+============================================================ */
+const calcPanel = $('calcPanel');
+const calcToggle = $('calcToggle');
+const calcClose = $('calcClose');
+
+calcToggle.addEventListener('click', () => {
+  calcPanel.classList.toggle('show');
+});
+calcClose.addEventListener('click', () => {
+  calcPanel.classList.remove('show');
+});
+
+document.querySelectorAll('#calcKeys .calc-key').forEach(btn => {
+  btn.addEventListener('click', () => {
+    Calc.press(btn.dataset.k);
+  });
+});
+
+// Keyboard support (when calc is open and no input focused)
+document.addEventListener('keydown', e => {
+  if (!calcPanel.classList.contains('show')) return;
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+  if (/^[\d\+\-\*\/\.\(\)]$/.test(e.key)) {
+    e.preventDefault();
+    Calc.press(e.key);
+  } else if (e.key === 'Enter' || e.key === '=') {
+    e.preventDefault();
+    Calc.press('=');
+  } else if (e.key === 'Backspace') {
+    e.preventDefault();
+    Calc.press('DEL');
+  } else if (e.key === 'Escape') {
+    e.preventDefault();
+    Calc.press('C');
+  }
+});
+
+/* ============================================================
+   START
+============================================================ */
+$('startBtn').addEventListener('click', () => {
+  try {
+    const keys = Object.keys(SETS);
+    currentSet = keys[Math.floor(Math.random() * keys.length)];
+    allQuestions = SETS[currentSet].slice();
+    if (!allQuestions || allQuestions.length === 0) {
+      alert('Questions load မဖြစ်ပါ။ ပြန်ကြိုးစားပါ။');
+      return;
+    }
+    userAnswers = new Array(allQuestions.length).fill(null);
+    currentQ = 0; phase = 'p1'; timerLeft = T_PART1;
+    timeUsedTotal = 0; submitted = false;
+    $('timer').classList.remove('break', 'warn');
+    calcPanel.classList.remove('show');
+    calcToggle.classList.add('hidden');
+    Calc.reset();
+    startTimer();
+    renderQuestion();
+    renderDotMap();
+    updateProgress();
+    showOnly($('examScreen'));
+  } catch (err) {
+    console.error('START ERROR:', err);
+    alert('Exam စတင်ရာတွင် error ဖြစ်နေသည်:\n' + err.message);
+  }
+});
+
+/* ============================================================
+   TIMER
+============================================================ */
+function startTimer() {
+  clearInterval(timerId);
+  updateTimerDisplay();
+  timerId = setInterval(() => {
+    timerLeft--; timeUsedTotal++;
+    if (phase === 'break') updateBreakDisplay(); else updateTimerDisplay();
+    if (timerLeft <= 0) {
+      clearInterval(timerId);
+      if (phase === 'p1') goToBreak();
+      else if (phase === 'break') skipBreak();
+      else if (phase === 'p2') submitExam(true);
+    }
+  }, 1000);
+}
+function updateTimerDisplay() {
+  const m = Math.floor(Math.max(timerLeft, 0) / 60), s = Math.max(timerLeft, 0) % 60;
+  const t = $('timer');
+  t.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  if (phase === 'p1') t.classList.toggle('warn', timerLeft <= 120);
+  if (phase === 'p2') t.classList.toggle('warn', timerLeft <= 300);
+}
+function updateBreakDisplay() {
+  const m = Math.floor(Math.max(timerLeft, 0) / 60), s = Math.max(timerLeft, 0) % 60;
+  const str = `${m}:${String(s).padStart(2, '0')}`;
+  $('breakCount').textContent = str;
+  $('timer').textContent = str;
+}
+
+/* ============================================================
+   BREAK
+============================================================ */
+function goToBreak() {
+  phase = 'break'; timerLeft = T_BREAK;
+  $('timer').classList.add('break');
+  showOnly($('breakScreen'));
+  startTimer();
+}
+function skipBreak() {
+  clearInterval(timerId);
+  phase = 'p2'; timerLeft = T_PART2;
+  $('timer').classList.remove('break', 'warn');
+  currentQ = 5;
+  calcToggle.classList.remove('hidden');
+  startTimer(); renderQuestion(); renderDotMap(); updateProgress();
+  showOnly($('examScreen'));
+}
+$('skipBreakBtn').addEventListener('click', skipBreak);
+
+/* ============================================================
+   RENDER QUESTION
+============================================================ */
+const TYPE_LABELS = { mcq: 'Multiple Choice', multi: 'Multi-Select', fill: 'Fill-in-Blank',
+  order: 'Ordering', graph: 'Coordinate Plot', dropdown: 'Dropdown', table: 'Table' };
+
+function renderQuestion() {
+  try {
+    const q = allQuestions[currentQ];
+    if (!q) { console.error('No question at index', currentQ); return; }
+    const chosen = userAnswers[currentQ];
+    const card = $('qCard');
+    const badge = $('partBadge');
+    if (currentQ < 5) {
+      badge.textContent = 'Part 1 · No Calculator';
+      badge.classList.remove('p2');
+      calcToggle.classList.add('hidden');
+      calcPanel.classList.remove('show');
+    } else {
+      badge.textContent = 'Part 2 · Calculator';
+      badge.classList.add('p2');
+      calcToggle.classList.remove('hidden');
+    }
+    const typeTag = `<span class="q-type">${TYPE_LABELS[q.type] || 'MCQ'}</span>`;
+    card.innerHTML = `
+      <div class="q-num">Question ${currentQ + 1} of ${allQuestions.length} ${typeTag}</div>
+      <div class="q-text">${q.q}</div>
+      <div id="interactive"></div>
+    `;
+    const inter = card.querySelector('#interactive');
+    if (q.type === 'mcq') renderMCQ(q, inter, chosen);
+    else if (q.type === 'multi') renderMulti(q, inter, chosen);
+    else if (q.type === 'fill') renderFill(q, inter, chosen);
+    else if (q.type === 'order') renderOrder(q, inter, chosen);
+    else if (q.type === 'graph') renderGraph(q, inter, chosen);
+    else if (q.type === 'dropdown') renderDropdown(q, inter, chosen);
+    else if (q.type === 'table') renderTable(q, inter, chosen);
+    else inter.innerHTML = '<p style="color:red">Unknown question type: ' + q.type + '</p>';
+    $('qCounter').textContent = `Question ${currentQ + 1} of ${allQuestions.length}`;
+    $('prevBtn').disabled = currentQ === 0 || (phase === 'p2' && currentQ === 5);
+    $('nextBtn').textContent = (currentQ === allQuestions.length - 1) ? 'Finish' : 'Next →';
+    if (phase === 'p1' && currentQ === 4) $('nextBtn').textContent = '☕ Begin 3-min Break';
+  } catch (err) {
+    console.error('RENDER ERROR:', err);
+  }
+}
+
+function commitAnswer(val) {
+  userAnswers[currentQ] = val;
+  updateProgress(); renderDotMap();
+}
+
+function renderMCQ(q, container, chosen) {
+  container.innerHTML = `<div class="opts">${q.o.map((opt, i) =>
+    `<button class="opt ${chosen === i ? 'selected' : ''}" data-i="${i}">
+      <span class="ltr">${'ABCD'[i] || '?'}</span><span class="body">${opt}</span>
+    </button>`).join('')}</div>`;
+  container.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = +btn.dataset.i;
+      commitAnswer(i);
+      container.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      autoAdvance();
+    });
+  });
+}
+
+function renderMulti(q, container, chosen) {
+  const sel = Array.isArray(chosen) ? chosen : [];
+  const need = q.c.length;
+  container.innerHTML = `
+    <div style="font-size:12px;color:var(--muted);font-weight:700;margin-bottom:10px" id="multiStatus">
+      Select ${need} answers (${sel.length} selected)
+    </div>
+    <div class="opts">${q.o.map((opt, i) =>
+      `<button class="opt multi ${sel.includes(i) ? 'selected' : ''}" data-i="${i}">
+        <span class="ltr">${sel.includes(i) ? '✓' : ''}</span><span class="body">${opt}</span>
+      </button>`).join('')}</div>
+    <button class="btn primary" id="multiSubmit" style="margin-top:12px;width:100%">Confirm Selection</button>
+  `;
+  const cnt = container.querySelector('#multiStatus');
+  container.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = +btn.dataset.i;
+      const arr = Array.isArray(userAnswers[currentQ]) ? [...userAnswers[currentQ]] : [];
+      const k = arr.indexOf(i);
+      if (k >= 0) arr.splice(k, 1);
+      else if (arr.length < need) arr.push(i);
+      userAnswers[currentQ] = arr;
+      btn.classList.toggle('selected', arr.includes(i));
+      btn.querySelector('.ltr').textContent = arr.includes(i) ? '✓' : '';
+      if (cnt) cnt.textContent = `Select ${need} answers (${arr.length} selected)`;
+      updateProgress(); renderDotMap();
+    });
+  });
+  container.querySelector('#multiSubmit').addEventListener('click', () => {
+    if ((userAnswers[currentQ] || []).length < need) return;
+    autoAdvance();
+  });
+}
+
+function renderFill(q, container, chosen) {
+  const val = chosen != null ? String(chosen) : '';
+  container.innerHTML = `
+    <div class="fill-row">
+      <input class="fill-input" id="fillIn" type="text" inputmode="decimal" placeholder="အဖြေ ရိုက်ပါ" value="${val}">
+      <button class="btn primary" id="fillSubmit">Confirm</button>
+    </div>`;
+  const inp = container.querySelector('#fillIn');
+  container.querySelector('#fillSubmit').addEventListener('click', () => {
+    const v = inp.value.trim();
+    if (v === '') return;
+    commitAnswer(v);
+    inp.classList.add('fill-ok');
+    setTimeout(autoAdvance, 180);
+  });
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') container.querySelector('#fillSubmit').click(); });
+}
+
+function renderOrder(q, container, chosen) {
+  const pool = q.items.slice();
+  let seq = Array.isArray(chosen) ? [...chosen] : [];
+  container.innerHTML = `
+    <div style="font-size:12px;color:var(--muted);font-weight:700;margin-bottom:10px" id="orderStatus">
+      ${seq.length} / ${pool.length} placed — tap items in correct order
+    </div>
+    <div class="order-pool" id="orderPool"></div>
+    <div class="order-slots" id="orderSlots"></div>
+  `;
+  const poolEl = container.querySelector('#orderPool');
+  const slotsEl = container.querySelector('#orderSlots');
+  const statusEl = container.querySelector('#orderStatus');
+  function paint() {
+    poolEl.innerHTML = '';
+    pool.forEach(item => {
+      const b = document.createElement('button');
+      b.className = 'order-item' + (seq.includes(item) ? ' used' : '');
+      b.innerHTML = `${item}`;
+      b.addEventListener('click', () => {
+        if (seq.includes(item)) return;
+        seq.push(item);
+        userAnswers[currentQ] = seq.slice();
+        paint(); paintSlots(); updateProgress(); renderDotMap();
+        statusEl.textContent = `${seq.length} / ${pool.length} placed — tap items in correct order`;
+        if (seq.length === pool.length) setTimeout(autoAdvance, 350);
+      });
+      poolEl.appendChild(b);
+    });
+  }
+  function paintSlots() {
+    slotsEl.innerHTML = '';
+    if (seq.length === 0) {
+      slotsEl.innerHTML = '<div class="order-empty">ဤနေရာတွင် အစဉ်လိုက် ပြသပါမည်</div>';
+      return;
+    }
+    seq.forEach((it, i) => {
+      const d = document.createElement('div');
+      d.className = 'order-slot';
+      d.innerHTML = `<span class="num" style="background:rgba(255,255,255,.25)">${i + 1}</span>${it}
+        <span class="rm" data-i="${i}">✕</span>`;
+      d.querySelector('.rm').addEventListener('click', () => {
+        seq.splice(i, 1);
+        userAnswers[currentQ] = seq.slice();
+        paint(); paintSlots(); updateProgress(); renderDotMap();
+        statusEl.textContent = `${seq.length} / ${pool.length} placed — tap items in correct order`;
+      });
+      slotsEl.appendChild(d);
+    });
+  }
+  paint(); paintSlots();
+}
+
+function renderGraph(q, container, chosen) {
+  const size = 8, svgSize = 320, cell = svgSize / (size * 2 + 1);
+  function toXY(px, py) {
+    const x = Math.round((px - 160) / (cell * 2));
+    const y = Math.round((160 - py) / (cell * 2));
+    return { x: Math.max(-size, Math.min(size, x)), y: Math.max(-size, Math.min(size, y)) };
+  }
+  function toPx(x, y) { return { px: 160 + x * cell * 2, py: 160 - y * cell * 2 }; }
+  const hint = document.createElement('div');
+  hint.className = 'graph-hint';
+  hint.innerHTML = 'Grid ပေါ် တို့ပြီး သင့်အမှတ်ကို ရွေးပါ';
+  container.innerHTML = '';
+  container.appendChild(hint);
+  const wrap = document.createElement('div');
+  wrap.className = 'graph-wrap';
+  container.appendChild(wrap);
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${svgSize} ${svgSize}`);
+  svg.setAttribute('class', 'graph-svg');
+  wrap.appendChild(svg);
+  function drawGrid() {
+    svg.innerHTML = '';
+    for (let i = -size; i <= size; i++) {
+      const p = toPx(i, -size), p2 = toPx(i, size);
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', p.px); line.setAttribute('y1', p.py);
+      line.setAttribute('x2', p2.px); line.setAttribute('y2', p2.py);
+      line.setAttribute('stroke', i === 0 ? '#1e293b' : '#e2e8f0');
+      line.setAttribute('stroke-width', i === 0 ? '2' : '1');
+      svg.appendChild(line);
+      const q1 = toPx(-size, i), q2 = toPx(size, i);
+      const l2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l2.setAttribute('x1', q1.px); l2.setAttribute('y1', q1.py);
+      l2.setAttribute('x2', q2.px); l2.setAttribute('y2', q2.py);
+      l2.setAttribute('stroke', i === 0 ? '#1e293b' : '#e2e8f0');
+      l2.setAttribute('stroke-width', i === 0 ? '2' : '1');
+      svg.appendChild(l2);
+    }
+    for (let i = -size; i <= size; i += 2) {
+      if (i === 0) continue;
+      const p = toPx(i, 0);
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x', p.px); t.setAttribute('y', p.py + 14);
+      t.setAttribute('font-size', '10'); t.setAttribute('fill', '#64748b');
+      t.setAttribute('text-anchor', 'middle'); t.setAttribute('font-weight', '600');
+      t.textContent = i; svg.appendChild(t);
+      const p2 = toPx(0, i);
+      const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t2.setAttribute('x', p2.px - 14); t2.setAttribute('y', p2.py + 3);
+      t2.setAttribute('font-size', '10'); t2.setAttribute('fill', '#64748b');
+      t2.setAttribute('text-anchor', 'middle'); t2.setAttribute('font-weight', '600');
+      t2.textContent = i; svg.appendChild(t2);
+    }
+  }
+  drawGrid();
+  const userPt = chosen && typeof chosen === 'object' ? chosen : null;
+  let marker = null;
+  if (userPt) {
+    const p = toPx(userPt.x, userPt.y);
+    marker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    marker.setAttribute('cx', p.px); marker.setAttribute('cy', p.py);
+    marker.setAttribute('r', 7); marker.setAttribute('fill', '#8b5cf6');
+    marker.setAttribute('stroke', '#fff'); marker.setAttribute('stroke-width', '2');
+    svg.appendChild(marker);
+  }
+  const coord = document.createElement('div');
+  coord.className = 'graph-coord' + (userPt ? '' : ' empty');
+  coord.textContent = userPt ? `Selected: (${userPt.x}, ${userPt.y})` : 'No point selected';
+  wrap.appendChild(coord);
+  svg.addEventListener('click', e => {
+    const rect = svg.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width * svgSize;
+    const py = (e.clientY - rect.top) / rect.height * svgSize;
+    const pt = toXY(px, py);
+    commitAnswer(pt);
+    if (marker) marker.remove();
+    const pp = toPx(pt.x, pt.y);
+    marker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    marker.setAttribute('cx', pp.px); marker.setAttribute('cy', pp.py);
+    marker.setAttribute('r', 7); marker.setAttribute('fill', '#8b5cf6');
+    marker.setAttribute('stroke', '#fff'); marker.setAttribute('stroke-width', '2');
+    svg.appendChild(marker);
+    coord.className = 'graph-coord';
+    coord.textContent = `Selected: (${pt.x}, ${pt.y})`;
+  });
+}
+
+function renderDropdown(q, container, chosen) {
+  const vals = Array.isArray(chosen) ? chosen : new Array(q.blanks.length).fill(null);
+  let html = '<div class="dropdown-line">';
+  const parts = q.text.split(/(\{\d+\})/);
+  parts.forEach(p => {
+    const m = p.match(/^\{(\d+)\}$/);
+    if (m) {
+      const idx = +m[1]; const b = q.blanks[idx];
+      html += `<select class="dd-select" data-idx="${idx}">
+        <option value="">--</option>
+        ${b.options.map((o, i) => `<option value="${i}" ${vals[idx] === i ? 'selected' : ''}>${o}</option>`).join('')}
+      </select>`;
+    } else html += p;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+  container.querySelectorAll('.dd-select').forEach(sel => {
+    sel.addEventListener('change', () => {
+      const idx = +sel.dataset.idx;
+      const arr = Array.isArray(userAnswers[currentQ]) ? [...userAnswers[currentQ]] : new Array(q.blanks.length).fill(null);
+      arr[idx] = +sel.value;
+      userAnswers[currentQ] = arr;
+      updateProgress(); renderDotMap();
+      if (arr.every(v => v != null)) setTimeout(autoAdvance, 300);
+    });
+  });
+}
+
+function renderTable(q, container, chosen) {
+  const answers = Array.isArray(chosen) ? chosen : null;
+  let html = '<div class="table-wrap"><table class="data-table"><thead><tr>';
+  q.headers.forEach(h => html += `<th>${h}</th>`);
+  html += '</tr></thead><tbody>';
+  q.rows.forEach((r, ri) => {
+    html += '<tr>';
+    r.cells.forEach((c, ci) => {
+      if (r.answers[ci] === null) {
+        html += `<td>${c}</td>`;
+      } else {
+        const v = answers && answers[ri] !== undefined && answers[ri][ci] !== undefined ? answers[ri][ci] : '';
+        html += `<td><input type="text" inputmode="decimal" data-r="${ri}" data-c="${ci}" value="${v}"></td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+  html += '<button class="btn primary" id="tableSubmit" style="width:100%">Confirm Table</button>';
+  container.innerHTML = html;
+  container.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const r = +inp.dataset.r, c = +inp.dataset.c;
+      let arr = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ].map(x => x ? [...x] : []) : q.rows.map(() => []);
+      if (!arr[r]) arr[r] = [];
+      arr[r][c] = inp.value;
+      userAnswers[currentQ] = arr;
+      updateProgress(); renderDotMap();
+    });
+  });
+  container.querySelector('#tableSubmit').addEventListener('click', () => {
+    const all = Array.isArray(userAnswers[currentQ]) ? userAnswers[currentQ] : [];
+    const ok = q.rows.every((r, ri) => r.answers.every((a, ci) => {
+      if (a === null) return true;
+      const u = all[ri] && all[ri][ci];
+      return u != null && u !== '';
+    }));
+    if (!ok) return;
+    setTimeout(autoAdvance, 200);
+  });
+}
+
+/* ============================================================
+   AUTO-ADVANCE
+============================================================ */
+function autoAdvance() {
+  if (currentQ >= allQuestions.length - 1) return;
+  if (currentQ === 4 && phase === 'p1') return;
+  setTimeout(() => { currentQ++; renderQuestion(); renderDotMap(); }, 280);
+}
+
+/* ============================================================
+   NAV
+============================================================ */
+$('prevBtn').addEventListener('click', () => {
+  if (phase === 'p2' && currentQ === 5) return;
+  if (currentQ > 0) { currentQ--; renderQuestion(); renderDotMap(); }
+});
+$('nextBtn').addEventListener('click', () => {
+  if (phase === 'p1' && currentQ === 4) {
+    const unanswered = userAnswers.slice(0, 5).filter(a => !isAnswered(a)).length;
+    if (unanswered > 0) {
+      modal('Part 1 မပြီးသေးပါ', `မေးခွန်း ${unanswered} ခု မဖြေရသေးပါ။ Break စတင်မလား။`, 'ဆက်လုပ်မည်', ok => { if (ok) goToBreak(); });
+    } else goToBreak();
+    return;
+  }
+  if (currentQ === allQuestions.length - 1) {
+    $('submitBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  currentQ++; renderQuestion(); renderDotMap();
+});
+
+/* ============================================================
+   DOT MAP
+============================================================ */
+function renderDotMap() {
+  const el = $('dotMap'); el.innerHTML = '';
+  for (let i = 0; i < allQuestions.length; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i >= 5 ? ' p2' : '');
+    d.textContent = i + 1;
+    if (isAnswered(userAnswers[i])) d.classList.add('answered');
+    if (i === currentQ) d.classList.add('current');
+    d.addEventListener('click', () => {
+      if (phase === 'p1' && i >= 5) return;
+      if (phase === 'p2' && i < 5) return;
+      currentQ = i; renderQuestion(); renderDotMap();
+    });
+    el.appendChild(d);
+  }
+}
+function isAnswered(a) {
+  if (a === null || a === undefined) return false;
+  if (Array.isArray(a)) return a.length > 0;
+  if (typeof a === 'string') return a.trim() !== '';
+  if (typeof a === 'object') return true;
+  return true;
+}
+function updateProgress() {
+  const answered = userAnswers.filter(isAnswered).length;
+  $('pCount').textContent = `${answered} / ${allQuestions.length}`;
+  $('pBar').style.width = (answered / allQuestions.length * 100) + '%';
+}
+
+/* ============================================================
+   SCORING
+============================================================ */
+function scoreQ(q, ua) {
+  if (!isAnswered(ua)) return false;
+  if (q.type === 'mcq') return ua === q.c;
+  if (q.type === 'multi') {
+    if (!Array.isArray(ua)) return false;
+    const a = [...ua].sort((x, y) => x - y);
+    const c = [...q.c].sort((x, y) => x - y);
+    return a.length === c.length && a.every((v, i) => v === c[i]);
+  }
+  if (q.type === 'fill') {
+    if (Array.isArray(ua)) return false;
+    const n = parseFloat(ua);
+    if (!Number.isFinite(n)) return false;
+    const tol = q.tolerance || 0.01;
+    return Math.abs(n - q.answer) <= tol;
+  }
+  if (q.type === 'order') {
+    if (!Array.isArray(ua)) return false;
+    return ua.length === q.correctOrder.length && ua.every((v, i) => v === q.correctOrder[i]);
+  }
+  if (q.type === 'graph') {
+    if (!ua || typeof ua !== 'object' || Array.isArray(ua)) return false;
+    const tol = q.tolerance || 0.3;
+    return Math.abs(ua.x - q.answer.x) <= tol && Math.abs(ua.y - q.answer.y) <= tol;
+  }
+  if (q.type === 'dropdown') {
+    if (!Array.isArray(ua)) return false;
+    return q.blanks.every((b, i) => ua[i] === b.correct);
+  }
+  if (q.type === 'table') {
+    if (!Array.isArray(ua)) return false;
+    return q.rows.every((r, ri) => r.answers.every((a, ci) => {
+      if (a === null) return true;
+      const u = ua[ri] && ua[ri][ci];
+      if (u == null || u === '') return false;
+      const n = parseFloat(u);
+      return Number.isFinite(n) && Math.abs(n - parseFloat(a)) < 0.01;
+    }));
+  }
+  return false;
+}
+
+/* ============================================================
+   SUBMIT
+============================================================ */
+$('submitBtn').addEventListener('click', () => {
+  const unanswered = userAnswers.filter(a => !isAnswered(a)).length;
+  const msg = unanswered > 0 ? `${unanswered} ခု မဖြေရသေးပါ။ တင်မလား။` : 'Exam ကို တင်မလား။';
+  modal('Submit Exam', msg, 'တင်မည်', ok => { if (ok) submitExam(false); });
+});
+
+function submitExam(auto) {
+  if (submitted) return;
+  submitted = true;
+  clearInterval(timerId);
+  calcPanel.classList.remove('show');
+  let correct = 0;
+  userAnswers.forEach((a, i) => { if (scoreQ(allQuestions[i], a)) correct++; });
+  const total = allQuestions.length;
+  const pct = Math.round(correct / total * 100);
+  const wrong = total - correct;
+  try {
+    const s = JSON.parse(localStorage.getItem('ged:pretest:scores')) || {};
+    const rec = { score: correct, total, pct, date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }), set: currentSet };
+    const prev = s['math'];
+    if (!prev || rec.pct > prev.pct) s['math'] = rec;
+    localStorage.setItem('ged:pretest:scores', JSON.stringify(s));
+  } catch (e) { }
+  renderResult(correct, wrong, pct, auto);
+  showOnly($('resultScreen'));
+}
+
+/* ============================================================
+   RESULT
+============================================================ */
+function renderResult(correct, wrong, pct, auto) {
+  $('scorePct').textContent = pct + '%';
+  $('rCorrect').textContent = correct;
+  $('rWrong').textContent = wrong;
+  const m = Math.floor(timeUsedTotal / 60), s = timeUsedTotal % 60;
+  $('rTime').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  let gedScore;
+  if (pct < 72.5) gedScore = Math.round(100 + (pct / 72.5) * 45);
+  else if (pct < 87) gedScore = Math.round(145 + ((pct - 72.5) / (87 - 72.5)) * 20);
+  else if (pct < 95) gedScore = Math.round(165 + ((pct - 87) / (95 - 87)) * 10);
+  else gedScore = Math.round(175 + ((pct - 95) / (100 - 95)) * 25);
+  gedScore = Math.max(100, Math.min(200, gedScore));
+  $('gedScore').textContent = gedScore;
+  const gs = $('gedMsg');
+  if (gedScore >= 175) gs.textContent = '🏆 College Ready + Credit (175+)';
+  else if (gedScore >= 165) gs.textContent = '🎓 College Ready (165+)';
+  else if (gedScore >= 145) gs.textContent = '✅ Passed GED (145+)';
+  else gs.textContent = '📚 အောင်မှတ် 145 ရရန် လိုသေးသည်';
+  const ring = $('scoreRing'); const C = 2 * Math.PI * 70;
+  ring.style.strokeDasharray = C; ring.style.strokeDashoffset = C;
+  setTimeout(() => { ring.style.strokeDashoffset = C * (1 - pct / 100); }, 100);
+  let msg, sub;
+  if (gedScore >= 165) { msg = '🌟 College Ready!'; sub = 'GED Math တွင် ထူးချွန်စွာ အောင်မြင်နိုင်မည်။'; }
+  else if (gedScore >= 145) { msg = '✅ Passed!'; sub = 'GED Math အောင်မှတ် ရပါပြီ။ အားနည်းသည့် ခေါင်းစဉ်များ ပြန်လေ့လာပါ။'; }
+  else if (gedScore >= 130) { msg = '📚 Near Passing'; sub = 'အောင်မှတ်နှင့် နီးကပ်နေသည်။ Lesson များ ပြန်လေ့လာပါ။'; }
+  else { msg = '💪 လေ့ကျင့်ဖို့ လိုသေးသည်'; sub = 'Group 1–6 ကို အစအဆုံး ပြန်လေ့လာပါ။'; }
+  if (auto) sub = '⏰ အချိန်ကုန်သွားသောကြောင့် အလိုအလျောက် တင်လိုက်သည်။ ' + sub;
+  $('resultMsg').textContent = msg;
+  $('resultSub').textContent = sub;
+  renderReview();
+}
+
+/* ============================================================
+   REVIEW
+============================================================ */
+function renderReview() {
+  const el = $('reviewWrap');
+  el.innerHTML = '<div class="review-title">Answer Key & Explanations</div>';
+  allQuestions.forEach((q, i) => {
+    const ua = userAnswers[i];
+    const ok = scoreQ(q, ua);
+    const partTag = i < 5
+      ? '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(139,92,246,.12);color:#6d28d9">PART 1</span>'
+      : '<span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(22,163,74,.12);color:#15803d">PART 2</span>';
+    const card = document.createElement('div');
+    card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)';
+    let answerHtml = '';
+    if (q.type === 'mcq') {
+      answerHtml = `<div style="display:grid;grid-template-columns:1fr;gap:8px">${q.o.map((o, j) => {
+        let cls = 'opt locked';
+        if (j === q.c) cls += ' correct';
+        else if (j === ua) cls += ' wrong';
+        return `<div class="${cls}" style="cursor:default"><span class="ltr">${'ABCD'[j] || '?'}</span><span class="body">${o}</span></div>`;
+      }).join('')}</div>`;
+    } else if (q.type === 'multi') {
+      answerHtml = `<div style="display:grid;grid-template-columns:1fr;gap:8px">${q.o.map((o, j) => {
+        const isC = q.c.includes(j); const isU = Array.isArray(ua) && ua.includes(j);
+        let cls = 'opt locked multi';
+        if (isC) cls += ' correct';
+        else if (isU) cls += ' wrong';
+        return `<div class="${cls}" style="cursor:default"><span class="ltr">${isU ? '✓' : ''}</span><span class="body">${o} ${isC ? '✓ correct' : ''}</span></div>`;
+      }).join('')}</div>`;
+    } else if (q.type === 'fill') {
+      answerHtml = `<div style="padding:14px;border-radius:12px;background:${ok ? '#dcfce7' : '#fee2e2'};font-weight:700">
+        Your answer: <b>${ua != null ? ua : '(blank)'}</b><br>
+        Correct answer: <b style="color:#14532d">${q.answer}</b>
+      </div>`;
+    } else if (q.type === 'order') {
+      answerHtml = `<div style="padding:14px;border-radius:12px;background:${ok ? '#dcfce7' : '#fee2e2'};font-weight:700">
+        Your order: <b>${Array.isArray(ua) ? ua.join(' → ') : '(blank)'}</b><br>
+        Correct: <b style="color:#14532d">${q.correctOrder.join(' → ')}</b>
+      </div>`;
+    } else if (q.type === 'graph') {
+      answerHtml = `<div style="padding:14px;border-radius:12px;background:${ok ? '#dcfce7' : '#fee2e2'};font-weight:700">
+        Your point: <b>${ua ? `(${ua.x}, ${ua.y})` : '(none)'}</b><br>
+        Correct: <b style="color:#14532d">(${q.answer.x}, ${q.answer.y})</b>
+      </div>`;
+    } else if (q.type === 'dropdown') {
+      answerHtml = `<div style="padding:14px;border-radius:12px;background:${ok ? '#dcfce7' : '#fee2e2'};font-weight:700">
+        Correct choices: <b style="color:#14532d">${q.blanks.map(b => b.options[b.correct]).join(' / ')}</b>
+      </div>`;
+    } else if (q.type === 'table') {
+      answerHtml = `<div style="padding:14px;border-radius:12px;background:${ok ? '#dcfce7' : '#fee2e2'};font-weight:700">
+        Correct values: <b style="color:#14532d">${q.rows.map(r => r.answers.map((a, ci) => a !== null ? a : r.cells[ci]).join(' → ')).filter((_, ri) => q.rows[ri].answers.some(a => a !== null)).join(' | ')}</b>
+      </div>`;
+    }
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <span style="display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 8px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#8b5cf6,#6366f1)">${i + 1}</span>
+        ${partTag}
+        <span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:rgba(245,158,11,.15);color:#b45309">${TYPE_LABELS[q.type]}</span>
+        <span style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;${ok ? 'color:#14532d;background:#bbf7d0' : 'color:#7f1d1d;background:#fecaca'}">${ok ? '✔ Correct' : '✘ Wrong'}</span>
+      </div>
+      <div style="font-size:14.5px;line-height:1.7;margin:6px 0 14px;font-weight:500">${q.q}</div>
+      ${answerHtml}
+      <div class="sol">
+        <span class="lbl">အဘယ်ကြောင့်</span>${q.why}
+        <div style="margin-top:10px"><span class="lbl">တွက်နည်း အဆင့်ဆင့်</span>
+          <ol>${q.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+        </div>
+        <span class="ans">✔ အဖြေ: ${q.a}</span>
+      </div>
+    `;
+    el.appendChild(card);
+  });
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+$('reviewBtn').addEventListener('click', () => { $('reviewWrap').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+$('retryBtn').addEventListener('click', () => {
+  modal('New Exam', 'Exam အသစ် (ကျပန်း set) စတင်မလား။', 'စတင်မည်', ok => { if (ok) $('startBtn').click(); });
+});
+function confirmExit() {
+  if (submitted) return true;
+  return confirm('Exam မှ ထွက်မလား။ ဖြေထားသည်များ ဆုံးရှုံးမည်။');
+}
+
+/* ============================================================
+   KEYBOARD
+============================================================ */
+document.addEventListener('keydown', e => {
+  if (!$('examScreen').classList.contains('active')) return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+  if (calcPanel.classList.contains('show')) return;
+  if (e.key === 'ArrowLeft') $('prevBtn').click();
+  if (e.key === 'ArrowRight') $('nextBtn').click();
+  if (['1', '2', '3', '4'].includes(e.key)) {
+    const i = +e.key - 1;
+    const btn = $('qCard').querySelector(`.opt[data-i="${i}"]`);
+    if (btn) btn.click();
+  }
+});
+</script>
+</body>
+</html>
